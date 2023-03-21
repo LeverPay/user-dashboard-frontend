@@ -3,6 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import NavComponent from './components/shared-files/NavComponent';
+
 import './App.css';
 
 function App() {
@@ -12,7 +14,7 @@ function App() {
         <Container>
           <Row>
             <Col>
-              
+              <NavComponent />
             </Col>
             <Col xs={6}>
               <h2> Welcome ! </h2>
