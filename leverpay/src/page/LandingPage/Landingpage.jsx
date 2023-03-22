@@ -1,10 +1,13 @@
 import React from 'react';
+import LandingHeader from '../../components/LandingHeader';
+import LandingNavbar from '../../components/LandingNavbar';
 
 const Landingpage = () => {
   return (
     <div>
-      {/* navbar */}
+      <LandingNavbar />
       {/* header */}
+      <LandingHeader />
       {/* overview */}
       {/* ourservices */}
       {/* productmarketing */}
