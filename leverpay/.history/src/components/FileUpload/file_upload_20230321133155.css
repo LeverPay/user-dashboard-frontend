@@ -1,0 +1,23 @@
+.image-item img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-left: 5px;
+
+  margin-right: 20px;
+}
+.image-item {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #eaeffe;
+  padding: 0 !important;
+}
+.file-upload-div {
+  width: 100%;
+  font-size: 30px;
+  display: flex;
+  padding: 5px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
