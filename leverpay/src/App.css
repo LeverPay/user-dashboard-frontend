@@ -14,14 +14,9 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #fff;
+  /* max-height: 900px; */
+  /* color: white; */
 }
 
 .App-link {
@@ -35,4 +30,105 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* LeverPay styling starts here */
+
+.navContainer {
+  /* position: absolute; */
+  width: 258px;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  /* margin-inline: auto; */
+  /* border: 1px solid #000; */
+  background-color: #0e093f;
+  border-radius: 0px 50px 50px 0px;
+}
+
+.navBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 354px;
+
+  position: absolute;
+  width: 200px;
+  height: 700px;
+  top: 139px;
+
+  /* border: 1px solid #000; */
+}
+
+.logoPosition {
+  /* border: 1px solid #000; */
+  position: absolute;
+  width: 200px;
+  height: 32px;
+  left: 29px;
+  top: 38px;
+}
+
+.dashboard {
+  border: 500px solid #000;
+}
+
+.dashboardCardContainer {
+  width: 700px;
+  height: 80px;
+  margin-inline: auto;
+  /* border: 1px solid #000; */
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row nowrap;
+  align-content: space-evenly;
+}
+
+.dashboardCard {
+  /* min-width: 100px; */
+  height: 80px;
+  color: #fff;
+  font-size: 20px;
+  padding: 0.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+
+  /* first value is grow, second value shrink, third value basis */
+  flex: 1 1 250px;
+}
+
+.dashboardCard:nth-child(1) {
+  background-color: #0e093f;
+}
+
+.dashboardCard:nth-child(2) {
+  background-color: #f6a61f;
+}
+
+.dashboardCard:nth-child(3) {
+  background-color: #201e34;
+}
+
+.recentTransactionTable {
+  margin-inline: auto;
+  width: 700px;
+  height: 200px;
+  background: #1c1a2e;
+  color: #fff;
+  border-radius: 10px;
+  border-collapse: collapse;
+}
+th,
+td {
+  text-align: left;
+  padding: 8px;
 }
