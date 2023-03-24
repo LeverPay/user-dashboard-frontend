@@ -76,7 +76,7 @@ function FileUpload({ data }) {
             dragProps,
           }) => (
             // write your building UI
-            <div className="upload__image-wrapper col-md-6">
+            <div className="upload__image-wrapper col-md-12">
               <div
                 style={isDragging ? { color: "red" } : null}
                 className="file-upload-div"

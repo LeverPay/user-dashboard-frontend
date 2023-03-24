@@ -5,6 +5,10 @@ import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
+// import KYCForms from "./page/KYCForms/KYCForms";
+import { KYCGoldFormModal } from "./page/KYCForms/KYCGoldFormModal/KYCGoldFormModal";
+
+import { KYCDiamondFormModal } from "./page/KYCForms/KYCDiamondFormModal/KYCDiamondFormModal";
 function App() {
   return (
     <div className="">
@@ -19,6 +23,10 @@ function App() {
         </Row>
       </Container>
       {/* </header> */}
+      <KYCGoldFormModal />
+      <br />
+      <br />
+      <KYCDiamondFormModal />
     </div>
   );
 }
