@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #fff;
+  background-color: #000;
   /* max-height: 900px; */
   /* color: white; */
 }
@@ -35,9 +35,9 @@
 /* LeverPay styling starts here */
 
 .navContainer {
-  /* position: absolute; */
+  position: absolute;
   width: 258px;
-  height: 100vh;
+  height: 700px;
   left: 0px;
   top: 0px;
   justify-content: center;
@@ -59,9 +59,173 @@
   position: absolute;
   width: 200px;
   height: 700px;
+  left: 29px;
   top: 139px;
 
   /* border: 1px solid #000; */
+}
+
+.navOptions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* border: 1px solid #000; */
+  padding: 0px;
+  gap: 2px;
+
+  width: 200px;
+  height: 248px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.dashboardActive {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 14px 81px 14px 15px;
+  gap: 12px;
+  width: 175px;
+  height: 48px;
+  background: #ffffff;
+  border-radius: 8px;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.dashboardOption {
+  position: absolute;
+  top: 25px;
+  width: 72px;
+  height: 18px;
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  /* Text Color/Text 1 */
+  color: #1b212d;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.transactionOption {
+  width: 83px;
+  height: 18px;
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.invoicesOption {
+  width: 52px;
+  height: 18px;
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.myCardOption {
+  width: 68px;
+  height: 18px;
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.settingsOption {
+  width: 55px;
+  height: 18px;
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.navBottom {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 2px;
+  width: 200px;
+  height: 50px;
+  /* Inside auto layout */
+  top: 380px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  /* border: 1px solid #000; */
+}
+.dashboardHelp {
+  position: absolute;
+  width: 29px;
+  height: 18px;
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+  /* Inside auto layout */
+  left: 20px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.dashboardLogout {
+  position: absolute;
+  width: 29px;
+  height: 18px;
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+  /* Inside auto layout */
+  top: 30px;
+  left: 20px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 }
 
 .logoPosition {
@@ -79,31 +243,36 @@
 
 .dashboardCardContainer {
   width: 700px;
-  height: 80px;
-  margin-inline: auto;
+  min-height: 80px;
+  /* margin-inline: auto; */
+  position: absolute;
+  left: 290px;
+  top: 80px;
   /* border: 1px solid #000; */
   display: flex;
+  margin-top: 10px;
   gap: 1em;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-flow: row nowrap;
-  align-content: space-evenly;
+  /* align-content: space-between; */
 }
 
 .dashboardCard {
   /* min-width: 100px; */
+  display: flex;
+  flex: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
   height: 80px;
   color: #fff;
   font-size: 20px;
   padding: 0.5rem;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-
   /* first value is grow, second value shrink, third value basis */
-  flex: 1 1 250px;
+  flex-grow: 1;
+  flex-basis: 100px;
 }
 
 .dashboardCard:nth-child(1) {
@@ -118,17 +287,153 @@
   background-color: #201e34;
 }
 
+.graphComponentDiv {
+  position: absolute;
+  width: 700px;
+  height: 291px;
+  border: 1px solid #000;
+  background-color: #1c1a2e;
+  border-radius: 10px;
+  left: 290px;
+  top: 180px;
+}
+
 .recentTransactionTable {
+  position: absolute;
   margin-inline: auto;
   width: 700px;
-  height: 200px;
+  height: 220px;
   background: #1c1a2e;
   color: #fff;
   border-radius: 10px;
   border-collapse: collapse;
+  top: 480px;
+  left: 290px;
 }
 th,
 td {
   text-align: left;
   padding: 8px;
+}
+
+.TopNav {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  top: 30px;
+  gap: 629px;
+  /* border: 1px solid #000; */
+  background-color: #0b0230;
+  left: 290px;
+
+  width: 950px;
+  height: 48px;
+}
+
+.portfolioText {
+  position: absolute;
+  width: 77px;
+  height: 23px;
+
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+
+  color: #ffffff;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  left: 30px;
+}
+
+/* Top Nav styling */
+.notificationIcon {
+  position: absolute;
+  left: 82.33%;
+  /* right: 12.5%; */
+  top: 25.38%;
+  bottom: 12.5%;
+
+  /* Text Color/Text 2 */
+
+  border: 2px solid #929eae;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 76.33%;
+  /* right: 12.5%; */
+  top: 25.38%;
+  bottom: 12.5%;
+
+  /* Text Color/Text 2 */
+
+  border: 2px solid #929eae;
+}
+/* Top Nav styling Ends here! */
+.pageTitle {
+  position: absolute;
+  width: 114px;
+  height: 33px;
+
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 32px;
+  /* identical to box height */
+
+  /* Text Color/Pure White */
+
+  color: #fff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.navUser {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 15px 6px 7px;
+  gap: 41px;
+  left: px;
+
+  /* width: 215px; */
+  height: 45px;
+
+  /* Darkish Color/Dark 1 */
+
+  /* background: #201e34; */
+  /* border-radius: 100px; */
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+/* shop details here */
+
+.shopDetails {
+  position: absolute;
+  width: 250px;
+  height: 220px;
+  left: 1000px;
+  top: 480px;
+
+  background: #0e093f;
+  border-radius: 30px;
 }

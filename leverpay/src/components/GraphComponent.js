@@ -14,8 +14,13 @@ ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
 const GraphComponent = ({ chartData }) => {
   return (
     <div>
-      {/* <h5>Portfolio</h5> */}
-      <Line data={chartData} options={LineElement} />
+      {/* <h5 className="portfolioText">Portfolio</h5> */}
+      <Line
+        data={chartData}
+        width={700}
+        height={291}
+        options={{ maintainAspectRatio: false }}
+      />
     </div>
   );
 };
