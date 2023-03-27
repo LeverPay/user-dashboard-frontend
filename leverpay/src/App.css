@@ -15,8 +15,8 @@
 
 .App-header {
   background-color: #000;
-  /* max-height: 900px; */
-  /* color: white; */
+  max-height: 900px;
+  color: white;
 }
 
 .App-link {
@@ -44,7 +44,6 @@
   align-items: center;
   display: flex;
   /* margin-inline: auto; */
-  /* border: 1px solid #000; */
   background-color: #0e093f;
   border-radius: 0px 50px 50px 0px;
 }
@@ -55,29 +54,21 @@
   align-items: flex-start;
   padding: 0px;
   gap: 354px;
-
   position: absolute;
   width: 200px;
   height: 700px;
   left: 29px;
   top: 139px;
-
-  /* border: 1px solid #000; */
 }
 
 .navOptions {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* border: 1px solid #000; */
   padding: 0px;
   gap: 2px;
-
   width: 200px;
   height: 248px;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -94,7 +85,6 @@
   height: 48px;
   background: #ffffff;
   border-radius: 8px;
-  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -109,7 +99,6 @@
   line-height: 18px;
   /* Text Color/Text 1 */
   color: #1b212d;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -126,7 +115,6 @@
   font-size: 14px;
   line-height: 18px;
   color: #ffffff;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -143,7 +131,6 @@
   font-size: 14px;
   line-height: 18px;
   color: #ffffff;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -160,7 +147,6 @@
   font-size: 14px;
   line-height: 18px;
   color: #ffffff;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -177,7 +163,6 @@
   font-size: 14px;
   line-height: 18px;
   color: #ffffff;
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -192,12 +177,10 @@
   gap: 2px;
   width: 200px;
   height: 50px;
-  /* Inside auto layout */
   top: 380px;
   flex: none;
   order: 0;
   flex-grow: 0;
-  /* border: 1px solid #000; */
 }
 .dashboardHelp {
   position: absolute;
@@ -235,7 +218,6 @@
 }
 
 .logoPosition {
-  /* border: 1px solid #000; */
   position: absolute;
   width: 200px;
   height: 32px;
@@ -431,9 +413,6 @@ th {
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
-
-  /* Text Color/Pure White */
-
   color: #ffffff;
 }
 
@@ -443,13 +422,11 @@ th {
   height: 18px;
   left: 150px;
   top: 10px;
-
   font-family: "Agrandir";
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
-
   color: #ffffff;
 }
 
@@ -502,7 +479,6 @@ th {
   flex: none;
   order: 0;
   flex-grow: 0;
-  /* border: 1px solid #000; */
 }
 
 .spendingAmount {
@@ -520,7 +496,6 @@ th {
   flex: none;
   order: 1;
   flex-grow: 0;
-  /* border: 1px solid #000; */
 }
 
 .dashboardSavings {
@@ -538,7 +513,6 @@ th {
   flex: none;
   order: 0;
   flex-grow: 0;
-  /* border: 1px solid #000; */
 }
 
 .savingsAmount {
@@ -556,5 +530,4 @@ th {
   flex: none;
   order: 1;
   flex-grow: 0;
-  /* border: 1px solid #000; */
 }
