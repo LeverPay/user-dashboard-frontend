@@ -1,0 +1,282 @@
+.card-container {
+  width: 250px;
+  height: 180px;
+  top: 119px;
+  left: 1020px;
+  border-radius: 15px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-card {
+  width: 250px;
+  height: 180px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 15px;
+  perspective: 1000px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/9jaCardBackground.png");
+  border-radius: 15px;
+  z-index: 1;
+  backface-visibility: hidden;
+}
+
+.logo9ja {
+  position: absolute;
+  width: 144px;
+  height: 22px;
+  left: 100px;
+  top: 16px;
+}
+
+.cardNo {
+  position: absolute;
+  left: 8.5%;
+  top: 90.3px;
+  font-family: "Kredit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 29px;
+}
+
+.validThru {
+  position: absolute;
+  width: 80px;
+  height: 16px;
+  left: 8.5%;
+  top: 115.3px;
+  font-family: "Consolas";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+}
+
+.expiry-date {
+  position: absolute;
+  width: 40px;
+  height: 16px;
+  left: 8.5%;
+  top: 128.3px;
+  font-family: "Consolas";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+}
+
+.card-holder {
+  position: absolute;
+  width: 250px;
+  height: 23px;
+  left: 8.5%;
+  top: 150.3px;
+  font-family: "Consolas";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.reveal9ja-icon {
+  position: absolute;
+  left: 64.22%;
+  right: 24.72%;
+  top: 30.5%;
+  bottom: 63.93%;
+  height: 12px;
+}
+
+.show-details-text {
+  position: absolute;
+  width: 117px;
+  height: 14px;
+  left: 120px;
+  top: 68px;
+  font-family: "Consolas";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+}
+
+.card-container:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* card two */
+
+.card-container-2 {
+  width: 250px;
+  height: 180px;
+  top: 265px;
+  left: 995px;
+  border-radius: 15px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-card-2 {
+  width: 250px;
+  height: 180px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 15px;
+  perspective: 1000px;
+}
+
+.card-inner-2 {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.card-front-2,
+.card-back-2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/silverCardBackground.png");
+  border-radius: 15px;
+  z-index: 1;
+  backface-visibility: hidden;
+}
+
+.logoSilver {
+  position: absolute;
+  width: 144px;
+  height: 18px;
+  left: 100px;
+  top: 16px;
+}
+
+.cardNo {
+  position: absolute;
+  left: 8.5%;
+  top: 90.3px;
+  font-family: "Kredit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 29px;
+}
+
+.revealSilver-icon {
+  position: absolute;
+  left: 64.22%;
+  right: 24.72%;
+  top: 30.5%;
+  bottom: 63.93%;
+  height: 12px;
+}
+
+.card-back-2 {
+  transform: rotateY(180deg);
+}
+
+.card-container-2:hover .card-inner-2 {
+  transform: rotateY(180deg);
+}
+
+.cardNo-2 {
+  position: absolute;
+  left: 8.5%;
+  top: 90.3px;
+  font-family: "Kredit";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 29px;
+  color: #253b80;
+}
+
+.card-holder-2 {
+  position: absolute;
+  width: 250px;
+  height: 23px;
+  left: 8.5%;
+  top: 150.3px;
+  font-family: "Consolas";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.02em;
+  color: #253b80;
+}
+
+.show-details-text-2 {
+  position: absolute;
+  width: 117px;
+  height: 14px;
+  left: 120px;
+  top: 68px;
+  font-family: "Consolas";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #253b80;
+}
+
+.validThru-2 {
+  position: absolute;
+  width: 80px;
+  height: 16px;
+  left: 8.5%;
+  top: 115.3px;
+  font-family: "Consolas";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: #253b80;
+}
+
+.expiry-date-2 {
+  position: absolute;
+  width: 40px;
+  height: 16px;
+  left: 8.5%;
+  top: 128.3px;
+  font-family: "Consolas";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: #253b80;
+}

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import GraphComponent from "./GraphComponent";
 import { UserData } from "../Data";
+import { MdAccountBalanceWallet } from "react-icons/md";
+import { GiWallet } from "react-icons/gi";
 // import "../App.css";
 
 const StatementComponent = () => {
@@ -33,17 +35,89 @@ const StatementComponent = () => {
   });
 
   return (
-    <div>
+    <>
       <div className="dashboardCardContainer">
-        <div className="dashboardCard">Total balance</div>
-        <div className="dashboardCard">Total spending</div>
-        <div className="dashboardCard">Total saved</div>
+        <div className="dashboardCard">
+          <div
+            style={{
+              position: "absolute",
+              top: "28px",
+              left: "16px",
+              width: "28px",
+              height: "28px",
+              backgroundColor: "#353255",
+              borderRadius: "48px",
+            }}
+          >
+            <MdAccountBalanceWallet
+              size={18}
+              style={{
+                position: "absolute",
+                top: "18.8%",
+                left: "16.9%",
+              }}
+            />
+          </div>
+          <h4 className="dashboardBalance">Total balance</h4>
+          <h4 className="balanceAmount">$5230</h4>
+        </div>
+        {/*  */}
+        <div className="dashboardCard">
+          <div
+            style={{
+              position: "absolute",
+              top: "28px",
+              left: "36%",
+              width: "28px",
+              height: "28px",
+              backgroundColor: "#353255",
+              borderRadius: "48px",
+            }}
+          >
+            <MdAccountBalanceWallet
+              size={18}
+              style={{
+                position: "absolute",
+                top: "18.8%",
+                left: "20%",
+              }}
+            />
+          </div>
+          <h4 className="dashboardSpending">Total spending</h4>
+          <h4 className="spendingAmount">$250.80</h4>
+        </div>
+        {/*  */}
+        <div className="dashboardCard">
+          <div
+            style={{
+              position: "absolute",
+              top: "28px",
+              left: "70%",
+              width: "28px",
+              height: "28px",
+              backgroundColor: "#353255",
+              borderRadius: "48px",
+            }}
+          >
+            <GiWallet
+              size={18}
+              style={{
+                position: "absolute",
+                top: "18.8%",
+                left: "20%",
+                color: "white",
+              }}
+            />
+          </div>
+          <h4 className="dashboardSavings">Total saved</h4>
+          <h4 className="savingsAmount">$550.25</h4>
+        </div>
       </div>
       <div className="graphComponentDiv">
         <h5 className="portfolioText">Portfolio</h5>
         <GraphComponent chartData={userData} />
       </div>
-    </div>
+    </>
   );
 };
 
