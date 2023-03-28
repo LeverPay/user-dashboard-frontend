@@ -1,7 +1,22 @@
+.my-cards-label {
+  position: absolute;
+  width: 82px;
+  height: 23px;
+  left: 1020px;
+  top: 75px;
+  cursor: pointer;
+
+  font-family: "Agrandir";
+  color: #fff;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+}
 .card-container {
   width: 250px;
   height: 180px;
-  top: 119px;
+  top: 105px;
   left: 1020px;
   border-radius: 15px;
   position: absolute;
@@ -27,12 +42,12 @@
   transform-style: preserve-3d;
 }
 
-.card-front,
-.card-back {
+.card-front
+/* .card-back*/ {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/9jaCardBackground.png");
+  background-image: url("../assets/9jaCardBackground.png");
   border-radius: 15px;
   z-index: 1;
   backface-visibility: hidden;
@@ -100,9 +115,9 @@
   color: #fff;
 }
 
-.card-back {
+/* .card-back {
   transform: rotateY(180deg);
-}
+} */
 
 .reveal9ja-icon {
   position: absolute;
@@ -127,16 +142,16 @@
   letter-spacing: 0.02em;
 }
 
-.card-container:hover .card-inner {
+/* .card-container:hover .card-inner {
   transform: rotateY(180deg);
-}
+} */
 
 /* card two */
 
 .card-container-2 {
   width: 250px;
   height: 180px;
-  top: 265px;
+  top: 250px;
   left: 995px;
   border-radius: 15px;
   position: absolute;
@@ -162,12 +177,12 @@
   transform-style: preserve-3d;
 }
 
-.card-front-2,
-.card-back-2 {
+.card-front-2
+/* .card-back-2  */ {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/silverCardBackground.png");
+  background-image: url("../assets/silverCardBackground.png");
   border-radius: 15px;
   z-index: 1;
   backface-visibility: hidden;
@@ -176,7 +191,7 @@
 .logoSilver {
   position: absolute;
   width: 144px;
-  height: 18px;
+  height: 15px;
   left: 100px;
   top: 16px;
 }
@@ -201,13 +216,13 @@
   height: 12px;
 }
 
-.card-back-2 {
+/* .card-back-2 {
   transform: rotateY(180deg);
-}
+} */
 
-.card-container-2:hover .card-inner-2 {
+/* .card-container-2:hover .card-inner-2 {
   transform: rotateY(180deg);
-}
+} */
 
 .cardNo-2 {
   position: absolute;

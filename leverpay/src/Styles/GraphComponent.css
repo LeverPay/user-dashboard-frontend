@@ -1,0 +1,33 @@
+.graphComponentDiv {
+  position: absolute;
+  width: 700px;
+  height: 280px;
+  /* border: 1px solid #000; */
+  background-color: #1c1a2e;
+  border-radius: 10px;
+  left: 275px;
+  top: 188px;
+}
+
+.graph-dropdown {
+  position: absolute;
+  left: 80%;
+  border-radius: 5px;
+}
+
+.portfolioText {
+  position: absolute;
+  width: 77px;
+  height: 23px;
+  top: 2px;
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+  color: #ffffff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  left: 30px;
+}

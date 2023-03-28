@@ -2,6 +2,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { BsSearch } from "react-icons/bs";
 import { MdNotifications } from "react-icons/md";
+import "../Styles/TopNav.css";
 
 const TopNav = () => {
   return (
@@ -14,23 +15,21 @@ const TopNav = () => {
           <BsSearch size={18} className="searchIcon" />
           <MdNotifications size={20} className="notificationIcon" />
         </div>
-        <div className="dropdownDiv">
-          <Dropdown>
-            <Dropdown.Toggle
-              variant="dark"
-              id="dropdown-basic"
-              className="navUser"
-            >
-              username
-            </Dropdown.Toggle>
+        <Dropdown>
+          <Dropdown.Toggle
+            variant="dark"
+            id="dropdown-basic"
+            className="navUser"
+          >
+            username
+          </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+          <Dropdown.Menu>
+            {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
           <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
           <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
     </>
   );

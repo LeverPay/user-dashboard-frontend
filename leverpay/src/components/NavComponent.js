@@ -1,10 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LeverpayLogo from "../assets/LeverpayLogo.png";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { FaHome, FaReceipt, FaWallet, FaSignOutAlt } from "react-icons/fa";
 import { RiSettings4Fill } from "react-icons/ri";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { MdLiveHelp } from "react-icons/md";
+import "../Styles/SideNav.css";
 
 const NavComponent = () => {
   return (
@@ -24,36 +26,28 @@ const NavComponent = () => {
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav defaultActiveKey="#home" className="flex-column">
-                  <Nav.Link href="#home" className="dashboardActive">
+                  <Link to="/" className="dashboardActive">
                     <h3 className="dashboardOption">
                       <FaHome size={18} />
                       {"\u00A0"} Dashboard
                     </h3>
-                  </Nav.Link>
-                  <Nav.Link href="#about">
-                    <h3 className="transactionOption">
-                      <BsGraphUpArrow size={18} color="#929EAE" />
-                      {"\u00A0"} Transactions
-                    </h3>
-                  </Nav.Link>
-                  <Nav.Link href="#invoices">
-                    <h3 className="invoicesOption">
-                      <FaReceipt size={18} color="#929EAE" />
-                      {"\u00A0"} Invoices
-                    </h3>
-                  </Nav.Link>
-                  <Nav.Link href="#contact">
-                    <h3 className="myCardOption">
-                      <FaWallet size={18} color="#929EAE" />
-                      {"\u00A0"} My Cards
-                    </h3>
-                  </Nav.Link>
-                  <Nav.Link href="#settings">
-                    <h3 className="settingsOption">
-                      <RiSettings4Fill size={18} color="#929EAE" />
-                      {"\u00A0"} Settings
-                    </h3>
-                  </Nav.Link>
+                  </Link>
+                  <Link to="/transactions" className="transactionOption">
+                    <BsGraphUpArrow size={18} color="#929EAE" />
+                    {"\u00A0"} Transactions
+                  </Link>
+                  <Link to="invoices" className="invoicesOption">
+                    <FaReceipt size={18} color="#929EAE" />
+                    {"\u00A0"} Invoices
+                  </Link>
+                  <Link to="my cards" className="myCardOption">
+                    <FaWallet size={18} color="#929EAE" />
+                    {"\u00A0"} My Cards
+                  </Link>
+                  <Link to="settings" className="settingsOption">
+                    <RiSettings4Fill size={18} color="#929EAE" />
+                    {"\u00A0"} Settings
+                  </Link>
                 </Nav>
               </Navbar.Collapse>
             </Container>

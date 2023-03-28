@@ -3,7 +3,7 @@ import GraphComponent from "./GraphComponent";
 import { UserData } from "../Data";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { GiWallet } from "react-icons/gi";
-// import "../App.css";
+import "../Styles/StatementComponent.css";
 
 const StatementComponent = () => {
   const [userData, setUserData] = useState({
@@ -113,10 +113,7 @@ const StatementComponent = () => {
           <h4 className="savingsAmount">$550.25</h4>
         </div>
       </div>
-      <div className="graphComponentDiv">
-        <h5 className="portfolioText">Portfolio</h5>
-        <GraphComponent chartData={userData} />
-      </div>
+      <GraphComponent chartData={userData} />
     </>
   );
 };

@@ -1,12 +1,22 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+import NavComponent from "./components/NavComponent";
 import DashboardComponent from "./pages/DashboardComponent";
-import "./App.css";
+import NoMatch from "./pages/NoMatch";
 
 function App() {
   return (
-    <header className="App-header">
-      <DashboardComponent />
-    </header>
+    <>
+      <NavComponent />
+      <Routes>
+        <Route path="/" element={<DashboardComponent />} />
+        <Route path="transactions" element />
+        <Route path="invoices" element />
+        <Route path="my cards" element />
+        <Route path="settings" element />
+        <Route path="*" element={<NoMatch />} />
+      </Routes>
+    </>
   );
 }
 
