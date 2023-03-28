@@ -1,0 +1,74 @@
+/* shop details here */
+.my-merchant-text {
+  position: absolute;
+  width: 123px;
+  height: 23px;
+  left: 1020px;
+  top: 460px;
+  cursor: pointer;
+
+  font-family: "Agrandir";
+  color: #fff;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 23px;
+}
+
+.view-more-merchants {
+  position: absolute;
+  width: 80px;
+  height: 17px;
+  left: 1150px;
+  top: 465px;
+  cursor: pointer;
+
+  font-family: "Kumbh Sans";
+  color: #fff;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: right;
+}
+
+.shopDetails {
+  position: absolute;
+  width: 250px;
+  height: 252px;
+  left: 995px;
+  top: 485px;
+
+  background: #0e093f;
+  border-radius: 30px;
+}
+
+.shopNow {
+  position: absolute;
+  width: 66px;
+  height: 18px;
+  left: 25px;
+  top: 10px;
+
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.moreDetails {
+  position: absolute;
+  width: 85px;
+  height: 18px;
+  left: 150px;
+  top: 10px;
+  font-family: "Agrandir";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+  cursor: pointer;
+}
