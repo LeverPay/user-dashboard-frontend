@@ -1,0 +1,68 @@
+.recentTransactionTable {
+  position: absolute;
+  /* margin-inline: auto; */
+  width: 680px;
+  height: 220px;
+  background: #1c1a2e;
+  color: #fff;
+  border-collapse: collapse;
+  top: 30px;
+  left: 10px;
+}
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+th {
+  background-color: #29a073;
+  color: #000;
+}
+
+.rt-div {
+  position: absolute;
+  height: 252px;
+  width: 700px;
+  top: 485px;
+  left: 275px;
+  display: flex;
+  background-color: #1c1a2e;
+  border-radius: 10px;
+  border: 1px solid #000;
+}
+.rt-label {
+  position: absolute;
+  width: 165px;
+  height: 23px;
+  left: 10px;
+  top: 5px;
+  font-family: "Agrandir";
+  color: #fff;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+}
+
+.rt-searchIcon {
+  position: absolute;
+  color: #fff;
+  left: 78%;
+  top: 10.5px;
+  cursor: pointer;
+}
+
+.rt-view-all-link {
+  position: absolute;
+  width: 70px;
+  height: 17px;
+  left: 620px;
+  top: 10px;
+  font-family: "Kumbh Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 17px;
+  color: #329521;
+  cursor: pointer;
+}
