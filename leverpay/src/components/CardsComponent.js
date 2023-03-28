@@ -10,78 +10,74 @@ import { Link } from "react-router-dom";
 const CardsComponent = () => {
   return (
     <>
-      <p className="my-cards-label">My Cards</p>
       <nav>
         <Link to="/my cards">
-          <div className="card-container">
-            <div className="dashboard-card">
-              <div className="card-inner">
-                <div className="card-front">
-                  <FcSimCardChip
-                    size={50}
-                    style={{
-                      position: "absolute",
-                      left: "6.78%",
-                      right: "77.4",
-                      top: "20%",
-                      bottom: "58.9%",
-                    }}
-                  />
-                  <img src={logo9ja} alt="" className="logo9ja" />
-                  <p className="show-details-text">Show Card Details</p>
-                  <img src={reveal9ja} alt="" className="reveal9ja-icon" />
-                  <h4 className="cardNo"> XXXX XXXX XXXX 1213</h4>
-                  <p className="validThru">Valid Thru</p>
-                  <p className="expiry-date">04/24</p>
-                  <p className="card-holder">Goodness Michael</p>
-                </div>
-                {/* <div className="card-back">
+          <p className="my-cards-label">My Cards</p>
+        </Link>
+      </nav>
+      <div className="card-container">
+        <div className="dashboard-card">
+          <div className="card-inner">
+            <div className="card-front">
+              <FcSimCardChip
+                size={50}
+                style={{
+                  position: "absolute",
+                  left: "6.78%",
+                  right: "77.4",
+                  top: "20%",
+                  bottom: "58.9%",
+                }}
+              />
+              <img src={logo9ja} alt="" className="logo9ja" />
+              <p className="show-details-text">Show Card Details</p>
+              <img src={reveal9ja} alt="" className="reveal9ja-icon" />
+              <h4 className="cardNo"> XXXX XXXX XXXX 1213</h4>
+              <p className="validThru">Valid Thru</p>
+              <p className="expiry-date">04/24</p>
+              <p className="card-holder">Goodness Michael</p>
+            </div>
+            {/* <div className="card-back">
               <img src={logo9ja} alt="" className="logo9ja" />
               <h4 className="cardNo"> 1234 5678 9011 1213 </h4>
               <p className="validThru">Valid Thru</p>
               <p className="expiry-date">04/24</p>
             </div> */}
-              </div>
-            </div>
           </div>
-          {/* card two */}
-          <div className="card-container-2">
-            <div className="dashboard-card-2">
-              <div className="card-inner-2">
-                <div className="card-front-2">
-                  <FcSimCardChip
-                    size={50}
-                    style={{
-                      position: "absolute",
-                      left: "6.78%",
-                      right: "77.4",
-                      top: "20%",
-                      bottom: "58.9%",
-                    }}
-                  />
-                  <img src={logoSilver} alt="" className="logoSilver" />
-                  <p className="show-details-text-2">Show Card Details</p>
-                  <img
-                    src={revealSilver}
-                    alt=""
-                    className="revealSilver-icon"
-                  />
-                  <h4 className="cardNo-2"> XXXX XXXX XXXX 1213</h4>
-                  <p className="validThru-2">Valid Thru</p>
-                  <p className="expiry-date-2">04/24</p>
-                  <p className="card-holder-2">Goodness Michael</p>
-                </div>
-                {/* <div className="card-back-2">
+        </div>
+      </div>
+      {/* card two */}
+      <div className="card-container-2">
+        <div className="dashboard-card-2">
+          <div className="card-inner-2">
+            <div className="card-front-2">
+              <FcSimCardChip
+                size={50}
+                style={{
+                  position: "absolute",
+                  left: "6.78%",
+                  right: "77.4",
+                  top: "20%",
+                  bottom: "58.9%",
+                }}
+              />
+              <img src={logoSilver} alt="" className="logoSilver" />
+              <p className="show-details-text-2">Show Card Details</p>
+              <img src={revealSilver} alt="" className="revealSilver-icon" />
+              <h4 className="cardNo-2"> XXXX XXXX XXXX 1213</h4>
+              <p className="validThru-2">Valid Thru</p>
+              <p className="expiry-date-2">04/24</p>
+              <p className="card-holder-2">Goodness Michael</p>
+            </div>
+            {/* <div className="card-back-2">
               <img src={logoSilver} alt="" className="logoSilver" />
               <h4 className="cardNo-2"> 1234 5678 9011 1213 </h4>
               <p className="validThru-2">Valid Thru</p>
               <p className="expiry-date-2">04/24</p>
             </div> */}
-              </div>
-            </div>
           </div>
-        </Link>
-      </nav>
+        </div>
+      </div>
     </>
   );
 };
