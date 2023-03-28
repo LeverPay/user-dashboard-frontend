@@ -27,6 +27,7 @@
   color: #000000;
   margin-top: 11px;
   flex-grow: 1;
+  text-align: left !important;
 }
 .file-upload-arrow {
   margin-top: 10px;

@@ -4,9 +4,14 @@
   border-radius: 10px;
   margin-top: 10px;
   margin-bottom: 30px;
-  font-size: 30px;
+  font-size: 24px;
   border-radius: 10px !important;
   font-family: AgrandirBold;
   font-weight: 900;
   color: black !important;
+}
+::placeholder {
+  color: black !important;
+  font-family: AgrandirBold;
+  font-size: 30px;
 }
