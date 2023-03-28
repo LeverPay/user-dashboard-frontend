@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Button from "react-bootstrap/Button";
 
-// import KYCForms from "./page/KYCForms/KYCForms";
 import KYCFormModal from "./page/KYCForms/KYCFormModal/KYCFormModal";
 import { useState, useEffect } from "react";
 

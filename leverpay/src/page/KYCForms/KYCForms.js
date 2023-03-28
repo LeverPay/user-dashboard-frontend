@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./kyc-forms.css";
 import FileUpload from "../../components/FileUpload/FileUpload";
-import { gold, diamond } from "../../TestData";
+import { gold, diamond, pinkLady, enterprise } from "../../TestData";
 import { KYCFormsButton } from "./KYCFormsButton/KYCFormsButton";
 import TextInput from "../../components/FileUpload/TextInput/TextInput";
 const KYCForms = (props) => {
@@ -15,14 +15,25 @@ const KYCForms = (props) => {
     case "diamond":
       dt = diamond;
       break;
+    case "pinkLady":
+      dt = pinkLady;
+      break;
+    case "enterprise":
+      dt = enterprise;
+      break;
   }
   return (
     <>
       <div className="kyf-form-container col-md-12">
-        <h2>
+        <h3>
           (<span className="kyc">KYC</span>) Verification for{" "}
-          <span className="kyc-account-type">{dt.title}</span>
-        </h2>
+          <span
+            className="kyc-account-type"
+            style={{ color: dt.color || "#0B0230" }}
+          >
+            {dt.title}
+          </span>
+        </h3>
         <h4>Select the type of Document you would like to Upload</h4>
 
         {dt.data.map((data, index) => (
