@@ -36,84 +36,92 @@ const StatementComponent = () => {
 
   return (
     <>
-      <div className="dashboardCardContainer">
-        <div className="dashboardCard">
+      <div className="dashboardCardContainer col-md-12">
+        <div className="dashboardCard col-md-4">
           <div
             style={{
-              position: "absolute",
-              top: "28px",
-              left: "16px",
-              width: "28px",
               height: "28px",
+              width: "28px",
+
+              // marginTop: "40px",
+              paddingLeft: "5px",
+              borderRadius: "50%",
               backgroundColor: "#353255",
-              borderRadius: "48px",
             }}
           >
-            <MdAccountBalanceWallet
-              size={18}
-              style={{
-                position: "absolute",
-                top: "18.8%",
-                left: "16.9%",
-              }}
-            />
+            <MdAccountBalanceWallet size={18} style={{}} />
           </div>
-          <h4 className="dashboardBalance">Total balance</h4>
-          <h4 className="balanceAmount">$5230</h4>
+          <center>
+            <h4 className="dashboardBalance">Total balance</h4>
+            <h4 className="balanceAmount">$5230</h4>
+          </center>
         </div>
         {/*  */}
-        <div className="dashboardCard">
+        <div className="dashboardCard col-md-4">
           <div
             style={{
-              position: "absolute",
+              // position: "absolute",
               top: "28px",
-              left: "36%",
-              width: "28px",
+              // left: "36%",
+              // width: "28px",
               height: "28px",
+              width: "28px",
               backgroundColor: "#353255",
-              borderRadius: "48px",
+              paddingLeft: "5px",
+              borderRadius: "50%",
             }}
           >
             <MdAccountBalanceWallet
               size={18}
               style={{
-                position: "absolute",
+                // position: "absolute",
                 top: "18.8%",
                 left: "20%",
               }}
             />
           </div>
-          <h4 className="dashboardSpending">Total spending</h4>
-          <h4 className="spendingAmount">$250.80</h4>
+          <center>
+            {" "}
+            <h4 className="dashboardSpending">Total spending</h4>
+            <h4 className="spendingAmount">$250.80</h4>
+          </center>
         </div>
         {/*  */}
-        <div className="dashboardCard">
+        <div className="dashboardCard col-md-4">
+          {" "}
           <div
             style={{
-              position: "absolute",
+              // position: "absolute",
               top: "28px",
               left: "70%",
-              width: "28px",
+              // width: "28px",
               height: "28px",
+              width: "28px",
               backgroundColor: "#353255",
-              borderRadius: "48px",
+              paddingLeft: "5px",
+              borderRadius: "50%",
             }}
           >
             <GiWallet
               size={18}
               style={{
-                position: "absolute",
+                // position: "absolute",
                 top: "18.8%",
                 left: "20%",
                 color: "white",
               }}
             />
           </div>
-          <h4 className="dashboardSavings">Total saved</h4>
-          <h4 className="savingsAmount">$550.25</h4>
+          <center>
+            <h4 className="dashboardSavings">Total saved</h4>
+            <h4 className="savingsAmount">$550.25</h4>
+          </center>
         </div>
       </div>
-      <GraphComponent chartData={userData} />
+      <div className="col-md-12">
+        {" "}
+        <GraphComponent chartData={userData} />
+      </div>
     </>
   );
 };

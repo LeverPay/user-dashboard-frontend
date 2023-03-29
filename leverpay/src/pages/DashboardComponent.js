@@ -31,11 +31,14 @@ const DashboardComponent = () => {
 
   return (
     <>
-      <TopNav />
-      <StatementComponent />
-      <RecentTransactionComponent />
-      <CardsComponent naijaCardData={naijaCard} silverCardData={silverCard} />
-      <ShopDetailsComponent />
+      <div className="col-md-12">
+        {" "}
+        <TopNav />
+        <StatementComponent />
+        {/* <RecentTransactionComponent /> */}
+        {/* <CardsComponent naijaCardData={naijaCard} silverCardData={silverCard} /> */}
+        {/* <ShopDetailsComponent /> */}
+      </div>
     </>
   );
 };
