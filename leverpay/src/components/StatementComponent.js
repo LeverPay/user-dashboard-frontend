@@ -6,7 +6,7 @@ import { GiWallet } from "react-icons/gi";
 import "../Styles/StatementComponent.css";
 
 const StatementComponent = () => {
-  const [userData, setUserData] = useState({
+  const [userData] = useState({
     labels: UserData.map((data) => data.monthDay),
     datasets: [
       {
