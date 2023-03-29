@@ -1,0 +1,30 @@
+.tabs {
+  display: flex;
+}
+.tab {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: rgb(11, 2, 48) !important;
+  padding: 2em 0;
+  border: none;
+  border-bottom: solid 1px rgb(70, 66, 66);
+  color: #fff;
+}
+
+.tab.active {
+  border-bottom: solid 2px rgb(41, 160, 115);
+  font-weight: bold;
+}
+.panel {
+  display: none;
+  background: rgb(11, 2, 48) !important;
+  padding: 100px 80px 200px 80px;
+  color: #fff;
+}
+.panel.active {
+  display: block;
+}
+.transaction-page {
+  background: rgb(11, 2, 48) !important;
+}
