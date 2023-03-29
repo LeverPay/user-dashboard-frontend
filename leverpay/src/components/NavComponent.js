@@ -36,15 +36,15 @@ const NavComponent = () => {
                     <BsGraphUpArrow size={18} color="#929EAE" />
                     {"\u00A0"} Transactions
                   </Link>
-                  <Link to="invoices" className="invoicesOption">
+                  <Link to="/invoices" className="invoicesOption">
                     <FaReceipt size={18} color="#929EAE" />
                     {"\u00A0"} Invoices
                   </Link>
-                  <Link to="my cards" className="myCardOption">
+                  <Link to="/my cards" className="myCardOption">
                     <FaWallet size={18} color="#929EAE" />
                     {"\u00A0"} My Cards
                   </Link>
-                  <Link to="settings" className="settingsOption">
+                  <Link to="/settings" className="settingsOption">
                     <RiSettings4Fill size={18} color="#929EAE" />
                     {"\u00A0"} Settings
                   </Link>
