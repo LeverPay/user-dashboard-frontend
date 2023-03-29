@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Form from "react-bootstrap/Form";
+// import Form from "react-bootstrap/Form";
 import ImageUploading from "react-images-uploading";
 import "./file_upload.css";
 
-import Passport from "../../assets/images/Passport.png";
+// import Passport from "../../assets/images/Passport.png";
 import UploadCheckmark from "./UploadCheckmark";
 import BackArrow from "./BackArrow";
 function FileUpload({ data }) {
@@ -31,7 +31,7 @@ function FileUpload({ data }) {
 
   function imageUpload(onImageUpload, imageList) {
     let ct = images.length;
-    setUploadStatus(ct == maxNumber && imageList[0] != data.icon);
+    setUploadStatus(ct === maxNumber && imageList[0] !== data.icon);
     console.log(ct, uploadStatus);
     return onImageUpload;
   }
