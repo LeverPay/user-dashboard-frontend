@@ -6,7 +6,7 @@ import Table from "react-bootstrap/Table";
 export const TransactionTable = (props) => {
   return (
     <>
-      <div className="transaction-table-container">
+      <div className="transactions-table-container">
         <div className="table-title">
           <h5> Transaction History</h5>
           <a href="#">View all </a>
