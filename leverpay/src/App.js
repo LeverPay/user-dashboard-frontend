@@ -10,6 +10,16 @@ import KYCFormModal from "./page/KYCForms/KYCFormModal/KYCFormModal";
 import { useState, useEffect } from "react";
 
 function App() {
+  const [accSet, setAccSet] = useState("");
+  const [accReady, setAccReady] = useState(false);
+  const defunct = (accType) => {
+    setAccSet(accType);
+    // console.log("called defunct");
+  };
+  useEffect(() => {
+    if (accSet !== "") setAccReady(true);
+    else setAccReady(false);
+  }, [accSet]);
   return (
     <div className="">
       {/* <header className="App-header"> */}
@@ -23,6 +33,21 @@ function App() {
         </Row>
       </Container>
       {/* </header> */}
+      <Button variant="primary" onClick={() => defunct("gold")}>
+        Gold Upgrade Form
+      </Button>
+      <br />
+      <br />
+      <Button variant="primary" onClick={() => defunct("diamond")}>
+        Diamond Upgrade Form
+      </Button>
+      <Button variant="primary" onClick={() => defunct("pinkLady")}>
+        Pink-Lady Upgrade Form
+      </Button>{" "}
+      <Button variant="primary" onClick={() => defunct("enterprise")}>
+        Enterprise Upgrade Form
+      </Button>
+      {accReady ? <KYCFormModal acct={accSet} callback={defunct} /> : ""}
     </div>
   );
 }
