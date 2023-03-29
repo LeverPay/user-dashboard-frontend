@@ -7,7 +7,7 @@ import "../Styles/TopNav.css";
 const TopNav = () => {
   return (
     <>
-      <div className="TopNav">
+      <div className="TopNav  col-md-12">
         <div className="pageTitle">
           <h4> Overview </h4>
         </div>

@@ -1,5 +1,5 @@
-.App{
-  background-color: #0B0230;
+.App {
+  background-color: #0b0230;
   padding-block: 2rem;
 }
 
@@ -83,4 +83,10 @@
 @font-face {
   font-family: KB-sans-Regular;
   src: url(./assets/fonts/kumbh-sans/KumbhSans-Regular.ttf);
+}
+
+@media screen and (min-width: 620px) {
+  .flexy {
+    display: flex;
+  }
 }
