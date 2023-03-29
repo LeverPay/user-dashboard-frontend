@@ -1,5 +1,5 @@
-import './App.css';
-//------ Shedrach's import ends 
+import "./App.css";
+//------ Shedrach's import ends
 
 import React from "react";
 import { Routes, Route } from "react-router-dom";
@@ -15,16 +15,10 @@ import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 //import "./App.css";
 //import "./App.css";
-import Button from "react-bootstrap/Button";
-
-import KYCFormModal from "./page/KYCForms/KYCFormModal/KYCFormModal";
-import { useState, useEffect } from "react";
 
 //-------- Sarah's import starts here-------------
 
-
 function App() {
-
   return (
     //<div className="App">
     //</div>
@@ -39,21 +33,21 @@ function App() {
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </>
-// function App() {
-//   return (
-//     <div className="">
-//       {/* <header className="App-header"> */}
-//       <Container>
-//         <Row>
-//           <Col></Col>
-//           <Col xs={6}>
-//             <h2> Welcome ! </h2>
-//           </Col>
-//           <Col></Col>
-//         </Row>
-//       </Container>
-//       {/* </header> */}
-//     </div>
+    // function App() {
+    //   return (
+    //     <div className="">
+    //       {/* <header className="App-header"> */}
+    //       <Container>
+    //         <Row>
+    //           <Col></Col>
+    //           <Col xs={6}>
+    //             <h2> Welcome ! </h2>
+    //           </Col>
+    //           <Col></Col>
+    //         </Row>
+    //       </Container>
+    //       {/* </header> */}
+    //     </div>
   );
 }
 
