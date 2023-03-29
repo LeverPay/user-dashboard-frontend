@@ -13,14 +13,18 @@ const KYCFormModal = (props) => {
     props.callback("");
   };
   const handleShow = (acc) => {
-    setAccType(acc);
+    if (acc !== accType) setAccType(acc);
   };
   useEffect(() => {
-    if (accType !== "") setShow(true);
-    else setShow(false);
+    if (accType !== "") {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
   }, [accType]);
   useEffect(() => {
     handleShow(props.acct);
+    // console.log("handle show dey here o");
   }, []);
 
   return (
