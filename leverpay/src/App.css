@@ -73,3 +73,14 @@
   font-family: AgrandirNarrow;
   src: url(./assets/fonts/Agrandir-Font/Agrandir-Narrow.otf);
 }
+
+/*kumns sans font*/
+
+@font-face {
+  font-family: KB-sans-Bold;
+  src: url(./assets/fonts/kumbh-sans/KumbhSans-Bold.ttf);
+}
+@font-face {
+  font-family: KB-sans-Regular;
+  src: url(./assets/fonts/kumbh-sans/KumbhSans-Regular.ttf);
+}
