@@ -1,0 +1,12 @@
+.kyc-button Button {
+  background: #0b0230 !important;
+  color: #fff;
+  font-family: AgrandirBold;
+  font-size: 34px;
+  line-height: 27.6px;
+  padding: 20px 0;
+  transition: 0.5s ease;
+}
+.kyc-button Button:hover {
+  color: #fff;
+}
