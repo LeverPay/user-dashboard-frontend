@@ -10,61 +10,64 @@ import "../Styles/SideNav.css";
 
 const NavComponent = () => {
   return (
-    <div className="navContainer">
-      <div className="logoPosition">
-        <img src={LeverpayLogo} alt="" />
-      </div>
-      <div className="navBox">
-        <div className="navOptions">
-          <Navbar
-            expand="md"
-            bg="#0E093F"
-            variant="dark"
-            className="flex-column"
-          >
-            <Container>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav defaultActiveKey="#home" className="flex-column">
-                  <Link to="/" className="dashboardActive">
-                    <h3 className="dashboardOption">
-                      <FaHome size={18} />
-                      {"\u00A0"} Dashboard
-                    </h3>
-                  </Link>
-                  <Link to="/transactions" className="transactionOption">
-                    <BsGraphUpArrow size={18} color="#929EAE" />
-                    {"\u00A0"} Transactions
-                  </Link>
-                  <Link to="/invoices" className="invoicesOption">
-                    <FaReceipt size={18} color="#929EAE" />
-                    {"\u00A0"} Invoices
-                  </Link>
-                  <Link to="/my cards" className="myCardOption">
-                    <FaWallet size={18} color="#929EAE" />
-                    {"\u00A0"} My Cards
-                  </Link>
-                  <Link to="/settings" className="settingsOption">
-                    <RiSettings4Fill size={18} color="#929EAE" />
-                    {"\u00A0"} Settings
-                  </Link>
-                </Nav>
-              </Navbar.Collapse>
-            </Container>
-          </Navbar>
+    <>
+      <div className="navContainer col-md-2">
+        <div className="logoPosition">
+          <img src={LeverpayLogo} alt="" width="100%" />
         </div>
-        <div className="navBottom">
-          <p className="dashboardHelp">
-            <MdLiveHelp size={18} color="#929EAE" />
-            {"\u00A0"}help
-          </p>
-          <p className="dashboardLogout">
-            <FaSignOutAlt size={18} color="#929EAE" />
-            {"\u00A0"}logout
-          </p>
+        <div className="navBox">
+          <div className="navOptions">
+            <Navbar
+              expand="md"
+              bg="#0E093F"
+              variant="dark"
+              className="flex-column"
+            >
+              <Container>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav defaultActiveKey="#home" className="flex-column">
+                    <Link to="/" className="dashboardActive">
+                      <h3 className="dashboardOption">
+                        <FaHome size={18} />
+                        {"\u00A0"} Dashboard
+                      </h3>
+                    </Link>
+                    <Link to="/transactions" className="transactionOption">
+                      <BsGraphUpArrow size={18} color="#929EAE" />
+                      {"\u00A0"} Transactions
+                    </Link>
+                    <Link to="/invoices" className="invoicesOption">
+                      <FaReceipt size={18} color="#929EAE" />
+                      {"\u00A0"} Invoices
+                    </Link>
+                    <Link to="/my cards" className="myCardOption">
+                      <FaWallet size={18} color="#929EAE" />
+                      {"\u00A0"} My Cards
+                    </Link>
+                    <Link to="/settings" className="settingsOption">
+                      <RiSettings4Fill size={18} color="#929EAE" />
+                      {"\u00A0"} Settings
+                    </Link>
+                  </Nav>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
+          </div>
+          <div className="navBottom">
+            <p className="dashboardHelp">
+              <MdLiveHelp size={18} color="#929EAE" />
+              {"\u00A0"}help
+            </p>
+            <p className="dashboardLogout">
+              <FaSignOutAlt size={18} color="#929EAE" />
+              {"\u00A0"}logout
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+      <div className="col-md-10"></div>
+    </>
   );
 };
 

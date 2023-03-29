@@ -1,6 +1,6 @@
-.recentTransactionTable {
+/* .recentTransactionTable {
   position: absolute;
-  /* margin-inline: auto; */
+  margin-inline: auto;
   width: 680px;
   height: 220px;
   background: #1c1a2e;
@@ -65,4 +65,4 @@ th {
   line-height: 17px;
   color: #329521;
   cursor: pointer;
-}
+} */
