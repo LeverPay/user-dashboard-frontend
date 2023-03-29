@@ -4,11 +4,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 
-import KYCFormModal from "./page/KYCForms/KYCFormModal/KYCFormModal";
-import { useState, useEffect } from "react";
-import { Transactions } from "./page/Transactions/Transactions";
+// import KYCFormModal from "./page/KYCForms/KYCFormModal/KYCFormModal";
+// import { useState, useEffect } from "react";
+// import { Transactions } from "./page/Transactions/Transactions";
 
 function App() {
   return (
@@ -24,7 +24,6 @@ function App() {
         </Row>
       </Container>
       {/* </header> */}
-      <Transactions />
     </div>
   );
 }
