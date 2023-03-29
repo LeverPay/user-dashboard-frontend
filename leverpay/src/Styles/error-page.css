@@ -1,0 +1,12 @@
+.error-404 {
+  position: absolute;
+  width: 700px;
+  height: 400px;
+  left: 30%;
+  top: 80px;
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: row nowrap;
+}
