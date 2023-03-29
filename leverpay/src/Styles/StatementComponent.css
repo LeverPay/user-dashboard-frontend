@@ -1,35 +1,36 @@
 .dashboardCardContainer {
-  width: 700px;
+  /* width: 700px; */
   min-height: 80px;
   /* margin-inline: auto; */
-  position: absolute;
-  left: 275px;
-  top: 80px;
+  /* position: absolute; */
+  /* left: 275px; */
+  /* margin-top: 180px; */
   /* border: 1px solid #000; */
   display: flex;
-  margin-top: 10px;
+  margin-top: 40px;
   gap: 1em;
   justify-content: center;
   align-items: flex-start;
   flex-flow: row nowrap;
+  margin-left: 25px;
   /* align-content: space-between; */
 }
 
 .dashboardCard {
   /* min-width: 100px; */
-  display: flex;
-  flex-direction: row;
+  /* display: flex; */
+  /* flex-direction: row; */
   /* justify-content: center; */
   align-items: center;
   border-radius: 10px;
-  height: 80px;
+  height: fit-content;
+  padding: 10px 10px 20px 60px;
   color: #fff;
   font-size: 20px;
-  padding: 0.5rem;
-
+  /* padding: 0.5rem; */
   /* first value is grow, second value shrink, third value basis */
-  flex-grow: 1;
-  flex-basis: 100px;
+  /* flex-grow: 1; */
+  /* flex-basis: 100px; */
 }
 
 .dashboardCard:nth-child(1) {
@@ -45,103 +46,103 @@
 }
 
 .dashboardBalance {
-  position: absolute;
-  top: 20px;
+  /* position: absolute; */
+  /* top: 20px;
   left: 55px;
   width: 125px;
   height: 18px;
   font-family: "Agrandir";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 700; */
   font-size: 14px;
   line-height: 18px;
   color: #929eae;
   flex: none;
-  order: 0;
-  flex-grow: 0;
+  /* order: 0;
+  flex-grow: 0; */
 }
 
 .balanceAmount {
-  position: absolute;
+  /* position: absolute;
   top: 38px;
   left: 55px;
   width: 125px;
   height: 30px;
   font-family: "Kumbh Sans";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 700; */
   font-size: 24px;
   line-height: 30px;
   color: #ffffff;
-  flex: none;
+  /* flex: none;
   order: 1;
-  flex-grow: 0;
+  flex-grow: 0; */
 }
 
 .dashboardSpending {
-  position: absolute;
+  /* position: absolute;
   top: 20px;
   left: 41%;
   width: 125px;
   height: 18px;
   font-family: "Agrandir";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 700; */
   font-size: 14px;
   line-height: 18px;
   color: #ffffff;
-  flex: none;
+  /* flex: none;
   order: 0;
-  flex-grow: 0;
+  flex-grow: 0; */
 }
 
 .spendingAmount {
-  position: absolute;
+  /* position: absolute;
   top: 38px;
   left: 41%;
   width: 125px;
   height: 30px;
   font-family: "Kumbh Sans";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 700; */
   font-size: 24px;
   line-height: 30px;
   color: #ffffff;
-  flex: none;
+  /* flex: none;
   order: 1;
-  flex-grow: 0;
+  flex-grow: 0; */
 }
 
 .dashboardSavings {
-  position: absolute;
+  /* position: absolute;
   top: 20px;
   left: 75%;
   width: 125px;
   height: 18px;
   font-family: "Agrandir";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 700; */
   font-size: 14px;
   line-height: 18px;
   color: #929eae;
-  flex: none;
+  /* flex: none;
   order: 0;
-  flex-grow: 0;
+  flex-grow: 0; */
 }
 
 .savingsAmount {
-  position: absolute;
+  /* position: absolute;
   top: 38px;
   left: 75%;
   width: 125px;
   height: 30px;
   font-family: "Kumbh Sans";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 700; */
   font-size: 24px;
   line-height: 30px;
   color: #ffffff;
-  flex: none;
+  /* flex: none;
   order: 1;
-  flex-grow: 0;
+  flex-grow: 0; */
 }

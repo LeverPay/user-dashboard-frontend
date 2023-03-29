@@ -60,22 +60,28 @@ export const Transactions = () => {
         </div>
         <div className="panels">
           <div className={`panel ${checkActive(1, "active")}`}>
-            <TransactionTable data={allTransactions} />
+            <TransactionTable
+              data={allTransactions}
+              tableTitle="Transactions"
+            />
           </div>
           <div className={`panel ${checkActive(2, "active")}`}>
-            <TransactionTable data={accountCredits} />
+            <TransactionTable data={accountCredits} tableTitle="Transactions" />
           </div>
           <div className={`panel ${checkActive(3, "active")}`}>
-            <TransactionTable data={moneySpent} />
+            <TransactionTable data={moneySpent} tableTitle="Transactions" />
           </div>
           <div className={`panel ${checkActive(4, "active")}`}>
-            <TransactionTable data={refund} />
+            <TransactionTable data={refund} tableTitle="Transactions" />
           </div>
           <div className={`panel ${checkActive(5, "active")}`}>
-            <TransactionTable data={withdrawal} />
+            <TransactionTable data={withdrawal} tableTitle="Transactions" />
           </div>
           <div className={`panel ${checkActive(6, "active")}`}>
-            <TransactionTable data={regularPayments} />
+            <TransactionTable
+              data={regularPayments}
+              tableTitle="Transactions"
+            />
           </div>
         </div>
       </div>

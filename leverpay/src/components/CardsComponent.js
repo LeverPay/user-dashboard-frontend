@@ -57,73 +57,75 @@ const CardsComponent = ({ naijaCardData, silverCardData }) => {
 
   return (
     <>
-      <nav>
-        <Link to="/my cards">
-          <p className="my-cards-label">My Cards</p>
-        </Link>
-      </nav>
-      <div className="card-container">
-        <div className="dashboard-card">
-          <div className="card-inner">
-            <div className="card-front">
-              <FcSimCardChip
-                size={50}
-                style={{
-                  position: "absolute",
-                  left: "6.78%",
-                  right: "77.4",
-                  top: "20%",
-                  bottom: "58.9%",
-                }}
-              />
-              <img src={logo9ja} alt="" className="logo9ja" />
-              <p className="show-details-text">Show Card Details</p>
-              <img
-                src={reveal9ja}
-                alt=""
-                className="reveal9ja-icon"
-                onClick={handleNaijaCard}
-              />
-              <h4 className="cardNo">
-                {naijaCardReveal
-                  ? nCardNumber
-                  : `XXXX XXXX XXXX ${lastFourDigits}`}
-              </h4>
-              <p className="validThru">Valid Thru</p>
-              <p className="expiry-date">{naijaCardData.expiryDate}</p>
-              <p className="card-holder">{naijaCardData.cardHolder}</p>
+      <div className="col-md-12">
+        <nav>
+          <Link to="/my cards">
+            <p className="my-cards-label">My Cards</p>
+          </Link>
+        </nav>
+        <div className="card-container  col-md-12">
+          <div className="dashboard-card col-md-12">
+            <div className="card-inner">
+              <div className="card-front">
+                <FcSimCardChip
+                  size={50}
+                  style={{
+                    position: "absolute",
+                    left: "6.78%",
+                    right: "77.4",
+                    top: "20%",
+                    bottom: "58.9%",
+                  }}
+                />
+                <img src={logo9ja} alt="" className="logo9ja" />
+                <p className="show-details-text">Show Card Details</p>
+                <img
+                  src={reveal9ja}
+                  alt=""
+                  className="reveal9ja-icon"
+                  onClick={handleNaijaCard}
+                />
+                <h4 className="cardNo">
+                  {naijaCardReveal
+                    ? nCardNumber
+                    : `XXXX XXXX XXXX ${lastFourDigits}`}
+                </h4>
+                <p className="validThru">Valid Thru</p>
+                <p className="expiry-date">{naijaCardData.expiryDate}</p>
+                <p className="card-holder">{naijaCardData.cardHolder}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* card two */}
-      <div className="card-container-2">
-        <div className="dashboard-card-2">
-          <div className="card-inner-2">
-            <div className="card-front-2">
-              <FcSimCardChip
-                size={50}
-                style={{
-                  position: "absolute",
-                  left: "6.78%",
-                  right: "77.4",
-                  top: "20%",
-                  bottom: "58.9%",
-                }}
-              />
-              <img src={logoSilver} alt="" className="logoSilver" />
-              <p className="show-details-text-2" onClick={handleSilverCard}>
-                Show Card Details
-              </p>
-              <img src={revealSilver} alt="" className="revealSilver-icon" />
-              <h4 className="cardNo-2">
-                {silverCardReveal
-                  ? silverCardNumber
-                  : `XXXX XXXX XXXX ${lastFourDigits_Silver}`}
-              </h4>
-              <p className="validThru-2">Valid Thru</p>
-              <p className="expiry-date-2">{silverCardData.expiryDate}</p>
-              <p className="card-holder-2">{silverCardData.cardHolder}</p>
+        {/* card two */}
+        <div className="card-container-2 col-md-12">
+          <div className="dashboard-card-2 col-md-12">
+            <div className="card-inner-2 col-md-12">
+              <div className="card-front-2">
+                <FcSimCardChip
+                  size={50}
+                  style={{
+                    position: "absolute",
+                    left: "6.78%",
+                    right: "77.4",
+                    top: "20%",
+                    bottom: "58.9%",
+                  }}
+                />
+                <img src={logoSilver} alt="" className="logoSilver" />
+                <p className="show-details-text-2" onClick={handleSilverCard}>
+                  Show Card Details
+                </p>
+                <img src={revealSilver} alt="" className="revealSilver-icon" />
+                <h4 className="cardNo-2">
+                  {silverCardReveal
+                    ? silverCardNumber
+                    : `XXXX XXXX XXXX ${lastFourDigits_Silver}`}
+                </h4>
+                <p className="validThru-2">Valid Thru</p>
+                <p className="expiry-date-2">{silverCardData.expiryDate}</p>
+                <p className="card-holder-2">{silverCardData.cardHolder}</p>
+              </div>
             </div>
           </div>
         </div>

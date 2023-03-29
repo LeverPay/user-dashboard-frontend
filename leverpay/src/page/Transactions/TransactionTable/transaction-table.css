@@ -9,13 +9,16 @@
   /* line-height: 55px; */
   font-family: KB-sans-Regular;
   padding-top: 25px !important;
+  color: #fff !important;
 }
 .transactions-table-container th {
   font-family: KB-sans-Bold;
+  color: #fff !important;
 }
 .transactions-table-container h5 {
   margin-bottom: 40px;
   font-family: AgrandirBold;
+  color: #fff !important;
 
   flex-grow: 1;
 }
