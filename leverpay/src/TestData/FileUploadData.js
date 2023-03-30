@@ -8,6 +8,7 @@ export const gold = {
   data: [
     {
       name: "Passport",
+      fileDetail: "Front and Back",
       type: "file",
       is_selected: false,
       icon: Passport,
