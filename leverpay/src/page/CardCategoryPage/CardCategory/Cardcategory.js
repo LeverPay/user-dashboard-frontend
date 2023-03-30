@@ -4,12 +4,12 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import "./CardCategories.css";
-import CardDiamond from "../Cards/CardDiamond";
-import CardEnterprise from "../Cards/CardEnterprise";
-import CardGold from "../Cards/CardGold";
-import CardpinkLady from "../Cards/CardPinkLady";
+import CardDiamond from "../../Cards/CardDiamond";
+import CardEnterprise from "../../Cards/CardEnterprise";
+import CardGold from "../../Cards/CardGold";
+import CardpinkLady from "../../Cards/CardPinkLady";
 import { useState, useEffect } from "react";
-import KYCFormModal from "../page/KYCForms/KYCFormModal/KYCFormModal";
+import KYCFormModal from "../KYCForms/KYCFormModal/KYCFormModal";
 function Cardcategory() {
   const [accSet, setAccSet] = useState("");
   const [accReady, setAccReady] = useState(false);
