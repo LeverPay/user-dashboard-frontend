@@ -1,17 +1,17 @@
 import React from "react";
-import NavComponent from "../components/NavComponent";
+import NavComponent from "../components/NavComponent/NavComponent";
 import CardsComponent from "../components/CardsComponent";
-import TopNav from "../components/TopNav";
+import TopNav from "../components/TopNav/TopNav";
 import StatementComponent from "../components/StatementComponent";
 import TransactionTable from "./Transactions/TransactionTable/TransactionTable";
 import { recentTransactions } from "../TestData/TransactionsData.js";
 import { useEffect, useState } from "react";
-import { naijaCardDetails, silverCardDetails } from "../CardData";
+import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
 import { Routes, Route } from "react-router-dom";
 import { Transactions } from "./Transactions/Transactions";
-import InvoicePage from "../Pages/InvoicePage";
-import Mycard from "../components/Mycard";
-import CardcategoryPage from "../Pages/CardcategoryPage";
+// import InvoicePage from "../../Page/InvoicePage";
+import Mycard from "./MyCardPage.js/Mycard";
+import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
 import MyCardDiamond from "../Pages/MyCardDiamond";
 
 export const UserDashboardLayout = () => {
