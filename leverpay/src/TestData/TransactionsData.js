@@ -163,3 +163,31 @@ export const regularPayments = {
     },
   ],
 };
+export const recentTransactions = {
+  headers: ["NAME/BUSINESS", "TYPE", "AMOUNT", "STATUS", "DATE"],
+  data: [
+    {
+      name: { productType: "Iphone 13 ProMax", productDetail: "Apple.Inc" },
+      type: "Recent Transaction",
+      amount: "$420.84",
+      status: "Completed",
+      date: "23,Mar, 2023",
+    },
+
+    {
+      name: { productType: "Netflix Subscription", productDetail: "Netflix" },
+
+      type: "Recent Transaction",
+      amount: "$420.84",
+      status: "Pending",
+      date: "23,Mar, 2023",
+    },
+    {
+      name: { productType: "Nike Emax", productDetail: "Nike" },
+      type: "Recent Transaction",
+      amount: "$420.84",
+      status: "Completed",
+      date: "23,Mar, 2023",
+    },
+  ],
+};

@@ -14,33 +14,46 @@ function FileUpload({ data }) {
   const [selected, setSelected] = useState(BackArrow);
   const maxNumber = data.maxUpload;
   const onChange = (imageList, addUpdateIndex) => {
-    setImages(imageList);
-    // console.log(imageList);
+    // setImages(imageList);
     let ctx = imageList.length;
+
     if (ctx === 0) {
       imageList[0] = data.icon;
       setImages(imageList);
+      console.log(imageList, ctx);
     } else {
       // eslint-disable-next-line eqeqeq
-      if (imageList[0] == data.icon) {
-        imageList.splice(0, 1);
+      let chk = imageList.indexOf(data.icon);
+      if (chk >= 0) {
+        imageList.splice(imageList.indexOf(data.icon), 1);
       }
+      console.log(imageList, addUpdateIndex);
+      setImages(imageList);
     }
   };
   // console.log(data);
 
   function imageUpload(onImageUpload, imageList) {
     let ct = images.length;
-    setUploadStatus(ct === maxNumber && imageList[0] !== data.icon);
+    setUploadStatus(ct == maxNumber && imageList[0] != data.icon);
     console.log(ct, uploadStatus);
     return onImageUpload;
   }
-  function removeImg(onImageRemove, index) {
-    return onImageRemove;
+  function removeImg(imageList, onImageRemove, index) {
+    let chk = index === imageList.indexOf(data.icon);
+    let ct = images.length;
+    let check = ct === maxNumber;
+    console.log(chk, check);
+    if (chk && check) {
+      imageList.splice(index, 1);
+      return onImageRemove;
+    }
+    return () => onImageRemove(index);
   }
   useEffect(() => {
     setSelected(BackArrow);
-    // console.log(images);
+    onChange([]);
+    // console.log(images, __filename);
   }, []);
   useEffect(() => {
     setSelected(uploadStatus ? UploadCheckmark : BackArrow);
@@ -90,7 +103,7 @@ function FileUpload({ data }) {
                     <img
                       src={image.data_url ? image.data_url : data.icon}
                       alt="preview"
-                      onClick={removeImg(onImageRemove, index)}
+                      onClick={removeImg(imageList, onImageRemove, index)}
                       {...dragProps}
                     />
                   </div>
@@ -98,7 +111,7 @@ function FileUpload({ data }) {
                 <h3> {data.name}</h3>
                 <div
                   className="file-upload-arrow"
-                  onClick={imageUpload(onImageUpload, imageList)}
+                  // onClick={imageUpload(onImageUpload, imageList)}
                   {...dragProps}
                 >
                   {selected}
