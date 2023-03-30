@@ -68,7 +68,8 @@ export const UserDashboardLayout = () => {
               }
             />
             <Route path="transactions" element={<Transactions />} />
-            <Route path="invoices" element={<InvoicePage />} />
+            {/* <Route path="invoices" element={<InvoicePage />} /> */}
+            <Route path="invoices" element={<MyCardDiamond />} />
             <Route path="my cards" element={<CardcategoryPage />} />
             {/* <Route path="settings" element />
         <Route path="*" element={<NoMatch />} /> */}

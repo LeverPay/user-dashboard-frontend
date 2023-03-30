@@ -10,12 +10,14 @@
   /* left: 275px; */
   /* width: 970px; */
   height: 48px;
+  border-bottom: solid 1px rgb(19, 18, 18) 0230;
+  margin-bottom: 50px;
 }
 
 .notificationIcon {
   /* position: absolute; */
   color: #fff;
-  margin-left: 82.33%;
+  /* margin-left: 82.33%; */
   top: 25.38%;
   bottom: 12.5%;
   cursor: pointer;
@@ -24,10 +26,11 @@
 .searchIcon {
   /* position: absolute; */
   color: #fff;
-  margin-left: 77.33%;
+  /* margin-left: 77.33%; */
   top: 27.38%;
   bottom: 12.5%;
   cursor: pointer;
+  font-size: 70px !important;
 }
 
 .pageTitle {
