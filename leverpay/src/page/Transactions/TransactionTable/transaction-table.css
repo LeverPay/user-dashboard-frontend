@@ -1,27 +1,38 @@
 .transactions-table-container {
   background: #1c1a2e;
-  padding: 20px 60px 20px 120px;
   border-radius: 20px;
-  box-shadow: 0 0 1px 1px #1c1a2e;
-  /* display: flex; */
+  box-shadow: 1px 1px 2px 3px rgba(16, 19, 63, 0.75);
+  -webkit-box-shadow: 1px 1px 2px 3px rgba(16, 19, 63, 0.75);
+  -moz-box-shadow: 1px 1px 2px 3px rgba(16, 19, 63, 0.75);
+  padding-top: 20px;
+  padding-bottom: 60px;
 }
 .transactions-table-container td {
-  /* line-height: 55px; */
   font-family: KB-sans-Regular;
-  padding-top: 25px !important;
+  padding: 12px 0 12px 40px !important;
   color: #fff !important;
+  position: relative;
+}
+
+.transactions-table-container tr:hover {
+  /* background-color: #282541; */
+  background-color: #38364d;
 }
 .transactions-table-container th {
   font-family: KB-sans-Bold;
   color: #fff !important;
+  background-color: #282541;
+  padding: 20px 0 20px 40px;
+  text-align: left !important;
 }
 .transactions-table-container h5 {
   margin-bottom: 40px;
   font-family: AgrandirBold;
   color: #fff !important;
-
+  margin-left: 30px;
   flex-grow: 1;
 }
+
 .table-title {
   display: flex;
   padding-right: 230px;
@@ -32,3 +43,6 @@
   font-weight: bold;
   text-decoration: none;
 }
+/* .table-title a :hover {
+  color: #282541 !important;
+} */
