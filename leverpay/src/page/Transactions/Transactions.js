@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import {
   allTransactions,
   accountCredits,
@@ -57,6 +58,7 @@ export const Transactions = () => {
           >
             Regular Payments
           </button>
+          <SearchBar />
         </div>
         <div className="panels">
           <div className={`panel ${checkActive(1, "active")}`}>
@@ -82,7 +84,7 @@ export const Transactions = () => {
               data={regularPayments}
               tableTitle="Transactions"
             />
-          </div>
+          </div>{" "}
         </div>
       </div>
     </>
