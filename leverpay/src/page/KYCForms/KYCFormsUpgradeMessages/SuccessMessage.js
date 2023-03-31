@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SuccessImg from "../../../assets/images/successImg.png";
 import UploadCheckmark from "../../../components/FileUpload/UploadCheckmark";
-import Modal from "react-bootstrap/Modal";
+import { gold, diamond, pinkLady, enterprise } from "../../../TestData";
 
-function SuccessMessage() {
+function SuccessMessage(props) {
+  const [card, setCard] = useState("");
+  const [cardData, setCardData] = useState("");
+
+  useEffect(() => {
+    switch (props.accountType) {
+      case "gold":
+        setCardData(gold);
+      default:
+        break;
+      case "diamond":
+        setCardData(diamond);
+        break;
+      case "enterprise":
+        setCardData(enterprise);
+        break;
+      case "pinkLady":
+        setCardData(pinkLady);
+        break;
+    }
+  });
+
   return (
     <center>
       {" "}
@@ -18,7 +39,11 @@ function SuccessMessage() {
         </div>
         <center>
           <h3>
-            GOLD Card Upgraded <br />
+            <span style={{ color: cardData.color || "#0B0230" }}>
+              {" "}
+              {cardData.card}
+            </span>{" "}
+            Card Upgraded <br />
             SUCCESSFULLY
           </h3>
         </center>
