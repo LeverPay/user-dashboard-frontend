@@ -1,6 +1,6 @@
 import React from "react";
-import CardDefault from "../components/AllCards/CardDefault";
-import CardInfo from "../components/CardInfo";
+import CardDefault from "../../components/AllCards/CardDefault";
+import CardInfo from "../../TestData/CardInfo";
 
 function CardUser() {
   return (

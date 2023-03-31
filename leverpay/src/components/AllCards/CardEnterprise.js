@@ -1,6 +1,6 @@
 import React from "react";
-import CardDefault from "../components/CardDefault";
-import CardInfo from "../CardInfo";
+import CardDefault from "../AllCards/CardDefault";
+import CardInfo from "../../TestData/CardInfo";
 function CardEnterprise() {
   return (
     <CardDefault

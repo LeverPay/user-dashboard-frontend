@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import LeverpayLogo from "../assets/images/LeverpayLogo.png";
+import LeverpayLogo from "../../assets/LeverpayLogo.png";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { FaHome, FaReceipt, FaWallet, FaSignOutAlt } from "react-icons/fa";
 import { RiSettings4Fill } from "react-icons/ri";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { MdLiveHelp } from "react-icons/md";
-import "../Styles/SideNav.css";
+import "../NavComponent/NavComponent.css";
 
 const NavComponent = () => {
   return (
