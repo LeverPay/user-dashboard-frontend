@@ -16,6 +16,7 @@ export const ReturnMessage = (props) => {
       case "gold":
         setCard(CardGold);
         setCardData(gold);
+      // eslint-disable-next-line no-fallthrough
       default:
         break;
       case "diamond":
@@ -39,9 +40,11 @@ export const ReturnMessage = (props) => {
           <p>
             Hi! <br />
             <span>Goodness Micheal</span> You have Upgraded your card to a{" "}
+            <br />{" "}
             <span style={{ color: cardData.color || "#0B0230" }}>
               {cardData.title}
             </span>
+            <br />
             <span>
               You can Now ENJOY Daily spending Limit of {cardData.limit} USDT.
             </span>{" "}
