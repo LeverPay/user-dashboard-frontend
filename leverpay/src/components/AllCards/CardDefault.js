@@ -42,7 +42,7 @@ function CardDefault(props) {
           }}
         />
         <span>
-          <img alt="" src="./images/card visible.png" onClick={seeCard} />
+          <img alt="" src="./images/card visible.png" onMouseOver={seeCard} onMouseLeave={()=>{setCardVisible(false)}} />
           <br />
           <small>Show Card Details</small>
         </span>

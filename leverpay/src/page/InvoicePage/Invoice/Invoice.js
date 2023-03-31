@@ -36,18 +36,18 @@ function Invoice() {
     const time = date.toDateString()+ ' ' + timeofDay
 
     return (
-        <Container className='pt-3 px-3 py-4 col-md-6 col-sm-9 col-lg-5 col-xl-4 col-xxl-3' id='invoice'>
+        <Container className='pt-3 px-3 py-4 col-md-5 col-12' id='invoice'>
             <h4 className='text-center'>{id}</h4>
             <div className='price_checkout'>
-                <span>
+                <span className='px-md-3'>
                     <h5>$420.89</h5>
                     <h5>Total USD</h5>
                 </span>
-                <span>
+                <span className='px-md-3'>
                     <h5>0.45656</h5>
                     <h5>Total ETH</h5>
                 </span>
-                <span>
+                <span className='px-md-3'>
                     <h5 style={{color: '#0EB500'}} >$420.89</h5>
                     <h5 style={{color: '#F49B09'}}>Paid(ETH)</h5>
                 </span>
