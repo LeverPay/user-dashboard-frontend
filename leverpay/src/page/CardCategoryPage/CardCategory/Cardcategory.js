@@ -142,7 +142,7 @@ function Cardcategory() {
           </Col>
         </Row>
         {returnMessage && <ReturnMessage accountType={accSetInstance} />}
-        {success && <SuccessMessage />}
+        {success && <SuccessMessage accountType={accSetInstance} />}
       </Row>
     </Container>
   );
