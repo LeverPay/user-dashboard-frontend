@@ -10,7 +10,7 @@ const KYCFormModal = (props) => {
 
   const handleClose = () => {
     setShow(false);
-    props.callback("");
+    props.callback("done");
   };
   const handleShow = (acc) => {
     if (acc !== accType) setAccType(acc);
@@ -38,9 +38,9 @@ const KYCFormModal = (props) => {
         <Modal.Body>
           {" "}
           <KYCForms accountType={accType} handleClose={handleClose} />
-          <Button variant="" onClick={handleClose}>
+          {/* <Button variant="" onClick={handleClose}>
             Close
-          </Button>
+          </Button> */}
         </Modal.Body>
       </Modal>
     </>
