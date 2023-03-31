@@ -4,12 +4,12 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import "./CardCategories.css";
-import CardDiamond from "../../Cards/CardDiamond";
-import CardEnterprise from "../../Cards/CardEnterprise";
-import CardGold from "../../Cards/CardGold";
-import CardpinkLady from "../../Cards/CardPinkLady";
+import CardDiamond from "../../../components/AllCards/CardDiamond";
+import CardEnterprise from "../../../components/AllCards/CardEnterprise";
+import CardGold from "../../../components/AllCards/CardGold";
+import CardPinkLady from "../../../components/AllCards/CardPinkLady";
 import { useState, useEffect } from "react";
-import KYCFormModal from "../KYCForms/KYCFormModal/KYCFormModal";
+import KYCFormModal from "../../../page/KYCForms/KYCFormModal/KYCFormModal";
 function Cardcategory() {
   const [accSet, setAccSet] = useState("");
   const [accReady, setAccReady] = useState(false);
@@ -60,7 +60,7 @@ function Cardcategory() {
       <Row className="mt-3">
         <Row>
           <Col className="col-5" onClick={() => defunct("pinkLady")}>
-            <CardpinkLady />
+            <CardPinkLady />
           </Col>
           <Col className="col-2">
             <img alt="" className="img-responsive" src="./images/Line 25.png" />

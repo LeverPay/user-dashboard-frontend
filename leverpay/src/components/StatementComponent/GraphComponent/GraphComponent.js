@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/GraphComponent.css";
+import "../GraphComponent/GraphComponent.css";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { Line } from "react-chartjs-2";

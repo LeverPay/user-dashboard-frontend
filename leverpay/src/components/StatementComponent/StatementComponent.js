@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import GraphComponent from "./GraphComponent";
-import { UserData } from "../Data";
+import GraphComponent from "../StatementComponent/GraphComponent/GraphComponent";
+import { UserData } from "../../TestData";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { GiWallet } from "react-icons/gi";
-import "../Styles/StatementComponent.css";
+import "../StatementComponent/StatementComponent.css";
 
 const StatementComponent = () => {
   const [userData] = useState({

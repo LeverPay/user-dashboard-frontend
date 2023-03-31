@@ -4,10 +4,6 @@ import "./App.css";
 
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import NavComponent from "./components/NavComponent";
-import DashboardComponent from "./Pages/DashboardComponent";
-import CardcategoryPage from "./Pages/CardcategoryPage";
-import NoMatch from "./Pages/NoMatch";
 
 //-------- Sarah's import starts here-------------
 //import logo from './logo.svg';
