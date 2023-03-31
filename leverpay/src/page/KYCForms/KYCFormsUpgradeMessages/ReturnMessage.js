@@ -1,28 +1,54 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./KYCUpgradeMessages.css";
 import Smiley from "../../../assets/images/smiley.png";
+import CardGold from "../../../components/AllCards/CardGold";
+import CardpinkLady from "../../../components/AllCards/CardPinkLady";
+import CardDiamond from "../../../components/AllCards/CardDiamond";
+import CardEnterprise from "../../../components/AllCards/CardEnterprise";
+import { gold, diamond, pinkLady, enterprise } from "../../../TestData";
 
-export const ReturnMessage = () => {
+export const ReturnMessage = (props) => {
+  const [card, setCard] = useState("");
+  const [cardData, setCardData] = useState("");
+
+  useEffect(() => {
+    switch (props.accountType) {
+      case "gold":
+        setCard(CardGold);
+        setCardData(gold);
+      default:
+        break;
+      case "diamond":
+        setCard(CardDiamond);
+        setCardData(diamond);
+        break;
+      case "enterprise":
+        setCard(CardEnterprise);
+        setCardData(enterprise);
+        break;
+      case "pinkLady":
+        setCard(CardpinkLady);
+        setCardData(pinkLady);
+        break;
+    }
+  });
   return (
     <>
       <div className="kyc-return-message-container">
-        <div className="col-md-9">
-          {" "}
+        <div className="col-md-4 p-container">
           <p>
             Hi! <br />
-            <span>Goodness Micheal</span> You have Upgraded your card to <br />a
-            Gold Card.{" "}
+            <span>Goodness Micheal</span> You have Upgraded your card to a{" "}
+            <span style={{ color: cardData.color || "#0B0230" }}>
+              {cardData.title}
+            </span>
             <span>
-              You can Now <br />
-              ENJOY Daily spending Limit of 10000 USDT. <br />
+              You can Now ENJOY Daily spending Limit of {cardData.limit} USDT.
             </span>{" "}
-            Thank you for Choosing <br />
-            LeverPay.
+            <br /> <br /> Thank you for Choosing LeverPay.
           </p>
         </div>
-        <div className="col-md-3">
-          <img src={Smiley} alt="smiley" className="col-md-12" />
-        </div>
+        <div className="col-md-8">{card}</div>
       </div>
     </>
   );

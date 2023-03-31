@@ -5,6 +5,7 @@ import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import "../../page/CardCategoryPage/CardCategory/CardCategories.css";
 import CardUser from "../../components/AllCards/CardUserDefault";
+import { Link } from "react-router-dom";
 
 function Mycard(props) {
   return (
@@ -52,12 +53,15 @@ function Mycard(props) {
         </Col>
       </Row>
       <Row className="Upgrade-con">
-        <Col className="px-6">
-          <button className="upgrade-card-btn">
-            <span>+</span>
-            Upgrade Card
-          </button>
-        </Col>
+        <Link to={"/my cards"}>
+          {" "}
+          <Col className="px-6">
+            <button className="upgrade-card-btn">
+              <span>+</span>
+              Upgrade Card
+            </button>
+          </Col>
+        </Link>
       </Row>
     </Container>
   );
