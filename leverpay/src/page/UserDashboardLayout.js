@@ -1,8 +1,7 @@
 import React from "react";
 import NavComponent from "../components/NavComponent/NavComponent";
-import CardsComponent from "../components/CardsComponent";
 import TopNav from "../components/TopNav/TopNav";
-import StatementComponent from "../components/StatementComponent";
+import StatementComponent from "../components/StatementComponent/StatementComponent";
 import TransactionTable from "./Transactions/TransactionTable/TransactionTable";
 import { recentTransactions } from "../TestData/TransactionsData.js";
 import { useEffect, useState } from "react";
@@ -12,7 +11,7 @@ import { Transactions } from "./Transactions/Transactions";
 // import InvoicePage from "../../Page/InvoicePage";
 import Mycard from "./MyCardPage.js/Mycard";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
-import MyCardDiamond from "../Pages/MyCardDiamond";
+import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -57,11 +56,11 @@ export const UserDashboardLayout = () => {
                   </div>
                   <div className="col-md-4">
                     <div className="col-md-10">
-                      {" "}
+                      {/* {" "}
                       <CardsComponent
                         naijaCardData={naijaCard}
                         silverCardData={silverCard}
-                      />
+                      /> */}
                     </div>
                   </div>
                 </div>

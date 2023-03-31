@@ -1,6 +1,6 @@
 import React from "react";
-import CardDefault from "../components/CardDefault";
-import CardInfo from "../CardInfo";
+import CardDefault from "../../components/AllCards/CardDefault";
+import CardInfo from "../../TestData/CardInfo";
 
 function CardpinkLady() {
   return (
