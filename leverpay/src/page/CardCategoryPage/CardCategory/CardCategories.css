@@ -1,7 +1,6 @@
 /* General card container */
 .cardsContainer{
     background-color: #0B0230;
-    padding-block: 2rem;
 }
 /* Card categories styling */
 #cardcategories{
@@ -39,55 +38,3 @@
     color: #CD4729;
 }
 
-/* My cards section */
-#mycards{
-    border-radius: 10px;
-    background-color: #201E34;
-    width: 60%;
-}
-.card-balance{
-    display: flex;
-    gap: 20px;
-    color: white;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    width: 75%;
-    margin: auto;
-    border-radius: 10px;
-}
-.card-balance img{
-    background-color: #353255;
-    padding: 5px;
-    outline: 7px solid #353255;
-    border: none;
-    border-radius: 50%;
-}
-.card-balance main{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-}
-.card-balance small{
-    color: #929EAE;
-}
-.Upgrade-con{
-    margin-top: 10rem;
-}
-.upgrade-card-btn{
-    border: none;
-    padding-block: 20px;
-    border-radius: 10px;
-    background-color: transparent;
-    color: white;
-    width: 90%;
-    background-color: #282541;
-    font-family: Kumbh Sans;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 20px;
-}
-.upgrade-card-btn span {
-    margin-right: 1rem;
-}
