@@ -42,7 +42,10 @@ const KYCForms = (props) => {
         {dt.inputPlaceholder.map((data, index) => (
           <TextInput data={data} />
         ))}
-        <KYCFormsButton handleClose={props.handleClose} />
+        <KYCFormsButton
+          handleClose={props.handleClose}
+          accountType={props.accountType}
+        />
       </div>
     </>
   );
