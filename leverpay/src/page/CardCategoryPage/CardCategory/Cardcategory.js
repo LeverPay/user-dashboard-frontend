@@ -104,46 +104,11 @@ function Cardcategory() {
               Verification. Note :{" "}
               <span className="limit">Daily Spending Limit is 1000 USDT</span>
             </p>
-          </Row>
-        </Col>
       </Row>
-
-      <Row>
-        <Col>
-          <Row className="py-3" onClick={() => defunct("pinkLady")}>
-            <CardPinkLady />
-          </Row>
-          <Row>
-            <p className="Kyc-upgrade-notice" id="Kyc-upgrade-notice-1">
-              To upgrade to the <span className="gold">GOLD</span> Card, please
-              complete the following verification<strong> (KYC)</strong> Process
-              as it is required by Government. Click on the Card to start
-              Verification. Note :{" "}
-              <span className="limit">Daily Spending Limit is 1000 USDT</span>
-            </p>
-          </Row>
-        </Col>
-
-        <Col className="col-2 pt-5 d-md-block d-none">
-          <img alt="" className="img-responsive" src="./images/Line 25.png" />
-        </Col>
-
-        <Col>
-          <Row className="py-3" onClick={() => defunct("enterprise")}>
-            <CardEnterprise />
-          </Row>
-          {accReady ? <KYCFormModal acct={accSet} callback={defunct} /> : ""}
-          <Row>
-            <p className="Kyc-upgrade-notice">
-              To upgrade to the <span className="gold">GOLD</span> Card, please
-              complete the following verification<strong> (KYC)</strong> Process
-              as it is required by Government. Click on the Card to start
-              Verification. Note :{" "}
-              <span className="limit">Daily Spending Limit is 1000 USDT</span>
-            </p>
-          </Row>
-        </Col>
-      </Row>
+          </Col>
+        {returnMessage && <ReturnMessage accountType={accSetInstance} />}
+        {success && <SuccessMessage accountType={accSetInstance} />}
+        </Row>
     </Container>
   );
 }
