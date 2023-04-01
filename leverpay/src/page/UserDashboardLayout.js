@@ -9,7 +9,8 @@ import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
 import { Routes, Route } from "react-router-dom";
 import { Transactions } from "./Transactions/Transactions";
 // import InvoicePage from "../../Page/InvoicePage";
-import Mycard from "./MyCardPage.js/Mycard";
+// import Mycard from "./MyCardPage.js/Mycard";
+import Mycard from './MyCardPage/Mycard'
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
 import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
 import MyCardGold from "../page/GoldCardPage/MyCardGold";
