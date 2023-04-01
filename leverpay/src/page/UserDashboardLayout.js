@@ -18,6 +18,7 @@ import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount
 import TotalMoney from "../components/TotalMoney/TotalMoney";
 import CardUser from "../components/AllCards/CardUserDefault";
 import CardSilver from "../components/AllCards/CardSilver";
+import { MerchantComponent } from "../components/MerchantComponent/MerchantComponent";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -99,6 +100,9 @@ export const UserDashboardLayout = () => {
                     </div>{" "}
                     <div className="col-md-12">
                       <CardSilver />
+                    </div>
+                    <div className="col-md-12">
+                      <MerchantComponent />
                     </div>
                   </div>
                 </div>
