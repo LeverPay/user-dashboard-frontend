@@ -46,3 +46,6 @@
 /* .table-title a :hover {
   color: #282541 !important;
 } */
+.transaction-table-container {
+  margin-left: 33px;
+}
