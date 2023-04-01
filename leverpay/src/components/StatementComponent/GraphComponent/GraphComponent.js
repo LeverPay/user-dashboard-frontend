@@ -17,7 +17,7 @@ ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
 const GraphComponent = ({ chartData }) => {
   return (
     <div className="graphComponentDiv col-md-12">
-      <h5 className="portfolioText">Portfolio</h5>
+      {/* <h5 className="portfolioText">Portfolio</h5> */}
       {/* <div className="graph-dropdown">
         {[DropdownButton].map((DropdownType, idx) => (
           <DropdownType
@@ -34,7 +34,7 @@ const GraphComponent = ({ chartData }) => {
       </div> */}
       <Line
         data={chartData}
-        height={250}
+        height="80%"
         options={{ maintainAspectRatio: false }}
       />
     </div>

@@ -2,9 +2,9 @@
   height: 100% !important;
   width: 100% !important;
   background-color: #0e093f;
-  padding-left: 30px;
-  border-top-right-radius: 80px;
-  border-bottom-right-radius: 80px;
+  /* padding-left: 30px; */
+  /* border-top-right-radius: 80px; */
+  /* border-bottom-right-radius: 80px; */
   /* padding: 0 0 0 40px !important; */
 }
 
@@ -12,6 +12,10 @@
   display: flex;
   width: 100% !important;
   padding: 10px;
+}
+
+.nav-options {
+  border: 1px solid #0000;
 }
 
 .nav-options ul li {
@@ -23,6 +27,7 @@
 }
 .nav-options ul li span {
   /* font-size: 63px !important; */
+  border: 1px solid #0000;
   margin-right: 20px;
 }
 @media screen and (max-width: 700px) {
@@ -60,6 +65,7 @@
   flex-direction: column;
   margin-top: 180%;
 }
+
 .bottom-options span {
   margin-right: 20px;
 }
