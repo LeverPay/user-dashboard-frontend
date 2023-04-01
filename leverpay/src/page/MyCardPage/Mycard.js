@@ -6,8 +6,9 @@ import Col from "react-bootstrap/esm/Col";
 import "./myCard.css";
 import CardUser from "../../components/AllCards/CardUserDefault";
 import TotalMoney from "../../components/TotalMoney/TotalMoney";
-import UpgradeCard from "../../components/UpgradeCard/UpgradeCard";
-// import { Routes, Route } from "react-router-dom";
+// import UpgradeCard from "../../components/UpgradeCard/UpgradeCard";
+import { Link } from "react-router-dom"
+
 
 function Mycard(props) {
   return (
@@ -35,10 +36,15 @@ function Mycard(props) {
         </Col>
       </Row>
       <Row className="Upgrade-con">
-        {/* <Routes>
-          <Route path="Upgrade_Card" element = {<UpgradeCard/>} />
-        </Routes>   */}
-        <UpgradeCard />
+      <Link to={"/my cards"}>
+          {" "}
+          <Col className="px-6">
+            <button className="upgrade-card-btn">
+              <span>+</span>
+              Upgrade Card
+            </button>
+          </Col>
+        </Link>
       </Row>
     </Container>
   );
