@@ -1,36 +1,22 @@
 .dashboardCardContainer {
-  /* width: 700px; */
   min-height: 80px;
-  /* margin-inline: auto; */
-  /* position: absolute; */
-  /* left: 275px; */
-  /* margin-top: 180px; */
-  /* border: 1px solid #000; */
+
   display: flex;
   margin-top: 40px;
   gap: 1em;
   justify-content: center;
   align-items: flex-start;
   flex-flow: row nowrap;
-  margin-left: 25px;
-  /* align-content: space-between; */
+  margin-left: 45px;
 }
 
 .dashboardCard {
-  /* min-width: 100px; */
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* justify-content: center; */
   align-items: center;
   border-radius: 10px;
   height: fit-content;
   padding: 10px 10px 20px 60px;
   color: #fff;
   font-size: 20px;
-  /* padding: 0.5rem; */
-  /* first value is grow, second value shrink, third value basis */
-  /* flex-grow: 1; */
-  /* flex-basis: 100px; */
 }
 
 .dashboardCard:nth-child(1) {
