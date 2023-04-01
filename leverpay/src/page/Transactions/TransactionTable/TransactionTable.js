@@ -11,7 +11,7 @@ export const TransactionTable = (props) => {
           <h5>{props.tableTitle}</h5>
           <a href="#">View all </a>
         </div>
-        <table className="col-md-12">
+        <table className="col-md-12 col-12">
           <thead>
             <tr>
               {props.data.headers.map((item) => (
