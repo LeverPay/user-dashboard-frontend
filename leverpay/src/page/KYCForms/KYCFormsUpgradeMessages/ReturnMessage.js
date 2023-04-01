@@ -35,7 +35,7 @@ export const ReturnMessage = (props) => {
   });
   return (
     <>
-      <div className="kyc-return-message-container">
+      <div className="kyc-return-message-container  slide-left">
         <div className="col-md-4 p-container">
           <p>
             Hi! <br />
