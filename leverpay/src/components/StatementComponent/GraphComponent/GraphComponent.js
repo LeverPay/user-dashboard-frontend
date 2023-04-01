@@ -18,7 +18,7 @@ const GraphComponent = ({ chartData }) => {
   return (
     <div className="graphComponentDiv col-md-12">
       <h5 className="portfolioText">Portfolio</h5>
-      <div className="graph-dropdown">
+      {/* <div className="graph-dropdown">
         {[DropdownButton].map((DropdownType, idx) => (
           <DropdownType
             as={ButtonGroup}
@@ -28,17 +28,12 @@ const GraphComponent = ({ chartData }) => {
             variant="dark"
             title="Last 7 days"
           >
-            {/* <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-            <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-            <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item eventKey="4">Separated link</Dropdown.Item> */}
+         
           </DropdownType>
         ))}
-      </div>
+      </div> */}
       <Line
         data={chartData}
-        position="absolute"
         height={250}
         options={{ maintainAspectRatio: false }}
       />
