@@ -5,6 +5,11 @@
   margin-left: 33px;
   padding: 30px 15px 70px 15px;
 }
+@media screen and (max-width: 620px) {
+  .merchant-container {
+    margin-left: 0px;
+  }
+}
 .merchant-header {
   display: flex;
   margin-top: 40px;

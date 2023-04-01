@@ -10,7 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import { Transactions } from "./Transactions/Transactions";
 // import InvoicePage from "../../Page/InvoicePage";
 // import Mycard from "./MyCardPage.js/Mycard";
-import Mycard from './MyCardPage/Mycard'
+import Mycard from "./MyCardPage/Mycard";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
 import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
 import MyCardGold from "../page/GoldCardPage/MyCardGold";
@@ -20,7 +20,7 @@ import TotalMoney from "../components/TotalMoney/TotalMoney";
 import CardUser from "../components/AllCards/CardUserDefault";
 import CardSilver from "../components/AllCards/CardSilver";
 import { MerchantComponent } from "../components/MerchantComponent/MerchantComponent";
-
+import "./UserDashboardLayout.css";
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState({});
@@ -42,7 +42,6 @@ export const UserDashboardLayout = () => {
     });
   }, []);
 
-
   return (
     <>
       <div className="col-md-12 flexy">
@@ -58,7 +57,10 @@ export const UserDashboardLayout = () => {
               element={
                 <div className="col-md-12 flexy">
                   <div className="col-md-8">
-                    <div className="col-md-12 flexy" style={{marginTop: '-1rem'}}>
+                    <div
+                      className="col-md-12 flexy"
+                      style={{ marginTop: "-1rem" }}
+                    >
                       <div className="col-md-4">
                         {" "}
                         <TotalMoney
@@ -91,31 +93,14 @@ export const UserDashboardLayout = () => {
                       />
                     </div>
                   </div>
-                  <div
-                    className="col-md-4 "
-                    style={{ marginLeft: '-2rem', marginTop: '-2.5rem' }}
-                  >
-                   
+                  <div className="col-md-4  card-holder">
+                    <div className="col-md-10 mx-auto default-card-holder">
+                      <header className="card-header">My Card</header>
+                      <CardUser />
+                    </div>{" "}
                     <div
                       className="col-md-10 mx-auto"
-                      style={{  transform: 'translateX(2rem)'}}
-                    >
-                       <header style={{
-                        fontFamily: 'Agrandir',
-                        fontSize: '24px',
-                        fontWeight: '700',
-                        lineHeight: '50px',
-                        letterSpacing: '0em',
-                        textAlign: 'left',
-                        color: 'white'
-                       }}>
-                      My Card
-                    </header>
-                      <CardUser/>
-                    </div>{" "}
-                    <div 
-                    className="col-md-10 mx-auto"
-                    style={{ transform: 'translateY(-3.5rem)'}}
+                      style={{ transform: "translateY(-3.5rem)" }}
                     >
                       <CardSilver />
                     </div>
