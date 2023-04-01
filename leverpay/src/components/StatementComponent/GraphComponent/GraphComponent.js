@@ -16,7 +16,7 @@ ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale);
 
 const GraphComponent = ({ chartData }) => {
   return (
-    <div className="graphComponentDiv col-md-12">
+    <div className="graphComponentDiv col-md-12 col-12">
       <h5 className="portfolioText">Portfolio</h5>
       {/* <div className="graph-dropdown">
         {[DropdownButton].map((DropdownType, idx) => (

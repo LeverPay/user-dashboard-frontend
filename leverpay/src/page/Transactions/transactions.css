@@ -1,6 +1,11 @@
 .tabs {
   display: flex;
 }
+@media screen and (max-width: 620px) {
+  .tabs {
+    display: grid;
+  }
+}
 .tab {
   justify-content: center;
   align-items: center;
@@ -21,6 +26,11 @@
   background: rgb(11, 2, 48) !important;
   padding: 100px 80px 200px 80px;
   color: #fff;
+}
+@media screen and (max-width: 620px) {
+  .panel {
+    padding: 0px;
+  }
 }
 .panel.active {
   display: block;

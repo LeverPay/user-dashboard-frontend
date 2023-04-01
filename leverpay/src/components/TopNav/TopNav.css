@@ -8,7 +8,11 @@
   border-bottom: solid 1px rgb(19, 18, 18) 0230;
   margin-bottom: 50px;
 }
-
+@media screen and (max-width: 620px) {
+  .TopNavy {
+    padding: 0px !important;
+  }
+}
 .notificationIcon {
   color: #fff;
   bottom: 12.5%;
@@ -20,9 +24,14 @@
 
 .pageTitle h2 {
   font-family: AgrandirBold;
-  margin-bottom: -.5rem;
+  margin-bottom: -0.5rem;
   margin-left: 2rem;
   color: #fff;
+}
+@media screen and (max-width: 620px) {
+  .pageTitle h2 {
+    margin-left: 0rem;
+  }
 }
 .pageTitle {
   flex-grow: 1;
