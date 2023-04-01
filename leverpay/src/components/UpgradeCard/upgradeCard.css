@@ -1,0 +1,16 @@
+.upgrade-card-btn{
+    border: none;
+    padding-block: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    width: 90%;
+    background-color: #282541;
+    font-family: Kumbh Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+}
+.upgrade-card-btn span {
+    margin-right: 1rem;
+}

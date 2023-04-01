@@ -1,0 +1,27 @@
+.card-balance{
+    display: flex;
+    gap: 20px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    width: 75%;
+    margin: auto;
+    border-radius: 10px;
+}
+.card-balance img{
+    background-color: #353255;
+    padding: 5px;
+    outline: 7px solid #353255;
+    border: none;
+    border-radius: 50%;
+}
+.card-balance main{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.card-balance small{
+    color: white;
+}

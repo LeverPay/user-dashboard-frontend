@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import CardInfo from "../CardInfo";
+// import CardInfo from "../CardInfo";
+import CardInfo from "../../TestData/CardInfo";
 
 function CardSilver() {
   const date = new Date();
