@@ -36,33 +36,33 @@ const NavComponent = () => {
                     {" "}
                     <Link to="/" className="text-link">
                       <FaHome size={18} variant="dark" />
-                      <span> {"\u00A0"}</span> Dashboard
+                      {"\u00A0"}Dashboard
                     </Link>
                   </li>
                   <li>
                     <Link to="/transactions" className="text-link">
                       <BsGraphUpArrow size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span> Transactions
+                      {"\u00A0"}Transactions
                     </Link>
                   </li>
                   <li>
                     {" "}
                     <Link to="/invoices" className="text-link">
                       <FaReceipt size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span> Invoices
+                      {"\u00A0"} Invoices
                     </Link>
                   </li>
                   <li>
                     {" "}
                     <Link to="/my cards" className="text-link">
                       <FaWallet size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span> My Cards
+                      {"\u00A0"} My Cards
                     </Link>
                   </li>
                   <li>
                     <Link to="/settings" className="text-link">
                       <RiSettings4Fill size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span> Settings
+                      {"\u00A0"} Settings
                     </Link>
                   </li>{" "}
                 </ul>
@@ -74,14 +74,14 @@ const NavComponent = () => {
                     {" "}
                     <Link to="#" className="bottom-link">
                       <MdLiveHelp size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span>help
+                      {"\u00A0"} help
                     </Link>{" "}
                   </li>
                   <li>
                     {" "}
                     <Link to="#" className="bottom-link">
                       <FaSignOutAlt size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span> logout
+                      {"\u00A0"} logout
                     </Link>
                   </li>
                 </ul>
