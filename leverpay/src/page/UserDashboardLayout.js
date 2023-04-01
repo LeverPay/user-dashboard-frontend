@@ -45,7 +45,7 @@ export const UserDashboardLayout = () => {
 
   return (
     <>
-      <div className="col-md-12 flexy">
+      <div className="col-md-12 flexy" style={{overflowX: 'hidden'}}>
         <div className="col-md-2">
           <NavComponent />
         </div>
