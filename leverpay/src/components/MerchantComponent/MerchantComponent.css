@@ -1,0 +1,33 @@
+.merchant-container {
+  height: fit-content;
+  background: #10133f;
+  border-radius: 20px;
+  margin-left: 33px;
+  padding: 30px 15px 70px 15px;
+}
+.merchant-header {
+  display: flex;
+  margin-top: 40px;
+}
+.merchant-header h3 {
+  font-family: AgrandirBold;
+  flex-grow: 1;
+  color: #fff;
+  margin-left: 40px;
+}
+.merchants {
+  margin-top: 20px;
+}
+.merchant-container h5 {
+  color: #fff;
+  font-family: AgrandirBold;
+  flex-grow: 1;
+}
+.details-link {
+  color: #fff !important;
+  font-family: AgrandirBold;
+  text-decoration: none;
+}
+.up {
+  margin-top: 10px;
+}
