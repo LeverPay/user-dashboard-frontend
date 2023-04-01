@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
 import { Routes, Route } from "react-router-dom";
 import { Transactions } from "./Transactions/Transactions";
-// import InvoicePage from "../../Page/InvoicePage";
+import InvoicePage from "./InvoicePage/InvoicePage";
 // import Mycard from "./MyCardPage.js/Mycard";
 import Mycard from "./MyCardPage/Mycard";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
@@ -112,10 +112,10 @@ export const UserDashboardLayout = () => {
               }
             />
             <Route path="transactions" element={<Transactions />} />
-            {/* <Route path="invoices" element={<InvoicePage />} /> */}
-            <Route path="invoices" element={<MyCardDiamond />} />
+            <Route path="invoices" element={<InvoicePage />} />
+            {/* <Route path="invoices" element={<CardcategoryPage/>} /> */}
             <Route path="account" element={<MyUpgradedAccount />} />
-            <Route path="my cards" element={<CardcategoryPage />} />
+            <Route path="my cards" element={<MyCardDiamond />} />
             <Route path="settings" element />
             {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
