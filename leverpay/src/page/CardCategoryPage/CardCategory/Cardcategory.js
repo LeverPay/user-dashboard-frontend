@@ -10,7 +10,6 @@ import CardGold from "../../../components/AllCards/CardGold";
 import CardPinkLady from "../../../components/AllCards/CardPinkLady";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import KYCFormModal from "../../../page/KYCForms/KYCFormModal/KYCFormModal";
 import { ReturnMessage } from "../../../page/KYCForms/KYCFormsUpgradeMessages/ReturnMessage";
 import SuccessMessage from "../../../page/KYCForms/KYCFormsUpgradeMessages/SuccessMessage";
@@ -95,6 +94,43 @@ function Cardcategory() {
         <Col>
           <Row className="py-3" onClick={() => defunct("diamond")}>
             <CardDiamond />
+          </Row>
+          <Row>
+            <p className="Kyc-upgrade-notice">
+              To upgrade to the <span className="gold">GOLD</span> Card, please
+              complete the following verification<strong> (KYC)</strong> Process
+              as it is required by Government. Click on the Card to start
+              Verification. Note :{" "}
+              <span className="limit">Daily Spending Limit is 1000 USDT</span>
+            </p>
+      </Row>
+          </Col>
+        </Row>
+
+
+      <Row className="mt-5">
+        <Col>
+          <Row className="py-3" onClick={() => defunct("pinkLady")}>
+            <CardPinkLady />
+          </Row>
+          <Row>
+            <p className="Kyc-upgrade-notice" id="Kyc-upgrade-notice-1">
+              To upgrade to the <span className="gold">GOLD</span> Card, please
+              complete the following verification<strong> (KYC)</strong> Process
+              as it is required by Government. Click on the Card to start
+              Verification. Note :{" "}
+              <span className="limit">Daily Spending Limit is 1000 USDT</span>
+            </p>
+          </Row>
+        </Col>
+
+        <Col className="col-2 pt-5 d-md-block d-none">
+          <img alt="" className="img-responsive" src="./images/Line 25.png" />
+        </Col>
+
+        <Col>
+          <Row className="py-3" onClick={() => defunct("enterprise")}>
+            <CardEnterprise />
           </Row>
           <Row>
             <p className="Kyc-upgrade-notice">

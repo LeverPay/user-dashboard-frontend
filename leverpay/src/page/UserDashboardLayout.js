@@ -9,7 +9,8 @@ import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
 import { Routes, Route } from "react-router-dom";
 import { Transactions } from "./Transactions/Transactions";
 // import InvoicePage from "../../Page/InvoicePage";
-import Mycard from "./MyCardPage.js/Mycard";
+// import Mycard from "./MyCardPage.js/Mycard";
+import Mycard from './MyCardPage/Mycard'
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
 import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
 import MyCardGold from "../page/GoldCardPage/MyCardGold";
@@ -39,6 +40,8 @@ export const UserDashboardLayout = () => {
       expiryDate: silverCardDetails.map((data) => data.expiryDate),
     });
   }, []);
+
+
   return (
     <>
       <div className="col-md-12 flexy">
@@ -54,7 +57,7 @@ export const UserDashboardLayout = () => {
               element={
                 <div className="col-md-12 flexy">
                   <div className="col-md-8">
-                    <div className="col-md-12 flexy">
+                    <div className="col-md-12 flexy" style={{marginTop: '-1rem'}}>
                       <div className="col-md-4">
                         {" "}
                         <TotalMoney
@@ -73,14 +76,14 @@ export const UserDashboardLayout = () => {
                       </div>{" "}
                       <div className="col-md-4">
                         {" "}
-                        <TotalMoney bg="#0E093F" totaltype="Saved" amt="$546" />
+                        <TotalMoney bg="#201E34" totaltype="Saved" amt="$546" />
                       </div>
                     </div>
-                    <div className="col-md-12">
+                    <div className="col-md-11">
                       {" "}
                       <StatementComponent />
                     </div>
-                    <div className="transaction-table-container col-md-12">
+                    <div className="transaction-table-container col-md-11">
                       <TransactionTable
                         data={recentTransactions}
                         tableTitle="Recent Transaction"
@@ -88,16 +91,31 @@ export const UserDashboardLayout = () => {
                     </div>
                   </div>
                   <div
-                    className="col-md-3  container-fluid"
-                    style={{ marginLeft: "1rem" }}
+                    className="col-md-4 "
+                    style={{ marginLeft: '-2rem', marginTop: '-2.5rem' }}
                   >
+                   
                     <div
-                      className="col-md-12"
-                      style={{ marginRIght: "-1rem", marginTop: "-1rem" }}
+                      className="col-md-10 mx-auto"
+                      style={{  transform: 'translateX(2rem)'}}
                     >
-                      <CardUser />
+                       <header style={{
+                        fontFamily: 'Agrandir',
+                        fontSize: '24px',
+                        fontWeight: '700',
+                        lineHeight: '50px',
+                        letterSpacing: '0em',
+                        textAlign: 'left',
+                        color: 'white'
+                       }}>
+                      My Card
+                    </header>
+                      <CardUser/>
                     </div>{" "}
-                    <div className="col-md-12">
+                    <div 
+                    className="col-md-10 mx-auto"
+                    style={{ transform: 'translateY(-3.5rem)'}}
+                    >
                       <CardSilver />
                     </div>
                   </div>
