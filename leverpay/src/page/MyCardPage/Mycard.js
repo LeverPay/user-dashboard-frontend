@@ -6,7 +6,7 @@ import Col from "react-bootstrap/esm/Col";
 import "./myCard.css";
 import CardUser from "../../components/AllCards/CardUserDefault";
 import TotalMoney from "../../components/TotalMoney/TotalMoney";
-// import UpgradeCard from "../../components/UpgradeCard/UpgradeCard";
+import UpgradeCard from "../../components/UpgradeCard/UpgradeCard";
 import { Link } from "react-router-dom"
 
 
@@ -24,7 +24,7 @@ function Mycard(props) {
           <Row>{props.card}</Row>
         </Col>
       </Row>
-      <Row className="mt-5">
+      <Row className="mt-5 justify-content-center">
         <Col className="col-md-4 col-12 pt-md-0 pt-5">
           <TotalMoney bg="#0E093F" totaltype="Balance" amt="$3000" />
         </Col>
@@ -39,10 +39,7 @@ function Mycard(props) {
       <Link to={"/my cards"}>
           {" "}
           <Col className="px-6">
-            <button className="upgrade-card-btn">
-              <span>+</span>
-              Upgrade Card
-            </button>
+           <UpgradeCard/>
           </Col>
         </Link>
       </Row>
