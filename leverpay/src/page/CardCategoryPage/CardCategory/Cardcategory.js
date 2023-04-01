@@ -10,7 +10,6 @@ import CardGold from "../../../components/AllCards/CardGold";
 import CardPinkLady from "../../../components/AllCards/CardPinkLady";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import KYCFormModal from "../../../page/KYCForms/KYCFormModal/KYCFormModal";
 import { ReturnMessage } from "../../../page/KYCForms/KYCFormsUpgradeMessages/ReturnMessage";
 import SuccessMessage from "../../../page/KYCForms/KYCFormsUpgradeMessages/SuccessMessage";
@@ -111,7 +110,7 @@ function Cardcategory() {
 
       <Row className="mt-5">
         <Col>
-          <Row className="py-3" onClick={() => defunct("gold")}>
+          <Row className="py-3" onClick={() => defunct("pinkLady")}>
             <CardPinkLady />
           </Row>
           <Row>
@@ -130,7 +129,7 @@ function Cardcategory() {
         </Col>
 
         <Col>
-          <Row className="py-3" onClick={() => defunct("diamond")}>
+          <Row className="py-3" onClick={() => defunct("enterprise")}>
             <CardEnterprise />
           </Row>
           <Row>
@@ -143,9 +142,9 @@ function Cardcategory() {
             </p>
       </Row>
           </Col>
-        </Row>
         {returnMessage && <ReturnMessage accountType={accSetInstance} />}
         {success && <SuccessMessage accountType={accSetInstance} />}
+        </Row>
     </Container>
   );
 }
