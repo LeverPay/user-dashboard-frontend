@@ -15,6 +15,9 @@ import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
 import MyCardGold from "../page/GoldCardPage/MyCardGold";
 import { ReturnMessage } from "./KYCForms/KYCFormsUpgradeMessages/ReturnMessage";
 import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount";
+import TotalMoney from "../components/TotalMoney/TotalMoney";
+import CardUser from "../components/AllCards/CardUserDefault";
+import CardSilver from "../components/AllCards/CardSilver";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -51,6 +54,28 @@ export const UserDashboardLayout = () => {
               element={
                 <div className="col-md-12 flexy">
                   <div className="col-md-8">
+                    <div className="col-md-12 flexy">
+                      <div className="col-md-4">
+                        {" "}
+                        <TotalMoney
+                          bg="#0E093F"
+                          totaltype="Balance"
+                          amt="$3000"
+                        />
+                      </div>{" "}
+                      <div className="col-md-4">
+                        {" "}
+                        <TotalMoney
+                          bg="#F6A61F"
+                          totaltype="Spending"
+                          amt="$2000"
+                        />
+                      </div>{" "}
+                      <div className="col-md-4">
+                        {" "}
+                        <TotalMoney bg="#0E093F" totaltype="Saved" amt="$546" />
+                      </div>
+                    </div>
                     <div className="col-md-12">
                       {" "}
                       <StatementComponent />
@@ -62,13 +87,18 @@ export const UserDashboardLayout = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-md-4">
-                    <div className="col-md-10">
-                      {/* {" "}
-                      <CardsComponent
-                        naijaCardData={naijaCard}
-                        silverCardData={silverCard}
-                      /> */}
+                  <div
+                    className="col-md-3  container-fluid"
+                    style={{ marginLeft: "1rem" }}
+                  >
+                    <div
+                      className="col-md-12"
+                      style={{ marginRIght: "-1rem", marginTop: "-1rem" }}
+                    >
+                      <CardUser />
+                    </div>{" "}
+                    <div className="col-md-12">
+                      <CardSilver />
                     </div>
                   </div>
                 </div>
