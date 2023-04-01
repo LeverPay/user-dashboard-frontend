@@ -51,11 +51,16 @@ export const UserDashboardLayout = () => {
               element={
                 <div className="col-md-12 flexy">
                   <div className="col-md-8">
-                    <StatementComponent />
-                    <TransactionTable
-                      data={recentTransactions}
-                      tableTitle="Recent Transaction"
-                    />
+                    <div className="col-md-12">
+                      {" "}
+                      <StatementComponent />
+                    </div>
+                    <div className="transaction-table-container col-md-12">
+                      <TransactionTable
+                        data={recentTransactions}
+                        tableTitle="Recent Transaction"
+                      />
+                    </div>
                   </div>
                   <div className="col-md-4">
                     <div className="col-md-10">
