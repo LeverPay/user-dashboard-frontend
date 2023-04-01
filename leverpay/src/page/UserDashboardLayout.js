@@ -12,6 +12,9 @@ import { Transactions } from "./Transactions/Transactions";
 import Mycard from "./MyCardPage.js/Mycard";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
 import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
+import MyCardGold from "../page/GoldCardPage/MyCardGold";
+import { ReturnMessage } from "./KYCForms/KYCFormsUpgradeMessages/ReturnMessage";
+import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -69,9 +72,10 @@ export const UserDashboardLayout = () => {
             <Route path="transactions" element={<Transactions />} />
             {/* <Route path="invoices" element={<InvoicePage />} /> */}
             <Route path="invoices" element={<MyCardDiamond />} />
+            <Route path="account" element={<MyUpgradedAccount />} />
             <Route path="my cards" element={<CardcategoryPage />} />
-            {/* <Route path="settings" element />
-        <Route path="*" element={<NoMatch />} /> */}
+            <Route path="settings" element />
+            {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
         </div>
       </div>
