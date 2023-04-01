@@ -13,7 +13,7 @@ const TopNav = () => {
         <div className="pageTitle">
           <h2> Overview </h2>
         </div>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", alignItems: 'center' }}>
           <SearchBar />
           <MdNotifications size={30} className="notificationIcon" />
         </div>
