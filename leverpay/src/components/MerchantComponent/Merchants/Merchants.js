@@ -13,7 +13,7 @@ function Merchants(props) {
           width="100%"
         />
         <img
-          className="col-md-2 logo2"
+          className="col-md-2 logo-2"
           src={props.logo1}
           alt="verified"
           width="100%"
