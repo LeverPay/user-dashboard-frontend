@@ -18,6 +18,7 @@ import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount
 import TotalMoney from "../components/TotalMoney/TotalMoney";
 import CardUser from "../components/AllCards/CardUserDefault";
 import CardSilver from "../components/AllCards/CardSilver";
+import Settings from "./SettingsPage/Settings";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -93,7 +94,7 @@ export const UserDashboardLayout = () => {
                   >
                     <div
                       className="col-md-12"
-                      style={{ marginRIght: "-1rem", marginTop: "-1rem" }}
+                      // style={{ marginRight: "-1rem", marginTop: "-1rem" }}
                     >
                       <CardUser />
                     </div>{" "}
@@ -109,7 +110,7 @@ export const UserDashboardLayout = () => {
             <Route path="invoices" element={<MyCardDiamond />} />
             <Route path="account" element={<MyUpgradedAccount />} />
             <Route path="my cards" element={<CardcategoryPage />} />
-            <Route path="settings" element />
+            <Route path="settings" element={<Settings />} />
             {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
         </div>

@@ -1,0 +1,90 @@
+.outer-div {
+  /* border: 1px solid #000; */
+  height: 87%;
+  margin-top: 2% !important;
+}
+
+.myForm {
+  border: 1px solid #000 !important;
+  height: 100%;
+  margin-left: 20%;
+  width: 55%;
+  background-color: #fff;
+}
+
+.text-area {
+  width: 80%;
+  margin-left: 5%;
+  background-color: #f8f8f8;
+}
+
+.form-fields-div {
+  /* border: 1px solid #000; */
+  margin-top: 10;
+}
+
+.change-password {
+  margin-top: 5%;
+}
+.new-password {
+  margin-top: 5%;
+}
+.confirm-password {
+  margin-top: 5%;
+}
+
+.text-muted {
+  margin-left: 5% !important;
+}
+
+.sms-email-label {
+  margin-left: 5% !important;
+  /* margin-top: 5%; */
+}
+p {
+  margin-left: 5%;
+}
+
+/* p .msg {
+  margin-top: 1px;
+} */
+
+.notice {
+  margin-top: 2% !important;
+  margin-left: 5%;
+  width: 100%;
+  /* border: 1px solid #000; */
+}
+
+h4 {
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+.form-label {
+  margin-left: 5%;
+}
+
+.buttons-div {
+  display: flex;
+  margin-top: 20%;
+  margin-left: 5%;
+  justify-content: space-around;
+  flex-direction: spa;
+  width: 80%;
+  /* border: 1px solid #000 !important; */
+}
+
+.form-button .save-changes {
+  background-color: #fff !important;
+  margin-bottom: 30%;
+}
+
+.toggle-content {
+  display: flex;
+  margin-top: 5%;
+  width: 100%;
+  flex-direction: row;
+  height: 10%;
+  /* border: 1px solid #000; */
+}
