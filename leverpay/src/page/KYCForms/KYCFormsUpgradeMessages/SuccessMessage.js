@@ -28,7 +28,7 @@ function SuccessMessage(props) {
   return (
     <center>
       {" "}
-      <div className="kyc-success-message-container col-md-7">
+      <div className="kyc-success-message-container col-md-7  slide-right">
         <div style={{ display: "flex" }} col-md-12>
           <div className="col-md-3">&nbsp;</div>
           <img src={SuccessImg} alt="smiley" className="col-md-9" />
