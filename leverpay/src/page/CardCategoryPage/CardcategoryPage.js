@@ -5,7 +5,7 @@ import Cardcategory from "../CardCategoryPage/CardCategory/Cardcategory";
 
 function CardcategoryPage() {
   return (
-    <Container>
+    <Container >
       <Cardcategory />
     </Container>
   );
