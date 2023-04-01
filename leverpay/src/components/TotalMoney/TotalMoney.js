@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 // import Col from "react-bootstrap/esm/Col";
-import './totalMoney.css'
+import "./totalMoney.css";
 
 function TotalMoney(props) {
-  const { bg, totaltype, amt } = props
+  const { bg, totaltype, amt } = props;
 
   return (
-    <div className="card-balance" style={{ backgroundColor: bg }}>
+    <div className="card-balance col-md-12" style={{ backgroundColor: bg }}>
       <span>
         <img alt="" src="./images/bal1.png" />
       </span>
@@ -15,7 +15,7 @@ function TotalMoney(props) {
         <h4> {amt} </h4>
       </main>
     </div>
-  )
+  );
 }
 
-export default TotalMoney
+export default TotalMoney;
