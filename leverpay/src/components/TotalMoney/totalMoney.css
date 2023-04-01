@@ -10,6 +10,13 @@
   border-radius: 10px;
   margin-left: 33px;
 }
+@media screen and (max-width: 620px) {
+  .card-balance {
+    margin-top: 20px;
+    margin-left: 0px;
+    width: 100%;
+  }
+}
 .card-balance img {
   background-color: #353255;
   padding: 5px;

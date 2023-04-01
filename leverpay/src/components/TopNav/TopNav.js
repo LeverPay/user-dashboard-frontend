@@ -13,21 +13,11 @@ const TopNav = () => {
         <div className="pageTitle">
           <h2> Overview </h2>
         </div>
-        <div style={{ display: "flex", alignItems: 'center' }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <SearchBar />
           <MdNotifications size={30} className="notificationIcon" />
         </div>
-        {/* <Dropdown>
-          <Dropdown.Toggle
-            variant="dark"
-            id="dropdown-basic"
-            className="navUser"
-          >
-            username
-          </Dropdown.Toggle>
 
-          <Dropdown.Menu></Dropdown.Menu>
-        </Dropdown> */}
         <UserSelectComponent />
       </div>
     </>
