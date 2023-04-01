@@ -36,7 +36,7 @@ function Invoice() {
     const time = date.toDateString()+ ' ' + timeofDay
 
     return (
-        <Container className='pt-3 px-3 py-4 col-md-5 col-12' id='invoice'>
+        <Container className='pt-3 px-3 py-4 col-md-4 col-12' id='invoice'>
             <h4 className='text-center'>{id}</h4>
             <div className='price_checkout'>
                 <span className='px-md-3'>

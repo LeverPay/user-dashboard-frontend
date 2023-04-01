@@ -71,15 +71,15 @@ function Cardcategory() {
     }
   }, [returnMessage]);
   return (
-    <Container className="px-5 py-5 col-md-8 col-sm-9" id="cardcategories">
+    <Container className="px-5 py-md-5 py-0 col-md-8 col-sm-9" id="cardcategories">
       {accReady ? <KYCFormModal acct={accSet} callback={defunct} /> : ""}
       
         <Row>
-          <Col className="col-5" onClick={() => defunct("gold")}>
-            <Row>
+          <Col className="pt-5 pt-md-0 " onClick={() => defunct("gold")}>
+            <Row className="col-12">
             <CardGold />
             </Row>
-            <Row className="mt-3">
+            <Row className="mt-3 col-12">
             <p className="Kyc-upgrade-notice" id="Kyc-upgrade-notice-1">
               To upgrade to the <span className="gold">GOLD</span> Card, please
               complete the following verification<strong> (KYC)</strong> Process
@@ -89,14 +89,14 @@ function Cardcategory() {
             </p>
             </Row>
           </Col>
-          <Col className="col-2 pt-5 d-none d-md-block">
+          <Col className="col-md-2 col-1 pt-5 d-none d-md-block">
             <img alt="" className="img-responsive" src="./images/Line 25.png" />
           </Col>
-          <Col className="col-5" onClick={() => defunct("diamond")}>
-            <Row>
+          <Col  onClick={() => defunct("diamond")}>
+            <Row className="col-12">
             <CardDiamond />
             </Row>
-            <Row className="mt-3">
+            <Row className="mt-3 col-12">
             <p className="Kyc-upgrade-notice" id="Kyc-upgrade-notice-1">
               To upgrade to the <span className="gold">GOLD</span> Card, please
               complete the following verification<strong> (KYC)</strong> Process
@@ -110,13 +110,12 @@ function Cardcategory() {
 
       
       
-      <Row className="mt-5">
-        <Row>
-          <Col className="col-5" onClick={() => defunct("pinkLady")}>
-            <Row>
+        <Row className="mt-5">
+          <Col  onClick={() => defunct("pinkLady")}>
+            <Row className="col-12">
             <CardPinkLady />
             </Row>
-            <Row className="mt-3">
+            <Row className="mt-3  col-12">
             <p className="Kyc-upgrade-notice" id="Kyc-upgrade-notice-1">
               To upgrade to the <span className="gold">GOLD</span> Card, please
               complete the following verification<strong> ( KYC )</strong>{" "}
@@ -129,11 +128,11 @@ function Cardcategory() {
           <Col className="col-2 pt-5 d-none d-md-block">
             <img alt="" className="img-responsive" src="./images/Line 25.png" />
           </Col>
-          <Col className="col-5" onClick={() => defunct("enterprise")}>
-            <Row>
+          <Col  onClick={() => defunct("enterprise")}>
+            <Row className="col-12">
             <CardEnterprise />
             </Row>
-            <Row className="mt-3">
+            <Row className="mt-3 col-12">
             <p className="Kyc-upgrade-notice" id="Kyc-upgrade-notice-1">
               To upgrade to the <span className="gold">GOLD</span> Card, please
               complete the following verification<strong> ( KYC )</strong>{" "}
@@ -142,13 +141,10 @@ function Cardcategory() {
               <span className="limit">Daily Spending Limit is 1000 USDT</span>
             </p>
             </Row>
-          </Col>
-        </Row>
-
-      
+          </Col>   
         {returnMessage && <ReturnMessage accountType={accSetInstance} />}
         {success && <SuccessMessage accountType={accSetInstance} />}
-      </Row>
+        </Row>     
     </Container>
   );
 }

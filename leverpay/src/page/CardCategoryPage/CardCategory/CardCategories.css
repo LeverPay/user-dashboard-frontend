@@ -10,6 +10,15 @@
   background-color: #201e34;
   box-shadow: 4px 4px 2px 2px #00000066;
 }
+@media screen and (max-width: 620px) {
+  #cardcategories {
+    width: 100%;
+    margin-left: .5rem;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+    background-color: transparent;
+  }
+}
 .Kyc-upgrade-notice {
   font-family: AgrandirBold;
   font-size: 14px;
@@ -17,11 +26,11 @@
   padding: 24px 32px;
   border-radius: 10px;
   text-align: justify;
-  margin-left: auto;
+  /* margin-left: auto; */
   background-color: #0c0c0c;
 }
 #Kyc-upgrade-notice-1 {
-  margin-left: auto;
+  /* margin-left: auto; */
 }
 .Kyc-upgrade-notice .gold {
   font-weight: 700;
