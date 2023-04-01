@@ -8,7 +8,7 @@ function CardUser() {
       backgroundImage="./images/DefaultCardBackground.png"
       name="Goodnews Micheal"
       cardtype={<br />}
-      cardname="Diamond"
+      cardname=" "
       lock=""
       cardNumber={CardInfo[5].no}
     />
