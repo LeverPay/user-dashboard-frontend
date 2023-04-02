@@ -9,8 +9,9 @@
   margin-bottom: 50px;
 }
 @media screen and (max-width: 620px) {
-  .TopNavy {
+  .TopNav {
     padding: 0px !important;
+    display: none;
   }
 }
 .notificationIcon {
@@ -35,4 +36,12 @@
 }
 .pageTitle {
   flex-grow: 1;
+}
+@media screen and (min-width: 620px) {
+  .side-nav-logo {
+    display: none;
+  }
+}
+.side-nav-logo {
+  margin-top: -20px;
 }
