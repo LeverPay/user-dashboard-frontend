@@ -41,10 +41,9 @@ export const UserDashboardLayout = () => {
       expiryDate: silverCardDetails.map((data) => data.expiryDate),
     });
   }, []);
-
   return (
     <>
-      <div className="col-md-12 flexy" style={{overflowX: 'hidden'}}>
+      <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
         <div className="col-md-2">
           <NavComponent />
         </div>
@@ -113,7 +112,7 @@ export const UserDashboardLayout = () => {
             />
             <Route path="transactions" element={<Transactions />} />
             <Route path="invoices" element={<InvoicePage />} />
-            {/* <Route path="invoices" element={<CardcategoryPage/>} /> */}
+            {/* <Route path="invoices" element={<CardcategoryPage />} /> */}
             <Route path="account" element={<MyUpgradedAccount />} />
             <Route path="my cards" element={<MyCardDiamond />} />
             <Route path="settings" element />

@@ -7,10 +7,20 @@
   border-top-right-radius: 80px;
   border-bottom-right-radius: 80px;
   /* padding: 0 0 0 40px !important; */
+  z-index: 20000;
+}
+.side-nav-container span {
+  color: #fff;
+  font-size: 30px;
 }
 @media screen and (max-width: 620px) {
   .side-nav-container {
-    display: none;
+    /* display: none; */
+    width: 100% !important;
+    transition: 1s ease;
+    margin-top: 0;
+    padding-right: 15px;
+    padding-top: 10px;
   }
 }
 .top {
@@ -78,4 +88,24 @@
 .navbar-logo {
   margin-top: 40px;
   margin-bottom: 70px;
+}
+@media screen and (min-width: 620px) {
+  .open-close-icons {
+    display: none !important;
+  }
+}
+.slide-right {
+  animation: 1s slide-right !important;
+}
+@keyframes slide-right {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+.menu {
+  padding-top: 30px !important;
+  /* padding-bottom: 20px !important; */
 }
