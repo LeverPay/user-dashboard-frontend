@@ -6,7 +6,7 @@ import "../../page/SettingsPage/Settings.css";
 import Swal from "sweetalert2";
 const Settings = () => {
   const [isToggled, setIsToggled] = useState(false);
-  alert(isToggled);
+  // alert(isToggled);
   const saveChanges = (e) => {
     e.preventDefault();
     Swal.fire({
