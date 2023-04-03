@@ -13,7 +13,10 @@ const NavComponent = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [click, setClick] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  const [activeItem, setActiveItem] = useState("home");
+  const handleActive = (item) => {
+    setActiveItem(item);
+  };
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setSidebarOpen(!isMobile);
   const openSidebar = () => {
@@ -77,44 +80,64 @@ const NavComponent = () => {
                 <ul className="list-unstyled">
                   <li>
                     {" "}
-                    <Link
+                    <NavLink
                       to="/"
                       className="text-link"
                       onClick={closeMobileMenu}
+                      activeClassName="active"
                     >
                       <FaHome size={18} variant="dark" />
                       <span> {"\u00A0"}</span> Dashboard
-                    </Link>
+                    </NavLink>
                   </li>
                   <li>
                     <NavLink
                       to="/transactions"
                       className="text-link"
                       onClick={closeMobileMenu}
+                      activeClassName="active"
                     >
                       <BsGraphUpArrow size={18} color="#929EAE" />
                       <span> {"\u00A0"}</span> Transactions
                     </NavLink>
                   </li>
-                  <li onClick={closeMobileMenu}>
+                  <li
+                    // eslint-disable-next-line no-undef
+                    onClick={() => handleActive("invoices")}
+                  >
                     {" "}
-                    <Link to="/invoices" className="text-link">
+                    <NavLink
+                      to="/invoices"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeClassName="active"
+                    >
                       <FaReceipt size={18} color="#929EAE" />
                       <span> {"\u00A0"}</span> Invoices
-                    </Link>
+                    </NavLink>
                   </li>
-                  <li onClick={closeMobileMenu}>
+                  <li>
                     {" "}
-                    <Link to="/my cards" className="text-link">
+                    <NavLink
+                      to="/my cards"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeClassName="active"
+                    >
                       <FaWallet size={18} color="#929EAE" />
                       <span> {"\u00A0"}</span> My Cards
-                    </Link>
+                    </NavLink>
                   </li>
-                  <li onClick={closeMobileMenu}>
-                    <Link to="/settings" className="text-link">
+                  <li>
+                    <NavLink
+                      to="/settings"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeClassName="active"
+                    >
                       <RiSettings4Fill size={18} color="#929EAE" />
                       <span> {"\u00A0"}</span> Settings
-                    </Link>
+                    </NavLink>
                   </li>{" "}
                 </ul>
               </div>
