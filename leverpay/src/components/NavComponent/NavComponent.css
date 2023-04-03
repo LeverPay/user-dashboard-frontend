@@ -11,7 +11,7 @@
 }
 .side-nav-container span {
   color: #fff;
-  font-size: 30px;
+  font-size: 40px !important;
 }
 @media screen and (max-width: 620px) {
   .side-nav-container {
@@ -22,6 +22,9 @@
     padding-right: 15px;
     padding-top: 10px;
   }
+  .bottom-options ul {
+    margin-top: 132px !important;
+  }
 }
 .top {
   display: flex;
@@ -30,14 +33,18 @@
 }
 
 .nav-options ul li {
-  /* display: flex; */
-  /* flex-direction: column; */
-  line-height: 50px;
+  line-height: 65px;
   font-family: AgrandirBold !important;
   margin-left: 20px;
+  font-size: 22px;
+  font-weight: bold !important;
 }
-.nav-options ul li span {
-  /* font-size: 63px !important; */
+.nav-options ul li i {
+  font-size: 33px !important;
+  margin-right: 20px;
+}
+.bottom-options ul li small {
+  font-size: 23px !important;
   margin-right: 20px;
 }
 @media screen and (max-width: 700px) {
