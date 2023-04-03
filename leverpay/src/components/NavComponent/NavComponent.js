@@ -86,8 +86,8 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeClassName="active"
                     >
-                      <FaHome size={18} variant="dark" />
-                      <span> {"\u00A0"}</span> Dashboard
+                      <i class="icofont-home"></i>
+                      Dashboard
                     </NavLink>
                   </li>
                   <li>
@@ -97,8 +97,9 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeClassName="active"
                     >
-                      <BsGraphUpArrow size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span> Transactions
+                      {" "}
+                      <i class="icofont-exchange"></i>
+                      Transactions
                     </NavLink>
                   </li>
                   <li
@@ -112,8 +113,9 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeClassName="active"
                     >
-                      <FaReceipt size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span> Invoices
+                      {" "}
+                      <i class="icofont-notepad"></i>
+                      Invoices
                     </NavLink>
                   </li>
                   <li>
@@ -124,8 +126,9 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeClassName="active"
                     >
-                      <FaWallet size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span> My Cards
+                      {" "}
+                      <i class="icofont-wallet"></i>
+                      My Cards
                     </NavLink>
                   </li>
                   <li>
@@ -135,8 +138,9 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeClassName="active"
                     >
-                      <RiSettings4Fill size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span> Settings
+                      {" "}
+                      <i class="icofont-ui-settings"></i>
+                      Settings
                     </NavLink>
                   </li>{" "}
                 </ul>
@@ -147,15 +151,20 @@ const NavComponent = () => {
                   <li onClick={closeMobileMenu}>
                     {" "}
                     <Link to="#" className="bottom-link">
-                      <MdLiveHelp size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span>help
+                      <small>
+                        {" "}
+                        <i class="icofont-question-square"></i>
+                      </small>{" "}
+                      help
                     </Link>{" "}
                   </li>
                   <li onClick={closeMobileMenu}>
                     {" "}
                     <Link to="#" className="bottom-link">
-                      <FaSignOutAlt size={18} color="#929EAE" />
-                      <span> {"\u00A0"}</span> logout
+                      <small>
+                        <i class="icofont-sign-out"></i>{" "}
+                      </small>
+                      logout
                     </Link>
                   </li>
                 </ul>
