@@ -109,3 +109,19 @@
   padding-top: 30px !important;
   /* padding-bottom: 20px !important; */
 }
+.active {
+  background: #fff !important;
+  padding: 20px 50px 20px 5px;
+  color: #0b0230 !important;
+  font-weight: bold !important;
+  border-radius: 10px;
+  transition: 0.5s ease;
+}
+.side-nav-container li :hover {
+  background: #fff !important;
+  padding: 20px 50px 20px 5px;
+  color: #0b0230 !important;
+  font-weight: bold !important;
+  border-radius: 10px;
+  transition: 0.5s ease;
+}
