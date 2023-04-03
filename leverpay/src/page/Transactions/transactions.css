@@ -17,7 +17,7 @@
   color: #fff;
 }
 
-.tab.active {
+.tab.active2 {
   border-bottom: solid 2px rgb(41, 160, 115);
   font-weight: bold;
 }
@@ -32,7 +32,7 @@
     padding: 0px;
   }
 }
-.panel.active {
+.panel.active2 {
   display: block;
 }
 .transaction-page {
