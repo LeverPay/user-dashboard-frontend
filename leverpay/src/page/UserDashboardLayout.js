@@ -12,7 +12,8 @@ import InvoicePage from "./InvoicePage/InvoicePage";
 // import Mycard from "./MyCardPage.js/Mycard";
 import Mycard from "./MyCardPage/Mycard";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
-import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
+// import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
+import MyCardsSilver from "./SilverCardPage/MyCardsSilver"
 import MyCardGold from "../page/GoldCardPage/MyCardGold";
 import { ReturnMessage } from "./KYCForms/KYCFormsUpgradeMessages/ReturnMessage";
 import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount";
@@ -112,9 +113,9 @@ export const UserDashboardLayout = () => {
             />
             <Route path="transactions" element={<Transactions />} />
             <Route path="invoices" element={<InvoicePage />} />
-            {/* <Route path="invoices" element={<CardcategoryPage />} /> */}
+            <Route path="cardCategories" element={<CardcategoryPage />} />
             <Route path="account" element={<MyUpgradedAccount />} />
-            <Route path="my cards" element={<MyCardDiamond />} />
+            <Route path="my cards" element={<MyCardsSilver />} />
             <Route path="settings" element />
             {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
