@@ -9,7 +9,7 @@ import QRCode from 'qrcode'
 
 
 
-function Invoice() {
+function Invoice(props) {
 
     const [id] = useState(nanoid)
 
@@ -35,12 +35,14 @@ function Invoice() {
     const timeofDay = date.getHours() +':' + minutes+' ' +Morning_Afternoon
     const time = date.toDateString()+ ' ' + timeofDay
 
+    const [invoiceTime, setInvioceTime] = useState(time)
+
     return (
         <Container className='pt-3 px-3 py-4 col-md-4 col-12' id='invoice'>
             <h4 className='text-center'>{id}</h4>
             <div className='price_checkout'>
                 <span className='px-md-3'>
-                    <h5>$420.89</h5>
+                    <h5>{props.amt}</h5>
                     <h5>Total USD</h5>
                 </span>
                 <span className='px-md-3'>
@@ -48,7 +50,7 @@ function Invoice() {
                     <h5>Total ETH</h5>
                 </span>
                 <span className='px-md-3'>
-                    <h5 style={{color: '#0EB500'}} >$420.89</h5>
+                    <h5 style={{color: '#0EB500'}} >{props.amt}</h5>
                     <h5 style={{color: '#F49B09'}}>Paid(ETH)</h5>
                 </span>
             </div>
@@ -70,7 +72,7 @@ function Invoice() {
                             Status
                         </Col>
                         <Col className='row_details_information' style={{color: '#0EB500'}}>
-                            Successful
+                            {props.status}
                         </Col>
                     </Row>
                     <Row>
@@ -94,7 +96,7 @@ function Invoice() {
                             Created at
                         </Col>
                         <Col className='row_details_information' style={{fontSize: '12px'}}>
-                           {time}
+                           {invoiceTime}
                         </Col>
                     </Row>
                     <Row>
@@ -102,7 +104,7 @@ function Invoice() {
                             Items
                         </Col>
                         <Col className='row_details_information'>
-                            Iphone 13 pro max
+                            {props.name}
                         </Col>
                     </Row>
                 </Container>
