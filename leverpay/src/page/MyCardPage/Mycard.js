@@ -8,11 +8,12 @@ import CardUser from "../../components/AllCards/CardUserDefault";
 import TotalMoney from "../../components/TotalMoney/TotalMoney";
 import UpgradeCard from "../../components/UpgradeCard/UpgradeCard";
 import { Link } from "react-router-dom"
+import CardcategoryPage from "../CardCategoryPage/CardcategoryPage";
 
 
 function Mycard(props) {
   return (
-    <Container className="px-4 py-5 text-center" id="mycards">
+    <Container className="px-4 py-5 text-center" id="mycards" style={{marginTop: '8rem'}}>
       <Row className="justify-content-center">
         <Col className="col-10 col-md-5">
           <Row>
@@ -36,7 +37,7 @@ function Mycard(props) {
         </Col>
       </Row>
       <Row className="Upgrade-con">
-      <Link to={"/my cards"}>
+      <Link to="/cardCategories">
           {" "}
           <Col className="px-6">
            <UpgradeCard/>
