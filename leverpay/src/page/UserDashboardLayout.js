@@ -54,7 +54,7 @@ export const UserDashboardLayout = () => {
             <Route
               path="/"
               element={
-                <div className="col-md-12 flexy">
+                <div className="col-md-12 flexy" style={{marginTop: '8.5rem'}}>
                   <div className="col-md-8">
                     <div
                       className="col-md-12 flexy"
