@@ -11,7 +11,7 @@
 .transactions-table-container td {
   font-family: KB-sans-Regular;
   padding: 12px 0 12px 40px !important;
-  color: #fff !important;
+  color: #fff;
   position: relative;
 }
 /* .transactions-table-container table {
@@ -64,4 +64,9 @@
   .transaction-table-container {
     margin-left: 0 !important;
   }
+}
+.invoice-td {
+  cursor: pointer;
+  color: #0eb500 !important;
+  font-weight: bold;
 }
