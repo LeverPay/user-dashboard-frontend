@@ -4,8 +4,7 @@ import { MdNotifications } from "react-icons/md";
 import SearchBar from "../SearchBar/SearchBar";
 import "../TopNav/TopNav.css";
 import UserSelectComponent from "../UserSelectComponent/UserSelectComponent";
-import { Link } from "react-router-dom";
-import avatar from "../../assets/images/avatar.png";
+import LeverpayLogo from "../../assets/LeverpayLogo.png";
 
 const TopNav = () => {
   return (
@@ -14,14 +13,19 @@ const TopNav = () => {
         <div className="pageTitle">
           <h2> Overview </h2>
         </div>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <SearchBar />
           <MdNotifications size={30} className="notificationIcon" />
         </div>
-        <Link to="/profile" style={{ textDecoration: "none" }}>
-          <UserSelectComponent />
-        </Link>
-        {/* <img src={avatar} alt="" /> */}
+
+        <UserSelectComponent />
+      </div>
+      <div className="side-nav-logo  col-6">
+        <center>
+          {" "}
+          <img src={LeverpayLogo} alt="" style={{ width: "100%" }} />
+          <div className="space-div">&nbsp;</div>
+        </center>
       </div>
     </>
   );

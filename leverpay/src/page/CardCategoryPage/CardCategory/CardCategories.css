@@ -1,40 +1,53 @@
 /* General card container */
-.cardsContainer{
-    background-color: #0B0230;
+.cardsContainer {
+  background-color: #0b0230;
 }
 /* Card categories styling */
-#cardcategories{
-    width: 90%;
-    text-align: center;
-    border-radius: 10px;
-    background-color: #201E34;
-    box-shadow: 4px 4px 2px 2px #00000066;
+#cardcategories {
+  width: 90%;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #201e34;
+  box-shadow: 4px 4px 2px 2px #00000066;
 }
-.Kyc-upgrade-notice{
-    font-family: Agrandir;
-    font-size: 14px;
-    color: white;
-    padding: 24px 32px;
-    border-radius: 10px;
-    text-align: justify;
-    margin-left: auto;
-    background-color:#0C0C0C;
+@media screen and (max-width: 620px) {
+  #cardcategories {
+    width: 100%;
+    margin-left: .5rem;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+    background-color: transparent;
+  }
 }
-#Kyc-upgrade-notice-1{
-    margin-left: auto;
+.Kyc-upgrade-notice {
+  font-family: AgrandirBold;
+  font-size: 14px;
+  color: white;
+  padding: 24px 32px;
+  border-radius: 10px;
+  text-align: justify;
+  /* margin-left: auto; */
+  background-color: #0c0c0c;
 }
-.Kyc-upgrade-notice .gold{
-    font-weight: 700;
-    color: #F49B09;
+#Kyc-upgrade-notice-1 {
+  /* margin-left: auto; */
 }
-.Kyc-upgrade-notice strong{
-    font-weight: 800;
-    color: #F49B09;
-    font-size: 14px;
+.Kyc-upgrade-notice .gold {
+  font-weight: 700;
+  color: #f49b09;
 }
-.Kyc-upgrade-notice .limit{
-    font-style: italic;
-    font-weight: 900;
-    color: #CD4729;
+.Kyc-upgrade-notice strong {
+  font-weight: 800;
+  color: #f49b09;
+  font-size: 14px;
 }
-
+.Kyc-upgrade-notice .limit {
+  font-style: italic;
+  font-weight: 900;
+  color: #cd4729;
+}
+@media screen and (max-width: 620px) {
+  #cardcategories {
+    width: 100%;
+  }
+}

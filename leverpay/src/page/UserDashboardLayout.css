@@ -1,0 +1,28 @@
+.card-header {
+  font-family: AgrandirBold;
+  font-size: 24px;
+  line-height: 50px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #fff;
+}
+@media screen and (max-width: 620px) {
+  .card-header {
+    margin-top: 80px;
+  }
+  .card-holder {
+    margin: 0 !important;
+  }
+}
+.card-holder {
+  margin-left: -2rem;
+  margin-top: -2.5rem;
+}
+@media screen and (min-width: 620px) {
+  .default-card-holder {
+    transform: translateX(2rem);
+  }
+}
+/* .default-card-holder {
+  transform: translateX(1rem);
+} */

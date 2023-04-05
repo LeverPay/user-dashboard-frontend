@@ -5,10 +5,17 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  width: 100%;
+  width: 80%;
   margin: auto;
   border-radius: 10px;
   margin-left: 33px;
+}
+@media screen and (max-width: 620px) {
+  .card-balance {
+    margin-top: 20px;
+    margin-left: 0px;
+    width: 100%;
+  }
 }
 .card-balance img {
   background-color: #353255;

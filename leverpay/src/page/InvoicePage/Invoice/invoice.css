@@ -3,9 +3,14 @@
   background-color: #1c1a2e;
   border-radius: 10px;
   color: white;
+  margin-bottom: 4rem;
+  margin-top: 8rem;
 }
-#id{
-  font-family: Agrandir;
+.className {
+  width: 100%;
+}
+#id {
+  font-family: AgrandirBold;
   font-size: 20px;
   font-weight: 700;
   line-height: 26px;
@@ -65,7 +70,7 @@
 }
 .Buyer_details {
   text-align: start;
-  margin: .5rem 2rem;
+  margin: 0.5rem 2rem;
 
   font-family: Agrandir;
   font-size: 16px;
@@ -83,32 +88,32 @@
 .Buyer_details p {
   opacity: 0.4;
 }
-hr{
-    width: 90%;
-    margin: auto;
+hr {
+  width: 90%;
+  margin: auto;
 }
-.Payment_received{
-    text-align: start;
-    margin: 1rem 2rem;
+.Payment_received {
+  text-align: start;
+  margin: 1rem 2rem;
 }
-.Payment_received p{
+.Payment_received p {
   margin-bottom: 0rem;
   font-family: Agrandir;
   font-size: 16px;
   font-weight: 700;
   line-height: 21px;
 }
-.Payment_received span{
-  color: #F49B09;
+.Payment_received span {
+  color: #f49b09;
 }
-.Payment_received main{
+.Payment_received main {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
-.Payment_received main h6{
-  color: #F49B09;
+.Payment_received main h6 {
+  color: #f49b09;
 }
 /* .qrcodeCon{
   background-color: transparent;
