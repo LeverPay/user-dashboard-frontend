@@ -19,6 +19,7 @@ import TotalMoney from "../components/TotalMoney/TotalMoney";
 import CardUser from "../components/AllCards/CardUserDefault";
 import CardSilver from "../components/AllCards/CardSilver";
 import Settings from "./SettingsPage/Settings";
+import ProfilePage from "./ProfilePage/ProfilePage";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -111,6 +112,7 @@ export const UserDashboardLayout = () => {
             <Route path="account" element={<MyUpgradedAccount />} />
             <Route path="my cards" element={<CardcategoryPage />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="profile" element={<ProfilePage />} />
             {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
         </div>
