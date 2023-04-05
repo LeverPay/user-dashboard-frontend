@@ -100,7 +100,7 @@ const Settings = () => {
             />
           </Form.Group>
           <span>
-            <Link to="/profile" className="forgot-password">
+            <Link to="/" className="forgot-password">
               Forgot Password
             </Link>
           </span>
