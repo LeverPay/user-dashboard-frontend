@@ -1,10 +1,11 @@
 import React from "react";
-import Dropdown from "react-bootstrap/Dropdown";
-import { BsSearch } from "react-icons/bs";
+//import { BsSearch } from "react-icons/bs";
 import { MdNotifications } from "react-icons/md";
 import SearchBar from "../SearchBar/SearchBar";
 import "../TopNav/TopNav.css";
 import UserSelectComponent from "../UserSelectComponent/UserSelectComponent";
+import { Link } from "react-router-dom";
+import avatar from "../../assets/images/avatar.png";
 
 const TopNav = () => {
   return (
@@ -17,18 +18,8 @@ const TopNav = () => {
           <SearchBar />
           <MdNotifications size={30} className="notificationIcon" />
         </div>
-        {/* <Dropdown>
-          <Dropdown.Toggle
-            variant="dark"
-            id="dropdown-basic"
-            className="navUser"
-          >
-            username
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu></Dropdown.Menu>
-        </Dropdown> */}
         <UserSelectComponent />
+        {/* <img src={avatar} alt="" /> */}
       </div>
     </>
   );
