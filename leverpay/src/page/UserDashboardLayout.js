@@ -8,19 +8,20 @@ import { useEffect, useState } from "react";
 import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
 import { Routes, Route } from "react-router-dom";
 import { Transactions } from "./Transactions/Transactions";
-// import InvoicePage from "../../Page/InvoicePage";
-import Mycard from "./MyCardPage.js/Mycard";
+import InvoicePage from "./InvoicePage/InvoicePage";
+// import Mycard from "./MyCardPage.js/Mycard";
+import Mycard from "./MyCardPage/Mycard";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
-import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
+// import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
+import MyCardsSilver from "./SilverCardPage/MyCardsSilver"
 import MyCardGold from "../page/GoldCardPage/MyCardGold";
 import { ReturnMessage } from "./KYCForms/KYCFormsUpgradeMessages/ReturnMessage";
 import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount";
 import TotalMoney from "../components/TotalMoney/TotalMoney";
 import CardUser from "../components/AllCards/CardUserDefault";
 import CardSilver from "../components/AllCards/CardSilver";
-import Settings from "./SettingsPage/Settings";
-import ProfilePage from "./ProfilePage/ProfilePage";
-
+import { MerchantComponent } from "../components/MerchantComponent/MerchantComponent";
+import "./UserDashboardLayout.css";
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState({});
@@ -43,7 +44,7 @@ export const UserDashboardLayout = () => {
   }, []);
   return (
     <>
-      <div className="col-md-12 flexy">
+      <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
         <div className="col-md-2">
           <NavComponent />
         </div>
@@ -54,9 +55,12 @@ export const UserDashboardLayout = () => {
             <Route
               path="/"
               element={
-                <div className="col-md-12 flexy">
+                <div className="col-md-12 flexy" style={{marginTop: '8.5rem'}}>
                   <div className="col-md-8">
-                    <div className="col-md-12 flexy">
+                    <div
+                      className="col-md-12 flexy"
+                      style={{ marginTop: "-1rem" }}
+                    >
                       <div className="col-md-4">
                         {" "}
                         <TotalMoney
@@ -75,44 +79,44 @@ export const UserDashboardLayout = () => {
                       </div>{" "}
                       <div className="col-md-4">
                         {" "}
-                        <TotalMoney bg="#0E093F" totaltype="Saved" amt="$546" />
+                        <TotalMoney bg="#201E34" totaltype="Saved" amt="$546" />
                       </div>
                     </div>
-                    <div className="col-md-12">
+                    <div className="col-md-11">
                       {" "}
                       <StatementComponent />
                     </div>
-                    <div className="transaction-table-container col-md-12">
+                    <div className="transaction-table-container col-md-11">
                       <TransactionTable
                         data={recentTransactions}
                         tableTitle="Recent Transaction"
                       />
                     </div>
                   </div>
-                  <div
-                    className="col-md-3  container-fluid"
-                    style={{ marginLeft: "1rem" }}
-                  >
-                    <div
-                      className="col-md-12"
-                      // style={{ marginRight: "-1rem", marginTop: "-1rem" }}
-                    >
+                  <div className="col-md-4  card-holder">
+                    <div className="col-md-10 mx-auto default-card-holder">
+                      <header className="card-header">My Card</header>
                       <CardUser />
                     </div>{" "}
-                    <div className="col-md-12">
+                    <div
+                      className="col-md-10 mx-auto"
+                      style={{ transform: "translateY(-3.5rem)" }}
+                    >
                       <CardSilver />
+                    </div>
+                    <div className="col-md-12">
+                      <MerchantComponent />
                     </div>
                   </div>
                 </div>
               }
             />
             <Route path="transactions" element={<Transactions />} />
-            {/* <Route path="invoices" element={<InvoicePage />} /> */}
-            <Route path="invoices" element={<MyCardDiamond />} />
+            <Route path="invoices" element={<InvoicePage />} />
+            <Route path="cardCategories" element={<CardcategoryPage />} />
             <Route path="account" element={<MyUpgradedAccount />} />
-            <Route path="my cards" element={<CardcategoryPage />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="profile" element={<ProfilePage />} />
+            <Route path="my cards" element={<MyCardsSilver />} />
+            <Route path="settings" element />
             {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
         </div>

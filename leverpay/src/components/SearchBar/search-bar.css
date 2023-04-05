@@ -18,7 +18,8 @@
   outline: none;
   border-radius: 25px;
   transition: all 0.5s ease-in-out;
-  background-color: #10133f;
+  /* background-color: #10133f; */
+  background: transparent;
   padding-right: 40px;
   color: #fff;
 }

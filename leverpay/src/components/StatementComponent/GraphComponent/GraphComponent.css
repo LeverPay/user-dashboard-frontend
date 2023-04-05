@@ -8,6 +8,11 @@
   width: 100%;
   border: 1px solid #000;
 }
+@media screen and (max-width: 620px) {
+  .graphComponentDiv {
+    margin-left: 0 !important;
+  }
+}
 
 .graph-dropdown {
   border-radius: 5px;
