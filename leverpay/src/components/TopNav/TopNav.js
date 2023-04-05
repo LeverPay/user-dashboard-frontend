@@ -1,6 +1,5 @@
 import React from "react";
-import Dropdown from "react-bootstrap/Dropdown";
-import { BsSearch } from "react-icons/bs";
+//import { BsSearch } from "react-icons/bs";
 import { MdNotifications } from "react-icons/md";
 import SearchBar from "../SearchBar/SearchBar";
 import "../TopNav/TopNav.css";
