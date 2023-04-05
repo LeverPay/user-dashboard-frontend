@@ -1,5 +1,5 @@
 import React from "react";
-import Mycard from "../../page/MyCardPage.js/Mycard";
+import Mycard from "../MyCardPage/Mycard";
 import CardEnterprise from "../../components/AllCards/CardEnterprise";
 
 function MycardEnteprise() {

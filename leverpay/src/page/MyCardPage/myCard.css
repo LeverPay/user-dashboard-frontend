@@ -1,10 +1,16 @@
-#mycards{
-    border-radius: 10px;
-    background-color: #201E34;
-    width: 90%;
+#mycards {
+  border-radius: 10px;
+  background-color: #201e34;
+  width: 80%;
+  margin-bottom: 5rem;
 }
-
-.Upgrade-con{
-    margin-top: 10rem;
+@media screen and (max-width: 620px) {
+  #mycards {
+    width: 100%;
+    margin-bottom: 2rem !important;
+    padding: 0 !important;
+  }
 }
-
+.Upgrade-con {
+  margin-top: 10rem;
+}

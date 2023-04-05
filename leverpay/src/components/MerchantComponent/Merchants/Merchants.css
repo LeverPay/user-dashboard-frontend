@@ -1,0 +1,41 @@
+.verified {
+  display: flex;
+}
+.verified h4 {
+  color: rgb(196, 192, 192);
+  font-family: AgrandirBold;
+  margin-top: 10px;
+}
+
+.verified img {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+}
+.apple-logo {
+  height: 40px;
+  width: 40px;
+}
+
+.merchant-logo {
+  flex-grow: 1;
+}
+.merchants-container {
+  display: flex;
+  padding: 15px;
+  background: #fff;
+  border-radius: 20px;
+}
+.logo-1 {
+  margin-right: 5px;
+}
+@media screen and (max-width: 620px) {
+  .merchant-logo .logo-1 {
+    height: 20px;
+    width: 20px;
+  }
+  .merchant-logo .logo-2 {
+    height: 20px;
+    width: 60px;
+  }
+}

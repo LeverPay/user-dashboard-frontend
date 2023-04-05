@@ -1,6 +1,11 @@
 .tabs {
   display: flex;
 }
+@media screen and (max-width: 620px) {
+  .tabs {
+    display: grid;
+  }
+}
 .tab {
   justify-content: center;
   align-items: center;
@@ -12,7 +17,7 @@
   color: #fff;
 }
 
-.tab.active {
+.tab.active2 {
   border-bottom: solid 2px rgb(41, 160, 115);
   font-weight: bold;
 }
@@ -22,9 +27,15 @@
   padding: 100px 80px 200px 80px;
   color: #fff;
 }
-.panel.active {
+@media screen and (max-width: 620px) {
+  .panel {
+    padding: 0px;
+  }
+}
+.panel.active2 {
   display: block;
 }
 .transaction-page {
   background: rgb(11, 2, 48) !important;
+  margin-top: 8rem;
 }

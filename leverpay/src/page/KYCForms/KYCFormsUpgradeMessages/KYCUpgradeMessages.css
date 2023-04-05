@@ -25,7 +25,8 @@
   background: #fff;
   width: 800px;
   padding: 15px 20px;
-  box-shadow: 0 0 2px 2px rgb(72, 67, 67);
+  overflow: hidden;
+  box-shadow: 0 0 35px #000;
   display: flex;
   margin-top: -50%;
   /* margin-left: 18%; */
@@ -55,7 +56,8 @@
   height: fit-content;
   align-items: center;
   padding: 60px 0 !important;
-  box-shadow: 0 0 1px 1px rgb(199, 199, 199);
+  overflow: hidden;
+  box-shadow: 0 0 35px #000;
   border-radius: 40px;
   margin-top: -50%;
   background: #fff;
@@ -64,6 +66,7 @@
   /* border: solid 1px black; */
   height: 170px;
   width: 170px;
+  margin-left: 40px;
 }
 .kyc-success-message-container h3 {
   color: #5b3d18;
@@ -71,5 +74,28 @@
 }
 .success-checkmark {
   margin-top: 68px;
-  margin-left: -104px;
+  margin-left: -140px;
+}
+
+.slide-left {
+  animation: 2s slide-left;
+}
+@keyframes slide-left {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+.slide-right {
+  animation: 2s slide-right;
+}
+@keyframes slide-right {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: 0%;
+  }
 }
