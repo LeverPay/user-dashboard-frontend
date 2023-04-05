@@ -9,7 +9,7 @@ export const TransactionTable = (props) => {
       <div className="transactions-table-container">
         <div className="table-title">
           <h5>{props.tableTitle}</h5>
-          <a href="#">View all </a>
+          <a href="/#">View all </a>
         </div>
         <table className="col-md-12">
           <thead>

@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 import "../../page/SettingsPage/Settings.css";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 const Settings = () => {
   const [isToggled, setIsToggled] = useState(false);
   // alert(isToggled);
@@ -70,10 +71,7 @@ const Settings = () => {
           </div>
         </div>
         <div className="form-fields-div">
-          <Form.Group
-            className="mb-3 change-password"
-            controlId="formBasicEmail"
-          >
+          <Form.Group className="mb-3 change-password" controlId="">
             <Form.Label className="form-label">Change Password</Form.Label>
             <Form.Control
               type="password"
@@ -85,10 +83,7 @@ const Settings = () => {
             </Form.Text>{" "}
             <br />
           </Form.Group>
-          <Form.Group
-            className="mb-3 new-password"
-            controlId="formBasicPassword"
-          >
+          <Form.Group className="mb-3 new-password" controlId="">
             <Form.Label className="form-label"> New Password</Form.Label>
             <Form.Control
               type="password"
@@ -96,10 +91,7 @@ const Settings = () => {
               className="text-area "
             />
           </Form.Group>
-          <Form.Group
-            className="mb-3 confirm-password"
-            controlId="formBasicPassword"
-          >
+          <Form.Group className="mb-3 confirm-password" controlId="">
             <Form.Label className="form-label">Confirm Password</Form.Label>
             <Form.Control
               type="password"
@@ -107,6 +99,11 @@ const Settings = () => {
               className="text-area"
             />
           </Form.Group>
+          <span>
+            <Link to="/profile" className="forgot-password">
+              Forgot Password
+            </Link>
+          </span>
         </div>
         {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check type="checkbox" label="Check me out" />
