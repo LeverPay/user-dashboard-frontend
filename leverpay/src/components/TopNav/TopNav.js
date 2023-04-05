@@ -18,7 +18,9 @@ const TopNav = () => {
           <SearchBar />
           <MdNotifications size={30} className="notificationIcon" />
         </div>
-        <UserSelectComponent />
+        <Link to="/profile" style={{ textDecoration: "none" }}>
+          <UserSelectComponent />
+        </Link>
         {/* <img src={avatar} alt="" /> */}
       </div>
     </>
