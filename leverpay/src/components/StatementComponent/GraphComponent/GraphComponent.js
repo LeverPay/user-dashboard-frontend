@@ -34,7 +34,7 @@ const GraphComponent = ({ chartData }) => {
       </div> */}
       <Line
         data={chartData}
-        height={250}
+        height="80%"
         options={{ maintainAspectRatio: false }}
       />
     </div>
