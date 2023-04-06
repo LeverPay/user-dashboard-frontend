@@ -8,6 +8,13 @@
   /* margin: 0 auto; */
 }
 
+@media screen and (max-width: 620px) {
+  .outer-div {
+    width: 100%;
+    margin-left: 0%;
+  }
+}
+
 .myForm {
   display: flex;
   flex-direction: column;
@@ -21,6 +28,13 @@
   width: 80%;
   margin-left: 5%;
   background-color: #f8f8f8;
+}
+
+@media screen and (max-width: 620px) {
+  .text-area {
+    width: 100%;
+    margin-left: 0%;
+  }
 }
 
 .form-fields-div {
