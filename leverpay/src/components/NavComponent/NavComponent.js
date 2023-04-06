@@ -7,7 +7,7 @@ import { BsGraphUpArrow } from "react-icons/bs";
 import { MdLiveHelp } from "react-icons/md";
 import "../NavComponent/NavComponent.css";
 import { useState, useEffect } from "react";
-import Icofont from "react-icofont";
+//import Icofont from "react-icofont";
 
 const NavComponent = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
