@@ -13,7 +13,7 @@ import InvoicePage from "./InvoicePage/InvoicePage";
 import Mycard from "./MyCardPage/Mycard";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
 // import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
-import MyCardsSilver from "./SilverCardPage/MyCardsSilver"
+import MyCardsSilver from "./SilverCardPage/MyCardsSilver";
 import MyCardGold from "../page/GoldCardPage/MyCardGold";
 import { ReturnMessage } from "./KYCForms/KYCFormsUpgradeMessages/ReturnMessage";
 import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount";
@@ -22,6 +22,8 @@ import CardUser from "../components/AllCards/CardUserDefault";
 import CardSilver from "../components/AllCards/CardSilver";
 import { MerchantComponent } from "../components/MerchantComponent/MerchantComponent";
 import "./UserDashboardLayout.css";
+import Settings from "./SettingsPage/Settings";
+import ProfilePage from "./ProfilePage/ProfilePage";
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState({});
@@ -55,7 +57,10 @@ export const UserDashboardLayout = () => {
             <Route
               path="/"
               element={
-                <div className="col-md-12 flexy" style={{marginTop: '8.5rem'}}>
+                <div
+                  className="col-md-12 flexy"
+                  style={{ marginTop: "8.5rem" }}
+                >
                   <div className="col-md-8">
                     <div
                       className="col-md-12 flexy"
@@ -116,7 +121,8 @@ export const UserDashboardLayout = () => {
             <Route path="cardCategories" element={<CardcategoryPage />} />
             <Route path="account" element={<MyUpgradedAccount />} />
             <Route path="my cards" element={<MyCardsSilver />} />
-            <Route path="settings" element />
+            <Route path="settings" element={<Settings />} />
+            <Route path="profile" element={<ProfilePage />} />
             {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
         </div>

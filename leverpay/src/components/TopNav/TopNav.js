@@ -5,6 +5,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import "../TopNav/TopNav.css";
 import UserSelectComponent from "../UserSelectComponent/UserSelectComponent";
 import LeverpayLogo from "../../assets/LeverpayLogo.png";
+import { Link } from "react-router-dom";
 
 const TopNav = () => {
   return (
@@ -17,8 +18,9 @@ const TopNav = () => {
           <SearchBar />
           <MdNotifications size={30} className="notificationIcon" />
         </div>
-
-        <UserSelectComponent />
+        <Link to="/profile" style={{ textDecoration: "none" }}>
+          <UserSelectComponent />
+        </Link>
       </div>
       <div className="side-nav-logo  col-6">
         <center>
