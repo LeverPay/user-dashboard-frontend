@@ -46,8 +46,8 @@ const Settings = () => {
     });
   };
   return (
-    <div className="col-md-12 outer-div">
-      <Form className="col-md-8 myForm">
+    <div className="outer-div">
+      <Form className="myForm">
         <h4> Two Factor Authentication</h4>
         <small className="notice">
           We'll ask you for a code to confirm its you logging into your account
