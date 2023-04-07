@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Invoice from "../../InvoicePage/Invoice/Invoice";
 import InvoicePage from "../../InvoicePage/InvoicePage";
+import Close from "../../../assets/images/close-icon.png";
+
 import "./invoice-modal.css";
 const InvoiceModal = (props) => {
   const [show, setShow] = useState(false);
@@ -26,7 +28,18 @@ const InvoiceModal = (props) => {
         <Modal.Body>
           {" "}
           <Invoice className="className" />
-          <i class="icofont-close-circled" onClick={handleClose}></i>
+          <p
+            onClick={handleClose}
+            style={{
+              color: "#fff",
+              cursor: "pointer",
+              marginTop: "-40px",
+              marginBottom: "30px",
+            }}
+          >
+            close
+          </p>
+          {/* <i class="icofont-close-circled" onClick={handleClose}></i> */}
         </Modal.Body>
       </Modal>
     </>
