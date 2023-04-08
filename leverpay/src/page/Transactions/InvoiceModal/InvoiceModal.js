@@ -9,10 +9,12 @@ import "./invoice-modal.css";
 const InvoiceModal = (props) => {
   const [show, setShow] = useState(false);
   const [showStatus, setShowStatus] = useState(false);
-
+  const [invoice, setInvoice] = useState({});
+  const [str, setStr] = useState({});
   const handleClose = () => {
     setShowStatus(true);
     setShow(false);
+
     props.displayInvoice(null);
   };
   useEffect(() => {
@@ -21,13 +23,18 @@ const InvoiceModal = (props) => {
       setShowStatus(true);
     }
   }, [show, showStatus]);
-
+  useEffect(() => {
+    let item = localStorage.getItem("currentInvoice");
+    if (item !== undefined && item !== "undefined")
+      setInvoice(JSON.parse(item));
+    console.log(invoice);
+  });
   return (
     <>
       <Modal show={show} backdrop="static" keyboard={false}>
         <Modal.Body>
           {" "}
-          <Invoice className="className" />
+          <Invoice className="className" invoice={invoice} />
           <p
             onClick={handleClose}
             style={{

@@ -5,7 +5,7 @@ export const allTransactions = {
       id: 1,
       name: { productType: "Iphone 13 ProMax", productDetail: "Apple.Inc" },
       type: "Mobile",
-      amount: "$420.84",
+      amount: "$120.84",
       status: "Completed",
       date: "14 Mar 2023",
       invoice: "View",
@@ -16,7 +16,7 @@ export const allTransactions = {
       name: { productType: "Netflix Subscription", productDetail: "Netflix" },
 
       type: "Entertainment",
-      amount: "$420.84",
+      amount: "$620.84",
       status: "Pending",
       date: "21 Mar 2023",
       invoice: "View",
