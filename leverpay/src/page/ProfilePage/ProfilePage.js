@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 // import { InputText } from "primereact/inputtext";
 import Avatar from "react-avatar-edit";
 import ImageComponent from "../../components/ImageComponent/ImageComponent";
+import { ErrorBoundary } from "react-error-boundary";
 
 export const SourceContext = React.createContext();
 export const AltContext = React.createContext();
@@ -24,8 +25,15 @@ const ProfilePage = () => {
     setPreview(false);
   };
 
-  const onCrop = (view) => {
+  const onCrop = (view, e) => {
     setPreview(view);
+  };
+
+  const onBeforeFileLoad = (e) => {
+    const file = e.target.files[0];
+    const type = file;
+
+    console.log(type.name);
   };
 
   const saveImageCrop = () => {
@@ -117,13 +125,32 @@ const ProfilePage = () => {
           </Modal.Header>
           <Modal.Body>
             {/* Avatar  */}
-            <Avatar
-              width={"100%"}
-              height={300}
-              onCrop={onCrop}
-              onClose={onClose}
-              src={src}
-            />
+            <ErrorBoundary
+              fallback={
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignContent: "center",
+                    backgroundColor: "red",
+                    color: "#fff",
+                  }}
+                >
+                  INVALID FILE FORMAT
+                </div>
+              }
+            >
+              <Avatar
+                width={"100%"}
+                height={300}
+                onCrop={onCrop}
+                onClose={onClose}
+                exportSize={390}
+                onBeforeFileLoad={onBeforeFileLoad}
+                src={src}
+              />
+            </ErrorBoundary>
+
             {/* Body ends here  */}
           </Modal.Body>
           <Modal.Footer>
