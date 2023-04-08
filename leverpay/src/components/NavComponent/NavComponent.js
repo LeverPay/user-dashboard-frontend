@@ -1,4 +1,7 @@
 import LeverpayLogo from "../../assets/LeverpayLogo.png";
+import Close from "../../assets/images/close-icon.png";
+import Open from "../../assets/images/menu-icon2.png";
+
 import { Link, NavLink } from "react-router-dom";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { FaHome, FaReceipt, FaWallet, FaSignOutAlt } from "react-icons/fa";
@@ -62,7 +65,13 @@ const NavComponent = () => {
         <div className="open-close-icons flexy" style={{ display: "flex" }}>
           <div className="col-10">&nbsp;</div>
           <span onClick={closeSidebar}>
-            <i class="icofont-close-circled"></i>
+            {/* <i class="icofont-close-circled"></i> */}
+            <img
+              src={Close}
+              alt=""
+              style={{ width: "100%" }}
+              className="open-close-icons"
+            />
           </span>
         </div>
         <div className="container">
@@ -176,7 +185,13 @@ const NavComponent = () => {
       <div className="open-close-icons flexy menu" style={{ display: "flex" }}>
         <div className="col-11">&nbsp;</div>
         <span onClick={openSidebar} style={{ color: "#fff", fontSize: "20px" }}>
-          <i class="icofont-navigation-menu"></i>
+          {/* <i class="icofont-navigation-menu"></i> */}
+          <img
+            src={Open}
+            alt=""
+            style={{ width: "100%" }}
+            className="open-close-icons"
+          />
         </span>
       </div>
     </>
