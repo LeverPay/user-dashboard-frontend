@@ -12,7 +12,7 @@ const TransactionTable = (props) => {
   };
   useEffect(() => {
     if (showInvoice !== null) {
-      localStorage.setItem("currentInvoice", showInvoice);
+      localStorage.setItem("currentInvoice", JSON.stringify(showInvoice));
     } else {
       localStorage.setItem("currentInvoice", undefined);
     }

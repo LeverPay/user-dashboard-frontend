@@ -7,7 +7,7 @@ import "./invoice.css";
 import { nanoid } from "nanoid";
 import QRCode from "qrcode";
 
-function Invoice({ className }) {
+function Invoice({ className, invoice }) {
   const [id] = useState(nanoid);
 
   const [qrcode, setQrcode] = useState(id);
@@ -44,7 +44,7 @@ function Invoice({ className }) {
       <h4 className="text-center">{id}</h4>
       <div className="price_checkout">
         <span className="px-md-3">
-          <h5>$420.89</h5>
+          <h5>{invoice ? invoice.amount : "$0.00"}</h5>
           <h5>Total USD</h5>
         </span>
         <span className="px-md-3">
@@ -96,7 +96,9 @@ function Invoice({ className }) {
           </Row>
           <Row>
             <Col className="row_details">Items</Col>
-            <Col className="row_details_information">Iphone 13 pro max</Col>
+            <Col className="row_details_information">
+              {invoice ? invoice.name.productType : ""}
+            </Col>
           </Row>
         </Container>
       </div>
@@ -114,7 +116,8 @@ function Invoice({ className }) {
         <p>
           TXID: <span>( {id.slice(0, 8)} )</span>
         </p>
-        <p>{time}</p>
+        <p>{invoice ? invoice.date : ""}</p>
+        {/* <p>{time}</p> */}
         <main>
           <div>
             <p>Company</p>
