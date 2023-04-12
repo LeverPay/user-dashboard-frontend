@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FileUpload } from "primereact/fileupload";
 import { MdOutlineEdit, MdDeleteOutline } from "react-icons/md";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -17,7 +18,7 @@ const ImageComponent = () => {
     setPreview(false);
   };
 
-  const onCrop = (view, e) => {
+  const onCrop = (view) => {
     setPreview(view);
   };
 
