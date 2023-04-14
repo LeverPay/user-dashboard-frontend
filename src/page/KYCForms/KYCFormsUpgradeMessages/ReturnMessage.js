@@ -36,7 +36,7 @@ export const ReturnMessage = (props) => {
   return (
     <>
       <div className="kyc-return-message-container  slide-left">
-        <div className="col-md-4 p-container">
+        <div className="col-md-5 p-container">
           <p>
             Hi! <br />
             <span>Goodness Micheal</span> You have Upgraded your card to a{" "}
@@ -51,7 +51,9 @@ export const ReturnMessage = (props) => {
             <br /> <br /> Thank you for Choosing LeverPay.
           </p>
         </div>
-        <div className="col-md-8">{card}</div>
+        <div className="col-md-7" style={{height: 'fit-content', color: 'white'}}>
+          {card}
+        </div>
       </div>
     </>
   );
