@@ -22,7 +22,7 @@ function InvoicePage() {
 })
 
   return(
-    <>{transactionInvoice}</>
+    <div style={{marginTop:'6rem'}}>{transactionInvoice}</div>
   )
 }
 
