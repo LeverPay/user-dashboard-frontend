@@ -13,7 +13,8 @@ export const KYCFormsButton = (props) => {
       const timeout = setTimeout(() => {
         setVerification(false);
         props.handleClose ? props.handleClose() : hnd();
-      }, 4000);
+      }, 1000);
+      // timer reduced
 
       return () => clearTimeout(timeout);
     }
