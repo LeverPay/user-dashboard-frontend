@@ -1,10 +1,18 @@
+.labels {
+  font-family: AgrandirBold !important;
+}
+
+.text-area {
+  font-family: AgrandirBold !important;
+}
+
 .outer {
   display: flex;
   width: 80%;
-  height: 100%;
+  height: 100vh;
   margin-top: 5%;
   margin-left: 10%;
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 @media screen and (max-width: 620px) {
@@ -16,28 +24,26 @@
 
 .inner-form {
   display: flex;
-  height: 90%;
+  height: 100%;
   flex-direction: column;
-  margin: auto;
   width: 60%;
   background-color: #fff;
 }
 
 .fields-control {
   margin-top: 5%;
-  height: 50%;
+  height: 100%;
   /* border: 1px solid #000; */
 }
 
 .button-control {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 40%;
-  margin-left: 5%;
-  /* margin-top: 5%; */
-  /* border: 1px solid #000; */
   flex-direction: row;
   width: 80%;
+  margin-top: 5%;
+  margin-left: 5%;
+  font-family: AgrandirBold !important;
 }
 
 .phone-number-div {
@@ -45,50 +51,63 @@
   width: 80%;
   margin-left: 5%;
   flex-direction: row;
-  margin-bottom: 40%;
   /* border: 1px solid #000; */
 }
 
 .phone-number-label {
   width: 100%;
+  font-family: AgrandirBold !important;
 }
 
 .phone-number {
-  margin-top: auto;
-  margin-left: 2%;
-  /* border: 1px solid #000 !important; */
-  width: 98%;
-}
-
-.textarea .country-code {
-  margin-left: 5%;
   width: 100%;
+  font-family: AgrandirBold !important;
 }
 
-/* .save-img-btn {
-  width: 20%;
-} */
+.phone-no-ctrl {
+  width: 75%;
+}
+
+.country-code {
+  width: 100%;
+  font-family: AgrandirBold !important;
+}
 
 @media screen and (max-width: 700px) {
   .inner-form {
     width: 100%;
+    /* height: 100%; */
   }
-
+  .textarea {
+    width: 100%;
+    font-family: AgrandirBold !important;
+  }
   .button-control {
     flex-direction: column;
-    margin-top: 10%;
+    width: 80%;
+    margin: auto;
   }
-
+  .country-code {
+    margin: auto;
+    width: 100%;
+    font-family: AgrandirBold !important;
+  }
   .phone-number {
-    width: 100% !important;
+    width: 100%;
   }
 
-  .change-img {
-    width: 50%;
+  .phone-number-div {
+    width: 100%;
+    margin: auto;
+    flex-direction: row;
+    border: 1px solod #000 !important;
   }
 
-  .remove-img {
-    width: 50%;
-    border: 1px solid #4e3eaf;
+  .phone-no-ctrl {
+    width: 100%;
+  }
+
+  .country-code-ctrl {
+    width: 20%;
   }
 }

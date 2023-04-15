@@ -15,6 +15,10 @@
   }
 }
 
+.labels {
+  font-family: AgrandirBold !important;
+}
+
 .myForm {
   display: flex;
   flex-direction: column;
@@ -28,6 +32,7 @@
   width: 80%;
   margin-left: 5%;
   background-color: #f8f8f8;
+  font-family: AgrandirBold !important;
 }
 
 @media screen and (max-width: 620px) {
@@ -54,6 +59,7 @@
 
 .text-muted {
   margin-left: 5% !important;
+  font-family: AgrandirBold !important;
 }
 
 .sms-email-label {
@@ -64,14 +70,11 @@ p {
   margin-left: 5%;
 }
 
-/* p .msg {
-  margin-top: 1px;
-} */
-
 .notice {
   margin-top: 2% !important;
   margin-left: 5%;
   width: 100%;
+  font-family: AgrandirBold !important;
   /* border: 1px solid #000; */
 }
 
@@ -82,20 +85,26 @@ h4 {
 
 .form-label {
   margin-left: 5%;
+  font-family: AgrandirBold !important;
 }
 
 .buttons-div {
   display: flex;
   margin-top: 10%;
+  margin-left: 5%;
   justify-content: space-around;
   flex-direction: row;
-  width: 100%;
+  width: 80%;
   /* border: 1px solid #000 !important; */
 }
 
 .form-button .save-changes {
   background-color: #fff !important;
   margin-bottom: 30%;
+}
+
+.form-button {
+  font-family: AgrandirBold !important;
 }
 
 .toggle-content {
@@ -110,6 +119,7 @@ h4 {
 .forgot-password {
   margin-left: 5%;
   text-decoration: none;
+  font-family: AgrandirBold !important;
 }
 
 @media screen and (max-width: 700px) {
