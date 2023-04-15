@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Invoice from "../../InvoicePage/Invoice/Invoice";
-import InvoicePage from "../../InvoicePage/InvoicePage";
-import Close from "../../../assets/images/close-icon.png";
+// import InvoicePage from "../../InvoicePage/InvoicePage";
+// import Close from "../../../assets/images/close-icon.png";
 
 import "./invoice-modal.css";
 const InvoiceModal = (props) => {
   const [show, setShow] = useState(false);
   const [showStatus, setShowStatus] = useState(false);
   const [invoice, setInvoice] = useState({});
-  const [str, setStr] = useState({});
+  // const [str, setStr] = useState({});
   const handleClose = () => {
     setShowStatus(true);
     setShow(false);
