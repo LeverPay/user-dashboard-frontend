@@ -25,8 +25,8 @@ import "./UserDashboardLayout.css";
 import Settings from "./SettingsPage/Settings";
 import ProfilePage from "./ProfilePage/ProfilePage";
 export const UserDashboardLayout = () => {
-  const [setNaijaCard] = useState({});
-  const [setSilverCard] = useState({});
+  const [naijaCard, setNaijaCard] = useState({});
+  const [silverCard, setSilverCard] = useState({});
   useEffect(() => {
     setNaijaCard({
       id: naijaCardDetails.map((data) => data.id),
