@@ -10,12 +10,12 @@ import { Routes, Route } from "react-router-dom";
 import { Transactions } from "./Transactions/Transactions";
 import InvoicePage from "./InvoicePage/InvoicePage";
 // import Mycard from "./MyCardPage.js/Mycard";
-import Mycard from "./MyCardPage/Mycard";
+// import Mycard from "./MyCardPage/Mycard";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
 // import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
 import MyCardsSilver from "./SilverCardPage/MyCardsSilver";
-import MyCardGold from "../page/GoldCardPage/MyCardGold";
-import { ReturnMessage } from "./KYCForms/KYCFormsUpgradeMessages/ReturnMessage";
+// import MyCardGold from "../page/GoldCardPage/MyCardGold";
+// import { ReturnMessage } from "./KYCForms/KYCFormsUpgradeMessages/ReturnMessage";
 import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount";
 import TotalMoney from "../components/TotalMoney/TotalMoney";
 import CardUser from "../components/AllCards/CardUserDefault";
@@ -25,8 +25,8 @@ import "./UserDashboardLayout.css";
 import Settings from "./SettingsPage/Settings";
 import ProfilePage from "./ProfilePage/ProfilePage";
 export const UserDashboardLayout = () => {
-  const [naijaCard, setNaijaCard] = useState({});
-  const [silverCard, setSilverCard] = useState({});
+  const [setNaijaCard] = useState({});
+  const [setSilverCard] = useState({});
   useEffect(() => {
     setNaijaCard({
       id: naijaCardDetails.map((data) => data.id),
