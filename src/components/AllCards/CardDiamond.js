@@ -14,6 +14,7 @@ function CardDiamond() {
       lock="./images/lock.png"
       bg2="url('./images/Ellipse 7.png')"
       cardNumber={CardInfo[1].no}
+      cvv={CardInfo[1].cvv}
     />
     // </Container>
   );
