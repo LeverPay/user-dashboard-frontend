@@ -16,10 +16,26 @@ function CardSilver() {
   const CardNumberLastFour = `${cardNumber_string.slice(12, 16)}`;
 
   const [cardVisible, setCardVisible] = useState(false);
+  const [cardCopied, setCardCopied] = useState(false);
+  const [cardCVV, setCardCVV] = useState(false);
+
   function seeCard() {
     setCardVisible((prevCard) => {
       return prevCard ? false : true;
     });
+  }
+
+  function seeCVV(){
+    setCardCVV(prevCVV =>{
+      return prevCVV ? false : true 
+    })
+  }
+
+  function copyCardNumber(){
+    setCardCopied((prevCopy)=>{
+      return prevCopy ? false : true 
+    })
+    navigator.clipboard.writeText(cardNumber);
   }
 
   return (
@@ -28,8 +44,28 @@ function CardSilver() {
       style={{
         backgroundImage: `url('./images/CardSilver.png')`,
         color: "#253B80",
+        position: 'relative'
       }}
     >
+        <span  style={{
+        position: 'absolute',
+        top: '60%', left: '75%',
+        cursor: 'pointer'
+      }}>
+      <img alt="" src="./images/copy.png" onClick={copyCardNumber}/>
+      <small>{cardCopied ? ' copied' : ''}</small>
+      </span>   
+
+      <span  style={{
+        position: 'absolute',
+        top: '70%', left: '35%',
+        cursor: 'pointer'
+      }}
+      >
+        <small>C V V : <strong onMouseEnter={seeCVV} onMouseLeave={()=>{setCardCVV(false)}}>{cardCVV ? CardInfo[4].cvv : '***'}</strong></small> 
+      </span>
+
+
       <img alt="" src="./images/silver logo.png" className="LeverpayCardLogo" />
       <main className="card_one">
         <img alt="" src="./images/chip 1.png" />
