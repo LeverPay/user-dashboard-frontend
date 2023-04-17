@@ -8,3 +8,26 @@
   /* background: red !important; */
   border: none !important;
 }
+.User_Info{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 10px;
+}
+.User_Info img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.User_Info h3{
+  color: white;
+  font-size: 20px;
+  margin-top: 5px;
+}
+.User_Info span{
+  width: 30px;
+  height: 20px;
+  background-color: silver;
+}
