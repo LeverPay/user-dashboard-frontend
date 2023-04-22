@@ -14,3 +14,30 @@
 .Upgrade-con {
   margin-top: 10rem;
 }
+.card-modal{
+  position: absolute;
+  width: 30%;
+  top: 30%;
+  left: 35%;
+  border-radius: 10px;
+  padding: 32px;
+  background-color: white;
+}
+.card-modal ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: AgrandirRegular;
+  font-size: 18px;
+  text-align: left;
+}
+button{
+  border: none;
+  background-color: #0E093F;
+  border: 1px solid gray;
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+  width: 90%;
+}
