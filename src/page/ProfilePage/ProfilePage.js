@@ -5,9 +5,13 @@ import "../ProfilePage/ProfilePage.css";
 import Swal from "sweetalert2";
 import ImageComponent from "../../components/ImageComponent/ImageComponent";
 import AddAccountComponent from "../../components/AddAccountComponent/AddAccountComponent";
+import ReactFlagsSelect from "react-flags-select";
+import { CountryFlagData } from "../../TestData";
+import PhoneNumberComponent from "../../components/PhoneNumberComponent/PhoneNumberComponent";
 
 const ProfilePage = () => {
   const [phone, setPhone] = useState("");
+  const [selected, setSelected] = useState("");
 
   const handlePhone = (e) => {
     setPhone(e.target.value.replace(/\D/g, ""));
@@ -68,39 +72,36 @@ const ProfilePage = () => {
             <Form.Control type="text" placeholder="" className="text-area" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="">
+            <Form.Label className="labels">Profession</Form.Label>
+            <Form.Control type="text" placeholder="" className="text-area" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="">
             <Form.Label className="labels">Business Name</Form.Label>
+            <Form.Control type="text" placeholder="" className="text-area" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="">
+            <Form.Label className="labels">Address</Form.Label>
             <Form.Control type="text" placeholder="" className="text-area" />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label className="labels">Country</Form.Label>
-            <Form.Select className="text-area" enabled>
-              <option>Nigeria</option>
-            </Form.Select>
+            <ReactFlagsSelect
+              className="text-area"
+              selected={selected}
+              onSelect={(code) => setSelected(code)}
+              countries={CountryFlagData.map((c) => c.code)}
+              // searchable
+              optionsSize={14}
+              // selectButtonClassName="menu-flags-button"
+            />
           </Form.Group>
-          <div className="col-md-12 phone-number-div">
-            <div className="col-md-3 country-code-ctrl">
-              <Form.Group className="mb-3">
-                <Form.Label className="phone-number-label">Code</Form.Label>
-                <Form.Select className="country-code">
-                  <option>+234</option>
-                </Form.Select>
-              </Form.Group>
-            </div>
-
-            <div className="col-md-9 phone-no-ctrl">
-              <Form.Group className="mb-3">
-                <Form.Label className="labels">Phone Number</Form.Label>
-                <Form.Control
-                  type="tel"
-                  name="phone"
-                  value={phone}
-                  pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                  className="phone-number"
-                  onChange={handlePhone}
-                />
-              </Form.Group>
-            </div>
-          </div>
+          {/* <div className="col-md-12 phone-number-div"> */}
+          <Form.Group className="mb-3">
+            <Form.Label className="labels">Phone Number</Form.Label>
+            {/* Phone number component  */}
+            <PhoneNumberComponent />
+          </Form.Group>
+          {/* </div> */}
           {/* add account btn */}
           <AddAccountComponent />
           {/* end add account btn */}
