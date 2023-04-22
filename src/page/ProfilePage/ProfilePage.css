@@ -9,10 +9,11 @@
 .outer {
   display: flex;
   width: 80%;
-  height: 100vh;
-  margin-top: 5%;
+  height: 100%;
+  margin-top: 10%;
   margin-left: 10%;
   justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 620px) {
@@ -25,8 +26,9 @@
 .inner-form {
   display: flex;
   height: 100%;
+  width: 65%;
+  overflow: auto;
   flex-direction: column;
-  width: 60%;
   background-color: #fff;
 }
 
@@ -48,27 +50,13 @@
 
 .phone-number-div {
   display: flex;
-  width: 80%;
-  margin-left: 5%;
+  width: 90%;
+  margin-left: 3%;
   flex-direction: row;
-  /* border: 1px solid #000; */
+  border: 1px solid #000;
 }
 
 .phone-number-label {
-  width: 100%;
-  font-family: AgrandirBold !important;
-}
-
-.phone-number {
-  width: 100%;
-  font-family: AgrandirBold !important;
-}
-
-.phone-no-ctrl {
-  width: 75%;
-}
-
-.country-code {
   width: 100%;
   font-family: AgrandirBold !important;
 }
@@ -87,27 +75,11 @@
     width: 80%;
     margin: auto;
   }
-  .country-code {
-    margin: auto;
-    width: 100%;
-    font-family: AgrandirBold !important;
-  }
-  .phone-number {
-    width: 100%;
-  }
 
   .phone-number-div {
-    width: 100%;
-    margin: auto;
+    width: 92%;
+    /* margin: auto; */
     flex-direction: row;
     border: 1px solod #000 !important;
-  }
-
-  .phone-no-ctrl {
-    width: 100%;
-  }
-
-  .country-code-ctrl {
-    width: 20%;
   }
 }
