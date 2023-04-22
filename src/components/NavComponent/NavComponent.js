@@ -69,7 +69,7 @@ const NavComponent = () => {
             <img
               src={Close}
               alt=""
-              style={{ width: "100%" }}
+              style={{ width: "50%" }}
               className="open-close-icons"
             />
           </span>

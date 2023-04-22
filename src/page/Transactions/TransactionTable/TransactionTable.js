@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./transaction-table.css";
 import Table from "react-bootstrap/Table";
 import InvoiceModal from "../InvoiceModal/InvoiceModal";
+// import PrintComponent from "../InvoiceModal/InvoiceModal";
 // import { allTransactions } from "../../../TestData";
 
 const TransactionTable = (props) => {
@@ -37,8 +38,8 @@ const TransactionTable = (props) => {
               <tr>
                 <td>
                   {item.name.productType}
-                  <br />
-                  <small>{item.name.productDetail}</small>
+                  {/* <br />
+                  <small>{item.name.productDetail}</small> */}
                 </td>
                 <td>{item.type}</td>
                 <td>{item.amount}</td>
@@ -58,6 +59,7 @@ const TransactionTable = (props) => {
         </table>
       </div>
       {showInvoice !== null && <InvoiceModal displayInvoice={displayInvoice} />}
+      {/* <PrintComponent /> */}
     </>
   );
 };
