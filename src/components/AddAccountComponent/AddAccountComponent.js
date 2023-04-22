@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import Select from "react-select";
 import Swal from "sweetalert2";
 import "../AddAccountComponent/AddAccountComponent.css";
 
@@ -15,7 +14,7 @@ const AddAccountComponent = () => {
     e.preventDefault();
     Swal.fire({
       title: "Leverpay.io",
-      text: "Do you want to add card details?",
+      text: "Do you want to add details?",
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Yes",
@@ -23,28 +22,15 @@ const AddAccountComponent = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        Swal.fire("Card added successfully", "", "success");
+        Swal.fire("Details added successfully", "", "success");
         setShowModal(false);
       } else if (result.isDenied) {
-        Swal.fire("Card not added", "", "info");
+        Swal.fire("Details not added", "", "info");
         setShowModal(false);
       }
     });
   };
-  //   const monthChange = () => {
-  //     let i, j, res;
 
-  //     for (i = 0; i <= 1; i++) {
-  //       for (j = i + 1; j <= 2; j++) {
-  //         if (i === 1 && j === 2) {
-  //           return;
-  //         }
-  //       }
-  //     }
-  //     res = i + "" + j;
-
-  //     return res;
-  //   };
   const handleCardChange = (e) => {
     setCardValue(e.target.value.replace(/\D/g, ""));
   };
@@ -52,28 +38,11 @@ const AddAccountComponent = () => {
   const handleNameChange = (e) => {
     setNameOnCard(e.target.value);
   };
-  const monthOptions = [
-    { value: "01", label: "01" },
-    { value: "02", label: "02" },
-    { value: "03", label: "03" },
-    { value: "04", label: "04" },
-    { value: "05", label: "05" },
-    { value: "06", label: "06" },
-  ];
-  const yearOptions = [
-    { value: "2020", label: "2020" },
-    { value: "2021", label: "2021" },
-    { value: "2022", label: "2022" },
-    { value: "2023", label: "2023" },
-    { value: "2024", label: "2024" },
-    { value: "2025", label: "2025" },
-    { value: "2026", label: "2026" },
-  ];
   return (
     <>
-      <div className="add-account-btn-ctrl">
-        <Button className="add-account-btn" onClick={() => setShowModal(true)}>
-          Add your card
+      <div className="add-details-btn-ctrl">
+        <Button className="add-details-btn" onClick={() => setShowModal(true)}>
+          Additional Details
         </Button>
       </div>
       <Modal
@@ -84,74 +53,55 @@ const AddAccountComponent = () => {
         className="modal-control"
       >
         <Modal.Header closeButton>
-          <Modal.Title className="labels">
-            Add a credit or debit card
-          </Modal.Title>
+          <Modal.Title className="labels">Additional Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/* Body starts here */}
           <Form className="form-outer">
-            <h4 className="header">Enter your card information</h4>
-
-            <Form.Group className="mb-3 formGridCheckbox" id="formGridCheckbox">
-              <Form.Check
-                type="checkbox"
-                label="Use name on account"
-                className="labels"
+            <Form.Group className="mb-3" controlId="">
+              <Form.Label className="labels">Add Another Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder=""
+                className="text-area"
+                required
               />
             </Form.Group>
-
-            <Form.Label htmlFor="" className="labels">
-              Name on card
-            </Form.Label>
-            <Form.Control
-              type="text"
-              id=""
-              value={nameOnCard}
-              className="name-on-card"
-              required
-              onChange={handleNameChange}
-              //   aria-describedby="passwordHelpBlock"
-            />
-
-            <Form.Label htmlFor="" className="labels">
-              Card number
-            </Form.Label>
-            <Form.Control
-              type="tel"
-              value={cardValue}
-              placeholder="xxxx xxxx xxxx xxxx"
-              pattern="[0-9]{4}[0-9]{4}[0-9]{4}"
-              maxLength={16}
-              className="card-no-field"
-              required
-              onChange={handleCardChange}
-              //   aria-describedby="passwordHelpBlock"
-            />
-
-            <h4 className="header">Expiration date</h4>
-            <div className="date-picker-control">
-              <Select
-                options={monthOptions}
-                placeholder="01"
-                className="month-select"
-                readOnly
+            <Form.Group className="mb-3" controlId="">
+              <Form.Label className="labels">Account Number</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder=""
+                className="text-area"
+                required
               />
-              <Select
-                options={yearOptions}
-                placeholder="2020"
-                className="year-select"
-                readOnly
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="">
+              <Form.Label className="labels">Account Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder=""
+                className="text-area"
+                required
               />
-            </div>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="">
+              <Form.Label className="labels">Bank Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder=""
+                className="text-area"
+                required
+              />
+            </Form.Group>
             <div>
               <Button
                 variant="primary"
                 type="submit"
-                className="add-card-btn"
+                className="submit-details-btn"
                 onClick={handleAddCard}
               >
-                Add Card
+                Add Details
               </Button>
             </div>
           </Form>

@@ -3,11 +3,11 @@ import Close from "../../assets/images/close-icon.png";
 import Open from "../../assets/images/menu-icon2.png";
 
 import { Link, NavLink } from "react-router-dom";
-import { Nav, Navbar, Container } from "react-bootstrap";
-import { FaHome, FaReceipt, FaWallet, FaSignOutAlt } from "react-icons/fa";
-import { RiSettings4Fill } from "react-icons/ri";
-import { BsGraphUpArrow } from "react-icons/bs";
-import { MdLiveHelp } from "react-icons/md";
+// import { Nav, Navbar, Container } from "react-bootstrap";
+// import { FaHome, FaReceipt, FaWallet, FaSignOutAlt } from "react-icons/fa";
+// import { RiSettings4Fill } from "react-icons/ri";
+// import { BsGraphUpArrow } from "react-icons/bs";
+//import { MdLiveHelp } from "react-icons/md";
 import "../NavComponent/NavComponent.css";
 import { useState, useEffect } from "react";
 //import Icofont from "react-icofont";
@@ -17,14 +17,19 @@ const NavComponent = () => {
   const [click, setClick] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
+
   const handleActive = (item) => {
     setActiveItem(item);
   };
+
   const handleClick = () => setClick(!click);
+
   const closeMobileMenu = () => setSidebarOpen(!isMobile);
+
   const openSidebar = () => {
     setSidebarOpen(true);
   };
+
   function closeSidebar() {
     setSidebarOpen(false);
   }

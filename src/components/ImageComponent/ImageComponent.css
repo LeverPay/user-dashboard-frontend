@@ -9,13 +9,13 @@
 }
 .change-img {
   margin-left: 5%;
-  width: 30%;
+  width: 100%;
   font-family: AgrandirBold !important;
 }
 
 .remove-img {
   margin-left: 5%;
-  width: 30%;
+  width: 100%;
   border: 1px solid #4e3eaf !important;
   font-family: AgrandirBold !important;
 }
