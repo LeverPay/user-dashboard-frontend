@@ -25,3 +25,16 @@
   font-size: 45px;
   float: right !important;
 }
+.invoicebtn button {
+  background: transparent !important;
+  border: solid 4px #10133f !important;
+  color: #fff !important;
+  font-size: 20px !important;
+  border-radius: 20px !important;
+  font-family: KB-sans-Bold;
+  padding: 7px 22px;
+  margin-top: -20px;
+}
+.closebtn {
+  flex-grow: 1;
+}
