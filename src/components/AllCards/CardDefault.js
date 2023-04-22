@@ -15,7 +15,7 @@ function CardDefault(props) {
   )}  ${cardNumber_string.slice(4, 8)}  ${cardNumber_string.slice(8, 12)}`;
   const CardNumberLastFour = `${cardNumber_string.slice(12, 16)}`;
 
-  const [cardVisible, setCardVisible] = useState(false);
+  const [cardVisible, setCardVisible] = useState(false); 
   const [cardCopied, setCardCopied] = useState(false);
   const [cardCVV, setCardCVV] = useState(false);
 
@@ -53,7 +53,7 @@ function CardDefault(props) {
         top: '60%', left: '75%',
         cursor: 'pointer'
       }}>
-      <img alt="" src="./images/copy.png" onClick={copyCardNumber}/>
+      <img alt="" src={props.copy} onClick={copyCardNumber}/>
       <small>{cardCopied ? ' copied' : ''}</small>
       </span>   
 
