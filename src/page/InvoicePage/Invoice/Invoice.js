@@ -7,7 +7,7 @@ import "./invoice.css";
 import { nanoid } from "nanoid";
 import QRCode from "qrcode";
 
-function Invoice({ className, invoice }) {
+function Invoice({ className, invoice, ref }) {
   const [id] = useState(nanoid);
 
   const [qrcode, setQrcode] = useState(id);
@@ -52,7 +52,9 @@ function Invoice({ className, invoice }) {
           <h5>Total ETH</h5>
         </span>
         <span className="px-md-3">
-          <h5 style={{ color: "#0EB500" }}>$420.89</h5>
+          <h5 style={{ color: "#0EB500" }}>
+            {invoice ? invoice.amount : "$0.00"}
+          </h5>
           <h5 style={{ color: "#F49B09" }}>Paid(ETH)</h5>
         </span>
       </div>
@@ -69,7 +71,7 @@ function Invoice({ className, invoice }) {
               className="row_details_information"
               style={{ color: "#0EB500" }}
             >
-              Successful
+              {invoice ? invoice.status : ""}
             </Col>
           </Row>
           <Row>
@@ -91,13 +93,20 @@ function Invoice({ className, invoice }) {
               className="row_details_information"
               style={{ fontSize: "12px" }}
             >
-              {time}
+              {/* {time} */}
+              {invoice ? invoice.date : ""}
             </Col>
           </Row>
           <Row>
             <Col className="row_details">Items</Col>
             <Col className="row_details_information">
               {invoice ? invoice.name.productType : ""}
+            </Col>
+          </Row>
+          <Row>
+            <Col className="row_details">Description</Col>
+            <Col className="row_details_information">
+              {invoice ? invoice.name.productDetail : ""}
             </Col>
           </Row>
         </Container>

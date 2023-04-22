@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from "react";
-// import Button from "react-bootstrap/Button";
+import React, { useState, useEffect, useRef } from "react";
+import ReactToPrint from "react-to-print";
 import Modal from "react-bootstrap/Modal";
 import Invoice from "../../InvoicePage/Invoice/Invoice";
-// import InvoicePage from "../../InvoicePage/InvoicePage";
-// import Close from "../../../assets/images/close-icon.png";
-
+import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/esm/Row";
+import Col from "react-bootstrap/esm/Col";
 import "./invoice-modal.css";
-const InvoiceModal = (props) => {
+import { Button } from "react-bootstrap";
+import PrintInvoice from "./PrintInvoice";
+// import PrintInvoice from "./PrintInvoice";
+
+export default function InvoiceModal(props) {
+  let componentRef = useRef();
+
   const [show, setShow] = useState(false);
   const [showStatus, setShowStatus] = useState(false);
   const [invoice, setInvoice] = useState({});
-  // const [str, setStr] = useState({});
+
   const handleClose = () => {
     setShowStatus(true);
     setShow(false);
@@ -35,21 +41,22 @@ const InvoiceModal = (props) => {
         <Modal.Body>
           {" "}
           <Invoice className="className" invoice={invoice} />
-          <p
-            onClick={handleClose}
-            style={{
-              color: "#fff",
-              cursor: "pointer",
-              marginTop: "-40px",
-              marginBottom: "30px",
-            }}
-          >
-            close
-          </p>
-          {/* <i class="icofont-close-circled" onClick={handleClose}></i> */}
+          <div className="flexy flexyM invoicebtn">
+            {" "}
+            <div className="closebtn">
+              {" "}
+              <button onClick={handleClose}>Close</button>
+            </div>
+            <ReactToPrint
+              trigger={() => <button className="printbtn">Print</button>}
+              content={() => componentRef}
+            />{" "}
+          </div>
+          <div style={{ display: "none" }}>
+            <PrintInvoice ref={(el) => (componentRef = el)} />
+          </div>
         </Modal.Body>
       </Modal>
     </>
   );
-};
-export default InvoiceModal;
+}

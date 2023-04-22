@@ -1,5 +1,5 @@
 import React from "react";
-import Verified from "../../../assets/images/verified.png";
+import Verified from "../../../assets/images/blue-check.png";
 
 import "./Merchants.css";
 function Merchants(props) {
