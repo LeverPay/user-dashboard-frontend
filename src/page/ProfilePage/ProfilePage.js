@@ -91,7 +91,7 @@ const ProfilePage = () => {
               onSelect={(code) => setSelected(code)}
               countries={CountryFlagData.map((c) => c.code)}
               // searchable
-              optionsSize={14}
+              optionsSize={15}
               // selectButtonClassName="menu-flags-button"
             />
           </Form.Group>
