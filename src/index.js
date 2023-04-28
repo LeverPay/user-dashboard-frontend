@@ -6,6 +6,7 @@ import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
 import "react-phone-number-input/style.css";
+import "react-phone-input-2/lib/style.css";
 // import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
