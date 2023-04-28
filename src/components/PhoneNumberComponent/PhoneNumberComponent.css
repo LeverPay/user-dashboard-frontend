@@ -1,8 +1,5 @@
-.phone {
+.phone-input {
   width: 90% !important;
   margin-left: 3%;
-  font-size: 18px;
   font-family: AgrandirBold !important;
-  /* border-radius: 50px !important; */
-  /* border: 1px solid #000; */
 }
