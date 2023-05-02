@@ -1,0 +1,129 @@
+import React from 'react'
+import Container from 'react-bootstrap/esm/Container'
+import { useState } from 'react'
+import './Feedback.css'
+
+function Feedback() {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+      })
+    
+      function onChange (event){
+        setFormData((prevFormData)=>{
+          return{
+            ...prevFormData,
+            [event.target.name] : event.target.value
+          }
+        })
+      }
+    
+    //   message lenght function
+    const message = formData.message
+    const messageLength = message.length
+
+    //Email validation 
+    const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; 
+    const [emailValidityMessage, setEmailValidityMessage] = useState('')
+
+
+    // prevent form submit for validation 
+    const [filled, setFilled] = useState(false)
+
+    function submit (event){
+        event.preventDefault()
+        if(formData.name.length > 2 && formData.message.length > 20 && formData.email.match(validEmail)){
+            setFilled(true)
+            setEmailValidityMessage('Valid Email')
+        }else {
+            setFilled(false)
+            setEmailValidityMessage('Invalid Email Address')
+        }
+    }
+
+  return (
+    <Container className="px-4  text-center" id="feedback" style={{ marginTop: '4rem' }}>s
+        <div className='header'>
+            <h1>
+                Help!
+            </h1>
+            <p>
+                Should you have face any issue, feel free to contact us we will
+                get back to you as soon as we can!
+            </p>
+        </div>
+        <form onSubmit={submit}>
+            <main>
+                <div className='label'>
+                <label htmlFor='name'><img alt='' src='./images/labeluser.png' /></label>
+                <input
+                name='name'
+                type='text'
+                placeholder='Name'
+                id='name'
+                onChange={onChange}
+                value={formData.name}
+                style={{
+                    borderBottom: filled ? '2px solid green' : '2px solid '
+                }}
+                />
+                </div>
+                
+                <div>
+                <input
+                name='email'
+                type='text'
+                placeholder='Email'
+                id='email'
+                onChange={onChange}
+                value={formData.email}
+                style={{
+                    borderBottom: filled ? '2px solid green' : '2px solid'
+                }}
+                />
+                </div>
+                <small className='validity' style={{color: filled ? 'green' : 'red'}}>{emailValidityMessage}</small>
+                
+
+                <div className='label'>
+                <label htmlFor='message'><img alt='' src='./images/message.png' /></label>
+                <textarea
+                name='message'
+                type='text'
+                placeholder='Message'
+                id='message'
+                maxLength= '500'
+                onChange={onChange}
+                value={formData.message}
+                />
+                </div>
+                
+                <div className='submitCon'>
+                    <span>
+                        {messageLength}/500 characters
+                    </span>
+                    <input 
+                    name='submit'
+                    type='submit'
+                    value='Send'
+                    id='submit'
+                    />
+                </div>
+            </main>
+        </form>
+        <div className='contact'>
+            <p>
+              Call/Chat Us 
+            </p>
+            <ul>
+              <li><a href='tel:2347066080819'><img alt='' src='./images/call.png' />+234  7068936384 </a></li>
+              <li><a href='https://api.whatsapp.com/send?phone=2347066080819&text=Hello Leverpay' target='blank'><img alt='' src='./images/whatsapp.png' />+234  7068933455 </a></li>
+              <li><img alt='' id='thumbs' src='./images/thumbs.png' /></li>
+            </ul>
+        </div>
+    </Container>
+  )
+}
+
+export default Feedback

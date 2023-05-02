@@ -1,0 +1,161 @@
+#Helpform{
+  width: 80%;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+}
+form{
+  background-color: white;
+  margin-left: 5rem;
+  padding: 3rem 2rem 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: left;
+  border-radius: 10px;
+}
+form .name{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+form .name main{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+form input, form select{
+  background: rgba(255, 255, 255, 0.002);
+  border: 1px solid #F0F2F3;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  padding: 10px 10px;
+  font-family: Segoe UI;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+form div{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+::placeholder{
+  font-size: 14px;
+  color: gray;
+  opacity: .2;
+}
+form div .number{
+  display: flex;
+  gap: 10px;
+}
+.number{
+  flex-direction: row;
+}
+#phoneNumber{
+  width: 85%;
+}
+#countryCode{
+  width: 15%;
+}
+#email{
+  margin-left: 0;
+}
+form label{
+  font-family: Segoe UI;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: #011B33;
+}
+.submitCon{
+  margin-bottom: 0rem;
+}
+#submit{
+  background: #0051FF;
+  border-radius: 5px;
+  color: white;
+  padding-block: 10px;
+  width: 100%;
+}
+.valid{
+  text-align: right;
+  font-size: 12px;
+}
+article{
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 5rem;
+  margin-left: 3rem;
+}
+article header, article main{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+article header h1{
+  font-family: Segoe UI;
+  font-size: 36px;
+  font-weight: 900;
+}
+article header p{
+  margin-left: 0px;
+  width: 65%;
+  text-align: center;
+  font-family: Segoe UI;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.20000000298023224px;
+}
+article main{
+ margin-left: 0;
+ gap: 1rem; 
+ text-align: left;
+}
+article main h2{
+  font-family: Segoe UI;
+  font-size: 33px;
+  font-weight: 900;
+  line-height: 43px;
+}
+article main p{
+  margin-left: 0rem;
+  font-family: Segoe UI;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 29px;
+}
+ul{
+  list-style: none;
+  margin-left: -1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: Segoe UI;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 18px;
+}
+ul a{
+  text-decoration: none;
+  color: white;
+}
+ul li img{
+  margin-right: 10px;
+}
+small{
+  margin-top: 3rem;
+  text-align: left;
+  color: white;
+  font-family: Segoe UI;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 40px;
+}
+small img{
+  margin-right: 10px;
+}
