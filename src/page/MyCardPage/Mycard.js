@@ -63,7 +63,7 @@ function Mycard(props) {
               <li>CVV: {props.modalcardcvv}</li>
               <li>Expiry date: 03/2025</li>
             </ul>
-            <button>
+            <button onClick={toggleModal}>
               Close
             </button>
           </div>

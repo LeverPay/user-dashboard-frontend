@@ -9,8 +9,9 @@ import React from "react";
 //import logo from './logo.svg';
 import "bootstrap/dist/css/bootstrap.min.css";
 import UserDashboardLayout from "./page/UserDashboardLayout";
+import Feedback from "./page/Feedback/Feedback";
+import HelpForm from "./page/HelpForm/HelpForm";
 
-import CardModal from "./components/CardModal/CardModal";
 
 //import "./App.css";
 //import "./App.css";
@@ -20,8 +21,9 @@ import CardModal from "./components/CardModal/CardModal";
 function App() {
   return (
     <>
-      <UserDashboardLayout />
-      {/* <CardModal/> */}
+      {/* <UserDashboardLayout /> */}
+      {/* <Feedback/> */}
+      <HelpForm/>
     </>
   );
 }
