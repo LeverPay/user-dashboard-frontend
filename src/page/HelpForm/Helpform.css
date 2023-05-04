@@ -4,8 +4,9 @@
   display: flex;
   flex-direction: row;
   gap: 4rem;
-}
-form{
+  
+} 
+#Helpform form{
   background-color: white;
   margin-left: 5rem;
   padding: 3rem 2rem 3rem 2rem;
@@ -15,17 +16,23 @@ form{
   text-align: left;
   border-radius: 10px;
 }
-form .name{
+#Helpform form .name{
   display: flex;
   flex-direction: row;
   gap: 1rem;
 }
-form .name main{
+#Helpform form .name main{
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-form input, form select{
+#Helpform form .name main input{
+  width: 100%;
+}
+#Helpform .email_con{
+  width: 100%;
+}
+#Helpform form input, form select{
   background: rgba(255, 255, 255, 0.002);
   border: 1px solid #F0F2F3;
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.12);
@@ -36,100 +43,107 @@ form input, form select{
   font-weight: 600;
   line-height: 24px;
 }
-form div{
+#Helpform form div{
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-::placeholder{
+#Helpform ::placeholder{
   font-size: 14px;
   color: gray;
   opacity: .2;
 }
-form div .number{
+#Helpform form div .number{
   display: flex;
   gap: 10px;
 }
-.number{
+#Helpform .number{
   flex-direction: row;
 }
-#phoneNumber{
-  width: 85%;
-}
-#countryCode{
-  width: 15%;
-}
-#email{
+
+/* #Helpform .phno{
+    width: 90% !important;
+    margin-left: 3%;
+    font-family: AgrandirBold !important;
+    z-index: 999;
+    background-color: white;
+    margin-top: -5px;
+} */
+#Helpform #email{
   margin-left: 0;
+  width: 100%;
 }
-form label{
+#Helpform form label{
   font-family: Segoe UI;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   color: #011B33;
 }
-.submitCon{
+#Helpform .submitCon{
   margin-bottom: 0rem;
 }
-#submit{
+#Helpform #submit{
   background: #0051FF;
   border-radius: 5px;
   color: white;
   padding-block: 10px;
   width: 100%;
 }
-.valid{
+#Helpform .valid{
   text-align: right;
   font-size: 12px;
 }
-article{
+#Helpform article{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 3rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
   margin-left: 3rem;
+  
 }
-article header, article main{
+#Helpform article header, article main{
   color: white;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
-article header h1{
+#Helpform article header{
+  text-align: left;
+}
+#Helpform article header h1{
   font-family: Segoe UI;
   font-size: 36px;
   font-weight: 900;
 }
-article header p{
+#Helpform article header p{
   margin-left: 0px;
-  width: 65%;
-  text-align: center;
+  width: 70%;
+  text-align: left;
   font-family: Segoe UI;
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
   letter-spacing: -0.20000000298023224px;
 }
-article main{
- margin-left: 0;
+#Helpform article main{
  gap: 1rem; 
  text-align: left;
 }
-article main h2{
+#Helpform article main h2{
   font-family: Segoe UI;
   font-size: 33px;
   font-weight: 900;
   line-height: 43px;
 }
-article main p{
+#Helpform article main p{
   margin-left: 0rem;
   font-family: Segoe UI;
   font-size: 19px;
   font-weight: 400;
   line-height: 29px;
 }
-ul{
+#Helpform ul{
   list-style: none;
   margin-left: -1.6rem;
   display: flex;
@@ -140,14 +154,15 @@ ul{
   font-weight: 800;
   line-height: 18px;
 }
-ul a{
+#Helpform ul a{
   text-decoration: none;
   color: white;
 }
-ul li img{
+#Helpform ul li img{
   margin-right: 10px;
+  margin-left: -.5rem;
 }
-small{
+#Helpform small{
   margin-top: 3rem;
   text-align: left;
   color: white;
@@ -156,6 +171,35 @@ small{
   font-weight: 400;
   line-height: 40px;
 }
-small img{
+#Helpform small img{
   margin-right: 10px;
+}
+
+@media (max-width:1200px) {
+  #Helpform article header h1, article main h2{
+    font-size: 25px;
+    line-height: 32px;
+  }
+#Helpform article header p{
+    font-size: 14px;
+    width: 100%;
+  }
+}
+
+@media (max-width:1100px){
+  #Helpform{
+    flex-direction: column;
+  }
+  #Helpform form{
+    margin-left: 2rem;
+  }
+}
+
+@media (max-width:800px){
+  #Helpform{
+    margin-left: -1rem;
+    margin-right: -5rem;
+    overflow-x: hidden;
+    width: 100%;
+  }
 }
