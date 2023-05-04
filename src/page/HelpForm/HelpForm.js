@@ -2,16 +2,20 @@ import React from 'react'
 import Container from 'react-bootstrap/esm/Container'
 import './Helpform.css'
 import { useState } from 'react'
+import PhoneInput from "react-phone-input-2";
+
 
 function HelpForm() {
 
+  //  select default option
+  const defSelect = 'Select Category'
+
+  const [value, setValue] = useState("")
   const [formData, setFormData] = useState({
     firstname: '',
     lastname: '',
     email: '',
-    countryCode : '',
-    phoneNumber: '',
-    help: ''
+    help: defSelect
   })
 
   function onChange (event){
@@ -20,36 +24,72 @@ function HelpForm() {
         ...prevFormData,
         [event.target.name] : event.target.value
       }
-     
     })
   }
+ console.log(formData.help)
+
+  // validate name 
+  const [firstname, setFirstName] = useState('')
+  const [lastname, setLastName] = useState('')
 
    //Email validation 
    const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; 
    const [emailValidityMessage, setEmailValidityMessage] = useState('')
 
-  //  phone verification
-  const [phoneValidityMessage, setPhoneValidityMessage] = useState('')
+
+  // selected or not message
+  const [selected, setSelected] = useState('')
+
+
 
   // check if input is empty
   const [filled, setFilled] = useState(false)
+  const [emailfilled, setEmailFilled] = useState(false)
+  const [selectfilled, setSelectFilled] = useState(false)
   
   function submit (event){
     event.preventDefault()
-    if(formData.firstname.length > 0 && formData.lastname.length > 0 && formData.email.match(validEmail)){
+    if(formData.firstname.length > 0){
       setFilled(true)
-      setEmailValidityMessage('Valid Email Address')
-      setPhoneValidityMessage('Invalid phone number')
+      setFirstName('')
     }else{
       setFilled(false)
+      setFirstName('Name is required')
+    }
+    if(formData.lastname.length > 0){
+      setFilled(true)
+      setLastName('')
+    }else{
+      setFilled(false)
+      setLastName('Name is required')
+    }
+    if(formData.email.match(validEmail)){
+      setEmailFilled(true)
+      setEmailValidityMessage('Valid Email Address')
+    }else if(formData.email.length < 2){
+      setEmailFilled(false)
+      setEmailValidityMessage('Email Address is required')
+    }
+    else{
+      setEmailFilled(false)
       setEmailValidityMessage('Invalid Email Address')
-      setPhoneValidityMessage('Valid phone Number')
+    }
+    
+    // select option checked
+    if(formData.help===defSelect){
+      setSelectFilled(false)
+      setSelected('Select a category')
+    }else{
+      setSelectFilled(true)
+      setSelected('')
     }
 
   }
+  console.log(value)
 
   return (
-    <Container className="px-4  text-center" id="Helpform" style={{ marginTop: '7rem' }}>
+    <Container  id="Helpform" style={{ marginTop: '7rem' }}>
+      <div className='form_con'>
       <form onSubmit={submit}>
         <section className='name'>
           <main>
@@ -62,6 +102,7 @@ function HelpForm() {
             onChange={onChange}
             value={formData.firstname}
             />
+            <span className='valid' style={{color: filled ? '': 'red'}}> {firstname}</span>
           </main>
           <main>
             <label htmlFor='lastname'>Last Name</label>
@@ -73,52 +114,50 @@ function HelpForm() {
             onChange={onChange}
             value={formData.lastname}
             />
+            <span className='valid' style={{color: filled ? '': 'red'}} > {lastname}</span>
           </main>
         </section>
-        <div>
-          <label htmlFor='phno'>
+        <div className="phone-input">
+        <label htmlFor='phno'>
             What's your phone number? (Optional)
           </label>
-          <main className='number'>
-            <input
-            name='countryCode'
-            type='text'
-            id='countryCode'
-            placeholder='+234'
-            onChange={onChange}
-            value={formData.countryCode}
+          <PhoneInput
+            country={"ng"}
+            value={value.phone}
+            onChange={(phone) => setValue({ phone })}
+            inputStyle={{ width: "80%", fontFamily: "AgrandirBold", marginLeft: '3rem', zIndex: '40', backgroundColor:'white'}}
+            dropdownStyle={{ fontFamily: "AgrandirBold", marginTop: '3rem', marginLeft: '0rem', width: '300px', padding: '1rem 1rem' }}
+            buttonStyle={{backgroundColor: 'white'}}
+            specialLabel=''
+            searchStyle={{width:'100%', padding: '5px', border: '1px solid gray', marginLeft: '0px',outline: '5px solid white'}}
+            placeholder=""
+            id="phno"
+            enableSearch ={true}
+            disableSearchIcon={true}
+            countryCodeEditable={false}
           />
-          <input
-            name='phoneNumber'
-            type='text'
-            id='phoneNumber'
-            placeholder='803 300 3300'
-            onChange={onChange}
-            value={formData.phoneNumber}
-          />
-          </main>
-          <span className='valid' style={{color: filled ? 'green' : 'red'}}> {phoneValidityMessage}</span>
         </div>
-        <div>
+        <div className='email_con'>
           <label htmlFor='email'>Email</label>
           <input
             name='email'
-            type='email'
+            type='text' 
             id='email'
             placeholder='mail@mail.com'
             onChange={onChange}
             value={formData.email}
           />
-          <span className='valid' style={{color: filled ? 'green' : 'red'}}> {emailValidityMessage}</span>
+          <span className='valid' style={{color: emailfilled ? 'green' : 'red'}}> {emailValidityMessage}</span>
         </div>
         <div>
           <label htmlFor='help'>How can we help? </label>
-          <select value={formData.help} onChange={onChange} id='help' name='help' placeholder='Select Category'>
-            <option value='Select Category'>Select Category</option>
+          <select value={formData.help} onChange={onChange} id='help' name='help' placeholder='Select Category' required>
+            <option value='Select Category'>{defSelect}</option>
             <option value='paymentIssue'>Payment Issue</option>
             <option value='upgradeCard'>Unable to Uprade Card</option>
             <option value='delayedDeposit'>Delayed Deposit of Funds</option>
           </select>
+          <span className='valid' style={{color: selectfilled ? '': 'red'}}> {selected}</span>
         </div>
      <div className='submitCon'>
          <input
@@ -129,6 +168,9 @@ function HelpForm() {
         />
      </div>
       </form>
+      </div>
+
+
       <article>
           <header>
             <h1>
