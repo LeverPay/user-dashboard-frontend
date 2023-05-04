@@ -8,9 +8,8 @@ import React from "react";
 //-------- Sarah's import starts here-------------
 //import logo from './logo.svg';
 import "bootstrap/dist/css/bootstrap.min.css";
-import UserDashboardLayout from "./page/UserDashboardLayout";
+// import UserDashboardLayout from "./page/UserDashboardLayout";
 import Feedback from "./page/Feedback/Feedback";
-import HelpForm from "./page/HelpForm/HelpForm";
 
 
 //import "./App.css";
@@ -22,8 +21,7 @@ function App() {
   return (
     <>
       {/* <UserDashboardLayout /> */}
-      {/* <Feedback/> */}
-      <HelpForm/>
+      <Feedback/>
     </>
   );
 }

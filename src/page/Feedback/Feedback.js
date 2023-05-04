@@ -19,9 +19,17 @@ function Feedback() {
         })
       }
     
+         //Number verification
+         const [help_name, setHelp_Name] = useState('') 
+         const [nameFilled, setNameFilled] = useState(false)
+
     //   message lenght function
     const message = formData.message
     const messageLength = message.length
+    // message verification
+    const [msg, setMsg] = useState('')
+    const [msgFillled, setMsgFilled] = useState(false)
+
 
     //Email validation 
     const validEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/; 
@@ -33,17 +41,35 @@ function Feedback() {
 
     function submit (event){
         event.preventDefault()
-        if(formData.name.length > 2 && formData.message.length > 20 && formData.email.match(validEmail)){
+        if(formData.email.match(validEmail)){
             setFilled(true)
             setEmailValidityMessage('Valid Email')
         }else {
             setFilled(false)
             setEmailValidityMessage('Invalid Email Address')
         }
+        if(formData.name.length === 0){
+          setNameFilled(false)
+          setHelp_Name('Please add your name')
+        }else{
+          setNameFilled(true)
+          setHelp_Name('')
+        }
+        if(formData.message.length < 20){
+          setMsgFilled(false)
+          setMsg('Minimum of 30 characters')
+        }else{
+          setMsgFilled(true)
+          setMsg('')
+        }
     }
+    
+   
+    
+       
 
   return (
-    <Container className="px-4  text-center" id="feedback" style={{ marginTop: '4rem' }}>s
+    <Container  id="feedback" style={{ marginTop: '4rem' }}>s
         <div className='header'>
             <h1>
                 Help!
@@ -69,6 +95,7 @@ function Feedback() {
                 }}
                 />
                 </div>
+                <small className='validity' style={{color: nameFilled ? 'green' : 'red'}}>{help_name}</small>
                 
                 <div>
                 <input
@@ -98,6 +125,7 @@ function Feedback() {
                 value={formData.message}
                 />
                 </div>
+                <small className='validity' style={{color: msgFillled ? 'green' : 'red'}}>{msg}</small>
                 
                 <div className='submitCon'>
                     <span>
