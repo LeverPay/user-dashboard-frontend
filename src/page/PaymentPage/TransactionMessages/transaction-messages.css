@@ -1,0 +1,14 @@
+.email-header {
+  background: #082e88;
+  height: 92px;
+  width: 100%;
+  padding-top: 30px;
+}
+.email-message {
+  width: 505px;
+  height: fit-content;
+  border: solid 1px black;
+}
+.email-message h2 {
+  color: #172c63;
+}
