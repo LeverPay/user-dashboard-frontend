@@ -157,6 +157,18 @@ const NavComponent = () => {
                       Settings
                     </NavLink>
                   </li>{" "}
+                  <li>
+                    <NavLink
+                      to="/payment-page"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeClassName="active"
+                    >
+                      {" "}
+                      <i class="icofont-ui-settings"></i>
+                      Checkout
+                    </NavLink>
+                  </li>{" "}
                 </ul>
               </div>
               <div className="bottom-options">
