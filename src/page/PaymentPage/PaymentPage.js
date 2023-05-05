@@ -6,6 +6,7 @@ import { CreditCard } from "./CreditCard/CreditCard";
 import LeverpayLogo from "../../assets/images/logo.png";
 import InsufficientBalance from "./TransactionMessages/InsufficientBalance";
 import EmailMessage from "./TransactionMessages/EmailMessage";
+import SuccessMessage from "./TransactionMessages/SuccessMessage";
 
 function PaymentPage() {
   const [activeIndex, setActiveIndex] = useState(1);
@@ -40,6 +41,7 @@ function PaymentPage() {
           </div>
           <div className={`panel ${checkActive(2, "active2")}`}>
             <EmailMessage />
+            <SuccessMessage />
           </div>
         </div>
       </div>
