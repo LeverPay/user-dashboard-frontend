@@ -142,7 +142,7 @@ function Feedback() {
               id='txid'
               onChange={onChange}
               value={formData.txid}
-              placeholder='Transaction ID'
+              placeholder='Transaction ID (Generate invoice to get TXID)'
             />
           </div>
           <small className='validity' style={{ color: filled ? 'green' : 'red' }}>{emailValidityMessage}</small>
