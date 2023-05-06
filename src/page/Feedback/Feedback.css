@@ -1,0 +1,202 @@
+#feedback {
+  /* width: 55%; */
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 0;
+}
+
+#feedback form {
+  width: 50%;
+  border: 1px solid red;
+  background-color: white;
+  padding: 5rem 3rem;
+  padding-bottom: 3rem;
+  padding-right: 0;
+  display: flex;
+  margin-left: 1rem;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+}
+#feedback .header {
+  color: white;
+  text-align: left;
+  /* margin-left: 3rem; */
+  width: 48%;
+}
+#feedback .header h1 {
+  font-family: Segoe UI;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 49px;
+}
+#feedback .header p {
+  font-family: Segoe UI;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 24px;
+  margin-left: 0;
+}
+#feedback form main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#feedback ::placeholder {
+  font-size: 14px;
+}
+#feedback .label {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+}
+#feedback #email,
+#feedback #txid {
+  margin-left: 2.8rem;
+}
+#feedback #email,
+#feedback #name,
+#feedback #txid {
+  border: none;
+  border-bottom: 2px solid #d9d9d9;
+  width: 100%;
+}
+#feedback #email,
+#feedback #txid {
+  width: 92%;
+}
+#feedback #txid {
+  border-bottom: 2px solid black;
+}
+#feedback #message {
+  border: none;
+}
+#feedback input {
+  padding-bottom: 7px;
+  padding-top: 7px;
+  padding-left: 5px;
+  width: 100%;
+  background: transparent;
+}
+#feedback Input,
+textarea {
+  border: none;
+  outline: none;
+  background-color: none;
+}
+#feedback Input:active {
+  border: none;
+  outline: none;
+  background-color: none;
+}
+#feedback #file {
+  /* border: 1px solid; */
+  padding: 10px 20px;
+  width: fit-content;
+  border-radius: 10px;
+  font-family: Sergeo UI;
+  font-weight: 800;
+  margin-left: 0;
+  margin-top: -1rem;
+  width: 100%;
+  /* display: none; */
+}
+#feedback .attach:hover {
+  color: gray;
+  cursor: pointer;
+}
+#feedback .submitCon {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.submitCon span {
+  margin-left: 0rem;
+}
+#feedback #submit {
+  background: linear-gradient(90deg, #ff0be7 1.45%, #302574 155.22%);
+  border-radius: 50px;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  width: 120px;
+}
+#feedback .validity {
+  margin-top: -2rem;
+  text-align: right;
+  color: red;
+  font-weight: 600;
+}
+#feedback .contact {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+#feedback .contact p {
+  color: white;
+  font-family: Segoe UI;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 800;
+  line-height: 18px;
+}
+#feedback ul {
+  list-style: none;
+  margin-left: -1.6rem;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  font-family: Segoe UI;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 18px;
+}
+#feedback ul a {
+  text-decoration: none;
+  color: white;
+}
+#feedback ul li img {
+  margin-right: 10px;
+  margin-left: 20px;
+}
+#feedback textarea {
+  width: 460px;
+  height: 70px;
+}
+#feedback #thumbs {
+  margin-top: -1rem;
+}
+
+@media (max-width: 1000px){
+    #feedback{
+        width: 100%;
+        margin-left: 0;
+    }
+    #feedback form{
+        width: 100%;
+        padding: 3rem 2rem;
+        margin-right: 1rem;
+    }
+    #feedback .header{
+        width: 100%;
+    }
+    #feedback textarea{
+        width: 100%;
+    }
+    #feedback .contact{
+        flex-direction: column;
+    }
+    #feedback ul{
+        font-size: 12px;
+
+    }
+    #feedback #thumbs{
+        display: none;
+    }
+}
