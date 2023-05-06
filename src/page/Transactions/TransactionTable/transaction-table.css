@@ -46,13 +46,14 @@
 }
 .table-title {
   display: flex;
-  padding-right: 230px;
+  padding-right: 30px;
 }
 .table-title a {
   color: #329521;
   font-family: KB-sans-Regular;
   font-weight: bold;
   text-decoration: none;
+  margin-left: 50px;
 }
 /* .table-title a :hover {
   color: #282541 !important;

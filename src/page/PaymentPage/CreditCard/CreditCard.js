@@ -23,7 +23,6 @@ const onSubmit = async (values) => {
 };
 
 export const CreditCard = () => (
-  
   <Styles>
     <Form
       onSubmit={onSubmit}
@@ -113,7 +112,7 @@ export const CreditCard = () => (
                       Reset
                     </button>
                   </div>
-                  <div className="col-md-10">
+                  <div className="col-md-10" style={{ marginLeft: "10px" }}>
                     {" "}
                     {/* <button
                       type="submit"
@@ -126,7 +125,14 @@ export const CreditCard = () => (
                   </div>
                 </div>
               </div>
-              <div className="col-md-5 card-section">
+              <div
+                className="col-md-5 card-section"
+                style={{
+                  background: "#fafafa",
+                  paddingTop: "20px",
+                  borderRadius: "10px",
+                }}
+              >
                 <Card
                   number={values.number || ""}
                   name={values.name || ""}
