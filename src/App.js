@@ -10,7 +10,6 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import UserDashboardLayout from "./page/UserDashboardLayout";
 
-import CardModal from "./components/CardModal/CardModal";
 
 //import "./App.css";
 //import "./App.css";
@@ -21,7 +20,6 @@ function App() {
   return (
     <>
       <UserDashboardLayout />
-      {/* <CardModal/> */}
     </>
   );
 }
