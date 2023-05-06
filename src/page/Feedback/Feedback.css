@@ -9,7 +9,6 @@
 
 #feedback form {
   width: 50%;
-  border: 1px solid red;
   background-color: white;
   padding: 5rem 3rem;
   padding-bottom: 3rem;
@@ -92,6 +91,9 @@ textarea {
   border: none;
   outline: none;
   background-color: none;
+}
+#feedback #txid::placeholder{
+    opacity: .4;
 }
 #feedback #file {
   /* border: 1px solid; */
