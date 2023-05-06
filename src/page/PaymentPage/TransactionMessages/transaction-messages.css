@@ -1,0 +1,128 @@
+.email-header {
+  background: #082e88;
+  height: 92px;
+  width: 100%;
+  padding-top: 30px;
+}
+.email-message {
+  width: 505px;
+  height: fit-content;
+  box-shadow: 0 0 2px 2px rgb(197, 197, 197);
+  padding-bottom: 10px;
+}
+.email-message h3 {
+  color: #172c63;
+  font-family: MontserratB;
+  margin-left: 20px;
+}
+.mail-body {
+  padding: 60px 30px 10px 30px !important;
+  /* border-bottom: ; */
+}
+hr {
+  border: solid 1px #cd4729;
+  opacity: 1 !important;
+  margin-top: 60px;
+}
+.mail-link {
+  color: #cd4729;
+  text-decoration: none;
+}
+.mail-body p {
+  font-family: MontserratB;
+  color: #172c63;
+  font-size: 17px;
+  line-height: 21px;
+}
+
+.success-message-div {
+  width: 502px;
+  height: 706px;
+  box-shadow: 0 0 2px 2px rgb(197, 197, 197);
+  padding: 40px 25px;
+  margin-top: 10px;
+  font-family: MontserratB;
+  background: #fff;
+}
+.header-logo {
+  flex-grow: 1;
+}
+.payment-mode {
+  background: #979797;
+  color: #fff;
+  font-family: MontserratB;
+  margin-top: 30px;
+  padding-bottom: 1px;
+}
+.payment-mode h4 {
+  font-family: MontserratB;
+}
+
+.success-checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #7ac142;
+
+  fill: #7ac142;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+.success-checkmark {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 4;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+
+  box-shadow: inset 0px 0px 0px #5fce2f;
+  animation: fill 0.4s ease-in-out 0.4s forwards,
+    scale 0.3s ease-in-out 0.9s both;
+}
+.success-checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes scale {
+  0%,
+  100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #5fce2f;
+  }
+}
+.checkmark-div {
+  height: 150px;
+  width: 150px;
+  background: rgb(210, 241, 197);
+  background: radial-gradient(
+    circle,
+    rgba(210, 241, 197, 1) 48%,
+    rgba(239, 250, 234, 1) 54%
+  );
+  padding-left: 30%;
+  border-radius: 50%;
+  padding-bottom: 1px;
+  /* margin-top: 30px; */
+}
+.success-message-div h1 {
+  color: #5fce2f;
+  font-family: MontserratB;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
