@@ -24,6 +24,8 @@ import { MerchantComponent } from "../components/MerchantComponent/MerchantCompo
 import "./UserDashboardLayout.css";
 import Settings from "./SettingsPage/Settings";
 import ProfilePage from "./ProfilePage/ProfilePage";
+import HelpForm from "./HelpForm/HelpForm";
+import Faq from "./FaqPage/Faq";
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState({});
@@ -123,6 +125,8 @@ export const UserDashboardLayout = () => {
             <Route path="my cards" element={<MyCardsSilver />} />
             <Route path="settings" element={<Settings />} />
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="help" element={<HelpForm />} />
+            <Route path="faq" element={<Faq />} />
             {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
         </div>
