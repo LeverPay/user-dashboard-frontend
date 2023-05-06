@@ -26,6 +26,7 @@ import Settings from "./SettingsPage/Settings";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import HelpForm from "./HelpForm/HelpForm";
 import Faq from "./FaqPage/Faq";
+import Feedback from "./Feedback/Feedback";
 import PaymentPage from "./PaymentPage/PaymentPage";
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -128,6 +129,7 @@ export const UserDashboardLayout = () => {
             <Route path="profile" element={<ProfilePage />} />
             <Route path="help" element={<HelpForm />} />
             <Route path="faq" element={<Faq />} />
+            <Route path="customer-support" element={<Feedback />} />
             <Route path="payment-page" element={<PaymentPage />} />
             {/* <Route path="*" element={<NoMatch />} /> */}
           </Routes>
