@@ -23,7 +23,10 @@ const TransactionTable = (props) => {
       <div className="transactions-table-container">
         <div className="table-title">
           <h5>{props.tableTitle}</h5>
-          <a href="/#">View all </a>
+          {/* <a href="/#">View all </a> */}
+          <a href="/#" style={{ color: "#fff", fontSize: "12px" }}>
+            Need help ?{" "}
+          </a>
         </div>
         <table className="col-md-12 col-12">
           <thead>
