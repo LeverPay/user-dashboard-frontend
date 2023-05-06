@@ -65,7 +65,7 @@ export const Transactions = () => {
           <div className={`panel ${checkActive(1, "active2")}`}>
             <TransactionTable
               data={allTransactions}
-              tableTitle="Transactions" 
+              tableTitle="Transactions"
             />
           </div>
           <div className={`panel ${checkActive(2, "active2")}`}>
