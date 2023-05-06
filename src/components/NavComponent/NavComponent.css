@@ -85,7 +85,7 @@
 .bottom-options {
   display: flex;
   flex-direction: column;
-  margin-top: 80%;
+  margin-top: 50%;
 }
 
 .bottom-options span {

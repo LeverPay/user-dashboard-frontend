@@ -9,17 +9,17 @@ function MycardEnteprise() {
     backgroundImage="./images/CardEnterprise.png"
     cardtype="USDT"
     cardname="Enterprise"
-    name={CardInfo[2].name}
+    name={CardInfo[3].name}
     // lock="./images/lock.png"
     bg2="url('./images/Ellipse 7.png')"
-    cardNumber={CardInfo[2].no}
-    cvv={CardInfo[2].cvv}
+    cardNumber={CardInfo[3].no}
+    cvv={CardInfo[3].cvv}
     copy = './images/copy.png'
   />}
-  modalcardtype = {CardInfo[2].id}
-  modalcardname = {CardInfo[2].name}
-  modalcardno= {CardInfo[2].no}
-  modalcardcvv = {CardInfo[2].cvv} />;
+  modalcardtype = {CardInfo[3].id}
+  modalcardname = {CardInfo[3].name}
+  modalcardno= {CardInfo[3].no}
+  modalcardcvv = {CardInfo[3].cvv} />;
 }
 
 export default MycardEnteprise;
