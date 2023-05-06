@@ -1,13 +1,12 @@
-#Helpform{
+#Helpform {
   width: 100%;
   margin-bottom: 5rem;
   margin-top: 2rem;
   display: flex;
   flex-direction: row;
   gap: 5rem;
-  
-} 
-#Helpform form{
+}
+#Helpform form {
   background-color: white;
   margin-left: 5rem;
   padding: 3rem 2rem 3rem 2rem;
@@ -18,25 +17,26 @@
   width: 90%;
   border-radius: 10px;
 }
-#Helpform form .name{
+#Helpform form .name {
   display: flex;
   flex-direction: row;
   gap: 1rem;
 }
-#Helpform form .name main{
+#Helpform form .name main {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-#Helpform form .name main input{
+#Helpform form .name main input {
   width: 100%;
 }
-#Helpform .email_con{
+#Helpform .email_con {
   width: 100%;
 }
-#Helpform form input, form select{
+#Helpform form input,
+form select {
   background: rgba(255, 255, 255, 0.002);
-  border: 1px solid #F0F2F3;
+  border: 1px solid #f0f2f3;
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.12);
   border-radius: 6px;
   padding: 10px 10px;
@@ -45,45 +45,45 @@
   font-weight: 600;
   line-height: 24px;
 }
-#Helpform form div{
+#Helpform form div {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-#Helpform ::placeholder{
+#Helpform ::placeholder {
   font-size: 14px;
   color: gray;
-  opacity: .7;
+  opacity: 0.7;
 }
-#Helpform form div .number{
+#Helpform form div .number {
   display: flex;
   gap: 10px;
 }
-#Helpform .number{
+#Helpform .number {
   flex-direction: row;
 }
-#Helpform #message{
+#Helpform #message {
   padding: 10px 20px;
   border-radius: 10px;
-  border: 5px solid #F0F2F3;
+  border: 5px solid #f0f2f3;
   outline: none;
 }
-#Helpform #message:active{
+#Helpform #message:active {
   border: none;
   outline: none;
 }
-#Helpform #email{
+#Helpform #email {
   margin-left: 0;
   width: 100%;
 }
-#Helpform form label{
+#Helpform form label {
   font-family: Segoe UI;
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
-  color: #011B33;
+  color: #011b33;
 }
-#Helpform #file{
+#Helpform #file {
   /* border: 1px solid; */
   padding: 10px 20px;
   width: fit-content;
@@ -95,47 +95,47 @@
   width: 100%;
   /* display: none; */
 }
-#Helpform .attach:hover{
+#Helpform .attach:hover {
   color: gray;
   cursor: pointer;
 }
-#Helpform .submitCon{
+#Helpform .submitCon {
   margin-bottom: 0rem;
 }
-#Helpform #submit{
-  background: #0051FF;
+#Helpform #submit {
+  background: #0051ff;
   border-radius: 5px;
   color: white;
   padding-block: 10px;
   width: 100%;
 }
-#Helpform .valid{
+#Helpform .valid {
   text-align: right;
   font-size: 12px;
 }
-#Helpform article{
+#Helpform article {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 3rem;
   margin-top: 2rem;
   margin-left: 3rem;
-  
 }
-#Helpform article header, article main{
+#Helpform article header,
+article main {
   color: white;
   display: flex;
   flex-direction: column;
 }
-#Helpform article header{
+#Helpform article header {
   text-align: left;
 }
-#Helpform article header h1{
+#Helpform article header h1 {
   font-family: Segoe UI;
   font-size: 36px;
   font-weight: 900;
 }
-#Helpform article header p{
+#Helpform article header p {
   margin-left: 0px;
   width: 70%;
   text-align: left;
@@ -145,24 +145,24 @@
   line-height: 20px;
   letter-spacing: -0.20000000298023224px;
 }
-#Helpform article main{
- gap: 1rem; 
- text-align: left;
+#Helpform article main {
+  gap: 1rem;
+  text-align: left;
 }
-#Helpform article main h2{
+#Helpform article main h2 {
   font-family: Segoe UI;
   font-size: 33px;
   font-weight: 900;
   line-height: 43px;
 }
-#Helpform article main p{
+#Helpform article main p {
   margin-left: 0rem;
   font-family: Segoe UI;
   font-size: 19px;
   font-weight: 400;
   line-height: 29px;
 }
-#Helpform ul{
+#Helpform ul {
   list-style: none;
   margin-left: -1.6rem;
   display: flex;
@@ -173,15 +173,15 @@
   font-weight: 800;
   line-height: 18px;
 }
-#Helpform ul a{
+#Helpform ul a {
   text-decoration: none;
   color: white;
 }
-#Helpform ul li img{
+#Helpform ul li img {
   margin-right: 10px;
-  margin-left: -.5rem;
+  margin-left: -0.5rem;
 }
-#Helpform small{
+#Helpform small {
   margin-top: 3rem;
   text-align: left;
   color: white;
@@ -190,32 +190,33 @@
   font-weight: 400;
   line-height: 40px;
 }
-#Helpform small img{
+#Helpform small img {
   margin-right: 10px;
 }
 
-@media (max-width:1200px) {
-  #Helpform article header h1, article main h2{
+@media (max-width: 1200px) {
+  #Helpform article header h1,
+  article main h2 {
     font-size: 25px;
     line-height: 32px;
   }
-#Helpform article header p{
+  #Helpform article header p {
     font-size: 14px;
     width: 100%;
   }
 }
 
-@media (max-width:1100px){
-  #Helpform{
+@media (max-width: 1100px) {
+  #Helpform {
     flex-direction: column;
   }
-  #Helpform form{
+  #Helpform form {
     margin-left: 2rem;
   }
 }
 
-@media (max-width:800px){
-  #Helpform{
+@media (max-width: 800px) {
+  #Helpform {
     margin-left: -1rem;
     margin-right: -5rem;
     overflow-x: hidden;
