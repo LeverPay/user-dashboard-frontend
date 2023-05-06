@@ -87,9 +87,9 @@ function Feedback() {
   }
 
   const [like, setLike] = useState(false)
-function isLiked(){
-  setLike(!like)
-}
+  function isLiked() {
+    setLike(!like)
+  }
 
 
 
@@ -136,14 +136,14 @@ function isLiked(){
             />
           </div>
           <div>
-              <input
+            <input
               name='txid'
               type='text'
               id='txid'
               onChange={onChange}
               value={formData.txid}
               placeholder='Transaction ID'
-              />
+            />
           </div>
           <small className='validity' style={{ color: filled ? 'green' : 'red' }}>{emailValidityMessage}</small>
 
@@ -161,7 +161,7 @@ function isLiked(){
             />
           </div>
           <div>
-            <label className='attach' htmlFor='file'><img alt='' src='./images/imgIcon.png' style={{ width: '20px' }} /> Attach an image or screenshot (Optional)
+            <label className='attach' htmlFor='file'><img alt='' src='./images/imgIcon.png' style={{ width: '20px' }} /> Attach an image or screenshot (Optional)            
               <input
                 type='file'
                 name='file'
@@ -185,7 +185,7 @@ function isLiked(){
               id='submit'
             />
           </div>
-         
+
         </main>
       </form>
       <div className='contact'>
@@ -195,7 +195,7 @@ function isLiked(){
         <ul>
           <li><a href='tel:2347066080819'><img alt='' src='./images/call.png' />+234  7068936384 </a></li>
           <li><a href='https://api.whatsapp.com/send?phone=2347066080819&text=Hello Leverpay' target='blank'><img alt='' src='./images/whatsapp.png' />+234  7068933455 </a></li>
-          <li><img alt='' id='thumbs' src='./images/thumbs.png' onClick={isLiked} style={{filter: like ? 'brightness(50%)': 'brightness(100%)', cursor: 'pointer'}} /></li>
+          <li><img alt='' id='thumbs' src='./images/thumbs.png' onClick={isLiked} style={{ filter: like ? 'brightness(50%)' : 'brightness(100%)', cursor: 'pointer' }} /></li>
         </ul>
       </div>
     </Container>

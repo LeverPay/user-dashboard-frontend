@@ -39,7 +39,7 @@ function HelpForm() {
     const formData = new FormData()
     formData.append('file', file)
     // axios implementation
-    axios.post('localhost:3001/upload', formData)
+    axios.post('https://httpbin.org/post', formData)
       .then((e) => {
         console.log('success')
       })
@@ -176,7 +176,7 @@ function HelpForm() {
               <option value='upgradeCard'>Unable to Uprade Card</option>
               <option value='delayedDeposit'>Delayed Deposit of Funds</option>
             </select>
-           
+
           </div>
           <div className='label'>
             <textarea
@@ -188,17 +188,17 @@ function HelpForm() {
               onChange={onChange}
               value={formInfo.message}
             />
-             <span className='valid' style={{ color: selectfilled ? '' : 'red' }}> {selected}</span>
+            <span className='valid' style={{ color: selectfilled ? '' : 'red' }}> {selected}</span>
           </div>
           <div>
             <label className='attach' htmlFor='file'><img alt='' src='./images/imgIcon.png' style={{ width: '20px' }} /> Attach an image or screenshot (Optional)
-            <input
-              type='file'
-              name='file'
-              id='file'
-              onChange={handlefile}
-              multiple 
-              style={{display: 'none'}}
+              <input
+                type='file'
+                name='file'
+                id='file'
+                onChange={handlefile}
+                multiple
+                style={{ display: 'none' }}
               />
             </label>
           </div>
@@ -236,12 +236,12 @@ function HelpForm() {
             <li><a href='https://t.me/+2347066080819' target='blank' ><img alt='' src='./images/telegram.png' />+234  7068933455 </a></li>
           </ul>
         </main>
-        <Link to= '/faq' >
-        {" "}
-        <small style={{cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid transparent'}}> 
-          <img alt='' src='./images/helpDesk.png' />
-          Search the help desk
-        </small>
+        <Link to='/faq' >
+          {" "}
+          <small style={{ cursor: 'pointer', textDecoration: 'none', borderBottom: '1px solid transparent' }}>
+            <img alt='' src='./images/helpDesk.png' />
+            Search the help desk
+          </small>
         </Link>
       </article>
     </Container>
