@@ -164,7 +164,7 @@ const NavComponent = () => {
                 <ul className="list-unstyled">
                   <li onClick={closeMobileMenu}>
                     {" "}
-                    <Link to="#" className="bottom-link">
+                    <Link to="/help" className="bottom-link"> 
                       <small>
                         {" "}
                         <i class="icofont-question-square"></i>
