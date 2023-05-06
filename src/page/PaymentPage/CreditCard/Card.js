@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import Cards from "react-credit-cards-custom";
-import Logo from "../../../assets/images/half-logo.png";
+import Logo from "../../../assets/images/logo9ja.png";
+import Logo2 from "../../../assets/images/logo.png";
+import DefaultBg from "../../../assets/images/silverCardBackground.png";
+import DiamondBg from "../../../assets/images/diamondBg.png";
+import GoldBg from "../../../assets/images/goldBg.png";
+import PinkBg from "../../../assets/images/pinkBg.png";
+import EnterpriseBg from "../../../assets/images/enterpriseBg.png";
 
 const Container = styled.div`
   .rccs {
@@ -293,15 +299,30 @@ const handleCheckNationalMaxLength = (type) => {
   }
 };
 const handleCheckNationalType = (number) => {
-  const bin = number.toString().substring(0, 6);
-  //Bin pattern Cabal card
-  console.log(number.toString);
+  const bin = number.toString().substring(0, 9); //Bin pattern Cabal card
+  console.log(bin);
   if (
-    /^((7170)|(9657)|(3522)|(604((20[1-9])|(2[1-9][0-9])|(3[0-9]{2})|(400))))/.test(
+    /^(7170)/.test(
+      // /(7170)(5675)/.test(
       bin
     )
   ) {
-    return "leverpay";
+    if (/(7170).(4444)/.test(bin)) {
+      console.log("gold");
+      return "leverpay_gold";
+    } else if (/(7170).(8888)/.test(bin)) {
+      console.log("diamond");
+      return "leverpay_diamond";
+    } else if (/(7170).(9999)/.test(bin)) {
+      console.log("pink");
+      return "leverpay_pink";
+    } else if (/(7170).(0000)/.test(bin)) {
+      console.log("enterprise");
+      return "leverpay_enterprise";
+    } else {
+      console.log("Basic Leverpay Card");
+      return "leverpay";
+    }
   } else {
     return null;
   }
@@ -310,16 +331,81 @@ const handleCheckNationalType = (number) => {
 const nationalCardsStyles = {
   leverpay: {
     div: {
-      color: "#555 !default",
+      color: "#000 !important",
     },
     background: {
-      background: "linear-gradient(25deg, #d5cea6, #b7ad70)",
+      background: `url(${DefaultBg})`,
+      // backgroundRepeat: "no-repeat ",
+      backgroundSize: "cover",
+      backgroundPosition: "100%",
+    },
+    issuer: {
+      backgroundImage: `url(${Logo2})`,
+      height: "20px",
+    },
+    front: {
+      color: "#000 !important",
+    },
+  },
+
+  leverpay_diamond: {
+    background: {
+      background: `url(${DiamondBg})`,
+      // backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "100%",
     },
     issuer: {
       backgroundImage: `url(${Logo})`,
     },
+    div: {
+      color: "#FFF !default",
+    },
+  },
+  leverpay_gold: {
+    issuer: {
+      backgroundImage: `url(${Logo})`,
+    },
+    div: {
+      color: "red !default",
+    },
+    background: {
+      background: `url(${GoldBg})`,
+      // backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "100%",
+    },
+  },
+  leverpay_pink: {
+    issuer: {
+      backgroundImage: `url(${Logo})`,
+    },
+    div: {
+      color: "#555 !default",
+    },
+    background: {
+      background: `url(${PinkBg})`,
+      // backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "100%",
+    },
+  },
+  leverpay_enterprise: {
+    issuer: {
+      backgroundImage: `url(${Logo})`,
+    },
+    div: {
+      color: "#555 !default",
+    },
+    background: {
+      background: `url(${EnterpriseBg})`,
+      // backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      backgroundPosition: "100%",
+    },
   },
 };
+
 export default function CardDisplay(props) {
   return (
     <Container>

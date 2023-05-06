@@ -7,7 +7,7 @@ import Cancel from "../../../assets/images/cancel.png";
 import Padlock from "../../../assets/images/padlock.png";
 import "./payment-modal.css";
 import { Link, NavLink } from "react-router-dom";
-import InsufficientBalance from "../TransactionMessages/InsufficientBalance";
+import InsufficientBalance from "../TransactionMessages/Transaction-report";
 
 export default function PaymentModal() {
   const [slideShow, setSlideShow] = useState(false);
