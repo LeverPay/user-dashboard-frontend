@@ -97,7 +97,7 @@ export default styled.div`
         width: 110px;
         min-width: 60px;
         font-size: 1em;
-        line-height: 32px;
+        line-height: 32px; 
       }
       & > input,
       & > .downshift > input,
@@ -118,7 +118,7 @@ export default styled.div`
         margin-top: 7px;
       }
       & > div {
-        margin-left: 16px;
+        // margin-left: 16px;
         & > label {
           margin-left: 0;
           display: block;
@@ -213,21 +213,24 @@ export default styled.div`
     border: solid 1px #edecec;
     padding: 9px 15px !important;
     border-radius: 10px;
-    // background: red;
     width: 100%;
-    height: 60px;
+    height: 40px;
+    margin-top:-10px;
     font-size: 14px !important;
     text-align: center !important;
     ::placeholder {
       color: grey !important;
-      font-size: 20px !important;
+      font-size: 18px !important;
       font-family: kredit !important;
       font-weight: bold;
     }
   }
-  .card-section {
-    margin-top: -180px;
-  }
+.input-title{
+  margin-top:20px ;
+  float:left !important;
+  color:#0051FF;
+  
+}
   .pay-btn {
     background: #0051ff !important;
     width: 100% !important;
@@ -240,10 +243,11 @@ export default styled.div`
   .reset-btn {
     width: 100% !important;
     margin: 0 !important;
-    font-size: 20px !important;
+    font-size: 17px !important;
     margin-top: 20px !important;
     border-radius: 10px !important;
     font-family: AgrandirBold !important;
+  padding-left:9px !important;
   }
   h5 {
     color: #0051ff !important;
