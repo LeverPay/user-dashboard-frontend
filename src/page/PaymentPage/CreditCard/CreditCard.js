@@ -49,7 +49,7 @@ export const CreditCard = () => (
                   />{" "}
                 </div>
                 <div>
-                  <small className="input-title">Card Num</small>
+                  <small className="input-title">Card Number</small>
                   <Field
                     name="number"
                     component="input"
@@ -60,7 +60,7 @@ export const CreditCard = () => (
                   />
                 </div>
                 <div className="col-md-12">
-                  <small className="input-title">Card Name</small>
+                  <small className="input-title">Card Holder Name</small>
                   <Field
                     name="name"
                     component="input"

@@ -239,6 +239,8 @@ export default styled.div`
     margin-top: 20px !important;
     border-radius: 10px !important;
     font-family: AgrandirBold !important;
+    height:46px;
+    padding-top:7px
   }
   .reset-btn {
     width: 100% !important;
