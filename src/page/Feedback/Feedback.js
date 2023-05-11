@@ -3,9 +3,12 @@ import Container from 'react-bootstrap/esm/Container'
 import { useState } from 'react'
 import './Feedback.css'
 import axios from 'axios'
+import { useLocation } from 'react-router-dom'
 
 
-function Feedback() {
+function Feedback(props) {
+  const location = useLocation()
+  console.log(location)  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -141,7 +144,8 @@ function Feedback() {
               type='text'
               id='txid'
               onChange={onChange}
-              value={formData.txid}
+              // value={formData.txid}
+              value={location.state.txid}
               placeholder='Transaction ID (Generate invoice to get TXID)'
             />
           </div>

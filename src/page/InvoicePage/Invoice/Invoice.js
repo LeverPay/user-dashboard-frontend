@@ -6,8 +6,12 @@ import Col from "react-bootstrap/esm/Col";
 import "./invoice.css";
 import { nanoid } from "nanoid";
 import QRCode from "qrcode";
+import Feedback from "../../Feedback/Feedback";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Invoice({ className, invoice, ref }) {
+  const navigate = useNavigate();
   const [id] = useState(nanoid);
 
   const [qrcode, setQrcode] = useState(id);
@@ -41,7 +45,7 @@ function Invoice({ className, invoice, ref }) {
       id="invoice"
       className={`pt-3 px-3 py-4 col-md-4 col-12 ${className}`}
     >
-      <h4 className="text-center">{id}</h4>
+      <h4 className="text-center">{id}</h4> 
       <div className="price_checkout">
         <span className="px-md-3">
           <h5>{invoice ? invoice.amount : "$0.00"}</h5>
@@ -131,6 +135,9 @@ function Invoice({ className, invoice, ref }) {
           <div>
             <p>Company</p>
             <h6>Apple inc</h6>
+          
+            <h6 style={{color:'red', marginTop: '3rem', cursor:'pointer'}} onClick={()=>{navigate('/customer-support', {state: {txid: id }})}} >Report transaction</h6>
+          
           </div>
           <div>
             {qrcode && <img alt="" className="qrcodeCon" src={qrcode} />}
