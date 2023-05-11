@@ -4,25 +4,31 @@ import { useState } from 'react'
 import './Feedback.css'
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
+import Helpimageupload from '../../components/HelpImageUpload/helpimageupload';
 
 function Feedback(props) {
+
+     const [fileImg, setFileimg] = useState()
+   const [imgfile, setImgfile] = useState()
+   function GetImg(value, imgInfo){
+     setFileimg(value)
+     setImgfile(imgInfo)
+   }
+console.log(imgfile)
+
   const location = useLocation()
   console.log(location)  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
-    txid: ''
+    txid: '',
+      fileImg : fileImg,
+    imginfo: imgfile
 
   })
 
-  const [file, setFile] = useState()
-
-  function handlefile(e) {
-    setFile(e.target.files)
-    console.log(e.target.files)
-  }
 
   function onChange(event) {
     setFormData((prevFormData) => {
@@ -31,17 +37,6 @@ function Feedback(props) {
         [event.target.name]: event.target.value
       }
     })
-    // handle file upload 
-    const formData = new FormData()
-    formData.append('file', file)
-    // axios implementation
-    axios.post('localhost:3001/upload', formData)
-      .then((e) => {
-        console.log('success')
-      })
-      .catch(err => {
-        console.error('Error', err)
-      })
   }
 
   //Number verification
@@ -164,17 +159,8 @@ function Feedback(props) {
               value={formData.message}
             />
           </div>
-          <div>
-            <label className='attach' htmlFor='file'><img alt='' src='./images/imgIcon.png' style={{ width: '20px' }} /> Attach an image or screenshot (Optional)            
-              <input
-                type='file'
-                name='file'
-                id='file'
-                onChange={handlefile}
-                multiple
-                style={{ display: 'none' }}
-              />
-            </label>
+          <div >
+            <Helpimageupload GetfileImg = {GetImg} />
           </div>
           <small className='validity' style={{ color: msgFillled ? 'green' : 'red' }}>{msg}</small>
 
@@ -201,6 +187,11 @@ function Feedback(props) {
           <li><a href='https://api.whatsapp.com/send?phone=2347066080819&text=Hello Leverpay' target='blank'><img alt='' src='./images/whatsapp.png' />+234  7068933455 </a></li>
           <li><img alt='' id='thumbs' src='./images/thumbs.png' onClick={isLiked} style={{ filter: like ? 'brightness(50%)' : 'brightness(100%)', cursor: 'pointer' }} /></li>
         </ul>
+      </div>
+      <div>
+        <Link to= '/transactions'>
+        <p style={{width: '100%', color: 'white', textDecoration: 'underline', fontSize: '20px'}}>Return to Home</p>
+        </Link>
       </div>
     </Container>
   )
