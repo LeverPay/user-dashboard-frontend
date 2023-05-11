@@ -9,7 +9,10 @@ function SuccessMessage() {
   return (
     <>
       <div className="success-message-div">
-        <div className="success-header flexy flexyM">
+        <div
+          className="success-header flexy flexyM"
+          style={{ display: "flex" }}
+        >
           <div className="header-logo">
             {" "}
             <img src={Logo} alt="" />
@@ -32,7 +35,7 @@ function SuccessMessage() {
           </center>
         </div>
         <center>
-          <div className="col-md-5 checkmark-div">
+          <div className="col-md-5 checkmarkk-div">
             <div className=" check-div">
               {" "}
               <center>
@@ -51,10 +54,13 @@ function SuccessMessage() {
           <p style={{ color: "#979797", fontFamily: "MontserratB" }}>
             Your Transaction reference is
             <br />
-            <span> Xklikhsah</span>
+            <span style={{ color: "black" }}> Xklikhsah</span>
           </p>
         </center>
-        <div className="flexy flexyM" style={{ marginTop: "100px" }}>
+        <div
+          className="flexy flexyM"
+          style={{ marginTop: "70px", display: "flex" }}
+        >
           <p style={{ fontFamily: "MontserratB", flexGrow: "1" }}>
             {" "}
             <img

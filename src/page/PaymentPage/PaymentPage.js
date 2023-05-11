@@ -8,42 +8,22 @@ import EmailMessage from "./TransactionMessages/EmailMessage";
 import SuccessMessage from "./TransactionMessages/SuccessMessage";
 
 function PaymentPage() {
-  const [activeIndex, setActiveIndex] = useState(1);
-  const handleClick = (index) => setActiveIndex(index);
-  const checkActive = (index, className) =>
-    activeIndex === index ? className : "";
   return (
     <>
       {" "}
-      <div className="col-md-12 payment-page-container">
-        <div className="col-md-2 logo-holder offset-md-1">
-          {" "}
-          <img src={LeverpayLogo} alt="" width="100%" />
-        </div>
-        <div className="tabs  offset-md-1">
-          <div
-            className={`tab ${checkActive(1, "active2")}`}
-            onClick={() => handleClick(1)}
-          >
-            Credit Card
+      <center>
+        {" "}
+        <div className="col-md-3 payment-page-container">
+          <div className="col-md-5 logo-holder col-6">
+            {" "}
+            <img src={LeverpayLogo} alt="" width="100%" />
           </div>
-          <div
-            className={`tab ${checkActive(2, "active2")}`}
-            onClick={() => handleClick(2)}
-          >
-            Transfer
-          </div>
-        </div>
-        <div className="panels ">
-          <div className={`panel ${checkActive(1, "active2")}`}>
+
+          <div className="col-md-12">
             <CreditCard />
           </div>
-          <div className={`panel ${checkActive(2, "active2")}`}>
-            <EmailMessage />
-            <SuccessMessage />
-          </div>
         </div>
-      </div>
+      </center>
     </>
   );
 }
