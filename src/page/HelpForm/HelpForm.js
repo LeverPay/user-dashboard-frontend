@@ -3,12 +3,21 @@ import Container from 'react-bootstrap/esm/Container'
 import './Helpform.css'
 import { useState } from 'react'
 import PhoneInput from "react-phone-input-2";
-import axios from 'axios'
+// import axios from 'axios'
 import { Link } from "react-router-dom"
+import Helpimageupload from '../../components/HelpImageUpload/helpimageupload';
 
 
 function HelpForm() {
 
+   // get from image in state 
+   const [fileImg, setFileimg] = useState()
+   const [imgfile, setImgfile] = useState()
+   function GetImg(value, imgInfo){
+     setFileimg(value)
+     setImgfile(imgInfo)
+   }
+console.log(imgfile)
   //  select default option
   const defSelect = 'Select Category'
 
@@ -18,15 +27,10 @@ function HelpForm() {
     lastname: '',
     email: '',
     help: defSelect,
-    message: ''
+    message: '',
+    fileImg : fileImg,
+    imginfo: imgfile
   })
-
-  const [file, setFile] = useState()
-
-  function handlefile(e) {
-    setFile(e.target.files)
-    console.log(e.target.files)
-  }
 
   function onChange(event) {
     setFormInfo((prevFormInfo) => {
@@ -35,17 +39,6 @@ function HelpForm() {
         [event.target.name]: event.target.value
       }
     })
-    // handle file upload 
-    const formData = new FormData()
-    formData.append('file', file)
-    // axios implementation
-    axios.post('https://httpbin.org/post', formData)
-      .then((e) => {
-        console.log('success')
-      })
-      .catch(err => {
-        console.error('Error', err)
-      })
   }
 
   // validate name 
@@ -106,6 +99,8 @@ function HelpForm() {
 
   }
 
+ 
+
   return (
     <Container id="Helpform" style={{ marginTop: '7rem' }}>
       <div className='form_con'>
@@ -144,7 +139,7 @@ function HelpForm() {
               country={"ng"}
               value={value.phone}
               onChange={(phone) => setValue({ phone })}
-              inputStyle={{ width: "80%", fontFamily: "AgrandirBold", marginLeft: '3rem', zIndex: '40', backgroundColor: 'white' }}
+              inputStyle={{ width: "80%", fontFamily: "AgrandirBold", marginLeft: '3rem', backgroundColor: 'white' }}
               dropdownStyle={{ fontFamily: "AgrandirBold", marginTop: '3rem', marginLeft: '0rem', width: '300px', padding: '1rem 1rem' }}
               buttonStyle={{ backgroundColor: 'white' }}
               specialLabel=''
@@ -191,16 +186,7 @@ function HelpForm() {
             <span className='valid' style={{ color: selectfilled ? '' : 'red' }}> {selected}</span>
           </div>
           <div>
-            <label className='attach' htmlFor='file'><img alt='' src='./images/imgIcon.png' style={{ width: '20px' }} /> Attach an image or screenshot (Optional)
-              <input
-                type='file'
-                name='file'
-                id='file'
-                onChange={handlefile}
-                multiple
-                style={{ display: 'none' }}
-              />
-            </label>
+            <Helpimageupload GetfileImg = {GetImg} />
           </div>
           <div className='submitCon'>
             <input
