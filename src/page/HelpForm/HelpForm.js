@@ -144,7 +144,7 @@ function HelpForm() {
               country={"ng"}
               value={value.phone}
               onChange={(phone) => setValue({ phone })}
-              inputStyle={{ width: "80%", fontFamily: "AgrandirBold", marginLeft: '3rem', zIndex: '40', backgroundColor: 'white' }}
+              inputStyle={{ width: "80%", fontFamily: "AgrandirBold", marginLeft: '3rem', backgroundColor: 'white' }}
               dropdownStyle={{ fontFamily: "AgrandirBold", marginTop: '3rem', marginLeft: '0rem', width: '300px', padding: '1rem 1rem' }}
               buttonStyle={{ backgroundColor: 'white' }}
               specialLabel=''
