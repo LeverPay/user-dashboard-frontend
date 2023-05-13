@@ -220,6 +220,7 @@ console.log(imgfile)
             <li><a href='tel:2347066080819'><img alt='' src='./images/call.png' />+234  7068936384 </a></li>
             <li><a href='https://api.whatsapp.com/send?phone=2347066080819&text=Hello Leverpay' target='blank'><img alt='' src='./images/whatsapp.png' />+234  7068933455 </a></li>
             <li><a href='https://t.me/+2347066080819' target='blank' ><img alt='' src='./images/telegram.png' />+234  7068933455 </a></li>
+            <li>Send us a mail @<a href='mailto:' target='blank' >Leverpay001@gmail.com</a></li>
           </ul>
         </main>
         <Link to='/faq' >

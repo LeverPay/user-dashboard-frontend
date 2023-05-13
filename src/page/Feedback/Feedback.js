@@ -2,7 +2,6 @@ import React from 'react'
 import Container from 'react-bootstrap/esm/Container'
 import { useState } from 'react'
 import './Feedback.css'
-import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Helpimageupload from '../../components/HelpImageUpload/helpimageupload';
@@ -186,6 +185,7 @@ console.log(imgfile)
           <li><a href='tel:2347066080819'><img alt='' src='./images/call.png' />+234  7068936384 </a></li>
           <li><a href='https://api.whatsapp.com/send?phone=2347066080819&text=Hello Leverpay' target='blank'><img alt='' src='./images/whatsapp.png' />+234  7068933455 </a></li>
           <li><img alt='' id='thumbs' src='./images/thumbs.png' onClick={isLiked} style={{ filter: like ? 'brightness(50%)' : 'brightness(100%)', cursor: 'pointer' }} /></li>
+          <li>Send us a mail @<a href='mailto:' target='blank' >Leverpay001@gmail.com</a></li>
         </ul>
       </div>
       <div>
