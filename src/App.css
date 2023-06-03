@@ -56,8 +56,27 @@
   src: url(./assets/fonts/kumbh-sans/KumbhSans-Regular.ttf);
 }
 
+/*kredit font */
+@font-face {
+  font-family: kredit;
+  /* src: url(./assets/fonts/kredit/kredit.ttf); */
+  src: url(./assets/fonts/kredit/kreditfront.ttf);
+}
+/*Montserrat font */
+@font-face {
+  font-family: MontserratB;
+  src: url(./assets/fonts/montserrat/Montserrat-Bold.ttf);
+}
+@font-face {
+  font-family: MontserratR;
+  src: url(./assets/fonts/montserrat/Montserrat-Regular.ttf);
+}
 @media screen and (min-width: 620px) {
   .flexy {
     display: flex;
   }
+}
+
+::-webkit-scrollbar{
+  visibility: hidden;
 }

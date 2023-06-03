@@ -24,9 +24,20 @@ import { MerchantComponent } from "../components/MerchantComponent/MerchantCompo
 import "./UserDashboardLayout.css";
 import Settings from "./SettingsPage/Settings";
 import ProfilePage from "../page/ProfilePage/ProfilePage";
+import HelpForm from "./HelpForm/HelpForm";
+import Faq from "./FaqPage/Faq";
+import Feedback from "./Feedback/Feedback";
+import PaymentPage from "./PaymentPage/PaymentPage";
 import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { useLocalState } from "../utils/useLocalStorage";
+  //previous imports
+// import ProfilePage from "./ProfilePage/ProfilePage";
+// import HelpForm from "./HelpForm/HelpForm";
+// import Faq from "./FaqPage/Faq";
+// import Feedback from "./Feedback/Feedback";
+// import PaymentPage from "./PaymentPage/PaymentPage";
+//
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState([]);
@@ -159,11 +170,34 @@ export const UserDashboardLayout = () => {
           <Route path="my cards" element={<MyCardsSilver />} />
           <Route path="settings" element={<Settings />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="help" element={<HelpForm />} />
+          <Route path="faq" element={<Faq />} />
+          <Route path="customer-support" element={<Feedback />} />
+          <Route path="payment-page" element={<PaymentPage />} />
         </Route>
         <Route path="signin" element={<SignInPage />} />
       </Routes>
       {/* </div> */}
       {/* </div> */}
+  //previous state
+//               }
+//             />
+//             <Route path="transactions" element={<Transactions />} />
+//             <Route path="invoices" element={<InvoicePage />} />
+//             <Route path="cardCategories" element={<CardcategoryPage />} />
+//             <Route path="account" element={<MyUpgradedAccount />} />
+//             <Route path="my cards" element={<MyCardsSilver />} />
+//             <Route path="settings" element={<Settings />} />
+//             <Route path="profile" element={<ProfilePage />} />
+//             <Route path="help" element={<HelpForm />} />
+//             <Route path="faq" element={<Faq />} />
+//             <Route path="customer-support" element={<Feedback />} />
+//             <Route path="payment-page" element={<PaymentPage />} />
+//             {/* <Route path="*" element={<NoMatch />} /> */}
+//           </Routes>
+//         </div>
+//       </div>
+//
     </>
   );
 };

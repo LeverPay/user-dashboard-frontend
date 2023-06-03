@@ -4,8 +4,8 @@
   width: 17% !important;
   background-color: #0e093f;
   padding-left: 15px;
-  border-top-right-radius: 80px;
-  border-bottom-right-radius: 80px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
   /* padding: 0 0 0 40px !important; */
   z-index: 20000;
 }
@@ -40,7 +40,7 @@
   line-height: 65px;
   font-family: AgrandirBold !important;
   margin-left: 20px;
-  font-size: 22px;
+  font-size: 17px;
   font-weight: bold !important;
 }
 .nav-options ul li i {
@@ -85,7 +85,7 @@
 .bottom-options {
   display: flex;
   flex-direction: column;
-  margin-top: 80%;
+  margin-top: 50%;
 }
 
 .bottom-options span {
@@ -124,7 +124,7 @@
 }
 .active {
   background: #fff !important;
-  padding: 20px 50px 20px 5px;
+  padding: 18px 20px 18px 5px;
   color: #0b0230 !important;
   font-weight: bold !important;
   border-radius: 10px;
@@ -132,7 +132,7 @@
 }
 .side-nav-container li :hover {
   background: #fff !important;
-  padding: 20px 50px 20px 5px;
+  padding: 18px 20px 18px 5px;
   color: #0b0230 !important;
   font-weight: bold !important;
   border-radius: 10px;

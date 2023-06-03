@@ -74,7 +74,7 @@ const NavComponent = () => {
             <img
               src={Close}
               alt=""
-              style={{ width: "50%" }}
+              style={{ width: "30%" }}
               className="open-close-icons"
             />
           </span>
@@ -83,12 +83,13 @@ const NavComponent = () => {
           <div />
           <div>
             <div defaultActiveKey="/" className="flex-column my-tweak">
-              <div className="navbar-logo ">
-                <center>
+              {" "}
+              <center>
+                <div className="navbar-logo col-md-9 col-9">
                   {" "}
                   <img src={LeverpayLogo} alt="" style={{ width: "100%" }} />
-                </center>
-              </div>
+                </div>{" "}
+              </center>
               <div className="nav-options">
                 {" "}
                 <ul className="list-unstyled">
@@ -157,6 +158,18 @@ const NavComponent = () => {
                       Settings
                     </NavLink>
                   </li>{" "}
+                  <li>
+                    <NavLink
+                      to="/payment-page"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeClassName="active"
+                    >
+                      {" "}
+                      <i class="icofont-ui-settings"></i>
+                      Checkout
+                    </NavLink>
+                  </li>{" "}
                 </ul>
               </div>
               <div className="bottom-options">
@@ -164,7 +177,7 @@ const NavComponent = () => {
                 <ul className="list-unstyled">
                   <li onClick={closeMobileMenu}>
                     {" "}
-                    <Link to="#" className="bottom-link">
+                    <Link to="/help" className="bottom-link">
                       <small>
                         {" "}
                         <i class="icofont-question-square"></i>

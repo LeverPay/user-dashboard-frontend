@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./transaction-table.css";
 import Table from "react-bootstrap/Table";
 import InvoiceModal from "../InvoiceModal/InvoiceModal";
+import { Link } from "react-router-dom";
 // import PrintComponent from "../InvoiceModal/InvoiceModal";
 // import { allTransactions } from "../../../TestData";
 
@@ -23,7 +24,13 @@ const TransactionTable = (props) => {
       <div className="transactions-table-container">
         <div className="table-title">
           <h5>{props.tableTitle}</h5>
-          <a href="/#">View all </a>
+          {/* <a href="/#">View all </a> */}
+          <Link to='/customer-support'>
+          {" "}
+          <small style={{ color: "#fff", fontSize: "12px" }}>
+            {/* Need help ? */}
+          </small>
+          </Link>
         </div>
         <table className="col-md-12 col-12">
           <thead>

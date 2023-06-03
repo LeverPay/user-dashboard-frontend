@@ -21,7 +21,7 @@
   border-bottom: solid 2px rgb(41, 160, 115);
   font-weight: bold;
 }
-.panel {
+.transaction-page .panel {
   display: none;
   background: rgb(11, 2, 48) !important;
   padding: 100px 80px 200px 80px;
