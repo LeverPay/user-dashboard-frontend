@@ -12,6 +12,13 @@ const KYCFormModal = (props) => {
     setShow(false);
     props.callback("done");
   };
+  const Cancel = () => {
+    setShow(false);
+    props.callback("");
+  };
+  // const Cancel = () => {
+  //   setShow(false);
+  // };
   const handleShow = (acc) => {
     if (acc !== accType) setAccType(acc);
   };
@@ -36,11 +43,10 @@ const KYCFormModal = (props) => {
         keyboard={false}
       >
         <Modal.Body>
-          {" "}
+          <Button variant="" className="cancel-btn" onClick={Cancel}>
+            Cancel
+          </Button>{" "}
           <KYCForms accountType={accType} handleClose={handleClose} />
-          {/* <Button variant="" onClick={handleClose}>
-            Close
-          </Button> */}
         </Modal.Body>
       </Modal>
     </>
