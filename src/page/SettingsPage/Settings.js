@@ -4,10 +4,11 @@ import Form from "react-bootstrap/Form";
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 import "../../page/SettingsPage/Settings.css";
 import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 const Settings = () => {
   const [isToggled, setIsToggled] = useState(false);
-  // alert(isToggled);
+  //alert(isToggled);
   const saveChanges = (e) => {
     e.preventDefault();
     Swal.fire({
@@ -20,9 +21,9 @@ const Settings = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
+        toast.success("Saved successfully");
       } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        toast.error("Changes were not saved");
       }
     });
   };
@@ -105,9 +106,6 @@ const Settings = () => {
             </Link>
           </span>
         </div>
-        {/* <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group> */}
         <div className="buttons-div">
           <Button
             variant="#fff"
@@ -127,6 +125,7 @@ const Settings = () => {
             Save Changes
           </Button>
         </div>
+        <ToastContainer />
       </Form>
     </div>
     // rounded={true}
