@@ -9,7 +9,6 @@ import React from "react";
 //import logo from './logo.svg';
 import "bootstrap/dist/css/bootstrap.min.css";
 import UserDashboardLayout from "./page/UserDashboardLayout";
-import Helpimageupload from "./components/HelpImageUpload/helpimageupload";
 
 
 //import "./App.css";
@@ -21,7 +20,6 @@ function App() {
   return (
     <>
       <UserDashboardLayout />
-      {/* <Helpimageupload/> */}
     </>
   );
 }
