@@ -42,6 +42,9 @@ export const gold = {
     {
       placeholder: "Residential Address",
     },
+    {
+      placeholder: "BVN",
+    },
   ],
 };
 
@@ -92,6 +95,9 @@ export const diamond = {
     {
       placeholder: "Residential Address",
     },
+    {
+      placeholder: "BVN",
+    },
   ],
 };
 export const enterprise = {
@@ -135,6 +141,13 @@ export const enterprise = {
       icon: ID,
       maxUpload: 1,
     },
+    {
+      name: " Business CAC certificate",
+      type: "file",
+      is_selected: false,
+      icon: ID,
+      maxUpload: 1,
+    },
   ],
   inputPlaceholder: [
     {
@@ -151,6 +164,9 @@ export const enterprise = {
     },
     {
       placeholder: "Residential Address",
+    },
+    {
+      placeholder: "BVN",
     },
   ],
 };
@@ -205,6 +221,9 @@ export const pinkLady = {
     },
     {
       placeholder: "Residential Address",
+    },
+    {
+      placeholder: "BVN",
     },
   ],
 };
