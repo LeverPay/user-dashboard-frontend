@@ -7,22 +7,24 @@ import "./myCard.css";
 import CardUser from "../../components/AllCards/CardUserDefault";
 import TotalMoney from "../../components/TotalMoney/TotalMoney";
 import UpgradeCard from "../../components/UpgradeCard/UpgradeCard";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import CardcategoryPage from "../CardCategoryPage/CardcategoryPage";
 // import CardModal from "../../components/CardModal/CardModal";
 import { useState } from "react";
 
-
 function Mycard(props) {
-
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
 
   function toggleModal() {
-    setModal(!modal)
+    setModal(!modal);
   }
 
   return (
-    <Container className="px-4 py-5 text-center" id="mycards" style={{ marginTop: '8rem' }}>
+    <Container
+      className="px-4 py-5 text-center"
+      id="mycards"
+      style={{ marginTop: "8rem" }}
+    >
       <Row className="justify-content-center">
         <Col className="col-10 col-md-5">
           <Row>
@@ -53,22 +55,22 @@ function Mycard(props) {
           </Col>
         </Link>
       </Row>
-      {modal && <div className='overlay'>
-        <div>
-          <div className="card-modal">
-            <ul>
-              <li>Card Type: {props.modalcardtype}</li>
-              <li>Card Owner: {props.modalcardname}</li>
-              <li>Card Number: {props.modalcardno}</li>
-              <li>CVV: {props.modalcardcvv}</li>
-              <li>Expiry date: 03/2025</li>
-            </ul>
-            <button onClick={toggleModal}>
-              Close
-            </button>
+      {modal && (
+        <div className="overlay">
+          <div>
+            <div className="card-modal">
+              <ul>
+                <li>Card Type: {props.modalcardtype}</li>
+                <li>Card Owner: {props.modalcardname}</li>
+                <li>Card Number: {props.modalcardno}</li>
+                <li>CVV: {props.modalcardcvv}</li>
+                <li>Expiry date: 03/2025</li>
+              </ul>
+              <button onClick={toggleModal}>Close</button>
+            </div>
           </div>
         </div>
-      </div>}
+      )}
     </Container>
   );
 }

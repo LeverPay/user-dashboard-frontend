@@ -5,21 +5,34 @@ import Logo from "../../../assets/images/half-logo.png";
 import OTP from "../../../assets/images/otp.png";
 import Cancel from "../../../assets/images/cancel.png";
 import Padlock from "../../../assets/images/padlock.png";
-import "./payment-modal.css";
+import "./otp-modal.css";
 import { Link, NavLink } from "react-router-dom";
-import InsufficientBalance from "../TransactionMessages/Transaction-report";
+import TransactionReport from "../TransactionMessages/Transaction-report";
 
-export default function PaymentModal() {
+export default function OTPModal() {
+  const [inputText, setInputText] = useState("");
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
+
   const [slideShow, setSlideShow] = useState(false);
   const [value, setValue] = useState("");
-
   const [message, setMessage] = useState("");
   const isAnonymous = true;
-
   const handleClick = (event) => {
     event.currentTarget.disabled = true;
     console.log("button clicked");
   };
+
+  const maxLength = 6;
+  function handleInputChange(event) {
+    const inputValue = event.target.value;
+    setInputText(inputValue);
+
+    if (inputValue.length === maxLength) {
+      setSubmitButtonDisabled(false);
+    } else {
+      setSubmitButtonDisabled(true);
+    }
+  }
   const htmlData = () => {
     return (
       <>
@@ -56,15 +69,18 @@ export default function PaymentModal() {
                   {/* <button className="otp-btn">327301</button> */}
                   <form className="col-md-12 otp-btn flex flexy">
                     <input
-                      type="text"
-                      className=" "
+                      type="tel"
+                      maxLength={maxLength}
+                      className=""
                       placeholder="327301"
-                      value={message}
-                      onChange={(event) => setMessage(event.target.value)}
+                      value={inputText}
+                      onChange={handleInputChange}
+                      style={{ height: "57px", marginTop: "7px" }}
                     />
 
-                    <InsufficientBalance disabled={!message} />
-                    {/* AUTHORIZE */}
+                    <TransactionReport
+                      submitButtonDisabled={submitButtonDisabled}
+                    />
                   </form>
                 </div>
 
@@ -121,6 +137,7 @@ export default function PaymentModal() {
         Pay Now
       </button>
       <Slider
+        className="otp-slide"
         id="demoID2"
         animation="zoom"
         speed="fast"
@@ -129,7 +146,7 @@ export default function PaymentModal() {
         }}
         toggle={slideShow}
         sliderStyle={{
-          width: "500px",
+          width: "350px",
           height: "90%",
           top: "50px",
         }}

@@ -12,8 +12,7 @@ import {
   formatCVC,
   formatExpirationDate,
 } from "./cardUtils";
-import { Password } from "./Password";
-import PaymentModal from "../PaymentModal/PaymentModal";
+import OTPModal from "../OTPModal/OTPModal";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -36,72 +35,64 @@ export const CreditCard = () => (
       }) => {
         return (
           <form onSubmit={handleSubmit}>
-            <div className="col-md-12 flexy  credit-cardd">
-              <div className="col-md-7">
+            <div className="col-md- 12  credit-cardd">
+              <div className="col-md-12 col-12 ">
                 {" "}
+                <div className="col-md-12 col-12 card-divv">
+                  {" "}
+                  <Card
+                    number={values.number || ""}
+                    name={values.name || ""}
+                    expiry={values.expiry || ""}
+                    cvc={values.cvc || ""}
+                    focused={active}
+                  />{" "}
+                </div>
                 <div>
-                  <h5> Card Number</h5>
-                  <small>Enter the 16-digit card number on the card</small>
+                  <small className="input-title">Card Num</small>
                   <Field
                     name="number"
                     component="input"
                     type="text"
                     pattern="[\d| ]{16,22}"
-                    placeholder="2412 - 7512 - 3412 - 3456"
+                    placeholder="7170 - 0000 - 3412 - 3456"
                     format={formatCreditCardNumber}
                   />
                 </div>
-                <div className="flexy  space">
-                  <div className="col-md-6">
-                    <h5>Your Name</h5>
-                    <small>Enter your name on the card</small>
-                  </div>
-                  <div className="col-md-6">
-                    {" "}
+                <div className="col-md-12">
+                  <small className="input-title">Card Name</small>
+                  <Field
+                    name="name"
+                    component="input"
+                    type="text"
+                    placeholder="Name"
+                  />
+                </div>
+                <div className="col-md-12">
+                  <small className="input-title">Expiry Date</small>
+                  <Field
+                    name="expiry"
+                    component="input"
+                    type="text"
+                    pattern="\d\d/\d\d"
+                    placeholder="expiry"
+                    format={formatExpirationDate}
+                  />
+
+                  <div className="col-md-12">
+                    <small className="input-title">CVV</small>
                     <Field
-                      name="name"
+                      name="cvc"
                       component="input"
                       type="text"
-                      placeholder="Name"
+                      pattern="\d{3,4}"
+                      placeholder="327"
+                      format={formatCVC}
                     />
                   </div>
                 </div>
-                <div className="col-md-12">
-                  <div className="flexy  space">
-                    <div className="col-md-6">
-                      <h5>Expiry Date</h5>
-                      <small>Enter the expiration date of the card</small>
-                    </div>
-                    <div className="col-md-6">
-                      <Field
-                        name="expiry"
-                        component="input"
-                        type="text"
-                        pattern="\d\d/\d\d"
-                        placeholder="09 / 36"
-                        format={formatExpirationDate}
-                      />
-                    </div>
-                  </div>
-                  <div className="flexy space">
-                    <div className="col-md-6">
-                      <h5>CVV Number</h5>
-                      <small>Enter the 3 0r 4 digit number on the card</small>
-                    </div>
-                    <div className="col-md-6">
-                      <Field
-                        name="cvc"
-                        component="input"
-                        type="text"
-                        pattern="\d{3,4}"
-                        placeholder="327"
-                        format={formatCVC}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="buttons flexy">
-                  <div className="col-md-2">
+                <div className="buttons" style={{ display: "flex" }}>
+                  <div className="col-md-3 " style={{ marginLeft: "8px" }}>
                     {" "}
                     <button
                       type="button"
@@ -112,86 +103,15 @@ export const CreditCard = () => (
                       Reset
                     </button>
                   </div>
-                  <div className="col-md-10" style={{ marginLeft: "10px" }}>
-                    {" "}
-                    {/* <button
-                      type="submit"
-                      disabled={submitting}
-                      className="pay-btn"
-                    >
-                      Pay Now
-                    </button> */}
-                    <PaymentModal />
+                  <div
+                    className="col-md-8 col-8"
+                    style={{ marginLeft: "10px" }}
+                  >
+                    <OTPModal />
                   </div>
                 </div>
               </div>
-              <div
-                className="col-md-5 card-section"
-                style={{
-                  background: "#fafafa",
-                  paddingTop: "20px",
-                  borderRadius: "10px",
-                }}
-              >
-                <Card
-                  number={values.number || ""}
-                  name={values.name || ""}
-                  expiry={values.expiry || ""}
-                  cvc={values.cvc || ""}
-                  focused={active}
-                />
-
-                <div className="offset-md-2 col-md-9 space card-summary">
-                  {" "}
-                  <Row>
-                    <Col className="">
-                      <h5>Company</h5>
-                    </Col>
-                    <Col className="h6">
-                      <h6>Apple</h6>
-                    </Col>
-                  </Row>{" "}
-                  <Row>
-                    <Col className="h5">
-                      <h5>Order Number</h5>
-                    </Col>
-                    <Col className="h6">
-                      <h6>223456</h6>
-                    </Col>
-                  </Row>{" "}
-                  <Row>
-                    <Col className="h5">
-                      <h5>Product</h5>
-                    </Col>
-                    <Col className="h6">
-                      <h6>MackBook Air</h6>
-                    </Col>
-                  </Row>{" "}
-                  <Row>
-                    <Col className="h5">
-                      <h5>Vat ( 20% )</h5>
-                    </Col>
-                    <Col className="h6">
-                      <h6>$100.00</h6>
-                    </Col>
-                  </Row>
-                </div>
-                <div className="offset-md-2 space">
-                  <p>You have to pay</p>
-                  <h6>
-                    549.99 <span style={{ color: "#0051ff" }}>USD</span>
-                  </h6>
-                </div>
-                <center>
-                  <Link to={"/"} className="link space">
-                    <img className="" src={Arrow} alt="Scholar" width="5%" />{" "}
-                    Back to order overview
-                  </Link>
-                </center>
-              </div>
             </div>
-            {/* <h2>Values</h2>
-            <pre>{JSON.stringify(values, 0, 2)}</pre> */}
           </form>
         );
       }}
