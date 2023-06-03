@@ -7,7 +7,7 @@ import UserSelectComponent from "../UserSelectComponent/UserSelectComponent";
 import LeverpayLogo from "../../assets/LeverpayLogo.png";
 import { Link } from "react-router-dom";
 
-const TopNav = () => {
+const TopNav = ({ userName }) => {
   return (
     <>
       <div className="TopNav  col-md-12">
@@ -19,7 +19,7 @@ const TopNav = () => {
           <MdNotifications size={30} className="notificationIcon" />
         </div>
         <Link to="/profile" style={{ textDecoration: "none" }}>
-          <UserSelectComponent />
+          <UserSelectComponent userName={userName} />
         </Link>
       </div>
       <div className="side-nav-logo  col-6">
