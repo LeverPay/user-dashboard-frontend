@@ -31,7 +31,7 @@ import PaymentPage from "./PaymentPage/PaymentPage";
 import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { useLocalState } from "../utils/useLocalStorage";
-  //previous imports
+//previous imports
 // import ProfilePage from "./ProfilePage/ProfilePage";
 // import HelpForm from "./HelpForm/HelpForm";
 // import Faq from "./FaqPage/Faq";
@@ -76,12 +76,12 @@ export const UserDashboardLayout = () => {
   //   }
   // });
 
-  // useEffect(() => {
-  //   // window.location.reload();
-  //   setUser({
-  //     userName: Object.values(jwt).map((data) => data.user.first_name),
-  //   });
-  // }, [user, jwt]);
+  useEffect(() => {
+    // window.location.reload();
+    setUser({
+      userName: Object.values(jwt).map((data) => data.user.first_name),
+    });
+  }, [jwt]);
 
   return (
     <>
@@ -179,8 +179,8 @@ export const UserDashboardLayout = () => {
       </Routes>
       {/* </div> */}
       {/* </div> */}
-  //previous state
-//               }
+      {/* previous state */}
+      {/* //               }
 //             />
 //             <Route path="transactions" element={<Transactions />} />
 //             <Route path="invoices" element={<InvoicePage />} />
@@ -194,10 +194,10 @@ export const UserDashboardLayout = () => {
 //             <Route path="customer-support" element={<Feedback />} />
 //             <Route path="payment-page" element={<PaymentPage />} />
 //             {/* <Route path="*" element={<NoMatch />} /> */}
-//           </Routes>
-//         </div>
-//       </div>
-//
+      {/* //           </Routes> */}
+      {/* //         </div> */}
+      {/* //       </div> */}
+      {/* // */}
     </>
   );
 };
