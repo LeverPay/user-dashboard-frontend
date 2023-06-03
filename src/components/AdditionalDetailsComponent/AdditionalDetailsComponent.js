@@ -3,14 +3,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Swal from "sweetalert2";
-import "../AddAccountComponent/AddAccountComponent.css";
+import "../AdditionalDetailsComponent/AdditionalDetailsComponent.css";
 
 const AddAccountComponent = () => {
   const [showModal, setShowModal] = useState(false);
-  const [cardValue, setCardValue] = useState("");
-  const [nameOnCard, setNameOnCard] = useState("");
 
-  const handleAddCard = (e) => {
+  const handleAdditionalDetails = (e) => {
     e.preventDefault();
     Swal.fire({
       title: "Leverpay.io",
@@ -31,13 +29,6 @@ const AddAccountComponent = () => {
     });
   };
 
-  const handleCardChange = (e) => {
-    setCardValue(e.target.value.replace(/\D/g, ""));
-  };
-
-  const handleNameChange = (e) => {
-    setNameOnCard(e.target.value);
-  };
   return (
     <>
       <div className="add-details-btn-ctrl">
@@ -99,7 +90,7 @@ const AddAccountComponent = () => {
                 variant="primary"
                 type="submit"
                 className="submit-details-btn"
-                onClick={handleAddCard}
+                onClick={handleAdditionalDetails}
               >
                 Add Details
               </Button>

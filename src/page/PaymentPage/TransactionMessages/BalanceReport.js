@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./transaction-messages.css";
 function BalanceReport() {
   return (
     <div className="insufficient-balance">
