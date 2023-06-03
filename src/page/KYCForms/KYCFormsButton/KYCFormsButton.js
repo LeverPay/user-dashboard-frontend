@@ -6,8 +6,19 @@ import { VerificationMessage } from "../KYCFormsUpgradeMessages/VerificationMess
 export const KYCFormsButton = (props) => {
   const [verification, setVerification] = useState(false);
   const toggle = () => setVerification(!verification);
-
+  const [upgradeData, setUgradeData] = useState(null);
+  const [btnDisable, setBtnDisable] = useState(true);
   const hnd = () => {};
+  useEffect(() => {
+    window.addEventListener("storage", () => {
+      setUgradeData(localStorage.getItem("upgrade_data", null));
+      console.log("Change to local storage!");
+      console.log(upgradeData);
+    });
+  });
+  useEffect(() => {
+    setBtnDisable(upgradeData == null);
+  }, [upgradeData]);
   useEffect(() => {
     if (verification) {
       const timeout = setTimeout(() => {
@@ -22,7 +33,13 @@ export const KYCFormsButton = (props) => {
   return (
     <>
       <div className="d-grid gap-2 kyc-button">
-        <Button variant="" size="lg" className="" onClick={toggle}>
+        <Button
+          variant=""
+          size="lg"
+          className=""
+          onClick={toggle}
+          disabled={btnDisable}
+        >
           Submit
         </Button>
         {verification && (

@@ -2,17 +2,19 @@ import React, { useState, useEffect } from "react";
 // import Form from "react-bootstrap/Form";
 import ImageUploading from "react-images-uploading";
 import "./file_upload.css";
+import Button from "react-bootstrap/Button";
 
 // import Passport from "../../assets/images/Passport.png";
 import UploadCheckmark from "./UploadCheckmark";
 import BackArrow from "./BackArrow";
-function FileUpload({ data }) {
+function FileUpload({ data, enabled }) {
   // TO DO: fix the bug on auto checkmark on page load
   // TO DO: fix the bug on the uncorrelating index file removal
   const [images, setImages] = useState([true]);
   const [uploadStatus, setUploadStatus] = useState(false);
   const [selected, setSelected] = useState(BackArrow);
   const maxNumber = data.maxUpload;
+
   const onChange = (imageList, addUpdateIndex) => {
     // setImages(imageList);
     let ctx = imageList.length;
@@ -31,7 +33,6 @@ function FileUpload({ data }) {
       setImages(imageList);
     }
   };
-  // console.log(data);
 
   function imageUpload(onImageUpload, imageList) {
     let ct = images.length;
@@ -57,70 +58,79 @@ function FileUpload({ data }) {
   }, []);
   useEffect(() => {
     setSelected(uploadStatus ? UploadCheckmark : BackArrow);
+    if (uploadStatus)
+      localStorage.setItem("upgrade_data", JSON.stringify(data));
+    else {
+      localStorage.removeItem("upgrade_data");
+    }
+    window.dispatchEvent(new Event("storage"));
   }, [uploadStatus]);
 
   return (
     <>
       <div className="file-upload-container col-md-12">
-        <ImageUploading
-          multiple
-          value={images}
-          onChange={onChange}
-          maxNumber={maxNumber}
-          dataURLKey="data_url"
-          acceptType={[
-            "jpg",
-            "doc",
-            "png",
-            "svg",
-            "jpeg",
-            "pdf",
-            "gif",
-            "webp",
-          ]}
-        >
-          {({
-            imageList,
-            onImageUpload,
-            onImageRemoveAll,
-            onImageUpdate,
-            onImageRemove,
-            isDragging,
-            dragProps,
-          }) => (
-            // write your building UI
-            <div className="upload__image-wrapper col-md-12">
-              <div
-                style={isDragging ? { color: "red" } : null}
-                className="file-upload-div"
-                onClick={imageUpload(onImageUpload, imageList)}
-                {...dragProps}
-                // eslint-disable-next-line no-undef
-                // {...onImageUpdate(index)}
-              >
-                {imageList.map((image, index) => (
-                  <div key={index} className="image-item">
-                    <img
-                      src={image.data_url ? image.data_url : data.icon}
-                      alt="preview"
-                      onClick={removeImg(imageList, onImageRemove, index)}
-                      {...dragProps}
-                    />
-                  </div>
-                ))}{" "}
-                <h3> {data.name}</h3>
+        <Button className="btn btn-light file-btn" disabled={!enabled}>
+          {" "}
+          <ImageUploading
+            multiple
+            value={images}
+            onChange={onChange}
+            maxNumber={maxNumber}
+            dataURLKey="data_url"
+            acceptType={[
+              "jpg",
+              "doc",
+              "png",
+              "svg",
+              "jpeg",
+              "pdf",
+              "gif",
+              "webp",
+            ]}
+          >
+            {({
+              imageList,
+              onImageUpload,
+              onImageRemoveAll,
+              onImageUpdate,
+              onImageRemove,
+              isDragging,
+              dragProps,
+            }) => (
+              // write your building UI
+              <div className="upload__image-wrapper col-md-12">
                 <div
-                  className="file-upload-arrow"
-                  // onClick={imageUpload(onImageUpload, imageList)}
+                  style={isDragging ? { color: "red" } : null}
+                  className="file-upload-div"
+                  onClick={imageUpload(onImageUpload, imageList)}
                   {...dragProps}
+                  // eslint-disable-next-line no-undef
+                  // {...onImageUpdate(index)}
                 >
-                  {selected}
+                  {imageList.map((image, index) => (
+                    <div key={index} className="image-item">
+                      <img
+                        src={image.data_url ? image.data_url : data.icon}
+                        alt="preview"
+                        onClick={removeImg(imageList, onImageRemove, index)}
+                        {...dragProps}
+                      />
+                    </div>
+                  ))}{" "}
+                  <h3> {data.name}</h3>
+                  <div
+                    className="file-upload-arrow"
+                    // onClick={imageUpload(onImageUpload, imageList)}
+                    {...dragProps}
+                  >
+                    {selected}
+                  </div>
                 </div>
+                &nbsp;
               </div>
-              &nbsp;
-            </div>
-          )}
-        </ImageUploading>{" "}
+            )}
+          </ImageUploading>{" "}
+        </Button>
       </div>
     </>
   );
