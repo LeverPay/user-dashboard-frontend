@@ -38,6 +38,8 @@ function CardSilver() {
     navigator.clipboard.writeText(cardNumber);
   }
 
+  
+
   return (
     <div
       className="defaultCard"
@@ -100,7 +102,7 @@ function CardSilver() {
           backgroundPosition: "right 0rem top 0rem",
         }}
       >
-        <h2>Goodnews Micheal</h2>
+        <h2>{CardInfo[4].name}</h2>
         <h1
           style={{
             marginRight: "-1rem",
@@ -111,6 +113,7 @@ function CardSilver() {
           Silver
         </h1>
       </footer>
+      
     </div>
   );
 }
