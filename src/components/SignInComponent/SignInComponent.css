@@ -1,0 +1,100 @@
+p {
+  margin: 0;
+}
+.signin-logo {
+  position: relative;
+  width: 30%;
+  height: 30%;
+  margin-top: -10%;
+  margin-left: -30%;
+  /* border: 1px solid #000; */
+}
+.signin-container {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  /* background-color: #0b0230; */
+  background-color: #ffff;
+  border: 1px solid #000;
+  margin-top: 5%;
+  margin-left: 25%;
+  padding: 5%;
+}
+
+@media screen and (max-width: 720px) {
+  .signin-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin-left: 0%;
+    /* border: 10px solid #000; */
+  }
+  .signin-logo {
+    /* position: relative; */
+    width: 30%;
+    height: 30%;
+    margin-top: -5%;
+    margin-left: -5%;
+    /* border: 1px solid #000; */
+  }
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  height: 100%;
+  padding: 5%;
+  /* border: 1px solid #000; */
+}
+
+.signin-fields {
+  padding: 10px !important;
+  width: 100% !important;
+}
+
+.signin-button {
+  padding: 5%;
+  width: 100%;
+  background-color: #2962f2;
+  color: #fff;
+  justify-content: center;
+  /* font-size: 32px; */
+  border: none;
+}
+
+@media screen and (max-width: 620px) {
+  .signin-logo {
+    /* position: relative; */
+    width: 20%;
+    height: 5%;
+    margin-top: 5%;
+    margin-left: -5%;
+    /* border: 1px solid #000; */
+  }
+
+  .signin-form {
+    width: 100%;
+    /* height: 100%; */
+    margin-left: -20%;
+    /* border: 10px solid #000; */
+  }
+
+  .signin-container {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .signin-button {
+    padding: 2%;
+    width: 100%;
+    background-color: #2962f2;
+    color: #fff;
+    justify-content: center;
+    /* font-size: 32px; */
+    border: none;
+  }
+}
