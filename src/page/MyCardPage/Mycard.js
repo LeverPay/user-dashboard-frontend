@@ -55,19 +55,19 @@ function Mycard(props) {
           </Col>
         </Link>
       </Row>
-      {modal && (
-        <div className="overlay">
-          <div>
-            <div className="card-modal">
-              <ul>
-                <li>Card Type: {props.modalcardtype}</li>
-                <li>Card Owner: {props.modalcardname}</li>
-                <li>Card Number: {props.modalcardno}</li>
-                <li>CVV: {props.modalcardcvv}</li>
-                <li>Expiry date: 03/2025</li>
-              </ul>
-              <button>Close</button>
-            </div>
+      {modal && <div className='overlay'>
+        <div>
+          <div className="card-modal">
+            <ul>
+              <li>Card Type: {props.modalcardtype}</li>
+              <li>Card Owner: {props.modalcardname}</li>
+              <li>Card Number: {props.modalcardno}</li>
+              <li>CVV: {props.modalcardcvv}</li>
+              <li>Expiry date: 03/2025</li>
+            </ul>
+            <button onClick={toggleModal}>
+              Close
+            </button>
           </div>
         </div>
       )}
