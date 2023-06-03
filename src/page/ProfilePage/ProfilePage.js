@@ -2,42 +2,65 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "../ProfilePage/ProfilePage.css";
+import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";
-import ImageComponent from "../../components/ImageComponent/ImageComponent";
-import AddAccountComponent from "../../components/AddAccountComponent/AddAccountComponent";
+import AdditionalDetailsComponent from "../../components/AdditionalDetailsComponent/AdditionalDetailsComponent";
 import ReactFlagsSelect from "react-flags-select";
 import { CountryFlagData } from "../../TestData";
 import PhoneNumberComponent from "../../components/PhoneNumberComponent/PhoneNumberComponent";
+import ImageSelectComponent from "../../components/ImageSelectComponent/ImageSelectComponent";
+import { signUp } from "../../services/apiService";
 
 const ProfilePage = () => {
-  const [phone, setPhone] = useState("");
-  const [selected, setSelected] = useState("");
+  const inputRef = React.createRef();
 
-  const handlePhone = (e) => {
-    setPhone(e.target.value.replace(/\D/g, ""));
+  const [currentImage, setCurrentImage] = useState(false);
+  const [selected, setSelected] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
+  const [profession, setProfession] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  // const handlePhone = (e) => {
+  //   setPhone(e.target.value.replace(/\D/g, ""));
+  // };
+
+  const handleCountry = (code) => {
+    setSelected(code);
   };
   const saveChanges = (e) => {
     e.preventDefault();
 
-    Swal.fire({
-      title: "Leverpay.io",
-      text: "Do you want to save the changes?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Save",
-      denyButtonText: `Don't save`,
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
-      }
-    });
+    //get data from state
+    const phone = phoneNumber.phone;
+    // const userData = {
+    //   firstName,
+    //   lastName,
+    //   selected,
+    //   profession,
+    //   businessName,
+    //   address,
+    //   number,
+    // };
+
+    const userData = {
+      //first_name: "Bill",
+      first_name,
+      last_name,
+      //last_name: "Gates",
+      email: "walker_alan1@gmail.com",
+      phone,
+      password: "alanwalker#1",
+    };
+    //const dataValues = Object.values(userData);
+    //-------------- API import --------------- //
+    signUp(userData);
   };
 
   const discardChanges = (e) => {
     e.preventDefault();
+
     Swal.fire({
       title: "Leverpay.io",
       text: "Do you want to discard changes?",
@@ -48,47 +71,92 @@ const ProfilePage = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        Swal.fire("Discarded!", "", "success");
+        toast.success("Discarded successfully");
       } else if (result.isDenied) {
-        Swal.fire("Changes aborted", "", "info");
+        toast.error("Changes aborted");
       }
     });
   };
   return (
     <div col-md-12 className="outer">
-      <Form col-md-8 className="inner-form">
+      <Form col-md-8 className="inner-form" onSubmit={saveChanges}>
         <h4>
           <b>Basic Information</b>
         </h4>
-        <ImageComponent />
+        <ImageSelectComponent
+          currentImage={currentImage}
+          setCurrentImage={setCurrentImage}
+        />
         {/* Form fields here */}
         <div className="fields-control">
           <Form.Group className="mb-3" controlId="">
             <Form.Label className="labels">First Name</Form.Label>
-            <Form.Control type="text" placeholder="" className="text-area" />
+            <Form.Control
+              type="text"
+              name="profile_firstName"
+              value={first_name}
+              ref={inputRef}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder=""
+              className="text-area"
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="">
             <Form.Label className="labels">Last Name</Form.Label>
-            <Form.Control type="text" placeholder="" className="text-area" />
+            <Form.Control
+              type="text"
+              name="profile_lastName"
+              value={last_name}
+              ref={inputRef}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder=""
+              className="text-area"
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="">
             <Form.Label className="labels">Profession</Form.Label>
-            <Form.Control type="text" placeholder="" className="text-area" />
+            <Form.Control
+              type="text"
+              name="profile_profession"
+              value={profession}
+              ref={inputRef}
+              onChange={(e) => setProfession(e.target.value)}
+              placeholder=""
+              className="text-area"
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="">
             <Form.Label className="labels">Business Name</Form.Label>
-            <Form.Control type="text" placeholder="" className="text-area" />
+            <Form.Control
+              type="text"
+              name="profile_business"
+              value={businessName}
+              ref={inputRef}
+              onChange={(e) => setBusinessName(e.target.value)}
+              placeholder=""
+              className="text-area"
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="">
             <Form.Label className="labels">Address</Form.Label>
-            <Form.Control type="text" placeholder="" className="text-area" />
+            <Form.Control
+              type="text"
+              name="profile_address"
+              value={address}
+              ref={inputRef}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder=""
+              className="text-area"
+            />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label className="labels">Country</Form.Label>
             <ReactFlagsSelect
               className="text-area"
               selected={selected}
-              onSelect={(code) => setSelected(code)}
+              onSelect={handleCountry}
+              ref={inputRef}
+              value={selected}
               countries={CountryFlagData.map((c) => c.code)}
               // searchable
               optionsSize={15}
@@ -99,22 +167,31 @@ const ProfilePage = () => {
           <Form.Group className="mb-3">
             <Form.Label className="labels">Phone Number</Form.Label>
             {/* Phone number component  */}
-            <PhoneNumberComponent />
+            <PhoneNumberComponent
+              name="phone_number"
+              phoneNumber={phoneNumber}
+              setPhoneNumber={setPhoneNumber}
+            />
           </Form.Group>
           {/* </div> */}
           {/* add account btn */}
-          <AddAccountComponent />
+          <AdditionalDetailsComponent />
           {/* end add account btn */}
           <div className="button-control">
             <Button variant="#fff" type="submit" onClick={discardChanges}>
               Discard
             </Button>
-            <Button variant="dark" type="submit" onClick={saveChanges}>
+            <Button
+              variant="dark"
+              type="submit"
+              // onClick={saveChanges}
+            >
               Save Changes
             </Button>
           </div>
         </div>
       </Form>
+      <ToastContainer style={{ dispay: "flex", textAlign: "left" }} />
     </div>
   );
 };
