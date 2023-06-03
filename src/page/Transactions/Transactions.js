@@ -85,7 +85,7 @@ export const Transactions = () => {
               data={regularPayments}
               tableTitle="Transactions"
             />
-          </div>{" "}
+          </div>
         </div>
       </div>
     </>
