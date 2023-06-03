@@ -28,6 +28,8 @@ import HelpForm from "./HelpForm/HelpForm";
 import Faq from "./FaqPage/Faq";
 import Feedback from "./Feedback/Feedback";
 import PaymentPage from "./PaymentPage/PaymentPage";
+import UnpaidInvoice from "./UnpaidInvoicePage/UnpaidInvoicePage";
+
 import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { useLocalState } from "../utils/useLocalStorage";
@@ -164,7 +166,7 @@ export const UserDashboardLayout = () => {
           />
 
           <Route path="transactions" element={<Transactions />} />
-          <Route path="invoices" element={<InvoicePage />} />
+          <Route path="invoices" element={<UnpaidInvoice />} />
           <Route path="cardCategories" element={<CardcategoryPage />} />
           <Route path="account" element={<MyUpgradedAccount />} />
           <Route path="my cards" element={<MyCardsSilver />} />
