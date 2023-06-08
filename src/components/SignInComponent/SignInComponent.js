@@ -26,10 +26,6 @@ const SignInComponent = () => {
 
     //api call
     signIn(user, jwt, setJwt);
-    //
-    setTimeout(() => {
-      navigate("/", { replace: true });
-    }, 5000);
   };
 
   useEffect(() => {
