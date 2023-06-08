@@ -33,22 +33,13 @@ import UnpaidInvoice from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { useLocalState } from "../utils/useLocalStorage";
-//previous imports
-// import ProfilePage from "./ProfilePage/ProfilePage";
-// import HelpForm from "./HelpForm/HelpForm";
-// import Faq from "./FaqPage/Faq";
-// import Feedback from "./Feedback/Feedback";
-// import PaymentPage from "./PaymentPage/PaymentPage";
-//
+import { getUserProfile } from "../services/apiService";
+
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState([]);
   const [user, setUser] = useState({});
   const [jwt, setJwt] = useLocalState("", "jwt");
-
-  // setTimeout(() => {
-  //   window.location.reload();
-  // }, 1000);
 
   useEffect(() => {
     setNaijaCard({
@@ -79,10 +70,7 @@ export const UserDashboardLayout = () => {
   // });
 
   useEffect(() => {
-    // window.location.reload();
-    setUser({
-      userName: Object.values(jwt).map((data) => data.user.first_name),
-    });
+    getUserProfile(jwt, setUser);
   }, [jwt]);
 
   return (
@@ -96,7 +84,7 @@ export const UserDashboardLayout = () => {
                   <NavComponent />
                 </div>
                 <div className="col-md-10">
-                  <TopNav userName={user.userName} />
+                  <TopNav userName={user.first_name} />
                   <PrivateRoute>
                     <Outlet />
                   </PrivateRoute>
@@ -179,27 +167,6 @@ export const UserDashboardLayout = () => {
         </Route>
         <Route path="signin" element={<SignInPage />} />
       </Routes>
-      {/* </div> */}
-      {/* </div> */}
-      {/* previous state */}
-      {/* //               }
-//             />
-//             <Route path="transactions" element={<Transactions />} />
-//             <Route path="invoices" element={<InvoicePage />} />
-//             <Route path="cardCategories" element={<CardcategoryPage />} />
-//             <Route path="account" element={<MyUpgradedAccount />} />
-//             <Route path="my cards" element={<MyCardsSilver />} />
-//             <Route path="settings" element={<Settings />} />
-//             <Route path="profile" element={<ProfilePage />} />
-//             <Route path="help" element={<HelpForm />} />
-//             <Route path="faq" element={<Faq />} />
-//             <Route path="customer-support" element={<Feedback />} />
-//             <Route path="payment-page" element={<PaymentPage />} />
-//             {/* <Route path="*" element={<NoMatch />} /> */}
-      {/* //           </Routes> */}
-      {/* //         </div> */}
-      {/* //       </div> */}
-      {/* // */}
     </>
   );
 };
