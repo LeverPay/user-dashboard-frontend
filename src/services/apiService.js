@@ -3,7 +3,8 @@ const URL = "http://api.leverpay.io/api/v1/user/signup";
 
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
-    const response = await fetch("http://api.leverpay.io/api/v1/login", {
+    const signInURL = "http://api.leverpay.io/api/v1/login";
+    const response = await fetch(signInURL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -15,8 +16,12 @@ export const signIn = async (userData, jwt, setJwt) => {
       .then((res) => {
         if (res.success) {
           toast.success(`${res.message}`);
-          // console.log(res.data);
-          setJwt([res.data]);
+          console.log(res);
+          setJwt(`${res.data.token}`);
+          //transition to homepage
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 2000);
         } else {
           toast.error(`${res.message}`);
           console.log(res);
@@ -28,6 +33,34 @@ export const signIn = async (userData, jwt, setJwt) => {
 
     return await response;
   }
+};
+
+//getUserProfile
+
+export const getUserProfile = async (jwt, setUser) => {
+  const getData = "http://api.leverpay.io/api/v1/user/get-user-profile";
+  const userProfile = await fetch(getData, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${jwt}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((res) => {
+      if (res.success) {
+        // console.log(res.data);
+        setUser(res.data);
+      } else {
+        console.log(res.message);
+      }
+    })
+    .catch((err) => {
+      console.log(`${err.message}`);
+    });
+
+  return await userProfile;
 };
 
 export const signUp = async (userData) => {
