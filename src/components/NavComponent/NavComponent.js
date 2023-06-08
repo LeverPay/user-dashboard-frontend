@@ -130,7 +130,7 @@ const NavComponent = () => {
                     >
                       {" "}
                       <i class="icofont-notepad"></i>
-                      Invoices
+                      Unpaid Invoices
                     </NavLink>
                   </li>
                   <li>
