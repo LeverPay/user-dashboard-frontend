@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./kyc-forms.css";
 import FileUpload from "../../components/FileUpload/FileUpload";
 import { gold, diamond, pinkLady, enterprise } from "../../TestData";
 import { KYCFormsButton } from "./KYCFormsButton/KYCFormsButton";
 import TextInput from "../../components/FileUpload/TextInput/TextInput";
+
 const KYCForms = (props) => {
+  const [upgradeData, setUgradeData] = useState(null);
+  const [fileEnable, setFIleEnable] = useState("");
   let dt = {};
   useEffect(() => {}, []);
   switch (props.accountType) {
@@ -22,6 +25,18 @@ const KYCForms = (props) => {
       dt = enterprise;
       break;
   }
+  useEffect(() => {
+    window.addEventListener("storage", () => {
+      setUgradeData(JSON.parse(localStorage.getItem("upgrade_data"), null));
+      console.log("Change to local storage!");
+      console.log(upgradeData);
+    });
+  });
+  useEffect(() => {
+    setFIleEnable(upgradeData == null ? "" : upgradeData.name);
+    console.log(fileEnable);
+  }, [upgradeData]);
+
   return (
     <>
       <div className="kyf-form-container col-md-12">
@@ -37,7 +52,10 @@ const KYCForms = (props) => {
         <h4>Select the type of Document you would like to Upload</h4>
 
         {dt.data.map((data, index) => (
-          <FileUpload data={data} />
+          <FileUpload
+            data={data}
+            enabled={fileEnable == data.name || fileEnable == ""}
+          />
         ))}
         {dt.inputPlaceholder.map((data, index) => (
           <TextInput data={data} />

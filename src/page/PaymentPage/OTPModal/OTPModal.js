@@ -21,6 +21,7 @@ export default function OTPModal() {
     event.currentTarget.disabled = true;
     console.log("button clicked");
   };
+
   const maxLength = 6;
   function handleInputChange(event) {
     const inputValue = event.target.value;
