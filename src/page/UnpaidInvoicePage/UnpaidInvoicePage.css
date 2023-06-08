@@ -1,0 +1,25 @@
+.Unpaid{
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-block: 30px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 2rem;
+    margin-top: 8rem;
+    border-radius: 10px;
+    background-color: #1c1a2e;
+}
+.Unpaid .table{
+    color: white;
+    font-family: AgrandirRegular;
+}
+.Unpaid h1{
+    font-family: AgrandirBold;
+    margin-bottom: 2rem;
+
+}
+.Unpaid thead td{
+    width: 20%;
+    font-weight: 900;
+}
