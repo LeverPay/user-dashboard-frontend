@@ -103,28 +103,24 @@ export const UserDashboardLayout = () => {
                     style={{ marginTop: "-1rem" }}
                   >
                     <div className="col-md-4">
-                      {" "}
                       <TotalMoney
                         bg="#0E093F"
                         totaltype="Balance"
                         amt="$3000"
                       />
-                    </div>{" "}
+                    </div>
                     <div className="col-md-4">
-                      {" "}
                       <TotalMoney
                         bg="#F6A61F"
                         totaltype="Spending"
                         amt="$2000"
                       />
-                    </div>{" "}
+                    </div>
                     <div className="col-md-4">
-                      {" "}
                       <TotalMoney bg="#201E34" totaltype="Saved" amt="$546" />
                     </div>
                   </div>
                   <div className="col-md-11">
-                    {" "}
                     <StatementComponent />
                   </div>
                   <div className="transaction-table-container col-md-11">
@@ -138,7 +134,7 @@ export const UserDashboardLayout = () => {
                   <div className="col-md-10 mx-auto default-card-holder">
                     <header className="card-header">My Card</header>
                     <CardUser />
-                  </div>{" "}
+                  </div>
                   <div
                     className="col-md-10 mx-auto"
                     style={{ transform: "translateY(-3.5rem)" }}
