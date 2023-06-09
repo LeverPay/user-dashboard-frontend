@@ -82,7 +82,7 @@ const NavComponent = () => {
         <div className="container">
           <div />
           <div>
-            <div defaultActiveKey="/" className="flex-column my-tweak">
+            <div defaultactivekey="/" className="flex-column my-tweak">
               {" "}
               <center>
                 <div className="navbar-logo col-md-9 col-9">
@@ -99,9 +99,9 @@ const NavComponent = () => {
                       to="/"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
-                      <i class="icofont-home"></i>
+                      <i className="icofont-home"></i>
                       Dashboard
                     </NavLink>
                   </li>
@@ -110,10 +110,10 @@ const NavComponent = () => {
                       to="/transactions"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
                       {" "}
-                      <i class="icofont-exchange"></i>
+                      <i className="icofont-exchange"></i>
                       Transactions
                     </NavLink>
                   </li>
@@ -126,10 +126,10 @@ const NavComponent = () => {
                       to="/invoices"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
                       {" "}
-                      <i class="icofont-notepad"></i>
+                      <i className="icofont-notepad"></i>
                       Unpaid Invoices
                     </NavLink>
                   </li>
@@ -139,10 +139,10 @@ const NavComponent = () => {
                       to="/my cards"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
                       {" "}
-                      <i class="icofont-wallet"></i>
+                      <i className="icofont-wallet"></i>
                       My Cards
                     </NavLink>
                   </li>
@@ -151,10 +151,10 @@ const NavComponent = () => {
                       to="/settings"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
                       {" "}
-                      <i class="icofont-ui-settings"></i>
+                      <i className="icofont-ui-settings"></i>
                       Settings
                     </NavLink>
                   </li>{" "}
@@ -163,10 +163,10 @@ const NavComponent = () => {
                       to="/payment-page"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
                       {" "}
-                      <i class="icofont-ui-settings"></i>
+                      <i className="icofont-ui-settings"></i>
                       Checkout
                     </NavLink>
                   </li>{" "}
@@ -180,7 +180,7 @@ const NavComponent = () => {
                     <Link to="/help" className="bottom-link">
                       <small>
                         {" "}
-                        <i class="icofont-question-square"></i>
+                        <i className="icofont-question-square"></i>
                       </small>{" "}
                       help
                     </Link>{" "}
@@ -189,7 +189,7 @@ const NavComponent = () => {
                     {" "}
                     <Link to="#" className="bottom-link">
                       <small>
-                        <i class="icofont-sign-out"></i>{" "}
+                        <i className="icofont-sign-out"></i>{" "}
                       </small>
                       logout
                     </Link>

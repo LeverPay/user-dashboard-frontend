@@ -25,11 +25,10 @@ const TransactionTable = (props) => {
         <div className="table-title">
           <h5>{props.tableTitle}</h5>
           {/* <a href="/#">View all </a> */}
-          <Link to='/customer-support'>
-          {" "}
-          <small style={{ color: "#fff", fontSize: "12px" }}>
-            {/* Need help ? */}
-          </small>
+          <Link to="/customer-support">
+            <small style={{ color: "#fff", fontSize: "12px" }}>
+              {/* Need help ? */}
+            </small>
           </Link>
         </div>
         <table className="col-md-12 col-12">
@@ -37,7 +36,7 @@ const TransactionTable = (props) => {
             <tr>
               {props.data.headers.map((item) => (
                 <th>{item}</th>
-              ))}{" "}
+              ))}
             </tr>
           </thead>
           <tbody>
