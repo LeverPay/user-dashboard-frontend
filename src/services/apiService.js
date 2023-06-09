@@ -47,14 +47,11 @@ export const getUserProfile = async (jwt, setUser) => {
       Authorization: `Bearer ${jwt}`,
     },
   })
-    .then((response) => response.json())
     .then((res) => {
-      if (res.success) {
-        // console.log(res.data);
-        setUser(res.data);
-      } else {
-        console.log(res.message);
-      }
+      if (res.status === 200) return res.json();
+    })
+    .then((resData) => {
+      setUser(resData.data);
     })
     .catch((err) => {
       console.log(`${err.message}`);
