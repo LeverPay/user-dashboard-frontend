@@ -52,6 +52,7 @@ export const getUserProfile = async (jwt, setUser) => {
     })
     .then((resData) => {
       setUser(resData.data);
+      toast.success(resData.message);
     })
     .catch((err) => {
       console.log(`${err.message}`);
