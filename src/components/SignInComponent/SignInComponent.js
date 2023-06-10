@@ -16,8 +16,6 @@ const SignInComponent = () => {
   const [password, setPassword] = useState("");
   const [jwt, setJwt] = useLocalState("", "jwt");
 
-  const navigate = useNavigate();
-
   const login = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
