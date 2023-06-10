@@ -34,6 +34,7 @@ import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { useLocalState } from "../utils/useLocalStorage";
 import { getUserProfile } from "../services/apiService";
+import { ToastContainer, toast } from "react-toastify";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -84,7 +85,12 @@ export const UserDashboardLayout = () => {
                   <NavComponent />
                 </div>
                 <div className="col-md-10">
-                  <TopNav userName={user.first_name} />
+                  <TopNav
+                    userName={{
+                      firstName: user.first_name,
+                      lastName: user.last_name,
+                    }}
+                  />
                   <PrivateRoute>
                     <Outlet />
                   </PrivateRoute>
@@ -133,13 +139,23 @@ export const UserDashboardLayout = () => {
                 <div className="col-md-4  card-holder">
                   <div className="col-md-10 mx-auto default-card-holder">
                     <header className="card-header">My Card</header>
-                    <CardUser />
+                    <CardUser
+                      userName={{
+                        firstName: user.first_name,
+                        lastName: user.last_name,
+                      }}
+                    />
                   </div>
                   <div
                     className="col-md-10 mx-auto"
                     style={{ transform: "translateY(-3.5rem)" }}
                   >
-                    <CardSilver />
+                    <CardSilver
+                      userName={{
+                        firstName: user.first_name,
+                        lastName: user.last_name,
+                      }}
+                    />
                   </div>
                   <div className="col-md-12">
                     <MerchantComponent />
@@ -163,6 +179,7 @@ export const UserDashboardLayout = () => {
         </Route>
         <Route path="signin" element={<SignInPage />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };
