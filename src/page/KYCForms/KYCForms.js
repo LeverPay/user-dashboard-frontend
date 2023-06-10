@@ -54,7 +54,9 @@ const KYCForms = (props) => {
         {dt.data.map((data, index) => (
           <FileUpload
             data={data}
-            enabled={fileEnable == data.name || fileEnable == ""}
+            enabled={
+              fileEnable == data.name || fileEnable == "" || data.req === true
+            }
           />
         ))}
         {dt.inputPlaceholder.map((data, index) => (
