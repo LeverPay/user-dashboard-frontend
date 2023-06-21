@@ -87,8 +87,8 @@ export const UserDashboardLayout = () => {
                 <div className="col-md-10">
                   <TopNav
                     userName={{
-                      firstName: user.first_name,
-                      lastName: user.last_name,
+                      firstName: user ? user.first_name : "",
+                      lastName: user ? user.last_name : "",
                     }}
                   />
                   <PrivateRoute>
