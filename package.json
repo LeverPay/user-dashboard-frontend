@@ -29,6 +29,7 @@
     "react-final-form": "^6.5.9",
     "react-flags-select": "^2.2.3",
     "react-icofont": "^1.0.19",
+    "react-select-country-list": "^2.2.3",
     "react-icons": "^4.8.0",
     "react-images-uploading": "^3.1.7",
     "react-loader-spinner": "^5.3.4",

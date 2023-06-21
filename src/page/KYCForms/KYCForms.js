@@ -4,10 +4,17 @@ import FileUpload from "../../components/FileUpload/FileUpload";
 import { gold, diamond, pinkLady, enterprise } from "../../TestData";
 import { KYCFormsButton } from "./KYCFormsButton/KYCFormsButton";
 import TextInput from "../../components/FileUpload/TextInput/TextInput";
+import { CountrySelect } from "../../components/CountrySelect";
+import { fetchInfo, states, cities, baseUrl } from "../../components/Endpoints";
+import axios from "axios";
 
 const KYCForms = (props) => {
   const [upgradeData, setUgradeData] = useState(null);
   const [fileEnable, setFIleEnable] = useState("");
+  const [selectedStateId, setSelectedStateId] = useState("");
+  const [selectedCountryId, setSelectedCountryId] = useState("");
+  const [statesData, setStatesData] = useState({});
+  const [citiesData, setCitiesData] = useState({});
   let dt = {};
   useEffect(() => {}, []);
   switch (props.accountType) {
@@ -25,6 +32,52 @@ const KYCForms = (props) => {
       dt = enterprise;
       break;
   }
+
+  const fetchData = async (country_id) => {
+    try {
+      const response = await axios.post(baseUrl + states, {
+        country_id: country_id,
+      }); // Replace with your API endpoint
+      setStatesData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const fetchDataState = async (state_id) => {
+    try {
+      const response = await axios.post(baseUrl + cities, {
+        state_id: state_id,
+      }); // Replace with your API endpoint
+      setCitiesData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedCountryId !== "") {
+      fetchData(selectedCountryId);
+    }
+  }, [selectedCountryId]);
+
+  useEffect(() => {
+    if (selectedStateId !== "") {
+      fetchDataState(selectedStateId);
+    }
+  }, [selectedStateId]);
+
+  function setCountry(country_id) {
+    console.log("called back with " + country_id + "");
+    // if (country_id !== "") {
+    setSelectedCountryId(country_id);
+    // }
+  }
+
+  function setStateCallBack(state_id) {
+    console.log("called back with state id  " + state_id + "");
+    setSelectedStateId(state_id);
+  }
+
   useEffect(() => {
     window.addEventListener("storage", () => {
       setUgradeData(JSON.parse(localStorage.getItem("upgrade_data"), null));
@@ -59,6 +112,33 @@ const KYCForms = (props) => {
             }
           />
         ))}
+
+        <h6>Select Country</h6>
+        <CountrySelect
+          countyList={props.countryList}
+          callback={setCountry}
+          selector="country_name"
+        />
+        {selectedCountryId != "" ? (
+          <>
+            <h6>Select State</h6>
+            <CountrySelect
+              countyList={statesData}
+              callback={setStateCallBack}
+              selector="state_name"
+            />
+          </>
+        ) : (
+          ""
+        )}
+        {selectedStateId != "" ? (
+          <>
+            <h6>Select City</h6>
+            <CountrySelect countyList={citiesData} selector="city_name" />
+          </>
+        ) : (
+          ""
+        )}
         {dt.inputPlaceholder.map((data, index) => (
           <TextInput data={data} />
         ))}
