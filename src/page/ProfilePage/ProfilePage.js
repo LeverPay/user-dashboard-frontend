@@ -9,9 +9,10 @@ import ReactFlagsSelect from "react-flags-select";
 import { CountryFlagData } from "../../TestData";
 import PhoneNumberComponent from "../../components/PhoneNumberComponent/PhoneNumberComponent";
 import ImageSelectComponent from "../../components/ImageSelectComponent/ImageSelectComponent";
+import { useLocalState } from "../../utils/useLocalStorage";
 import { signUp } from "../../services/apiService";
 
-const ProfilePage = () => {
+const ProfilePage = ({ userName }) => {
   const inputRef = React.createRef();
 
   const [currentImage, setCurrentImage] = useState(false);
@@ -22,6 +23,7 @@ const ProfilePage = () => {
   const [businessName, setBusinessName] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [jwt, setJwt] = useLocalState("", "jwt");
   // const handlePhone = (e) => {
   //   setPhone(e.target.value.replace(/\D/g, ""));
   // };
@@ -34,28 +36,21 @@ const ProfilePage = () => {
 
     //get data from state
     const phone = phoneNumber.phone;
-    // const userData = {
-    //   firstName,
-    //   lastName,
-    //   selected,
-    //   profession,
-    //   businessName,
-    //   address,
-    //   number,
-    // };
+    const passport = currentImage;
+
+    // alert(passport);
 
     const userData = {
-      //first_name: "Bill",
       first_name,
       last_name,
-      //last_name: "Gates",
       email: "walker_alan1@gmail.com",
       phone,
-      password: "alanwalker#1",
+      password: "ternatest#123",
+      passport,
     };
     //const dataValues = Object.values(userData);
     //-------------- API import --------------- //
-    signUp(userData);
+    signUp(userData, jwt);
   };
 
   const discardChanges = (e) => {
@@ -95,9 +90,9 @@ const ProfilePage = () => {
               type="text"
               name="profile_firstName"
               value={first_name}
+              placeholder={userName.firstName}
               ref={inputRef}
               onChange={(e) => setFirstName(e.target.value)}
-              placeholder=""
               className="text-area"
             />
           </Form.Group>
@@ -109,7 +104,7 @@ const ProfilePage = () => {
               value={last_name}
               ref={inputRef}
               onChange={(e) => setLastName(e.target.value)}
-              placeholder=""
+              placeholder={userName.lastName}
               className="text-area"
             />
           </Form.Group>
