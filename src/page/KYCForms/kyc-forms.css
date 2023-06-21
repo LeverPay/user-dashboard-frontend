@@ -22,3 +22,11 @@
   font-family: AgrandirBold;
   font-weight: 700;
 }
+
+.css-b62m3t-container {
+  border: solid 2px rgb(105, 103, 103);
+  height: 53px !important;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
