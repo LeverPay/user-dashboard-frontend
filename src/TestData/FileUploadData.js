@@ -44,11 +44,9 @@ export const gold = {
   ],
   inputPlaceholder: [
     {
-      placeholder: "Residential Address",
-    },
-    {
       placeholder: "BVN",
     },
+    { placeholder: "Residential Address" },
   ],
 };
 
