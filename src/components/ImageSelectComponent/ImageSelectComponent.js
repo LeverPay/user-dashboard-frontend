@@ -48,11 +48,13 @@ const ImageSelectComponent = ({ currentImage, setCurrentImage }) => {
           //setValidImage
         />
         {/* image tag */}
-        <img
-          src={currentImage ? currentImage : avatar}
-          alt=""
-          className="profile-img"
-        />
+        <div className="img_box">
+          <img
+            src={currentImage ? currentImage : avatar}
+            alt=""
+            className="profile-img"
+          />
+        </div>
 
         <Button
           variant="primary"

@@ -2,11 +2,11 @@ import React from "react";
 import CardDefault from "../../components/AllCards/CardDefault";
 import CardInfo from "../../TestData/CardInfo";
 
-function CardUser({ userName }) {
+function CardUser({ firstName, lastName }) {
   return (
     <CardDefault
       backgroundImage="./images/DefaultCardBackground.png"
-      name={userName ? userName.firstName + " " + userName.lastName : ""}
+      name={firstName + " " + lastName}
       cardtype={<br />}
       cardname=" "
       lock=""

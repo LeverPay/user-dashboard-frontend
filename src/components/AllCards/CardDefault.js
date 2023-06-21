@@ -15,7 +15,7 @@ function CardDefault(props) {
   )}  ${cardNumber_string.slice(4, 8)}  ${cardNumber_string.slice(8, 12)}`;
   const CardNumberLastFour = `${cardNumber_string.slice(12, 16)}`;
 
-  const [cardVisible, setCardVisible] = useState(false); 
+  const [cardVisible, setCardVisible] = useState(false);
   const [cardCopied, setCardCopied] = useState(false);
   const [cardCVV, setCardCVV] = useState(false);
 
@@ -25,19 +25,18 @@ function CardDefault(props) {
     });
   }
 
-  function seeCVV(){
-    setCardCVV(prevCVV =>{
-      return prevCVV ? false : true 
-    })
+  function seeCVV() {
+    setCardCVV((prevCVV) => {
+      return prevCVV ? false : true;
+    });
   }
 
-  function copyCardNumber(){
-    setCardCopied((prevCopy)=>{
-      return prevCopy ? false : true 
-    })
+  function copyCardNumber() {
+    setCardCopied((prevCopy) => {
+      return prevCopy ? false : true;
+    });
     navigator.clipboard.writeText(cardNumber);
   }
-
 
   return (
     <div
@@ -45,26 +44,41 @@ function CardDefault(props) {
       style={{
         backgroundImage: `url(${props.backgroundImage})`,
         color: "white",
-        position: 'relative'
+        position: "relative",
       }}
     >
-      <span  style={{
-        position: 'absolute',
-        top: '60%', left: '75%',
-        cursor: 'pointer'
-      }}>
-      <img alt="" src={props.copy} onClick={copyCardNumber}/>
-      <small>{cardCopied ? ' copied' : ''}</small>
-      </span>   
-
-      <span  style={{
-        position: 'absolute',
-        top: '70%', left: '25%',
-        cursor: 'pointer',
-        color: 'white'
-      }}
+      <span
+        style={{
+          position: "absolute",
+          top: "60%",
+          left: "75%",
+          cursor: "pointer",
+        }}
       >
-        <small>C V V : <strong onMouseEnter={seeCVV} onMouseLeave={()=>{setCardCVV(false)}}>{cardCVV ? props.cvv : '***'}</strong></small> 
+        <img alt="" src={props.copy} onClick={copyCardNumber} />
+        <small>{cardCopied ? " copied" : ""}</small>
+      </span>
+
+      <span
+        style={{
+          position: "absolute",
+          top: "70%",
+          left: "25%",
+          cursor: "pointer",
+          color: "white",
+        }}
+      >
+        <small>
+          C V V :{" "}
+          <strong
+            onMouseEnter={seeCVV}
+            onMouseLeave={() => {
+              setCardCVV(false);
+            }}
+          >
+            {cardCVV ? props.cvv : "***"}
+          </strong>
+        </small>
       </span>
 
       <img alt="" src="./images/cardHeader.png" className="LeverpayCardLogo" />
@@ -79,9 +93,16 @@ function CardDefault(props) {
           }}
         />
         <span>
-          <img alt="" src="./images/card visible.png" onMouseOver={seeCard} onMouseLeave={()=>{setCardVisible(false)}} />
+          <img
+            alt=""
+            src="./images/card visible.png"
+            onMouseOver={seeCard}
+            onMouseLeave={() => {
+              setCardVisible(false);
+            }}
+          />
           <br />
-          <small style={{color:'white'}}>Show Card Details</small>
+          <small style={{ color: "white" }}>Show Card Details</small>
         </span>
       </main>
       <p className="cardnumber">
@@ -89,7 +110,7 @@ function CardDefault(props) {
         {CardNumberLastFour}
       </p>
       <main className="cardDate_Type">
-        <span className="cardDate" style={{color:'white'}}>
+        <span className="cardDate" style={{ color: "white" }}>
           <small>Valid Thru </small>
           <br />
           <small>
@@ -122,7 +143,7 @@ function CardDefault(props) {
             src={props.lock}
             style={{ marginRight: "-.5rem", marginTop: "-.2em" }}
           />{" "}
-          {props.cardname}{" "}
+          {props.cardname}
         </h1>
       </footer>
     </div>
