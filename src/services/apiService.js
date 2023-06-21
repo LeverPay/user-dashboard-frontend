@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
-    const signInURL = "http://api.leverpay.io/api/v1/login";
+    const signInURL = "https://api.leverpay.io/api/v1/login";
     const response = await fetch(signInURL, {
       method: "POST",
       headers: {
@@ -63,7 +63,7 @@ export const getUserProfile = async (jwt, setUser) => {
 
 export const signUp = async (userData, jwt) => {
   const response = await fetch(
-    "http://api.leverpay.io/api/v1/user/update-user-profile",
+    "https://api.leverpay.io/api/v1/user/update-user-profile",
     {
       method: "POST",
       headers: {
