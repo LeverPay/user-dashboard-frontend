@@ -34,6 +34,7 @@ import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { useLocalState } from "../utils/useLocalStorage";
 import { getUserProfile } from "../services/apiService";
+import { ToastContainer, toast } from "react-toastify";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -84,7 +85,13 @@ export const UserDashboardLayout = () => {
                   <NavComponent />
                 </div>
                 <div className="col-md-10">
-                  <TopNav userName={user.first_name} />
+                  <TopNav
+                    userName={{
+                      firstName: user.first_name,
+                      lastName: user.last_name,
+                      passport: user.passport,
+                    }}
+                  />
                   <PrivateRoute>
                     <Outlet />
                   </PrivateRoute>
@@ -133,13 +140,19 @@ export const UserDashboardLayout = () => {
                 <div className="col-md-4  card-holder">
                   <div className="col-md-10 mx-auto default-card-holder">
                     <header className="card-header">My Card</header>
-                    <CardUser />
+                    <CardUser
+                      firstName={user.first_name}
+                      lastName={user.last_name}
+                    />
                   </div>
                   <div
                     className="col-md-10 mx-auto"
                     style={{ transform: "translateY(-3.5rem)" }}
                   >
-                    <CardSilver />
+                    <CardSilver
+                      firstName={user.first_name}
+                      lastName={user.last_name}
+                    />
                   </div>
                   <div className="col-md-12">
                     <MerchantComponent />
@@ -153,9 +166,27 @@ export const UserDashboardLayout = () => {
           <Route path="invoices" element={<UnpaidInvoice />} />
           <Route path="cardCategories" element={<CardcategoryPage />} />
           <Route path="account" element={<MyUpgradedAccount />} />
-          <Route path="my cards" element={<MyCardsSilver />} />
+          <Route
+            path="my cards"
+            element={
+              <MyCardsSilver
+                firstName={user.first_name}
+                lastName={user.last_name}
+              />
+            }
+          />
           <Route path="settings" element={<Settings />} />
-          <Route path="profile" element={<ProfilePage />} />
+          <Route
+            path="profile"
+            element={
+              <ProfilePage
+                userName={{
+                  firstName: user.first_name,
+                  lastName: user.last_name,
+                }}
+              />
+            }
+          />
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
@@ -163,6 +194,7 @@ export const UserDashboardLayout = () => {
         </Route>
         <Route path="signin" element={<SignInPage />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };

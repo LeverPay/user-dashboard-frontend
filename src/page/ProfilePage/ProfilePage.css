@@ -9,6 +9,11 @@
   font-family: AgrandirBold !important;
 }
 
+.text-area::placeholder {
+  font-family: AgrandirBold !important;
+  font-size: 13px;
+}
+
 .outer {
   display: flex;
   width: 82%;
