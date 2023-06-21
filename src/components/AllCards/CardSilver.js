@@ -114,9 +114,7 @@ function CardSilver({ userName }) {
           backgroundPosition: "right 0rem top 0rem",
         }}
       >
-        <h2>
-          {userName.firstName} {userName.lastName}
-        </h2>
+        <h2>{userName ? userName.firstName + " " + userName.lastName : ""}</h2>
         <h1
           style={{
             marginRight: "-1rem",

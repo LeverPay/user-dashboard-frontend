@@ -6,7 +6,7 @@ function CardUser({ userName }) {
   return (
     <CardDefault
       backgroundImage="./images/DefaultCardBackground.png"
-      name={userName.firstName + " " + userName.lastName}
+      name={userName ? userName.firstName + " " + userName.lastName : ""}
       cardtype={<br />}
       cardname=" "
       lock=""
