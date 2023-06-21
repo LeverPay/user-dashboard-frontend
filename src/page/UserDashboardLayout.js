@@ -89,6 +89,7 @@ export const UserDashboardLayout = () => {
                     userName={{
                       firstName: user.first_name,
                       lastName: user.last_name,
+                      passport: user.passport,
                     }}
                   />
                   <PrivateRoute>
@@ -140,10 +141,8 @@ export const UserDashboardLayout = () => {
                   <div className="col-md-10 mx-auto default-card-holder">
                     <header className="card-header">My Card</header>
                     <CardUser
-                      userName={{
-                        firstName: user.first_name,
-                        lastName: user.last_name,
-                      }}
+                      firstName={user.first_name}
+                      lastName={user.last_name}
                     />
                   </div>
                   <div
@@ -151,10 +150,8 @@ export const UserDashboardLayout = () => {
                     style={{ transform: "translateY(-3.5rem)" }}
                   >
                     <CardSilver
-                      userName={{
-                        firstName: user.first_name,
-                        lastName: user.last_name,
-                      }}
+                      firstName={user.first_name}
+                      lastName={user.last_name}
                     />
                   </div>
                   <div className="col-md-12">
@@ -169,9 +166,27 @@ export const UserDashboardLayout = () => {
           <Route path="invoices" element={<UnpaidInvoice />} />
           <Route path="cardCategories" element={<CardcategoryPage />} />
           <Route path="account" element={<MyUpgradedAccount />} />
-          <Route path="my cards" element={<MyCardsSilver />} />
+          <Route
+            path="my cards"
+            element={
+              <MyCardsSilver
+                firstName={user.first_name}
+                lastName={user.last_name}
+              />
+            }
+          />
           <Route path="settings" element={<Settings />} />
-          <Route path="profile" element={<ProfilePage />} />
+          <Route
+            path="profile"
+            element={
+              <ProfilePage
+                userName={{
+                  firstName: user.first_name,
+                  lastName: user.last_name,
+                }}
+              />
+            }
+          />
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
