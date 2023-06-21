@@ -38,7 +38,7 @@ export const signIn = async (userData, jwt, setJwt) => {
 //getUserProfile
 
 export const getUserProfile = async (jwt, setUser) => {
-  const getData = "http://api.leverpay.io/api/v1/user/get-user-profile";
+  const getData = "https://api.leverpay.io/api/v1/user/get-user-profile";
   const userProfile = await fetch(getData, {
     method: "GET",
     headers: {
