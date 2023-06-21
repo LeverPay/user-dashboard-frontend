@@ -19,7 +19,10 @@ const TopNav = ({ userName }) => {
           <MdNotifications size={30} className="notificationIcon" />
         </div>
         <Link to="/profile" style={{ textDecoration: "none" }}>
-          <UserSelectComponent userName={userName} />
+          <UserSelectComponent
+            userName={userName.firstName}
+            passport={userName.passport}
+          />
         </Link>
       </div>
       <div className="side-nav-logo  col-6">

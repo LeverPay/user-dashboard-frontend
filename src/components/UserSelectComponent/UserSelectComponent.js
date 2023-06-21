@@ -4,10 +4,14 @@ import "./UserSelectComponent.css";
 const name = UserData.name;
 const profile_pic = UserData.profile_Img;
 
-function UserSelectComponent({ userName }) {
+function UserSelectComponent({ userName, passport }) {
   return (
     <div className="User_Info">
-      <img alt="" src={profile_pic} />
+      <img
+        alt=""
+        src={passport}
+        // {profile_pic}
+      />
       <h3>{userName}</h3>
       <span></span>
     </div>

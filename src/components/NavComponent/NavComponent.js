@@ -83,18 +83,14 @@ const NavComponent = () => {
           <div />
           <div>
             <div defaultactivekey="/" className="flex-column my-tweak">
-              {" "}
               <center>
                 <div className="navbar-logo col-md-9 col-9">
-                  {" "}
                   <img src={LeverpayLogo} alt="" style={{ width: "100%" }} />
-                </div>{" "}
+                </div>
               </center>
               <div className="nav-options">
-                {" "}
                 <ul className="list-unstyled">
                   <li>
-                    {" "}
                     <NavLink
                       to="/"
                       className="text-link"
@@ -112,7 +108,6 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      {" "}
                       <i className="icofont-exchange"></i>
                       Transactions
                     </NavLink>
@@ -121,27 +116,23 @@ const NavComponent = () => {
                     // eslint-disable-next-line no-undef
                     onClick={() => handleActive("invoices")}
                   >
-                    {" "}
                     <NavLink
                       to="/invoices"
                       className="text-link"
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      {" "}
                       <i className="icofont-notepad"></i>
                       Unpaid Invoices
                     </NavLink>
                   </li>
                   <li>
-                    {" "}
                     <NavLink
                       to="/my cards"
                       className="text-link"
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      {" "}
                       <i className="icofont-wallet"></i>
                       My Cards
                     </NavLink>
@@ -153,11 +144,10 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      {" "}
                       <i className="icofont-ui-settings"></i>
                       Settings
                     </NavLink>
-                  </li>{" "}
+                  </li>
                   <li>
                     <NavLink
                       to="/payment-page"
@@ -165,31 +155,26 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      {" "}
                       <i className="icofont-ui-settings"></i>
                       Checkout
                     </NavLink>
-                  </li>{" "}
+                  </li>
                 </ul>
               </div>
               <div className="bottom-options">
-                {" "}
                 <ul className="list-unstyled">
                   <li onClick={closeMobileMenu}>
-                    {" "}
                     <Link to="/help" className="bottom-link">
                       <small>
-                        {" "}
                         <i className="icofont-question-square"></i>
-                      </small>{" "}
+                      </small>
                       help
-                    </Link>{" "}
+                    </Link>
                   </li>
                   <li onClick={closeMobileMenu}>
-                    {" "}
                     <Link to="#" className="bottom-link">
                       <small>
-                        <i className="icofont-sign-out"></i>{" "}
+                        <i className="icofont-sign-out"></i>
                       </small>
                       logout
                     </Link>
