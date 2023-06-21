@@ -41,7 +41,7 @@ const AddAccountComponent = () => {
         onHide={() => setShowModal(false)}
         backdrop="static"
         keyboard={false}
-        className="modal-control"
+        // className="modal-control"
       >
         <Modal.Header closeButton>
           <Modal.Title className="labels">Additional Details</Modal.Title>
