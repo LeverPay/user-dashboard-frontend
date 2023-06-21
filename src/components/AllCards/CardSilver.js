@@ -2,7 +2,8 @@ import React, { useState } from "react";
 // import CardInfo from "../CardInfo";
 import CardInfo from "../../TestData/CardInfo";
 
-function CardSilver({ userName }) {
+function CardSilver(props) {
+  console.log(props);
   const date = new Date();
   const month = date.getMonth();
   const year = date.getFullYear();
@@ -115,7 +116,7 @@ function CardSilver({ userName }) {
         }}
       >
         <h2>
-          {userName.firstName} {userName.lastName}
+          {props.firstName} {props.lastName}
         </h2>
         <h1
           style={{
