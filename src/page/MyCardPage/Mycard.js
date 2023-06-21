@@ -13,6 +13,7 @@ import CardcategoryPage from "../CardCategoryPage/CardcategoryPage";
 import { useState } from "react";
 
 function Mycard(props) {
+  // console.log(props);
   const [modal, setModal] = useState(false);
 
   function toggleModal() {
@@ -28,7 +29,7 @@ function Mycard(props) {
       <Row className="justify-content-center">
         <Col className="col-10 col-md-5">
           <Row>
-            <CardUser />
+            <CardUser firstName={props.firstName} lastName={props.lastName} />
           </Row>
         </Col>
         <Col className="col-md-1 d-none d-md-block"></Col>
