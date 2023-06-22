@@ -83,7 +83,10 @@ function FileUpload({ data, enabled }) {
   return (
     <>
       <div className="file-upload-container col-md-12">
-        {/* <h5> {data.name}</h5> */}
+        <h5 className="file-title">
+          {" "}
+          {data.name} <span className="hint2">{data.description}</span>
+        </h5>
         <button
           className="btn btn-light file-btn flexy flexyM "
           disabled={!enabled}
@@ -92,6 +95,7 @@ function FileUpload({ data, enabled }) {
             className="file-upload-input"
             multiple
             value={images}
+            s
             onChange={onChange}
             maxNumber={maxNumber}
             dataURLKey="data_url"
@@ -135,7 +139,7 @@ function FileUpload({ data, enabled }) {
                       />
                     </div>
                   ))}{" "}
-                  <h5> {data.name}</h5>
+                  {/* <h5> {data.name}</h5> */}
                   <small className="hint">(click or drag to upload)</small>
                   <div
                     className="file-upload-arrow"
@@ -149,11 +153,18 @@ function FileUpload({ data, enabled }) {
               </div>
             )}
           </ImageUploading>{" "}
-          <div className="col-md-1">
-            <button onClick={toggle} className="camera-btn">
+          <div className="col-md-1 hover-text">
+            <button
+              onClick={toggle}
+              className="camera-btn "
+              // title="Click to take a photo"
+            >
               <img className="" src={CamIcon} alt="Scholar" width="65%" />
             </button>
             {webcam && <Webcamera tg={toggle} captImg={setCollectedImg} />}
+            <span class="tooltip-text" id="top">
+              Take a photo
+            </span>
           </div>
         </button>
       </div>

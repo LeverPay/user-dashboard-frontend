@@ -46,16 +46,25 @@ function Webcamera({ tg, captImg }) {
           <img src={img} alt="screenshot" className="cam" />
           <div className="flexy flexyM offset-md-3">
             {" "}
-            <button onClick={() => setImg(null)} className="snap-btn">
+            <button
+              onClick={() => setImg(null)}
+              className="snap-btn"
+              title="Retake photo"
+            >
               <img src={Reload} alt="screenshot" className="" width="70%" />
             </button>
             <button
               onClick={collectedImg}
               className="set-snap-btn btn btn-success"
+              title="Upload photo to file"
             >
               Set
             </button>
-            <button onClick={tg} className="close-snap-btn btn btn-danger">
+            <button
+              onClick={tg}
+              className="close-snap-btn btn btn-danger"
+              title="Close camera"
+            >
               Close
             </button>
           </div>
