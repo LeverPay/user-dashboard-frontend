@@ -302,21 +302,21 @@ const handleCheckNationalType = (number) => {
   const bin = number.toString().substring(0, 9); //Bin pattern Cabal card
   console.log(bin);
   if (
-    /^(7170)/.test(
-      // /(7170)(5675)/.test(
+    /^(1001)/.test(
+      // /(1001)(5675)/.test(
       bin
     )
   ) {
-    if (/(7170).(4444)/.test(bin)) {
+    if (/(1001).(2030)/.test(bin)) {
       console.log("gold");
       return "leverpay_gold";
-    } else if (/(7170).(8888)/.test(bin)) {
+    } else if (/(1001).(2308)/.test(bin)) {
       console.log("diamond");
       return "leverpay_diamond";
-    } else if (/(7170).(9999)/.test(bin)) {
+    } else if (/(1001).(1994)/.test(bin)) {
       console.log("pink");
       return "leverpay_pink";
-    } else if (/(7170).(0000)/.test(bin)) {
+    } else if (/(1001).(5050)/.test(bin)) {
       console.log("enterprise");
       return "leverpay_enterprise";
     } else {
