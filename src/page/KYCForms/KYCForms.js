@@ -15,6 +15,7 @@ const KYCForms = (props) => {
   const [selectedCountryId, setSelectedCountryId] = useState("");
   const [statesData, setStatesData] = useState({});
   const [citiesData, setCitiesData] = useState({});
+
   let dt = {};
   useEffect(() => {}, []);
   switch (props.accountType) {
@@ -103,17 +104,22 @@ const KYCForms = (props) => {
           </span>
         </h3>
         <h4>Select the type of Document you would like to Upload</h4>
+        <div className="flexy flexyM">
+          <div className="col-md-12">
+            {dt.data.map((data, index) => (
+              <FileUpload
+                data={data}
+                enabled={
+                  fileEnable == data.name ||
+                  fileEnable == "" ||
+                  data.req === true
+                }
+              />
+            ))}
+          </div>
+        </div>
 
-        {dt.data.map((data, index) => (
-          <FileUpload
-            data={data}
-            enabled={
-              fileEnable == data.name || fileEnable == "" || data.req === true
-            }
-          />
-        ))}
-
-        <h6>Select Country</h6>
+        <h6 className="country-heading">Select Country</h6>
         <CountrySelect
           countyList={props.countryList}
           callback={setCountry}
@@ -121,7 +127,7 @@ const KYCForms = (props) => {
         />
         {selectedCountryId != "" ? (
           <>
-            <h6>Select State</h6>
+            <h6 className="country-heading">Select State</h6>
             <CountrySelect
               countyList={statesData}
               callback={setStateCallBack}
@@ -133,15 +139,24 @@ const KYCForms = (props) => {
         )}
         {selectedStateId != "" ? (
           <>
-            <h6>Select City</h6>
+            <h6 className="country-heading">Select City</h6>
             <CountrySelect countyList={citiesData} selector="city_name" />
           </>
         ) : (
           ""
         )}
-        {dt.inputPlaceholder.map((data, index) => (
+        {/* {dt.inputPlaceholder.map((data, index) => (
           <TextInput data={data} />
-        ))}
+        ))} */}
+        {selectedCountryId != "" ? (
+          <>
+            {dt.inputPlaceholder.map((data, index) => (
+              <TextInput data={data} selector="state_name" />
+            ))}
+          </>
+        ) : (
+          ""
+        )}
         <KYCFormsButton
           handleClose={props.handleClose}
           accountType={props.accountType}

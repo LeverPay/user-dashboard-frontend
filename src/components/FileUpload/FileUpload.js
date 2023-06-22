@@ -3,10 +3,11 @@ import React, { useState, useEffect } from "react";
 import ImageUploading from "react-images-uploading";
 import "./file_upload.css";
 import Button from "react-bootstrap/Button";
-
+import CamIcon from "../../assets/images/camera.png";
 // import Passport from "../../assets/images/Passport.png";
 import UploadCheckmark from "./UploadCheckmark";
 import BackArrow from "./BackArrow";
+import Webcamera from "../../page/KYCForms/Webcamera/Webcamera";
 function FileUpload({ data, enabled }) {
   // TO DO: fix the bug on auto checkmark on page load
   // TO DO: fix the bug on the uncorrelating index file removal
@@ -14,7 +15,20 @@ function FileUpload({ data, enabled }) {
   const [uploadStatus, setUploadStatus] = useState(false);
   const [selected, setSelected] = useState(BackArrow);
   const maxNumber = data.maxUpload;
+  const [webcam, setWebcam] = useState(false);
+  const toggle = () => setWebcam(!webcam);
 
+  // Function to convert base64 to Blob
+  function setCollectedImg(img) {
+    let imageList = images;
+    let newImg = { data_url: img };
+
+    imageList.push(newImg);
+    console.log(imageList);
+    setImages(images);
+    toggle();
+    return () => onChange;
+  }
   const onChange = (imageList, addUpdateIndex) => {
     // setImages(imageList);
     let ctx = imageList.length;
@@ -69,9 +83,13 @@ function FileUpload({ data, enabled }) {
   return (
     <>
       <div className="file-upload-container col-md-12">
-        <Button className="btn btn-light file-btn" disabled={!enabled}>
-          {" "}
+        {/* <h5> {data.name}</h5> */}
+        <button
+          className="btn btn-light file-btn flexy flexyM "
+          disabled={!enabled}
+        >
           <ImageUploading
+            className="file-upload-input"
             multiple
             value={images}
             onChange={onChange}
@@ -117,7 +135,8 @@ function FileUpload({ data, enabled }) {
                       />
                     </div>
                   ))}{" "}
-                  <h3> {data.name}</h3>
+                  <h5> {data.name}</h5>
+                  <small className="hint">(click or drag to upload)</small>
                   <div
                     className="file-upload-arrow"
                     // onClick={imageUpload(onImageUpload, imageList)}
@@ -130,7 +149,13 @@ function FileUpload({ data, enabled }) {
               </div>
             )}
           </ImageUploading>{" "}
-        </Button>
+          <div className="col-md-1">
+            <button onClick={toggle} className="camera-btn">
+              <img className="" src={CamIcon} alt="Scholar" width="65%" />
+            </button>
+            {webcam && <Webcamera tg={toggle} captImg={setCollectedImg} />}
+          </div>
+        </button>
       </div>
     </>
   );
