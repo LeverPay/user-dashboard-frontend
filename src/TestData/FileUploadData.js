@@ -9,8 +9,8 @@ export const gold = {
   limit: 50000,
   data: [
     {
-      name: "Snapshot",
-      fileDetail: "Front and Back",
+      name: "Passport Photograph",
+
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -19,6 +19,7 @@ export const gold = {
     },
     {
       name: "International Passport",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -27,6 +28,7 @@ export const gold = {
     },
     {
       name: "Driver License",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: London,
@@ -35,6 +37,7 @@ export const gold = {
     },
     {
       name: "Voters Card",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: ID,
@@ -59,7 +62,8 @@ export const diamond = {
   limit: 70000,
   data: [
     {
-      name: "Snapshot",
+      name: "Passport Photograph",
+
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -68,6 +72,7 @@ export const diamond = {
     },
     {
       name: "International Passport",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -76,6 +81,7 @@ export const diamond = {
     },
     {
       name: "Driver License",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: London,
@@ -84,6 +90,7 @@ export const diamond = {
     },
     {
       name: "Voters Card",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: ID,
@@ -113,7 +120,7 @@ export const enterprise = {
   limit: 100000,
   data: [
     {
-      name: "Snapshot",
+      name: "Passport Photograph",
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -122,6 +129,7 @@ export const enterprise = {
     },
     {
       name: "International Passport",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -130,6 +138,7 @@ export const enterprise = {
     },
     {
       name: "Driver License",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: London,
@@ -138,6 +147,7 @@ export const enterprise = {
     },
     {
       name: "Voters Card",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: ID,
@@ -189,7 +199,7 @@ export const pinkLady = {
   limit: 90000,
   data: [
     {
-      name: "Passport",
+      name: "Passport Photograph",
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -197,6 +207,7 @@ export const pinkLady = {
     },
     {
       name: "International Passport",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -204,6 +215,7 @@ export const pinkLady = {
     },
     {
       name: "Driver License",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: London,
@@ -211,6 +223,7 @@ export const pinkLady = {
     },
     {
       name: "Voters Card",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: ID,
