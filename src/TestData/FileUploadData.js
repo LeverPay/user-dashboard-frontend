@@ -43,10 +43,10 @@ export const gold = {
     },
   ],
   inputPlaceholder: [
+    { placeholder: "Residential Address" },
     {
       placeholder: "BVN",
     },
-    { placeholder: "Residential Address" },
   ],
 };
 
@@ -93,16 +93,16 @@ export const diamond = {
   ],
   inputPlaceholder: [
     {
-      placeholder: "NIN (National Identity Number)",
-    },
-    {
-      placeholder: "Utility Bill",
-    },
-    {
       placeholder: "Residential Address",
     },
     {
       placeholder: "BVN",
+    },
+    {
+      placeholder: "NIN (National Identity Number)",
+    },
+    {
+      placeholder: "Utility Bill",
     },
   ],
 };
@@ -163,6 +163,12 @@ export const enterprise = {
   ],
   inputPlaceholder: [
     {
+      placeholder: "Residential Address",
+    },
+    {
+      placeholder: "BVN",
+    },
+    {
       placeholder: "Business Name",
     },
     {
@@ -173,12 +179,6 @@ export const enterprise = {
     },
     {
       placeholder: "NIN (National Identity Number)",
-    },
-    {
-      placeholder: "Residential Address",
-    },
-    {
-      placeholder: "BVN",
     },
   ],
 };
@@ -226,16 +226,13 @@ export const pinkLady = {
   ],
   inputPlaceholder: [
     {
-      placeholder: "NIN (National Identity Number)",
-    },
-    {
-      placeholder: "BVN",
-    },
-    {
       placeholder: "Residential Address",
     },
     {
       placeholder: "BVN",
+    },
+    {
+      placeholder: "NIN (National Identity Number)",
     },
   ],
 };
