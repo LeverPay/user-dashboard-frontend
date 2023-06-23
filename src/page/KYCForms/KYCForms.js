@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./kyc-forms.css";
 import FileUpload from "../../components/FileUpload/FileUpload";
-import { gold, diamond, pinkLady, enterprise } from "../../TestData";
+import { gold, diamond, pinkLady, enterprise, groups } from "../../TestData";
 import { KYCFormsButton } from "./KYCFormsButton/KYCFormsButton";
 import TextInput from "../../components/FileUpload/TextInput/TextInput";
 import { CountrySelect } from "../../components/CountrySelect";
@@ -15,6 +15,9 @@ const KYCForms = (props) => {
   const [selectedCountryId, setSelectedCountryId] = useState("");
   const [statesData, setStatesData] = useState({});
   const [citiesData, setCitiesData] = useState({});
+  const [section1, setSection1] = useState(0);
+  const [section2, setSection2] = useState(0);
+  const [section3, setSection3] = useState(0);
 
   let dt = {};
   useEffect(() => {}, []);
@@ -82,8 +85,12 @@ const KYCForms = (props) => {
   useEffect(() => {
     window.addEventListener("storage", () => {
       setUgradeData(JSON.parse(localStorage.getItem("upgrade_data"), null));
-      console.log("Change to local storage!");
-      console.log(upgradeData);
+      setSection1(parseInt(localStorage.getItem("section_1", 0)));
+      setSection2(parseInt(localStorage.getItem("section_2", 0)));
+      setSection3(parseInt(localStorage.getItem("section_3", 0)));
+      console.log("section 1:", section1);
+      console.log("section 2:", section2);
+      console.log("section 3:", section3);
     });
   });
   useEffect(() => {
@@ -91,6 +98,28 @@ const KYCForms = (props) => {
     console.log(fileEnable);
   }, [upgradeData]);
 
+  function checkSection(data) {
+    if (data.group_id) {
+      let grp;
+      let resp;
+      switch (data.group_id) {
+        case 1:
+          grp = groups[0];
+          resp = section1;
+          break;
+        case 2:
+          grp = groups[1];
+          resp = section2;
+          break;
+        default:
+          grp = groups[2];
+          resp = section3;
+          break;
+      }
+      return resp >= grp.set_req;
+    }
+    return true;
+  }
   return (
     <>
       <div className="kyf-form-container col-md-12">
@@ -111,7 +140,7 @@ const KYCForms = (props) => {
                 data={data}
                 enabled={
                   fileEnable == data.name ||
-                  fileEnable == "" ||
+                  !checkSection(data) ||
                   data.req === true
                 }
               />
