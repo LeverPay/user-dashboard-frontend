@@ -10,13 +10,14 @@ export const gold = {
   data: [
     {
       name: "Passport Photograph",
-
+      group_id: 1,
       type: "file",
       is_selected: false,
       icon: Passport,
       maxUpload: 1,
       req: true,
     },
+
     {
       name: "International Passport",
       description: "front and back",
@@ -25,6 +26,7 @@ export const gold = {
       icon: Passport,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
     {
       name: "Driver License",
@@ -34,6 +36,7 @@ export const gold = {
       icon: London,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
     {
       name: "Voters Card",
@@ -43,12 +46,14 @@ export const gold = {
       icon: ID,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
   ],
   inputPlaceholder: [
-    { placeholder: "Residential Address" },
+    { placeholder: "Residential Address", group_id: 3 },
     {
-      placeholder: "BVN",
+      placeholder: "BVN / SSN",
+      group_id: 3,
     },
   ],
 };
@@ -63,7 +68,7 @@ export const diamond = {
   data: [
     {
       name: "Passport Photograph",
-
+      group_id: 1,
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -75,6 +80,7 @@ export const diamond = {
       description: "front and back",
       type: "file",
       is_selected: false,
+      group_id: 2,
       icon: Passport,
       maxUpload: 2,
       req: false,
@@ -84,6 +90,7 @@ export const diamond = {
       description: "front and back",
       type: "file",
       is_selected: false,
+      group_id: 2,
       icon: London,
       maxUpload: 2,
       req: false,
@@ -95,21 +102,22 @@ export const diamond = {
       is_selected: false,
       icon: ID,
       maxUpload: 2,
+      group_id: 2,
       req: false,
     },
   ],
   inputPlaceholder: [
     {
       placeholder: "Residential Address",
+      group_id: 3,
     },
     {
       placeholder: "BVN",
+      group_id: 3,
     },
     {
       placeholder: "NIN (National Identity Number)",
-    },
-    {
-      placeholder: "Utility Bill",
+      group_id: 3,
     },
   ],
 };
@@ -249,3 +257,24 @@ export const pinkLady = {
     },
   ],
 };
+
+export const groups = [
+  {
+    id: 1,
+    title: "Passport Information",
+    set_req: 1,
+    req_msg: "Passport photograph upload is compulsory",
+  },
+  {
+    id: 2,
+    title: "Government Issued Identity Information",
+    set_req: 1,
+    req_msg: "You must select ONLY ONE from this Section",
+  },
+  {
+    id: 3,
+    title: "Personal Information",
+    set_req: 2,
+    req_msg: "All fields are required in this Section",
+  },
+];
