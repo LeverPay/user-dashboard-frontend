@@ -72,11 +72,32 @@ function FileUpload({ data, enabled }) {
   }, []);
   useEffect(() => {
     setSelected(uploadStatus ? UploadCheckmark : BackArrow);
-    if (uploadStatus)
-      localStorage.setItem("upgrade_data", JSON.stringify(data));
-    else {
-      localStorage.removeItem("upgrade_data");
+    let sectionName;
+    let storedSection;
+    switch (data.group_id) {
+      case 1:
+        sectionName = "section_1";
+        break;
+      case 2:
+        sectionName = "section_2";
+
+        break;
+      default:
+        sectionName = "section_3";
+        break;
     }
+    storedSection = parseInt(localStorage.getItem(sectionName, "0"));
+    if (isNaN(storedSection)) storedSection = 0;
+
+    if (uploadStatus) {
+      localStorage.setItem("upgrade_data", JSON.stringify(data));
+      storedSection += 1;
+    } else {
+      localStorage.removeItem("upgrade_data");
+      storedSection = storedSection == 0 ? 0 : storedSection - 1;
+    }
+    console.log("storedSection:" + sectionName + ":", storedSection);
+    localStorage.setItem(sectionName, JSON.stringify(storedSection));
     window.dispatchEvent(new Event("storage"));
   }, [uploadStatus]);
 
@@ -154,11 +175,7 @@ function FileUpload({ data, enabled }) {
             )}
           </ImageUploading>{" "}
           <div className="col-md-1 hover-text">
-            <button
-              onClick={toggle}
-              className="camera-btn "
-              // title="Click to take a photo"
-            >
+            <button onClick={toggle} className="camera-btn ">
               <img className="" src={CamIcon} alt="Scholar" width="65%" />
             </button>
             {webcam && <Webcamera tg={toggle} captImg={setCollectedImg} />}
