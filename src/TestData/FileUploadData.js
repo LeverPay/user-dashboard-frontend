@@ -9,19 +9,21 @@ export const gold = {
   limit: 50000,
   data: [
     {
-      name: "Passport",
+      name: "Snapshot",
       fileDetail: "Front and Back",
       type: "file",
       is_selected: false,
       icon: Passport,
-      maxUpload: 2,
+      maxUpload: 1,
+      req: true,
     },
     {
       name: "International Passport",
       type: "file",
       is_selected: false,
       icon: Passport,
-      maxUpload: 1,
+      maxUpload: 2,
+      req: false,
     },
     {
       name: "Driver License",
@@ -29,6 +31,7 @@ export const gold = {
       is_selected: false,
       icon: London,
       maxUpload: 2,
+      req: false,
     },
     {
       name: "Voters Card",
@@ -36,15 +39,14 @@ export const gold = {
       is_selected: false,
       icon: ID,
       maxUpload: 2,
+      req: false,
     },
   ],
   inputPlaceholder: [
     {
-      placeholder: "Residential Address",
-    },
-    {
       placeholder: "BVN",
     },
+    { placeholder: "Residential Address" },
   ],
 };
 
@@ -57,18 +59,20 @@ export const diamond = {
   limit: 70000,
   data: [
     {
-      name: "Passport",
+      name: "Snapshot",
       type: "file",
       is_selected: false,
       icon: Passport,
-      maxUpload: 2,
+      maxUpload: 1,
+      req: true,
     },
     {
       name: "International Passport",
       type: "file",
       is_selected: false,
       icon: Passport,
-      maxUpload: 1,
+      maxUpload: 2,
+      req: false,
     },
     {
       name: "Driver License",
@@ -76,6 +80,7 @@ export const diamond = {
       is_selected: false,
       icon: London,
       maxUpload: 2,
+      req: false,
     },
     {
       name: "Voters Card",
@@ -83,6 +88,7 @@ export const diamond = {
       is_selected: false,
       icon: ID,
       maxUpload: 2,
+      req: false,
     },
   ],
   inputPlaceholder: [
@@ -107,18 +113,20 @@ export const enterprise = {
   limit: 100000,
   data: [
     {
-      name: "Passport",
+      name: "Snapshot",
       type: "file",
       is_selected: false,
       icon: Passport,
       maxUpload: 1,
+      req: true,
     },
     {
       name: "International Passport",
       type: "file",
       is_selected: false,
       icon: Passport,
-      maxUpload: 1,
+      maxUpload: 2,
+      req: false,
     },
     {
       name: "Driver License",
@@ -126,6 +134,7 @@ export const enterprise = {
       is_selected: false,
       icon: London,
       maxUpload: 2,
+      req: false,
     },
     {
       name: "Voters Card",
@@ -133,6 +142,7 @@ export const enterprise = {
       is_selected: false,
       icon: ID,
       maxUpload: 2,
+      req: false,
     },
     {
       name: "Utility Bill",
@@ -140,6 +150,7 @@ export const enterprise = {
       is_selected: false,
       icon: ID,
       maxUpload: 1,
+      req: false,
     },
     {
       name: " Business CAC certificate",
@@ -147,6 +158,7 @@ export const enterprise = {
       is_selected: false,
       icon: ID,
       maxUpload: 1,
+      req: true,
     },
   ],
   inputPlaceholder: [
