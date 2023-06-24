@@ -36,7 +36,7 @@ function FileUpload({ data, enabled }) {
 
   function imageUpload(onImageUpload, imageList) {
     let ct = images.length;
-    setUploadStatus(ct == maxNumber && imageList[0] != data.icon);
+    setUploadStatus(ct == maxNumber && imageList[0] !== data.icon);
     console.log(ct, uploadStatus);
     return onImageUpload;
   }
