@@ -7,6 +7,7 @@ export const gold = {
   card: "GOLD",
   color: "#84632E",
   limit: 50000,
+  section_count_limit: 5,
   data: [
     {
       name: "Passport Photograph",
@@ -129,6 +130,7 @@ export const enterprise = {
   data: [
     {
       name: "Passport Photograph",
+      group_id: 1,
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -143,6 +145,7 @@ export const enterprise = {
       icon: Passport,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
     {
       name: "Driver License",
@@ -152,6 +155,7 @@ export const enterprise = {
       icon: London,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
     {
       name: "Voters Card",
@@ -161,6 +165,7 @@ export const enterprise = {
       icon: ID,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
     {
       name: "Utility Bill",
@@ -169,6 +174,7 @@ export const enterprise = {
       icon: ID,
       maxUpload: 1,
       req: false,
+      group_id: 2,
     },
     {
       name: " Business CAC certificate",
@@ -177,26 +183,33 @@ export const enterprise = {
       icon: ID,
       maxUpload: 1,
       req: true,
+      group_id: 2,
     },
   ],
   inputPlaceholder: [
     {
       placeholder: "Residential Address",
+      group_id: 3,
     },
     {
       placeholder: "BVN",
+      group_id: 3,
     },
     {
       placeholder: "Business Name",
+      group_id: 3,
     },
     {
       placeholder: "Business Address",
+      group_id: 3,
     },
     {
       placeholder: "CAC RC. No:",
+      group_id: 3,
     },
     {
       placeholder: "NIN (National Identity Number)",
+      group_id: 3,
     },
   ],
 };
@@ -212,6 +225,7 @@ export const pinkLady = {
       is_selected: false,
       icon: Passport,
       maxUpload: 1,
+      group_id: 1,
     },
     {
       name: "International Passport",
@@ -220,6 +234,7 @@ export const pinkLady = {
       is_selected: false,
       icon: Passport,
       maxUpload: 1,
+      group_id: 2,
     },
     {
       name: "Driver License",
@@ -228,6 +243,7 @@ export const pinkLady = {
       is_selected: false,
       icon: London,
       maxUpload: 2,
+      group_id: 2,
     },
     {
       name: "Voters Card",
@@ -235,6 +251,7 @@ export const pinkLady = {
       type: "file",
       is_selected: false,
       icon: ID,
+      group_id: 2,
       maxUpload: 2,
     },
     {
@@ -243,17 +260,21 @@ export const pinkLady = {
       is_selected: false,
       icon: ID,
       maxUpload: 1,
+      group_id: 2,
     },
   ],
   inputPlaceholder: [
     {
       placeholder: "Residential Address",
+      group_id: 3,
     },
     {
       placeholder: "BVN",
+      group_id: 3,
     },
     {
       placeholder: "NIN (National Identity Number)",
+      group_id: 3,
     },
   ],
 };
