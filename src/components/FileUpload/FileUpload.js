@@ -141,7 +141,7 @@ function FileUpload({ data, enabled }) {
               dragProps,
             }) => (
               // write your building UI
-              <div className="upload__image-wrapper col-md-12">
+              <div className="upload__image-wrapper col-md-12 col-12">
                 <div
                   style={isDragging ? { color: "red" } : null}
                   className="file-upload-div"
@@ -176,7 +176,7 @@ function FileUpload({ data, enabled }) {
           </ImageUploading>{" "}
           <div className="col-md-1 hover-text">
             <button onClick={toggle} className="camera-btn ">
-              <img className="" src={CamIcon} alt="Scholar" width="65%" />
+              <img className="" src={CamIcon} alt="Scholar" width="" />
             </button>
             {webcam && <Webcamera tg={toggle} captImg={setCollectedImg} />}
             <span class="tooltip-text" id="top">
