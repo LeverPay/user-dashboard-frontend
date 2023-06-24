@@ -27,7 +27,7 @@ const ImageSelectModal = ({
           {/* Body ends here  */}
           <div className="image-upload-main">
             <p>{currentImage.name}</p>
-            <label className="upload-btn" for="image-upload">
+            <label for="image-upload" className="upload-btn">
               Add an image
             </label>
             <input
