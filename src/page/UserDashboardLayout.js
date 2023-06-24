@@ -42,6 +42,8 @@ export const UserDashboardLayout = () => {
   const [user, setUser] = useState({});
   const [jwt, setJwt] = useLocalState("", "jwt");
 
+  console.log(user);
+
   useEffect(() => {
     setNaijaCard({
       id: naijaCardDetails.map((data) => data.id),
