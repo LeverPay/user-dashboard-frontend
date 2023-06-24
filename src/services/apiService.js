@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
-    const signInURL = "http://api.leverpay.io/api/v1/login";
+    const signInURL = "https://api.leverpay.io/api/v1/login";
     const response = await fetch(signInURL, {
       method: "POST",
       headers: {
@@ -35,10 +35,10 @@ export const signIn = async (userData, jwt, setJwt) => {
   }
 };
 
-//getUserProfile
+//----------------------------------------- getUserProfile --------------------------------------------------//
 
 export const getUserProfile = async (jwt, setUser) => {
-  const getData = "http://api.leverpay.io/api/v1/user/get-user-profile";
+  const getData = "https://api.leverpay.io/api/v1/user/get-user-profile";
   const userProfile = await fetch(getData, {
     method: "GET",
     headers: {
@@ -61,9 +61,9 @@ export const getUserProfile = async (jwt, setUser) => {
   return await userProfile;
 };
 
-export const signUp = async (userData, jwt) => {
-  const response = await fetch(
-    "http://api.leverpay.io/api/v1/user/update-user-profile",
+export const updateUserProfile = async (jwt, userDataUpdate) => {
+  const updateRes = await fetch(
+    "https://api.leverpay.io/api/v1/user/update-user-profile",
     {
       method: "POST",
       headers: {
@@ -71,32 +71,26 @@ export const signUp = async (userData, jwt) => {
         "Access-Control-Allow-Origin": "*",
         Authorization: `Bearer ${jwt}`,
       },
-      body: JSON.stringify(userData),
+      body: JSON.stringify(userDataUpdate),
     }
   )
-    .then((response) => response.json())
     .then((res) => {
-      if (res.success) {
-        //toast.success(`${res.message}`);
-        console.log(res);
+      if (res.status === 200) {
+        console.log(userDataUpdate.passport);
+        return res.json();
       } else {
-        console.log(res);
+        toast.error("Something went wrong");
       }
-      // else {
-      //   if (
-      //     userData.first_name.length === 0 &&
-      //     userData.last_name.length === 0
-      //   ) {
-      //     toast.error(`${res.data.first_name}`);
-      //     toast.error(`${res.data.last_name}`);
-      //   } else {
-      //     toast.error(`${res.data.email}`);
-      //   }
-      //   console.log(res);
-      // }
+    })
+    .then((resUser) => {
+      toast.success(resUser.message);
+      //transition to homepage
+      // setTimeout(() => {
+      //   window.location.href = "/";
+      // }, 2000);
     })
     .catch((err) => {
-      console.log(err);
+      console.log(`${err.message}`);
     });
-  return await response;
+  return await updateRes;
 };
