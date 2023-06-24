@@ -15,9 +15,10 @@ export const KYCFormsButton = (props) => {
       console.log("Change to local storage!");
       console.log(upgradeData);
     });
-  });
+  }); 
   useEffect(() => {
     setBtnDisable(upgradeData == null);
+
   }, [upgradeData]);
   useEffect(() => {
     if (verification) {
