@@ -6,7 +6,12 @@ import ImageSelectModal from "./ImageSelectModal";
 import { ToastContainer, toast } from "react-toastify";
 import "./ImageSelectComponent.css";
 // import "../ImageComponent/ImageComponent.css";
-const ImageSelectComponent = ({ currentImage, setCurrentImage }) => {
+const ImageSelectComponent = ({
+  currentImage,
+  setCurrentImage,
+  originalImage,
+  setOriginalImage,
+}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [validImage, setValidImage] = useState(true);
 
@@ -21,11 +26,14 @@ const ImageSelectComponent = ({ currentImage, setCurrentImage }) => {
       setValidImage(false);
     }
     setCurrentImage(e.target.files[0]);
+    setOriginalImage(e.target.files[0]);
   };
 
   const uploadImg = () => {
     if (currentImage.length !== 0) {
-      setCurrentImage(URL.createObjectURL(currentImage));
+      const newImage = setCurrentImage(URL.createObjectURL(currentImage));
+      setModalOpen(false);
+      return newImage;
     } else {
       setCurrentImage(currentImage);
     }

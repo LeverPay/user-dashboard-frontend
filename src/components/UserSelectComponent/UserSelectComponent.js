@@ -6,6 +6,7 @@ const name = UserData.name;
 const profile_pic = UserData.profile_Img;
 
 function UserSelectComponent({ userName, passport }) {
+  // alert(passport);
   return (
     <div className="User_Info">
       <img
