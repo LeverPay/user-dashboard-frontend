@@ -92,12 +92,25 @@
 .camera-btn {
   /* background: grey; */
   position: relative;
+
   z-index: 10;
   padding: 0;
   background-color: transparent;
   border: none;
   margin-left: -160px;
   margin-top: 10px !important;
+}
+.camera-btn img {
+  width: 65%;
+}
+@media screen and (max-width: 620px) {
+  .camera-btn {
+    margin-left: 150px;
+    width: 100%;
+  }
+  .camera-btn img {
+    width: 45%;
+  }
 }
 .file-upload-input {
   /*                                                        */
