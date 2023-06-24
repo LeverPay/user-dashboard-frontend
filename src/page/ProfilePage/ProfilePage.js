@@ -10,12 +10,13 @@ import { CountryFlagData } from "../../TestData";
 import PhoneNumberComponent from "../../components/PhoneNumberComponent/PhoneNumberComponent";
 import ImageSelectComponent from "../../components/ImageSelectComponent/ImageSelectComponent";
 import { useLocalState } from "../../utils/useLocalStorage";
-import { signUp } from "../../services/apiService";
+import { updateUserProfile } from "../../services/apiService";
 
 const ProfilePage = ({ userName }) => {
   const inputRef = React.createRef();
 
   const [currentImage, setCurrentImage] = useState(false);
+  const [originalImage, setOriginalImage] = useState("");
   const [selected, setSelected] = useState("");
   const [first_name, setFirstName] = useState("");
   const [last_name, setLastName] = useState("");
@@ -24,6 +25,9 @@ const ProfilePage = ({ userName }) => {
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [jwt, setJwt] = useLocalState("", "jwt");
+
+  // alert(jwt);
+  // console.log(originalImage);
   // const handlePhone = (e) => {
   //   setPhone(e.target.value.replace(/\D/g, ""));
   // };
@@ -36,21 +40,18 @@ const ProfilePage = ({ userName }) => {
 
     //get data from state
     const phone = phoneNumber.phone;
-    const passport = currentImage;
 
-    // alert(passport);
-
-    const userData = {
-      first_name,
-      last_name,
-      email: "walker_alan1@gmail.com",
-      phone,
-      password: "ternatest#123",
-      passport,
+    const userDataUpdate = {
+      first_name: first_name,
+      last_name: last_name,
+      phone: phone,
+      passport: originalImage.name,
     };
+
+    console.log(userDataUpdate);
     //const dataValues = Object.values(userData);
     //-------------- API import --------------- //
-    signUp(userData, jwt);
+    updateUserProfile(jwt, userDataUpdate);
   };
 
   const discardChanges = (e) => {
@@ -81,6 +82,8 @@ const ProfilePage = ({ userName }) => {
         <ImageSelectComponent
           currentImage={currentImage}
           setCurrentImage={setCurrentImage}
+          originalImage={originalImage}
+          setOriginalImage={setOriginalImage}
         />
         {/* Form fields here */}
         <div className="fields-control">
@@ -88,24 +91,26 @@ const ProfilePage = ({ userName }) => {
             <Form.Label className="labels">First Name</Form.Label>
             <Form.Control
               type="text"
-              name="profile_firstName"
+              name="first_name"
               value={first_name}
               placeholder={userName.firstName}
               ref={inputRef}
               onChange={(e) => setFirstName(e.target.value)}
               className="text-area"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="">
             <Form.Label className="labels">Last Name</Form.Label>
             <Form.Control
               type="text"
-              name="profile_lastName"
+              name="last_name"
               value={last_name}
               ref={inputRef}
               onChange={(e) => setLastName(e.target.value)}
               placeholder={userName.lastName}
               className="text-area"
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="">
@@ -166,6 +171,7 @@ const ProfilePage = ({ userName }) => {
               name="phone_number"
               phoneNumber={phoneNumber}
               setPhoneNumber={setPhoneNumber}
+              required
             />
           </Form.Group>
           {/* </div> */}
