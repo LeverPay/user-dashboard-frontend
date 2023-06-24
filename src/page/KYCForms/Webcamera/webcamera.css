@@ -16,6 +16,17 @@
   object-fit: cover;
   margin: 0 0px !important;
 }
+@media screen and (max-width: 620px) {
+  .cam {
+    width: 100%;
+  }
+  .camera-container {
+    margin-left: -60px !important;
+
+    align-items: center;
+    width: 100%;
+  }
+}
 .snap-btn {
   /* background-color: transparent; */
   border: none;
