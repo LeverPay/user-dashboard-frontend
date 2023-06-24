@@ -1,27 +1,29 @@
 .image-item img {
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 0px;
+  margin-top: 6px;
 }
 .image-item {
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   background-color: #eaeffe;
   padding: 0 !important;
-  margin-right: 10px !important;
+  margin-right: 0px !important;
 }
 .file-upload-div {
   width: 100%;
-
-  display: flex;
+  /* height: 55px; */
+  display: flex !important;
   padding-left: 5px;
   border: 1px solid #000000;
   border-radius: 10px;
+  /* margin-top: 20px; */
+  margin-bottom: 0;
 }
-.file-upload-div h3 {
+.file-upload-div h5 {
   font-family: AgrandirBold;
   font-weight: 900;
   color: #000000;
@@ -33,7 +35,7 @@
   margin-top: 10px;
 }
 .file-upload-container {
-  margin-top: 0px;
+  margin-top: 0px !important;
 }
 
 .checkmark__circle {
@@ -84,5 +86,75 @@
 }
 .file-btn {
   width: 100% !important;
-  padding: 0 !important;
+  padding: 0px !important;
+  display: flex;
+}
+.camera-btn {
+  /* background: grey; */
+  position: relative;
+  z-index: 10;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  margin-left: -160px;
+  margin-top: 10px !important;
+}
+.file-upload-input {
+  /*                                                        */
+  margin-bottom: 0 !important;
+}
+.upload__image-wrapper {
+  box-shadow: none !important;
+  border: 0 !important;
+  background: #fff !important;
+  padding-bottom: 0 !important;
+}
+.file-upload-input :hover {
+  box-shadow: none !important;
+  border: 0 !important;
+  background: #fff !important;
+  padding-bottom: 0 !important;
+}
+.hint {
+  color: rgb(214, 209, 209);
+  font-family: AgrandirBold;
+  margin-right: 80px;
+  margin-top: 15px;
+  flex-grow: 1;
+}
+.hint2 {
+  color: red;
+  font-family: AgrandirBold;
+  margin-left: 10px;
+  font-size: 10px;
+}
+.file-title {
+  font-family: AgrandirBold;
+}
+.tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  width: 100px;
+  color: white;
+  font-size: 12px;
+  background-color: #192733;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
+}
+
+.hover-text:hover .tooltip-text {
+  visibility: visible;
+}
+
+#top {
+  top: -40px;
+  left: -230%;
+}
+.hover-text {
+  position: relative;
+  display: inline-block;
+  /* margin: 40px; */
+  font-family: AgrandirBold;
+  text-align: center;
 }
