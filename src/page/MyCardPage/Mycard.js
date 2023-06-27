@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import CardcategoryPage from "../CardCategoryPage/CardcategoryPage";
 // import CardModal from "../../components/CardModal/CardModal";
 import { useState } from "react";
-
+ 
 function Mycard(props) {
   // console.log(props);
   const [modal, setModal] = useState(false);
@@ -24,7 +24,6 @@ function Mycard(props) {
     <Container
       className="px-4 py-5 text-center"
       id="mycards"
-      style={{ marginTop: "8rem" }}
     >
       <Row className="justify-content-center">
         <Col className="col-10 col-md-5">
@@ -37,14 +36,14 @@ function Mycard(props) {
           <Row onClick={toggleModal}>{props.card}</Row>
         </Col>
       </Row>
-      <Row className="mt-5 justify-content-center">
-        <Col className="col-md-4 col-12 pt-md-0 pt-5">
+      <Row className="spending mt-5 justify-content-center">
+        <Col className="bal col-md-4 col-12 pt-md-0 pt-5 pt-sm-0">
           <TotalMoney bg="#0E093F" totaltype="Balance" amt="$3000" />
         </Col>
-        <Col className="col-md-4 col-12 pt-md-0 pt-5">
+        <Col className="bal col-md-4 col-12 pt-md-0 pt-5">
           <TotalMoney bg="#F6A61F" totaltype="Spending" amt="$2000" />
         </Col>
-        <Col className="col-md-4 col-12 pt-md-0 pt-5">
+        <Col className="bal col-md-4 col-12 pt-md-0 pt-5">
           <TotalMoney bg="#0E093F" totaltype="Saved" amt="$546" />
         </Col>
       </Row>

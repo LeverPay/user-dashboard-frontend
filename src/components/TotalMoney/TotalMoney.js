@@ -17,7 +17,7 @@ function TotalMoney(props) {
       </span>
       <main>
         <small>Total {totaltype} </small>
-        <h4> {amtVisible ? amt : '***'} </h4>
+        <h4> {amtVisible ? amt : 'XXXX'} </h4>
       </main>
     </div>
   );
