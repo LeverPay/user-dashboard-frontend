@@ -1,4 +1,4 @@
-.side-nav-container {
+.side-nav-container{
   position: fixed;
   height: 100% !important;
   width: 17% !important;
@@ -15,15 +15,39 @@
 }
 @media screen and (max-width: 620px) {
   .side-nav-container {
-    /* display: none; */
-    width: 100% !important;
+    /* display: none; */ 
+    width: 60% !important;
     transition: 1s ease;
     margin-top: 0;
     padding-right: 15px;
     padding-top: 10px;
+    margin-left: -10px;
   }
   .bottom-options ul {
-    margin-top: 132px !important;
+    margin-top: 82px !important;
+  }
+  .sm-nav{
+    border: 1px solid;
+  }
+  .logo{
+    /* display: none; */
+    width: 30px;
+    margin-top: -5rem;
+    margin-left: -3em;
+  }
+  .nav-options ul{
+    margin-top: -5rem;
+    margin-left: -1rem;
+  }
+  .nav-options ul li{
+    margin-left: -1rem;
+  }
+  .nav-sm{
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    padding-block: 10px;
+    margin-top: -1rem;
   }
 }
 .top {

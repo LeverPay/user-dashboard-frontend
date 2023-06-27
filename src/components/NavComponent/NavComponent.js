@@ -85,7 +85,7 @@ const NavComponent = () => {
             <div defaultactivekey="/" className="flex-column my-tweak">
               <center>
                 <div className="navbar-logo col-md-9 col-9">
-                  <img src={LeverpayLogo} alt="" style={{ width: "100%" }} />
+                  <img src={LeverpayLogo} alt="" style={{ width: "100%" }} className="logo" />
                 </div>
               </center>
               <div className="nav-options">
@@ -186,14 +186,18 @@ const NavComponent = () => {
         </div>
       </div>
       <div className="open-close-icons flexy menu" style={{ display: "flex" }}>
-        <div className="col-11">&nbsp;</div>
-        <span onClick={openSidebar} style={{ color: "#fff", fontSize: "20px" }}>
+        {/* <div className="col-11">&nbsp;</div>
+        <span>
+        </span> */}
+        <span onClick={openSidebar} style={{ color: "#fff", fontSize: "20px" }} className="nav-sm">
           {/* <i class="icofont-navigation-menu"></i> */}
+          <img src={LeverpayLogo} alt=""  className="TopNav-logo-sm" />
           <img
             src={Open}
             alt=""
-            style={{ width: "100%" }}
-            className="open-close-icons"
+            id="menu"
+            style={{ width: "10%"}}
+            className="open"
           />
         </span>
       </div>

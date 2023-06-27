@@ -22,7 +22,7 @@ export const Transactions = () => {
     <>
       <div className="transaction-page">
         {" "}
-        <div className="tabs">
+        <div className="tabs"> 
           <button
             className={`tab ${checkActive(1, "active2")}`}
             onClick={() => handleClick(1)}
@@ -59,7 +59,9 @@ export const Transactions = () => {
           >
             Regular Payments
           </button>
+          <span className="search">
           <SearchBar />
+          </span>
         </div>
         <div className="panels">
           <div className={`panel ${checkActive(1, "active2")}`}>
