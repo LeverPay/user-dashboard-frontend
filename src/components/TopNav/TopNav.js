@@ -28,7 +28,7 @@ const TopNav = ({ userName }) => {
       <div className="side-nav-logo  col-6">
         <center>
           {" "}
-          <img src={LeverpayLogo} alt="" style={{ width: "100%" }} />
+          <img src={LeverpayLogo} alt=""  className="TopNav-logo" />
           <div className="space-div">&nbsp;</div>
         </center>
       </div>

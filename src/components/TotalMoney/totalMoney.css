@@ -12,9 +12,15 @@
 }
 @media screen and (max-width: 620px) {
   .card-balance {
+    flex-direction: column;
     margin-top: 20px;
     margin-left: 0px;
-    width: 100%;
+    width: 120%;
+    padding: 20px 10px;
+    margin-right: 2rem;
+  }
+  .card-balance img{
+    margin-left: -1rem;
   }
 }
 .card-balance img {

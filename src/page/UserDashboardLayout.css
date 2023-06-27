@@ -6,12 +6,31 @@
   text-align: left;
   color: #fff;
 }
+.dashboard{
+  margin-top: 8.5rem;
+  margin-bottom: 2rem;
+}
 @media screen and (max-width: 620px) {
+  .dashboard{
+    margin-top: 2rem;
+    /* border: 1px solid white; */
+  }
+  .spending{
+    /* border: 1px solid white; */
+    display: flex;
+    gap: 2rem;
+    overflow: scroll;
+    padding-right: 20px;
+    margin-bottom: 2rem;
+  }
   .card-header {
     margin-top: 80px;
   }
   .card-holder {
     margin: 0 !important;
+  }
+  .dashboard-transaction-table-container{
+    margin-left: 4.5rem;
   }
 }
 .card-holder {

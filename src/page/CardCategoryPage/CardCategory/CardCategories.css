@@ -9,10 +9,13 @@
   border-radius: 10px;
   background-color: #201e34;
   box-shadow: 4px 4px 2px 2px #00000066;
+  margin-top: 8rem;
+  margin-bottom: 5rem;
 }
 @media screen and (max-width: 620px) {
   #cardcategories {
     width: 100%;
+    margin-top: 2rem;
     margin-left: .5rem;
     margin-bottom: 2rem !important;
     padding: 0 !important;
