@@ -23,6 +23,17 @@
     margin-left: -1rem;
   }
 }
+@media (max-width:1024px) and (min-width: 621px){
+  .card-balance{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0px;
+  }
+  .card-balance h4{
+    font-size: 15px;
+  }
+}
 .card-balance img {
   background-color: #353255;
   padding: 5px;

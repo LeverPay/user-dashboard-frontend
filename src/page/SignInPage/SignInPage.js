@@ -3,7 +3,7 @@ import SignInComponent from "../../components/SignInComponent/SignInComponent";
 
 const SignInPage = () => {
   return (
-    <div>
+    <div className="col-12">
       <SignInComponent />
     </div>
   );

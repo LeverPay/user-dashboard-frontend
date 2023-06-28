@@ -36,3 +36,18 @@
 .up {
   margin-top: 10px;
 }
+
+@media (max-width:1024px) and (min-width: 621px){
+  .merchant-header h3{
+    font-size: 20px;
+  }
+  .details-link{
+    display: none;
+  }
+  .merchant_search{
+    margin-top: -1rem;
+  }
+  .merchant-container{
+    margin-left: 20px;
+  }
+}
