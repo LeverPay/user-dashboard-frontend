@@ -60,7 +60,7 @@ const NavComponent = () => {
       </div>
 
       <div
-        expand="md"
+        expand="md" 
         bg="#0E093F"
         variant="dark"
         className="flex-column side-nav-container  slide-right"
@@ -85,7 +85,7 @@ const NavComponent = () => {
             <div defaultactivekey="/" className="flex-column my-tweak">
               <center>
                 <div className="navbar-logo col-md-9 col-9">
-                  <img src={LeverpayLogo} alt="" style={{ width: "100%" }} className="logo" />
+                  <img src={LeverpayLogo} alt="" className="logo" />
                 </div>
               </center>
               <div className="nav-options">
@@ -121,9 +121,10 @@ const NavComponent = () => {
                       className="text-link"
                       onClick={closeMobileMenu}
                       activeclassname="active"
+                      id="unpaid"
                     >
                       <i className="icofont-notepad"></i>
-                      Unpaid Invoices
+                      Unpaid
                     </NavLink>
                   </li>
                   <li>

@@ -9,6 +9,9 @@
   /* padding: 0 0 0 40px !important; */
   z-index: 20000;
 }
+.logo{
+  width: 100%;
+}
 .side-nav-container span {
   color: #fff;
   font-size: 40px !important;
@@ -31,7 +34,7 @@
   }
   .logo{
     /* display: none; */
-    width: 30px;
+    width: 130px;
     margin-top: -5rem;
     margin-left: -3em;
   }
@@ -162,7 +165,22 @@
   border-radius: 10px;
   transition: 0.5s ease;
 }
-.open-close-icons {
-  /* height: 50px;
-  width: 150px; */
+@media (max-width:1024px) and (min-width: 621px){
+  .side-nav-container{
+    width: 30%;
+  }
+  .nav-options{
+    margin-left: -2rem;
+    margin-top: -2rem;
+  }
+  .logo{
+    width: 130%;
+    margin-left: -2rem;
+  }
+  .nav-options ul li{
+    margin-bottom: -10px;
+  }
+  .bottom-options{
+    margin-left: -2rem;
+  }
 }

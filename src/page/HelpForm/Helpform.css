@@ -1,7 +1,7 @@
 #Helpform {
   width: 100%;
   margin-bottom: 5rem;
-  margin-top: 2rem;
+  margin-top: 7rem;
   display: flex;
   flex-direction: row;
   gap: 5rem;
@@ -82,6 +82,7 @@ form select {
   font-weight: 600;
   line-height: 24px;
   color: #011b33;
+  border: none;
 }
 #Helpform #file {
   /* border: 1px solid; */
@@ -222,4 +223,23 @@ article main {
     overflow-x: hidden;
     width: 100%;
   }
+}
+@media (max-width: 620px){
+  #Helpform{
+    margin-left: 0;
+    padding: 0;
+    margin-top: 2rem;
+  }
+  #Helpform form{
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  #Helpform article{
+    margin-left: 1rem;
+  }
+  #Helpform article label{
+    border: none;
+  }
+
 }

@@ -17,9 +17,15 @@
     width: 100%;
     margin-top: 2rem;
     margin-left: .5rem;
-    margin-bottom: 2rem !important;
+    margin-bottom: 4rem !important;
     padding: 0 !important;
     background-color: transparent;
+  }
+  #cardcategories .card_con{
+    margin-bottom: 2rem;
+  }
+  #cardcategories .card_btm{
+    margin-bottom: 2rem;
   }
 }
 .Kyc-upgrade-notice {
@@ -53,5 +59,11 @@
 @media screen and (max-width: 620px) {
   #cardcategories {
     width: 100%;
+  }
+}
+@media (max-width:1024px) and (min-width: 621px){
+  .Kyc-upgrade-notice{
+    font-size: 12px;
+    line-height: 20px;
   }
 }
