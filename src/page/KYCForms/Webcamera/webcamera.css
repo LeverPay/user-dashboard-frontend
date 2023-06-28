@@ -1,0 +1,56 @@
+.camera-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-left: -480px !important;
+  margin-top: -300px !important;
+  position: absolute;
+  z-index: 3000;
+}
+
+.cam {
+  height: 400px;
+  width: 400px;
+  object-fit: cover;
+  margin: 0 0px !important;
+}
+@media screen and (max-width: 620px) {
+  .cam {
+    width: 100%;
+  }
+  .camera-container {
+    margin-left: -60px !important;
+
+    align-items: center;
+    width: 100%;
+  }
+}
+.snap-btn {
+  /* background-color: transparent; */
+  border: none;
+  color: black;
+  font-weight: bold;
+  /* margin-top: 10px; */
+  position: relative;
+  z-index: 20;
+  padding: 5px 0px;
+  width: 14%;
+  margin: 15px;
+}
+.close-snap-btn {
+  padding: 0px 0px;
+  width: 14%;
+  font-family: AgrandirBold;
+  margin: 15px;
+}
+.set-snap-btn {
+  padding: 5px 0px;
+  width: 14%;
+  font-family: AgrandirBold;
+  margin: 15px;
+}
+.camera-img {
+  height: 30px;
+}

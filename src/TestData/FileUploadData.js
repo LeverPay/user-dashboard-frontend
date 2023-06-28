@@ -7,46 +7,55 @@ export const gold = {
   card: "GOLD",
   color: "#84632E",
   limit: 50000,
+  section_count_limit: 5,
   data: [
     {
-      name: "Snapshot",
-      fileDetail: "Front and Back",
+      name: "Passport Photograph",
+      group_id: 1,
       type: "file",
       is_selected: false,
       icon: Passport,
       maxUpload: 1,
       req: true,
     },
+
     {
       name: "International Passport",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: Passport,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
     {
       name: "Driver License",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: London,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
     {
       name: "Voters Card",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: ID,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
   ],
   inputPlaceholder: [
+    { placeholder: "Residential Address", group_id: 3 },
     {
-      placeholder: "BVN",
+      placeholder: "BVN / SSN",
+      group_id: 3,
     },
-    { placeholder: "Residential Address" },
   ],
 };
 
@@ -59,7 +68,8 @@ export const diamond = {
   limit: 70000,
   data: [
     {
-      name: "Snapshot",
+      name: "Passport Photograph",
+      group_id: 1,
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -68,41 +78,47 @@ export const diamond = {
     },
     {
       name: "International Passport",
+      description: "front and back",
       type: "file",
       is_selected: false,
+      group_id: 2,
       icon: Passport,
       maxUpload: 2,
       req: false,
     },
     {
       name: "Driver License",
+      description: "front and back",
       type: "file",
       is_selected: false,
+      group_id: 2,
       icon: London,
       maxUpload: 2,
       req: false,
     },
     {
       name: "Voters Card",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: ID,
       maxUpload: 2,
+      group_id: 2,
       req: false,
     },
   ],
   inputPlaceholder: [
     {
-      placeholder: "NIN (National Identity Number)",
-    },
-    {
-      placeholder: "Utility Bill",
-    },
-    {
       placeholder: "Residential Address",
+      group_id: 3,
     },
     {
       placeholder: "BVN",
+      group_id: 3,
+    },
+    {
+      placeholder: "NIN (National Identity Number)",
+      group_id: 3,
     },
   ],
 };
@@ -113,7 +129,8 @@ export const enterprise = {
   limit: 100000,
   data: [
     {
-      name: "Snapshot",
+      name: "Passport Photograph",
+      group_id: 1,
       type: "file",
       is_selected: false,
       icon: Passport,
@@ -122,27 +139,33 @@ export const enterprise = {
     },
     {
       name: "International Passport",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: Passport,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
     {
       name: "Driver License",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: London,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
     {
       name: "Voters Card",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: ID,
       maxUpload: 2,
       req: false,
+      group_id: 2,
     },
     {
       name: "Utility Bill",
@@ -151,6 +174,7 @@ export const enterprise = {
       icon: ID,
       maxUpload: 1,
       req: false,
+      group_id: 2,
     },
     {
       name: " Business CAC certificate",
@@ -159,26 +183,33 @@ export const enterprise = {
       icon: ID,
       maxUpload: 1,
       req: true,
+      group_id: 2,
     },
   ],
   inputPlaceholder: [
     {
-      placeholder: "Business Name",
-    },
-    {
-      placeholder: "Business Address",
-    },
-    {
-      placeholder: "CAC RC. No:",
-    },
-    {
-      placeholder: "NIN (National Identity Number)",
-    },
-    {
       placeholder: "Residential Address",
+      group_id: 3,
     },
     {
       placeholder: "BVN",
+      group_id: 3,
+    },
+    {
+      placeholder: "Business Name",
+      group_id: 3,
+    },
+    {
+      placeholder: "Business Address",
+      group_id: 3,
+    },
+    {
+      placeholder: "CAC RC. No:",
+      group_id: 3,
+    },
+    {
+      placeholder: "NIN (National Identity Number)",
+      group_id: 3,
     },
   ],
 };
@@ -189,31 +220,38 @@ export const pinkLady = {
   limit: 90000,
   data: [
     {
-      name: "Passport",
+      name: "Passport Photograph",
       type: "file",
       is_selected: false,
       icon: Passport,
       maxUpload: 1,
+      group_id: 1,
     },
     {
       name: "International Passport",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: Passport,
       maxUpload: 1,
+      group_id: 2,
     },
     {
       name: "Driver License",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: London,
       maxUpload: 2,
+      group_id: 2,
     },
     {
       name: "Voters Card",
+      description: "front and back",
       type: "file",
       is_selected: false,
       icon: ID,
+      group_id: 2,
       maxUpload: 2,
     },
     {
@@ -222,20 +260,42 @@ export const pinkLady = {
       is_selected: false,
       icon: ID,
       maxUpload: 1,
+      group_id: 2,
     },
   ],
   inputPlaceholder: [
     {
-      placeholder: "NIN (National Identity Number)",
-    },
-    {
-      placeholder: "BVN",
-    },
-    {
       placeholder: "Residential Address",
+      group_id: 3,
     },
     {
       placeholder: "BVN",
+      group_id: 3,
+    },
+    {
+      placeholder: "NIN (National Identity Number)",
+      group_id: 3,
     },
   ],
 };
+
+export const groups = [
+  {
+    id: 1,
+    title: "Passport Information",
+    set_req: 1,
+    req_msg: "Passport photograph upload is compulsory",
+  },
+  {
+    id: 2,
+    title: "Government Issued Identity Information",
+    set_req: 1,
+    req_msg: "You must select ONLY ONE from this Section",
+  },
+  {
+    id: 3,
+    title: "Personal Information",
+    set_req: 2,
+    req_msg: "All fields are required in this Section",
+  },
+];

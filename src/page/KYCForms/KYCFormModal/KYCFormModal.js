@@ -35,6 +35,9 @@ const KYCFormModal = (props) => {
   useEffect(() => {
     if (accType !== "") {
       setShow(true);
+      localStorage.setItem("section_1", 0);
+      localStorage.setItem("section_2", 0);
+      localStorage.setItem("section_3", 0);
     } else {
       setShow(false);
     }
