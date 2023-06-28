@@ -76,7 +76,7 @@ const SignInComponent = () => {
 
         <div>{timeoutMsg}</div>
       </Form>
-      <ToastContainer style={{ dispay: "flex", textAlign: "left" }} />
+      <ToastContainer />
     </div>
   );
 };
