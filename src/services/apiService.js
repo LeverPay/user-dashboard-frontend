@@ -84,8 +84,7 @@ export const updateUserProfile = async (jwt, userDataUpdate) => {
     })
     .then((resUser) => {
       toast.success(resUser.message);
-
-      // transition to homepage
+      //transition to homepage
       setTimeout(() => {
         window.location.href = "/";
       }, 2000);
