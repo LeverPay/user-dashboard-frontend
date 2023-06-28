@@ -1,4 +1,4 @@
-.side-nav-container {
+.side-nav-container{
   position: fixed;
   height: 100% !important;
   width: 17% !important;
@@ -9,21 +9,48 @@
   /* padding: 0 0 0 40px !important; */
   z-index: 20000;
 }
+.logo{
+  width: 100%;
+}
 .side-nav-container span {
   color: #fff;
   font-size: 40px !important;
 }
 @media screen and (max-width: 620px) {
   .side-nav-container {
-    /* display: none; */
-    width: 100% !important;
+    /* display: none; */ 
+    width: 60% !important;
     transition: 1s ease;
     margin-top: 0;
     padding-right: 15px;
     padding-top: 10px;
+    margin-left: -10px;
   }
   .bottom-options ul {
-    margin-top: 132px !important;
+    margin-top: 82px !important;
+  }
+  .sm-nav{
+    border: 1px solid;
+  }
+  .logo{
+    /* display: none; */
+    width: 130px;
+    margin-top: -5rem;
+    margin-left: -3em;
+  }
+  .nav-options ul{
+    margin-top: -5rem;
+    margin-left: -1rem;
+  }
+  .nav-options ul li{
+    margin-left: -1rem;
+  }
+  .nav-sm{
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    padding-block: 10px;
+    margin-top: -1rem;
   }
 }
 .top {
@@ -138,7 +165,22 @@
   border-radius: 10px;
   transition: 0.5s ease;
 }
-.open-close-icons {
-  /* height: 50px;
-  width: 150px; */
+@media (max-width:1024px) and (min-width: 621px){
+  .side-nav-container{
+    width: 30%;
+  }
+  .nav-options{
+    margin-left: -2rem;
+    margin-top: -2rem;
+  }
+  .logo{
+    width: 130%;
+    margin-left: -2rem;
+  }
+  .nav-options ul li{
+    margin-bottom: -10px;
+  }
+  .bottom-options{
+    margin-left: -2rem;
+  }
 }
