@@ -14,7 +14,7 @@ const PrivateRoute = ({ children }) => {
       //session expires after 10 minutes
       setTimeout(() => {
         setUserToken("");
-        toast.error("User Session Timeout");
+        toast.error("Login timeout, Please log in again");
       }, 600000);
     }
   }
