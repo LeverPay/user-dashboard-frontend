@@ -10,6 +10,9 @@
   margin-top: 8.5rem;
   margin-bottom: 2rem;
 }
+.dashboard-transaction-table-container{
+  margin-left: 1rem;
+}
 @media screen and (max-width: 620px) {
   .dashboard{
     margin-top: 2rem;
@@ -45,3 +48,14 @@
 /* .default-card-holder {
   transform: translateX(1rem);
 } */
+@media (max-width:1024px) and (min-width: 621px){
+  .spending{
+    margin-left: 16px;
+  }
+  .dashboard-transaction-table-container{
+    margin-left: 1rem;
+  }
+  .statement{
+    margin-left: -1rem;
+  }
+}

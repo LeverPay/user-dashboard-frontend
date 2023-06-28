@@ -129,7 +129,7 @@ export const UserDashboardLayout = () => {
                       <TotalMoney bg="#201E34" totaltype="Saved" amt="$546" />
                     </div>
                   </div>
-                  <div className="col-md-11">
+                  <div className="statement col-md-11">
                     <StatementComponent />
                   </div>
                   <div className="dashboard-transaction-table-container col-md-11">

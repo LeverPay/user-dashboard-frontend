@@ -3,51 +3,37 @@ p {
 }
 .signin-logo {
   position: relative;
-  width: 30%;
-  height: 30%;
-  margin-top: -10%;
-  margin-left: -30%;
+  width: 120px;
+  height: 20px;
+  margin: auto;
   /* border: 1px solid #000; */
 }
 .signin-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 25%;
   height: 100%;
+  border-radius: 20px;
   /* background-color: #0b0230; */
   background-color: #ffff;
   border: 1px solid #000;
+  margin: auto;
   margin-top: 5%;
-  margin-left: 25%;
-  padding: 5%;
+  /* margin-left: 25%; */
+  padding: 32px;
 }
 
-@media screen and (max-width: 720px) {
-  .signin-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    margin-left: 0%;
-    /* border: 10px solid #000; */
-  }
-  .signin-logo {
-    /* position: relative; */
-    width: 30%;
-    height: 30%;
-    margin-top: -5%;
-    margin-left: -5%;
-    /* border: 1px solid #000; */
-  }
-}
 
 .signin-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60%;
+  width: 100%;
   height: 100%;
-  padding: 5%;
+  padding-top: 2rem;
+  /* padding: 5%; */
   /* border: 1px solid #000; */
 }
 
@@ -67,25 +53,14 @@ p {
 }
 
 @media screen and (max-width: 620px) {
-  .signin-logo {
-    /* position: relative; */
-    width: 20%;
-    height: 5%;
-    margin-top: 5%;
-    margin-left: -5%;
-    /* border: 1px solid #000; */
+  .signin-form h1{
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 2rem;
   }
-
-  .signin-form {
-    width: 100%;
-    /* height: 100%; */
-    margin-left: -20%;
-    /* border: 10px solid #000; */
-  }
-
   .signin-container {
+    margin-top: 5rem;
     width: 100%;
-    height: 100vh;
   }
 
   .signin-button {
@@ -96,5 +71,19 @@ p {
     justify-content: center;
     /* font-size: 32px; */
     border: none;
+  }
+}
+@media (max-width:1024px) and (min-width: 621px){
+  .signin-container{
+    width: 50%;
+  }
+  .signin-logo{
+    width: 180px;
+    height: 30px;
+  }
+  .signin-form h1{
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 2rem;
   }
 }
