@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
 
   if (userToken) {
     console.log("token", decodedToken, "is expired?", isExpired);
-    if (decodedToken) {
+    if (decodedToken || isExpired === false) {
       //session expires after 10 minutes
       setTimeout(() => {
         setUserToken("");
