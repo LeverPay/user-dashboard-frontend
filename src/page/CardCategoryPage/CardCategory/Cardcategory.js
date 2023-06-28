@@ -71,16 +71,15 @@ function Cardcategory() {
     }
   }, [returnMessage]);
 
-  return (
+  return ( 
     <Container
       className="px-5 py-md-5 py-0 col-md-8 col-sm-9"
       id="cardcategories"
-      style={{ marginTop: "8rem", marginBottom: "5rem" }}
     >
       {accReady ? <KYCFormModal acct={accSet} callback={defunct} /> : ""}
 
       <Row>
-        <Col className="pt-5 pt-md-0 ">
+        <Col className="card_con pt-5 pt-md-0 ">
           <Row className="col-12">
             <CardGold />
           </Row>
@@ -121,8 +120,8 @@ function Cardcategory() {
         </Col>
       </Row>
 
-      <Row className="mt-5">
-        <Col>
+      <Row className="card_btm mt-5">
+        <Col className="card_con">
           <Row className="col-12">
             <CardPinkLady />
           </Row>

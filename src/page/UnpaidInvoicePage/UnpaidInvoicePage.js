@@ -9,16 +9,17 @@ function UnpaidInvoicePage() {
   console.log(UnpaidData)
   const info = UnpaidData.map(item=>{ 
     return <UnpaidInvoice 
-     id = {item.id}
+     key = {item.id}
      name = {item.Name}
      type = {item.type}
      amt = {item.amount}
-     status = {item.status}
+     status = {item.status} 
      date = {item.date}
     />
   })
  
   return (
+    <div className='Unpaid_con'>
     <div className='Unpaid'>
        <h1>
             Unpaid Invoices
@@ -35,6 +36,7 @@ function UnpaidInvoicePage() {
             </thead>
         </table>
               {info}
+    </div>
     </div>
   )
 }

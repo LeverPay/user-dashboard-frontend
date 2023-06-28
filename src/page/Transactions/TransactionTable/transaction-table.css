@@ -62,9 +62,11 @@
   margin-left: 33px;
 }
 @media screen and (max-width: 620px) {
-  .transaction-table-container {
-    margin-left: 0 !important;
-  }
+    .transactions-table-container {
+      width: 90vw;
+      margin-left: -4.5rem !important;
+    }
+  
 }
 .invoice-td {
   cursor: pointer;

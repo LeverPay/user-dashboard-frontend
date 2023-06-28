@@ -102,7 +102,7 @@ console.log(imgfile)
  
 
   return (
-    <Container id="Helpform" style={{ marginTop: '7rem' }}>
+    <Container id="Helpform">
       <div className='form_con'>
         <form onSubmit={submit}>
           <section className='name'>
