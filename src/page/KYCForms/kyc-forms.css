@@ -24,9 +24,14 @@
 }
 
 .css-b62m3t-container {
-  border: solid 2px rgb(105, 103, 103);
-  height: 53px !important;
+  border: 2px solid #676666;
+  height: 49px !important;
   width: 100%;
   margin-bottom: 20px;
   border-radius: 10px;
+  padding-bottom: 5px;
+  /* padding-bottom: 15px; */
+}
+.country-heading {
+  font-family: AgrandirBold;
 }
