@@ -67,8 +67,9 @@ function CardSilver(props) {
           left: "35%",
           cursor: "pointer",
         }}
+        className="cvv"
       >
-        <small>
+        <small >
           C V V :{" "}
           <strong
             onMouseEnter={seeCVV}
@@ -76,14 +77,14 @@ function CardSilver(props) {
               setCardCVV(false);
             }}
           >
-            {cardCVV ? CardInfo[4].cvv : "***"}
+            {cardCVV ? CardInfo[4].cvv : "xxx"}
           </strong>
         </small>
       </span>
 
       <img alt="" src="./images/silver logo.png" className="LeverpayCardLogo" />
       <main className="card_one">
-        <img alt="" src="./images/chip 1.png" />
+        <img alt="" src="./images/chip 1.png" className="card_scan" />
         <span>
           <img
             alt=""
@@ -100,10 +101,10 @@ function CardSilver(props) {
       </p>
       <main className="cardDate_Type">
         <span className="cardDate">
-          <small>Valid Thru </small>
+          <small className="expiry">Valid Thru </small>
           <br />
-          <small>
-            {month < 10 ? `0${month}` : month}/ {year + 2}{" "}
+          <small className="exp_date">
+            {month < 10 ? `0${month}` : month}/ {year + 2}
           </small>
         </span>
         <strong>USDT</strong>
@@ -116,13 +117,14 @@ function CardSilver(props) {
         }}
       >
         <h2>
-          {props.firstName} {props.lastName}
+          {props.firstName} <span className="card_lastname">{props.lastName}</span>
         </h2>
         <h1
           style={{
             marginRight: "-1rem",
             backgroundImage: "./images/Ellipse 6.png",
           }}
+          className="card_type_name"
         >
           Silver
         </h1>

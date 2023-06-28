@@ -7,16 +7,14 @@ function Merchants(props) {
     <div className="col-md-12 merchants-container">
       <div className="merchant-logo">
         <img
-          className="col-md-2 logo-1"
+          className="mer_logos col-md-2 logo-1"
           src={props.logo2}
           alt="verified"
-          width="100%"
         />
         <img
-          className="col-md-2 logo-2"
+          className="mer_logos col-md-2 logo-2"
           src={props.logo1}
           alt="verified"
-          width="100%"
         />
       </div>
 
@@ -25,7 +23,6 @@ function Merchants(props) {
           className="col-md-12 "
           src={Verified}
           alt="verified"
-          width="100%"
         />
         <h4>Verified</h4>
       </div>

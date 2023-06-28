@@ -23,3 +23,21 @@
     width: 20%;
     font-weight: 900;
 }
+
+@media screen and (max-width: 620px){
+    .Unpaid{
+        width: 130vw;
+        overflow-x: scroll;
+        margin-left: 0rem;
+        margin-top: 2rem;
+    }
+    .Unpaid .table{
+        overflow-x: scroll;
+        width: 120vw;
+
+    }
+    .Unpaid_con{
+        width: 100vw;
+        overflow-x: scroll;
+    }
+}

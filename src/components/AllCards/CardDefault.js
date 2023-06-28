@@ -67,6 +67,7 @@ function CardDefault(props) {
           cursor: "pointer",
           color: "white",
         }}
+        className="cvv"
       >
         <small>
           C V V :{" "}
@@ -76,7 +77,7 @@ function CardDefault(props) {
               setCardCVV(false);
             }}
           >
-            {cardCVV ? props.cvv : "***"}
+            {cardCVV ? props.cvv : "xxx"}
           </strong>
         </small>
       </span>
@@ -86,9 +87,9 @@ function CardDefault(props) {
         <img
           alt=""
           src="./images/card scan.png"
+          className="card_scan"
           style={{
             backgroundColor: "white",
-            padding: "10px",
             borderRadius: "10px",
           }}
         />
@@ -111,7 +112,7 @@ function CardDefault(props) {
       </p>
       <main className="cardDate_Type">
         <span className="cardDate" style={{ color: "white" }}>
-          <small>Valid Thru </small>
+          <small className="expiry">Valid Thru </small>
           <br />
           <small>
             {month < 10 ? `0${month}` : month}/ {year + 2}{" "}
@@ -132,7 +133,6 @@ function CardDefault(props) {
           style={{
             marginRight: "-1rem",
             fontFamily: "Consolas",
-            fontSize: "25px",
             fontWeight: "700",
             lineHeight: "35px",
             letterSpacing: " 0.02em",

@@ -18,17 +18,17 @@ const TopNav = ({ userName }) => {
           <SearchBar />
           <MdNotifications size={30} className="notificationIcon" />
         </div>
-        <Link to="/profile" style={{ textDecoration: "none" }}>
+        <Link to="/profile" style={{ textDecoration: "none" }} className="user_select">
           <UserSelectComponent
             userName={userName.firstName}
             passport={userName.passport}
           />
         </Link>
       </div>
-      <div className="side-nav-logo  col-6">
+      <div className="side-nav-logo col-6">
         <center>
-          {" "}
-          <img src={LeverpayLogo} alt="" style={{ width: "100%" }} />
+          {" "} 
+          <img src={LeverpayLogo} alt=""  className="TopNav-logo" />
           <div className="space-div">&nbsp;</div>
         </center>
       </div>
