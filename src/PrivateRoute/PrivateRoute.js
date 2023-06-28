@@ -11,10 +11,11 @@ const PrivateRoute = ({ children }) => {
   if (userToken) {
     console.log("token", decodedToken, "is expired?", isExpired);
     if (decodedToken) {
+      //session expires in 10 minutes
       setTimeout(() => {
         setUserToken("");
         toast.error("User Session Timeout");
-      }, 10000);
+      }, 600000);
     }
   }
 
