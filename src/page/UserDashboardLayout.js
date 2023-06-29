@@ -105,10 +105,10 @@ export const UserDashboardLayout = () => {
           <Route
             path="/"
             element={
-              <div className="col-md-12 flexy" style={{ marginTop: "8.5rem" }}>
+              <div className="dashboard col-md-12 flexy">
                 <div className="col-md-8">
                   <div
-                    className="col-md-12 flexy"
+                    className="spending col-md-12 flexy"
                     style={{ marginTop: "-1rem" }}
                   >
                     <div className="col-md-4">
@@ -129,10 +129,10 @@ export const UserDashboardLayout = () => {
                       <TotalMoney bg="#201E34" totaltype="Saved" amt="$546" />
                     </div>
                   </div>
-                  <div className="col-md-11">
+                  <div className="statement col-md-11">
                     <StatementComponent />
                   </div>
-                  <div className="transaction-table-container col-md-11">
+                  <div className="dashboard-transaction-table-container col-md-11">
                     <TransactionTable
                       data={recentTransactions}
                       tableTitle="Recent Transaction"
