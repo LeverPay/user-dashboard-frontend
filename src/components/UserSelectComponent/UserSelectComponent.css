@@ -31,3 +31,12 @@
   height: 20px;
   background-color: silver;
 }
+@media (max-width:1024px) and (min-width: 621px){
+  .User_Info h3{
+    font-size: 15px;
+  }
+  .User_Info img{
+    width: 20px;
+    height: 20px;
+  }
+}

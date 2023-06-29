@@ -4,7 +4,7 @@
 }
 @media screen and (max-width: 620px) {
   body {
-    padding: 0 5px;
+    padding: 0 1rem;
   }
 }
 @font-face {

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { ToastContainer, toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
-import LeverpayLogo_Blue from "../../assets/LeverpayLogo_Blue.png";
+// import LeverpayLogo_Blue from "../../assets/LeverpayLogo_Blue.png";
+import LeverpayLogo from "../../assets/images/logo.png";
 import "./SignInComponent.css";
 import { signIn } from "../../services/apiService";
 import { useLocalState } from "../../utils/useLocalStorage";
@@ -37,7 +38,7 @@ const SignInComponent = () => {
 
   return (
     <div className="signin-container">
-      <img src={LeverpayLogo_Blue} alt="" className="signin-logo" />
+      <img src={LeverpayLogo} alt="" className="signin-logo" />
       <Form className="signin-form" onSubmit={login}>
         <h1>Sign in</h1>
         <Form.Group className="mb-3" controlId="formGroupEmail">

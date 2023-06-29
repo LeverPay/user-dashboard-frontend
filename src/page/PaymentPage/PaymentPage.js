@@ -16,7 +16,7 @@ function PaymentPage() {
         <div className="col-md-3 payment-page-container">
           <div className="col-md-5 logo-holder col-6">
             {" "}
-            <img src={LeverpayLogo} alt="" width="100%" />
+            <img src={LeverpayLogo} alt="" className="pay_logo" />
           </div>
 
           <div className="col-md-12">
