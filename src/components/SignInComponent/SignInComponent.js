@@ -6,6 +6,7 @@ import LeverpayLogo_Blue from "../../assets/LeverpayLogo_Blue.png";
 import "./SignInComponent.css";
 import { signIn } from "../../services/apiService";
 import { useLocalState } from "../../utils/useLocalStorage";
+import { forgotPassword } from "../../services/forgotPassword";
 import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
@@ -15,7 +16,6 @@ const SignInComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [jwt, setJwt] = useLocalState("", "jwt");
-  const [timeoutMsg, setTimeoutMsg] = useState("");
 
   const login = (e) => {
     e.preventDefault();
@@ -27,15 +27,13 @@ const SignInComponent = () => {
     signIn(user, jwt, setJwt);
   };
 
+  const handleForgetPassword = () => {
+    forgotPassword();
+  };
+
   useEffect(() => {
     //console.log(`JWT is: ${jwt}`);
   }, [jwt]);
-
-  useEffect(() => {
-    const msg = timeoutMsg ? timeoutMsg : timeoutMsg;
-
-    return () => msg;
-  });
 
   return (
     <div className="signin-container">
@@ -72,9 +70,7 @@ const SignInComponent = () => {
         <Button variant="primary" type="submit" className="signin-button">
           Submit
         </Button>
-        <p>Forgot Password</p>
-
-        <div>{timeoutMsg}</div>
+        <p onClick={handleForgetPassword}>Forgot Password</p>
       </Form>
       <ToastContainer />
     </div>
