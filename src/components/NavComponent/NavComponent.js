@@ -10,6 +10,8 @@ import { Link, NavLink } from "react-router-dom";
 //import { MdLiveHelp } from "react-icons/md";
 import "../NavComponent/NavComponent.css";
 import { useState, useEffect } from "react";
+import { logoutUser } from "../../services/apiService";
+import { useLocalState } from "../../utils/useLocalStorage";
 //import Icofont from "react-icofont";
 
 const NavComponent = () => {
@@ -18,6 +20,12 @@ const NavComponent = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
 
+  const [jwt, setJwt] = useLocalState("", "jwt");
+  // ------------------------------ logout user api call ---------------------------------//
+  const handleLogout = () => {
+    logoutUser(jwt);
+  };
+  // ------------------------------------------------------------------------------------//
   const handleActive = (item) => {
     setActiveItem(item);
   };
@@ -60,7 +68,7 @@ const NavComponent = () => {
       </div>
 
       <div
-        expand="md" 
+        expand="md"
         bg="#0E093F"
         variant="dark"
         className="flex-column side-nav-container  slide-right"
@@ -173,7 +181,7 @@ const NavComponent = () => {
                     </Link>
                   </li>
                   <li onClick={closeMobileMenu}>
-                    <Link to="#" className="bottom-link">
+                    <Link onClick={handleLogout} to="#" className="bottom-link">
                       <small>
                         <i className="icofont-sign-out"></i>
                       </small>
@@ -190,14 +198,18 @@ const NavComponent = () => {
         {/* <div className="col-11">&nbsp;</div>
         <span>
         </span> */}
-        <span onClick={openSidebar} style={{ color: "#fff", fontSize: "20px" }} className="nav-sm">
+        <span
+          onClick={openSidebar}
+          style={{ color: "#fff", fontSize: "20px" }}
+          className="nav-sm"
+        >
           {/* <i class="icofont-navigation-menu"></i> */}
-          <img src={LeverpayLogo} alt=""  className="TopNav-logo-sm" />
+          <img src={LeverpayLogo} alt="" className="TopNav-logo-sm" />
           <img
             src={Open}
             alt=""
             id="menu"
-            style={{ width: "10%"}}
+            style={{ width: "10%" }}
             className="open"
           />
         </span>
