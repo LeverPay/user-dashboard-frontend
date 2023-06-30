@@ -94,3 +94,28 @@ export const updateUserProfile = async (jwt, userDataUpdate) => {
     });
   return await updateRes;
 };
+
+export const logoutUser = async (jwt) => {
+  const logOut = await fetch("https://api.leverpay.io/api/v1/user/logout", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      // "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${jwt}`,
+    },
+  })
+    .then((logoutResponse) => {
+      if (logoutResponse.status === 200) {
+        alert(logoutResponse);
+        return logoutResponse.json();
+      }
+    })
+    .then((logoutData) => {
+      toast.success(logoutData.message);
+    })
+    .catch((err) => {
+      console.log(`${err.message}`);
+    });
+
+  return await logOut;
+};

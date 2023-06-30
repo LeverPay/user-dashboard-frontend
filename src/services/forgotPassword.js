@@ -7,31 +7,38 @@ export const forgotPassword = () => {
       autocapitalize: "off",
     },
     showCancelButton: true,
-    confirmButtonText: "Send token",
+    confirmButtonText: "Request token",
     showLoaderOnConfirm: true,
-    preConfirm: () => {
-      fetch("https://api.leverpay.io/api/v1/forgot-password")
+    preConfirm: async (email) => {
+      const passResponse = await fetch(
+        "https://api.leverpay.io/api/v1/forgot-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({ email: email }),
+        }
+      )
         .then((response) => {
           if (response.status !== 200) {
-            throw new Error(response.statusText);
+            throw new Error(response.status);
           }
           return response.json();
         })
         .catch((error) => {
           Swal.showValidationMessage(`Request failed: ${error}`);
-          console.log(error);
         });
+      return await passResponse;
     },
     allowOutsideClick: () => !Swal.isLoading(),
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire(
-        console.log(result)
-        //     {
-        //     title: `${result.value.login}'s avatar`,
-        //     imageUrl: result.value.avatar_url,
-        //   }
-      );
+      Swal.fire({
+        title: result.value,
+      });
     }
   });
 };
