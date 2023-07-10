@@ -6,6 +6,7 @@ import "../../page/SettingsPage/Settings.css";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { forgotPassword } from "../../services/forgotPassword";
 const Settings = () => {
   const [isToggled, setIsToggled] = useState(false);
   //alert(isToggled);
@@ -101,9 +102,9 @@ const Settings = () => {
             />
           </Form.Group>
           <span>
-            <Link to="/" className="forgot-password">
+            <p onClick={forgotPassword} className="forgot-password">
               Forgot Password
-            </Link>
+            </p>
           </span>
         </div>
         <div className="buttons-div">
