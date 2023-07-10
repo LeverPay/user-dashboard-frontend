@@ -5,7 +5,6 @@ import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 import "../../page/SettingsPage/Settings.css";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
-import { Link } from "react-router-dom";
 import { forgotPassword } from "../../services/forgotPassword";
 const Settings = () => {
   const [isToggled, setIsToggled] = useState(false);
