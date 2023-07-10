@@ -15,7 +15,7 @@
     border-radius: 10px;
     /* border: 10px solid #000; */
   }
-  .outer-div form{
+  .outer-div form {
     border-radius: 10px;
     /* padding-block: 1rem; */
     padding-left: 1rem;
@@ -40,7 +40,7 @@
 
 .text-area {
   width: 80%;
-  margin-left: 5%;
+  margin-left: 3%;
   background-color: #f8f8f8;
   font-family: AgrandirBold !important;
 }
@@ -68,7 +68,7 @@
 }
 
 .text-muted {
-  margin-left: 5% !important;
+  margin-left: 3% !important;
   font-family: AgrandirBold !important;
 }
 
@@ -129,8 +129,10 @@ h4 {
 }
 
 .forgot-password {
-  margin-left: 5%;
+  margin-left: 3%;
   text-decoration: none;
+  cursor: pointer;
+  color: #2962f2;
   font-family: AgrandirBold !important;
 }
 
