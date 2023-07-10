@@ -96,7 +96,7 @@ export const updateUserProfile = async (jwt, userDataUpdate) => {
   return await updateRes;
 };
 
-export const userResetPassword = async (passwordReset) => {
+export const userResetPassword = async (passwordReset, setJwt) => {
   const resetPass = await fetch(
     "https://api.leverpay.io/api/v1/reset-password",
     {
@@ -114,6 +114,7 @@ export const userResetPassword = async (passwordReset) => {
         toast.success(res);
         setTimeout(() => {
           window.location.href = "/signin";
+          setJwt("");
         }, 5000);
       }
       if (res.message === "Error") {
