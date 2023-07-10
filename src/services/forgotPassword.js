@@ -38,7 +38,12 @@ export const forgotPassword = () => {
     if (result.isConfirmed) {
       Swal.fire({
         title: result.value,
+        text: `Please check your inbox for a password reset token`,
       });
+
+      setTimeout(() => {
+        window.location.href = "/reset-password";
+      }, 3000);
     }
   });
 };
