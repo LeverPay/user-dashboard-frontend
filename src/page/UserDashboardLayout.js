@@ -6,7 +6,7 @@ import TransactionTable from "./Transactions/TransactionTable/TransactionTable";
 import { recentTransactions } from "../TestData/TransactionsData.js";
 import { useEffect, useState } from "react";
 import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
-import { Routes, Route, Outlet } from "react-router-dom";
+import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { Transactions } from "./Transactions/Transactions";
 import InvoicePage from "./InvoicePage/InvoicePage";
 // import Mycard from "./MyCardPage.js/Mycard";
@@ -29,6 +29,7 @@ import Faq from "./FaqPage/Faq";
 import Feedback from "./Feedback/Feedback";
 import PaymentPage from "./PaymentPage/PaymentPage";
 import UnpaidInvoice from "./UnpaidInvoicePage/UnpaidInvoicePage";
+import ResetPassword from "../components/ResetPasswordComponent/ResetPassword";
 
 import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -61,6 +62,7 @@ export const UserDashboardLayout = () => {
       expiryDate: silverCardDetails.map((data) => data.expiryDate),
     });
   }, []);
+
   // useEffect(() => {
   //   const reloadCount = sessionStorage.getItem("reloadCount");
   //   if (reloadCount < 2) {
@@ -193,7 +195,9 @@ export const UserDashboardLayout = () => {
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
           <Route path="payment-page" element={<PaymentPage />} />
+          <Route exact path="*" element={<Navigate to="/" />} />
         </Route>
+        <Route exact path="reset-password" element={<ResetPassword />} />
         <Route path="signin" element={<SignInPage />} />
       </Routes>
       <ToastContainer />

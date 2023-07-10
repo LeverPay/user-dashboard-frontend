@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastr";
 import Button from "react-bootstrap/Button";
 // import LeverpayLogo_Blue from "../../assets/LeverpayLogo_Blue.png";
 import LeverpayLogo from "../../assets/images/logo.png";
@@ -71,7 +72,9 @@ const SignInComponent = () => {
         <Button variant="primary" type="submit" className="signin-button">
           Submit
         </Button>
-        <p onClick={handleForgetPassword}>Forgot Password</p>
+        <p className="forgot-password-link" onClick={handleForgetPassword}>
+          Forgot Password
+        </p>
       </Form>
       <ToastContainer />
     </div>
