@@ -4,6 +4,7 @@ import LeverpayLogo from "../../assets/images/logo.png";
 import Button from "react-bootstrap/Button";
 import { ToastContainer } from "react-toastr";
 import { userResetPassword } from "../../services/apiService";
+import { useLocalState } from "../../utils/useLocalStorage";
 import "./ResetPassword.css";
 
 const ResetPassword = () => {
@@ -11,6 +12,7 @@ const ResetPassword = () => {
 
   const [resetToken, setResetToken] = useState("");
   const [resetPassword, setResetPassword] = useState("");
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
   const handleResetPassword = (e) => {
     e.preventDefault();
@@ -19,7 +21,7 @@ const ResetPassword = () => {
 
     const passwordReset = Object.fromEntries(resetData);
 
-    userResetPassword(passwordReset);
+    userResetPassword(passwordReset, setJwt);
   };
 
   return (
