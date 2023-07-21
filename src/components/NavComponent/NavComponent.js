@@ -120,6 +120,17 @@ const NavComponent = () => {
                       Transactions
                     </NavLink>
                   </li>
+                  <li>
+                    <NavLink
+                      to="/transfer"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeclassname="active"
+                    >
+                      <i className="icofont-exchange"></i>
+                      Transfer
+                    </NavLink>
+                  </li>
                   <li
                     // eslint-disable-next-line no-undef
                     onClick={() => handleActive("invoices")}
