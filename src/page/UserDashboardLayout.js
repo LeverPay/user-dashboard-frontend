@@ -36,6 +36,8 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { useLocalState } from "../utils/useLocalStorage";
 import { getUserProfile } from "../services/apiService";
 import { ToastContainer, toast } from "react-toastify";
+import TransferPage from "./TransferPage/TransferPage";
+import axios from "axios";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -77,6 +79,21 @@ export const UserDashboardLayout = () => {
   useEffect(() => {
     getUserProfile(jwt, setUser);
   }, [jwt]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://leverpay-api.azurewebsites.net/api/v1/user/get-card", {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${jwt}`,
+  //       },
+  //       // configuration
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //       // do something with JSON response data
+  //     });
+  // });
 
   return (
     <>
@@ -167,6 +184,7 @@ export const UserDashboardLayout = () => {
           />
 
           <Route path="transactions" element={<Transactions />} />
+          <Route exact path="transfer" element={<TransferPage />} />
           <Route path="invoices" element={<UnpaidInvoice />} />
           <Route path="cardCategories" element={<CardcategoryPage />} />
           <Route path="account" element={<MyUpgradedAccount />} />
