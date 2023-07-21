@@ -131,14 +131,17 @@ export const userResetPassword = async (passwordReset, setJwt) => {
 };
 
 export const logoutUser = async (jwt) => {
-  const logOut = await fetch("https://api.leverpay.io/api/v1/user/logout", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      Authorization: `Bearer ${jwt}`,
-    },
-  })
+  const logOut = await fetch(
+    "https://leverpay-api.azurewebsites.net/api/v1/user/logout",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${jwt}`,
+      },
+    }
+  )
     .then((logoutResponse) => {
       if (logoutResponse.status === 200) return logoutResponse.json();
     })
