@@ -98,26 +98,23 @@ p {
   .statement {
     display: flex;
     flex-direction: row;
-    width: 80%;
+    width: 90%;
     margin: auto;
     padding: 3%;
-    border: 1px solid #000;
   }
 
   .user-search {
     display: flex;
     flex-direction: column;
     padding: 1%;
-    border: 1px solid #000;
-    width: 80%;
+    width: 85%;
     margin: auto;
   }
 
   .user-found-row {
     /* padding: 1%; */
     margin: auto;
-    width: 80%;
-    border: 1px solid #000;
+    width: 85%;
   }
 
   .search-input {

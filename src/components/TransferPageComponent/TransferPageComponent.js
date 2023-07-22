@@ -75,9 +75,9 @@ const TransferPageComponent = () => {
           <Col>
             {userFound ? (
               <div className="user-found-container">
-                <p>First Name: Terna </p>
-                <p>Last Name: Nanev</p>
-                <p>Email: ternathompson2@gmail.com</p>&nbsp;
+                <p>First Name: John </p>
+                <p>Last Name: Doe</p>
+                <p>Email: johndoe2023@gmail.com</p>&nbsp;
                 <p>Transfer Amount</p>
                 <Form.Control
                   type="text"

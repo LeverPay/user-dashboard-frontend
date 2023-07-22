@@ -31,7 +31,7 @@ const TransferOTP = ({ show, setShow }) => {
         <Modal.Header>
           <img src={Logo} alt="hello" className="otp-logo" />
           <p>
-            ternathompson2@gmail.com <br />
+            johndoe2023@gmail.com <br />
             <span style={{ float: "right" }}>Send $100.00</span>
           </p>
         </Modal.Header>
@@ -39,8 +39,7 @@ const TransferOTP = ({ show, setShow }) => {
           <img src={OTPLogo} alt="" className="phone-otp" />
 
           <p className="otp-message">
-            Kindly Enter the OTP sent to ********991 and
-            ternathompson2@gmail.com
+            Kindly Enter the OTP sent to ********023 and johndoe2023@gmail.com
           </p>
           <div className="otp-field">
             <Form.Control
