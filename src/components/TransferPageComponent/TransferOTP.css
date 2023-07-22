@@ -112,6 +112,7 @@
   .modal-content {
     /* display: block !important; */
     width: 100% !important;
+    height: fit-content;
     margin-left: auto !important;
     margin-right: auto !important;
   }
