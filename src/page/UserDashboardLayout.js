@@ -30,12 +30,19 @@ import Feedback from "./Feedback/Feedback";
 import PaymentPage from "./PaymentPage/PaymentPage";
 import UnpaidInvoice from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import ResetPassword from "../components/ResetPasswordComponent/ResetPassword";
-
 import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { useLocalState } from "../utils/useLocalStorage";
 import { getUserProfile } from "../services/apiService";
 import { ToastContainer, toast } from "react-toastify";
+import FundingPage from "./FundingPage/FundingPage";
+import FundingPayment from "../components/AccountFunding/FundingPayment";
+import FundingInitiating from "../components/AccountFunding/FundingInitiating";
+import FundingNaira from "../components/AccountFunding/FundingNaira";
+import FundingPaystack from "../components/AccountFunding/FundingPaystack";
+import FundingMore from "../components/AccountFunding/FundingMore";
+import FundingpaymentForm from "../components/AccountFunding/FundingpaymentForm";
+
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -77,7 +84,6 @@ export const UserDashboardLayout = () => {
   useEffect(() => {
     getUserProfile(jwt, setUser);
   }, [jwt]);
-
   return (
     <>
       <Routes>
@@ -168,6 +174,17 @@ export const UserDashboardLayout = () => {
 
           <Route path="transactions" element={<Transactions />} />
           <Route path="invoices" element={<UnpaidInvoice />} />
+
+          <Route path="funding" element={<FundingPage />}>
+          <Route index element={<FundingPayment/>} />
+          <Route path="stablecoins-deposit" element={<FundingPayment />} >
+          <Route index element={<FundingInitiating/>} />
+          <Route path="binance-deposit" element={<FundingInitiating/>} />
+            </Route>
+          <Route path="naira-deposit" element={<FundingNaira />} />
+          <Route path="paystack-deposit" element={<FundingPaystack />} />
+          <Route path="more" element={<FundingMore />} />
+            </Route>
           <Route path="cardCategories" element={<CardcategoryPage />} />
           <Route path="account" element={<MyUpgradedAccount />} />
           <Route
