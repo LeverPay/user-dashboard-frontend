@@ -6,12 +6,16 @@ import Row from "react-bootstrap/Row";
 import TotalMoney from "../TotalMoney/TotalMoney";
 import "./TransferPageComponent.css";
 import { Button, Col } from "react-bootstrap";
+import TransferOTP from "./TransferOTP";
 
 const TransferPageComponent = () => {
   const inputRef = React.createRef();
   const [searchUser, setSearchUser] = useState("");
   const [transferAmount, setTransferAmount] = useState("");
   const [userFound, setUserFound] = useState(false);
+  const [amountError, setAmountError] = useState("");
+
+  const [show, setShow] = useState(false);
 
   const handleSearchUser = (e) => {
     e.preventDefault();
@@ -21,6 +25,17 @@ const TransferPageComponent = () => {
     const searchData = Object.fromEntries(formData);
     setUserFound(true);
     console.log(searchData);
+  };
+
+  const transferFunds = (e) => {
+    e.preventDefault();
+    if (transferAmount.trim() === "") {
+      setAmountError("Please, Enter Amount");
+      return;
+    }
+    setShow(true);
+
+    console.log("$100 to James");
   };
 
   return (
@@ -60,41 +75,45 @@ const TransferPageComponent = () => {
           <Col>
             {userFound ? (
               <div className="user-found-container">
-                <p>First Name: {searchUser}</p>
-                <p>Last Name</p>
-                <p>Email</p>
-                <Form>
-                  <p>Transfer Amount</p>
-                  <Form.Control
-                    type="text"
-                    className="transfer-amount"
-                    value={transferAmount}
-                    name="transfer_amount"
-                    ref={inputRef}
-                    placeholder="Enter the amount to be sent"
-                    onChange={(e) =>
-                      setTransferAmount(e.target.value.replace(/\D/g, ""))
-                    }
-                    required
-                  />
-                  <div className="transfer-buttons">
-                    <Button
-                      variant="primary"
-                      type="submit"
-                      className="transfer-btn"
-                    >
-                      Send
-                    </Button>
+                <p>First Name: Terna </p>
+                <p>Last Name: Nanev</p>
+                <p>Email: ternathompson2@gmail.com</p>&nbsp;
+                <p>Transfer Amount</p>
+                <Form.Control
+                  type="text"
+                  className="transfer-amount"
+                  value={transferAmount}
+                  name="transfer_amount"
+                  ref={inputRef}
+                  placeholder="Enter the amount to be sent"
+                  onChange={(e) =>
+                    setTransferAmount(e.target.value.replace(/\D/g, ""))
+                  }
+                  required
+                />
+                {transferAmount ? (
+                  ""
+                ) : (
+                  <div className="error">{amountError}</div>
+                )}
+                <div className="transfer-buttons">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="transfer-btn"
+                    onClick={transferFunds}
+                  >
+                    Send
+                  </Button>
 
-                    <Button
-                      variant="danger"
-                      type="submit"
-                      className="transfer-btn"
-                    >
-                      Cancel
-                    </Button>
-                  </div>
-                </Form>
+                  <Button
+                    variant="danger"
+                    type="cancel"
+                    className="transfer-btn"
+                  >
+                    Cancel
+                  </Button>
+                </div>
               </div>
             ) : (
               ""
@@ -102,6 +121,7 @@ const TransferPageComponent = () => {
           </Col>
         </Row>
       </Form>
+      <TransferOTP show={show} setShow={setShow} />
     </Container>
   );
 };
