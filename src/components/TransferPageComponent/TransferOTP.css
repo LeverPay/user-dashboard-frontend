@@ -111,8 +111,23 @@
 @media screen and (max-width: 620px) {
   .modal-content {
     /* display: block !important; */
-    width: 80% !important;
+    width: 100% !important;
     margin-left: auto !important;
     margin-right: auto !important;
+  }
+
+  .cancel-payment {
+    display: block;
+    width: 55% !important;
+    /* padding: 2%; */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 2%;
+    text-align: center !important;
+  }
+
+  .cancel-sign {
+    width: 5%;
+    margin: auto;
   }
 }
