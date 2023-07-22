@@ -8,6 +8,7 @@ import OTPLogo from "../../assets/images/otp.png";
 import Cancel from "../../assets/images/cancel.png";
 import Padlock from "../../assets/images/padlock.png";
 import "./TransferOTP.css";
+import Swal from "sweetalert2";
 
 const TransferOTP = ({ show, setShow }) => {
   const inputRef = React.createRef();
@@ -15,7 +16,14 @@ const TransferOTP = ({ show, setShow }) => {
 
   const handleClose = () => setShow(false);
 
-  const handleOTP = () => {};
+  const handleOTP = () => {
+    Swal.fire({
+      title: "Success",
+      text: `$100 has been transferred successfully`,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+  };
 
   return (
     <>
