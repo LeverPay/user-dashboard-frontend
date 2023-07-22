@@ -1,0 +1,17 @@
+.Fundingpage{
+    border: 1px solid white;
+    /* min-height: 60vh; */
+    width: 50%;
+    margin: auto;
+    margin-top: 8rem;
+    margin-bottom: 5rem;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+}
+.Fundingpage section{
+    width: 100%;
+    margin: auto;
+}
