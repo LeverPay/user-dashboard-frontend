@@ -177,10 +177,7 @@ export const UserDashboardLayout = () => {
 
           <Route path="funding" element={<FundingPage />}>
           <Route index element={<FundingPayment/>} />
-          <Route path="stablecoins-deposit" element={<FundingPayment />} >
-          <Route index element={<FundingInitiating/>} />
-          <Route path="binance-deposit" element={<FundingInitiating/>} />
-            </Route>
+          <Route path="stablecoins-deposit" element={<FundingPayment />} />
           <Route path="naira-deposit" element={<FundingNaira />} />
           <Route path="paystack-deposit" element={<FundingPaystack />} />
           <Route path="more" element={<FundingMore />} />

@@ -1,33 +1,38 @@
 import React, { useEffect, useState } from 'react'
 import FundingInitiating from './FundingInitiating'
-import { Link } from 'react-router-dom'
-import { GiLockedBox } from 'react-icons/gi'
+import FundingCancel from './FundingCancel'
 
-const FundingPayment = () => {
+const FundingPayment = (props) => {
     const [exchange, setExchange] = useState("Binance")
     const [step, setStep] = useState(1)
+    const [copAlert, setCopyAlert] = useState('')
     const [formData, setFormData] = useState({
         amount: '',
         userID: '16yge73ghuyw',
         txid: '78ghavd78152fasghas'
     })
 
-
     function handleForm(e) {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         })
-        localStorage.setItem('amt', formData.amount)
     }
+    useEffect(()=>{
+        props.handleAmount(formData.amount - Number(formData.amount) * 0.08)
+    }, [handleForm])
 
 
     function NextStep() {
-        setStep(step + 1)
+        return setStep(step + 1)
     }
     function PrevStep() {
         setStep(step - 1)
     }
+    function copyAcct(){
+        navigator.clipboard.writeText(formData.txid);
+        setCopyAlert('copied')
+      }
 
     const onOptionChange = e => {
         setExchange(e.target.value)
@@ -104,9 +109,7 @@ const FundingPayment = () => {
                             </li>
                         </ul>
                     </main>
-                    <div className='pg1Con'>
-                        <button className='pg1' onClick={NextStep}>Proceed</button>
-                    </div>
+                 
                 </div>
             }
             {
@@ -135,6 +138,9 @@ const FundingPayment = () => {
                         </div>
                     </main>
                     <button onClick={NextStep}>Proceed</button>
+                    <span onClick={PrevStep} className='FundingCancel'>
+                    <img alt='' src='/images/cancel.png' />
+                    </span>
                 </div>
             }
             {
@@ -161,10 +167,14 @@ const FundingPayment = () => {
                                 onChange={handleForm}
                                 style={{ color: 'black', fontSize: '18px', fontWeight: '700' }}
                             />
-                            <img alt='copy' src='/images/copy2.png' id='fundTxidCopy' />
+                            <img alt='copy' src='/images/copy2.png' id='fundTxidCopy' onClick={copyAcct}  /> 
+                            <span id='txidcopy'>{copAlert}</span>
                         </div>
                     </main>
                     <button onClick={handleformSubmit}>Proceed</button>
+                    <span onClick={PrevStep} className='FundingCancel'>
+                    <img alt='' src='/images/cancel.png' />
+                    </span>
                 </div>
             }
             {
