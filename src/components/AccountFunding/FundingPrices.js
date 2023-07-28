@@ -1,19 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-export const FundingPrices = () => {
+export const FundingPrices = (props) => {
 
-    const [amt, setAmt] = useState('')
+    const {amt} = props 
 
-    useEffect(()=>{
-        const Amount = localStorage.getItem('amt')
-        if(Amount){
-            return setAmt(Amount)
-        }
-    },[])
-
-    // const amt = localStorage.getItem('amt')
-    console.log(amt)
   return (
     <div className='FundingPrices'>
         <main style={{backgroundColor: '#0B0230'}}>
@@ -31,7 +22,7 @@ export const FundingPrices = () => {
             </span>
         <div>
             <h4>MONEY EQUIVALENT</h4>
-            <p>N0.00 </p>
+            <p>N {Number(amt * 750)} </p>
         </div>
         </main>
     </div>
