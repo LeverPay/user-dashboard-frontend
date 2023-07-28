@@ -6,7 +6,6 @@ import React from "react";
 
 //-------- Sarah's import starts here-------------
 //import logo from './logo.svg';
-import "bootstrap/dist/css/bootstrap.min.css";
 import UserDashboardLayout from "./page/UserDashboardLayout";
 import Helpimageupload from "./components/HelpImageUpload/helpimageupload";
 import "react-toastify/dist/ReactToastify.css";

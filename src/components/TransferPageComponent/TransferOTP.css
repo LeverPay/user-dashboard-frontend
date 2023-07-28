@@ -1,0 +1,134 @@
+.modal-content {
+  display: flex !important;
+  background: #fff !important;
+  width: 30% !important;
+  height: 100% !important;
+  margin-top: 2rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 0 !important;
+  padding: 0rem !important;
+  border: 1px solid #000 !important;
+}
+
+.otp-logo {
+  width: 10% !important;
+}
+
+.phone-otp {
+  display: block;
+  width: 25% !important;
+  margin-top: 0.9rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform: rotate(180deg);
+}
+
+.otp-message {
+  padding-top: 0.9rem;
+  width: 55%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #172c63;
+  font-size: 14px !important;
+  font-weight: 800 !important;
+}
+
+.otp-resend-msg {
+  padding-top: 0.9rem;
+  width: 60%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  /* color: #172c63; */
+  font-size: 14px !important;
+  font-weight: 800 !important;
+}
+
+.color-link {
+  color: #172c63;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.font-style {
+  font-family: AgrandirBold !important;
+}
+
+.otp-field {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
+  width: 85%;
+}
+
+.otp-input {
+  font-family: AgrandirBold !important;
+  font-size: 0.9em !important;
+  width: 55% !important;
+  padding: 2% !important;
+  background-color: #e7e98f !important;
+}
+
+.otp-input::placeholder {
+  font-family: AgrandirBold !important;
+  font-size: 0.9em !important;
+}
+
+.auth-btn {
+  font-family: AgrandirBold !important;
+  font-size: 0.8em !important;
+  background-color: #5fce2f !important;
+  color: #fff;
+  width: 40%;
+}
+
+.cancel-payment {
+  display: block;
+  width: 50% !important;
+  /* padding: 2%; */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 2%;
+  text-align: center !important;
+}
+
+.cancel-sign {
+  width: 8%;
+  margin: auto;
+}
+
+.footer-style {
+  font-size: 0.9em !important;
+}
+
+@media screen and (max-width: 620px) {
+  .modal-content {
+    /* display: block !important; */
+    width: 100% !important;
+    height: fit-content;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .cancel-payment {
+    display: block;
+    width: 55% !important;
+    /* padding: 2%; */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 2%;
+    text-align: center !important;
+  }
+
+  .cancel-sign {
+    width: 5%;
+    margin: auto;
+  }
+}

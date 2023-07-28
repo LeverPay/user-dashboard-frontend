@@ -1,0 +1,143 @@
+p {
+  font-family: AgrandirBold !important;
+  font-size: 0.9em !important;
+  padding-bottom: 1%;
+}
+
+.error {
+  margin-top: 1%;
+  color: red;
+  font-family: AgrandirBold !important;
+  font-size: 0.8em !important;
+}
+
+.transfer-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  margin-top: 8rem;
+  margin-bottom: 5rem;
+  width: 80%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.user-search {
+  display: flex;
+  flex-direction: row;
+  padding: 1%;
+  /* border: 1px solid #000; */
+  width: 100%;
+  margin: auto;
+}
+
+.search-input {
+  font-family: AgrandirBold !important;
+  font-size: 0.9em !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.search-input::placeholder {
+  font-family: AgrandirBold !important;
+  font-size: 0.9em !important;
+}
+
+.searchID-button {
+  width: 70% !important;
+  height: 90%n !important;
+}
+
+.user-found-row {
+  padding: 1%;
+  margin: auto;
+  width: 100%;
+  /* border: 1px solid #000; */
+}
+
+.user-found-container {
+  display: flex;
+  flex-direction: column;
+  /* padding: 0.5rem; */
+  margin-top: 0;
+}
+
+.transfer-amount {
+  font-family: AgrandirBold !important;
+  font-size: 0.9em !important;
+  width: 50% !important;
+  box-sizing: border-box !important;
+}
+
+.transfer-amount::placeholder {
+  font-family: AgrandirBold !important;
+  font-size: 0.9em !important;
+}
+
+.transfer-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  justify-content: space-between;
+  margin-top: 3%;
+}
+
+.transfer-btn {
+  width: 30%;
+  padding: 1%;
+}
+
+@media screen and (max-width: 620px) {
+  .transfer-container {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem !important;
+    padding: 3rem 0 !important;
+  }
+
+  .statement {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: auto;
+    padding: 3%;
+  }
+
+  .user-search {
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    width: 85%;
+    margin: auto;
+  }
+
+  .user-found-row {
+    /* padding: 1%; */
+    margin: auto;
+    width: 85%;
+  }
+
+  .search-input {
+    font-family: AgrandirBold !important;
+    font-size: 0.9em !important;
+    padding: 2%;
+    margin-bottom: 2%;
+    width: 100% !important;
+  }
+
+  .searchID-button {
+    width: 100% !important;
+    margin: auto !important;
+    padding-top: 2%;
+  }
+
+  .transfer-amount {
+    width: 100% !important;
+  }
+
+  .transfer-buttons {
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 3%;
+  }
+}
