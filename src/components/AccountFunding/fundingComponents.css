@@ -149,6 +149,12 @@
     font-size: 18px;
     font-family: 'Agrandir-Regular';
 }
+/* funding cancel */
+.FundingCancel img{
+  float: right;
+  margin-right: 1rem;
+  width: 20px;
+}
 
 /* funding amount */
 .FundingAmount{
@@ -185,11 +191,14 @@
     font-size: 18px;
     font-family: 'Agrandir-bold';
 }
-#fundTxidCopy{
+#fundTxidCopy,#txidcopy{
   width: 30px;
   position: absolute;
   right: 30px;
   bottom: 10px;
+}
+#txidcopy{
+  bottom: -16px;
 }
 
 /* funding success */
@@ -222,4 +231,66 @@
   color: #FC0019;
   width: 60%;
   line-height: 20px;
+}
+
+/* funding Naira */
+.FundingNaira{
+  padding-block: 2rem;
+  margin-left: 1rem;
+}
+.FundingNaira h1{
+  font-family: 'Agrandir-bold';
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.FundingNaira .transferC{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.FundingNaira .transferC div{
+  font-family: 'Agrandir-Regular';
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 35px;
+  border-radius: 20px 0 20px 0; 
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  padding-block: 10px;
+}
+.FundingNaira .transferC :nth-child(1){
+  background-color: #329521;
+}
+.FundingNaira .transferC :nth-child(2){
+  background-color: #f49b09;
+}
+.FundingBankTransfer{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  border: 4px solid rgb(221, 208, 208);
+  border-radius: 20px;
+  padding-block: 10px;
+}
+.FundingBankTransfer h3{
+  font-size: 16px;
+  font-family: 'Agrandir-bold';
+  color: #329521;
+}
+.FundingBankTransfer small{
+  font-family: 'Agrandir-bold';
+}
+.FundingBankTransfer .acctnoCopy{
+  width: 20px;
+}
+.FundingBankTransfer #copyAlert{
+  font-size: 12px;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
 }
