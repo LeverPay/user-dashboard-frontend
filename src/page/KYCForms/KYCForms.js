@@ -74,7 +74,17 @@ const KYCForms = (props) => {
     console.log("called back with " + country_id + "");
     // if (country_id !== "") {
     setSelectedCountryId(country_id);
-    // }
+    // }7]0.|
+
+
+
+
+
+
+
+
+
+    
   }
 
   function setStateCallBack(state_id) {
