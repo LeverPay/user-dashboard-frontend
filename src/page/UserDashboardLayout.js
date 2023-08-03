@@ -38,6 +38,7 @@ import { getUserProfile } from "../services/apiService";
 import { ToastContainer, toast } from "react-toastify";
 import TransferPage from "./TransferPage/TransferPage";
 import axios from "axios";
+import SignupPage from "./SignupPage/SignupPage";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -217,6 +218,7 @@ export const UserDashboardLayout = () => {
         </Route>
         <Route exact path="reset-password" element={<ResetPassword />} />
         <Route path="signin" element={<SignInPage />} />
+        <Route path="leverpay-signup" element={<SignupPage />} />
       </Routes>
       <ToastContainer />
     </>

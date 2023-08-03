@@ -23,6 +23,7 @@ const TransferOTP = ({ show, setShow }) => {
       icon: "success",
       confirmButtonText: "OK",
     });
+    setShow(false);
   };
 
   return (
