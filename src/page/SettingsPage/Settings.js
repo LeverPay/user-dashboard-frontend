@@ -73,22 +73,20 @@ const Settings = () => {
         </div>
         <div className="form-fields-div">
           <Form.Group className="mb-3 change-password" controlId="">
-            <Form.Label className="form-label">Change Password</Form.Label>
+            <Form.Label className="form-label">Current Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder=""
+              placeholder="Enter current password"
               className="text-area "
+              required
             />
-            <Form.Text className="text-muted">
-              We'll never share your data with anyone.
-            </Form.Text>{" "}
             <br />
           </Form.Group>
           <Form.Group className="mb-3 new-password" controlId="">
             <Form.Label className="form-label"> New Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder=""
+              placeholder="Ensure password contains atleast 10 characters"
               className="text-area "
             />
           </Form.Group>
@@ -100,11 +98,6 @@ const Settings = () => {
               className="text-area"
             />
           </Form.Group>
-          <span>
-            <p onClick={forgotPassword} className="forgot-password">
-              Forgot Password
-            </p>
-          </span>
         </div>
         <div className="buttons-div">
           <Button
