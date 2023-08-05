@@ -28,7 +28,7 @@ const TransferOTP = ({ show, setShow }) => {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} centered>
         <Modal.Header>
           <img src={Logo} alt="hello" className="otp-logo" />
           <p>
