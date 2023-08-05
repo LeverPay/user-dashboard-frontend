@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
-    const signInURL = "https://api.leverpay.io/api/v1/login";
+    const signInURL = "https://leverpay-api.azurewebsites.net/api/v1/login";
     const response = await fetch(signInURL, {
       method: "POST",
       headers: {
@@ -36,10 +36,42 @@ export const signIn = async (userData, jwt, setJwt) => {
   }
 };
 
+export const signUp = async (userData) => {
+  const response = await fetch(
+    "https://leverpay-api.azurewebsites.net/api/v1/user/signup",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: userData,
+    }
+  )
+    .then((response) => {
+      if (response.status === 200) return response.json();
+    })
+    .then((resData) => {
+      toast.success(`${resData.message}`);
+      if (userData.first_name.length === 0 && userData.last_name.length === 0) {
+        toast.error(`${resData.data.first_name}`);
+        toast.error(`${resData.data.last_name}`);
+      } else {
+        toast.error(`${resData.data.email}`);
+      }
+      console.log(resData);
+    })
+    .catch((err) => {
+      console.log(`${err}`);
+    });
+  return await response;
+};
+
 //----------------------------------------- getUserProfile --------------------------------------------------//
 
 export const getUserProfile = async (jwt, setUser) => {
-  const getData = "https://api.leverpay.io/api/v1/user/get-user-profile";
+  const getData =
+    "https://leverpay-api.azurewebsites.net/api/v1/user/get-user-profile";
   const userProfile = await fetch(getData, {
     method: "GET",
     headers: {
@@ -64,7 +96,7 @@ export const getUserProfile = async (jwt, setUser) => {
 
 export const updateUserProfile = async (jwt, userDataUpdate) => {
   const updateRes = await fetch(
-    "https://api.leverpay.io/api/v1/user/update-user-profile",
+    "https://leverpay-api.azurewebsites.net/api/v1/user/update-user-profile",
     {
       method: "POST",
       headers: {
@@ -98,7 +130,7 @@ export const updateUserProfile = async (jwt, userDataUpdate) => {
 
 export const userResetPassword = async (passwordReset, setJwt) => {
   const resetPass = await fetch(
-    "https://api.leverpay.io/api/v1/reset-password",
+    "https://leverpay-api.azurewebsites.net/api/v1/reset-password",
     {
       method: "POST",
       headers: {
