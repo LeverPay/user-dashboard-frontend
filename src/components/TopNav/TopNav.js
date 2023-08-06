@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const TopNav = ({ userName }) => {
   return (
     <>
-      <div className="TopNav  col-md-12">
+      <div className="TopNav col-md-12">
         <div className="pageTitle">
           <h2> Overview </h2>
         </div>
@@ -18,7 +18,11 @@ const TopNav = ({ userName }) => {
           <SearchBar />
           <MdNotifications size={30} className="notificationIcon" />
         </div>
-        <Link to="/profile" style={{ textDecoration: "none" }} className="user_select">
+        <Link
+          to="/profile"
+          style={{ textDecoration: "none" }}
+          className="user_select"
+        >
           <UserSelectComponent
             userName={userName.firstName}
             passport={userName.passport}
@@ -27,8 +31,7 @@ const TopNav = ({ userName }) => {
       </div>
       <div className="side-nav-logo col-6">
         <center>
-          {" "} 
-          <img src={LeverpayLogo} alt=""  className="TopNav-logo" />
+          <img src={LeverpayLogo} alt="" className="TopNav-logo" />
           <div className="space-div">&nbsp;</div>
         </center>
       </div>
