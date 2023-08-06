@@ -19,7 +19,7 @@ const FundingPayment = (props) => {
         })
     }
     useEffect(()=>{
-        props.handleAmount(formData.amount - Number(formData.amount) * 0.08)
+        props.handleAmount(formData.amount - Number(formData.amount) * 0.015)
     }, [handleForm])
 
 
@@ -115,7 +115,7 @@ const FundingPayment = (props) => {
             {
                 step === 2 && <div className='FundingAmount'>
                     <FundingInitiating exchange={exchange} />
-                    <main>
+                    <main className='amtss'>
                         <div className='FundingAmt'>
                             <label htmlFor='amt' style={{ color: '#31353A' }}>Enter Amount</label>
                             <input
@@ -127,13 +127,14 @@ const FundingPayment = (props) => {
                             />
                         </div>
                         <div className='FundingAmt'>
-                            <label htmlFor='Vat' style={{ color: '#CD4729' }}>Vat (8%)</label>
+                            <label htmlFor='Vat' style={{ color: '#CD4729' }}>Conversion Fee (1.5%)</label>
                             <input
                                 type='text'
                                 placeholder='10.00'
                                 name='Vat'
-                                value={Number(formData.amount) * 0.08}
+                                value={Number(formData.amount) * 0.015}
                                 onChange={handleForm}
+                                id='conversion'
                             />
                         </div>
                     </main>
@@ -148,7 +149,7 @@ const FundingPayment = (props) => {
                     <FundingInitiating exchange={exchange} />
                     <main>
                         <div className='FundingAmt'>
-                            <label htmlFor='userID' style={{ color: '#31353A' }}>LeverPay UserID</label>
+                            <label htmlFor='userID' style={{ color: '#31353A' }}>LeverPay UserID <span>(Use as transfer narration) </span> </label>
                             <input
                                 type='text'
                                 name='userID'
@@ -159,7 +160,7 @@ const FundingPayment = (props) => {
                             />
                         </div>
                         <div className='FundingAmt'>
-                            <label htmlFor='txid' style={{ color: '#CD4729' }}>Enter your leverpay Transaction Code</label>
+                            <label htmlFor='txid' style={{ color: '#CD4729' }}>LeverPay Wallet Address</label>
                             <input
                                 type='text'
                                 name='txid'
