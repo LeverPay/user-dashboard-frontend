@@ -21,7 +21,7 @@ export const FundingPrices = (props) => {
             <img alt="" src="/images/bal1.png"/>
             </span>
         <div>
-            <h4>MONEY EQUIVALENT</h4>
+            <h4>NAIRA EQUIVALENT</h4>
             <p>N {Number(amt * 750)} </p>
         </div>
         </main>

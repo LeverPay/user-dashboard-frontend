@@ -163,11 +163,17 @@
     gap: 1rem;
     margin-block: 2rem;
 }
+.FundingAmount .amtss{
+  display: flex;
+}
 .FundingAmt{
     display: flex;
     flex-direction: column;
     margin-bottom: 1rem;
     position: relative;
+}
+.FundingAmt #conversion{
+  opacity: .4;
 }
 .FundingAmt label{
     width: fit-content;
@@ -175,6 +181,9 @@
     font-size: 20px;
   font-family: 'Agrandir-bold';
   margin: 0;
+}
+.FundingAmt label span{
+  color: #FC0019;
 }
 .FundingAmt input{
     padding: 15px 20px;
