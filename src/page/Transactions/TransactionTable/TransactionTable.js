@@ -27,7 +27,7 @@ const TransactionTable = (props) => {
           {/* <a href="/#">View all </a> */}
           <Link to="/customer-support">
             <small style={{ color: "#fff", fontSize: "12px" }}>
-              {/* Need help ? */}
+              Need help ?
             </small>
           </Link>
         </div>
