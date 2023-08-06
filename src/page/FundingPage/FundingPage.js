@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
-import './FundingPage.css'
-import FundingNav from '../../components/AccountFunding/FundingNav'
-import { FundingPrices } from '../../components/AccountFunding/FundingPrices'
-import FundingNav2 from '../../components/AccountFunding/FundingNav2'
-import FundingPayment from '../../components/AccountFunding/FundingPayment'
-import { Outlet,Route,Routes } from 'react-router-dom'
-import FundingNaira from '../../components/AccountFunding/FundingNaira'
-import FundingPaystack from '../../components/AccountFunding/FundingPaystack'
-import FundingMore from '../../components/AccountFunding/FundingMore'
+import React, { useState } from "react";
+import "./FundingPage.css";
+import FundingNav from "../../components/AccountFunding/FundingNav";
+import { FundingPrices } from "../../components/AccountFunding/FundingPrices";
+import FundingNav2 from "../../components/AccountFunding/FundingNav2";
+import FundingPayment from "../../components/AccountFunding/FundingPayment";
+import { Outlet, Route, Routes } from "react-router-dom";
+import FundingNaira from "../../components/AccountFunding/FundingNaira";
+import FundingPaystack from "../../components/AccountFunding/FundingPaystack";
+import FundingMore from "../../components/AccountFunding/FundingMore";
 
 const FundingPage = () => {
     const [amt, setAmt] = useState('')
-
     function handleAmount(amts){
         setAmt(amts)
     }
@@ -35,11 +34,10 @@ const FundingPage = () => {
           <Route path="naira-deposit" element={<FundingNaira handleAmount = {handleAmount}   />} />
           <Route path="paystack-deposit" element={<FundingPaystack />} />
           <Route path="more" element={<FundingMore />} />
-            </Routes>
-        </section>
-
+        </Routes>
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default FundingPage
+export default FundingPage;

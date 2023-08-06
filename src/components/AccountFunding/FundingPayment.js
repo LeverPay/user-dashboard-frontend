@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import FundingInitiating from './FundingInitiating'
-import FundingCancel from './FundingCancel'
+import React, { useEffect, useState } from "react";
+import FundingInitiating from "./FundingInitiating";
+import FundingCancel from "./FundingCancel";
 
 const FundingPayment = (props) => {
-    const [exchange, setExchange] = useState("Binance")
-    const [step, setStep] = useState(1)
-    const [copAlert, setCopyAlert] = useState('')
+    console.log(props);
+    const [exchange, setExchange] = useState("Binance");
+    const [step, setStep] = useState(1);
+    const [copAlert, setCopyAlert] = useState("");
     const [formData, setFormData] = useState({
-        amount: '',
-        userID: '16yge73ghuyw',
-        txid: '78ghavd78152fasghas'
-    })
+        amount: "",
+        userID: "16yge73ghuyw",
+        txid: "78ghavd78152fasghas",
+    });
 
     function handleForm(e) {
         setFormData({
@@ -18,21 +19,21 @@ const FundingPayment = (props) => {
             [e.target.name]: e.target.value
         })
     }
-    useEffect(()=>{
+    useEffect(() => {
         props.handleAmount(formData.amount - Number(formData.amount) * 0.015)
     }, [handleForm])
 
 
     function NextStep() {
-        return setStep(step + 1)
+        return setStep(step + 1);
     }
     function PrevStep() {
-        setStep(step - 1)
+        setStep(step - 1);
     }
-    function copyAcct(){
+    function copyAcct() {
         navigator.clipboard.writeText(formData.txid);
-        setCopyAlert('copied')
-      }
+        setCopyAlert("copied");
+    }
 
     const onOptionChange = e => {
         setExchange(e.target.value)
@@ -109,13 +110,13 @@ const FundingPayment = (props) => {
                             </li>
                         </ul>
                     </main>
-                 
+
                 </div>
             }
             {
                 step === 2 && <div className='FundingAmount'>
                     <FundingInitiating exchange={exchange} />
-                    <main className='amtss'>
+                    <main>
                         <div className='FundingAmt'>
                             <label htmlFor='amt' style={{ color: '#31353A' }}>Enter Amount</label>
                             <input
@@ -127,20 +128,19 @@ const FundingPayment = (props) => {
                             />
                         </div>
                         <div className='FundingAmt'>
-                            <label htmlFor='Vat' style={{ color: '#CD4729' }}>Conversion Fee (1.5%)</label>
+                            <label htmlFor='Vat' style={{ color: '#CD4729' }}>Vat (8%)</label>
                             <input
                                 type='text'
                                 placeholder='10.00'
                                 name='Vat'
-                                value={Number(formData.amount) * 0.015}
+                                value={Number(formData.amount) * 0.08}
                                 onChange={handleForm}
-                                id='conversion'
                             />
                         </div>
                     </main>
                     <button onClick={NextStep}>Proceed</button>
                     <span onClick={PrevStep} className='FundingCancel'>
-                    <img alt='' src='/images/cancel.png' />
+                        <img alt='' src='/images/cancel.png' />
                     </span>
                 </div>
             }
@@ -149,7 +149,7 @@ const FundingPayment = (props) => {
                     <FundingInitiating exchange={exchange} />
                     <main>
                         <div className='FundingAmt'>
-                            <label htmlFor='userID' style={{ color: '#31353A' }}>LeverPay UserID <span>(Use as transfer narration) </span> </label>
+                            <label htmlFor='userID' style={{ color: '#31353A' }}>LeverPay UserID</label>
                             <input
                                 type='text'
                                 name='userID'
@@ -160,7 +160,7 @@ const FundingPayment = (props) => {
                             />
                         </div>
                         <div className='FundingAmt'>
-                            <label htmlFor='txid' style={{ color: '#CD4729' }}>LeverPay Wallet Address</label>
+                            <label htmlFor='txid' style={{ color: '#CD4729' }}>Enter your leverpay Transaction Code</label>
                             <input
                                 type='text'
                                 name='txid'
@@ -168,13 +168,13 @@ const FundingPayment = (props) => {
                                 onChange={handleForm}
                                 style={{ color: 'black', fontSize: '18px', fontWeight: '700' }}
                             />
-                            <img alt='copy' src='/images/copy2.png' id='fundTxidCopy' onClick={copyAcct}  /> 
+                            <img alt='copy' src='/images/copy2.png' id='fundTxidCopy' onClick={copyAcct} />
                             <span id='txidcopy'>{copAlert}</span>
                         </div>
                     </main>
                     <button onClick={handleformSubmit}>Proceed</button>
                     <span onClick={PrevStep} className='FundingCancel'>
-                    <img alt='' src='/images/cancel.png' />
+                        <img alt='' src='/images/cancel.png' />
                     </span>
                 </div>
             }
@@ -190,9 +190,6 @@ const FundingPayment = (props) => {
                 </div>
             }
         </form>
-
-
     )
 }
-
-export default FundingPayment
+export default FundingPayment;
