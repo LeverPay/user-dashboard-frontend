@@ -11,6 +11,7 @@ import FundingMore from '../../components/AccountFunding/FundingMore'
 
 const FundingPage = () => {
     const [amt, setAmt] = useState('')
+
     function handleAmount(amts){
         setAmt(amts)
     }
@@ -29,9 +30,9 @@ const FundingPage = () => {
         <section>
             {/* <Outlet amts = {amt} /> */}
             <Routes>
-            <Route index element={<FundingPayment/>} />
+            <Route index element={<FundingPayment handleAmount = {handleAmount}  />} />
           <Route path="stablecoins-deposit" element={<FundingPayment handleAmount = {handleAmount}  />} />
-          <Route path="naira-deposit" element={<FundingNaira />} />
+          <Route path="naira-deposit" element={<FundingNaira handleAmount = {handleAmount}   />} />
           <Route path="paystack-deposit" element={<FundingPaystack />} />
           <Route path="more" element={<FundingMore />} />
             </Routes>
