@@ -138,8 +138,8 @@ console.log(imgfile)
               type='text'
               id='txid'
               onChange={onChange}
-              // value={formData.txid}
-              value={location.state.txid}
+              value={formData.txid}
+              // value={location.state.txid}
               placeholder='Transaction ID (Generate invoice to get TXID)'
             />
           </div>
