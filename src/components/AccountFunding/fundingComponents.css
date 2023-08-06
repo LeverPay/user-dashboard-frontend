@@ -181,9 +181,14 @@
     font-size: 20px;
   font-family: 'Agrandir-bold';
   margin: 0;
+  width: 100%;
 }
 .FundingAmt label span{
   color: #FC0019;
+  opacity: .9;
+  font-weight: 300;
+  font-size: 14px;
+  float: right;
 }
 .FundingAmt input{
     padding: 15px 20px;
@@ -193,6 +198,11 @@
     border: none;
     background-color: #C1BDBD;
 }
+.FundingAmt select{
+  width: 45%;
+  padding: 10px;
+  margin-left: 1rem;
+}
 .FundingAmount button{
     width: 95%;
     background-color: #129346;
@@ -200,13 +210,16 @@
     font-size: 18px;
     font-family: 'Agrandir-bold';
 }
-#fundTxidCopy,#txidcopy{
+#fundTxidCopy,#fundTxidCopy1,#txidcopy,#txidcopy1{
   width: 30px;
   position: absolute;
   right: 30px;
   bottom: 10px;
 }
 #txidcopy{
+  bottom: -16px;
+}
+#txidcopy1{
   bottom: -16px;
 }
 
@@ -241,7 +254,17 @@
   width: 60%;
   line-height: 20px;
 }
-
+.fundingSuccess .returnToDashboard{
+  color: #0b0230;
+  text-decoration: none;
+  font-family:  'Agrandir-bold';
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 24px;
+  padding: 15px 45px;
+  background-color: #D9D9D9;
+  border-radius: 10px;
+}
 /* funding Naira */
 .FundingNaira{
   padding-block: 2rem;
