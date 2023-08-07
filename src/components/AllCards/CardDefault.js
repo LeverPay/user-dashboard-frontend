@@ -55,7 +55,7 @@ function CardDefault(props) {
           cursor: "pointer",
         }}
       >
-        <img alt="" src={props.copy} onClick={copyCardNumber} />
+        <img alt="" src='./images/copy.png' onClick={copyCardNumber} />
         <small>{cardCopied ? " copied" : ""}</small>
       </span>
 
@@ -106,10 +106,10 @@ function CardDefault(props) {
           <small style={{ color: "white" }}>Show Card Details</small>
         </span>
       </main>
-      <p className="cardnumber">
+      <b className="cardnumber">
         {cardVisible ? CardNumberFirstTwelve : "XXXX XXXX XXXX"}{" "}
         {CardNumberLastFour}
-      </p>
+      </b>
       <main className="cardDate_Type">
         <span className="cardDate" style={{ color: "white" }}>
           <small className="expiry">Valid Thru </small>
