@@ -6,6 +6,7 @@ import PhoneNumberComponent from "../PhoneNumberComponent/PhoneNumberComponent";
 import { AiOutlineEye } from "react-icons/ai";
 import SignupModal from "./SignupModal/SignupModal";
 import { signUp } from "../../services/apiService";
+import DatePicker from "react-datepicker";
 import { ToastContainer } from "react-toastify";
 
 function SignupComponent() {
@@ -15,12 +16,15 @@ function SignupComponent() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [passwordType, setPasswordType] = useState("password");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [signupMessage, setSignupMessage] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+
+  const validatePassword = () => password === confirmPassword;
 
   const [show, setShow] = useState(false);
 
   const inputRef = React.createRef();
-
   const handleIcon = (reveal) => {
     reveal =
       passwordType === "password"
@@ -46,8 +50,13 @@ function SignupComponent() {
     // let regex = new RegExp(/^[+]{1}(?:[0-9\-\(\)\/\.]\s?){6, 15}[0-9]{1}$/);
     // let newNumber = "+".concat(phoneNumber.phone);
 
-    if (phoneNumber.phone.length < 10) {
+    if (
+      typeof phoneNumber.phone === "undefined" ||
+      phoneNumber.phone.length < 10
+    ) {
       setSignupMessage("invalid phone number, must be at least 10 digits");
+      console.log(phoneNumber);
+
       return;
     } else {
       setSignupMessage("");
@@ -61,7 +70,7 @@ function SignupComponent() {
       password: password,
     };
 
-    // console.log(signupData);
+    // console.log(phoneNumber.phone);
 
     signUp(signupData);
   };
@@ -128,6 +137,16 @@ function SignupComponent() {
             />
           </Row>
           <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              Date of Birth
+            </Form.Label>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              className="dob"
+            />
+          </Row>
+          <Row className="form-input">
             <Form.Label htmlFor="phone" className="labels">
               Phone Number
             </Form.Label>
@@ -153,14 +172,33 @@ function SignupComponent() {
               required
             />
             <AiOutlineEye size={25} onClick={handleIcon} className="eye-icon" />
-            <div className="password-message">{signupMessage}</div>
+            <p className="error-message">{signupMessage}</p>
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="password" className="labels">
+              Confirm Password
+            </Form.Label>
+            <Form.Control
+              type={passwordType}
+              className="input"
+              value={confirmPassword}
+              name="confirmPassword"
+              ref={inputRef}
+              placeholder=""
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            <AiOutlineEye size={25} onClick={handleIcon} className="eye-icon" />
+            {!validatePassword() && (
+              <p className="error-message">Passwords do not match</p>
+            )}
           </Row>
           <Button variant="primary" type="submit" className="signup-btn">
             Create Account
           </Button>
         </Form>
       </Container>
-      <SignupModal signupOTP={show} setSignupOTP={setShow} />
+      <SignupModal signupOTP={show} setSignupOTP={setShow} email={email} />
       <ToastContainer />
     </>
   );
