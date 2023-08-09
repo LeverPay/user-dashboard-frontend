@@ -8,6 +8,7 @@ import "react-phone-input-2/lib/style.css";
 import "react-toastify/dist/ReactToastify.css";
 // import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

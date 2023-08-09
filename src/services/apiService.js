@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
 // import ResetPassword from "../components/ResetPasswordComponent/ResetPassword";
-// const URL = "http://api.leverpay.io/api/v1/user/update-user-profile";
 
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
@@ -17,12 +16,12 @@ export const signIn = async (userData, jwt, setJwt) => {
       .then((res) => {
         if (res.success) {
           toast.success(`${res.message}`);
-          // console.log(res);
+          // console.log(userData);
           setJwt(`${res.data.token}`);
           //transition to homepage
           setTimeout(() => {
             window.location.href = "/";
-          }, 2000);
+          }, 5000);
         } else {
           toast.error(`${res.message}`);
           // console.log(res);
@@ -33,38 +32,43 @@ export const signIn = async (userData, jwt, setJwt) => {
       });
 
     return await response;
+  } else {
+    toast.success("Already signed in");
+    //transition to homepage
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 2000);
   }
 };
 
-export const signUp = async (userData) => {
-  const response = await fetch(
+export const signUp = async (userSignUp) => {
+  const SignUp = await fetch(
     "https://leverpay-api.azurewebsites.net/api/v1/user/signup",
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        Accept: "application/json",
       },
-      body: userData,
+      body: JSON.stringify(userSignUp),
     }
   )
     .then((response) => {
-      if (response.status === 200) return response.json();
+      console.log(response);
+      return response.json();
     })
-    .then((resData) => {
-      toast.success(`${resData.message}`);
-      if (userData.first_name.length === 0 && userData.last_name.length === 0) {
-        toast.error(`${resData.data.first_name}`);
-        toast.error(`${resData.data.last_name}`);
+    .then((messages) => {
+      if (messages.status === 200) {
+        toast.success(`${messages.message}`);
       } else {
-        toast.error(`${resData.data.email}`);
+        toast.error(`${messages.message}`);
       }
-      console.log(resData);
     })
-    .catch((err) => {
-      console.log(`${err}`);
+    .catch((error) => {
+      return;
     });
-  return await response;
+
+  return await SignUp;
 };
 
 //----------------------------------------- getUserProfile --------------------------------------------------//
