@@ -57,6 +57,11 @@ p {
   border: none;
 }
 
+.signup-link {
+  color: #2962f2 !important;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 620px) {
   .signin-form h1 {
     text-align: center;

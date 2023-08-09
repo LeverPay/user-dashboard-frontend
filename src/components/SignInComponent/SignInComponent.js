@@ -76,6 +76,15 @@ const SignInComponent = () => {
           Forgot Password
         </p>
       </Form>
+      <p>
+        Don't have an account?{" "}
+        <span
+          className="signup-link"
+          onClick={() => (window.location.href = "/leverpay-signup")}
+        >
+          Sign Up
+        </span>
+      </p>
       <ToastContainer />
     </div>
   );
