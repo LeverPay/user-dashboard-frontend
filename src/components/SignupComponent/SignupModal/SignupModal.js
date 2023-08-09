@@ -1,7 +1,8 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 
-function SignupModal() {
+function SignupModal({ signupOTP, setSignupOTP, email }) {
+  console.log(email);
   return (
     <>
       <Modal centered>
