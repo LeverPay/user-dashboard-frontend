@@ -10,7 +10,7 @@ import Helpimageupload from '../../components/HelpImageUpload/helpimageupload';
 
 function HelpForm() {
 
-   // get from image in state 
+   // get form image in state 
    const [fileImg, setFileimg] = useState()
    const [imgfile, setImgfile] = useState()
    function GetImg(value, imgInfo){

@@ -159,7 +159,7 @@ const NavComponent = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/funding"
+                      to="/funding/stablecoins-deposit"
                       className="text-link"
                       onClick={closeMobileMenu}
                       activeclassname="active"

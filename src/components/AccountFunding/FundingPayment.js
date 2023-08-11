@@ -1,56 +1,72 @@
 import React, { useEffect, useState } from "react";
 import FundingInitiating from "./FundingInitiating";
-import { Link } from "react-router-dom";
-import FundingCancel from "./FundingCancel";
+import FundingSuccess from "./FundingSuccess";
+import Helpimageupload from "../HelpImageUpload/helpimageupload";
 
 const FundingPayment = (props) => {
     console.log(props);
     const [exchange, setExchange] = useState("Binance");
     const [step, setStep] = useState(1);
     const [copAlert, setCopyAlert] = useState("");
+    const [copAlert2, setCopyAlert2] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [check_txid, setCheck_txid] = useState(true);
+    const [show_modal, setShow_modal] = useState(false);
+    const [txid_exist, setTxid_exist] = useState(true);
+    const [proceed, setProceed] = useState(false);
+    // image upload 
+    const [fileImg, setFileimg] = useState()
+    const [imgfile, setImgfile] = useState()
+    function GetImg(value, imgInfo){
+      setFileimg(value)
+      setImgfile(imgInfo)
+    }
 
-    
-    const network =  [
-        {value : 'BSC', label : 'BSC'},
-        {value : 'ETH(ERC20)', label : 'ETH'},
-        {value : 'POLYGON', label : 'POLYGON'}
+
+    const network = [
+        { value: 'BSC', label: 'BSC' },
+        { value: 'ETH(ERC20)', label: 'ETH' },
+        { value: 'POLYGON', label: 'POLYGON' }
     ]
 
     const wallets = [
-        {network : 'BSC', value: 've12evw784vwfg4b74vsjb' },
-        {network : 'ETH', value: 'ghrs2evw784vwfg4b74vsjb' },
-        {network : 'POLYGON', value: '22ERYevw784vwfg4b74vsjb' }
+        { network: 'BSC', value: 've12evw784vwfg4b74vsjb' },
+        { network: 'ETH', value: 'ghrs2evw784vwfg4b74vsjb' },
+        { network: 'POLYGON', value: '22ERYevw784vwfg4b74vsjb' }
     ]
-    const [selectedAddress, setSelectedAddress] = useState(wallets[0].value) 
+    const [selectedAddress, setSelectedAddress] = useState(wallets[0].value)
 
 
     const [formData, setFormData] = useState({
         amount: "",
         userID: "16yge73ghuyw",
-        network : network[0].value
+        network: network[0].value,
+        txid: '',
+        fileImg : fileImg,
+        
     });
 
 
     function handleForm(e) {
         setFormData({
             ...formData,
-            network : e.target.value,
+            network: e.target.value,
             [e.target.name]: e.target.value
         })
-
+        setCheck_txid(true)
     }
-    useEffect(()=>{
-        if(formData.network === network[0].value){
+    useEffect(() => {
+        if (formData.network === network[0].value) {
             setSelectedAddress(wallets[0].value)
-        }else if(formData.network === network[1].value){
+        } else if (formData.network === network[1].value) {
             setSelectedAddress(wallets[1].value)
-        }else if(formData.network === network[2].value){
+        } else if (formData.network === network[2].value) {
             setSelectedAddress(wallets[2].value)
         }
     }, [formData.network])
 
     useEffect(() => {
-        const usdt = Number(formData.amount) + Number(formData.amount * 0.015) 
+        const usdt = Number(formData.amount) + Number(formData.amount * 0.015)
         props.handleAmount(usdt.toFixed(2))
     }, [handleForm])
 
@@ -62,23 +78,41 @@ const FundingPayment = (props) => {
     function PrevStep() {
         setStep(step - 1);
     }
-    function copyAcct() {
-        navigator.clipboard.writeText(formData.txid);
-        setCopyAlert("copied");
-    }
+    // function copyAcct(xx) {
+    //     navigator.clipboard.writeText(xx);
+    //     setCopyAlert("copied");
+    // }
 
     const onOptionChange = e => {
         setExchange(e.target.value)
     }
+
+    useEffect(() => {
+        if (formData.txid.length > 10 && check_txid === true) {
+            setLoading(true)
+        }else if(formData.txid.length > 10 && check_txid === false){
+            setLoading(false)
+        }
+       
+    }, [handleForm])
+
+    useEffect(()=>{
+        if(loading){
+           setTimeout(()=>{
+                setShow_modal(true)
+            }, 3000)
+        }
+    }, [loading])
+
     function handleformSubmit(e) {
         e.preventDefault()
         setStep(step + 1)
     }
 
-    
+
 
     return (
-        <form onSubmit={NextStep}>
+        <form className="StableCoinFunding">
             {
                 step === 1 && <div className='FundingPayment'>
                     <h2>
@@ -157,12 +191,13 @@ const FundingPayment = (props) => {
                                 type='number'
                                 placeholder='250.00'
                                 name='amount'
+                                className="amts"
                                 value={formData.amount}
                                 onChange={handleForm}
                             />
                         </div>
                         <div className='FundingAmt'>
-                            <label htmlFor='Vat' style={{ color: '#CD4729' }}>Vat (1.5%)</label>
+                            <label htmlFor='Vat' style={{ color: '#CD4729' }}>Conversion fee (1.5%)</label>
                             <input
                                 type='text'
                                 placeholder='10.00'
@@ -179,7 +214,7 @@ const FundingPayment = (props) => {
                 </div>
             }
             {
-                step === 3 && <div className='FundingAmount'>
+                step === 3 && <div className='FundingAmount' style={{opacity: loading ? '.5': '1'}}>
                     <FundingInitiating exchange={exchange} />
                     <main>
                         <div className='FundingAmt'>
@@ -192,22 +227,25 @@ const FundingPayment = (props) => {
                                 disabled={true}
                                 style={{ color: 'black', fontSize: '18px', fontWeight: '700' }}
                             />
-                             <img alt='copy' src='/images/copy2.png' id='fundTxidCopy1' onClick={copyAcct} />
-                             <span id='txidcopy1'>{copAlert}</span>
+                            <img alt='copy' src='/images/copy2.png' id='fundTxidCopy1' onClick={()=>{
+                                navigator.clipboard.writeText(formData.userID);
+                                setCopyAlert("copied")
+                            }} />
+                            <span id='txidcopy1'>{copAlert}</span>
                         </div>
                         <div className='FundingAmt'>
                             <label htmlFor='network' style={{ color: '#31353A' }}>Select network</label>
-                            <select 
-                             value={formData.network}
-                             onChange={handleForm}
-                             name="network"
-                             id="network"
+                            <select
+                                value={formData.network}
+                                onChange={handleForm}
+                                name="network"
+                                id="network"
                             >
                                 {
                                     network.map(option => {
                                         return (
-                                            <option key={option.value} value={option.value} name = 'network' >
-                                               {option.value} 
+                                            <option key={option.value} value={option.value} name='network' >
+                                                {option.value}
                                             </option>
                                         )
                                     })
@@ -216,38 +254,69 @@ const FundingPayment = (props) => {
                             </select>
                         </div>
                         <div className='FundingAmt'>
-                            <label htmlFor='txid' style={{ color: '#CD4729' }}>LeverPay Wallet Address</label>
+                            <label htmlFor='address' style={{ color: '#CD4729' }}>LeverPay Wallet Address</label>
                             <input
                                 type='text'
-                                name='txid'
+                                name='address'
                                 value={selectedAddress}
                                 onChange={handleForm}
                                 style={{ color: 'black', fontSize: '18px', fontWeight: '700' }}
                             />
-                            <img alt='copy' src='/images/copy2.png' id='fundTxidCopy' onClick={copyAcct} />
-                            <span id='txidcopy'>{copAlert}</span>
+                            <img alt='copy' src='/images/copy2.png' id='fundTxidCopy' onClick={()=>{
+                                navigator.clipboard.writeText(selectedAddress);
+                                setCopyAlert2("copied")
+                            }} />
+                            <span id='txidcopy'>{copAlert2}</span>
                         </div>
+                        <div className='FundingAmt'>
+                            <label htmlFor='txid'>Transaction Reference</label>
+                            <input
+                                type='text'
+                                name='txid'
+                                value={formData.txid}
+                                onChange={handleForm}
+                                className="txReference"
+                                placeholder="Please enter your reference ID"
+                                readOnly={loading ? true : false}
+                                style={{ color: 'black', fontWeight: '700', opacity: loading ? '0.5' : '1' }}
+                            />
+                            {
+                                loading && <img alt="loading" src="/images/loading.png" className="loading" />
+                            }
+                        </div>
+                            <FileUpload/>
                     </main>
-                    <button onClick={handleformSubmit}>Make payment before you Proceed</button>
+                    <button onClick={handleformSubmit} disabled = {proceed ? false : true} >Proceed</button>
                     <span onClick={PrevStep} className='FundingCancel'>
                         <img alt='' src='/images/cancel.png' />
                     </span>
                 </div>
             }
             {
-                step === 4 && <div className='fundingSuccess'>
-                    <span >
-                        <img alt='check' src='/images/check.png' />
-                    </span>
-                    <p>Transaction Successful</p>
-                    <strong>
-                        Please be patient as your payment will reflect in 5min. Thank you.
-                    </strong>
-                    <Link to='/' className="returnToDashboard">
-                       Back to Dashboard
-                    </Link>
-                </div>
+                step === 4 && <FundingSuccess />
             }
+            {
+                show_modal &&  <div className="tx_confirm_msg">
+                    {
+                        txid_exist && <p>
+                        The information on the transaction reference shows {formData.amount} as the total amount paid while the conversion fee (1.5%) is <strong> {Vat.toFixed(2)}</strong>. Therefore your total funding amount is <strong>{formData.amount}</strong>. Click Okay to Continue
+                    </p>
+                    }
+                    {
+                        !txid_exist && <p>
+                            Transaction reference does not exist or is not valid
+                        </p>
+                    }
+                
+                <button onClick={(e)=>{
+                    setCheck_txid(false)
+                    setLoading(false)
+                    setShow_modal(false)
+                    setProceed(true)
+                }}>Okay</button>
+            </div>
+            }
+           
         </form>
     )
 }
