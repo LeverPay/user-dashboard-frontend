@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import FundingSuccess from './FundingSuccess'
+import Helpimageupload from "../HelpImageUpload/helpimageupload";
 
 const FundingNaira = (props) => {
   const [step, setStep] = useState(1)
   const [copyAlert, setCopyAlert] = useState('')
+  const [add_Info_txid, setAdd_info_txid] = useState(false)
+  const [fileImg, setFileimg] = useState()
+  const [imgfile, setImgfile] = useState()
+  function GetImg(value, imgInfo) {
+    setFileimg(value)
+    setImgfile(imgInfo)
+  }
+
 
   const finalAmt = props.amt * 750
 
@@ -24,7 +33,9 @@ const FundingNaira = (props) => {
     amount: 0.00,
     charges: 0.00,
     Bank_name: account_Info[0].name,
-    txid: ''
+    txid: '',
+    fileImg: fileImg,
+    imginfo: imgfile
   })
 
   function handleForm(e) {
@@ -39,8 +50,8 @@ const FundingNaira = (props) => {
   let dollar = formData.amount / 750
   let charge = formData.charges / 750
   useEffect(() => {
-   props.handleAmount((Number(dollar) + Number(charge)).toFixed(3))
-  },[formData.amount])
+    props.handleAmount((Number(dollar) + Number(charge)).toFixed(3))
+  }, [formData.amount])
 
 
 
@@ -92,7 +103,7 @@ const FundingNaira = (props) => {
             Select your preferred means of payment
           </h1>
           <main className='transferC'>
-            <div onClick={()=>{
+            <div onClick={() => {
               setStep(5)
             }} >
               Transfer to your unique account Number
@@ -136,7 +147,7 @@ const FundingNaira = (props) => {
       }
       {
         step === 3 && <div className='FundingNairaBank'>
-          <h1>Transfer NGN {finalAmt} to your Account</h1>
+          <h1>Transfer NGN {finalAmt.toFixed(2)} to your Account</h1>
           <main>
             <div><h3>Account Name: </h3>  <h4>Leverchain Technology Limited</h4></div>
             <div><h3>Bank Name </h3>
@@ -160,60 +171,71 @@ const FundingNaira = (props) => {
               </select>
             </div>
             <div><h3>Account Number: </h3>  <h4>{account_no}</h4><img alt='copy' onClick={copyAcct} src='/images/acct_cpy.png' />{copyAlert}</div>
-            <div><h3>Amount: </h3>  <h4>NGN {finalAmt}</h4></div>
+            <div><h3>Amount: </h3>  <h4>NGN {finalAmt.toFixed(2)}</h4></div>
           </main>
           <section className='FundingAmt'>
-              <label htmlFor='txid'>Transaction Reference</label>
-              <input
-                type='text'
-                name='txid'
-                value={formData.txid}
-                onChange={handleForm}
-                required
-                className="txReference"
-                placeholder="Please enter your reference ID"
-                style={{ color: 'black', fontWeight: '700' }}
-              />
-            </section>
+            <span className="add_info" style={{ display: add_Info_txid ? 'block' : 'none' }}>
+              <small>Make sure to provide your Transaction ID(TXID) before proceeding. You can find this in your transaction receipt </small>
+            </span>
+            <label htmlFor='txid'>Transaction Reference <img alt="info" src="/images/info.png" id="info" onMouseOver={() => {
+              setAdd_info_txid(!add_Info_txid)
+            }}
+              onMouseLeave={() => {
+                setAdd_info_txid(!add_Info_txid)
+              }} /></label>
+            <input
+              type='text'
+              name='txid'
+              value={formData.txid}
+              onChange={handleForm}
+              required
+              className="txReference"
+              placeholder="Please enter your reference ID"
+              style={{ color: 'black', fontWeight: '700' }}
+            />
+          </section>
+          <div className="screenshot">
+            <Helpimageupload GetfileImg={GetImg} optional={false} />
+          </div>
           <button onClick={NextStep}>Proceed</button>
           <span onClick={PrevStep} className='FundingCancel'>
-                        <img alt='' src='/images/cancel.png' />
-                    </span>
+            <img alt='' src='/images/cancel.png' />
+          </span>
         </div>
       }
       {
-        step===4 && <FundingSuccess/>
+        step === 4 && <FundingSuccess />
       }
       {
         step === 5 && <div className='FundingAmount'>
-        <main>
-          <div className='FundingAmt'>
-            <label htmlFor='amt' style={{ color: '#31353A' }}>Enter Amount(N)</label>
-            <input
-              type='number'
-              placeholder='100000'
-              name='amount'
-              className="amts"
-              value={formData.amount}
-              onChange={handleForm}
-            />
-          </div>
-          <div className='FundingAmt'>
-            <label htmlFor='charges' style={{ color: '#CD4729' }}>Extra charges</label>
-            <input
-              type='text'
-              name='charges'
-              value={formData.charges}
-              onChange={handleForm}
-              readOnly
-            />
-          </div>
-        </main>
-        <button onClick={NextStep}>Proceed</button>
-        <span onClick={PrevStep} className='FundingCancel'>
-          <img alt='' src='/images/cancel.png' />
-        </span>
-      </div>
+          <main>
+            <div className='FundingAmt'>
+              <label htmlFor='amt' style={{ color: '#31353A' }}>Enter Amount(N)</label>
+              <input
+                type='number'
+                placeholder='100000'
+                name='amount'
+                className="amts"
+                value={formData.amount}
+                onChange={handleForm}
+              />
+            </div>
+            <div className='FundingAmt'>
+              <label htmlFor='charges' style={{ color: '#CD4729' }}>Extra charges</label>
+              <input
+                type='text'
+                name='charges'
+                value={formData.charges}
+                onChange={handleForm}
+                readOnly
+              />
+            </div>
+          </main>
+          <button onClick={NextStep}>Proceed</button>
+          <span onClick={PrevStep} className='FundingCancel'>
+            <img alt='' src='/images/cancel.png' />
+          </span>
+        </div>
       }
       {
         step === 6 && <div className='FundingNairaBank'>
@@ -224,7 +246,15 @@ const FundingNaira = (props) => {
             <div><h3>Amount</h3><h4>NGN {finalAmt}</h4></div>
             <div><h3>Beneficiary</h3><h4>Mr. Patrick LeverPay</h4></div>
             <section className='FundingAmt'>
-              <label htmlFor='txid'>Transaction Reference</label>
+              <span className="add_info" style={{ display: add_Info_txid ? 'block' : 'none' }}>
+                <small>Make sure to provide your Transaction ID(TXID) before proceeding. You can find this in your transaction receipt </small>
+              </span>
+              <label htmlFor='txid'>Transaction Reference <img alt="info" src="/images/info.png" id="info" onMouseOver={() => {
+                setAdd_info_txid(!add_Info_txid)
+              }}
+                onMouseLeave={() => {
+                  setAdd_info_txid(!add_Info_txid)
+                }} /></label>
               <input
                 type='text'
                 name='txid'
@@ -236,12 +266,15 @@ const FundingNaira = (props) => {
                 style={{ color: 'black', fontWeight: '700' }}
               />
             </section>
+            <div className="screenshot">
+              <Helpimageupload GetfileImg={GetImg} optional={false} />
+            </div>
           </main>
           <button onClick={handleformSubmit}>Proceed</button>
         </div>
       }
       {
-        step===7 && <FundingSuccess/>
+        step === 7 && <FundingSuccess />
       }
     </>
   )
