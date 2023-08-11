@@ -214,6 +214,29 @@
   opacity: .5;
   font-size: 16px;
 }
+.FundingAmt #info{
+  width: 20px;
+  transform: translateY(-2px);
+  z-index: 2;
+}
+.FundingAmt .add_info{
+  width: 60%;
+  line-height: 20px;
+  text-align: justify;
+  font-family: 'Agrandir-regular';
+  font-weight: 400;
+  position: absolute;
+  right: 3rem;
+  top: -5rem;
+  background-color: #E9ECF5;
+  padding: 15px;
+  border-radius: 15px;
+  z-index: 5;
+}
+.FundingAmt .screenshot label{
+  border: none;
+  outline: none;
+}
 .FundingAmt .loading{
   width: 40px;
   position: absolute;

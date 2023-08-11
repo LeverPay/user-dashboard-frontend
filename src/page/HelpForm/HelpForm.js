@@ -186,7 +186,7 @@ console.log(imgfile)
             <span className='valid' style={{ color: selectfilled ? '' : 'red' }}> {selected}</span>
           </div>
           <div>
-            <Helpimageupload GetfileImg = {GetImg} />
+            <Helpimageupload GetfileImg = {GetImg} optional = {true} />
           </div>
           <div className='submitCon'>
             <input
