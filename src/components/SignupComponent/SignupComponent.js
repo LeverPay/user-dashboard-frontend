@@ -4,7 +4,6 @@ import LeverpayLogo from "../../assets/images/LeverpayLogo.png";
 import "./SignupComponent.css";
 import PhoneNumberComponent from "../PhoneNumberComponent/PhoneNumberComponent";
 import { AiOutlineEye } from "react-icons/ai";
-import SignupModal from "./SignupModal/SignupModal";
 import { signUp } from "../../services/apiService";
 import DatePicker from "react-datepicker";
 import { ToastContainer } from "react-toastify";
@@ -21,8 +20,6 @@ function SignupComponent() {
   const [startDate, setStartDate] = useState(new Date());
 
   const validatePassword = () => password === confirmPassword;
-
-  const [show, setShow] = useState(false);
 
   const inputRef = React.createRef();
   const handleIcon = (reveal) => {
@@ -65,6 +62,7 @@ function SignupComponent() {
     const signupData = {
       first_name: firstName,
       last_name: lastName,
+      dob: Intl.DateTimeFormat("en").format(startDate),
       email: email,
       phone: phoneNumber.phone,
       password: password,
@@ -144,6 +142,7 @@ function SignupComponent() {
               selected={startDate}
               onChange={(date) => setStartDate(date)}
               className="dob"
+              // dateFormat="Pp"
             />
           </Row>
           <Row className="form-input">
@@ -198,7 +197,6 @@ function SignupComponent() {
           </Button>
         </Form>
       </Container>
-      <SignupModal signupOTP={show} setSignupOTP={setShow} email={email} />
       <ToastContainer />
     </>
   );
