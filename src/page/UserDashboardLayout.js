@@ -45,8 +45,9 @@ import FundingNaira from "../components/AccountFunding/FundingNaira";
 import FundingPaystack from "../components/AccountFunding/FundingPaystack";
 import FundingMore from "../components/AccountFunding/FundingMore";
 import FundingpaymentForm from "../components/AccountFunding/FundingpaymentForm";
+import SignupOTP from "../components/SignupComponent/SignupOTP/SignupOTP";
 
-export const UserDashboardLayout = () => {
+export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState([]);
   const [user, setUser] = useState({});
@@ -71,17 +72,6 @@ export const UserDashboardLayout = () => {
       expiryDate: silverCardDetails.map((data) => data.expiryDate),
     });
   }, []);
-
-  // useEffect(() => {
-  //   const reloadCount = sessionStorage.getItem("reloadCount");
-  //   if (reloadCount < 2) {
-  //     sessionStorage.setItem("reloadCount", String(reloadCount + 1));
-
-  //     // window.location.reload();
-  //   } else {
-  //     sessionStorage.removeItem("reloadCount");
-  //   }
-  // });
 
   useEffect(() => {
     getUserProfile(jwt, setUser);
@@ -232,6 +222,7 @@ export const UserDashboardLayout = () => {
         <Route exact path="reset-password" element={<ResetPassword />} />
         <Route path="signin" element={<SignInPage />} />
         <Route path="leverpay-signup" element={<SignupPage />} />
+        <Route path="leverpay-signup/signup-OTP" element={<SignupOTP />} />
       </Routes>
       <ToastContainer />
     </>
