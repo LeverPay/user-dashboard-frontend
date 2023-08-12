@@ -60,6 +60,45 @@ export const signUp = async (userSignUp) => {
     .then((messages) => {
       if (messages.status === 200) {
         toast.success(`${messages.message}`);
+        localStorage.setItem("userEmail", userSignUp.email);
+        setTimeout(() => {
+          window.location.href = "/leverpay-signup/signup-OTP";
+        }, 3000);
+      } else {
+        toast.error(`${messages.message}`);
+        console.log(userSignUp);
+      }
+    })
+    .catch((error) => {
+      return;
+    });
+
+  return await SignUp;
+};
+
+export const verifyEmail = async (verifyData) => {
+  const SignUp = await fetch(
+    "https://leverpay-api.azurewebsites.net/api/v1/verify-email",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(verifyData),
+    }
+  )
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((messages) => {
+      if (messages.status === 200) {
+        toast.success(`${messages.message}`);
+        //transition to signin page
+        setTimeout(() => {
+          window.location.href = "/signin";
+        }, 3000);
       } else {
         toast.error(`${messages.message}`);
       }
