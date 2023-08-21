@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import "./totalMoney.css";
 
 function TotalMoney(props) {
-  const { bg, totaltype, amt } = props;
+  console.log(props);
+  const { bg, transfer, totaltype, amt } = props;
   const [amtVisible, setAmtVisible] = useState(false);
 
   function viewamt() {
@@ -20,7 +21,8 @@ function TotalMoney(props) {
         <img alt="" src="./images/bal1.png" />
       </span>
       <main>
-        <small>Total {totaltype} </small>
+        <small>{totaltype}</small>
+        {transfer}
         <h4> {amtVisible ? amt : "XXXX"} </h4>
       </main>
     </div>

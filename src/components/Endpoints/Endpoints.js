@@ -3,6 +3,7 @@ import axios from "axios";
 
 export const baseUrl = "http://api.leverpay.io";
 export const fetchInfo = async (props) => {
+  console.log("Hello");
   const response = await axios.get(baseUrl + props.endPoint);
   return response.data;
 };
