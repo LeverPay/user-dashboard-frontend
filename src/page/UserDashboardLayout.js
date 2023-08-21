@@ -74,8 +74,8 @@ export const UserDashboardLayout = (props) => {
   }, []);
 
   useEffect(() => {
-    getUserProfile(jwt, setUser);
-  }, [jwt]);
+    getUserProfile(jwt, setJwt, setUser);
+  }, [jwt, setJwt]);
 
   // useEffect(() => {
   //   axios
@@ -109,7 +109,7 @@ export const UserDashboardLayout = (props) => {
                       passport: user.passport,
                     }}
                   />
-                  <PrivateRoute>
+                  <PrivateRoute userName={user.first_name}>
                     <Outlet />
                   </PrivateRoute>
                 </div>
@@ -129,19 +129,23 @@ export const UserDashboardLayout = (props) => {
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#0E093F"
-                        totaltype="Balance"
+                        totaltype="Total Balance"
                         amt="$3000"
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#F6A61F"
-                        totaltype="Spending"
+                        totaltype="Total Spending"
                         amt="$2000"
                       />
                     </div>
                     <div className="col-md-4">
-                      <TotalMoney bg="#201E34" totaltype="Saved" amt="$546" />
+                      <TotalMoney
+                        bg="#201E34"
+                        totaltype=" Total Saved"
+                        amt="$546"
+                      />
                     </div>
                   </div>
                   <div className="statement col-md-11">

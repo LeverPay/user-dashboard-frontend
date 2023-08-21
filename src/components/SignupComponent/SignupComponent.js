@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Form, Button } from "react-bootstrap";
 import LeverpayLogo from "../../assets/images/LeverpayLogo.png";
 import "./SignupComponent.css";
@@ -6,7 +6,10 @@ import PhoneNumberComponent from "../PhoneNumberComponent/PhoneNumberComponent";
 import { AiOutlineEye } from "react-icons/ai";
 import { signUp } from "../../services/apiService";
 import DatePicker from "react-datepicker";
+import { ReactCountryDropdown } from "react-country-dropdown";
+import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import { countries } from "../Endpoints";
 
 function SignupComponent() {
   const [firstName, setFirstName] = useState("");
@@ -18,6 +21,9 @@ function SignupComponent() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [signupMessage, setSignupMessage] = useState("");
   const [startDate, setStartDate] = useState(new Date());
+  const [gender, setGender] = useState("");
+  const [country, setCountry] = useState([]);
+  const [state, setState] = useState("");
 
   const validatePassword = () => password === confirmPassword;
 
@@ -72,6 +78,16 @@ function SignupComponent() {
 
     signUp(signupData);
   };
+
+  useEffect(() => {
+    axios
+      .get("https://leverpay-api.azurewebsites.net/api/v1/get-countries")
+      .then((response) => {
+        setCountry(response.data.data.map((countries) => countries));
+        // console.log(country);
+      });
+    // do something with JSON response data
+  }, [country]);
 
   return (
     <>
@@ -143,6 +159,43 @@ function SignupComponent() {
               onChange={(date) => setStartDate(date)}
               className="dob"
               // dateFormat="Pp"
+            />
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              Gender
+            </Form.Label>
+            <Form.Select aria-label="Default select example">
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+            </Form.Select>
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              Country
+            </Form.Label>
+            <Form.Select aria-label="Default select example">
+              <option>Select your country</option>
+              <option>{country}</option>
+              {/* <option>{country}</option> */}
+              {/* <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option> */}
+            </Form.Select>
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              State
+            </Form.Label>
+            <Form.Control
+              type="state"
+              className="input"
+              value={state}
+              name="state"
+              ref={inputRef}
+              placeholder=""
+              onChange={(e) => setState(e.target.value)}
+              required
             />
           </Row>
           <Row className="form-input">
