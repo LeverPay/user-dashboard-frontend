@@ -32,12 +32,6 @@ export const signIn = async (userData, jwt, setJwt) => {
       });
 
     return await response;
-  } else {
-    toast.success("Already signed in");
-    //transition to homepage
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 2000);
   }
 };
 
@@ -66,7 +60,6 @@ export const signUp = async (userSignUp) => {
         }, 3000);
       } else {
         toast.error(`${messages.message}`);
-        console.log(userSignUp);
       }
     })
     .catch((error) => {
@@ -112,7 +105,7 @@ export const verifyEmail = async (verifyData) => {
 
 //----------------------------------------- getUserProfile --------------------------------------------------//
 
-export const getUserProfile = async (jwt, setUser) => {
+export const getUserProfile = async (jwt, setJwt, setUser) => {
   const getData =
     "https://leverpay-api.azurewebsites.net/api/v1/user/get-user-profile";
   const userProfile = await fetch(getData, {
@@ -124,14 +117,22 @@ export const getUserProfile = async (jwt, setUser) => {
     },
   })
     .then((res) => {
-      if (res.status === 200) return res.json();
+      if (res.status === 200) {
+        console.log(res);
+        return res.json();
+      } else {
+        if (jwt) {
+          setJwt("");
+        }
+        console.log(res);
+      }
     })
     .then((resData) => {
       setUser(resData.data);
-      // toast.success(resData.message);
+      console.log("user found successfully");
     })
     .catch((err) => {
-      console.log(`${err.data}`);
+      console.log(`${err}`);
     });
 
   return await userProfile;
