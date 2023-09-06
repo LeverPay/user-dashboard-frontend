@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { Transactions } from "./Transactions/Transactions";
+import TransactionInvoices from "./Transactions/TransactionTable/TransactionInvoices";
 import InvoicePage from "./InvoicePage/InvoicePage";
 // import Mycard from "./MyCardPage.js/Mycard";
 // import Mycard from "./MyCardPage/Mycard";
@@ -45,6 +46,7 @@ import FundingNaira from "../components/AccountFunding/FundingNaira";
 import FundingPaystack from "../components/AccountFunding/FundingPaystack";
 import FundingMore from "../components/AccountFunding/FundingMore";
 import FundingpaymentForm from "../components/AccountFunding/FundingpaymentForm";
+import UnpaidReceipt from "../components/UnpaidInvoice/UnpaidReceipt";
 
 export const UserDashboardLayout = () => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -190,8 +192,10 @@ export const UserDashboardLayout = () => {
           />
 
           <Route path="transactions" element={<Transactions />} />
+          <Route path="transactions-invoices" element={<TransactionInvoices />} />
           <Route exact path="transfer" element={<TransferPage />} />
           <Route path="invoices" element={<UnpaidInvoice />} />
+          <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
 
           <Route path="funding" element={<FundingPage />}>
             <Route index element={<FundingPayment />} />
