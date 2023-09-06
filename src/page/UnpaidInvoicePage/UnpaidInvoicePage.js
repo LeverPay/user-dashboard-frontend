@@ -27,11 +27,11 @@ function UnpaidInvoicePage() {
         <table className='table'>
             <thead>
                 <tr>
+                <td>Date</td>
                     <td>Name</td>
-                    <td>Type</td>
                     <td>Amount</td>
                     <td>Status</td>
-                    <td>Date</td>
+                    <td>Invoice</td>
                 </tr>
             </thead>
         </table>

@@ -84,7 +84,7 @@ function CardSilver(props) {
 
       <img alt="" src="./images/silver logo.png" className="LeverpayCardLogo" />
       <main className="card_one">
-        <img alt="" src="./images/chip 1.png" className="card_scan" />
+        <img alt="" src="./images/chip 1.png" className="card_scan" style={{marginLeft: '-1rem'}} />
         <span>
           <img
             alt=""
@@ -95,10 +95,10 @@ function CardSilver(props) {
           <small>Show Card Details</small>
         </span>
       </main>
-      <p className="cardnumber">
+      <b className="cardnumber">
         {cardVisible ? CardNumberFirstTwelve : "XXXX XXXX XXXX"}{" "}
         {CardNumberLastFour}
-      </p>
+      </b>
       <main className="cardDate_Type">
         <span className="cardDate">
           <small className="expiry">Valid Thru </small>
