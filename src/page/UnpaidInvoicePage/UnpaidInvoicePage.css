@@ -20,7 +20,7 @@
 
 }
 .Unpaid thead td{
-    width: 20%;
+    width: calc(100%/5);
     font-weight: 900;
 }
 
