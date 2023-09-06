@@ -483,3 +483,46 @@
   border: none;
 }
 
+@media (max-width: 620px) {
+  .Fundingpage{
+    width: 100%;
+    margin-top: 2rem;
+  }
+  .FundingPayment h2{
+    font-size: 18px;
+  }
+  .FundingPayment li label{
+    font-size: 18px;
+  }
+  .FundingAmt label{
+    font-size: 18px;
+  }
+  .FundingAmt input{
+    font-size: 16px;
+  }
+  .FundingPrices{
+    flex-direction: column;
+  }
+  .FundingPrices main{
+    width: 100%;
+  }
+  .FundingPrices main div{
+    align-items: center;
+  }
+  .StableCoinFunding .tx_confirm_msg{
+    position: fixed;
+    margin: auto;
+    width: 75%;
+    top: 15%;
+    left: calc(25%/2);
+    font-size: 18px;
+  }
+  .FundingNaira .transferC div{
+    font-size: 18px;
+    line-height: 24px;
+    padding: 10px 20px;
+  }
+  .fundingSuccess button{
+    width: 100%;
+  }
+}

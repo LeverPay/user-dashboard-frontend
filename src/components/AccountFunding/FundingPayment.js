@@ -15,7 +15,7 @@ const FundingPayment = (props) => {
     const [show_modal, setShow_modal] = useState(false);
     const [txid_exist, setTxid_exist] = useState(true);
     const [txid_credentials_valid, setTxid_credentials_valid] = useState(false);
-    const [txid_valid, setTxid_valid] = useState(true);
+    const [txid_valid, setTxid_valid] = useState(false);
     const [proceed, setProceed] = useState(false);
     const [add_Info_net, setAdd_info_net] = useState(false)
     const [add_Info_txid, setAdd_info_txid] = useState(false)
