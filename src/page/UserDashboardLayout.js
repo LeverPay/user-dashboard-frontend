@@ -47,8 +47,9 @@ import FundingPaystack from "../components/AccountFunding/FundingPaystack";
 import FundingMore from "../components/AccountFunding/FundingMore";
 import FundingpaymentForm from "../components/AccountFunding/FundingpaymentForm";
 import UnpaidReceipt from "../components/UnpaidInvoice/UnpaidReceipt";
+import SignupOTP from "../components/SignupComponent/SignupOTP/SignupOTP";
 
-export const UserDashboardLayout = () => {
+export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState([]);
   const [user, setUser] = useState({});
@@ -74,20 +75,9 @@ export const UserDashboardLayout = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   const reloadCount = sessionStorage.getItem("reloadCount");
-  //   if (reloadCount < 2) {
-  //     sessionStorage.setItem("reloadCount", String(reloadCount + 1));
-
-  //     // window.location.reload();
-  //   } else {
-  //     sessionStorage.removeItem("reloadCount");
-  //   }
-  // });
-
   useEffect(() => {
-    getUserProfile(jwt, setUser);
-  }, [jwt]);
+    getUserProfile(jwt, setJwt, setUser);
+  }, [jwt, setJwt]);
 
   // useEffect(() => {
   //   axios
@@ -121,7 +111,7 @@ export const UserDashboardLayout = () => {
                       passport: user.passport,
                     }}
                   />
-                  <PrivateRoute>
+                  <PrivateRoute userName={user.first_name}>
                     <Outlet />
                   </PrivateRoute>
                 </div>
@@ -141,19 +131,23 @@ export const UserDashboardLayout = () => {
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#0E093F"
-                        totaltype="Balance"
+                        totaltype="Total Balance"
                         amt="$3000"
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#F6A61F"
-                        totaltype="Spending"
+                        totaltype="Total Spending"
                         amt="$2000"
                       />
                     </div>
                     <div className="col-md-4">
-                      <TotalMoney bg="#201E34" totaltype="Saved" amt="$546" />
+                      <TotalMoney
+                        bg="#201E34"
+                        totaltype=" Total Saved"
+                        amt="$546"
+                      />
                     </div>
                   </div>
                   <div className="statement col-md-11">
@@ -236,6 +230,7 @@ export const UserDashboardLayout = () => {
         <Route exact path="reset-password" element={<ResetPassword />} />
         <Route path="signin" element={<SignInPage />} />
         <Route path="leverpay-signup" element={<SignupPage />} />
+        <Route path="leverpay-signup/signup-OTP" element={<SignupOTP />} />
       </Routes>
       <ToastContainer />
     </>

@@ -1,12 +1,12 @@
 .img_box {
   width: 80%;
   height: 100%;
-  margin-left: 5%;
+  margin-left: 0.2rem;
 }
 
 .profile-img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: fill;
   border: 1px solid #cacaca;
@@ -19,36 +19,38 @@
   flex-direction: row;
   align-items: center;
   margin-top: 5%;
-  /* margin-left: 5%; */
+  margin-left: 1.5rem;
   width: 80%;
   /* border: 1px solid #000; */
 }
 
 .change-img {
-  margin-left: 5%;
-  width: 100%;
+  margin-left: -18.5rem !important;
+  width: 30% !important;
   font-family: AgrandirBold !important;
+  border: 1px solid #000;
 }
 
 .remove-img {
-  margin-left: 5%;
-  width: 100%;
+  margin-left: 1.5rem !important;
+  width: 30% !important;
   border: 1px solid #4e3eaf !important;
   font-family: AgrandirBold !important;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 620px) {
   .upload-control {
     width: 100%;
     border: 1px solid #000;
     margin: auto;
   }
   .change-img {
-    width: 100% !important;
+    width: 80% !important;
+    margin-left: 0px !important;
   }
 
   .remove-img {
-    width: 100% !important;
+    width: 80% !important;
     margin-right: 5%;
     border: 1px solid #4e3eaf;
   }

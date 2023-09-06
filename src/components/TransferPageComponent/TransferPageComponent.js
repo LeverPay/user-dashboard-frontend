@@ -42,10 +42,10 @@ const TransferPageComponent = () => {
     <Container className="md={4} sm={6} transfer-container">
       <Row className="statement md={4} mt-5">
         <Col className="col-md-4 col-10 pt-3">
-          <TotalMoney bg="#F6A61F" totaltype="Spending" amt="$3000" />
+          <TotalMoney bg="#F6A61F" transfer="Current Balance" amt="$3000" />
         </Col>
         <Col className="col-md-4 col-10 pt-3">
-          <TotalMoney bg="#0E093F" totaltype="Saved" amt="$546" />
+          <TotalMoney bg="#0E093F" transfer="Amount Sent" amt="$546" />
         </Col>
       </Row>
 
