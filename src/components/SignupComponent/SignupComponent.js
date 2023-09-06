@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Form, Button } from "react-bootstrap";
 import LeverpayLogo from "../../assets/images/LeverpayLogo.png";
 import "./SignupComponent.css";
 import PhoneNumberComponent from "../PhoneNumberComponent/PhoneNumberComponent";
 import { AiOutlineEye } from "react-icons/ai";
-import SignupModal from "./SignupModal/SignupModal";
 import { signUp } from "../../services/apiService";
+import DatePicker from "react-datepicker";
+import { ReactCountryDropdown } from "react-country-dropdown";
+import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import { countries } from "../Endpoints";
 
 function SignupComponent() {
   const [firstName, setFirstName] = useState("");
@@ -15,12 +18,16 @@ function SignupComponent() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [passwordType, setPasswordType] = useState("password");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [signupMessage, setSignupMessage] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [gender, setGender] = useState("");
+  const [country, setCountry] = useState([]);
+  const [state, setState] = useState("");
 
-  const [show, setShow] = useState(false);
+  const validatePassword = () => password === confirmPassword;
 
   const inputRef = React.createRef();
-
   const handleIcon = (reveal) => {
     reveal =
       passwordType === "password"
@@ -46,8 +53,13 @@ function SignupComponent() {
     // let regex = new RegExp(/^[+]{1}(?:[0-9\-\(\)\/\.]\s?){6, 15}[0-9]{1}$/);
     // let newNumber = "+".concat(phoneNumber.phone);
 
-    if (phoneNumber.phone.length < 10) {
+    if (
+      typeof phoneNumber.phone === "undefined" ||
+      phoneNumber.phone.length < 10
+    ) {
       setSignupMessage("invalid phone number, must be at least 10 digits");
+      console.log(phoneNumber);
+
       return;
     } else {
       setSignupMessage("");
@@ -56,15 +68,26 @@ function SignupComponent() {
     const signupData = {
       first_name: firstName,
       last_name: lastName,
+      dob: Intl.DateTimeFormat("en").format(startDate),
       email: email,
       phone: phoneNumber.phone,
       password: password,
     };
 
-    // console.log(signupData);
+    // console.log(phoneNumber.phone);
 
     signUp(signupData);
   };
+
+  useEffect(() => {
+    axios
+      .get("https://leverpay-api.azurewebsites.net/api/v1/get-countries")
+      .then((response) => {
+        setCountry(response.data.data.map((countries) => countries));
+        // console.log(country);
+      });
+    // do something with JSON response data
+  }, [country]);
 
   return (
     <>
@@ -128,6 +151,54 @@ function SignupComponent() {
             />
           </Row>
           <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              Date of Birth
+            </Form.Label>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              className="dob"
+              // dateFormat="Pp"
+            />
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              Gender
+            </Form.Label>
+            <Form.Select aria-label="Default select example">
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+            </Form.Select>
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              Country
+            </Form.Label>
+            <Form.Select aria-label="Default select example">
+              <option>Select your country</option>
+              <option>{country}</option>
+              {/* <option>{country}</option> */}
+              {/* <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option> */}
+            </Form.Select>
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              State
+            </Form.Label>
+            <Form.Control
+              type="state"
+              className="input"
+              value={state}
+              name="state"
+              ref={inputRef}
+              placeholder=""
+              onChange={(e) => setState(e.target.value)}
+              required
+            />
+          </Row>
+          <Row className="form-input">
             <Form.Label htmlFor="phone" className="labels">
               Phone Number
             </Form.Label>
@@ -153,14 +224,32 @@ function SignupComponent() {
               required
             />
             <AiOutlineEye size={25} onClick={handleIcon} className="eye-icon" />
-            <div className="password-message">{signupMessage}</div>
+            <p className="error-message">{signupMessage}</p>
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="password" className="labels">
+              Confirm Password
+            </Form.Label>
+            <Form.Control
+              type={passwordType}
+              className="input"
+              value={confirmPassword}
+              name="confirmPassword"
+              ref={inputRef}
+              placeholder=""
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+            <AiOutlineEye size={25} onClick={handleIcon} className="eye-icon" />
+            {!validatePassword() && (
+              <p className="error-message">Passwords do not match</p>
+            )}
           </Row>
           <Button variant="primary" type="submit" className="signup-btn">
             Create Account
           </Button>
         </Form>
       </Container>
-      <SignupModal signupOTP={show} setSignupOTP={setShow} />
       <ToastContainer />
     </>
   );

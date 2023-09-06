@@ -1,15 +1,19 @@
 .labels {
   font-family: AgrandirBold !important;
+  font-size: small;
+}
+
+h4 {
+  font-family: AgrandirBold !important;
+  margin-left: 0.9rem !important;
 }
 
 .add-details-btn-ctrl {
   display: flex;
   justify-content: center;
-  width: 90%;
-  margin-left: 3%;
+  width: 100%;
   margin-top: 5%;
   font-family: AgrandirBold !important;
-  /* border: 1px solid #000; */
 }
 
 .add-details-btn {
@@ -17,15 +21,29 @@
   margin: auto;
 }
 
+.select-bank {
+  width: 90% !important;
+  margin-left: 3% !important;
+}
+
 @media screen and (max-width: 700px) {
   .add-account-btn-ctrl {
     margin-top: 10%;
-    margin-left: 10%;
-    width: 80%;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100% !important;
   }
   .add-account-btn {
     width: 100%;
     margin: auto;
+  }
+
+  .form-outer {
+    width: 100% !important;
+  }
+
+  .select-bank {
+    width: 95% !important;
   }
 }
 
@@ -33,10 +51,15 @@
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  width: 100%;
-  padding: 10px;
-  /* height: 500px; */
-  border: 0;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 2% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  /* margin-left: -2rem !important; */
+  border: 1px solid #000 !important;
+  margin-top: -1.5rem !important;
+  border-radius: 2% !important;
 }
 
 .formGridCheckbox {
@@ -50,53 +73,21 @@
 
 .text-area {
   width: 90%;
-  /* height: 50px !important; */
   margin-left: 3%;
-  font-family: AgrandirBold !important;
-}
-
-.card-no-field {
-  width: 90%;
-  height: 50px !important;
-  margin-left: 3%;
-  font-family: AgrandirBold !important;
-}
-
-.date-picker-control {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 90%;
-  height: 50px;
-  margin-left: 3%;
-  /* border: 1px solid #000; */
-}
-.month-select {
-  width: 40%;
-  font-size: 22px;
-  background-color: rgb(213, 208, 208);
-  font-family: AgrandirBold !important;
-}
-
-.year-select {
-  width: 40%;
-  font-size: 22px;
-  background-color: rgb(213, 208, 208);
-  border: 0;
   font-family: AgrandirBold !important;
 }
 
 .submit-details-btn {
-  width: 90%;
-  margin: 3%;
+  width: 15% !important;
+  margin-top: 0.5% !important;
   margin-left: 3%;
   padding: 1%;
   font-family: AgrandirBold !important;
 }
 
-.modal-control {
-  /* height: 200% !important; */
+@media screen and (max-width: 700px) {
+  .form-outer {
+    margin-top: -1rem !important;
+    width: 100% !important;
+  }
 }
-/* .footer-control {
-  margin-top: 1%;
-} */
