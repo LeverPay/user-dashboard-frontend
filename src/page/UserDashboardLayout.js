@@ -100,7 +100,7 @@ export const UserDashboardLayout = (props) => {
           element={
             <>
               <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
-                <div className="col-md-2">
+                <div className="col-md-2" >
                   <NavComponent />
                 </div>
                 <div className="col-md-10">
