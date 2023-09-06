@@ -1,17 +1,21 @@
 .modal-content {
   display: block !important;
-  background: #fff !important;
+  background-color: #fff !important;
   width: 30% !important;
   height: 100% !important;
   margin: auto !important;
+  border: 2px solid black !important;
   /* margin-top: auto !important; */
   /* margin-left: auto !important;
   margin-right: auto !important; */
   /* margin-bottom: auto !important; */
   padding: 0rem !important;
-  border: 1px solid #000 !important;
 }
 
+.tOtp{
+  background-color: white !important;
+  width: 30%;
+}
 .otp-logo {
   width: 10% !important;
 }
@@ -23,6 +27,7 @@
   margin-left: auto !important;
   margin-right: auto !important;
   transform: rotate(180deg);
+  background-color: white;
 }
 
 .otp-message {
