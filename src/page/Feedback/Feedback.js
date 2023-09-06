@@ -104,7 +104,7 @@ console.log(imgfile)
       <form onSubmit={submit}>
         <main>
           <div className='label'>
-            <label htmlFor='name'><img alt='' src='./images/labeluser.png' /></label>
+            <label htmlFor='name' style={{border:'none'}}><img alt='' src='./images/labeluser.png' /></label>
             <input
               name='name'
               type='text'
@@ -138,8 +138,8 @@ console.log(imgfile)
               type='text'
               id='txid'
               onChange={onChange}
-              // value={formData.txid}
-              value={location.state.txid}
+              value={formData.txid}
+              // value={location.state.txid}
               placeholder='Transaction ID (Generate invoice to get TXID)'
             />
           </div>
@@ -147,7 +147,7 @@ console.log(imgfile)
 
 
           <div className='label'>
-            <label htmlFor='message'><img alt='' src='./images/message.png' /></label>
+            <label htmlFor='message' style={{border:'none'}} ><img alt='' src='./images/message.png' /></label>
             <textarea
               name='message'
               type='text'
@@ -159,7 +159,7 @@ console.log(imgfile)
             />
           </div>
           <div >
-            <Helpimageupload GetfileImg = {GetImg} />
+            <Helpimageupload GetfileImg = {GetImg} optional = {true} />
           </div>
           <small className='validity' style={{ color: msgFillled ? 'green' : 'red' }}>{msg}</small>
 

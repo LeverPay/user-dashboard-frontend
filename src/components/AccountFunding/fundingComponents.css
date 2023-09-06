@@ -154,6 +154,7 @@
   float: right;
   margin-right: 1rem;
   width: 20px;
+  margin-top: 1rem;
 }
 
 /* funding amount */
@@ -181,9 +182,14 @@
     font-size: 20px;
   font-family: 'Agrandir-bold';
   margin: 0;
+  width: 100%;
 }
 .FundingAmt label span{
   color: #FC0019;
+  opacity: .9;
+  font-weight: 300;
+  font-size: 14px;
+  float: right;
 }
 .FundingAmt input{
     padding: 15px 20px;
@@ -193,6 +199,91 @@
     border: none;
     background-color: #C1BDBD;
 }
+.FundingAmt select{
+  width: 45%;
+  padding: 10px;
+  margin-left: 1rem;
+}
+.FundingAmt .txReference{
+  font-size: 18px;
+  background-color: rgb(249, 249, 249);
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+.txReference::placeholder{
+  opacity: .5;
+  font-size: 16px;
+}
+.FundingAmt #info{
+  width: 20px;
+  transform: translateY(-2px);
+  z-index: 2;
+}
+.FundingAmt .add_info{
+  width: 60%;
+  line-height: 20px;
+  text-align: justify;
+  font-family: 'Agrandir-regular';
+  font-weight: 400;
+  position: absolute;
+  right: 3rem;
+  top: -5rem;
+  background-color: #E9ECF5;
+  padding: 15px;
+  border-radius: 15px;
+  z-index: 5;
+}
+.FundingAmt .screenshot label{
+  border: none;
+  outline: none;
+}
+.FundingAmt .loading{
+  width: 40px;
+  position: absolute;
+  right: 2rem;
+  top: 60px;
+  animation: load .5s linear 0s infinite;
+}
+@keyframes load {
+  100%{
+    transform: rotate(360deg);
+  }
+}
+.StableCoinFunding{
+  position: relative;
+}
+.StableCoinFunding .tx_confirm_msg{
+  border: 2px solid #C1BDBD;
+  padding: 48px 16px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+  color: rgb(96, 96, 96);
+  font-family: 'Agrandir-regular';
+  font-weight: 200;
+  font-size: 25px;
+  position: absolute;
+  top: 35%;
+  left: 0%;
+  width: 100%;
+}
+.StableCoinFunding .tx_confirm_msg strong{
+  font-size: 16px;
+}
+.StableCoinFunding .tx_confirm_msg button{
+  background-color: #129346;
+  margin-top: 40px;
+  border: none;
+  width: 40%;
+}
+.FundingAmt .amts::placeholder{
+  opacity: .5;
+  font-size: 16px;
+}
 .FundingAmount button{
     width: 95%;
     background-color: #129346;
@@ -200,13 +291,16 @@
     font-size: 18px;
     font-family: 'Agrandir-bold';
 }
-#fundTxidCopy,#txidcopy{
+#fundTxidCopy,#fundTxidCopy1,#txidcopy,#txidcopy1{
   width: 30px;
   position: absolute;
   right: 30px;
   bottom: 10px;
 }
 #txidcopy{
+  bottom: -16px;
+}
+#txidcopy1{
   bottom: -16px;
 }
 
@@ -241,6 +335,23 @@
   width: 60%;
   line-height: 20px;
 }
+.fundingSuccess .returnToDashboard, .fundingSuccess button{
+  color: #0b0230;
+  text-decoration: none;
+  font-family:  'Agrandir-bold';
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 24px;
+  padding: 15px 45px;
+  background-color: #D9D9D9;
+  border-radius: 10px;
+}
+.fundingSuccess button{
+  background-color: #0B0230;
+  color: white;
+  width: 50%;
+}
+
 
 /* funding Naira */
 .FundingNaira{
@@ -256,7 +367,7 @@
 .FundingNaira .transferC{
   margin-top: 2rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 1rem;
 }
 .FundingNaira .transferC div{
@@ -303,3 +414,72 @@
   color: black;
   font-family: 'Times New Roman', Times, serif;
 }
+.FundingNairaBank{
+  padding-block: 1rem;
+}
+.FundingNairaBank h1{
+  color: #172C63;
+  font-family: 'Agrandir-bold';
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+.FundingNairaBank main{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: hsla(0, 0%, 85%, .4);
+  padding: 20px 15px;
+  border-radius: 15px;
+  padding-bottom: 3rem;
+}
+.FundingNairaBank main div{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 2rem;
+  /* border: 1px solid; */
+}
+.FundingNairaBank main h3{
+  font-size: 16px;
+  font-weight: 700;
+}
+.FundingNairaBank main h4{
+  font-size: 16px;
+  margin-top: 0;
+}
+.FundingNairaBank main select{
+  padding: 5px;
+  background-color: transparent;
+  border-radius: 10px;
+  outline: 0px;
+}
+.FundingNairaBank main select option{
+  padding: 10px;
+  font-weight: 700;
+  color: #172C63;
+}
+.FundingNairaBank .bnkInfo{
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+}
+.FundingNairaBank .bnkInfo h4{
+  margin-left: -.7rem;
+}
+.FundingNairaBank button{
+  background-color: #129346;
+  margin-top: 1rem;
+  width: 100%;
+}
+.Funding_confirm_cancel{
+  display: flex;
+  gap: 0px;
+  padding-bottom: 2rem;
+}
+.Funding_confirm_cancel button{
+  width: 45%;
+  border-radius: 4px;
+  border: none;
+}
+
