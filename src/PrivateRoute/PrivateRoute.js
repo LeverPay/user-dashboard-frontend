@@ -6,16 +6,22 @@ import { useJwt } from "react-jwt";
 
 const PrivateRoute = ({ children }) => {
   let [userToken, setUserToken] = useLocalState("", "jwt");
+
   // const { decodedToken, isExpired } = useJwt(userToken);
 
   // if (userToken) {
-  //   console.log("token", decodedToken, "is expired?", isExpired);
+  //   console.log(
+  //     "token",
+  //     new Date(decodedToken.exp * 1000),
+  //     "is expired?",
+  //     isExpired
+  //   );
   //   // if (decodedToken || isExpired === false) {
   //   //   //session expires after 10 minutes
-  //   //   // setTimeout(() => {
-  //   //   //   setUserToken("");
-  //   //   //   toast.error("Login timeout, Please log in again");
-  //   //   // }, 600000);
+  //   //   setTimeout(() => {
+  //   //     setUserToken("");
+  //   //     toast.error("Login timeout, Please log in again");
+  //   //   }, 600000);
   //   // }
   // }
 
