@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import "../ImageSelectComponent/ImageSelectModal.css";
+import "./ImageSelectModal.css";
 
 const ImageSelectModal = ({
   modalOpen,
@@ -19,6 +19,7 @@ const ImageSelectModal = ({
         onHide={() => setModalOpen(false)}
         backdrop="static"
         keyboard={false}
+        centered
       >
         <Modal.Header closeButton>
           <Modal.Title>Upload Profile Image</Modal.Title>

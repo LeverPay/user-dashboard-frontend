@@ -13,19 +13,31 @@
   height: 3% !important;
 }
 
-/* .modal-content {
+.modal-content {
   display: block !important;
+  background-color: #fff !important;
   background: #fff !important;
   width: 35% !important;
   height: 100% !important;
   margin: auto !important;
   /* margin-top: auto !important; */
-/* margin-left: auto !important;
-    margin-right: auto !important; */
-/* margin-bottom: auto !important; */
-/* padding: 0% !important; */
-/* border: 1px solid #000 !important; */
-/* } */
+  /* margin-left: auto !important;
+      margin-right: auto !important; */
+  /* margin-bottom: auto !important; */
+  padding: 0% !important;
+  border: 1px solid #000 !important;
+}
+
+/* .modal-header {
+  background-color: #fff !important;
+}
+.modal-body {
+  background-color: #fff !important;
+}
+
+.modal-footer {
+  background-color: #fff !important;
+} */
 
 .verify-note {
   color: #172c63 !important;
@@ -79,6 +91,7 @@
 @media screen and (max-width: 620px) {
   .modal-content {
     width: 100% !important;
+    background-color: #fff !important;
   }
 
   .otp-fields {
