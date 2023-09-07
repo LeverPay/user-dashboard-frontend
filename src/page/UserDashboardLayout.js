@@ -46,6 +46,8 @@ import FundingPaystack from "../components/AccountFunding/FundingPaystack";
 import FundingMore from "../components/AccountFunding/FundingMore";
 import FundingpaymentForm from "../components/AccountFunding/FundingpaymentForm";
 import SignupOTP from "../components/SignupComponent/SignupOTP/SignupOTP";
+import MySubscription from "./MySubscriptionPage/MySubscription";
+import SubscriptionTransactions from "../components/MySubscriptionComponent/SubscriptionTransactions/SubscriptionTransactions";
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -221,6 +223,11 @@ export const UserDashboardLayout = (props) => {
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
           <Route path="payment-page" element={<PaymentPage />} />
+          <Route path="/my-subscriptions" element={<MySubscription />} />
+          <Route
+            path="my-subscriptions/subscription-transactions"
+            element={<SubscriptionTransactions />}
+          />
           <Route exact path="*" element={<Navigate to="/" />} />
         </Route>
         <Route exact path="reset-password" element={<ResetPassword />} />
