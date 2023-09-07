@@ -3,8 +3,8 @@ import { Modal, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Logo from "../../assets/images/half-logo.png";
 import Cancel from "../../assets/images/cancel.png";
-import "../../components/PrimaryEmailComponentModal/PrimaryEmailComponent.css";
 import Swal from "sweetalert2";
+import "./PrimaryNumberComponent.css";
 
 const PrimaryNumberComponent = ({ show, setShow }) => {
   const inputRef = React.createRef();
