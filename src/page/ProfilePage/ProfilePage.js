@@ -26,6 +26,7 @@ const ProfilePage = ({ userName }) => {
   const [last_name, setLastName] = useState("");
   const [otherName, setOthername] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
+  const [otherEmailAddress, setOtherEmailAddress] = useState("");
   const [profession, setProfession] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -87,7 +88,7 @@ const ProfilePage = ({ userName }) => {
     updateUserProfile(jwt, userDataUpdate);
   };
   return (
-    <div col-md-12 className="outer">
+    <div col-12 className="outer">
       <Tabs>
         <TabList>
           <Tab>Basic Information</Tab>
@@ -166,8 +167,8 @@ const ProfilePage = ({ userName }) => {
                     type="email"
                     placeholder=""
                     className="text-area email-address"
-                    value={emailAddress}
-                    onChange={(e) => setEmailAddress(e.target.value)}
+                    value={otherEmailAddress}
+                    onChange={(e) => setOtherEmailAddress(e.target.value)}
                     // disabled={primaryEmail === true ? true : false}
                     required
                   />

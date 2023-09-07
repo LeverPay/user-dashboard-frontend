@@ -54,6 +54,26 @@ h3 {
   width: 100% !important;
 }
 
+.country-select {
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+}
+
+.state-select {
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+}
+
+.city-select {
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+}
+
+.gender-select {
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+}
+
 .react-datepicker__input-container {
   width: 100% !important;
   padding: 0.375rem !important;
@@ -63,7 +83,8 @@ h3 {
 
 .dob {
   width: 100% !important;
-  font-family: AgrandirRegular !important;
+  font-family: AgrandirBold !important;
+  font-size: small !important;
   border: 0px !important;
 }
 
