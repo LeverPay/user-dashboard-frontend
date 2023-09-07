@@ -4,7 +4,7 @@ import FundingNav from "../../components/AccountFunding/FundingNav";
 import { FundingPrices } from "../../components/AccountFunding/FundingPrices";
 import FundingNav2 from "../../components/AccountFunding/FundingNav2";
 import FundingPayment from "../../components/AccountFunding/FundingPayment";
-import { Outlet, Route, Routes } from "react-router-dom";
+import {Route, Routes } from "react-router-dom";
 import FundingNaira from "../../components/AccountFunding/FundingNaira";
 import FundingPaystack from "../../components/AccountFunding/FundingPaystack";
 import FundingMore from "../../components/AccountFunding/FundingMore";
@@ -27,12 +27,10 @@ const FundingPage = () => {
             <FundingNav2/>
         </section>
         <section>
-            {/* <Outlet amts = {amt} /> */}
             <Routes>
             <Route index element={<FundingPayment handleAmount = {handleAmount}  />} />
           <Route path="stablecoins-deposit" element={<FundingPayment handleAmount = {handleAmount}  />} />
-          <Route path="naira-deposit" element={<FundingNaira handleAmount = {handleAmount}   />} />
-          <Route path="paystack-deposit" element={<FundingPaystack />} />
+          <Route path="naira-deposit" element={<FundingNaira handleAmount = {handleAmount} amt = {amt}  />} />
           <Route path="more" element={<FundingMore />} />
         </Routes>
       </section>

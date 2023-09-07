@@ -138,6 +138,7 @@ export const getUserProfile = async (jwt, setJwt, setUser) => {
   return await userProfile;
 };
 
+
 export const updateUserProfile = async (jwt, userDataUpdate) => {
   const updateRes = await fetch(
     "https://leverpay-api.azurewebsites.net/api/v1/user/update-user-profile",
