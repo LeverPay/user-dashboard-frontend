@@ -6,10 +6,8 @@ import PhoneNumberComponent from "../PhoneNumberComponent/PhoneNumberComponent";
 import { AiOutlineEye } from "react-icons/ai";
 import { signUp } from "../../services/apiService";
 import DatePicker from "react-datepicker";
-import { ReactCountryDropdown } from "react-country-dropdown";
 import axios from "axios";
-import { ToastContainer } from "react-toastify";
-import { countries } from "../Endpoints";
+import { ToastContainer, toast } from "react-toastify";
 
 function SignupComponent() {
   const [firstName, setFirstName] = useState("");
@@ -21,9 +19,13 @@ function SignupComponent() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [signupMessage, setSignupMessage] = useState("");
   const [startDate, setStartDate] = useState(new Date());
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("Male");
   const [country, setCountry] = useState([]);
-  const [state, setState] = useState("");
+  const [countryID, setCountryID] = useState("");
+  const [state, setState] = useState([]);
+  const [stateID, setStateID] = useState("");
+  const [city, setCity] = useState([]);
+  const [cityID, setCityID] = useState("");
 
   const validatePassword = () => password === confirmPassword;
 
@@ -50,9 +52,6 @@ function SignupComponent() {
   const signupSubmit = (e) => {
     e.preventDefault();
 
-    // let regex = new RegExp(/^[+]{1}(?:[0-9\-\(\)\/\.]\s?){6, 15}[0-9]{1}$/);
-    // let newNumber = "+".concat(phoneNumber.phone);
-
     if (
       typeof phoneNumber.phone === "undefined" ||
       phoneNumber.phone.length < 10
@@ -68,15 +67,21 @@ function SignupComponent() {
     const signupData = {
       first_name: firstName,
       last_name: lastName,
+      gender: gender,
       dob: Intl.DateTimeFormat("en").format(startDate),
       email: email,
       phone: phoneNumber.phone,
       password: password,
+      country_id: countryID,
+      state_id: stateID,
+      city_id: cityID,
     };
 
-    // console.log(phoneNumber.phone);
-
     signUp(signupData);
+  };
+
+  const handleGender = (e) => {
+    setGender(e.target.value);
   };
 
   useEffect(() => {
@@ -84,10 +89,37 @@ function SignupComponent() {
       .get("https://leverpay-api.azurewebsites.net/api/v1/get-countries")
       .then((response) => {
         setCountry(response.data.data.map((countries) => countries));
-        // console.log(country);
+      })
+      .catch((err) => {
+        toast.error(err.message);
       });
-    // do something with JSON response data
-  }, [country]);
+  }, []);
+
+  useEffect(() => {
+    axios
+      .post("https://leverpay-api.azurewebsites.net/api/v1/get-states", {
+        country_id: countryID,
+      })
+      .then((getStates) => {
+        setState(getStates.data.data.map((states) => states));
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  }, [countryID]);
+
+  useEffect(() => {
+    axios
+      .post("https://leverpay-api.azurewebsites.net/api/v1/get-cities", {
+        state_id: stateID,
+      })
+      .then((getCities) => {
+        setCity(getCities.data.data.map((cities) => cities));
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  }, [stateID]);
 
   return (
     <>
@@ -137,18 +169,16 @@ function SignupComponent() {
           </Row>
           <Row className="form-input">
             <Form.Label htmlFor="email" className="labels">
-              Email
+              Gender
             </Form.Label>
-            <Form.Control
-              type="email"
-              className="input"
-              value={email}
-              name="email"
-              ref={inputRef}
-              placeholder=""
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <Form.Select
+              aria-label="Default select example"
+              className="gender-select"
+              onChange={handleGender}
+            >
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </Form.Select>
           </Row>
           <Row className="form-input">
             <Form.Label htmlFor="email" className="labels">
@@ -163,38 +193,16 @@ function SignupComponent() {
           </Row>
           <Row className="form-input">
             <Form.Label htmlFor="email" className="labels">
-              Gender
-            </Form.Label>
-            <Form.Select aria-label="Default select example">
-              <option value="1">Male</option>
-              <option value="2">Female</option>
-            </Form.Select>
-          </Row>
-          <Row className="form-input">
-            <Form.Label htmlFor="email" className="labels">
-              Country
-            </Form.Label>
-            <Form.Select aria-label="Default select example">
-              <option>Select your country</option>
-              <option>{country}</option>
-              {/* <option>{country}</option> */}
-              {/* <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option> */}
-            </Form.Select>
-          </Row>
-          <Row className="form-input">
-            <Form.Label htmlFor="email" className="labels">
-              State
+              Email
             </Form.Label>
             <Form.Control
-              type="state"
+              type="email"
               className="input"
-              value={state}
-              name="state"
+              value={email}
+              name="email"
               ref={inputRef}
               placeholder=""
-              onChange={(e) => setState(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </Row>
@@ -208,6 +216,51 @@ function SignupComponent() {
               setPhoneNumber={setPhoneNumber}
               className="input"
             />
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              Country
+            </Form.Label>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => setCountryID(e.target.value)}
+              className="country-select"
+            >
+              <option>Select your country</option>
+              {country.map((c) => {
+                return <option value={c.id}>{c.country_name}</option>;
+              })}
+            </Form.Select>
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              State
+            </Form.Label>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => setStateID(e.target.value)}
+              className="state-select"
+            >
+              <option>Select your state</option>
+              {state.map((s) => {
+                return <option value={s.id}>{s.state_name}</option>;
+              })}
+            </Form.Select>
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="email" className="labels">
+              City
+            </Form.Label>
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => setCityID(e.target.value)}
+              className="city-select"
+            >
+              <option>Select your city</option>
+              {city.map((c) => {
+                return <option value={c.id}>{c.city_name}</option>;
+              })}
+            </Form.Select>
           </Row>
           <Row className="form-input">
             <Form.Label htmlFor="password" className="labels">

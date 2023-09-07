@@ -1,0 +1,65 @@
+.st-container {
+  display: flex;
+  width: 80% !important;
+  padding: 0.5rem;
+  margin-top: 10%;
+  margin-left: 10%;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.react-tabs {
+  width: 100% !important;
+  margin-top: 0.2rem !important;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid #aaa !important;
+}
+
+.react-tabs__tab {
+  font-family: Agrandir !important;
+  bottom: -1px !important;
+  color: #fff !important;
+}
+
+.react-tabs__tab--selected {
+  background-color: #0b0230 !important;
+  color: #fff !important;
+  font-family: AgrandirBold !important;
+  border-bottom: 1px !important;
+}
+
+.table-user {
+  color: #fff !important;
+}
+
+.subscription-history-text {
+  color: #fff !important;
+  font-family: AgrandirBold !important;
+  font-size: medium !important;
+}
+
+.subscription-row {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 2% !important;
+}
+
+.subscription-table {
+  width: 100% !important;
+  background-color: #1c1a2e !important;
+  padding-left: 10% !important;
+  border-radius: 10px !important;
+  /* padding: 10% !important; */
+}
+
+th {
+  color: #b2aea9 !important;
+  font-family: AgrandirBold !important;
+  font-size: medium !important;
+}
+
+.name-head {
+  padding: 1rem !important;
+}
