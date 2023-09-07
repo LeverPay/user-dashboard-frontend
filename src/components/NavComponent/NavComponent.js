@@ -159,13 +159,24 @@ const NavComponent = () => {
                   </li>
                   <li>
                     <NavLink
+                      to="/my-subscriptions"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeclassname="active"
+                    >
+                      <i className="icofont-wallet"></i>
+                      Subscriptions
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
                       to="/funding"
                       className="text-link"
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
                       <i className="icofont-wallet"></i>
-                      Funding 
+                      Funding
                     </NavLink>
                   </li>
                   <li>
