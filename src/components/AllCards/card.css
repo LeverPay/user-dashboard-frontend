@@ -16,12 +16,10 @@
 }
 .cardnumber {
   text-align: left;
-  padding-left: 20px;
-  margin-top: 0rem;
-  margin-bottom: .3rem;
+  margin-left: 1rem;
   font-family: Kredit;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 29px;
   letter-spacing: 0.1em;
   /* color: white; */
@@ -44,90 +42,88 @@
   display: flex;
   gap: 6rem;
   padding: 0px 20px;
-  margin-top: -0.5rem;
 }
-strong {
+.defaultCard strong {
   font-family: Consolas;
   font-size: 24px;
   font-weight: 700;
   line-height: 28px;
   letter-spacing: 0.02em;
 }
-footer {
+.defaultCard footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 20px;
   margin-top: 1rem;
 }
-footer h2 {
+.defaultCard footer h2 {
   font-family: Consolas;
   font-size: 20px;
   font-weight: 700;
   line-height: 23px;
   letter-spacing: 0.02em;
+  margin-top: 1rem;
 }
-footer h1 {
+.defaultCard footer h1 {
   font-family: Consolas;
   font-size: 25px;
   font-weight: 700;
   line-height: 37px;
   letter-spacing: 0.02em;
 }
-.cardcategory{
+.defaultCard .cardcategory{
     font-family: Consolas;
 font-size: 20px;
 font-weight: 700;
 line-height: 35px;
 letter-spacing: 0.02em;
 }
-.card_scan{
+.defaultCard .card_scan{
   padding: 10px;
 }
 
 @media (max-width:1024px) and (min-width: 621px){
-  .defaultCard{
 
-  }
-  .cardnumber{
+  .defaultCard .cardnumber{
     font-size: 14px;
     margin-bottom: -25px;
   }
-  .LeverpayCardLogo{
+  .defaultCard .LeverpayCardLogo{
     width: 100px;
   }
-  .expiry{
+  .defaultCard .expiry{
     display: none;
   }
-  .card_scan{
+  .defaultCard .card_scan{
     width: 30px;
     height: 30px;
     object-fit: cover;
     padding: 0;
   }
-  .card_lastname{
+  .defaultCard .card_lastname{
     display: none;
   }
-  .cardDate_Type strong{
+  .defaultCard .cardDate_Type strong{
     font-size: 16px;
     margin-top: 1rem;
     margin-left: -2rem;
   }
-  .exp_date{
+  .defaultCard .exp_date{
     font-size: 12px;
     width: 70px;
   }
-  .cvv{
+  .defaultCard .cvv{
     font-size: 10px;
     margin-top: -1rem;
   }
   .cvv small, .cvv strong{
     font-size: 14px;
   }
-  footer h1{
+  .defaultCard footer h1{
     font-size: 15px;
   }
-  footer h1 img{
+  .defaultCard footer h1 img{
     width: 12px;
     padding-right: 3px;
   }

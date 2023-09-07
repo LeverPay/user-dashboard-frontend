@@ -87,7 +87,7 @@ const NavComponent = () => {
             />
           </span>
         </div>
-        <div className="container">
+        <div className="container" >
           <div />
           <div>
             <div defaultactivekey="/" className="flex-column my-tweak">
@@ -170,7 +170,7 @@ const NavComponent = () => {
                   </li>
                   <li>
                     <NavLink
-                      to="/funding"
+                      to="/funding/stablecoins-deposit"
                       className="text-link"
                       onClick={closeMobileMenu}
                       activeclassname="active"

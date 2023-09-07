@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-
 import { Container } from "react-bootstrap";
 import { Button, Modal } from "react-bootstrap";
 import Logo from "../../assets/images/half-logo.png";
