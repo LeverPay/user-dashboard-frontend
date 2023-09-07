@@ -18,11 +18,6 @@ const FundingNav2 = () => {
                 </NavLink>
             </li>
             <li>
-                <NavLink activeclassname ='active' to='/funding/paystack-deposit'>
-                    PayStack
-                </NavLink>
-            </li>
-            <li>
                 <NavLink activeclassname ='active' to='/funding/more'>
                     More
                 </NavLink>

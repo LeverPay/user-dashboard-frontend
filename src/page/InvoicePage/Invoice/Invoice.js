@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -8,11 +8,20 @@ import { nanoid } from "nanoid";
 import QRCode from "qrcode";
 import Feedback from "../../Feedback/Feedback";
 import { Link } from "react-router-dom";
+import { Button, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import TransferOTP from "../../../components/TransferPageComponent/TransferOTP";
+import ReactToPrint from "react-to-print";
 
-function Invoice({ className, invoice, ref }) {
-  const navigate = useNavigate();
+function Invoice({ className, invoice, ref, unpaid, date, amt, status,name, productType}) {
+  let componentRef = useRef();
+  const Navigate = useNavigate();
   const [id] = useState(nanoid);
+  const [show, setShow] = useState(false)
+
+function toggleShow(arg){
+  setShow(arg)
+}
 
   const [qrcode, setQrcode] = useState(id);
 
@@ -33,22 +42,25 @@ function Invoice({ className, invoice, ref }) {
     );
   });
 
-  const date = new Date();
-  const Morning_Afternoon = date.getHours() > 12 ? "pm" : "am";
-  const minutes =
-    date.getMinutes() < 1 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
-  const timeofDay = date.getHours() + ":" + minutes + " " + Morning_Afternoon;
-  const time = date.toDateString() + " " + timeofDay;
+  // const date = new Date();
+  // const Morning_Afternoon = date.getHours() > 12 ? "pm" : "am";
+  // const minutes =
+  //   date.getMinutes() < 1 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
+  // const timeofDay = date.getHours() + ":" + minutes + " " + Morning_Afternoon;
+  // const time = date.toDateString() + " " + timeofDay;
 
   return (
+    <>
     <Container
+        ref={componentRef}
       id="invoice"
       className={`pt-3 px-3 py-4 col-md-4 col-12 ${className}`}
     >
       <h4 className="text-center">{id}</h4> 
       <div className="price_checkout">
         <span className="px-md-3">
-          <h5>{invoice ? invoice.amount : "$0.00"}</h5>
+          {/* <h5>{invoice ? invoice.amount : "$0.00"}</h5> */}
+          <h5>{amt}</h5>
           <h5>Total USD</h5>
         </span>
         <span className="px-md-3">
@@ -75,7 +87,8 @@ function Invoice({ className, invoice, ref }) {
               className="row_details_information"
               style={{ color: "#0EB500" }}
             >
-              {invoice ? invoice.status : ""}
+              {/* {invoice ? invoice.status : ""} */}
+              {status}
             </Col>
           </Row>
           <Row>
@@ -98,13 +111,15 @@ function Invoice({ className, invoice, ref }) {
               style={{ fontSize: "12px" }}
             >
               {/* {time} */}
-              {invoice ? invoice.date : ""}
+              {/* {invoice ? invoice.date : ""} */}
+              {date}
             </Col>
           </Row>
           <Row>
             <Col className="row_details">Items</Col>
             <Col className="row_details_information">
-              {invoice ? invoice.name.productType : ""}
+              {/* {invoice ? invoice.name.productType : ""} */}
+              {name}
             </Col>
           </Row>
           <Row>
@@ -135,17 +150,40 @@ function Invoice({ className, invoice, ref }) {
           <div>
             <p>Company</p>
             <h6>Apple inc</h6>
-          
-            <h6 style={{color:'red', marginTop: '3rem', cursor:'pointer'}} onClick={()=>{navigate('/customer-support', {state: {txid: id }})}} >Report transaction</h6>
-          
+            <h6 style={{color:'red', marginTop: '3rem', cursor:'pointer'}} onClick={()=>{Navigate('/customer-support', {state: {txid: id }})}} >Report transaction</h6>
           </div>
           <div>
             {qrcode && <img alt="" className="qrcodeCon" src={qrcode} />}
           </div>
         </main>
       </div>
+        {
+          unpaid &&  <div className="accept_decline">
+          <button onClick={()=>{
+            return <Navigate to='/invoices' />
+          }}>Decline</button>
+          <button onClick={()=>{
+            setShow(true)
+          }} >Accept</button>
+        </div>
+        }
       <hr />
+      <TransferOTP show = {show}  setShow={toggleShow} />
     </Container>
+    <footer style={{
+            margin:'auto',
+            width:'50%',
+            display:'flex',
+            marginBottom:'3rem',
+            gap:'2rem'
+            }}>
+                <button><Link to='/transactions' style={{textDecoration:'none', color:'inherit'}} >Close</Link></button>
+                <ReactToPrint
+              trigger={() => <button className="printbtn">Print</button>}
+              content={() => componentRef.current}
+            />
+            </footer>
+    </>
   );
 }
 

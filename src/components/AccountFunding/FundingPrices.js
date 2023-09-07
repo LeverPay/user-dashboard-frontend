@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 export const FundingPrices = (props) => {
 
     const {amt} = props 
-
+    let Naira = Number(amt * 750)
   return (
     <div className='FundingPrices'>
         <main style={{backgroundColor: '#0B0230'}}>
@@ -22,7 +22,7 @@ export const FundingPrices = (props) => {
             </span>
         <div>
             <h4>NAIRA EQUIVALENT</h4>
-            <p>N {Number(amt * 750)} </p>
+            <p>N {Naira.toFixed(2)} </p>
         </div>
         </main>
     </div>
