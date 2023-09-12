@@ -1,0 +1,21 @@
+.investmentPage{
+    width: 90%;
+    margin: auto;
+    margin-top: 8rem;
+    margin-bottom: 4rem;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.investmentPage .logo{
+    margin: 20px 40px;
+    margin-left: auto;
+    width: 200px;
+}
+
+.investmentPage .secure{
+    width: 200px;
+    padding: 20px;
+    margin-left: auto;
+}
