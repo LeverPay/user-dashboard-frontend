@@ -49,6 +49,8 @@ import FundingpaymentForm from "../components/AccountFunding/FundingpaymentForm"
 import UnpaidReceipt from "../components/UnpaidInvoice/UnpaidReceipt";
 import SignupOTP from "../components/SignupComponent/SignupOTP/SignupOTP";
 import Investment from "./InvestmentPage/Investment";
+import MySubscription from "./MySubscriptionPage/MySubscription";
+import SubscriptionTransactions from "../components/MySubscriptionComponent/SubscriptionTransactions/SubscriptionTransactions";
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
