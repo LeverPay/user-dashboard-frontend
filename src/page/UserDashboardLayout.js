@@ -48,8 +48,11 @@ import FundingMore from "../components/AccountFunding/FundingMore";
 import FundingpaymentForm from "../components/AccountFunding/FundingpaymentForm";
 import UnpaidReceipt from "../components/UnpaidInvoice/UnpaidReceipt";
 import SignupOTP from "../components/SignupComponent/SignupOTP/SignupOTP";
+import Investment from "./InvestmentPage/Investment";
 import MySubscription from "./MySubscriptionPage/MySubscription";
 import SubscriptionTransactions from "../components/MySubscriptionComponent/SubscriptionTransactions/SubscriptionTransactions";
+
+
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -190,6 +193,7 @@ export const UserDashboardLayout = (props) => {
           <Route path="transactions" element={<Transactions />} />
           <Route path="transactions-invoices" element={<TransactionInvoices />} />
           <Route exact path="transfer" element={<TransferPage />} />
+          <Route exact path="/investment" element={<Investment/>} />
           <Route path="invoices" element={<UnpaidInvoice />} />
           <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
 

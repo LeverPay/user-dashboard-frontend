@@ -1,0 +1,160 @@
+.checkoutTransfer{
+    /* border: 2px solid; */
+    padding: 10px 64px;
+    display: flex;
+    gap: 5%;
+}
+.checkoutTransfer .acct{
+    width: 65%;
+}
+.checkoutTransfer .acct label{
+    display: flex;
+    flex-direction: column;
+    border: none;
+    padding: 0;
+    gap: 10px;
+    font-family: Agandir;
+    font-size: 20px;
+    position: relative;
+}
+.checkoutTransfer .acct .reminder{
+    font-size: 10px;
+    color: #FF0000;
+    position: absolute;
+    right: 10%;
+    bottom: 0;
+}
+.checkoutTransfer .acct .narratCopy{
+    position: absolute;
+    right: 12%;
+    bottom: -125%;
+}
+.checkoutTransfer #cpyNalrt{
+    bottom: -30%;
+    font-size: 10px;
+}
+.checkoutTransfer .acct input{
+    width: 90%;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #082E88;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+.checkoutTransfer .acct input::placeholder{
+    font-size: '10px'
+}
+.checkoutTransfer .acct main{
+    width: 95%;
+    margin-top: 2rem;
+}
+.checkoutTransfer .acct main .screenshot{
+    width: 90%;
+    font-size: 12px;
+    display: flex;
+    color: #0051FF;
+}
+.checkoutTransfer .ChckTrfSub{
+    width: 90%;
+    background-color: #0051FF;
+    border: none;
+}
+.checkoutTransfer .brkdwn{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #F3ECEC;
+    border-radius: 40px;
+    height: fit-content;
+    margin-top: 5rem;
+    width: 30%;
+}
+.checkoutTransfer .brkdwn .orderbrkdwn{
+    border-bottom: 2px dotted #0051FF;
+    padding: 10px;
+}
+.checkoutTransfer .brkdwn .orderbrkdwn h2{
+    font-size: 18px;
+    margin: 0;
+    padding: 20px;
+    font-weight: 800;
+}
+.checkoutTransfer .brkdwn .orderbrkdwn ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 14px;
+    padding: 0pc 20px;
+}
+.checkoutTransfer .brkdwn .orderbrkdwn ul li{
+    display: flex;
+    justify-content: space-between;
+    color: #0051FF;
+    font-weight: 700;
+}
+.checkoutTransfer .brkdwn .orderbrkdwn ul li strong{
+    color: black;
+}
+.checkoutTransfer .brkdwn .payAmt{
+    padding: 0px 20px;
+}
+.checkoutTransfer .brkdwn .payAmt h2{
+    font-size: 18px;
+    color: #FF0000;
+    font-weight: 700;
+}
+.checkoutTransfer .brkdwn .payAmt h1{
+    font-size: 22px;
+    font-weight: 800;
+}
+.checkoutTransfer .brkdwn .payAmt h1 span{
+    color: #0051FF;
+}
+.checkoutTransfer .brkdwn .bckOver{
+    text-align: center;
+    padding: 10px;
+    border-radius: 40px;
+    background-color: white;
+    transform: translateY(1rem);
+    font-family: Agrandir;
+    font-weight: 900;
+    line-height: 26px;
+    color: #0051FF;
+    cursor: pointer;
+}
+@media (max-width: 620px){
+    .checkoutTransfer{
+        flex-direction: column-reverse;
+        padding: 10px 32px;
+        gap: 5rem;
+    }
+    .checkoutTransfer .brkdwn{
+        width: 100%;
+        margin-top: 2rem;
+    }
+    .checkoutTransfer .brkdwn .payAmt h2{
+        font-size: 16px;
+    }
+    .checkoutTransfer .brkdwn .payAmt h1{
+        font-size: 18px;
+    }
+    .checkoutTransfer .acct{
+        width: 100%;
+    }
+    .checkoutTransfer .acct input{
+        width: 100%;
+    }
+    .checkoutTransfer .acct .narratCopy{
+        right: 4%;
+    }
+    .checkoutTransfer .acct main{
+        width: 100%;
+    }
+    .checkoutTransfer .acct .reminder{
+        bottom: -250%;
+    }
+    .checkoutTransfer .ChckTrfSub{
+        width: 100%;
+    }
+}
