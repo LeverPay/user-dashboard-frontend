@@ -4,7 +4,7 @@
   width: 30% !important;
   height: 100% !important;
   margin: auto !important;
-  border: 2px solid black !important;
+  border: 1px solid black !important;
   /* margin-top: auto !important; */
   /* margin-left: auto !important;
   margin-right: auto !important; */
@@ -12,10 +12,10 @@
   padding: 0rem !important;
 }
 
-.tOtp{
+/* .tOtp {
   background-color: white !important;
   width: 30%;
-}
+} */
 .otp-logo {
   width: 10% !important;
 }
