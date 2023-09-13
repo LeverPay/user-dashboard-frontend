@@ -6,8 +6,8 @@ import Logo from "../../assets/images/half-logo.png";
 import OTPLogo from "../../assets/images/otp.png";
 import Cancel from "../../assets/images/cancel.png";
 import Padlock from "../../assets/images/padlock.png";
-import "./TransferOTP.css";
 import Swal from "sweetalert2";
+import "./TransferOTP.css";
 
 const TransferOTP = ({ show, setShow }) => {
   const inputRef = React.createRef();
