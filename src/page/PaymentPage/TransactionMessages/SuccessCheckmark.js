@@ -1,6 +1,6 @@
 import React from "react";
 
-function SuccessCheckmark() {
+function SuccessCheckmark({text}) {
   return (
     <center>
       {" "}
@@ -23,6 +23,15 @@ function SuccessCheckmark() {
           d="M14.1 27.2l7.1 7.2 16.7-16.8"
         />
       </svg>
+      {
+        text && <>
+        <br/>
+        <p style={{
+          fontSize: '25px'
+        }}>{text}</p>
+        </> 
+      }
+      
     </center>
   );
 }
