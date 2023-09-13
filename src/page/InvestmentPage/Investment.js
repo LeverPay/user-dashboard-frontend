@@ -7,7 +7,7 @@ import SuccessCheckmark from '../PaymentPage/TransactionMessages/SuccessCheckmar
 
 const Investment = () => {
     const navigate = useNavigate()
-    const [step, setStep] = useState(2)
+    const [step, setStep] = useState(1)
     const [otherData, setOtherData] = useState({})
     const [formData, setFormData] = useState({
         firstname: '',
