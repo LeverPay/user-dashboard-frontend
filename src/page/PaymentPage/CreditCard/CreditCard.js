@@ -48,6 +48,7 @@ export const CreditCard = () => (
                     focused={active}
                   />{" "}
                 </div>
+                <section className="ccDet" >
                 <div>
                   <small className="input-title">Card Num</small>
                   <Field
@@ -110,6 +111,7 @@ export const CreditCard = () => (
                     <OTPModal />
                   </div>
                 </div>
+                </section>
               </div>
             </div>
           </form>

@@ -16,6 +16,8 @@ const UnpaidReceipt = (props) => {
         status = {data.status}
         unpaid = {true}
         date = {data.date}
+        cancel = 'invoices'
+
     />
   )
 }
