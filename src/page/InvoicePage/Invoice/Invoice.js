@@ -160,7 +160,7 @@ function toggleShow(arg){
         {
           unpaid &&  <div className="accept_decline">
           <button onClick={()=>{
-            return <Navigate to='/invoices' />
+            Navigate(-1)
           }}>Decline</button>
           <button onClick={()=>{
             setShow(true)
@@ -177,7 +177,11 @@ function toggleShow(arg){
             marginBottom:'3rem',
             gap:'2rem'
             }}>
-                <button><Link to='/transactions' style={{textDecoration:'none', color:'inherit'}} >Close</Link></button>
+                <button 
+                  onClick={()=>{
+                    Navigate(-1)
+                  }}
+                >Close</button>
                 <ReactToPrint
               trigger={() => <button className="printbtn">Print</button>}
               content={() => componentRef.current}

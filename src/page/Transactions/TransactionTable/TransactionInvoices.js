@@ -23,6 +23,7 @@ const TransactionInvoices = () => {
                     status={item.status}
                     unpaid={false}
                     date={item.date}
+                    cancel = 'transactions'
                 />
         </div>
 

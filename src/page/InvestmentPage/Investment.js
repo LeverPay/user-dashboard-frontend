@@ -1,28 +1,36 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Investment.css'
 import CheckoutTransfer from '../../components/CheckoutTransfer/CheckoutTransfer'
 import SuccessCheckmark from '../PaymentPage/TransactionMessages/SuccessCheckmark'
+import { Country, State}  from 'country-state-city';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const Investment = () => {
     const navigate = useNavigate()
     const [step, setStep] = useState(1)
     const [otherData, setOtherData] = useState({})
+    const [DOB, setDOB] = useState(new Date());
     const [formData, setFormData] = useState({
         firstname: '',
         middlename: '',
         lastname: '',
         gender: '',
-        DOB: '',
+        DOB: DOB,
         email: '',
         phone: '',
-        country: '',
+        country: 'AF, Afghanistan',
         state: '',
         amount: '',
         vat: '375',
         txfee: '69.9'
     })
+
+
+    console.log(formData.country)
 
     function NextStep(){
         setStep(step + 1)
@@ -41,6 +49,10 @@ const Investment = () => {
             [e.target.name]: e.target.value
         })
     }
+
+    const countryOpts = Country.getAllCountries()
+    const stateOfCountry = State.getStatesOfCountry(formData.country.slice(0,2))
+    console.log(formData.country.slice(0,2))
 
     function handleForm(e){
         e.preventDefault()
@@ -100,24 +112,19 @@ const Investment = () => {
                     </label>
                     <label>
                         Gender :
-                        <input
-                            type='text'
-                            required={true}
-                            name='gender'
-                            onChange={handleChange}
-                            value={formData.gender}
-                        />
+                       <select value={formData.gender} name='gender'onChange={handleChange} required={true} >
+                        <option>Select your gender</option>
+                        <option value='male' >Male</option>
+                        <option value='female'>Female</option>
+                       </select>
                     </label>
-                    <label>
-                        Date of Birth
-                        <input
-                            type='text'
-                            required={true}
-                            name='DOB'
-                            onChange={handleChange}
-                            value={formData.DOB}
-                        />
-                    </label>
+                    <div id='dob'>
+                        <p>Date of Birth</p>
+                        <span>
+                        <DatePicker selected={DOB} onChange={(date) => setDOB(date)}  wrapperClassName="datePicker" />
+                        </span>
+                    </div>
+                    
                     <label>
                         Email Address
                         <input
@@ -138,26 +145,28 @@ const Investment = () => {
                             value={formData.phone}
                         />
                     </label>
+                   
                     <label>
                         Country
-                        <input
-                            type='text'
-                            required={true}
-                            name='country'
-                            onChange={handleChange}
-                            value={formData.country}
-                        />
+                        <select value={formData.country} name='country'onChange={handleChange} required={true} >
+                            {
+                                countryOpts && countryOpts.map(item =>{
+                                    return <option value={`${item.isoCode}, ${item.name}`} key={item.isoCode} >{item.isoCode}, {item.name}</option>
+                                })
+                            }
+                       </select>
                     </label>
                     <label>
                         State
-                        <input
-                            type='text'
-                            required={true}
-                            name='state'
-                            onChange={handleChange}
-                            value={formData.state}
-                        />
+                        <select value={formData.state} name='state'onChange={handleChange} required={true} >
+                            {
+                                stateOfCountry && stateOfCountry.map(item =>{
+                                    return <option value={`${item.isoCode}, ${item.name}`} key={item.isoCode} >{item.isoCode}, {item.name}</option>
+                                })
+                            }
+                       </select>
                     </label>
+                  
                     <br />
                     <br />
                     <small id='investAmts'>Please set the amount in multiple of #1,000 or $1</small>
@@ -170,6 +179,7 @@ const Investment = () => {
                             onChange={handleChange}
                             value={formData.amount}
                             placeholder='Minimum of #5,000 or $10'
+                            min={5000}
                             
                         />
                     </label>
@@ -191,6 +201,7 @@ const Investment = () => {
                     checkoutData = {getCheckoutData}
                     prevStep = {PrevStep}
                     nextStep = {NextStep}
+                    isInvest = {false}
                 /> 
 
             }

@@ -3828,6 +3828,11 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
+country-state-city@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/country-state-city/-/country-state-city-3.2.0.tgz#b8193f7f2bdcba2e626c3ec7858ffcc543f604b5"
+  integrity sha512-dKbqChbddhaFx4WzjKRBG+U7yoTSR4MI6pyDyxBGqLG4X2SMmvJy+ZRpO3UgKFOSsPxcHgs/KG5iGrtaDOOAEw==
+
 create-ecdh@^4.0.0:
   version "4.0.4"
   resolved "https://registry.npmjs.org/create-ecdh/-/create-ecdh-4.0.4.tgz"
@@ -8509,16 +8514,16 @@ react-credit-cards-custom@^0.9.2:
     payment "^2.3.0"
     postcss-sass "^0.3.5"
 
-react-datepicker@^4.16.0:
-  version "4.16.0"
-  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.16.0.tgz#b9dd389bb5611a1acc514bba1dd944be21dd877f"
-  integrity sha512-hNQ0PAg/LQoVbDUO/RWAdm/RYmPhN3cz7LuQ3hqbs24OSp69QCiKOJRrQ4jk1gv1jNR5oYu8SjjgfDh8q6Q1yw==
+react-datepicker@^4.18.0:
+  version "4.18.0"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.18.0.tgz#d66301acc47833d31fa6f46f98781b084106da0e"
+  integrity sha512-0MYt3HmLbHVk1sw4v+RCbLAVg5TA3jWP7RyjZbo53PC+SEi+pjdgc92lB53ai/ENZaTOhbXmgni9GzvMrorMAw==
   dependencies:
     "@popperjs/core" "^2.11.8"
     classnames "^2.2.6"
     date-fns "^2.30.0"
     prop-types "^15.7.2"
-    react-onclickoutside "^6.12.2"
+    react-onclickoutside "^6.13.0"
     react-popper "^2.3.0"
 
 react-dev-utils@^12.0.1:
@@ -8642,7 +8647,7 @@ react-loader-spinner@^5.3.4:
     styled-components "^5.3.5"
     styled-tools "^1.7.2"
 
-react-onclickoutside@^6.12.2:
+react-onclickoutside@^6.13.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-6.13.0.tgz#e165ea4e5157f3da94f4376a3ab3e22a565f4ffc"
   integrity sha512-ty8So6tcUpIb+ZE+1HAhbLROvAIJYyJe/1vRrrcmW+jLsaM+/powDRqxzo6hSh9CuRZGSL1Q8mvcF5WRD93a0A==
