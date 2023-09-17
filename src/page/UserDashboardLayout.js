@@ -51,6 +51,8 @@ import SignupOTP from "../components/SignupComponent/SignupOTP/SignupOTP";
 import Investment from "./InvestmentPage/Investment";
 import MySubscription from "./MySubscriptionPage/MySubscription";
 import SubscriptionTransactions from "../components/MySubscriptionComponent/SubscriptionTransactions/SubscriptionTransactions";
+import { CreditCard } from "./PaymentPage/CreditCard/CreditCard";
+import CheckoutTransfer from "../components/CheckoutTransfer/CheckoutTransfer";
 
 
 
@@ -230,7 +232,11 @@ export const UserDashboardLayout = (props) => {
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
-          <Route path="payment-page" element={<PaymentPage />} />
+          <Route path="payment-page" element={<PaymentPage />} >
+            <Route index element={<CreditCard />} />
+              <Route path="credit-card" element={<CreditCard/>} />
+              <Route path="checkout-transfer" element={<CheckoutTransfer isInvest={true} />} />
+          </Route>
           <Route path="/my-subscriptions" element={<MySubscription />} />
           <Route
             path="my-subscriptions/subscription-transactions"

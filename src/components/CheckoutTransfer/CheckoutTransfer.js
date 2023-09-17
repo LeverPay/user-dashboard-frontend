@@ -2,10 +2,11 @@ import React from 'react'
 import './CheckoutTransfer.css'
 import { useState, useEffect } from 'react'
 import Helpimageupload from '../HelpImageUpload/helpimageupload'
+import Investment from '../../page/InvestmentPage/Investment'
 
 
 
-const CheckoutTransfer = ({amount, checkoutData, vat, txfee, prevStep, nextStep}) => {
+const CheckoutTransfer = ({amount, checkoutData, vat, txfee, prevStep, nextStep, isInvest}) => {
     const totalAmt = (amount * 1) + (vat*1) + (txfee*1)
     const [fileImg, setFileimg] = useState()
     const [copyAlert, setCopyAlert] = useState('')
@@ -26,7 +27,10 @@ const CheckoutTransfer = ({amount, checkoutData, vat, txfee, prevStep, nextStep}
     const [account_no, setAccount_no] = useState(account_Info[0].number)
 
     const [formData, setFormData] = useState({
-        narration: 'leverpay20752',
+        fullname: '',
+        email: '',
+        id:'',
+        narration: '',
         Bank_name: account_Info[0].name,
         fileImg: fileImg,
         imginfo: imgfile,
@@ -52,9 +56,18 @@ const CheckoutTransfer = ({amount, checkoutData, vat, txfee, prevStep, nextStep}
       }
     },[formData.Bank_name])
 
+    const investData = {
+        narration: formData.narration,
+        Bank_name: formData.Bank_name,
+        fileImg: formData.fileImg,
+        imginfo: formData.imgfile,
+    }
+ 
     useEffect(()=>{
-        checkoutData(formData)
-    },[formData])
+        if(isInvest === false){
+            checkoutData(investData)
+         }
+    },[investData, isInvest])
 
     function copyAcct() {
         navigator.clipboard.writeText(account_no);
@@ -74,7 +87,43 @@ const CheckoutTransfer = ({amount, checkoutData, vat, txfee, prevStep, nextStep}
     return (
         <div className='checkoutTransfer'>
             <section className='acct'>
-                <label htmlFor='narration'>
+                {
+                    isInvest &&  <form className='checkoutTransferForm'>
+                    <label>
+                        Full Name: 
+                    <input
+                    type='text'
+                    name='fullname'
+                    value={formData.fullname}
+                    onChange={handleChange}
+                    // placeholder='Levinv0378'
+                />
+                    </label>
+                    <label>
+                        Email: 
+                    <input
+                    type='text'
+                    name='email'
+                    value={formData.email}
+                    onChange={handleChange}
+                    // placeholder='Levinv0378'
+                />
+                    </label>
+                    <label>
+                        Leverpay User ID: 
+                    <input
+                    type='text'
+                    name='id'
+                    value={formData.id}
+                    onChange={handleChange}
+                    // placeholder='Levinv0378'
+                />
+                    </label>
+                </form>
+                }
+                {
+                    !isInvest && <div className='investForm'>
+                    <label htmlFor='narration'>
                     Narration Code
                     <span className='reminder'>
                     Please use this code as your narration when making the transfer
@@ -93,6 +142,9 @@ const CheckoutTransfer = ({amount, checkoutData, vat, txfee, prevStep, nextStep}
                     onChange={handleChange}
                     // placeholder='Levinv0378'
                 />
+                    </div>
+                }
+                
 
                 <main>
                     <div className='FundingNairaBank'>
@@ -119,7 +171,7 @@ const CheckoutTransfer = ({amount, checkoutData, vat, txfee, prevStep, nextStep}
                                 </select>
                             </div>
                             <div><h3>Account Number: </h3>  <h4>{account_no}</h4><img alt='copy' onClick={copyAcct} src='/images/acct_cpy.png' />{copyAlert}</div>
-                            <div><h3>Amount: </h3>  <h4>NGN {totalAmt}</h4></div>
+                            <div><h3>Amount: </h3>  <h4>NGN {amount? totalAmt: ''}</h4></div>
                             <div className="screenshot">
                             <Helpimageupload GetfileImg={GetImg} optional={false} />
                         </div>
@@ -156,7 +208,7 @@ const CheckoutTransfer = ({amount, checkoutData, vat, txfee, prevStep, nextStep}
                 </div>
                     <div className='payAmt'>
                         <h2>You have to pay : </h2>
-                        <h1><span>NGN</span> {totalAmt}</h1>
+                        <h1><span>NGN</span> {amount? totalAmt: ''}</h1>
                     </div>
                     <div className='bckOver' onClick={prevStep} >
                        <img alt='arr' src='/images/bckarr.png' /> Back to order overview

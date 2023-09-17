@@ -1,13 +1,14 @@
 .checkoutTransfer{
     /* border: 2px solid; */
-    padding: 10px 64px;
+    padding: 10px 32px;
     display: flex;
     gap: 5%;
 }
 .checkoutTransfer .acct{
-    width: 65%;
+    width: 60%;
+    /* border: 1px solid; */
 }
-.checkoutTransfer .acct label{
+.checkoutTransfer .investForm label{
     display: flex;
     flex-direction: column;
     border: none;
@@ -16,24 +17,26 @@
     font-family: Agandir;
     font-size: 20px;
     position: relative;
+    align-items: start;
+    width: 100%;
 }
-.checkoutTransfer .acct .reminder{
+.checkoutTransfer .investForm .reminder{
     font-size: 10px;
     color: #FF0000;
     position: absolute;
-    right: 10%;
+    right: 0%;
     bottom: 0;
 }
-.checkoutTransfer .acct .narratCopy{
+.checkoutTransfer .investForm .narratCopy{
     position: absolute;
-    right: 12%;
+    right: 2%;
     bottom: -125%;
 }
 .checkoutTransfer #cpyNalrt{
     bottom: -30%;
     font-size: 10px;
 }
-.checkoutTransfer .acct input{
+.checkoutTransfer .investForm input{
     width: 90%;
     border-radius: 10px;
     outline: none;
@@ -41,7 +44,7 @@
     padding: 5px 10px;
     margin-top: 5px;
 }
-.checkoutTransfer .acct input::placeholder{
+.checkoutTransfer .investForm input::placeholder{
     font-size: '10px'
 }
 .checkoutTransfer .acct main{
@@ -66,7 +69,7 @@
     background-color: #F3ECEC;
     border-radius: 40px;
     height: fit-content;
-    margin-top: 5rem;
+    margin-top: 3rem;
     width: 30%;
 }
 .checkoutTransfer .brkdwn .orderbrkdwn{
@@ -90,11 +93,13 @@
 .checkoutTransfer .brkdwn .orderbrkdwn ul li{
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     color: #0051FF;
     font-weight: 700;
 }
 .checkoutTransfer .brkdwn .orderbrkdwn ul li strong{
     color: black;
+    width: 40%;
 }
 .checkoutTransfer .brkdwn .payAmt{
     padding: 0px 20px;
@@ -123,6 +128,34 @@
     color: #0051FF;
     cursor: pointer;
 }
+
+
+/* cherckout */
+
+.checkoutTransferForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    font-weight: 500;
+    font-family: Agrandir;
+}
+.checkoutTransferForm label{
+    font-size: 16px;
+    width: 100%;
+    text-align: left;
+    border: none;
+}
+.checkoutTransferForm label input{
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #082E88;
+    padding: 5px;
+}
+
 @media (max-width: 620px){
     .checkoutTransfer{
         flex-direction: column-reverse;
@@ -142,16 +175,19 @@
     .checkoutTransfer .acct{
         width: 100%;
     }
-    .checkoutTransfer .acct input{
+    .checkoutTransfer .investForm{
         width: 100%;
     }
-    .checkoutTransfer .acct .narratCopy{
+    .checkoutTransfer .investForm input{
+        width: 100%;
+    }
+    .checkoutTransfer .investForm .narratCopy{
         right: 4%;
     }
     .checkoutTransfer .acct main{
         width: 100%;
     }
-    .checkoutTransfer .acct .reminder{
+    .checkoutTransfer .investForm .reminder{
         bottom: -250%;
     }
     .checkoutTransfer .ChckTrfSub{
