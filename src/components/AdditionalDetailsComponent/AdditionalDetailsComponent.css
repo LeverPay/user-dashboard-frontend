@@ -90,4 +90,9 @@ h4 {
     margin-top: -1rem !important;
     width: 100% !important;
   }
+
+  .submit-details-btn {
+    width: 100% !important;
+    margin-left: 0px !important;
+  }
 }
