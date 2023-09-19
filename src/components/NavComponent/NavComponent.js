@@ -87,7 +87,7 @@ const NavComponent = () => {
             />
           </span>
         </div>
-        <div className="container" >
+        <div className="container">
           <div />
           <div>
             <div defaultactivekey="/" className="flex-column my-tweak">
@@ -211,6 +211,14 @@ const NavComponent = () => {
                         <i className="icofont-question-square"></i>
                       </small>
                       help
+                    </Link>
+                  </li>
+                  <li onClick={closeMobileMenu}>
+                    <Link to="/help" className="bottom-link">
+                      <small>
+                        <i className="icofont-question-square"></i>
+                      </small>
+                      block my card
                     </Link>
                   </li>
                   <li onClick={closeMobileMenu}>

@@ -92,6 +92,12 @@
   background-color: #0c6904;
 }
 
+.subscription-error {
+  color: red !important;
+  /* padding: 0% !important; */
+  width: 100% !important;
+}
+
 @media screen and (max-width: 620px) {
   .subscription-container {
     display: flex !important;
