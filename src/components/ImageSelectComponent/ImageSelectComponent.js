@@ -63,7 +63,6 @@ const ImageSelectComponent = ({
             className="profile-img"
           />
         </div>
-
         <Button
           variant="primary"
           className="change-img"
@@ -80,6 +79,7 @@ const ImageSelectComponent = ({
           Remove <MdDeleteOutline />
         </Button>
       </div>
+
       <ToastContainer />
     </>
   );
