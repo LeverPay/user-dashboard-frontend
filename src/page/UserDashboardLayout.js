@@ -48,8 +48,13 @@ import FundingMore from "../components/AccountFunding/FundingMore";
 import FundingpaymentForm from "../components/AccountFunding/FundingpaymentForm";
 import UnpaidReceipt from "../components/UnpaidInvoice/UnpaidReceipt";
 import SignupOTP from "../components/SignupComponent/SignupOTP/SignupOTP";
+import Investment from "./InvestmentPage/Investment";
 import MySubscription from "./MySubscriptionPage/MySubscription";
 import SubscriptionTransactions from "../components/MySubscriptionComponent/SubscriptionTransactions/SubscriptionTransactions";
+import { CreditCard } from "./PaymentPage/CreditCard/CreditCard";
+import CheckoutTransfer from "../components/CheckoutTransfer/CheckoutTransfer";
+
+
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -193,6 +198,7 @@ export const UserDashboardLayout = (props) => {
             element={<TransactionInvoices />}
           />
           <Route exact path="transfer" element={<TransferPage />} />
+          <Route exact path="/investment" element={<Investment/>} />
           <Route path="invoices" element={<UnpaidInvoice />} />
           <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
           <Route path="/pending-subscription" element />
@@ -234,7 +240,11 @@ export const UserDashboardLayout = (props) => {
           <Route path="block-my-card" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
-          <Route path="payment-page" element={<PaymentPage />} />
+          <Route path="payment-page" element={<PaymentPage />} >
+            <Route index element={<CreditCard />} />
+              <Route path="credit-card" element={<CreditCard/>} />
+              <Route path="checkout-transfer" element={<CheckoutTransfer isInvest={true} />} />
+          </Route>
           <Route path="/my-subscriptions" element={<MySubscription />} />
           <Route
             path="my-subscriptions/subscription-transactions"

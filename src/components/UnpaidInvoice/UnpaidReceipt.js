@@ -10,12 +10,13 @@ const UnpaidReceipt = (props) => {
   console.log(state);
   return (
     <Invoice
-      name={data.name}
-      productType={data.type}
-      amt={data.amt}
-      status={data.status}
-      unpaid={true}
-      date={data.date}
+        name = {data.name}
+        productType={data.type}
+        amt = {data.amt}
+        status = {data.status}
+        unpaid = {true}
+        date = {data.date}
+        cancel = 'invoices'
     />
   );
 };
