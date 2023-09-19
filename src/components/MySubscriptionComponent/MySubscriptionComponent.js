@@ -3,6 +3,7 @@ import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import Logo from "../../assets/images/halfLogo_white.png";
 import "./MySubscriptionComponent.css";
 import { useState } from "react";
+import SubscriptionConfirmModal from "./SubscriptionConfirmModal/SubscriptionConfirmModal";
 
 const MySubscriptionComponent = () => {
   const inputRef = React.createRef();
@@ -22,12 +23,41 @@ const MySubscriptionComponent = () => {
     },
   ]);
   const [amount, setAmount] = useState("");
-  const [discount, setDiscount] = useState("");
-  const [vat, setVat] = useState("");
+  const [discount, setDiscount] = useState("1");
+  const [vat, setVat] = useState("7.5");
+  const [payNow, setPayNow] = useState({});
+  const [subscriptionConfirm, setSubscriptionConfirm] = useState(false);
+  const subscriptionText = "Select Subscription Type";
+  const [subscriptionError, setSubscriptionError] = useState("");
 
-  console.log(subscriptionType);
   const handlePayNow = () => {
-    const payNowData = {};
+    if (
+      subscriptionType === "" ||
+      subscriptionType === subscriptionText ||
+      amount === ""
+    ) {
+      setSubscriptionError("All fields are required!");
+      return;
+    } else if (subscriptionType !== subscriptionText) {
+      setSubscriptionError("");
+      const transaction_fee = 10.0;
+      const discountValue = Number(amount) * 0.99;
+      const totalAmount = Number(
+        discountValue * (1 + vat / 100) + transaction_fee
+      ).toFixed(2);
+
+      setPayNow({
+        vendor: "NETFLIX",
+        subscriptionType: subscriptionType,
+        amount: amount,
+        discount: discount,
+        vat: vat,
+        transactionFee: 10.0,
+        total: totalAmount,
+      });
+
+      setSubscriptionConfirm(true);
+    }
   };
   return (
     <Container md={4} sm={6} lg={12} className="subscription-container">
@@ -36,6 +66,7 @@ const MySubscriptionComponent = () => {
         <h1 className="subscription-text">MY SUBSCRIPTION</h1>
       </Col>
       <Row className="subscription-form">
+        {<p className="subscription-error">{subscriptionError}</p>}
         <Form>
           <Form.Group className="">
             <Form.Label
@@ -49,7 +80,7 @@ const MySubscriptionComponent = () => {
               className="select-subscription"
               onChange={(e) => setSubscriptionType(e.target.value)}
             >
-              <option>Select Subscription Type</option>
+              <option>{subscriptionText}</option>
               {subscription.map((sub) => {
                 return <option value={sub.subType}>{sub.subType}</option>;
               })}
@@ -69,7 +100,7 @@ const MySubscriptionComponent = () => {
                 name="amount"
                 ref={inputRef}
                 placeholder=""
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => setAmount(e.target.value.replace(/\D/g, ""))}
                 required
               />
             </Row>
@@ -79,7 +110,7 @@ const MySubscriptionComponent = () => {
                 htmlFor="subscription-amount"
                 className="subscription-label input-label"
               >
-                Discount(1%)
+                Discount(%)
               </Form.Label>
               <Form.Control
                 type="text"
@@ -90,6 +121,7 @@ const MySubscriptionComponent = () => {
                 placeholder=""
                 onChange={(e) => setDiscount(e.target.value)}
                 required
+                disabled
               />
             </Row>
             &nbsp;
@@ -98,7 +130,7 @@ const MySubscriptionComponent = () => {
                 htmlFor="subscription-amount"
                 className="subscription-label input-label"
               >
-                VAT(7.5%)
+                VAT(%)
               </Form.Label>
               <Form.Control
                 type="text"
@@ -109,6 +141,7 @@ const MySubscriptionComponent = () => {
                 placeholder=""
                 onChange={(e) => setVat(e.target.value)}
                 required
+                disabled
               />
             </Row>
           </Form.Group>
@@ -122,6 +155,11 @@ const MySubscriptionComponent = () => {
           </Col>
         </Form>
       </Row>
+      <SubscriptionConfirmModal
+        payNow={payNow}
+        subscriptionConfirm={subscriptionConfirm}
+        setSubscriptionConfirm={setSubscriptionConfirm}
+      />
     </Container>
   );
 };

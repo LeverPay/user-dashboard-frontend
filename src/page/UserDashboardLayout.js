@@ -102,7 +102,7 @@ export const UserDashboardLayout = (props) => {
           element={
             <>
               <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
-                <div className="col-md-2" >
+                <div className="col-md-2">
                   <NavComponent />
                 </div>
                 <div className="col-md-10">
@@ -188,10 +188,14 @@ export const UserDashboardLayout = (props) => {
           />
 
           <Route path="transactions" element={<Transactions />} />
-          <Route path="transactions-invoices" element={<TransactionInvoices />} />
+          <Route
+            path="transactions-invoices"
+            element={<TransactionInvoices />}
+          />
           <Route exact path="transfer" element={<TransferPage />} />
           <Route path="invoices" element={<UnpaidInvoice />} />
           <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
+          <Route path="/pending-subscription" element />
 
           <Route path="funding" element={<FundingPage />}>
             <Route index element={<FundingPayment />} />
@@ -219,11 +223,15 @@ export const UserDashboardLayout = (props) => {
                 userName={{
                   firstName: user.first_name,
                   lastName: user.last_name,
+                  email: user.email,
+                  phoneNumber: user.phone,
+                  gender: user.gender,
                 }}
               />
             }
           />
           <Route path="help" element={<HelpForm />} />
+          <Route path="block-my-card" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
           <Route path="payment-page" element={<PaymentPage />} />

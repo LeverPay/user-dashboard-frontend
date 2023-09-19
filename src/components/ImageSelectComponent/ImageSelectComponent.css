@@ -17,18 +17,17 @@
 .upload-control {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start !important;
   align-items: center;
   margin-top: 5%;
   margin-left: 1.5rem;
-  width: 80%;
-  /* border: 1px solid #000; */
+  width: 65% !important;
 }
 
 .change-img {
-  margin-left: -18.5rem !important;
+  margin-left: -20rem !important;
   width: 30% !important;
   font-family: AgrandirBold !important;
-  border: 1px solid #000;
 }
 
 .remove-img {
@@ -40,17 +39,16 @@
 
 @media screen and (max-width: 620px) {
   .upload-control {
-    width: 100%;
-    border: 1px solid #000;
-    margin: auto;
+    width: 100% !important;
+    margin-left: 0px !important;
   }
   .change-img {
-    width: 80% !important;
-    margin-left: 0px !important;
+    width: 100% !important;
+    margin-left: 0.9rem !important;
   }
 
   .remove-img {
-    width: 80% !important;
+    width: 100% !important;
     margin-right: 5%;
     border: 1px solid #4e3eaf;
   }
