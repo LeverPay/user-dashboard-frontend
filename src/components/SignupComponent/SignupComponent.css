@@ -30,6 +30,36 @@
   border: 1px solid #000;
 }
 
+.checkbox-container {
+  display: flex !important;
+  flex-direction: row !important;
+  /* border: 1px solid #000 !important; */
+  background-color: orange !important;
+  border-radius: 5px !important;
+  flex-direction: column !important;
+}
+
+.checkbox-condition {
+  margin-left: -0.6rem !important;
+}
+
+.condition-text {
+  /* border: 1px solid #000 !important; */
+  padding-left: 0.5% !important;
+  width: fit-content !important;
+  margin-left: 1rem !important;
+  margin-top: -1.5rem !important;
+}
+
+.text-inner {
+  /* border: 1px solid #000 !important; */
+  width: 100% !important;
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+  color: #fff !important;
+  text-align: center !important;
+}
+
 h3 {
   margin-left: -13px !important;
 }

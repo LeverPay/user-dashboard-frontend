@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Form, Button } from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
 import LeverpayLogo from "../../assets/images/LeverpayLogo.png";
 import "./SignupComponent.css";
 import PhoneNumberComponent from "../PhoneNumberComponent/PhoneNumberComponent";
 import { AiOutlineEye } from "react-icons/ai";
-import { signUp } from "../../services/apiService";
+import {
+  getCities,
+  getCountry,
+  getState,
+  signUp,
+} from "../../services/apiService";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -26,6 +32,16 @@ function SignupComponent() {
   const [stateID, setStateID] = useState("");
   const [city, setCity] = useState([]);
   const [cityID, setCityID] = useState("");
+  const [condition, setCondition] = useState(false);
+
+  const handleCondition = (data) => {
+    if (data === "checked") {
+      if (condition === false) {
+        console.log(data);
+      }
+    }
+    setCondition(!condition);
+  };
 
   const validatePassword = () => password === confirmPassword;
 
@@ -51,6 +67,11 @@ function SignupComponent() {
 
   const signupSubmit = (e) => {
     e.preventDefault();
+
+    if (condition === false) {
+      toast.error("Please, check condition to proceed");
+      return;
+    }
 
     if (
       typeof phoneNumber.phone === "undefined" ||
@@ -85,40 +106,15 @@ function SignupComponent() {
   };
 
   useEffect(() => {
-    axios
-      .get("https://leverpay-api.azurewebsites.net/api/v1/get-countries")
-      .then((response) => {
-        setCountry(response.data.data.map((countries) => countries));
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+    getCountry({ setCountry });
   }, []);
 
   useEffect(() => {
-    axios
-      .post("https://leverpay-api.azurewebsites.net/api/v1/get-states", {
-        country_id: countryID,
-      })
-      .then((getStates) => {
-        setState(getStates.data.data.map((states) => states));
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+    getState({ countryID, setState });
   }, [countryID]);
 
   useEffect(() => {
-    axios
-      .post("https://leverpay-api.azurewebsites.net/api/v1/get-cities", {
-        state_id: stateID,
-      })
-      .then((getCities) => {
-        setCity(getCities.data.data.map((cities) => cities));
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+    getCities({ stateID, setCity });
   }, [stateID]);
 
   return (
@@ -297,6 +293,21 @@ function SignupComponent() {
             {!validatePassword() && (
               <p className="error-message">Passwords do not match</p>
             )}
+          </Row>
+          <Row className="checkbox-container mt-3">
+            <Form.Check
+              aria-label="option 1"
+              className="checkbox-condition"
+              value={condition}
+              onChange={() => handleCondition("checked")}
+            />
+            <p className="condition-text">
+              <small className="text-inner">
+                We are NDPR Compliant. By proceeding with this application, you
+                agree to the storage and usage of your data by LSETF in
+                accordance with our privacy policy
+              </small>
+            </p>
           </Row>
           <Button variant="primary" type="submit" className="signup-btn">
             Create Account

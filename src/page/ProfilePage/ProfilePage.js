@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "../ProfilePage/ProfilePage.css";
@@ -12,12 +12,23 @@ import ImageSelectComponent from "../../components/ImageSelectComponent/ImageSel
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useLocalState } from "../../utils/useLocalStorage";
-import { updateUserProfile } from "../../services/apiService";
+import {
+  getCities,
+  getCountry,
+  getState,
+  updateUserProfile,
+} from "../../services/apiService";
 import PrimaryEmailComponent from "../../components/PrimaryEmailComponentModal/PrimaryEmailComponent";
 import PrimaryNumberComponent from "../../components/PrimaryNumberComponent/PrimaryNumberComponent";
+import { FormGroup } from "react-bootstrap";
 
 const ProfilePage = ({ userName }) => {
   const inputRef = React.createRef();
+
+  // let defaultNumber = userName.phoneNumber;
+  // let newDefault = defaultNumber.substring(1);
+
+  // console.log(newDefault);
 
   const [currentImage, setCurrentImage] = useState(false);
   const [originalImage, setOriginalImage] = useState("");
@@ -29,7 +40,14 @@ const ProfilePage = ({ userName }) => {
   const [otherEmailAddress, setOtherEmailAddress] = useState("");
   const [profession, setProfession] = useState("");
   const [address, setAddress] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [country, setCountry] = useState([]);
+  const [countryID, setCountryID] = useState("");
+  const [state, setState] = useState([]);
+  const [stateID, setStateID] = useState("");
+  const [city, setCity] = useState([]);
+  const [cityID, setCityID] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState(userName.phoneNumber);
+  const [otherPhoneNumber, setOtherPhoneNumber] = useState("");
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [primaryEmail, setPrimaryEmail] = useState(false);
   const [primaryNumber, setPrimaryNumber] = useState(false);
@@ -37,12 +55,6 @@ const ProfilePage = ({ userName }) => {
 
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [showNumberModal, setShowNumberModal] = useState(false);
-
-  // alert(jwt);
-  // console.log(originalImage);
-  // const handlePhone = (e) => {
-  //   setPhone(e.target.value.replace(/\D/g, ""));
-  // };
 
   const disabled = primaryNumber === true ? true : false;
 
@@ -73,12 +85,19 @@ const ProfilePage = ({ userName }) => {
     e.preventDefault();
 
     //get data from state
-    const phone = phoneNumber.phone;
+    // const phone = phoneNumber.phone;
+    const otherPhone = otherPhoneNumber.phone;
 
     const userDataUpdate = {
-      first_name: first_name,
-      last_name: last_name,
-      phone: phone,
+      other_name: otherName,
+      other_email: otherEmailAddress,
+      other_phone: otherPhone,
+      primary_email: userName.email,
+      primary_phone: userName.phone,
+      gender: userName.gender,
+      country_id: countryID,
+      state_id: stateID,
+      city_id: cityID,
       passport: originalImage.name,
     };
 
@@ -87,6 +106,18 @@ const ProfilePage = ({ userName }) => {
     //-------------- API import --------------- //
     updateUserProfile(jwt, userDataUpdate);
   };
+
+  useEffect(() => {
+    getCountry({ setCountry });
+  }, []);
+
+  useEffect(() => {
+    getState({ countryID, setState });
+  }, [countryID]);
+
+  useEffect(() => {
+    getCities({ stateID, setCity });
+  }, [stateID]);
   return (
     <div col-12 className="outer">
       <Tabs>
@@ -142,7 +173,6 @@ const ProfilePage = ({ userName }) => {
                     ref={inputRef}
                     onChange={(e) => setOthername(e.target.value)}
                     className="text-area"
-                    readOnly
                   />
                 </Form.Group>
               </div>
@@ -153,7 +183,7 @@ const ProfilePage = ({ userName }) => {
                 type="text"
                 name="gender"
                 value=""
-                placeholder=""
+                placeholder={userName.gender}
                 className="text-area gender"
                 readOnly
               />
@@ -165,12 +195,12 @@ const ProfilePage = ({ userName }) => {
                   </Form.Label>
                   <Form.Control
                     type="email"
-                    placeholder=""
+                    placeholder={userName.email}
                     className="text-area email-address"
                     value={otherEmailAddress}
                     onChange={(e) => setOtherEmailAddress(e.target.value)}
                     // disabled={primaryEmail === true ? true : false}
-                    required
+                    readOnly
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="">
@@ -185,7 +215,6 @@ const ProfilePage = ({ userName }) => {
                     value={emailAddress}
                     onChange={(e) => setEmailAddress(e.target.value)}
                     disabled={primaryEmail === true ? true : false}
-                    required
                   />
                   &nbsp;
                   <div className="primary-email">
@@ -203,7 +232,23 @@ const ProfilePage = ({ userName }) => {
               </div>
               {/* &nbsp; */}
               <div className="country-state-city">
-                <Form.Group className="">
+                <Form.Group>
+                  <Form.Label className="labels country-label">
+                    Country
+                  </Form.Label>
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={(e) => setCountryID(e.target.value)}
+                    className="text-area select-country"
+                  >
+                    <option>Select your country</option>
+                    {country.map((c) => {
+                      return <option value={c.id}>{c.country_name}</option>;
+                    })}
+                  </Form.Select>
+                </Form.Group>
+
+                {/* <Form.Group className="">
                   <Form.Label className="labels">Country</Form.Label>
                   <ReactFlagsSelect
                     className="text-area select-country"
@@ -211,34 +256,40 @@ const ProfilePage = ({ userName }) => {
                     onSelect={handleCountry}
                     ref={inputRef}
                     value={selected}
+                    // countries={CountryFlagData.map((c) => c.code)}
                     countries={CountryFlagData.map((c) => c.code)}
                     // searchable
                     optionsSize={15}
                     // selectButtonClassName="menu-flags-button"
                   />
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group className="">
-                  <Form.Label htmlFor="state" className="labels">
+                  <Form.Label htmlFor="state" className="labels state-label">
                     State
                   </Form.Label>
                   <Form.Select
                     aria-label="Default select example"
-                    className="select-state"
+                    onChange={(e) => setStateID(e.target.value)}
+                    className="text-area select-state"
                   >
-                    <option value="1"></option>
-                    <option value="2"></option>
+                    {/* <option>Select your state</option> */}
+                    {state.map((s) => {
+                      return <option value={s.id}>{s.state_name}</option>;
+                    })}
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="">
-                  <Form.Label htmlFor="city" className="labels">
+                  <Form.Label htmlFor="city" className="labels city-label">
                     City
                   </Form.Label>
                   <Form.Select
                     aria-label="Default select example"
-                    className="select-city"
+                    onChange={(e) => setCityID(e.target.value)}
+                    className="text-area select-city"
                   >
-                    <option value="1"></option>
-                    <option value="2"></option>
+                    {city.map((c) => {
+                      return <option value={c.id}>{c.city_name}</option>;
+                    })}
                   </Form.Select>
                 </Form.Group>
               </div>
@@ -255,7 +306,18 @@ const ProfilePage = ({ userName }) => {
                 />
               </Form.Group>
               <div className="phone-number-container">
-                <Form.Group className="mb-3 other-number">
+                <Form.Group className="mb-3 other-number" controlId="">
+                  <Form.Label className="labels">Phone Number</Form.Label>
+                  <Form.Control
+                    type="text"
+                    ref={inputRef}
+                    // onChange={(e) => setAddress(e.target.value)}
+                    placeholder={userName.phoneNumber}
+                    className="text-area default-number"
+                    readOnly
+                  />
+                </Form.Group>
+                {/* <Form.Group className="mb-3 other-number">
                   <Form.Label className="labels">Phone Number</Form.Label>
                   <PhoneNumberComponent
                     name="phone_number"
@@ -264,13 +326,13 @@ const ProfilePage = ({ userName }) => {
                     // disabled={disabled}
                     required
                   />
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group className="mb-3 phone-number">
                   <Form.Label className="labels">Other Phone Number</Form.Label>
                   <PhoneNumberComponent
                     name="phone_number"
-                    phoneNumber={phoneNumber}
-                    setPhoneNumber={setPhoneNumber}
+                    phoneNumber={otherPhoneNumber}
+                    setPhoneNumber={setOtherPhoneNumber}
                     disabled={disabled}
                     required
                   />
@@ -326,5 +388,4 @@ const ProfilePage = ({ userName }) => {
     </div>
   );
 };
-
 export default ProfilePage;
