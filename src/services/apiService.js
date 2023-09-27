@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import axios from "axios";
 // import ResetPassword from "../components/ResetPasswordComponent/ResetPassword";
 
 export const signIn = async (userData, jwt, setJwt) => {
@@ -64,6 +65,7 @@ export const signUp = async (userSignUp) => {
       }
     })
     .catch((error) => {
+      console.log("Error", error, "Sign Up");
       return;
     });
 
@@ -133,12 +135,11 @@ export const getUserProfile = async (jwt, setJwt, setUser) => {
       console.log("user found successfully");
     })
     .catch((err) => {
-      console.log(`${err}`);
+      // console.log(`${err}`);
     });
 
   return await userProfile;
 };
-
 
 export const updateUserProfile = async (jwt, userDataUpdate) => {
   const updateRes = await fetch(
@@ -231,4 +232,41 @@ export const logoutUser = async (jwt) => {
     });
 
   return await logOut;
+};
+
+export const getCountry = ({ setCountry }) => {
+  axios
+    .get("https://leverpay-api.azurewebsites.net/api/v1/get-countries")
+    .then((response) => {
+      setCountry(response.data.data.map((countries) => countries));
+    })
+    .catch((err) => {
+      toast.error(err.message);
+    });
+};
+
+export const getState = ({ countryID, setState }) => {
+  axios
+    .post("https://leverpay-api.azurewebsites.net/api/v1/get-states", {
+      country_id: countryID,
+    })
+    .then((getStates) => {
+      setState(getStates.data.data.map((states) => states));
+    })
+    .catch((err) => {
+      toast.error(err.message);
+    });
+};
+
+export const getCities = ({ stateID, setCity }) => {
+  axios
+    .post("https://leverpay-api.azurewebsites.net/api/v1/get-cities", {
+      state_id: stateID,
+    })
+    .then((getCities) => {
+      setCity(getCities.data.data.map((cities) => cities));
+    })
+    .catch((err) => {
+      toast.error(err.message);
+    });
 };

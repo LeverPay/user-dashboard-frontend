@@ -1,43 +1,41 @@
-.Unpaid{
-    color: white;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-block: 30px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin: 2rem;
-    margin-top: 8rem;
-    border-radius: 10px;
-    background-color: #1c1a2e;
+.Unpaid {
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-block: 30px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin: 2rem;
+  margin-top: 8rem;
+  border-radius: 10px;
+  background-color: #1c1a2e;
 }
-.Unpaid .table{
-    color: white;
-    font-family: AgrandirRegular;
+.Unpaid .table {
+  color: white;
+  font-family: AgrandirRegular;
 }
-.Unpaid h1{
-    font-family: AgrandirBold;
-    margin-bottom: 2rem;
+.Unpaid h1 {
+  font-family: AgrandirBold;
+  margin-bottom: 2rem;
+}
+.Unpaid thead td {
+  width: calc(100% / 5);
+  font-weight: 900;
+}
 
-}
-.Unpaid thead td{
-    width: calc(100%/5);
-    font-weight: 900;
-}
-
-@media screen and (max-width: 620px){
-    .Unpaid{
-        width: 130vw;
-        overflow-x: scroll;
-        margin-left: 0rem;
-        margin-top: 2rem;
-    }
-    .Unpaid .table{
-        overflow-x: scroll;
-        width: 120vw;
-
-    }
-    .Unpaid_con{
-        width: 100vw;
-        overflow-x: scroll;
-    }
+@media screen and (max-width: 620px) {
+  .Unpaid {
+    width: 130vw;
+    overflow-x: scroll;
+    margin-left: 0rem;
+    margin-top: 2rem;
+  }
+  .Unpaid .table {
+    overflow-x: scroll;
+    width: 120vw;
+  }
+  .Unpaid_con {
+    width: 100vw;
+    overflow-x: scroll;
+  }
 }
