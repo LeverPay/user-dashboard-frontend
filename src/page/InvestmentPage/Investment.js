@@ -11,6 +11,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const Investment = () => {
     const navigate = useNavigate()
+    const [info, setInfo] = useState('')
+    const [isChecked, setIsChecked] = useState(false)
     const [step, setStep] = useState(1)
     const [otherData, setOtherData] = useState({})
     const [DOB, setDOB] = useState(new Date());
@@ -24,13 +26,13 @@ const Investment = () => {
         phone: '',
         country: 'AF, Afghanistan',
         state: '',
+        password: '',
+        Cpassword: '',
         amount: '',
         vat: '375',
         txfee: '69.9'
     })
 
-
-    console.log(formData.country)
 
     function NextStep(){
         setStep(step + 1)
@@ -52,13 +54,20 @@ const Investment = () => {
 
     const countryOpts = Country.getAllCountries()
     const stateOfCountry = State.getStatesOfCountry(formData.country.slice(0,2))
-    console.log(formData.country.slice(0,2))
 
     function handleForm(e){
         e.preventDefault()
-        NextStep()
+        if(formData.password === formData.Cpassword){
+            setInfo('')
+            NextStep()
+        }
+        else{
+            setInfo('Password does not match')
+        }
     }
-
+    function handleCheck(){
+        setIsChecked(!isChecked)
+    }
     useEffect(()=>{
         if(step === 3){
             console.log('start')
@@ -151,7 +160,7 @@ const Investment = () => {
                         <select value={formData.country} name='country'onChange={handleChange} required={true} >
                             {
                                 countryOpts && countryOpts.map(item =>{
-                                    return <option value={`${item.isoCode}, ${item.name}`} key={item.isoCode} >{item.isoCode}, {item.name}</option>
+                                    return <option value={`${item.isoCode}, ${item.name}`} key={item.isoCode} className='invest-country' >{item.name}</option>
                                 })
                             }
                        </select>
@@ -161,12 +170,32 @@ const Investment = () => {
                         <select value={formData.state} name='state'onChange={handleChange} required={true} >
                             {
                                 stateOfCountry && stateOfCountry.map(item =>{
-                                    return <option value={`${item.isoCode}, ${item.name}`} key={item.isoCode} >{item.isoCode}, {item.name}</option>
+                                    return <option value={`${item.name}`} key={item.isoCode} >{item.name}</option>
                                 })
                             }
                        </select>
                     </label>
-                  
+                    <label>
+                        Password:
+                       <input
+                        type='password'
+                        required={true}
+                        name='password'
+                        onChange={handleChange}
+                        value={formData.password}
+                       />
+                    </label>
+                    <label>
+                        Confirm Password:
+                       <input
+                        type='password'
+                        required={true}
+                        name='Cpassword'
+                        onChange={handleChange}
+                        value={formData.Cpassword}
+                       />
+                    </label>
+                     <small>{info}</small>
                     <br />
                     <br />
                     <small id='investAmts'>Please set the amount in multiple of #1,000 or $1</small>
@@ -183,6 +212,17 @@ const Investment = () => {
                             
                         />
                     </label>
+                    <div className='ndpr'>
+                        <input
+                            type='checkbox'
+                            name='checkmark'
+                            checked={isChecked}
+                            onChange={handleCheck}
+                        />
+                        <small>
+                            We are NDPR compliant. By proceeding with this application, you agreeto the storage and usage of your data by LSETF in accordance with our privacy policy. 
+                        </small>
+                    </div>
                     <div className='btns'>
                         <button type='submit'>Proceed to Payment</button>
                         <button>Cancel</button>

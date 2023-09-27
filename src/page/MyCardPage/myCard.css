@@ -52,3 +52,14 @@ button {
   border-radius: 10px;
   width: 90%;
 }
+.mycards-limit-info{
+  /* border: 1px solid; */
+  color: gray;
+  margin-top: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #0E093F;
+}
+.mycards-limit-info h1{
+  font-size: 14px !important;
+}

@@ -8,6 +8,11 @@
   flex-flow: row nowrap;
   margin-left: 45px;
 }
+.grah-con{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
 
 .dashboardCard {
   align-items: center;

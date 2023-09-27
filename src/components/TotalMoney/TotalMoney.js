@@ -7,6 +7,8 @@ function TotalMoney(props) {
   const { bg, transfer, totaltype, amt } = props;
   const [amtVisible, setAmtVisible] = useState(false);
 
+  const dollar ='$' + Number(amt/900).toFixed(2)
+
   function viewamt() {
     setAmtVisible(!amtVisible);
   }
@@ -17,13 +19,13 @@ function TotalMoney(props) {
       style={{ backgroundColor: bg }}
       onClick={viewamt}
     >
-      <span>
+      <span className="bal-img-con">
         <img alt="" src="./images/bal1.png" />
       </span>
       <main>
-        <small>{totaltype}</small>
-        {transfer}
-        <h4> {amtVisible ? amt : "XXXX"} </h4>
+        <p>{totaltype}</p>
+        <strong> {amtVisible ? `N${amt}` : "XXXX"} </strong>
+        <small>{amtVisible ? dollar : 'xxx'}</small> 
       </main>
     </div>
   );
