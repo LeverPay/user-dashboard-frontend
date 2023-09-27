@@ -6,6 +6,9 @@
   text-align: left;
   color: #fff;
 }
+.nav-con{
+  width: 20% !important;
+}
 .dashboard{
   margin-top: 8.5rem;
   margin-bottom: 2rem;
@@ -22,9 +25,14 @@
     /* border: 1px solid white; */
     display: flex;
     gap: 2rem;
+    min-width: 100vw;
     overflow: scroll;
     padding-right: 20px;
     margin-bottom: 2rem;
+  }
+  
+.spending div{
+  min-width: calc(100%/2);
   }
   .card-header {
     margin-top: 80px;
@@ -34,6 +42,15 @@
   }
   .dashboard-transaction-table-container{
     margin-left: 4.5rem;
+  }
+  .mchnt-con{
+    display: none;
+  }
+  .statement{
+    border: 1px solid;
+    width: 100% !important;
+    padding: 0 !important;
+    margin-bottom: 6rem !important;
   }
 }
 .card-holder {
@@ -58,4 +75,12 @@
   .statement{
     margin-left: -1rem;
   }
+}
+.spending{
+  display: flex;
+  width: 95%;
+  gap: 10px;
+}
+.spending div{
+  width: calc(95%/3);
 }

@@ -18,6 +18,7 @@ export const signIn = async (userData, jwt, setJwt) => {
           toast.success(`${res.message}`);
           // console.log(userData);
           setJwt(`${res.data.token}`);
+          console.log(res.data.token)
           //transition to homepage
           setTimeout(() => {
             window.location.href = "/";
