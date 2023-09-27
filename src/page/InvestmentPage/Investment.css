@@ -75,17 +75,32 @@
   border: 1px solid gray;
   height: fit-content;
   border-radius: 5px;
+  min-width: 70%;
   font-family: "Times New Roman", Times, serif;
 }
 .datePicker{
     border: none;
-    width: fit-content;
+    width: 100%;
+    border: 1px solid;
 }
 .datePicker input {
   border: none;
   width: fit-content;
   padding: 0;
   outline: none;
+}
+.ndpr{
+  display: flex;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+.ndpr input{
+  margin: 5px;
+}
+.ndpr small{
+  color: black !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
 }
 .investment form small {
   width: fit-content;
@@ -181,6 +196,8 @@
   }
   #dob span{
     margin-top: -2rem;
+  min-width: 100%;
+
   }
   .investment #investAmts {
     margin-top: -3rem;
