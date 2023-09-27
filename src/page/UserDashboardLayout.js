@@ -107,7 +107,7 @@ export const UserDashboardLayout = (props) => {
           element={
             <>
               <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
-                <div className="col-md-2" >
+                <div className="nav-con" >
                   <NavComponent />
                 </div>
                 <div className="col-md-10">
@@ -139,21 +139,21 @@ export const UserDashboardLayout = (props) => {
                       <TotalMoney
                         bg="#0E093F"
                         totaltype="Total Balance"
-                        amt="$3000"
+                        amt="3000"
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#F6A61F"
                         totaltype="Total Spending"
-                        amt="$2000"
+                        amt="2000"
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#201E34"
                         totaltype=" Total Saved"
-                        amt="$546"
+                        amt="546"
                       />
                     </div>
                   </div>
@@ -175,7 +175,7 @@ export const UserDashboardLayout = (props) => {
                       lastName={user.last_name}
                     />
                   </div>
-                  <div
+                  {/* <div
                     className="col-md-10 mx-auto"
                     style={{ transform: "translateY(-3.5rem)" }}
                   >
@@ -183,8 +183,8 @@ export const UserDashboardLayout = (props) => {
                       firstName={user.first_name}
                       lastName={user.last_name}
                     />
-                  </div>
-                  <div className="col-md-12">
+                  </div> */}
+                  <div className="mchnt-con col-md-12">
                     <MerchantComponent />
                   </div>
                 </div>

@@ -12,7 +12,7 @@ function MyCardsSilver({ firstName, lastName }) {
       modalcardtype={CardInfo[4].id}
       modalcardname={CardInfo[4].name}
       modalcardno={CardInfo[4].no}
-      modalcardcvv={CardInfo[4].cvv}
+      modalcardcvv={CardInfo[4].cvv} 
     />
   );
 }

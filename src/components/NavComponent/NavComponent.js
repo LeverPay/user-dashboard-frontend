@@ -77,7 +77,7 @@ const NavComponent = () => {
       >
         <div className="open-close-icons flexy" style={{ display: "flex" }}>
           <div className="col-10">&nbsp;</div>
-          <span onClick={closeSidebar}>
+          <span onClick={closeSidebar} id="close-menu">
             {/* <i class="icofont-close-circled"></i> */}
             <img
               src={Close}
@@ -105,7 +105,7 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      <i className="icofont-home"></i>
+                      <img alt="" src="/images/Dashboard.png"/>
                       Dashboard
                     </NavLink>
                   </li>
@@ -116,7 +116,7 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      <i className="icofont-exchange"></i>
+                     <img alt="" src="/images/Transactions.png"/>
                       Transactions
                     </NavLink>
                   </li>
@@ -127,7 +127,7 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      <i className="icofont-exchange"></i>
+                      <img alt="" src="/images/transfer.png"/>
                       Transfer
                     </NavLink>
                   </li>
@@ -142,7 +142,7 @@ const NavComponent = () => {
                       activeclassname="active"
                       id="unpaid"
                     >
-                      <i className="icofont-notepad"></i>
+                      <img alt="" src="/images/invoices.png"/>
                       Unpaid
                     </NavLink>
                   </li>
@@ -153,7 +153,7 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      <i className="icofont-wallet"></i>
+                      <img alt="" src="/images/My Wallets.png"/>
                       My Cards
                     </NavLink>
                   </li>
@@ -164,18 +164,18 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      <i className="icofont-wallet"></i>
+                      <img alt="" src="/images/subscription.png"/>
                       Subscriptions
                     </NavLink>
                   </li>
-                  <li>
+                  <li> 
                     <NavLink
-                      to="/funding/stablecoins-deposit"
+                      to="/funding/naira-deposit"
                       className="text-link"
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      <i className="icofont-wallet"></i>
+                      <img alt="" src="/images/fund.png"/>
                       Funding
                     </NavLink>
                   </li>
@@ -186,7 +186,7 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      <i className="icofont-wallet"></i>
+                      <img alt="" src="/images/invest.png"/>
                       Investment
                     </NavLink>
                   </li>
@@ -197,7 +197,7 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      <i className="icofont-ui-settings"></i>
+                      <img alt="" src="/images/Settings.png"/>
                       Settings
                     </NavLink>
                   </li>
@@ -208,7 +208,7 @@ const NavComponent = () => {
                       onClick={closeMobileMenu}
                       activeclassname="active"
                     >
-                      <i className="icofont-ui-settings"></i>
+                      <img alt="" src="/images/checkout.png"/>
                       Checkout
                     </NavLink>
                   </li>
@@ -219,17 +219,17 @@ const NavComponent = () => {
                   <li onClick={closeMobileMenu}>
                     <Link to="/help" className="bottom-link">
                       <small>
-                        <i className="icofont-question-square"></i>
+                      <img alt="" src="/images/Help.png"/>
                       </small>
-                      help
+                      Help
                     </Link>
                   </li>
                   <li onClick={closeMobileMenu}>
                     <Link onClick={handleLogout} to="#" className="bottom-link">
                       <small>
-                        <i className="icofont-sign-out"></i>
+                      <img alt="" src="/images/Logout.png"/>
                       </small>
-                      logout
+                      Logout
                     </Link>
                   </li>
                 </ul>
@@ -248,14 +248,14 @@ const NavComponent = () => {
           className="nav-sm"
         >
           {/* <i class="icofont-navigation-menu"></i> */}
-          <img src={LeverpayLogo} alt="" className="TopNav-logo-sm" />
           <img
             src={Open}
             alt=""
             id="menu"
-            style={{ width: "10%" }}
+            style={{ width: "20%" }}
             className="open"
           />
+          <img src={LeverpayLogo} alt="" className="TopNav-logo-sm" />
         </span>
       </div>
     </>
