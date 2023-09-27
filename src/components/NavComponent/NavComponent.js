@@ -142,7 +142,7 @@ const NavComponent = () => {
                       activeclassname="active"
                       id="unpaid"
                     >
-                      <img alt="" src="/images/invoices.png"/>
+                      <img alt="" src="/images/Invoices.png"/>
                       Unpaid
                     </NavLink>
                   </li>
@@ -217,21 +217,21 @@ const NavComponent = () => {
               <div className="bottom-options">
                 <ul className="list-unstyled">
                   <li onClick={closeMobileMenu}>
-                    <Link to="/help" className="bottom-link">
+                    <NavLink to="/help" className="bottom-link" activeclassname="active">
                       <small>
                       <img alt="" src="/images/Help.png"/>
                       </small>
                       Help
-                    </Link>
+                    </NavLink>
                   </li>
-                  <li onClick={closeMobileMenu}>
+                  {/* <li onClick={closeMobileMenu}>
                     <Link to="/help" className="bottom-link">
                       <small>
-                        <i className="icofont-question-square"></i>
+                      <img alt="" src="/images/Help.png"/>
                       </small>
-                      block my card
+                      Block Card
                     </Link>
-                  </li>
+                  </li> */}
                   <li onClick={closeMobileMenu}>
                     <Link onClick={handleLogout} to="#" className="bottom-link">
                       <small>
