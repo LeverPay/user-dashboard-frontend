@@ -205,6 +205,11 @@
     margin-bottom: -10px;
   }
   .bottom-options{
-    margin-left: -2rem;
+    margin-left: -1rem !important;
   }
+}
+.bottom-options ul{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
