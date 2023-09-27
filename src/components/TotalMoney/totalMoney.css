@@ -29,7 +29,7 @@
   }
   .card-balance main p{
     opacity: .8;
-    font-size: 12px !important;
+    font-size: 10px !important;
   }
 }
 @media (max-width: 1024px) and (min-width: 621px) {
