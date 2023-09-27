@@ -2,8 +2,13 @@
   height: fit-content;
   background: #10133f;
   border-radius: 20px;
-  margin-left: 33px;
   padding: 30px 15px 70px 15px;
+}
+.merchant_COn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 33px;
 }
 @media screen and (max-width: 620px) {
   .merchant-container {
@@ -12,13 +17,17 @@
 }
 .merchant-header {
   display: flex;
+  align-items: center;
   margin-top: 40px;
 }
 .merchant-header h3 {
   font-family: AgrandirBold;
   flex-grow: 1;
   color: #fff;
-  margin-left: 40px;
+  font-size: 20px;
+}
+.merchant_search{
+  margin-top: -10px;
 }
 .merchants {
   margin-top: 20px;
@@ -32,9 +41,6 @@
   color: #fff !important;
   font-family: AgrandirBold;
   text-decoration: none;
-}
-.up {
-  margin-top: 10px;
 }
 
 @media (max-width:1024px) and (min-width: 621px){
