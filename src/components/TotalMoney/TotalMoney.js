@@ -5,7 +5,8 @@ import "./totalMoney.css";
 
 function TotalMoney(props) {
   console.log(props);
-  const { bg, transfer, totaltype, amt } = props;
+  const { bg, transfer, totaltype, amt, exAmt, naira_code, dollar_code } =
+    props;
   const [amtVisible, setAmtVisible] = useState(false);
   const [rate, setRate] = useState()
   const [jwt, setJwt] = useLocalState('', 'jwt')
@@ -25,6 +26,8 @@ function TotalMoney(props) {
   },[])
 
   const dollar = rate ? '$' + (amt/rate.rate).toFixed(2) : ''
+
+  // console.log(amt);
 
   function viewamt() {
     setAmtVisible(!amtVisible);
