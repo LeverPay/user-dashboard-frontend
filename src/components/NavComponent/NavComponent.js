@@ -143,8 +143,8 @@ const NavComponent = () => {
                       activeclassname="active"
                       id="unpaid"
                     >
-                      <i className="icofont-notepad"></i>
-                      Unpaid Subscriptions
+                      <img alt="" src="/images/Invoices.png"/>
+                      Invoices 
                     </NavLink>
                   </li>
                   <li>
