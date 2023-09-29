@@ -7,16 +7,18 @@ function Helpimageupload(props) {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     if (selectedImage) {
       setImageUrl(URL.createObjectURL(selectedImage));
+      setImage(selectedImage)
     }
   }, [selectedImage]);
-
-  useEffect(()=>{
-    props.GetfileImg(imageUrl, selectedImage)
-})
+  function handleImg(e){
+    setSelectedImage(e.target.files[0])
+    props.GetfileImg(e.target.files[0])
+  }
 
   
     return (
@@ -30,7 +32,7 @@ function Helpimageupload(props) {
           name="select-image"
           multiple
           style={{ display: "none" }}
-          onChange={(e) => setSelectedImage(e.target.files[0])}
+          onChange={handleImg}
         />
         </label>
         {imageUrl && selectedImage && (

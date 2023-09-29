@@ -7,15 +7,16 @@ const UnpaidReceipt = (props) => {
   const location = useLocation();
   const { state } = location;
   const data = state;
-  console.log(state);
+  console.log(state); 
   return (
     <Invoice
-      name={data.name}
-      productType={data.type}
-      amt={data.amt}
-      status={data.status}
-      unpaid={true}
-      date={data.date}
+        name = {data.name}
+        productType={data.type}
+        amt = {data.amt}
+        status = {data.status}
+        unpaid = {true}
+        date = {data.date}
+        cancel = 'invoices'
     />
   );
 };
