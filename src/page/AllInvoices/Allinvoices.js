@@ -1,42 +1,41 @@
 import React from 'react'
+import './allInvoice.css'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import {Link } from 'react-router-dom'
 import { useLocalState } from '../../utils/useLocalStorage'
-import { Link } from 'react-router-dom'
-// import table from "react-bootstrap/Table";
-import './UnpaidInvoicePage.css'
 
-function UnpaidInvoicePage() {
-
-  const [data, setData] = useState({})
-  const [isdata, setIsdata] = useState(false)
+const Allinvoices = (props) => {
   const [jwt, setJwt] = useLocalState('', 'jwt')
+  const [allInvoices, setAllInvoices] = useState({})
+  const [isInvoice, setIsInvoice] = useState(false)
 
-  useEffect(()=>{
-    axios.get('', {
-      headers: {
-        Authorization : `Bearer ${jwt}`
-      }
-    })
-    .then(res=>{
-      console.log(res.data)
-      setData(res.data.data)
-      if(res.data.data.length > 0){
-        setIsdata(true)
-      }else setIsdata(false)
-    })
-    .catch(err=>{
-      console.log(err)
-      setIsdata(false)
-    })
-  })
+    useEffect(()=>{
+        axios.get('https://leverpay-api.azurewebsites.net/api/v1/user/get-invoices', {
+            headers : {
+                Authorization : `Bearer ${jwt}`
+            }
+        })
+        .then(res=>{
+            console.log(res.data.data)
+            setAllInvoices(res.data.data)
+            if(res.data.data.length > 0){
+            setIsInvoice(true)
+            }else setIsInvoice(false)
+        })
+        .catch(err=>{
+            console.log(err)
+            setIsInvoice(false)
+        })
+    }, [])
 
- 
+
   return (
-    <div className='Unpaid_con'>
+    <div className='allInvoices'>
+         <div className='Unpaid_con'>
     <div className='Unpaid'>
        <h1>
-            Unpaid Invoices
+            All Invoices
         </h1>
         <table className='table'>
             <thead>
@@ -52,7 +51,7 @@ function UnpaidInvoicePage() {
         <table className="Unpaiddata">
         <tbody>
             {
-                isdata && data.map(item=>{
+                isInvoice && allInvoices.map(item=>{
                     return  <tr key={item.date} className="table-data">
                     <td>{item.date}</td>
                     <td>{item.name}</td>
@@ -60,7 +59,7 @@ function UnpaidInvoicePage() {
                     <td>{item.status}</td>
                     <td>
                       <Link
-                        to="invoices/unpaid-invoice"
+                        to="invoices/paid-invoice"
                         state={item.uuid}
                         style={{ color: "green" }}
                       >
@@ -72,15 +71,17 @@ function UnpaidInvoicePage() {
                 })
             }
             {
-                !isdata && <tr style={{textAlign: 'center'}}>
-                   <td>You do not have any Pending Invoice.</td> 
+                !isInvoice && <tr style={{textAlign: 'center'}}>
+                   <td>You do not have any Invoice.</td> 
                 </tr>
             }
         </tbody>
       </table>
     </div>
     </div>
+   
+    </div>
   )
 }
 
-export default UnpaidInvoicePage
+export default Allinvoices

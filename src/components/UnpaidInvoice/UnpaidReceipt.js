@@ -7,7 +7,7 @@ const UnpaidReceipt = (props) => {
   const location = useLocation();
   const { state } = location;
   const data = state;
-  console.log(state);
+  console.log(state); 
   return (
     <Invoice
         name = {data.name}

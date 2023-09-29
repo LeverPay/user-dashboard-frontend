@@ -136,6 +136,12 @@ hr {
 .accept_decline button:nth-child(2){
   background-color: green;
 }
+.pd-invoice-nt{
+  margin-top: 8rem;
+  text-align: center;
+  font-family: 'Agrandir-bold';
+  color: white;
+}
 @media print {
 
   #invoice {
