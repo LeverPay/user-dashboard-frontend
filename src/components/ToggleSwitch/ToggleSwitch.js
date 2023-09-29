@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 
 const ToggleSwitch = ({ isToggled, onToggle }) => {
   return (
-    <Form>
+    <div>
       <Form.Check
         type="switch"
         id="custom-switch"
@@ -11,7 +11,7 @@ const ToggleSwitch = ({ isToggled, onToggle }) => {
         onChange={onToggle}
         // label="Check this switch"
       />
-    </Form>
+    </div>
   );
 };
 
