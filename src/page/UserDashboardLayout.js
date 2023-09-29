@@ -2,13 +2,9 @@ import React from "react";
 import NavComponent from "../components/NavComponent/NavComponent";
 import TopNav from "../components/TopNav/TopNav";
 import StatementComponent from "../components/StatementComponent/StatementComponent";
-import TransactionTable from "./Transactions/TransactionTable/TransactionTable";
-import { recentTransactions } from "../TestData/TransactionsData.js";
 import { useEffect, useState } from "react";
 import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
-import { Transactions } from "./Transactions/Transactions";
-import TransactionInvoices from "./Transactions/TransactionTable/TransactionInvoices";
 import InvoicePage from "./InvoicePage/InvoicePage";
 // import Mycard from "./MyCardPage.js/Mycard";
 // import Mycard from "./MyCardPage/Mycard";
@@ -20,7 +16,6 @@ import MyCardsSilver from "./SilverCardPage/MyCardsSilver";
 import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount";
 import TotalMoney from "../components/TotalMoney/TotalMoney";
 import CardUser from "../components/AllCards/CardUserDefault";
-import CardSilver from "../components/AllCards/CardSilver";
 import { MerchantComponent } from "../components/MerchantComponent/MerchantComponent";
 import "./UserDashboardLayout.css";
 import Settings from "./SettingsPage/Settings";
@@ -29,7 +24,6 @@ import HelpForm from "./HelpForm/HelpForm";
 import Faq from "./FaqPage/Faq";
 import Feedback from "./Feedback/Feedback";
 import PaymentPage from "./PaymentPage/PaymentPage";
-import UnpaidInvoice from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import ResetPassword from "../components/ResetPasswordComponent/ResetPassword";
 import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -57,6 +51,8 @@ import AllInvoicePage from "./AllInvoicePage/AllInvoicePage";
 import Allinvoices from "./AllInvoices/Allinvoices";
 import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
+import AllTransactions from "./AllTransactions/AllTransactions";
+import AllTransactionCon from "./AllTransactions/AllTransactionCon";
 
 
 
@@ -165,9 +161,7 @@ export const UserDashboardLayout = (props) => {
                     <StatementComponent />
                   </div>
                   <div className="dashboard-transaction-table-container col-md-11">
-                    <TransactionTable
-                      data={recentTransactions}
-                      tableTitle="Recent Transaction"
+                    <AllTransactions
                     />
                   </div>
                 </div>
@@ -196,11 +190,7 @@ export const UserDashboardLayout = (props) => {
             }
           />
 
-          <Route path="transactions" element={<Transactions />} />
-          <Route
-            path="transactions-invoices"
-            element={<TransactionInvoices />}
-          />
+          <Route path="transactions" element={<AllTransactionCon />} />
           <Route exact path="transfer" element={<TransferPage />} />
           <Route exact path="/investment" element={<Investment/>} />
 

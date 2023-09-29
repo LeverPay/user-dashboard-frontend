@@ -1,0 +1,85 @@
+.allTransactions {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  background-color: #1c1a2e;
+  color: white;
+  padding: 32px;
+  padding-top: 48px;
+  margin-left: 10px;
+  border-radius: 20px;
+}
+.allTransactionCon{
+  margin-top: 12rem;
+  padding: 10px 4rem;
+}
+.allTransactions header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.allTransactions header h1 {
+  font-size: 22px;
+  font-family: "Agrandir-bold";
+}
+.allTransactions header button {
+  width: fit-content;
+  border: none;
+  background-color: transparent;
+  color: #329521;
+  font-weight: 600;
+}
+.allTransactions header button a{
+    text-decoration: none;
+    color: inherit;
+    margin-right: 20px;
+}
+.allTransactions main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+  width: 100%;
+}
+.allTransactions main ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+.allTransactions main .allTransactions-head li {
+  font-weight: 800;
+  font-family: "Agrandir-bold";
+}
+.allTransactions main .allTransactionBody li {
+  font-weight: 500;
+  font-family: "Agrandir-regular";
+}
+.allTransactions main ul li {
+  width: calc(100% / 5);
+  font-size: 12px !important;
+  padding: 5px 10px;
+}
+.allTransactions h3 {
+  text-align: center;
+  font-family: "Agrandir-bold";
+  font-size: 18px;
+}
+@media (max-width:620px) {
+    .allTransactionCon{
+        margin-top: 2rem;
+        padding: 0;
+    }
+    .allTransactions{
+        margin-left: 0;
+        width: 100%;
+        padding: 16px;
+        border-radius: 10px;
+        gap: 1rem;
+    }
+    .allTransactions header div small{
+        display: none;
+    }
+    .allTransactions header h1{
+        font-size: 16px;
+    }
+}
