@@ -231,15 +231,11 @@ export const UserDashboardLayout = (props) => {
                 userName={{
                   firstName: user.first_name,
                   lastName: user.last_name,
-                  email: user.email,
-                  phoneNumber: user.phone,
-                  gender: user.gender,
                 }}
               />
             }
           />
           <Route path="help" element={<HelpForm />} />
-          <Route path="block-my-card" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
           <Route path="payment-page" element={<PaymentPage />} >
