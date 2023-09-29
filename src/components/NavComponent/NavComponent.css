@@ -1,5 +1,5 @@
-.side-nav-container{
-  position: fixed;
+.side-nav-container {
+  position: fixed !important;
   height: 100% !important;
   width: 16%;
   background-color: #0e093f;
@@ -7,6 +7,7 @@
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
   /* padding: 0 0 0 40px !important; */
+  overflow: scroll !important;
   z-index: 20000;
   overflow-y: scroll;
 }
@@ -17,6 +18,7 @@
   color: #fff;
   font-size: 40px !important;
 }
+
 @media screen and (max-width: 620px) {
   .side-nav-container {
     /* display: none; */ 
@@ -46,28 +48,44 @@
   .side-nav-container .logo{
     display: none !important;
   }
-  .bottom-options ul {
-    margin-top: 0px !important;
+
+  .bottom-options {
+    width: fit-content !important;
+    margin-left: -1rem !important;
+    /* border: 1px solid #000 !important; */
   }
-  .sm-nav{
+
+  .bottom-options ul {
+    margin-top: 50px !important;
+    margin-left: 0.5rem !important;
+    width: 100% !important;
+    /* border: 1px solid #000 !important; */
+    /* margin-top: 0px !important; */
+  }
+  .sm-nav {
     border: 1px solid;
   }
-  .nav-options{
-    width: 100%;
-    margin-left: -1rem !important;
-    margin-top: 0rem !important;
-  }
-  .nav-options ul{
-    margin-top: -3rem;
-    margin-left: 0rem;
+  .logo {
+    /* display: none; */
     width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
+    margin-top: -5rem;
+    margin-left: -3em !important;
   }
-  .nav-options ul li{
+
+  .nav-options {
+    /* border: 1px solid #000 !important; */
+    width: 100% !important;
+  }
+
+  .nav-options ul {
+    margin-top: 0rem;
     margin-left: -1rem;
   }
-  .nav-sm{
+
+  .nav-options ul li {
+    margin-left: 0.5rem !important;
+  }
+  .nav-sm {
     width: fit-content;
     display: flex;
     justify-content: space-between;
@@ -75,6 +93,7 @@
     margin-top: -1rem;
   }
 }
+
 .top {
   display: flex;
   width: 100% !important;
@@ -82,26 +101,35 @@
 }
 
 .nav-options {
-  width: 120% !important;
-  overflow-y: scroll;
+  display: flex !important;
+  flex-direction: row !important;
+  padding-left: 10% !important;
+  /* border: 1px solid #000 !important; */
+  margin-left: -1rem !important;
+  width: fit-content !important;
+  /* overflow-x: scroll !important; */
 }
 .nav-options ul li img{
   margin:10px
 }
 .nav-options ul li {
-  line-height: 55px;
+  word-wrap: nowrap !important;
+  line-height: 50px !important;
+  width: max-content !important;
   font-family: AgrandirBold !important;
-  margin-left: 0px;
-  font-size: 17px;
+  /* margin-left: auto !important; */
+  /* margin-right: auto !important; */
+  font-size: 80% !important;
   font-weight: bold !important;
+  /* border: 1px solid #000 !important; */
+}
+.nav-options ul li i {
+  font-size: 23px !important;
 }
 
 .bottom-options ul li small {
   font-size: 23px !important;
   /* margin-right: 20px; */
-}
-.bottom-options ul li img{
-  margin-right: 10px;
 }
 @media screen and (max-width: 700px) {
   .my-tweak {
@@ -134,20 +162,28 @@
 }
 
 .bottom-options {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0%;
+  display: flex !important;
+  flex-direction: row !important;
+  font-size: small !important;
+  /* margin-left: -1rem !important; */
+  margin-top: auto !important;
+  width: 100% !important;
+  /* border: 1px solid #000 !important; */
 }
 
 .bottom-options span {
-  /* margin-right: 20px; */
+  /* border: 1px solid #000 !important; */
+  margin: auto !important;
 }
 .bottom-options .bottom-link {
+  width: 100% !important;
   color: #fff;
-  padding-bottom: 15px;
+  /* padding: 5% !important; */
   font-family: AgrandirBold;
   text-decoration: none;
-  margin-left: 10px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border: 1px solid #000 !important;
 }
 .navbar-logo {
   margin-top: 40px;
@@ -189,23 +225,23 @@
   border-radius: 10px;
   transition: 0.5s ease;
 }
-@media (max-width:1024px) and (min-width: 621px){
-  .side-nav-container{
-    width: 30%;
+@media (max-width: 1024px) and (min-width: 621px) {
+  .side-nav-container {
+    width: 30% !important;
   }
-  .nav-options{
+  .nav-options {
     margin-left: -2rem;
     margin-top: -2rem;
   }
-  .side-nav-container .logo{
-    width: 130%;
+  .logo {
+    width: 130% !important;
     margin-left: -2rem;
   }
-  .nav-options ul li{
+  .nav-options ul li {
     margin-bottom: -10px;
   }
-  .bottom-options{
-    margin-left: -1rem !important;
+  .bottom-options {
+    margin-left: -2rem;
   }
 }
 .bottom-options ul{
