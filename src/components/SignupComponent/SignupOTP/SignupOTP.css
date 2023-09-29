@@ -1,0 +1,97 @@
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 0.2em;
+  padding: 1%;
+}
+
+.signup-otp-logo {
+  width: 15%;
+}
+
+.verify-message {
+  color: #082e88;
+}
+
+.signup-otp-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  width: 30%;
+  margin-top: 5%;
+  padding: 2rem !important;
+  border: 1px solid #000;
+  border-radius: 10px !important;
+}
+
+.signup-otp-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  /* border: 1px solid #000; */
+}
+
+.otp-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between !important;
+  width: 60%;
+  margin-top: 0.5em;
+  /* border: 1px solid #000; */
+}
+
+.otp-input-value {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid black;
+  border-radius: 0%;
+  width: 18% !important;
+  font-family: AgrandirBold !important;
+  text-align: center;
+}
+
+.code-notify {
+  font-family: AgrandirBold !important;
+  font-size: 14px !important;
+}
+
+em {
+  color: #082e88;
+  font-family: AgrandirBold !important;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 620px) {
+  .logo-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 0.2em;
+    padding: 1%;
+  }
+
+  .signup-otp-logo {
+    width: 70% !important;
+  }
+
+  .signup-otp-container {
+    display: flex;
+    flex-direction: column !important;
+    width: 100% !important;
+    margin-top: 5rem !important;
+  }
+
+  .otp-input-container {
+    width: 80%;
+  }
+}

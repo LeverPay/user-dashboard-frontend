@@ -2,7 +2,8 @@ import React, { useState } from "react";
 // import CardInfo from "../CardInfo";
 import CardInfo from "../../TestData/CardInfo";
 
-function CardSilver() {
+function CardSilver(props) {
+  console.log(props);
   const date = new Date();
   const month = date.getMonth();
   const year = date.getFullYear();
@@ -25,20 +26,18 @@ function CardSilver() {
     });
   }
 
-  function seeCVV(){
-    setCardCVV(prevCVV =>{
-      return prevCVV ? false : true 
-    })
+  function seeCVV() {
+    setCardCVV((prevCVV) => {
+      return prevCVV ? false : true;
+    });
   }
 
-  function copyCardNumber(){
-    setCardCopied((prevCopy)=>{
-      return prevCopy ? false : true 
-    })
+  function copyCardNumber() {
+    setCardCopied((prevCopy) => {
+      return prevCopy ? false : true;
+    });
     navigator.clipboard.writeText(cardNumber);
   }
-
-  
 
   return (
     <div
@@ -46,31 +45,46 @@ function CardSilver() {
       style={{
         backgroundImage: `url('./images/CardSilver.png')`,
         color: "#253B80",
-        position: 'relative'
+        position: "relative",
       }}
     >
-        <span  style={{
-        position: 'absolute',
-        top: '60%', left: '75%',
-        cursor: 'pointer'
-      }}>
-      <img alt="" src="./images/copy.png" onClick={copyCardNumber}/>
-      <small>{cardCopied ? ' copied' : ''}</small>
-      </span>   
-
-      <span  style={{
-        position: 'absolute',
-        top: '70%', left: '35%',
-        cursor: 'pointer'
-      }}
+      <span
+        style={{
+          position: "absolute",
+          top: "60%",
+          left: "75%",
+          cursor: "pointer",
+        }}
       >
-        <small>C V V : <strong onMouseEnter={seeCVV} onMouseLeave={()=>{setCardCVV(false)}}>{cardCVV ? CardInfo[4].cvv : '***'}</strong></small> 
+        <img alt="" src="./images/copy.png" onClick={copyCardNumber} />
+        <small>{cardCopied ? " copied" : ""}</small>
       </span>
 
+      <span
+        style={{
+          position: "absolute",
+          top: "70%",
+          left: "35%",
+          cursor: "pointer",
+        }}
+        className="cvv"
+      >
+        <small >
+          C V V :{" "}
+          <strong
+            onMouseEnter={seeCVV}
+            onMouseLeave={() => {
+              setCardCVV(false);
+            }}
+          >
+            {cardCVV ? CardInfo[4].cvv : "xxx"}
+          </strong>
+        </small>
+      </span>
 
       <img alt="" src="./images/silver logo.png" className="LeverpayCardLogo" />
       <main className="card_one">
-        <img alt="" src="./images/chip 1.png" />
+        <img alt="" src="./images/chip 1.png" className="card_scan" style={{marginLeft: '-1rem'}} />
         <span>
           <img
             alt=""
@@ -81,16 +95,16 @@ function CardSilver() {
           <small>Show Card Details</small>
         </span>
       </main>
-      <p className="cardnumber">
+      <b className="cardnumber">
         {cardVisible ? CardNumberFirstTwelve : "XXXX XXXX XXXX"}{" "}
         {CardNumberLastFour}
-      </p>
+      </b>
       <main className="cardDate_Type">
         <span className="cardDate">
-          <small>Valid Thru </small>
+          <small className="expiry">Valid Thru </small>
           <br />
-          <small>
-            {month < 10 ? `0${month}` : month}/ {year + 2}{" "}
+          <small className="exp_date">
+            {month < 10 ? `0${month}` : month}/ {year + 2}
           </small>
         </span>
         <strong>USDT</strong>
@@ -102,18 +116,19 @@ function CardSilver() {
           backgroundPosition: "right 0rem top 0rem",
         }}
       >
-        <h2>{CardInfo[4].name}</h2>
+        <h2>
+          {props.firstName} <span className="card_lastname">{props.lastName}</span>
+        </h2>
         <h1
           style={{
             marginRight: "-1rem",
             backgroundImage: "./images/Ellipse 6.png",
           }}
+          className="card_type_name"
         >
-          {" "}
           Silver
         </h1>
       </footer>
-      
     </div>
   );
 }

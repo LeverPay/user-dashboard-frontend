@@ -59,7 +59,9 @@ export const Transactions = () => {
           >
             Regular Payments
           </button>
-          <SearchBar />
+          <span className="search">
+            <SearchBar />
+          </span>
         </div>
         <div className="panels">
           <div className={`panel ${checkActive(1, "active2")}`}>
@@ -85,7 +87,7 @@ export const Transactions = () => {
               data={regularPayments}
               tableTitle="Transactions"
             />
-          </div>{" "}
+          </div>
         </div>
       </div>
     </>

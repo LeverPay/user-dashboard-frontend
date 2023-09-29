@@ -36,6 +36,18 @@
   margin-left: 30px;
   flex-grow: 1;
 }
+
+.no-transaction {
+  font-family: AgrandirBold !important;
+  font-size: large !important;
+  padding: 2% !important;
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
+  margin-left: 12% !important;
+  text-align: center !important;
+  color: #fff !important;
+}
+
 @media screen and (max-width: 620px) {
   .transactions-table-container h5 {
     margin-right: 100px;
@@ -62,8 +74,9 @@
   margin-left: 33px;
 }
 @media screen and (max-width: 620px) {
-  .transaction-table-container {
-    margin-left: 0 !important;
+  .transactions-table-container {
+    width: 90vw;
+    margin-left: -4.5rem !important;
   }
 }
 .invoice-td {

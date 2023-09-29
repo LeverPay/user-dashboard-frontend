@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
@@ -6,9 +6,22 @@ import Col from "react-bootstrap/esm/Col";
 import "./invoice.css";
 import { nanoid } from "nanoid";
 import QRCode from "qrcode";
+import Feedback from "../../Feedback/Feedback";
+import { Link } from "react-router-dom";
+import { Button, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import TransferOTP from "../../../components/TransferPageComponent/TransferOTP";
+import ReactToPrint from "react-to-print";
 
-function Invoice({ className, invoice, ref }) {
+function Invoice({ className, invoice, ref, unpaid, date, amt, status,name, productType, email, currency}) {
+  let componentRef = useRef();
+  const Navigate = useNavigate();
   const [id] = useState(nanoid);
+  const [show, setShow] = useState(false)
+
+function toggleShow(arg){
+  setShow(arg)
+}
 
   const [qrcode, setQrcode] = useState(id);
 
@@ -29,22 +42,19 @@ function Invoice({ className, invoice, ref }) {
     );
   });
 
-  const date = new Date();
-  const Morning_Afternoon = date.getHours() > 12 ? "pm" : "am";
-  const minutes =
-    date.getMinutes() < 1 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
-  const timeofDay = date.getHours() + ":" + minutes + " " + Morning_Afternoon;
-  const time = date.toDateString() + " " + timeofDay;
 
   return (
+    <>
     <Container
+        ref={componentRef}
       id="invoice"
       className={`pt-3 px-3 py-4 col-md-4 col-12 ${className}`}
     >
-      <h4 className="text-center">{id}</h4>
+      <h4 className="text-center">{id}</h4> 
       <div className="price_checkout">
         <span className="px-md-3">
-          <h5>{invoice ? invoice.amount : "$0.00"}</h5>
+          {/* <h5>{invoice ? invoice.amount : "$0.00"}</h5> */}
+          <h5>{amt}</h5>
           <h5>Total USD</h5>
         </span>
         <span className="px-md-3">
@@ -71,7 +81,8 @@ function Invoice({ className, invoice, ref }) {
               className="row_details_information"
               style={{ color: "#0EB500" }}
             >
-              {invoice ? invoice.status : ""}
+              {/* {invoice ? invoice.status : ""} */}
+              {status}
             </Col>
           </Row>
           <Row>
@@ -84,7 +95,7 @@ function Invoice({ className, invoice, ref }) {
               className="row_details_information"
               style={{ color: "#F49B09" }}
             >
-              ETH
+              {currency}
             </Col>
           </Row>
           <Row>
@@ -94,19 +105,21 @@ function Invoice({ className, invoice, ref }) {
               style={{ fontSize: "12px" }}
             >
               {/* {time} */}
-              {invoice ? invoice.date : ""}
+              {/* {invoice ? invoice.date : ""} */}
+              {date}
             </Col>
           </Row>
           <Row>
             <Col className="row_details">Items</Col>
             <Col className="row_details_information">
-              {invoice ? invoice.name.productType : ""}
+              {/* {invoice ? invoice.name.productType : ""} */}
+              {name}
             </Col>
           </Row>
           <Row>
             <Col className="row_details">Description</Col>
             <Col className="row_details_information">
-              {invoice ? invoice.name.productDetail : ""}
+              {productType}
             </Col>
           </Row>
         </Container>
@@ -115,12 +128,12 @@ function Invoice({ className, invoice, ref }) {
       <div className="Buyer_details">
         <h3>Buyer Information</h3>
         <h5>Email</h5>
-        <p>Jamiltextile001@gmail.com</p>
+        <p>{email}</p>
       </div>
       <hr />
       <div className="Payment_received">
         <p>
-          Payment Recieved for <span>4.0245800ETH</span>{" "}
+          Payment Recieved for <span>{amt}</span>{" "}
         </p>
         <p>
           TXID: <span>( {id.slice(0, 8)} )</span>
@@ -131,14 +144,44 @@ function Invoice({ className, invoice, ref }) {
           <div>
             <p>Company</p>
             <h6>Apple inc</h6>
+            <h6 style={{color:'red', marginTop: '3rem', cursor:'pointer'}} onClick={()=>{Navigate('/customer-support', {state: {txid: id }})}} >Report transaction</h6>
           </div>
           <div>
             {qrcode && <img alt="" className="qrcodeCon" src={qrcode} />}
           </div>
         </main>
       </div>
+        {
+          unpaid &&  <div className="accept_decline">
+          <button onClick={()=>{
+            Navigate(-1)
+          }}>Decline</button>
+          <button onClick={()=>{
+            setShow(true)
+          }} >Accept</button>
+        </div>
+        }
       <hr />
+      <TransferOTP show = {show}  setShow={toggleShow} />
     </Container>
+    <footer style={{
+            margin:'auto',
+            width:'50%',
+            display:'flex',
+            marginBottom:'3rem',
+            gap:'2rem'
+            }}>
+                <button 
+                  onClick={()=>{
+                    Navigate(-1)
+                  }}
+                >Close</button>
+                <ReactToPrint
+              trigger={() => <button className="printbtn">Print</button>}
+              content={() => componentRef.current}
+            />
+            </footer>
+    </>
   );
 }
 

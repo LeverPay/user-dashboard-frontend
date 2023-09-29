@@ -1,23 +1,90 @@
 .card-header {
   font-family: AgrandirBold;
-  font-size: 24px;
+  font-size: large !important;
   line-height: 50px;
   letter-spacing: 0em;
   text-align: left;
   color: #fff;
 }
+
+.nav-con{
+  width: 20% !important;
+}
+.dashboard{
+  margin-top: 8.5rem;
+  margin-bottom: 2rem;
+}
+
+.no-data {
+  /* border: 1px solid #000 !important; */
+  font-family: AgrandirBold !important;
+  font-size: large !important;
+  padding: 2% !important;
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
+  margin-left: 12% !important;
+  text-align: center !important;
+  color: #fff !important;
+}
+
+.dashboard-transaction-table-container {
+  margin-left: 1rem;
+}
 @media screen and (max-width: 620px) {
+  .dashboard {
+    margin-top: 2rem;
+    /* border: 1px solid white; */
+  }
+  .spending {
+    /* border: 1px solid white; */
+    display: flex;
+    gap: 2rem;
+    min-width: 100vw;
+    overflow: scroll;
+    padding-right: 20px;
+    margin-bottom: 2rem;
+  }
+  
+.spending div{
+  min-width: calc(100%/2);
+  }
   .card-header {
     margin-top: 80px;
   }
   .card-holder {
     margin: 0 !important;
   }
-}
+  .dashboard-transaction-table-container {
+    margin-left: 4.5rem;
+  }
+  .no-data {
+    /* border: 1px solid #000 !important; */
+    font-family: AgrandirBold !important;
+    font-size: large !important;
+    padding: 2% !important;
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+    margin-left: auto !important;
+    text-align: center !important;
+    color: #fff !important;
+  }
+  
+  .mchnt-con{
+    display: none;
+  }
+  
+  .statement{
+    border: 1px solid;
+    width: 100% !important;
+    padding: 0 !important;
+    margin-bottom: 6rem !important;
+  }
+
 .card-holder {
   margin-left: -2rem;
   margin-top: -2.5rem;
 }
+  
 @media screen and (min-width: 620px) {
   .default-card-holder {
     transform: translateX(2rem);
@@ -26,3 +93,35 @@
 /* .default-card-holder {
   transform: translateX(1rem);
 } */
+@media (max-width: 1024px) and (min-width: 621px) {
+  .spending {
+    margin-left: 16px;
+  }
+  .dashboard-transaction-table-container {
+    margin-left: 1rem;
+  }
+  .statement {
+    margin-left: -1rem;
+  }
+  
+  .no-data {
+    /* border: 1px solid #000 !important; */
+    font-family: AgrandirBold !important;
+    font-size: large !important;
+    padding: 2% !important;
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+    margin-left: auto !important;
+    text-align: center !important;
+    color: #fff !important;
+  }
+}
+
+.spending{
+  display: flex;
+  width: 95%;
+  gap: 10px;
+}
+.spending div{
+  width: calc(95%/3);
+}

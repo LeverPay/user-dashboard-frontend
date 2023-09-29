@@ -1,0 +1,150 @@
+.st-container {
+  display: flex;
+  width: 100% !important;
+  padding: 0.5rem;
+  margin-top: 10%;
+  margin-left: auto !important;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.react-tabs {
+  width: 100% !important;
+  margin-top: 0.2rem !important;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid #aaa !important;
+}
+
+.react-tabs__tab {
+  font-family: Agrandir !important;
+  bottom: -1px !important;
+  color: #fff !important;
+}
+
+.react-tabs__tab--selected {
+  background-color: #0b0230 !important;
+  color: #fff !important;
+  font-family: AgrandirBold !important;
+  border-bottom: 100px !important;
+}
+
+.table-user {
+  padding-left: 0% !important;
+  color: #fff !important;
+}
+
+.subscription-history-text {
+  width: 100% !important;
+  color: #fff !important;
+  font-family: AgrandirBold !important;
+  font-size: medium !important;
+}
+
+.subscription-row {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 2% !important;
+}
+
+.subscription-table {
+  width: 100% !important;
+  background-color: #1c1a2e !important;
+  padding-left: 10% !important;
+  border-radius: 10px !important;
+  /* padding: 10% !important; */
+}
+
+.table-heads {
+  color: #fff !important;
+  font-family: AgrandirBold !important;
+  font-size: medium !important;
+  /* background-color: #b2aea9 !important; */
+}
+
+.name-head {
+  padding: 1rem !important;
+}
+
+.name-tr {
+  width: 100% !important;
+}
+
+.name-tr:hover {
+  padding: 1rem !important;
+  background-color: rgb(170, 169, 169) !important;
+}
+
+.name-td {
+  padding: 1rem 1rem 1rem 0rem !important;
+  color: #fff !important;
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+}
+
+.span-name {
+  background: none !important;
+  color: #fff !important;
+}
+.td-o {
+  padding-left: 1rem !important;
+  color: #cd4729 !important;
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+}
+
+.td-g {
+  padding-left: 1rem !important;
+  color: rgba(244, 155, 9, 0.92) !important;
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+}
+
+.td-status {
+  color: green !important;
+}
+
+.td-status-p {
+  color: rgba(244, 155, 9, 0.92) !important;
+}
+
+@media screen and (max-width: 620px) {
+  .st-container {
+    width: 100% !important;
+    /* overflow: scroll !important; */
+  }
+
+  .react-tabs {
+    width: 100% !important;
+  }
+
+  .react-tabs__tab {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    font-family: Agrandir !important;
+    bottom: -1px !important;
+    color: #fff !important;
+  }
+
+  .name-tr {
+    width: 100% !important;
+  }
+
+  .subscription-table {
+    width: 100% !important;
+    background-color: #1c1a2e !important;
+    padding-left: 10% !important;
+    border-radius: 10px !important;
+  }
+
+  .table-container {
+    width: 800px !important;
+    padding: 2% !important;
+  }
+
+  .subscription-row {
+    overflow: scroll !important;
+  }
+}

@@ -1,35 +1,104 @@
 .labels {
   font-family: AgrandirBold !important;
+  font-size: small;
+  border: 0px !important;
+  padding: 0px !important;
+  margin-left: 3% !important;
+}
+
+.city-label {
+  margin-left: 1rem !important;
+}
+
+.state-label {
+  margin-left: -5rem !important;
+}
+
+.email-label {
+  margin-left: 8% !important;
+}
+
+.email-label-2 {
+  margin-left: 20% !important;
+}
+
+.primary-email {
+  display: flex;
+  flex-direction: row !important;
+  margin-top: -20px !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-left: 0.5rem !important;
+  /* border: 1px solid #000; */
+}
+
+.make-email-text {
+  margin-left: 2.5rem !important;
+  width: auto !important;
+  /* border: 1px solid #000 !important; */
 }
 
 .text-area {
   font-family: AgrandirBold !important;
 }
 
+.text-area::placeholder {
+  font-family: AgrandirBold !important;
+  font-size: 13px;
+}
+
 .outer {
   display: flex;
-  width: 80%;
-  height: 100%;
+  width: 80% !important;
+  padding: 0.5rem;
   margin-top: 10%;
   margin-left: 10%;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  /* border: 1px solid #000; */
+}
+
+.react-tabs {
+  width: 80% !important;
+  margin-top: 0.2rem !important;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid #aaa !important;
+}
+
+.react-tabs__tab {
+  font-family: Agrandir !important;
+  bottom: -1px !important;
+  color: #fff !important;
+}
+
+.react-tabs__tab--selected {
+  background-color: #0b0230 !important;
+  color: #fff !important;
+  font-family: AgrandirBold !important;
+  border-bottom: 1px !important;
 }
 
 @media screen and (max-width: 620px) {
   .outer {
-    width: 100%;
-    margin-left: 0%;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-left: auto !important;
+    /* margin-left: auto; */
   }
 }
 
 .inner-form {
   display: flex;
-  height: 100%;
-  width: 65%;
+  flex-direction: column;
+  width: 100% !important;
+  padding: 0.9rem;
   overflow: auto;
   flex-direction: column;
   background-color: #fff;
+  border-radius: 10px !important;
 }
 
 .fields-control {
@@ -38,22 +107,114 @@
   /* border: 1px solid #000; */
 }
 
+.first-name {
+  margin-left: 0px !important;
+}
+
+.gender {
+  width: 62% !important;
+  margin-left: 0.5rem;
+}
+
+.name-row {
+  display: flex;
+  flex-direction: row;
+  width: 82% !important;
+  margin-left: 1rem !important;
+  /* border: 1px solid #000; */
+}
+
+.email-address {
+  width: 237.7px !important;
+  margin-left: 7.5% !important;
+}
+
+#email-address-2 {
+  width: 237.7px !important;
+  margin-left: 20% !important;
+}
+
+.phone-number {
+  width: 80% !important;
+  margin-left: 1.2rem;
+}
+
+.other-number {
+  width: 80% !important;
+  margin-left: 1.2rem !important;
+}
+
+.primary-number-text {
+  margin-top: 0px !important;
+}
+
+.profession {
+  width: 80% !important;
+}
+
+.address {
+  width: 80% !important;
+  margin-left: 1.2rem !important;
+}
+
+.email-container {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 83% !important;
+}
+
+.phone-number-container {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 83% !important;
+  /* margin-bottom: -1.5rem !important; */
+}
+.default-number {
+  margin-left: 0px !important;
+}
+
+.phone-row {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  width: 80% !important;
+  margin-left: 1.5rem;
+  border: 1px solid #000;
+}
+
+.country-state-city {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  margin-left: 1.2rem !important;
+  margin-top: -1rem !important;
+  width: 80% !important;
+}
+
+.select-country {
+  width: 65% !important;
+  height: 38px !important;
+  margin-left: 0% !important;
+}
+
+.select-state {
+  width: 150px !important;
+  margin-left: -5rem !important;
+}
+
+.select-city {
+  width: 150px !important;
+  margin-left: 0.8rem !important;
+}
+
 .button-control {
   display: flex;
   justify-content: space-around;
   flex-direction: row;
-  width: 80%;
-  margin-top: 5%;
-  margin-left: 5%;
+  width: 30%;
+  margin-top: 2% !important;
+  margin-left: 0.5rem !important;
   font-family: AgrandirBold !important;
-}
-
-.phone-number-div {
-  display: flex;
-  width: 90%;
-  margin-left: 3%;
-  flex-direction: row;
-  border: 1px solid #000;
 }
 
 .phone-number-label {
@@ -61,25 +222,145 @@
   font-family: AgrandirBold !important;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 620px) {
+  .labels {
+    margin-left: 3% !important;
+  }
+
   .inner-form {
-    width: 100%;
+    width: 100% !important;
     /* height: 100%; */
   }
+
+  .text-area {
+    width: 95% !important;
+  }
+
+  .country-label {
+    margin-left: 1rem !important;
+  }
+
+  .city-label {
+    margin-left: 1rem !important;
+  }
+
+  .state-label {
+    margin-left: 1rem !important;
+  }
+
+  .react-tabs {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 0.2rem !important; */
+  }
+
+  .name-row {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    margin-left: 0px !important;
+  }
+
+  .profession {
+    width: 95% !important;
+    margin-left: 0.5rem !important;
+  }
+
+  .country-state-city {
+    display: flex;
+    flex-direction: column !important;
+    margin-left: -5px !important;
+    width: 100% !important;
+    /* border: 1px solid #000; */
+  }
+
+  .select-country {
+    width: 95% !important;
+  }
+
+  .email-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    /* margin-left: 0.9rem !important; */
+  }
+
+  .email-address {
+    width: 95% !important;
+    margin-left: 0.5rem !important;
+  }
+
+  #email-address-2 {
+    width: 95% !important;
+    margin-left: 0.5rem !important;
+  }
+
+  .primary-email-text {
+    margin-left: 0.5rem !important;
+  }
+  .phone-number-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .default-number {
+    width: 100% !important ;
+  }
+
+  .primary-number-text {
+    margin-left: 0.5rem !important;
+  }
+
+  .select-country {
+    margin-left: 0.8rem !important;
+  }
+
+  .select-state {
+    width: 95% !important;
+    margin-left: 0.8rem !important;
+  }
+
+  .select-city {
+    width: 95% !important;
+    margin-left: 0.8rem !important;
+  }
+
+  .gender {
+    width: 95% !important;
+    margin-left: 0.8rem;
+  }
+
+  .address {
+    width: 95% !important;
+    margin-left: 0.5rem !important;
+  }
+
+  .phone-number {
+    width: 95% !important;
+    margin-left: 0.5rem !important;
+    /* margin-bottom: 1.5rem !important; */
+  }
+
+  .other-number {
+    width: 95% !important;
+    margin-left: 0.5rem !important;
+  }
+
   .textarea {
     width: 100%;
     font-family: AgrandirBold !important;
   }
   .button-control {
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     margin: auto;
   }
 
-  .phone-number-div {
-    width: 92%;
-    /* margin: auto; */
-    flex-direction: row;
-    border: 1px solod #000 !important;
+  .update-button {
+    width: 95% !important;
   }
 }

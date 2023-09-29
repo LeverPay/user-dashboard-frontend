@@ -1,14 +1,17 @@
 import React from "react";
-import cx from "classnames";
-import "../ToggleSwitch/ToggleSwitch.css";
+import Form from "react-bootstrap/Form";
 
-const ToggleSwitch = ({ rounded = false, isToggled, onToggle }) => {
-  const sliderCx = cx("slider", { rounded: "rounded" });
+const ToggleSwitch = ({ isToggled, onToggle }) => {
   return (
-    <label className="switch">
-      <input type="checkbox" checked={isToggled} onChange={onToggle} />
-      <span className={sliderCx} />
-    </label>
+    <Form>
+      <Form.Check
+        type="switch"
+        id="custom-switch"
+        checked={isToggled}
+        onChange={onToggle}
+        // label="Check this switch"
+      />
+    </Form>
   );
 };
 

@@ -1,0 +1,16 @@
+.image-upload-main {
+  background: #fff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100px !important;
+  border: 1px solid #000 !important;
+}
+
+label {
+  border: 1px solid #212121;
+  padding: 10px;
+  cursor: pointer;
+  font-family: AgrandirBold !important;
+}
