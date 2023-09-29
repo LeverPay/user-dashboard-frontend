@@ -39,6 +39,7 @@ const NavComponent = () => {
   };
 
   function closeSidebar() {
+    console.log("closing");
     setSidebarOpen(false);
   }
 
@@ -71,7 +72,7 @@ const NavComponent = () => {
         expand="md"
         bg="#0E093F"
         variant="dark"
-        className="flex-column side-nav-container  slide-right"
+        className="flex-column side-nav-container slide-right"
         id="mySidebar"
         style={{ display: sidebarOpen ? "block" : "none" }}
       >
@@ -82,7 +83,7 @@ const NavComponent = () => {
             <img
               src={Close}
               alt=""
-              style={{ width: "30%" }}
+              style={{ width: "40%" }}
               className="open-close-icons"
             />
           </span>
@@ -143,7 +144,7 @@ const NavComponent = () => {
                       id="unpaid"
                     >
                       <i className="icofont-notepad"></i>
-                      Unpaid
+                      Unpaid Subscriptions
                     </NavLink>
                   </li>
                   <li>

@@ -52,49 +52,30 @@ import MySubscription from "./MySubscriptionPage/MySubscription";
 import SubscriptionTransactions from "../components/MySubscriptionComponent/SubscriptionTransactions/SubscriptionTransactions";
 
 export const UserDashboardLayout = (props) => {
-  const [naijaCard, setNaijaCard] = useState({});
-  const [silverCard, setSilverCard] = useState([]);
   const [user, setUser] = useState({});
   const [jwt, setJwt] = useLocalState("", "jwt");
+  const [currency, setCurrency] = useState([]);
+  const [dollar, setDollar] = useState("");
+  const [naira, setNaira] = useState("");
 
   console.log(user);
-
-  useEffect(() => {
-    setNaijaCard({
-      id: naijaCardDetails.map((data) => data.id),
-      cardHolder: naijaCardDetails.map((data) => data.cardHolder),
-      cardNo: naijaCardDetails.map((data) => data.cardNo),
-      expiryDate: naijaCardDetails.map((data) => data.expiryDate),
-    });
-  }, []);
-
-  useEffect(() => {
-    setSilverCard({
-      id: silverCardDetails.map((data) => data.id),
-      cardHolder: silverCardDetails.map((data) => data.cardHolder),
-      cardNo: silverCardDetails.map((data) => data.cardNo),
-      expiryDate: silverCardDetails.map((data) => data.expiryDate),
-    });
-  }, []);
 
   useEffect(() => {
     getUserProfile(jwt, setJwt, setUser);
   }, [jwt, setJwt]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://leverpay-api.azurewebsites.net/api/v1/user/get-card", {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${jwt}`,
-  //       },
-  //       // configuration
-  //     })
-  //     .then((response) => {
-  //       console.log(response);
-  //       // do something with JSON response data
-  //     });
-  // });
+  useEffect(() => {
+    axios
+      .get("https://leverpay-api.azurewebsites.net/api/v1/currencies")
+      .then((response) => setCurrency(response.data.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    setDollar(currency.map((d) => d));
+    setNaira(currency.map((d) => d));
+  }, [currency]);
+
   return (
     <>
       <Routes>
@@ -134,33 +115,54 @@ export const UserDashboardLayout = (props) => {
                       <TotalMoney
                         bg="#0E093F"
                         totaltype="Total Balance"
-                        amt="$3000"
+                        amt="$0"
+                        exAmount="NGN0"
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#F6A61F"
                         totaltype="Total Spending"
-                        amt="$2000"
+                        // amt={
+                        //   !user.total_save || !user ? 0 : user.total_save.ngn
+                        // }
+                        // exAmt={
+                        //   !user.total_save || !user ? 0 : user.total_save.usdt
+                        // }
+                        naira_code={naira[0].currency_code}
+                        dollar_code={dollar[1].currency_code}
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#201E34"
                         totaltype=" Total Saved"
-                        amt="$546"
+                        // amt={!user.total_spending ? 0 : user.total_spending.ngn}
+                        // exAmt={
+                        //   !user.total_spending ? 0 : user.total_spending.usdt
+                        // }
+                        naira_code={naira[0].currency_code}
+                        dollar_code={dollar[1].currency_code}
                       />
                     </div>
                   </div>
                   <div className="statement col-md-11">
-                    <StatementComponent />
+                    {user !== "" || user.total_save.ngn !== 0 ? (
+                      <div className="no-data">No transactions...</div>
+                    ) : (
+                      <StatementComponent />
+                    )}
                   </div>
-                  <div className="dashboard-transaction-table-container col-md-11">
-                    <TransactionTable
-                      data={recentTransactions}
-                      tableTitle="Recent Transaction"
-                    />
-                  </div>
+                  {user === "" && user.total_save.ngn === 0 ? (
+                    <div className="dashboard-transaction-table-container col-md-11">
+                      <TransactionTable
+                        data={recentTransactions}
+                        tableTitle="Recent Transaction"
+                      />
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="col-md-4  card-holder">
                   <div className="col-md-10 mx-auto default-card-holder">
@@ -179,9 +181,7 @@ export const UserDashboardLayout = (props) => {
                       lastName={user.last_name}
                     />
                   </div>
-                  <div className="col-md-12">
-                    <MerchantComponent />
-                  </div>
+                  <div className="col-md-12">{/* <MerchantComponent /> */}</div>
                 </div>
               </div>
             }
@@ -192,7 +192,17 @@ export const UserDashboardLayout = (props) => {
             path="transactions-invoices"
             element={<TransactionInvoices />}
           />
-          <Route exact path="transfer" element={<TransferPage />} />
+          <Route
+            exact
+            path="transfer"
+            element={
+              <TransferPage
+                amt="0"
+                naira_code={naira[0].currency_code}
+                dollar_code={dollar[1].currency_code}
+              />
+            }
+          />
           <Route path="invoices" element={<UnpaidInvoice />} />
           <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
           <Route path="/pending-subscription" element />
