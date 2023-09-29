@@ -13,35 +13,35 @@ import Amazon from "../../assets/images/amazon.png";
 import Amazon2 from "../../assets/images/amazon2.png";
 export const MerchantComponent = () => {
   return (
-    <>
-      <div className="col-md-12 merchant-header ">
-    <div className="merchant_COn">
-      <div className="col-md-12 merchant-header "> 
-        <h3>My Merchants</h3>
-        <span className="merchant_search">
-          <SearchBar />
-        </span>
-        <Link className="details-link up">View All</Link>
-      </div>
-      <div className="merchant-container col-md-12">
-        <div style={{ display: "flex" }}>
-          <h5>Shop Now</h5>
-          <Link className="details-link">More Details</Link>
+    <div className="col-md-12 merchant-header ">
+      <div className="merchant_COn">
+        <div className="col-md-12 merchant-header ">
+          <h3>My Merchants</h3>
+          <span className="merchant_search">
+            <SearchBar />
+          </span>
+          <Link className="details-link up">View All</Link>
         </div>
-        <div className="merchants">
-          {" "}
-          <Merchants logo1={Apple} logo2={Apple2} />
-        </div>
-        <div className="merchants">
-          {" "}
-          <Merchants logo1={Nike2} logo2={Nike} />
-        </div>
-        <div className="merchants">
-          {" "}
-          <Merchants logo1={Netflix} logo2={Netflix2} />
-        </div>
-        <div className="merchants">
-          <Merchants logo1={Amazon} logo2={Amazon2} />
+        <div className="merchant-container col-md-12">
+          <div style={{ display: "flex" }}>
+            <h5>Shop Now</h5>
+            <Link className="details-link">More Details</Link>
+          </div>
+          <div className="merchants">
+            {" "}
+            <Merchants logo1={Apple} logo2={Apple2} />
+          </div>
+          <div className="merchants">
+            {" "}
+            <Merchants logo1={Nike2} logo2={Nike} />
+          </div>
+          <div className="merchants">
+            {" "}
+            <Merchants logo1={Netflix} logo2={Netflix2} />
+          </div>
+          <div className="merchants">
+            <Merchants logo1={Amazon} logo2={Amazon2} />
+          </div>
         </div>
       </div>
     </div>
