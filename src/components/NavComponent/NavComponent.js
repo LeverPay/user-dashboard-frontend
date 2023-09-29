@@ -143,7 +143,7 @@ const NavComponent = () => {
                       id="unpaid"
                     >
                       <img alt="" src="/images/Invoices.png"/>
-                      Unpaid
+                      Invoice
                     </NavLink>
                   </li>
                   <li>
