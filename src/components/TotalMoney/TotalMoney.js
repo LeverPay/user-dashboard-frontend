@@ -1,13 +1,30 @@
-import React, { useState } from "react";
-// import Col from "react-bootstrap/esm/Col";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useLocalState } from "../../utils/useLocalStorage";
 import "./totalMoney.css";
 
 function TotalMoney(props) {
   console.log(props);
   const { bg, transfer, totaltype, amt } = props;
   const [amtVisible, setAmtVisible] = useState(false);
+  const [rate, setRate] = useState()
+  const [jwt, setJwt] = useLocalState('', 'jwt')
 
-  const dollar ='$' + Number(amt/900).toFixed(2)
+  useEffect(()=>{
+    axios.get('https://leverpay-api.azurewebsites.net/api/v1/user/get-exchange-rates',  {
+      headers: {
+          Authorization : `Bearer ${jwt}`
+      }
+  })
+    .then(res=>{
+      setRate(res.data.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  },[])
+
+  const dollar = rate ? '$' + (amt/rate.rate).toFixed(2) : ''
 
   function viewamt() {
     setAmtVisible(!amtVisible);
