@@ -21,6 +21,12 @@
     margin-top: 2rem;
     /* border: 1px solid white; */
   }
+  .dashboard-transaction-table-container{
+    margin-left: 0rem;
+    width: 100%;
+    padding: 0;
+
+  }
   .spending{
     /* border: 1px solid white; */
     display: flex;
@@ -39,9 +45,6 @@
   }
   .card-holder {
     margin: 0 !important;
-  }
-  .dashboard-transaction-table-container{
-    margin-left: 4.5rem;
   }
   .mchnt-con{
     display: none;
