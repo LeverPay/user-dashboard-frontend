@@ -1,0 +1,528 @@
+.FundingNav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  width: 96%;
+  margin: auto;
+}
+.FundingNav h3 {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: AgrandirBold;
+}
+.FundingNavIcon {
+  width: 30px;
+  height: 20px;
+}
+
+/* funding price equivalent */
+.FundingPrices {
+  display: flex;
+  gap: 20px;
+  margin-top: 1rem;
+}
+.FundingPrices main {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 30px 20px;
+  width: 50%;
+  border-radius: 30px;
+}
+.FundingPrices main div {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.FundingPrices h4 {
+  font-family: Agrandir;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f49b09eb;
+  margin: 0;
+}
+.FundingPrices p {
+  font-family: Agrandir;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 31px;
+  color: white;
+}
+.priIcon {
+  background: #353255;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  border-radius: 50%;
+}
+.priIcon img {
+  width: 20px;
+}
+
+/* fund navigation */
+.FundNavigation {
+  display: flex;
+  width: 100%;
+  margin-top: 3rem;
+}
+.FundNavigation ul {
+  display: flex;
+  list-style: none;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  border-bottom: 2px solid rgb(220, 210, 210);
+}
+.FundNavigation li {
+  font-family: Agrandir-bold;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
+  padding-bottom: 7px;
+  margin-left: -1.5rem;
+}
+
+.FundNavigation a {
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: 9px;
+  margin-bottom: -7px;
+}
+.FundNavigation .active {
+  border-bottom: 4px solid #129346;
+  color: #129346;
+}
+
+/* stable coins  */
+.FundingPayment {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.FundingPayment h2 {
+  font-family: 'Agrandir-bold';
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.FundingPayment ul {
+  list-style: none;
+}
+.FundingPayment li:nth-child(2) {
+  background: #f49b09eb;
+}
+.FundingPayment li,
+.FundingInitiating .exchange {
+  background-color: #0b0230;
+  border-radius: 20px 0px 20px 0px;
+  padding: 7px;
+  margin-block: 1rem;
+  width: 200px;
+  text-align: center;
+}
+.FundingPayment li label {
+  border: none;
+  color: white;
+  font-size: 20px;
+}
+.FundingPayment li input {
+  visibility: hidden;
+}
+.FundingPayment .pg1 {
+  width: fit-content;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #129346;
+  float: right;
+  border: none;
+}
+/* initiating transaction */
+
+.FundingInitiating .exchange{
+  font-size: 20px;
+  color: white;
+  line-height: 40px;
+  margin-bottom: 1rem;
+}
+.FundingInitiating .initiating{
+    font-size: 18px;
+    font-family: 'Agrandir-Regular';
+}
+/* funding cancel */
+.FundingCancel img{
+  float: right;
+  margin-right: 1rem;
+  width: 20px;
+  margin-top: 1rem;
+}
+
+/* funding amount */
+.FundingAmount{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-block: 2rem;
+}
+.FundingAmount .amtss{
+  display: flex;
+}
+.FundingAmt{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    position: relative;
+}
+.FundingAmt #conversion{
+  opacity: .4;
+}
+.FundingAmt label{
+    width: fit-content;
+    border: none;
+    font-size: 20px;
+  font-family: 'Agrandir-bold';
+  margin: 0;
+  width: 100%;
+}
+.FundingAmt label span{
+  color: #FC0019;
+  opacity: .9;
+  font-weight: 300;
+  font-size: 14px;
+  float: right;
+}
+.FundingAmt input{
+    padding: 15px 20px;
+    width: 95%;
+    margin-left: .5rem;
+    outline: none;
+    border: none;
+    background-color: #C1BDBD;
+}
+.FundingAmt select{
+  width: 45%;
+  padding: 10px;
+  margin-left: 1rem;
+}
+.FundingAmt .txReference{
+  font-size: 18px;
+  background-color: rgb(249, 249, 249);
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+.txReference::placeholder{
+  opacity: .5;
+  font-size: 16px;
+}
+.FundingAmt #info{
+  width: 20px;
+  transform: translateY(-2px);
+  z-index: 2;
+}
+.FundingAmt .add_info{
+  width: 60%;
+  line-height: 20px;
+  text-align: justify;
+  font-family: 'Agrandir-regular';
+  font-weight: 400;
+  position: absolute;
+  right: 3rem;
+  top: -5rem;
+  background-color: #E9ECF5;
+  padding: 15px;
+  border-radius: 15px;
+  z-index: 5;
+}
+.FundingAmt .screenshot label{
+  border: none;
+  outline: none;
+}
+.FundingAmt .loading{
+  width: 40px;
+  position: absolute;
+  right: 2rem;
+  top: 60px;
+  animation: load .5s linear 0s infinite;
+}
+@keyframes load {
+  100%{
+    transform: rotate(360deg);
+  }
+}
+.StableCoinFunding{
+  position: relative;
+}
+.StableCoinFunding .tx_confirm_msg{
+  border: 2px solid #C1BDBD;
+  padding: 48px 16px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+  color: rgb(96, 96, 96);
+  font-family: 'Agrandir-regular';
+  font-weight: 200;
+  font-size: 25px;
+  position: absolute;
+  top: 35%;
+  left: 0%;
+  width: 100%;
+}
+.StableCoinFunding .tx_confirm_msg strong{
+  font-size: 16px;
+}
+.StableCoinFunding .tx_confirm_msg button{
+  background-color: #129346;
+  margin-top: 40px;
+  border: none;
+  width: 40%;
+}
+.FundingAmt .amts::placeholder{
+  opacity: .5;
+  font-size: 16px;
+}
+.FundingAmount button{
+    width: 95%;
+    background-color: #129346;
+    margin: auto;
+    font-size: 18px;
+    font-family: 'Agrandir-bold';
+}
+#fundTxidCopy,#fundTxidCopy1,#txidcopy,#txidcopy1{
+  width: 30px;
+  position: absolute;
+  right: 30px;
+  bottom: 10px;
+}
+#txidcopy{
+  bottom: -16px;
+}
+#txidcopy1{
+  bottom: -16px;
+}
+
+/* funding success */
+.fundingSuccess{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+  margin-block: 2rem;
+}
+.fundingSuccess span{
+  border: 1px solid;
+  border-radius: 50%;
+  border: 25px solid rgba(95, 206, 47, 0.5);
+}
+.fundingSuccess span img{
+  background: #5FCE2F;
+  padding: 30px;
+  width: 120px;
+  height: 110px;
+  border-radius: 50%;
+}
+.fundingSuccess p{
+  color: #5FCE2F;
+  font-size: 20px;
+}
+.fundingSuccess strong{
+  font-size: 18px;
+  color: #FC0019;
+  width: 60%;
+  line-height: 20px;
+}
+.fundingSuccess .returnToDashboard, .fundingSuccess button{
+  color: #0b0230;
+  text-decoration: none;
+  font-family:  'Agrandir-bold';
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 24px;
+  padding: 15px 45px;
+  background-color: #D9D9D9;
+  border-radius: 10px;
+}
+.fundingSuccess button{
+  background-color: #0B0230;
+  color: white;
+  width: 50%;
+}
+
+
+/* funding Naira */
+.FundingNaira{
+  padding-block: 2rem;
+  margin-left: 1rem;
+}
+.FundingNaira h1{
+  font-family: 'Agrandir-bold';
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.FundingNaira .transferC{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1rem;
+}
+.FundingNaira .transferC div{
+  font-family: 'Agrandir-Regular';
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 35px;
+  border-radius: 20px 0 20px 0; 
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  padding-block: 10px;
+}
+.FundingNaira .transferC :nth-child(1){
+  background-color: #329521;
+}
+.FundingNaira .transferC :nth-child(2){
+  background-color: #f49b09;
+}
+.FundingBankTransfer{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  border: 4px solid rgb(221, 208, 208);
+  border-radius: 20px;
+  padding-block: 10px;
+}
+.FundingBankTransfer h3{
+  font-size: 16px;
+  font-family: 'Agrandir-bold';
+  color: #329521;
+}
+.FundingBankTransfer small{
+  font-family: 'Agrandir-bold';
+}
+.FundingBankTransfer .acctnoCopy{
+  width: 20px;
+}
+.FundingBankTransfer #copyAlert{
+  font-size: 12px;
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+}
+.FundingNairaBank{
+  padding-block: 1rem;
+}
+.FundingNairaBank h1{
+  color: #172C63;
+  font-family: 'Agrandir-bold';
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+.FundingNairaBank main{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: hsla(0, 0%, 85%, .4);
+  padding: 20px 15px;
+  border-radius: 15px;
+  padding-bottom: 3rem;
+}
+.FundingNairaBank main div{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 2rem;
+  /* border: 1px solid; */
+}
+.FundingNairaBank main h3{
+  font-size: 16px;
+  font-weight: 700;
+}
+.FundingNairaBank main h4{
+  font-size: 16px;
+  margin-top: 0;
+}
+.FundingNairaBank main select{
+  padding: 5px;
+  background-color: transparent;
+  border-radius: 10px;
+  outline: 0px;
+}
+.FundingNairaBank main select option{
+  padding: 10px;
+  font-weight: 700;
+  color: #172C63;
+}
+.FundingNairaBank .bnkInfo{
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+}
+.FundingNairaBank .bnkInfo h4{
+  margin-left: -.7rem;
+}
+.FundingNairaBank button{
+  background-color: #129346;
+  margin-top: 1rem;
+  width: 100%;
+}
+.Funding_confirm_cancel{
+  display: flex;
+  gap: 0px;
+  padding-bottom: 2rem;
+}
+.Funding_confirm_cancel button{
+  width: 45%;
+  border-radius: 4px;
+  border: none;
+}
+
+@media (max-width: 620px) {
+  .Fundingpage{
+    width: 100%;
+    margin-top: 2rem;
+  }
+  .FundingPayment h2{
+    font-size: 18px;
+  }
+  .FundingPayment li label{
+    font-size: 18px;
+  }
+  .FundingAmt label{
+    font-size: 18px;
+  }
+  .FundingAmt input{
+    font-size: 16px;
+  }
+  .FundingPrices{
+    flex-direction: column;
+  }
+  .FundingPrices main{
+    width: 100%;
+  }
+  .FundingPrices main div{
+    align-items: center;
+  }
+  .StableCoinFunding .tx_confirm_msg{
+    position: fixed;
+    margin: auto;
+    width: 75%;
+    top: 15%;
+    left: calc(25%/2);
+    font-size: 18px;
+  }
+  .FundingNaira .transferC div{
+    font-size: 18px;
+    line-height: 24px;
+    padding: 10px 20px;
+  }
+  .fundingSuccess button{
+    width: 100%;
+  }
+}

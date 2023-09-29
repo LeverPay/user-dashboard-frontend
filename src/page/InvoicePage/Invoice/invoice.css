@@ -4,7 +4,7 @@
   border-radius: 10px;
   color: white;
   margin-bottom: 4rem;
-  /* margin-top: 8rem; */
+  margin-top: 8rem;
 }
 .className {
   width: 100%;
@@ -118,3 +118,41 @@ hr {
 /* .qrcodeCon{
   background-color: transparent;
 } */
+.accept_decline{
+  display: flex;
+  gap: 2rem;
+  width: 90%;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: -2rem;
+}
+.accept_decline button{
+  border: none;
+  font-family: Agrandir;
+}
+.accept_decline button:nth-child(1){
+  background-color: red;
+}
+.accept_decline button:nth-child(2){
+  background-color: green;
+}
+.pd-invoice-nt{
+  margin-top: 8rem;
+  text-align: center;
+  font-family: 'Agrandir-bold';
+  color: white;
+}
+@media print {
+
+  #invoice {
+    background-color: #1c1a2e;
+    width: 80%;
+    height: 100%;
+    margin-top: 2rem;
+  }
+}
+@media (max-width: 620px){
+  #invoice{
+    margin-top: 2rem;
+  }
+}

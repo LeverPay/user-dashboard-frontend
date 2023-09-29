@@ -1,0 +1,8 @@
+.allInvoicePage{
+    margin-top: 8rem;
+}
+@media screen and (max-width: 620px){
+    .allInvoicePage{
+        margin-top: 2rem;
+    }
+}

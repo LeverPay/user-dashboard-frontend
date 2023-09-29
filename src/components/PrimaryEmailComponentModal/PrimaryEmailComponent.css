@@ -1,0 +1,94 @@
+.header-images {
+  display: flex !important;
+  width: 100% !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  /* border: 1px solid #000; */
+}
+
+.cancel-img {
+  margin-top: 0.3rem !important;
+  float: right !important;
+  width: 3% !important;
+  height: 3% !important;
+}
+
+/* .modal-content {
+  display: block !important;
+  background: #fff !important;
+  width: 35% !important;
+  height: 100% !important;
+  margin: auto !important;
+  /* margin-top: auto !important; */
+/* margin-left: auto !important;
+    margin-right: auto !important; */
+/* margin-bottom: auto !important; */
+/* padding: 0% !important; */
+/* border: 1px solid #000 !important; */
+/* } */
+
+.verify-note {
+  color: #172c63 !important;
+  width: 100% !important;
+  margin-top: 2% !important;
+  text-align: center !important;
+}
+
+.otp-note {
+  width: 100% !important;
+  margin-top: 2% !important;
+  text-align: center !important;
+  font-size: small !important;
+}
+
+.otp-fields {
+  /* border: 1px solid #000; */
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between;
+  margin-top: 5% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 50% !important;
+}
+
+.otp-textbox {
+  width: 18% !important;
+  /* font-size: small !important; */
+  text-align: center !important;
+}
+
+.otp-resend {
+  font-size: small !important;
+  text-align: center !important;
+  margin-top: 3% !important;
+}
+
+.cancel-verification {
+  width: 40% !important;
+  margin-left: 25% !important;
+  /* font-size: small !important; */
+}
+
+.verify-btn {
+  margin-top: 0.9rem !important;
+  margin-left: 5% !important;
+  width: 90% !important;
+}
+
+@media screen and (max-width: 620px) {
+  .modal-content {
+    width: 100% !important;
+  }
+
+  .otp-fields {
+    /* border: 1px solid #000; */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    margin-top: 5% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 80% !important;
+  }
+}

@@ -71,18 +71,24 @@ function Cardcategory() {
     }
   }, [returnMessage]);
 
-
-  return (
-    <Container className="px-5 py-md-5 py-0 col-md-8 col-sm-9" id="cardcategories" style={{marginTop: '8rem', marginBottom:'5rem'}}>
+  return ( 
+    <Container
+      className="px-5 py-md-5 py-0 col-md-8 col-sm-9"
+      id="cardcategories"
+    >
       {accReady ? <KYCFormModal acct={accSet} callback={defunct} /> : ""}
 
       <Row>
-        <Col className="pt-5 pt-md-0 ">
+        <Col className="card_con pt-5 pt-md-0 ">
           <Row className="col-12">
             <CardGold />
           </Row>
           <Row className="mt-3 col-12">
-            <p className="Kyc-upgrade-notice" id="Kyc-upgrade-notice-1"  onClick={() => defunct("gold")}>
+            <p
+              className="Kyc-upgrade-notice"
+              id="Kyc-upgrade-notice-1"
+              onClick={() => defunct("gold")}
+            >
               To upgrade to the <span className="gold">GOLD</span> Card, please
               complete the following verification<strong> (KYC)</strong> Process
               as it is required by Government. Click on the Card to start
@@ -99,7 +105,11 @@ function Cardcategory() {
             <CardDiamond />
           </Row>
           <Row className="mt-3 col-12">
-            <p className="Kyc-upgrade-notice" id="Kyc-upgrade-notice-1" onClick={() => defunct("diamond")}>
+            <p
+              className="Kyc-upgrade-notice"
+              id="Kyc-upgrade-notice-1"
+              onClick={() => defunct("diamond")}
+            >
               To upgrade to the <span className="gold">GOLD</span> Card, please
               complete the following verification<strong> (KYC)</strong> Process
               as it is required by Government. Click on the Card to start
@@ -110,13 +120,17 @@ function Cardcategory() {
         </Col>
       </Row>
 
-      <Row className="mt-5">
-        <Col >
+      <Row className="card_btm mt-5">
+        <Col className="card_con">
           <Row className="col-12">
             <CardPinkLady />
           </Row>
           <Row className="mt-3  col-12">
-            <p className="Kyc-upgrade-notice" id="Kyc-upgrade-notice-1" onClick={() => defunct("pinkLady")}>
+            <p
+              className="Kyc-upgrade-notice"
+              id="Kyc-upgrade-notice-1"
+              onClick={() => defunct("pinkLady")}
+            >
               To upgrade to the <span className="gold">GOLD</span> Card, please
               complete the following verification<strong> ( KYC )</strong>{" "}
               Process as it is required by Government. Click on the Card to
@@ -128,12 +142,16 @@ function Cardcategory() {
         <Col className="col-2 pt-5 d-none d-md-block">
           <img alt="" className="img-responsive" src="./images/Line 25.png" />
         </Col>
-        <Col >
+        <Col>
           <Row className="col-12">
             <CardEnterprise />
           </Row>
           <Row className="mt-3 col-12">
-            <p className="Kyc-upgrade-notice" id="Kyc-upgrade-notice-1" onClick={() => defunct("enterprise")}>
+            <p
+              className="Kyc-upgrade-notice"
+              id="Kyc-upgrade-notice-1"
+              onClick={() => defunct("enterprise")}
+            >
               To upgrade to the <span className="gold">GOLD</span> Card, please
               complete the following verification<strong> ( KYC )</strong>{" "}
               Process as it is required by Government. Click on the Card to
