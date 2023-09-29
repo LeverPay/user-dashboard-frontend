@@ -1,20 +1,47 @@
 .card-balance {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   color: white;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  width: 80%;
+  padding: 16px;
+  width: 90% !important;
   margin: auto;
   border-radius: 10px;
   margin-left: 33px;
 }
 @media screen and (max-width: 620px) {
   .card-balance {
+    flex-direction: row;
     margin-top: 20px;
     margin-left: 0px;
-    width: 100%;
+    width: 100% !important;
+    height: 100px !important;
+    padding: 20px 10px;
+    margin-right: 2rem;
+  }
+  .card-balance img {
+    /* margin-left: -1rem; */
+    width: 20px;
+    padding: 0 1rem;
+  }
+  .card-balance main strong{
+    font-size: 12px !important;
+  }
+  .card-balance main p{
+    opacity: .8;
+    font-size: 10px !important;
+  }
+}
+@media (max-width: 1024px) and (min-width: 621px) {
+  .card-balance {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0px;
+  }
+  .card-balance h4 {
+    font-size: 15px;
   }
 }
 .card-balance img {
@@ -27,9 +54,16 @@
 .card-balance main {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: flex-start !important;
+  justify-content: center;
+  margin: 0;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 .card-balance small {
   color: white;
+  text-align: left !important;
+}
+.card-balance main strong{
+  font-size: 22px !important;
 }

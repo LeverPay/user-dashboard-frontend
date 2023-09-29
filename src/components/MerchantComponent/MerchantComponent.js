@@ -15,8 +15,12 @@ export const MerchantComponent = () => {
   return (
     <>
       <div className="col-md-12 merchant-header ">
+    <div className="merchant_COn">
+      <div className="col-md-12 merchant-header "> 
         <h3>My Merchants</h3>
-        <SearchBar />
+        <span className="merchant_search">
+          <SearchBar />
+        </span>
         <Link className="details-link up">View All</Link>
       </div>
       <div className="merchant-container col-md-12">
@@ -40,6 +44,6 @@ export const MerchantComponent = () => {
           <Merchants logo1={Amazon} logo2={Amazon2} />
         </div>
       </div>
-    </>
+    </div>
   );
 };

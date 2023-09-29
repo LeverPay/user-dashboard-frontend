@@ -1,38 +1,48 @@
 .outer-div {
   display: flex;
-  margin-top: 5%;
+  margin-top: 10%;
   margin-left: 10%;
   width: 80%;
-  height: 100vh;
   justify-content: center;
-  /* margin: 0 auto; */
+  padding-bottom: 2rem;
 }
 
 @media screen and (max-width: 620px) {
   .outer-div {
     width: 100%;
-    margin-left: 0%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    padding-bottom: 2rem;
   }
 }
 
 .labels {
   font-family: AgrandirBold !important;
+  font-size: small !important;
 }
 
 .myForm {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 60%;
-  /* margin: auto; */
+  width: 70%;
+  padding: 5% !important;
   background-color: #fff;
+  border-radius: 10px;
 }
 
 .text-area {
   width: 80%;
-  margin-left: 5%;
+  margin-left: 3%;
   background-color: #f8f8f8;
-  font-family: AgrandirBold !important;
+  font-family: Agrandir !important;
+  font-size: small;
+}
+
+.text-area::placeholder {
+  color: grey !important;
 }
 
 @media screen and (max-width: 620px) {
@@ -43,8 +53,7 @@
 }
 
 .form-fields-div {
-  /* border: 1px solid #000; */
-  margin-top: 10;
+  margin-top: 0px;
 }
 
 .change-password {
@@ -54,11 +63,11 @@
   margin-top: 5%;
 }
 .confirm-password {
-  margin-top: 5%;
+  margin-top: -0.9rem !important;
 }
 
 .text-muted {
-  margin-left: 5% !important;
+  margin-left: 3% !important;
   font-family: AgrandirBold !important;
 }
 
@@ -72,7 +81,7 @@ p {
 
 .notice {
   margin-top: 2% !important;
-  margin-left: 5%;
+  margin-left: 3%;
   width: 100%;
   font-family: AgrandirBold !important;
   /* border: 1px solid #000; */
@@ -83,24 +92,30 @@ h4 {
   margin-top: 5%;
 }
 
+.error {
+  margin-left: 0.9rem !important;
+  margin-top: -0.9rem !important;
+}
+
+.set-eye-icon {
+  width: 5%;
+  margin-top: -65px !important;
+  margin-left: 85%;
+  /* border: 1px solid #000; */
+}
+
 .form-label {
-  margin-left: 5%;
+  border: 0px !important;
+  padding: 0px !important;
+  margin-left: 3%;
   font-family: AgrandirBold !important;
 }
 
 .buttons-div {
-  display: flex;
-  margin-top: 10%;
-  margin-left: 5%;
-  justify-content: space-around;
-  flex-direction: row;
-  width: 80%;
-  /* border: 1px solid #000 !important; */
-}
-
-.form-button .save-changes {
-  background-color: #fff !important;
-  margin-bottom: 30%;
+  width: 30% !important;
+  margin-top: -2rem !important;
+  margin-left: 0.9rem !important;
+  height: auto;
 }
 
 .form-button {
@@ -113,24 +128,39 @@ h4 {
   width: 100%;
   flex-direction: row;
   height: 10%;
-  /* border: 1px solid #000; */
 }
 
 .forgot-password {
-  margin-left: 5%;
+  margin-left: 3%;
   text-decoration: none;
+  cursor: pointer;
+  color: #2962f2;
   font-family: AgrandirBold !important;
 }
 
 @media screen and (max-width: 700px) {
+  .form-fields-div {
+    margin-top: 0px !important;
+  }
+
   .buttons-div {
     flex-direction: column;
-    width: 80%;
+    width: 85% !important;
     margin: auto;
   }
 
   .myForm {
     width: 100%;
-    height: 100vh;
+  }
+
+  .text-muted {
+    width: 100%;
+  }
+  .save-changes {
+    width: 100% !important;
+  }
+  .set-eye-icon {
+    width: 20% !important;
+    margin-left: 78% !important;
   }
 }

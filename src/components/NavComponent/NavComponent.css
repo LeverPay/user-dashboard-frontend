@@ -1,31 +1,99 @@
 .side-nav-container {
-  position: fixed;
+  position: fixed !important;
   height: 100% !important;
-  width: 17% !important;
+  width: 16%;
   background-color: #0e093f;
-  padding-left: 15px;
-  border-top-right-radius: 80px;
-  border-bottom-right-radius: 80px;
+  /* padding-left: 15px; */
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
   /* padding: 0 0 0 40px !important; */
+  overflow: scroll !important;
   z-index: 20000;
+  overflow-y: scroll;
+}
+.side-nav-container .logo{
+  width: 100%;
 }
 .side-nav-container span {
   color: #fff;
   font-size: 40px !important;
 }
+
 @media screen and (max-width: 620px) {
   .side-nav-container {
-    /* display: none; */
-    width: 100% !important;
+    /* display: none; */ 
+    width: 55% !important;
     transition: 1s ease;
     margin-top: 0;
-    padding-right: 15px;
-    padding-top: 10px;
+    border: 1px solid;
+    margin-left: -10px;
+    padding-left: 15px;
+    overflow-y: hidden;
+    height: 100vh;
+    border-radius: 0;
   }
+  .TopNav-logo-sm{
+    width: 150px;
+    margin-left: 10px;
+  }
+  .side-nav-container #close-menu{
+    /* border: 1px solid; */
+    width: 50px;
+    height: 20px;
+    object-fit: contain;
+    position: absolute;
+    top: -1%;
+    right: 0;
+  }
+  .side-nav-container .logo{
+    display: none !important;
+  }
+
+  .bottom-options {
+    width: fit-content !important;
+    margin-left: -1rem !important;
+    /* border: 1px solid #000 !important; */
+  }
+
   .bottom-options ul {
-    margin-top: 132px !important;
+    margin-top: 50px !important;
+    margin-left: 0.5rem !important;
+    width: 100% !important;
+    /* border: 1px solid #000 !important; */
+    /* margin-top: 0px !important; */
+  }
+  .sm-nav {
+    border: 1px solid;
+  }
+  .logo {
+    /* display: none; */
+    width: 100% !important;
+    margin-top: -5rem;
+    margin-left: -3em !important;
+  }
+
+  .nav-options {
+    /* border: 1px solid #000 !important; */
+    width: 100% !important;
+  }
+
+  .nav-options ul {
+    margin-top: 0rem;
+    margin-left: -1rem;
+  }
+
+  .nav-options ul li {
+    margin-left: 0.5rem !important;
+  }
+  .nav-sm {
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    padding-block: 10px;
+    margin-top: -1rem;
   }
 }
+
 .top {
   display: flex;
   width: 100% !important;
@@ -33,24 +101,35 @@
 }
 
 .nav-options {
-  border: 1px solid #0000;
+  display: flex !important;
+  flex-direction: row !important;
+  padding-left: 10% !important;
+  /* border: 1px solid #000 !important; */
+  margin-left: -1rem !important;
+  width: fit-content !important;
+  /* overflow-x: scroll !important; */
 }
-
+.nav-options ul li img{
+  margin:10px
+}
 .nav-options ul li {
-  line-height: 65px;
+  word-wrap: nowrap !important;
+  line-height: 50px !important;
+  width: max-content !important;
   font-family: AgrandirBold !important;
-  margin-left: 20px;
-  font-size: 22px;
+  /* margin-left: auto !important; */
+  /* margin-right: auto !important; */
+  font-size: 80% !important;
   font-weight: bold !important;
+  /* border: 1px solid #000 !important; */
 }
 .nav-options ul li i {
-  font-size: 33px !important;
-  margin-right: 20px;
+  font-size: 23px !important;
 }
 
 .bottom-options ul li small {
   font-size: 23px !important;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 }
 @media screen and (max-width: 700px) {
   .my-tweak {
@@ -70,37 +149,45 @@
   }
 
   .bottom-options {
-    margin-top: 20px !important;
+    margin-top: 10px !important;
   }
 }
 
 .nav-options .text-link {
   text-decoration: none;
   color: #fff;
-  padding-bottom: 15px;
+  /* padding-bottom: 15px; */
   width: 100%;
   font-family: AgrandirRegular;
 }
 
 .bottom-options {
-  display: flex;
-  flex-direction: column;
-  margin-top: 50%;
+  display: flex !important;
+  flex-direction: row !important;
+  font-size: small !important;
+  /* margin-left: -1rem !important; */
+  margin-top: auto !important;
+  width: 100% !important;
+  /* border: 1px solid #000 !important; */
 }
 
 .bottom-options span {
-  margin-right: 20px;
+  /* border: 1px solid #000 !important; */
+  margin: auto !important;
 }
 .bottom-options .bottom-link {
+  width: 100% !important;
   color: #fff;
-  padding-bottom: 15px;
+  /* padding: 5% !important; */
   font-family: AgrandirBold;
   text-decoration: none;
-  margin-left: 20px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border: 1px solid #000 !important;
 }
 .navbar-logo {
   margin-top: 40px;
-  margin-bottom: 70px;
+  margin-bottom: 40px;
 }
 @media screen and (min-width: 620px) {
   .open-close-icons {
@@ -122,23 +209,43 @@
   padding-top: 30px !important;
   /* padding-bottom: 20px !important; */
 }
-.active {
+.list-unstyled .active {
   background: #fff !important;
-  padding: 20px 50px 20px 5px;
+  padding: 10px;
   color: #0b0230 !important;
   font-weight: bold !important;
   border-radius: 10px;
   transition: 0.5s ease;
 }
-.side-nav-container li :hover {
+.side-nav-container li a:hover {
   background: #fff !important;
-  padding: 20px 50px 20px 5px;
+  padding: 10px;
   color: #0b0230 !important;
   font-weight: bold !important;
   border-radius: 10px;
   transition: 0.5s ease;
 }
-.open-close-icons {
-  /* height: 50px;
-  width: 150px; */
+@media (max-width: 1024px) and (min-width: 621px) {
+  .side-nav-container {
+    width: 30% !important;
+  }
+  .nav-options {
+    margin-left: -2rem;
+    margin-top: -2rem;
+  }
+  .logo {
+    width: 130% !important;
+    margin-left: -2rem;
+  }
+  .nav-options ul li {
+    margin-bottom: -10px;
+  }
+  .bottom-options {
+    margin-left: -2rem;
+  }
+}
+.bottom-options ul{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

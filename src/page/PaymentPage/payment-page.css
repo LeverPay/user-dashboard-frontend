@@ -1,82 +1,71 @@
 .payment-page-container {
   background: #fff;
   height: fit-content;
-  padding: 50px 0px;
+  padding-block: 50px;
+  /* padding: 50px 20px; */
   margin-top: 8rem;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  width: 90%;
 }
-
-.payment-page-container .tabs {
+.checkoutNav ul{
+  list-style: none;
   display: flex;
-  width: 530px;
+  text-decoration: none;
+  gap: 2rem;
+  border-bottom: 1px solid gainsboro;
+  padding-bottom: 10px;
 }
-@media screen and (max-width: 620px) {
-  .tabs {
-    /* display: grid; */
-  }
+.checkoutNav ul li .active{
+  border-bottom: 3px solid #0051FF;
+  color: #0051FF;
 }
-.payment-page-container .tab {
-  justify-content: center;
-  align-items: center;
-  width: 100% !important;
-  background: #fff !important;
-  padding: 1em 0;
-  border: none;
-  border-bottom: solid 1px rgb(70, 66, 66);
-  color: black !important;
-  font-family: AgrandirBold;
+.checkoutNav ul li a{
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  padding: 0 10px;
+  padding-bottom: 10px;
+}
+.pay_logo {
+  width: 170px;
+  margin-left: -1rem;
 }
 
-.payment-page-container .tab.active2 {
-  border-bottom: solid 2px #0051ff;
-  font-weight: bold;
-  color: #0051ff !important;
-}
-.panel {
-  display: none;
-  background: #fff !important;
-  padding-top: 50px;
-  color: black !important;
-  font-family: AgrandirBold;
+/* for crad details  */
+.ccDet{
+  padding: 0px 64px;
 }
 @media screen and (max-width: 620px) {
-  .panel {
-    padding: 0px;
+  .payment-page-container {
+    margin-top: 2rem;
+    width: 100%;
+  padding-block: 30px;
   }
-}
-.panel .active2 {
-  display: block;
+  .ccDet{
+    padding: 0px 16px;
+  }
 }
 .logo-holder {
   /* margin-top: 80px; */
-  margin-bottom: 60px;
-}
-.insufficient-balance {
-  height: 220px;
-  width: 440px;
-  padding: 30px 20px;
-  background: #fff;
-  border-radius: 10px;
-
-  margin-top: 300px !important;
-}
-.alert1 {
-  color: #329521;
-  font-family: AgrandirBlackItalic;
-  font-size: 17px;
-  line-height: 20px;
-}
-.alert2 {
-  color: #cd4729;
-  font-family: AgrandirBlackItalic;
-  font-size: 17px;
-  line-height: 20px;
-}
-.alert2 span {
-  color: #fb0000;
-  font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .modal-content {
-  background: none !important;
+  /* background: none !important; */
   border: none !important;
+}
+.card-divv {
+  /* margin-left: -20px; */
+}
+@media screen and (max-width: 620px) {
+  .card-divv {
+    margin-left: 0;
+  }
+}
+@media (max-width: 1024px) and (min-width: 621px) {
+  .payment-page-container {
+    width: fit-content;
+    padding: 20px 40px;
+  }
 }

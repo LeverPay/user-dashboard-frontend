@@ -1,0 +1,109 @@
+.subscription-container {
+  display: flex !important;
+  flex-direction: column !important;
+  margin-top: 8rem !important;
+  margin-bottom: 5rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 35% !important;
+  /* border: 1px solid #fff; */
+}
+
+.subscription-header {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  width: 100% !important;
+  align-items: center !important;
+  margin-top: 0% !important;
+  text-align: center !important;
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%) !important;
+  border-radius: 10px 10px 0 0 !important;
+  padding: 1% !important;
+}
+
+.subscription-text {
+  margin-top: 0.4rem !important;
+  margin-left: 0.9rem !important;
+  font-size: medium !important;
+  color: #fff !important;
+}
+
+.company-half-logo {
+  width: 8% !important;
+  height: 65% !important;
+}
+
+.subscription-form {
+  display: flex !important;
+  flex-direction: row !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 10% !important;
+  width: 100% !important;
+  background-color: #fff !important;
+  border-radius: 0 0 10px 10px;
+  /* border: 1px solid #000 !important; */
+}
+
+.select-subscription {
+  background-color: #d9d9d9;
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+}
+
+.subscription-label {
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+}
+
+.type-label {
+  margin: auto !important;
+}
+
+.subscription-input {
+  background-color: #d9d9d9;
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+  width: 95% !important;
+  margin: auto !important;
+}
+
+.input-label {
+  margin-bottom: auto !important;
+}
+
+.button-container {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-around !important;
+  margin-top: 5% !important;
+  /* border: 1px solid #000 !important; */
+  width: 100% !important;
+}
+
+.subscription-button {
+  width: 40% !important;
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+}
+
+.subscription-save {
+  background-color: #0c6904;
+}
+
+.subscription-error {
+  color: red !important;
+  /* padding: 0% !important; */
+  width: 100% !important;
+}
+
+@media screen and (max-width: 620px) {
+  .subscription-container {
+    display: flex !important;
+    flex-direction: column !important;
+    margin-top: 3rem !important;
+    /* margin-bottom: 5rem !important; */
+    width: 100% !important;
+  }
+}

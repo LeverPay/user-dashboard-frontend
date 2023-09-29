@@ -1,8 +1,15 @@
 .modal {
   width: 100% !important;
-  --bs-modal-width: 1200px;
+  --bs-modal-width: 1400px;
   position: absolute;
 }
 .modal-body {
   padding: 0 !important;
+}
+.cancel-btn {
+  color: red;
+  font-weight: bold !important;
+  font-family: AgrandirBold;
+  position: relative;
+  z-index: 10000;
 }

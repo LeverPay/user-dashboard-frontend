@@ -2,19 +2,30 @@
   border-radius: 10px;
   background-color: #201e34;
   width: 80%;
+  margin-top: 8rem;
   margin-bottom: 5rem;
 }
 @media screen and (max-width: 620px) {
   #mycards {
     width: 100%;
+    margin-top: 2rem;
     margin-bottom: 2rem !important;
-    padding: 0 !important;
+    padding: 3rem 0 !important;
+  }
+  #mycards .spending {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    margin: auto;
+  }
+  #mycards .spending .bal {
+    margin-top: -3rem;
   }
 }
 .Upgrade-con {
   margin-top: 10rem;
 }
-.card-modal{
+.card-modal {
   position: absolute;
   width: 30%;
   top: 30%;
@@ -23,7 +34,7 @@
   padding: 32px;
   background-color: white;
 }
-.card-modal ul{
+.card-modal ul {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -32,12 +43,23 @@
   font-size: 18px;
   text-align: left;
 }
-button{
+button {
   border: none;
-  background-color: #0E093F;
+  background-color: #0e093f;
   border: 1px solid gray;
   padding: 10px;
   color: white;
   border-radius: 10px;
   width: 90%;
+}
+.mycards-limit-info{
+  /* border: 1px solid; */
+  color: gray;
+  margin-top: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #0E093F;
+}
+.mycards-limit-info h1{
+  font-size: 14px !important;
 }

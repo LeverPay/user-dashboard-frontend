@@ -6,44 +6,38 @@ import { CreditCard } from "./CreditCard/CreditCard";
 import LeverpayLogo from "../../assets/images/logo.png";
 import EmailMessage from "./TransactionMessages/EmailMessage";
 import SuccessMessage from "./TransactionMessages/SuccessMessage";
+import { NavLink, Outlet } from "react-router-dom";
 
 function PaymentPage() {
-  const [activeIndex, setActiveIndex] = useState(1);
-  const handleClick = (index) => setActiveIndex(index);
-  const checkActive = (index, className) =>
-    activeIndex === index ? className : "";
   return (
     <>
       {" "}
-      <div className="col-md-12 payment-page-container">
-        <div className="col-md-2 logo-holder offset-md-1">
-          {" "}
-          <img src={LeverpayLogo} alt="" width="100%" />
-        </div>
-        <div className="tabs  offset-md-1">
-          <div
-            className={`tab ${checkActive(1, "active2")}`}
-            onClick={() => handleClick(1)}
-          >
-            Credit Card
+      <center>
+        {" "}
+        <div className="col-md-3 payment-page-container">
+          <div className="col-md-5 logo-holder col-6">
+            {" "}
+            <img src={LeverpayLogo} alt="" className="pay_logo" />
           </div>
-          <div
-            className={`tab ${checkActive(2, "active2")}`}
-            onClick={() => handleClick(2)}
-          >
-            Transfer
-          </div>
-        </div>
-        <div className="panels ">
-          <div className={`panel ${checkActive(1, "active2")}`}>
-            <CreditCard />
-          </div>
-          <div className={`panel ${checkActive(2, "active2")}`}>
-            <EmailMessage />
-            <SuccessMessage />
+          <nav className="checkoutNav">
+            <ul>
+              <li>
+                <NavLink activeclassname='active' to='/payment-page/credit-card'>
+                 Credit Card
+                </NavLink>
+              </li>
+              <li>
+                <NavLink activeclassname='active' to='/payment-page/checkout-transfer'>
+                  Transfer
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+          <div>
+            <Outlet/>
           </div>
         </div>
-      </div>
+      </center>
     </>
   );
 }

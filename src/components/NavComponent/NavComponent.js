@@ -10,6 +10,8 @@ import { Link, NavLink } from "react-router-dom";
 //import { MdLiveHelp } from "react-icons/md";
 import "../NavComponent/NavComponent.css";
 import { useState, useEffect } from "react";
+import { logoutUser } from "../../services/apiService";
+import { useLocalState } from "../../utils/useLocalStorage";
 //import Icofont from "react-icofont";
 
 const NavComponent = () => {
@@ -18,6 +20,12 @@ const NavComponent = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
 
+  const [jwt, setJwt] = useLocalState("", "jwt");
+  // ------------------------------ logout user api call ---------------------------------//
+  const handleLogout = () => {
+    logoutUser(jwt);
+  };
+  // ------------------------------------------------------------------------------------//
   const handleActive = (item) => {
     setActiveItem(item);
   };
@@ -31,6 +39,7 @@ const NavComponent = () => {
   };
 
   function closeSidebar() {
+    console.log("closing");
     setSidebarOpen(false);
   }
 
@@ -63,18 +72,18 @@ const NavComponent = () => {
         expand="md"
         bg="#0E093F"
         variant="dark"
-        className="flex-column side-nav-container  slide-right"
+        className="flex-column side-nav-container slide-right"
         id="mySidebar"
         style={{ display: sidebarOpen ? "block" : "none" }}
       >
         <div className="open-close-icons flexy" style={{ display: "flex" }}>
           <div className="col-10">&nbsp;</div>
-          <span onClick={closeSidebar}>
+          <span onClick={closeSidebar} id="close-menu">
             {/* <i class="icofont-close-circled"></i> */}
             <img
               src={Close}
               alt=""
-              style={{ width: "50%" }}
+              style={{ width: "40%" }}
               className="open-close-icons"
             />
           </span>
@@ -82,25 +91,22 @@ const NavComponent = () => {
         <div className="container">
           <div />
           <div>
-            <div defaultActiveKey="/" className="flex-column my-tweak">
-              <div className="navbar-logo ">
-                <center>
-                  {" "}
-                  <img src={LeverpayLogo} alt="" style={{ width: "100%" }} />
-                </center>
-              </div>
+            <div defaultactivekey="/" className="flex-column my-tweak">
+              <center>
+                <div className="navbar-logo col-md-9 col-9">
+                  <img src={LeverpayLogo} alt="" className="logo" />
+                </div>
+              </center>
               <div className="nav-options">
-                {" "}
                 <ul className="list-unstyled">
                   <li>
-                    {" "}
                     <NavLink
                       to="/"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
-                      <i class="icofont-home"></i>
+                      <img alt="" src="/images/Dashboard.png"/>
                       Dashboard
                     </NavLink>
                   </li>
@@ -109,40 +115,80 @@ const NavComponent = () => {
                       to="/transactions"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
-                      {" "}
-                      <i class="icofont-exchange"></i>
+                     <img alt="" src="/images/Transactions.png"/>
                       Transactions
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/transfer"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeclassname="active"
+                    >
+                      <img alt="" src="/images/transfer.png"/>
+                      Transfer
                     </NavLink>
                   </li>
                   <li
                     // eslint-disable-next-line no-undef
                     onClick={() => handleActive("invoices")}
                   >
-                    {" "}
                     <NavLink
                       to="/invoices"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
+                      id="unpaid"
                     >
-                      {" "}
-                      <i class="icofont-notepad"></i>
-                      Invoices
+                      <i className="icofont-notepad"></i>
+                      Unpaid Subscriptions
                     </NavLink>
                   </li>
                   <li>
-                    {" "}
                     <NavLink
                       to="/my cards"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
-                      {" "}
-                      <i class="icofont-wallet"></i>
+                      <img alt="" src="/images/My Wallets.png"/>
                       My Cards
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/my-subscriptions"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeclassname="active"
+                    >
+                      <img alt="" src="/images/subscription.png"/>
+                      Subscriptions
+                    </NavLink>
+                  </li>
+                  <li> 
+                    <NavLink
+                      to="/funding/naira-deposit"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeclassname="active"
+                    >
+                      <img alt="" src="/images/fund.png"/>
+                      Funding
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/investment"
+                      className="text-link"
+                      onClick={closeMobileMenu}
+                      activeclassname="active"
+                    >
+                      <img alt="" src="/images/invest.png"/>
+                      Investment
                     </NavLink>
                   </li>
                   <li>
@@ -150,47 +196,49 @@ const NavComponent = () => {
                       to="/settings"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
-                      {" "}
-                      <i class="icofont-ui-settings"></i>
+                      <img alt="" src="/images/Settings.png"/>
                       Settings
                     </NavLink>
-                  </li>{" "}
+                  </li>
                   <li>
                     <NavLink
                       to="/payment-page"
                       className="text-link"
                       onClick={closeMobileMenu}
-                      activeClassName="active"
+                      activeclassname="active"
                     >
-                      {" "}
-                      <i class="icofont-ui-settings"></i>
+                      <img alt="" src="/images/checkout.png"/>
                       Checkout
                     </NavLink>
-                  </li>{" "}
+                  </li>
                 </ul>
               </div>
               <div className="bottom-options">
-                {" "}
                 <ul className="list-unstyled">
                   <li onClick={closeMobileMenu}>
-                    {" "}
-                    <Link to="/help" className="bottom-link"> 
+                    <NavLink to="/help" className="bottom-link" activeclassname="active">
                       <small>
-                        {" "}
-                        <i class="icofont-question-square"></i>
-                      </small>{" "}
-                      help
-                    </Link>{" "}
-                  </li>
-                  <li onClick={closeMobileMenu}>
-                    {" "}
-                    <Link to="#" className="bottom-link">
-                      <small>
-                        <i class="icofont-sign-out"></i>{" "}
+                      <img alt="" src="/images/Help.png"/>
                       </small>
-                      logout
+                      Help
+                    </NavLink>
+                  </li>
+                  {/* <li onClick={closeMobileMenu}>
+                    <Link to="/help" className="bottom-link">
+                      <small>
+                      <img alt="" src="/images/Help.png"/>
+                      </small>
+                      Block Card
+                    </Link>
+                  </li> */}
+                  <li onClick={closeMobileMenu}>
+                    <Link onClick={handleLogout} to="#" className="bottom-link">
+                      <small>
+                      <img alt="" src="/images/Logout.png"/>
+                      </small>
+                      Logout
                     </Link>
                   </li>
                 </ul>
@@ -200,15 +248,23 @@ const NavComponent = () => {
         </div>
       </div>
       <div className="open-close-icons flexy menu" style={{ display: "flex" }}>
-        <div className="col-11">&nbsp;</div>
-        <span onClick={openSidebar} style={{ color: "#fff", fontSize: "20px" }}>
+        {/* <div className="col-11">&nbsp;</div>
+        <span>
+        </span> */}
+        <span
+          onClick={openSidebar}
+          style={{ color: "#fff", fontSize: "20px" }}
+          className="nav-sm"
+        >
           {/* <i class="icofont-navigation-menu"></i> */}
           <img
             src={Open}
             alt=""
-            style={{ width: "100%" }}
-            className="open-close-icons"
+            id="menu"
+            style={{ width: "20%" }}
+            className="open"
           />
+          <img src={LeverpayLogo} alt="" className="TopNav-logo-sm" />
         </span>
       </div>
     </>

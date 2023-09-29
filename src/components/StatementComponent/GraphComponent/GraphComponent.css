@@ -11,6 +11,8 @@
 @media screen and (max-width: 620px) {
   .graphComponentDiv {
     margin-left: 0 !important;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -29,4 +31,9 @@
   color: #ffffff;
   margin-left: 30px;
   padding-top: 0px;
+}
+@media (max-width:1024px) and (min-width: 621px){
+  .graphComponentDiv{
+    height: 240px;
+  }
 }
