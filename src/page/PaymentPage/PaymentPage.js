@@ -6,6 +6,7 @@ import { CreditCard } from "./CreditCard/CreditCard";
 import LeverpayLogo from "../../assets/images/logo.png";
 import EmailMessage from "./TransactionMessages/EmailMessage";
 import SuccessMessage from "./TransactionMessages/SuccessMessage";
+import { NavLink, Outlet } from "react-router-dom";
 
 function PaymentPage() {
   return (
@@ -18,9 +19,22 @@ function PaymentPage() {
             {" "}
             <img src={LeverpayLogo} alt="" className="pay_logo" />
           </div>
-
-          <div className="col-md-12">
-            <CreditCard />
+          <nav className="checkoutNav">
+            <ul>
+              <li>
+                <NavLink activeclassname='active' to='/payment-page/credit-card'>
+                 Credit Card
+                </NavLink>
+              </li>
+              <li>
+                <NavLink activeclassname='active' to='/payment-page/checkout-transfer'>
+                  Transfer
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+          <div>
+            <Outlet/>
           </div>
         </div>
       </center>

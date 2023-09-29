@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-// import Col from "react-bootstrap/esm/Col";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useLocalState } from "../../utils/useLocalStorage";
 import "./totalMoney.css";
 
 function TotalMoney(props) {
@@ -7,6 +8,24 @@ function TotalMoney(props) {
   const { bg, transfer, totaltype, amt, exAmt, naira_code, dollar_code } =
     props;
   const [amtVisible, setAmtVisible] = useState(false);
+  const [rate, setRate] = useState()
+  const [jwt, setJwt] = useLocalState('', 'jwt')
+
+  useEffect(()=>{
+    axios.get('https://leverpay-api.azurewebsites.net/api/v1/user/get-exchange-rates',  {
+      headers: {
+          Authorization : `Bearer ${jwt}`
+      }
+  })
+    .then(res=>{
+      setRate(res.data.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  },[])
+
+  const dollar = rate ? '$' + (amt/rate.rate).toFixed(2) : ''
 
   // console.log(amt);
 
@@ -20,16 +39,13 @@ function TotalMoney(props) {
       style={{ backgroundColor: bg }}
       onClick={viewamt}
     >
-      <span>
+      <span className="bal-img-con">
         <img alt="" src="./images/bal1.png" />
       </span>
       <main>
-        <small>{totaltype}</small>
-        {transfer}
-        <h4 className="total-h4"> {amtVisible ? naira_code + amt : "XXXX"} </h4>
-        <h4 className="total-h4 ext-v">
-          {amtVisible ? dollar_code + exAmt : "XXXX"}
-        </h4>
+        <p>{totaltype}</p>
+        <strong> {amtVisible ? `N${amt}` : "XXXX"} </strong>
+        <small>{amtVisible ? dollar : 'xxx'}</small> 
       </main>
     </div>
   );

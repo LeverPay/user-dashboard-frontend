@@ -1,29 +1,58 @@
 import React, { useState, useEffect } from 'react'
 import FundingSuccess from './FundingSuccess'
 import Helpimageupload from "../HelpImageUpload/helpimageupload";
+import axios from 'axios';
+import { useLocalState } from '../../utils/useLocalStorage';
+
 
 const FundingNaira = (props) => {
+  const [jwt, setJwt] = useLocalState('', 'jwt')
   const [step, setStep] = useState(1)
   const [copyAlert, setCopyAlert] = useState('')
+  const [rate, setRate] = useState('')
+  const [leverpayaccounts, setLeverpayaccounts] = useState([])
   const [add_Info_txid, setAdd_info_txid] = useState(false)
+  const [add_Info, setAdd_info] = useState('')
   const [fileImg, setFileimg] = useState()
-  const [imgfile, setImgfile] = useState()
-  function GetImg(value, imgInfo) {
-    setFileimg(value)
-    setImgfile(imgInfo)
+  const [isAcct, setIsAcct] = useState(false)
+  const [account_Info, setAccount_Info] = useState([])
+  const [account_no, setAccount_no] = useState()
+  const [account_name, setAccount_name] = useState()
+
+  // const [imgfile, setImgfile] = useState()
+
+  function getImg(a){
+    setFileimg(a)
   }
 
-
-  const finalAmt = props.amt * 750
+  // GET ACCOUNT NUMBERS 
+  useEffect(()=>{
+    axios.get('https://leverpay-api.azurewebsites.net/api/v1/user/get-account-numbers',  {
+      headers: {
+          Authorization : `Bearer ${jwt}`
+      }
+  })
+    .then(res=>{
+      console.log(res.data)
+      setAccount_Info(res.data.data)
+      if(res.data.data.length> 0){
+        setIsAcct(true)
+      }else setIsAcct(false)
+    })
+    .catch(err=>{
+      console.log(err)
+      setIsAcct(false)
+    })
+  },[])
 
 
   // account informations
-  const account_Info = [
-    { name: 'GT Bank', number: '0054789923' },
-    { name: 'First Bank', number: '3120789923' },
-    { name: 'Kuda Bank', number: '2054569929' },
-    { name: 'Providus Bank', number: '9105479905' }
-  ]
+  // const account_Info = [
+  //   { bank: 'GT Bank', account_number: '0054789923', account_name: 'Bola' },
+  //   { bank: 'First Bank', account_number: '3120789923', account_name: 'Ada' },
+  //   { bank: 'Kuda Bank', account_number: '2054569929', account_name: 'aaaaa' },
+  //   { bank: 'Providus Bank', account_number: '9105479905', account_name: 'bits' }
+  // ]
   const unique_acct = {
     bank: 'Providus Bank',
     num: 400785634
@@ -32,10 +61,8 @@ const FundingNaira = (props) => {
   const [formData, setFormData] = useState({
     amount: 0.00,
     charges: 0.00,
-    Bank_name: account_Info[0].name,
-    txid: '',
-    fileImg: fileImg,
-    imginfo: imgfile
+    Bank_name: isAcct ?  account_Info[0].name: '',
+    txid: ''
   })
 
   function handleForm(e) {
@@ -45,34 +72,85 @@ const FundingNaira = (props) => {
       [e.target.name]: e.target.value
     })
   }
+  useEffect(()=>{
+    axios.get('https://leverpay-api.azurewebsites.net/api/v1/user/get-exchange-rates',  {
+      headers: {
+          Authorization : `Bearer ${jwt}`
+      }
+  })
+    .then(res=>{
+      setRate(res.data.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  },[])
 
   // rate conversion and amount props
-  let dollar = formData.amount / 750
-  let charge = formData.charges / 750
+  let dollar = formData.amount / (rate.rate * 1)
+  let charge = formData.charges / (rate.rate * 1)
+  const finalAmt = props.amt * (rate.rate * 1)
   useEffect(() => {
-    props.handleAmount((Number(dollar) + Number(charge)).toFixed(3))
+    if(rate){
+    props.handleAmount(dollar + (charge * 1))
+    }else{
+      props.handleAmount('00' * 1)
+    }
   }, [formData.amount])
 
 
 
   // account number 
-  const [account_no, setAccount_no] = useState(account_Info[0].number)
   useEffect(() => {
-    if (formData.Bank_name === account_Info[0].name) {
-      return setAccount_no(account_Info[0].number)
-    } else if (formData.Bank_name === account_Info[1].name) {
-      return setAccount_no(account_Info[1].number)
-    } else if (formData.Bank_name === account_Info[2].name) {
-      return setAccount_no(account_Info[2].number)
-    } else if (formData.Bank_name === account_Info[3].name) {
-      return setAccount_no(account_Info[3].number)
+    if(isAcct){
+      if (formData.Bank_name === account_Info[0].bank) {
+        setAccount_name(account_Info[0].account_name) 
+        setAccount_no(account_Info[0].account_number)
+      } else if (formData.Bank_name === account_Info[1].bank) {
+        setAccount_name(account_Info[1].account_name) 
+         setAccount_no(account_Info[1].account_number)
+      } else if (formData.Bank_name === account_Info[2].bank) {
+        setAccount_name(account_Info[2].account_name) 
+         setAccount_no(account_Info[2].account_number)
+      } else if (formData.Bank_name === account_Info[3].bank) {
+        setAccount_name(account_Info[3].account_name) 
+         setAccount_no(account_Info[3].account_number)
+      }
     }
-  }, [handleForm])
+  }, [])
 
 
+
+  const data = {
+    reference: formData.txid,
+    amount: finalAmt.toFixed(2) * 1,
+    document: fileImg
+  }
   // pagination
   function NextStep() {
-    setStep(step + 1)
+    if(step === 3 && formData.txid === ''){
+      setStep(3)
+      setAdd_info('Provide your transaction id')
+    }
+    else if(step === 3){
+      axios.post('https://leverpay-api.azurewebsites.net/api/v1/user/submit-topup-request', data, {
+      headers:{
+        "Content-Type": "multipart/form-data",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${jwt}`,
+      }
+      })
+      .then(res=>{
+        console.log(res)
+        setStep(step + 1)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+    }
+    else{
+      setStep(step + 1)
+    }
   }
 
   function PrevStep() {
@@ -91,9 +169,25 @@ const FundingNaira = (props) => {
 
   function handleformSubmit(e) {
     e.preventDefault()
-    setStep(step + 1)
+    if(step === 6){
+      axios.post('https://leverpay-api.azurewebsites.net/api/v1/user/submit-topup-request', data, {
+      headers:{
+        "Content-Type": "multipart/form-data",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${jwt}`,
+      }
+      })
+      .then(res=>{
+        console.log(res)
+        setStep(step + 1)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+    }else setStep(step)
   }
 
+  
 
   return (
     <>
@@ -149,7 +243,7 @@ const FundingNaira = (props) => {
         step === 3 && <div className='FundingNairaBank'>
           <h1>Transfer NGN {finalAmt.toFixed(2)} to your Account</h1>
           <main>
-            <div><h3>Account Name: </h3>  <h4>Leverchain Technology Limited</h4></div>
+            <div><h3>Account Name: </h3>  <h4>{isAcct? account_name: ''}</h4></div>
             <div><h3>Bank Name </h3>
               <select
                 value={formData.Bank_name}
@@ -158,19 +252,22 @@ const FundingNaira = (props) => {
                 id="network"
                 required
               >
-                {
+                <option>Select Bank</option>
+                { isAcct && 
                   account_Info.map(option => {
                     return (
-                      <option key={option.name} value={option.name} name='Bank_no' >
-                        {option.name}
+                      <>
+                      <option key={option.bank} value={option.bank} name='Bank_no' >
+                        {option.bank}
                       </option>
+                      </>
                     )
                   })
                 }
 
               </select>
             </div>
-            <div><h3>Account Number: </h3>  <h4>{account_no}</h4><img alt='copy' onClick={copyAcct} src='/images/acct_cpy.png' />{copyAlert}</div>
+            <div><h3>Account Number: </h3>  <h4>{isAcct ?account_no: ''}</h4><img alt='copy' onClick={copyAcct} src='/images/acct_cpy.png' />{copyAlert}</div>
             <div><h3>Amount: </h3>  <h4>NGN {finalAmt.toFixed(2)}</h4></div>
           </main>
           <section className='FundingAmt'>
@@ -195,9 +292,9 @@ const FundingNaira = (props) => {
             />
           </section>
           <div className="screenshot">
-            <Helpimageupload GetfileImg={GetImg} optional={false} />
+            <Helpimageupload GetfileImg={getImg} />
           </div>
-          <button onClick={NextStep}>Proceed</button>
+          <button onClick={NextStep}>Payment Completed</button>
           <span onClick={PrevStep} className='FundingCancel'>
             <img alt='' src='/images/cancel.png' />
           </span>
@@ -267,7 +364,7 @@ const FundingNaira = (props) => {
               />
             </section>
             <div className="screenshot">
-              <Helpimageupload GetfileImg={GetImg} optional={false} />
+            <Helpimageupload GetfileImg={getImg} />
             </div>
           </main>
           <button onClick={handleformSubmit}>Proceed</button>
