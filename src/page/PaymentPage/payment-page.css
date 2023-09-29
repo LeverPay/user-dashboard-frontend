@@ -1,19 +1,49 @@
 .payment-page-container {
   background: #fff;
   height: fit-content;
-  padding: 50px 40px;
+  padding-block: 50px;
+  /* padding: 50px 20px; */
   margin-top: 8rem;
   border-radius: 10px;
   margin-bottom: 30px;
-  width: fit-content;
+  width: 90%;
+}
+.checkoutNav ul{
+  list-style: none;
+  display: flex;
+  text-decoration: none;
+  gap: 2rem;
+  border-bottom: 1px solid gainsboro;
+  padding-bottom: 10px;
+}
+.checkoutNav ul li .active{
+  border-bottom: 3px solid #0051FF;
+  color: #0051FF;
+}
+.checkoutNav ul li a{
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  padding: 0 10px;
+  padding-bottom: 10px;
 }
 .pay_logo {
   width: 170px;
   margin-left: -1rem;
 }
+
+/* for crad details  */
+.ccDet{
+  padding: 0px 64px;
+}
 @media screen and (max-width: 620px) {
   .payment-page-container {
     margin-top: 2rem;
+    width: 100%;
+  padding-block: 30px;
+  }
+  .ccDet{
+    padding: 0px 16px;
   }
 }
 .logo-holder {

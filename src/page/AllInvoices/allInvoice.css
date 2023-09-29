@@ -1,0 +1,9 @@
+.allInvoices{
+    margin-top: 3rem;
+    color: white;
+}
+@media screen and (max-width: 620px){
+    .allInvoices{
+        margin-top: 1rem;
+    }
+}

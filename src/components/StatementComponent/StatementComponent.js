@@ -109,7 +109,7 @@ const StatementComponent = () => {
           </center>
         </div>
       </div> */}
-      <div className="col-md-12">
+      <div className="grah-con col-md-12">
         {" "}
         <GraphComponent chartData={userData} />
       </div>

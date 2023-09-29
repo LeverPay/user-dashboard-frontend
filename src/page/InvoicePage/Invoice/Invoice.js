@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import TransferOTP from "../../../components/TransferPageComponent/TransferOTP";
 import ReactToPrint from "react-to-print";
 
-function Invoice({ className, invoice, ref, unpaid, date, amt, status,name, productType}) {
+function Invoice({ className, invoice, ref, unpaid, date, amt, status,name, productType, email, currency}) {
   let componentRef = useRef();
   const Navigate = useNavigate();
   const [id] = useState(nanoid);
@@ -42,12 +42,6 @@ function toggleShow(arg){
     );
   });
 
-  // const date = new Date();
-  // const Morning_Afternoon = date.getHours() > 12 ? "pm" : "am";
-  // const minutes =
-  //   date.getMinutes() < 1 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
-  // const timeofDay = date.getHours() + ":" + minutes + " " + Morning_Afternoon;
-  // const time = date.toDateString() + " " + timeofDay;
 
   return (
     <>
@@ -101,7 +95,7 @@ function toggleShow(arg){
               className="row_details_information"
               style={{ color: "#F49B09" }}
             >
-              ETH
+              {currency}
             </Col>
           </Row>
           <Row>
@@ -125,7 +119,7 @@ function toggleShow(arg){
           <Row>
             <Col className="row_details">Description</Col>
             <Col className="row_details_information">
-              {invoice ? invoice.name.productDetail : ""}
+              {productType}
             </Col>
           </Row>
         </Container>
@@ -134,12 +128,12 @@ function toggleShow(arg){
       <div className="Buyer_details">
         <h3>Buyer Information</h3>
         <h5>Email</h5>
-        <p>Jamiltextile001@gmail.com</p>
+        <p>{email}</p>
       </div>
       <hr />
       <div className="Payment_received">
         <p>
-          Payment Recieved for <span>4.0245800ETH</span>{" "}
+          Payment Recieved for <span>{amt}</span>{" "}
         </p>
         <p>
           TXID: <span>( {id.slice(0, 8)} )</span>
@@ -160,7 +154,7 @@ function toggleShow(arg){
         {
           unpaid &&  <div className="accept_decline">
           <button onClick={()=>{
-            return <Navigate to='/invoices' />
+            Navigate(-1)
           }}>Decline</button>
           <button onClick={()=>{
             setShow(true)
@@ -177,7 +171,11 @@ function toggleShow(arg){
             marginBottom:'3rem',
             gap:'2rem'
             }}>
-                <button><Link to='/transactions' style={{textDecoration:'none', color:'inherit'}} >Close</Link></button>
+                <button 
+                  onClick={()=>{
+                    Navigate(-1)
+                  }}
+                >Close</button>
                 <ReactToPrint
               trigger={() => <button className="printbtn">Print</button>}
               content={() => componentRef.current}

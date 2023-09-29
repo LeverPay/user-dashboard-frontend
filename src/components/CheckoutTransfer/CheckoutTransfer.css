@@ -1,0 +1,196 @@
+.checkoutTransfer{
+    /* border: 2px solid; */
+    padding: 10px 32px;
+    display: flex;
+    gap: 5%;
+}
+.checkoutTransfer .acct{
+    width: 60%;
+    /* border: 1px solid; */
+}
+.checkoutTransfer .investForm label{
+    display: flex;
+    flex-direction: column;
+    border: none;
+    padding: 0;
+    gap: 10px;
+    font-family: Agandir;
+    font-size: 20px;
+    position: relative;
+    align-items: start;
+    width: 100%;
+}
+.checkoutTransfer .investForm .reminder{
+    font-size: 10px;
+    color: #FF0000;
+    position: absolute;
+    right: 0%;
+    bottom: 0;
+}
+.checkoutTransfer .investForm .narratCopy{
+    position: absolute;
+    right: 2%;
+    bottom: -125%;
+}
+.checkoutTransfer #cpyNalrt{
+    bottom: -30%;
+    font-size: 10px;
+}
+.checkoutTransfer .investForm input{
+    width: 90%;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #082E88;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+.checkoutTransfer .investForm input::placeholder{
+    font-size: '10px'
+}
+.checkoutTransfer .acct main{
+    width: 95%;
+    margin-top: 2rem;
+}
+.checkoutTransfer .acct main .screenshot{
+    width: 90%;
+    font-size: 12px;
+    display: flex;
+    color: #0051FF;
+}
+.checkoutTransfer .ChckTrfSub{
+    width: 90%;
+    background-color: #0051FF;
+    border: none;
+}
+.checkoutTransfer .brkdwn{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #F3ECEC;
+    border-radius: 40px;
+    height: fit-content;
+    margin-top: 3rem;
+    width: 30%;
+}
+.checkoutTransfer .brkdwn .orderbrkdwn{
+    border-bottom: 2px dotted #0051FF;
+    padding: 10px;
+}
+.checkoutTransfer .brkdwn .orderbrkdwn h2{
+    font-size: 18px;
+    margin: 0;
+    padding: 20px;
+    font-weight: 800;
+}
+.checkoutTransfer .brkdwn .orderbrkdwn ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 14px;
+    padding: 0pc 20px;
+}
+.checkoutTransfer .brkdwn .orderbrkdwn ul li{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: #0051FF;
+    font-weight: 700;
+}
+.checkoutTransfer .brkdwn .orderbrkdwn ul li strong{
+    color: black;
+    width: 40%;
+}
+.checkoutTransfer .brkdwn .payAmt{
+    padding: 0px 20px;
+}
+.checkoutTransfer .brkdwn .payAmt h2{
+    font-size: 18px;
+    color: #FF0000;
+    font-weight: 700;
+}
+.checkoutTransfer .brkdwn .payAmt h1{
+    font-size: 22px;
+    font-weight: 800;
+}
+.checkoutTransfer .brkdwn .payAmt h1 span{
+    color: #0051FF;
+}
+.checkoutTransfer .brkdwn .bckOver{
+    text-align: center;
+    padding: 10px;
+    border-radius: 40px;
+    background-color: white;
+    transform: translateY(1rem);
+    font-family: Agrandir;
+    font-weight: 900;
+    line-height: 26px;
+    color: #0051FF;
+    cursor: pointer;
+}
+
+
+/* cherckout */
+
+.checkoutTransferForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    font-weight: 500;
+    font-family: Agrandir;
+}
+.checkoutTransferForm label{
+    font-size: 16px;
+    width: 100%;
+    text-align: left;
+    border: none;
+}
+.checkoutTransferForm label input{
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #082E88;
+    padding: 5px;
+}
+
+@media (max-width: 620px){
+    .checkoutTransfer{
+        flex-direction: column-reverse;
+        padding: 10px 32px;
+        gap: 5rem;
+    }
+    .checkoutTransfer .brkdwn{
+        width: 100%;
+        margin-top: 2rem;
+    }
+    .checkoutTransfer .brkdwn .payAmt h2{
+        font-size: 16px;
+    }
+    .checkoutTransfer .brkdwn .payAmt h1{
+        font-size: 18px;
+    }
+    .checkoutTransfer .acct{
+        width: 100%;
+    }
+    .checkoutTransfer .investForm{
+        width: 100%;
+    }
+    .checkoutTransfer .investForm input{
+        width: 100%;
+    }
+    .checkoutTransfer .investForm .narratCopy{
+        right: 4%;
+    }
+    .checkoutTransfer .acct main{
+        width: 100%;
+    }
+    .checkoutTransfer .investForm .reminder{
+        bottom: -250%;
+    }
+    .checkoutTransfer .ChckTrfSub{
+        width: 100%;
+    }
+}

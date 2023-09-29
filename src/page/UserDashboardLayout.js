@@ -48,8 +48,17 @@ import FundingMore from "../components/AccountFunding/FundingMore";
 import FundingpaymentForm from "../components/AccountFunding/FundingpaymentForm";
 import UnpaidReceipt from "../components/UnpaidInvoice/UnpaidReceipt";
 import SignupOTP from "../components/SignupComponent/SignupOTP/SignupOTP";
+import Investment from "./InvestmentPage/Investment";
 import MySubscription from "./MySubscriptionPage/MySubscription";
 import SubscriptionTransactions from "../components/MySubscriptionComponent/SubscriptionTransactions/SubscriptionTransactions";
+import { CreditCard } from "./PaymentPage/CreditCard/CreditCard";
+import CheckoutTransfer from "../components/CheckoutTransfer/CheckoutTransfer";
+import AllInvoicePage from "./AllInvoicePage/AllInvoicePage";
+import Allinvoices from "./AllInvoices/Allinvoices";
+import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
+import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
+
+
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -102,7 +111,7 @@ export const UserDashboardLayout = (props) => {
           element={
             <>
               <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
-                <div className="col-md-2">
+                <div className="nav-con" >
                   <NavComponent />
                 </div>
                 <div className="col-md-10">
@@ -134,21 +143,21 @@ export const UserDashboardLayout = (props) => {
                       <TotalMoney
                         bg="#0E093F"
                         totaltype="Total Balance"
-                        amt="$3000"
+                        amt="3000"
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#F6A61F"
                         totaltype="Total Spending"
-                        amt="$2000"
+                        amt="2000"
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#201E34"
                         totaltype=" Total Saved"
-                        amt="$546"
+                        amt="546"
                       />
                     </div>
                   </div>
@@ -170,7 +179,7 @@ export const UserDashboardLayout = (props) => {
                       lastName={user.last_name}
                     />
                   </div>
-                  <div
+                  {/* <div
                     className="col-md-10 mx-auto"
                     style={{ transform: "translateY(-3.5rem)" }}
                   >
@@ -178,8 +187,8 @@ export const UserDashboardLayout = (props) => {
                       firstName={user.first_name}
                       lastName={user.last_name}
                     />
-                  </div>
-                  <div className="col-md-12">
+                  </div> */}
+                  <div className="mchnt-con col-md-12">
                     <MerchantComponent />
                   </div>
                 </div>
@@ -193,8 +202,18 @@ export const UserDashboardLayout = (props) => {
             element={<TransactionInvoices />}
           />
           <Route exact path="transfer" element={<TransferPage />} />
-          <Route path="invoices" element={<UnpaidInvoice />} />
+          <Route exact path="/investment" element={<Investment/>} />
+
+          <Route path="invoices" element={<AllInvoicePage />}>
+          <Route index element={<Allinvoices/>} />
+          <Route path="all-invoices" element={<Allinvoices/>} />
+          <Route path="unpaid-invoices" element={<UnpaidInvoicePage/>} />
+          <Route path="paid-invoice" element={<PaidInvoice />} />
+          </Route>
+          
           <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
+          
+          <Route path="/pending-subscription" element />
 
           <Route path="funding" element={<FundingPage />}>
             <Route index element={<FundingPayment />} />
@@ -229,7 +248,11 @@ export const UserDashboardLayout = (props) => {
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
-          <Route path="payment-page" element={<PaymentPage />} />
+          <Route path="payment-page" element={<PaymentPage />} >
+            <Route index element={<CreditCard />} />
+              <Route path="credit-card" element={<CreditCard/>} />
+              <Route path="checkout-transfer" element={<CheckoutTransfer isInvest={true} />} />
+          </Route>
           <Route path="/my-subscriptions" element={<MySubscription />} />
           <Route
             path="my-subscriptions/subscription-transactions"

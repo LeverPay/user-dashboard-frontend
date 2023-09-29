@@ -8,13 +8,13 @@ const FundingNav2 = () => {
     <nav className='FundNavigation'>
         <ul>
             <li>
-                <NavLink activeclassname ='active' to='/funding/stablecoins-deposit'>
-                    Stable Coin
+                <NavLink activeclassname ='active' to='/funding/naira-deposit'>
+                    Naira
                 </NavLink>
             </li>
             <li>
-                <NavLink activeclassname ='active' to='/funding/naira-deposit'>
-                    Naira
+                <NavLink activeclassname ='active' to='/funding/stablecoins-deposit'>
+                    Stable Coin
                 </NavLink>
             </li>
             <li>

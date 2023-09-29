@@ -1,22 +1,36 @@
 import React from 'react'
-import UnpaidData from '../../TestData/UnpaidData'
-import UnpaidInvoice from '../../components/UnpaidInvoice/UnpaidInvoice'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useLocalState } from '../../utils/useLocalStorage'
+import { Link } from 'react-router-dom'
 // import table from "react-bootstrap/Table";
 import './UnpaidInvoicePage.css'
 
 function UnpaidInvoicePage() {
 
-  console.log(UnpaidData)
-  const info = UnpaidData.map(item=>{ 
-    return <UnpaidInvoice 
-     key = {item.id}
-     name = {item.Name}
-     type = {item.type}
-     amt = {item.amount}
-     status = {item.status} 
-     date = {item.date}
-    />
+  const [data, setData] = useState({})
+  const [isdata, setIsdata] = useState(false)
+  const [jwt, setJwt] = useLocalState('', 'jwt')
+
+  useEffect(()=>{
+    axios.get('', {
+      headers: {
+        Authorization : `Bearer ${jwt}`
+      }
+    })
+    .then(res=>{
+      console.log(res.data)
+      setData(res.data.data)
+      if(res.data.data.length > 0){
+        setIsdata(true)
+      }else setIsdata(false)
+    })
+    .catch(err=>{
+      console.log(err)
+      setIsdata(false)
+    })
   })
+
  
   return (
     <div className='Unpaid_con'>
@@ -35,7 +49,35 @@ function UnpaidInvoicePage() {
                 </tr>
             </thead>
         </table>
-              {info}
+        <table className="Unpaiddata">
+        <tbody>
+            {
+                isdata && data.map(item=>{
+                    return  <tr key={item.date} className="table-data">
+                    <td>{item.date}</td>
+                    <td>{item.name}</td>
+                    <td>{item.amt}</td>
+                    <td>{item.status}</td>
+                    <td>
+                      <Link
+                        to="invoices/unpaid-invoice"
+                        state={item.uuid}
+                        style={{ color: "green" }}
+                      >
+                        {" "}
+                        View
+                      </Link>
+                    </td>
+                  </tr>
+                })
+            }
+            {
+                !isdata && <tr style={{textAlign: 'center'}}>
+                   <td>You do not have any Pending Invoice.</td> 
+                </tr>
+            }
+        </tbody>
+      </table>
     </div>
     </div>
   )

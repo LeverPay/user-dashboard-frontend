@@ -15,6 +15,8 @@ export const MerchantComponent = () => {
   return (
     <>
       <div className="col-md-12 merchant-header ">
+    <div className="merchant_COn">
+      <div className="col-md-12 merchant-header "> 
         <h3>My Merchants</h3>
         <span className="merchant_search">
           <SearchBar />
@@ -42,6 +44,6 @@ export const MerchantComponent = () => {
           <Merchants logo1={Amazon} logo2={Amazon2} />
         </div>
       </div>
-    </>
+    </div>
   );
 };

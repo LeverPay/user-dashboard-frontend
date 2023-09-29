@@ -6,7 +6,7 @@
   padding-left: 1rem;
   padding-right: 1rem;
   margin: 2rem;
-  margin-top: 8rem;
+  margin-top: 2rem;
   border-radius: 10px;
   background-color: #1c1a2e;
 }
@@ -25,17 +25,27 @@
 
 @media screen and (max-width: 620px) {
   .Unpaid {
-    width: 130vw;
+    width: 100%;
     overflow-x: scroll;
     margin-left: 0rem;
-    margin-top: 2rem;
+    margin-top: 0rem;
+    padding: 5px;
+    padding-top: 10px;
+    padding-left: 10px;
   }
   .Unpaid .table {
     overflow-x: scroll;
-    width: 120vw;
+    width: 100%
   }
   .Unpaid_con {
     width: 100vw;
     overflow-x: scroll;
+  }
+  .Unpaid h1{
+    font-size: 16px;
+    display: none;
+  }
+  .Unpaid thead td{
+    font-size: 10px;
   }
 }
