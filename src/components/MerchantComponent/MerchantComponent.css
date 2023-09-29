@@ -6,6 +6,10 @@
   padding: 30px 15px 70px 15px;
 }
 @media screen and (max-width: 620px) {
+  .nerchant-header h3 {
+    margin-left: -1px !important;
+  }
+
   .merchant-container {
     margin-left: 0px;
   }
@@ -16,10 +20,19 @@
 }
 .merchant-header h3 {
   font-family: AgrandirBold;
+  font-size: large !important;
   flex-grow: 1;
   color: #fff;
-  margin-left: 40px;
+  margin: auto !important;
+  margin-left: 40px !important;
 }
+
+@media screen and (max-width: 620px) {
+  .merchant-header h3 {
+    margin-left: 0px !important;
+  }
+}
+
 .merchants {
   margin-top: 20px;
 }
@@ -37,17 +50,17 @@
   margin-top: 10px;
 }
 
-@media (max-width:1024px) and (min-width: 621px){
-  .merchant-header h3{
+@media (max-width: 1024px) and (min-width: 621px) {
+  .merchant-header h3 {
     font-size: 20px;
   }
-  .details-link{
+  .details-link {
     display: none;
   }
-  .merchant_search{
+  .merchant_search {
     margin-top: -1rem;
   }
-  .merchant-container{
+  .merchant-container {
     margin-left: 20px;
   }
 }

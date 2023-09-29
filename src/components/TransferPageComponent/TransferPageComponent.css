@@ -5,7 +5,8 @@ p {
 }
 
 .error {
-  margin-top: 1%;
+  margin-top: 1% !important;
+  margin-left: 0% !important;
   color: red;
   font-family: AgrandirBold !important;
   font-size: 0.8em !important;
@@ -17,9 +18,46 @@ p {
   border-radius: 10px;
   margin-top: 8rem;
   margin-bottom: 5rem;
-  width: 80%;
-  height: 100%;
+  width: 55%;
+  /* height: 100%; */
   background-color: #fff;
+}
+
+.savings-container {
+  display: flex !important;
+  flex-direction: row !important;
+  /* border: 1px solid #000 !important; */
+}
+
+.savings-card {
+  width: 48% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  /* border: 1px solid #000 !important; */
+  padding: 0 !important;
+}
+
+.balance-value {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 70% !important;
+  justify-content: space-between !important;
+}
+
+.p {
+  width: fit-content !important;
+  font-family: AgrandirBold !important;
+  font-size: medium !important;
+  padding: 0 !important;
+}
+
+.balance-text {
+  width: fit-content !important;
+  font-family: Agrandir !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  padding: 5% !important;
+  margin-left: 25% !important;
 }
 
 .user-search {
@@ -52,13 +90,25 @@ p {
   padding: 1%;
   margin: auto;
   width: 100%;
-  /* border: 1px solid #000; */
+}
+
+.data-container {
+  background-color: #2d5480 !important;
+  border-radius: 10px !important;
+  padding: 1% !important;
+}
+
+.data-found {
+  padding-left: 0% !important;
+  font-family: AgrandirBold !important;
+  font-size: small !important;
+  color: #fff !important;
 }
 
 .user-found-container {
-  display: flex;
-  flex-direction: column;
-  /* padding: 0.5rem; */
+  display: flex !important;
+  flex-direction: column !important;
+  padding-left: -5rem !important;
   margin-top: 0;
 }
 
@@ -76,15 +126,14 @@ p {
 
 .transfer-buttons {
   display: flex;
-  flex-direction: row;
-  width: 50%;
-  justify-content: space-evenly;
-  margin-top: 3%;
-  /* border: 1px solid #000; */
+  flex-direction: row !important;
+  width: 100% !important;
+  justify-content: space-between !important;
+  margin-top: 5% !important;
 }
 
 .transfer-btn {
-  width: 30%;
+  width: 45% !important;
   padding: 1%;
 }
 
@@ -96,12 +145,18 @@ p {
     padding: 3rem 0 !important;
   }
 
-  .statement {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    margin: auto;
-    padding: 3%;
+  .savings-container {
+    display: flex !important;
+    flex-direction: column !important;
+    margin: auto !important;
+    width: 90% !important;
+    /* padding: 3%; */
+  }
+
+  .savings-card {
+    display: flex !important;
+    width: 100% !important;
+    padding-left: 2rem !important;
   }
 
   .user-search {
@@ -113,7 +168,6 @@ p {
   }
 
   .user-found-row {
-    /* padding: 1%; */
     margin: auto;
     width: 85%;
   }
@@ -132,6 +186,21 @@ p {
     padding-top: 2%;
   }
 
+  .balance-value {
+    display: flex !important;
+    flex-direction: row !important;
+    font-family: AgrandirBold !important;
+    font-size: medium !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .p {
+    font-family: AgrandirBold !important;
+    font-size: small !important;
+    padding: 0 !important;
+  }
+
   .transfer-amount {
     width: 100% !important;
   }
@@ -139,6 +208,6 @@ p {
   .transfer-buttons {
     width: 100%;
     justify-content: space-around;
-    margin-top: 3%;
+    margin-top: 10% !important;
   }
 }

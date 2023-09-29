@@ -39,6 +39,7 @@
 
 .pageTitle h2 {
   font-family: AgrandirBold;
+  font-size: large !important;
   margin-bottom: -0.5rem;
   margin-left: 2rem;
   color: #fff;
