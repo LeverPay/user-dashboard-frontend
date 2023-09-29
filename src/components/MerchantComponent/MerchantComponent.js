@@ -13,12 +13,14 @@ import Amazon from "../../assets/images/amazon.png";
 import Amazon2 from "../../assets/images/amazon2.png";
 export const MerchantComponent = () => {
   return (
+    <>
+      <div className="col-md-12 merchant-header ">
     <div className="merchant_COn">
       <div className="col-md-12 merchant-header "> 
         <h3>My Merchants</h3>
-       <span className="merchant_search">
-       <SearchBar />
-        </span> 
+        <span className="merchant_search">
+          <SearchBar />
+        </span>
         <Link className="details-link up">View All</Link>
       </div>
       <div className="merchant-container col-md-12">

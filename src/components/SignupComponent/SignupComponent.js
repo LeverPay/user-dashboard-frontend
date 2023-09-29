@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Form, Button } from "react-bootstrap";
-import InputGroup from "react-bootstrap/InputGroup";
 import LeverpayLogo from "../../assets/images/LeverpayLogo.png";
 import "./SignupComponent.css";
 import PhoneNumberComponent from "../PhoneNumberComponent/PhoneNumberComponent";
@@ -12,12 +11,13 @@ import {
   signUp,
 } from "../../services/apiService";
 import DatePicker from "react-datepicker";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 function SignupComponent() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [othername, setOthername] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [passwordType, setPasswordType] = useState("password");
@@ -88,6 +88,7 @@ function SignupComponent() {
     const signupData = {
       first_name: firstName,
       last_name: lastName,
+      other_name: othername,
       gender: gender,
       dob: Intl.DateTimeFormat("en").format(startDate),
       email: email,
@@ -98,7 +99,7 @@ function SignupComponent() {
       city_id: cityID,
     };
 
-    signUp(signupData);
+    signUp({ signupData });
   };
 
   const handleGender = (e) => {
@@ -158,6 +159,24 @@ function SignupComponent() {
               placeholder=""
               onChange={
                 (e) => setLastName(e.target.value)
+                // setFirstName(e.target.value.replace(/\D/g, ""))
+              }
+              required
+            />
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="lastname" className="labels">
+              Othername
+            </Form.Label>
+            <Form.Control
+              type="text"
+              className="input"
+              value={othername}
+              name="other_name"
+              ref={inputRef}
+              placeholder=""
+              onChange={
+                (e) => setOthername(e.target.value)
                 // setFirstName(e.target.value.replace(/\D/g, ""))
               }
               required
@@ -305,7 +324,14 @@ function SignupComponent() {
               <small className="text-inner">
                 We are NDPR Compliant. By proceeding with this application, you
                 agree to the storage and usage of your data by LSETF in
-                accordance with our privacy policy
+                accordance with our{" "}
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://leverpay.io/privacy-policy/"
+                >
+                  privacy policy
+                </a>
               </small>
             </p>
           </Row>
