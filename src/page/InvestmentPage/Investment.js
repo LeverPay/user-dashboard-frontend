@@ -79,7 +79,7 @@ const Investment = () => {
 
     return (
         <div className='investmentPage'>
-            <img alt='logo' src='/images/logo.png' className='logo' />
+            <img alt='logo' src='/images/logo.png' className='i-logo' />
             {
                 step === 1 && <div className='investment'>
                 <form onSubmit={handleForm}>
