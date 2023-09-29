@@ -28,8 +28,8 @@ const FundingPage = () => {
         </section>
         <section>
             <Routes>
-            <Route index element={<FundingPayment handleAmount = {handleAmount}  />} />
-          <Route path="stablecoins-deposit" element={<FundingPayment handleAmount = {handleAmount}  />} />
+            <Route index element={<FundingPayment handleAmount = {handleAmount} amt = {amt}  />} />
+          <Route path="stablecoins-deposit" element={<FundingPayment handleAmount = {handleAmount} amt = {amt} />} />
           <Route path="naira-deposit" element={<FundingNaira handleAmount = {handleAmount} amt = {amt}  />} />
           <Route path="more" element={<FundingMore />} />
         </Routes>

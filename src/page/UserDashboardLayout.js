@@ -53,6 +53,10 @@ import MySubscription from "./MySubscriptionPage/MySubscription";
 import SubscriptionTransactions from "../components/MySubscriptionComponent/SubscriptionTransactions/SubscriptionTransactions";
 import { CreditCard } from "./PaymentPage/CreditCard/CreditCard";
 import CheckoutTransfer from "../components/CheckoutTransfer/CheckoutTransfer";
+import AllInvoicePage from "./AllInvoicePage/AllInvoicePage";
+import Allinvoices from "./AllInvoices/Allinvoices";
+import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
+import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
 
 
 
@@ -199,8 +203,16 @@ export const UserDashboardLayout = (props) => {
           />
           <Route exact path="transfer" element={<TransferPage />} />
           <Route exact path="/investment" element={<Investment/>} />
-          <Route path="invoices" element={<UnpaidInvoice />} />
+
+          <Route path="invoices" element={<AllInvoicePage />}>
+          <Route index element={<Allinvoices/>} />
+          <Route path="all-invoices" element={<Allinvoices/>} />
+          <Route path="unpaid-invoices" element={<UnpaidInvoicePage/>} />
+          <Route path="paid-invoice" element={<PaidInvoice />} />
+          </Route>
+          
           <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
+          
           <Route path="/pending-subscription" element />
 
           <Route path="funding" element={<FundingPage />}>
