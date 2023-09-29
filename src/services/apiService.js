@@ -23,7 +23,7 @@ export const signIn = async (userData, jwt, setJwt) => {
           //transition to homepage
           setTimeout(() => {
             window.location.href = "/";
-          }, 5000);
+          }, 2000);
         } else {
           toast.error(`${res.message}`);
           // console.log(res);
@@ -37,7 +37,7 @@ export const signIn = async (userData, jwt, setJwt) => {
   }
 };
 
-export const signUp = async (userSignUp) => {
+export const signUp = async ({ signupData }) => {
   const SignUp = await fetch(
     "https://leverpay-api.azurewebsites.net/api/v1/user/signup",
     {
@@ -46,7 +46,7 @@ export const signUp = async (userSignUp) => {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(userSignUp),
+      body: JSON.stringify(signupData),
     }
   )
     .then((response) => {
@@ -56,10 +56,10 @@ export const signUp = async (userSignUp) => {
     .then((messages) => {
       if (messages.status === 200) {
         toast.success(`${messages.message}`);
-        localStorage.setItem("userEmail", userSignUp.email);
+        localStorage.setItem("userEmail", signupData.email);
         setTimeout(() => {
           window.location.href = "/leverpay-signup/signup-OTP";
-        }, 3000);
+        }, 2000);
       } else {
         toast.error(`${messages.message}`);
       }
@@ -68,7 +68,6 @@ export const signUp = async (userSignUp) => {
       console.log("Error", error, "Sign Up");
       return;
     });
-
   return await SignUp;
 };
 
@@ -94,7 +93,7 @@ export const verifyEmail = async (verifyData) => {
         //transition to signin page
         setTimeout(() => {
           window.location.href = "/signin";
-        }, 3000);
+        }, 2000);
       } else {
         toast.error(`${messages.message}`);
       }
@@ -135,7 +134,7 @@ export const getUserProfile = async (jwt, setJwt, setUser) => {
       console.log("user found successfully");
     })
     .catch((err) => {
-      // console.log(`${err}`);
+      console.log(`${err}`);
     });
 
   return await userProfile;
