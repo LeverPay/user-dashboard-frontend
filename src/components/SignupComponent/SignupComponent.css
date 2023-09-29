@@ -34,20 +34,20 @@
   display: flex !important;
   flex-direction: row !important;
   /* border: 1px solid #000 !important; */
-  background-color: orange !important;
+  background-color: #d3d3d3 !important;
   border-radius: 5px !important;
   flex-direction: column !important;
 }
 
 .checkbox-condition {
+  width: fit-content !important;
   margin-left: -0.6rem !important;
 }
 
 .condition-text {
-  /* border: 1px solid #000 !important; */
   padding-left: 0.5% !important;
   width: fit-content !important;
-  margin-left: 1rem !important;
+  margin-left: 1.5rem !important;
   margin-top: -1.5rem !important;
 }
 
@@ -55,7 +55,7 @@
   /* border: 1px solid #000 !important; */
   width: 100% !important;
   font-family: AgrandirBold !important;
-  font-size: small !important;
+  font-size: 9px !important;
   color: #fff !important;
   text-align: center !important;
 }
@@ -65,7 +65,7 @@ h3 {
 }
 
 .labels {
-  margin: 0;
+  margin-left: 0 !important;
   font-family: AgrandirRegular;
 }
 
