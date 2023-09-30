@@ -118,8 +118,7 @@ export const UserDashboardLayout = (props) => {
                     userName={{
                       firstName: user.first_name,
                       lastName: user.last_name,
-                      passport: user.passport,
-                      card: userData ? userData.card.type : ''
+                      passport: user.passport
                     }}
                   />
                   <PrivateRoute userName={user.first_name}>

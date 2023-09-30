@@ -8,7 +8,7 @@ const profile_pic = UserData.profile_Img;
 function UserSelectComponent({ userName, passport}) {
   const userJson = localStorage.getItem('user')
   const userData = JSON.parse(userJson)
-  const card = userData.card.type
+  const card = userData ? userData.card.type : ''
   console.log(userData)
   // alert(passport);
   return (
