@@ -8,11 +8,11 @@ function CardGold() {
       backgroundImage="./images/CardGold.png"
       cardtype="USDT"
       cardname="Gold"
-      name={CardInfo[0].name}
       lock="./images/lock.png"
       bg2="url('./images/Ellipse 7.png')"
-      cardNumber={CardInfo[0].no}
-      cvv={CardInfo[0].cvv}
+      // name={CardInfo[0].name}
+      // cardNumber={CardInfo[0].no}
+      // cvv={CardInfo[0].cvv}
     />
   ); 
 }
