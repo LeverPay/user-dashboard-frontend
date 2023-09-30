@@ -110,11 +110,11 @@ function Cardcategory() {
               id="Kyc-upgrade-notice-1"
               onClick={() => defunct("diamond")}
             >
-              To upgrade to the <span className="gold">GOLD</span> Card, please
+              To upgrade to the <span className="gold">DIAMOND</span> Card, please
               complete the following verification<strong> (KYC)</strong> Process
               as it is required by Government. Click on the Card to start
               Verification. Note :{" "}
-              <span className="limit">Daily Spending Limit is 1000 USDT</span>
+              <span className="limit">Daily Spending Limit is 3000 USDT</span>
             </p>
           </Row>
         </Col>
@@ -131,11 +131,11 @@ function Cardcategory() {
               id="Kyc-upgrade-notice-1"
               onClick={() => defunct("pinkLady")}
             >
-              To upgrade to the <span className="gold">GOLD</span> Card, please
+              To upgrade to the <span className="gold">PINK LADY</span> Card, please
               complete the following verification<strong> ( KYC )</strong>{" "}
               Process as it is required by Government. Click on the Card to
               start Verification. Note :{" "}
-              <span className="limit">Daily Spending Limit is 1000 USDT</span>
+              <span className="limit">Daily Spending Limit is 10000 USDT</span>
             </p>
           </Row>
         </Col>
@@ -152,11 +152,11 @@ function Cardcategory() {
               id="Kyc-upgrade-notice-1"
               onClick={() => defunct("enterprise")}
             >
-              To upgrade to the <span className="gold">GOLD</span> Card, please
+              To upgrade to the <span className="gold">ENTERPRISE</span> Card, please
               complete the following verification<strong> ( KYC )</strong>{" "}
               Process as it is required by Government. Click on the Card to
               start Verification. Note :{" "}
-              <span className="limit">Daily Spending Limit is 1000 USDT</span>
+              <span className="limit">Daily Spending Limit is 50000 USDT</span>
             </p>
           </Row>
         </Col>
