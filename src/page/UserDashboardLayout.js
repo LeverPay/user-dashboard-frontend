@@ -58,8 +58,6 @@ import Allinvoices from "./AllInvoices/Allinvoices";
 import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
 
-
-
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState([]);
@@ -111,7 +109,7 @@ export const UserDashboardLayout = (props) => {
           element={
             <>
               <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
-                <div className="nav-con" >
+                <div className="nav-con">
                   <NavComponent />
                 </div>
                 <div className="col-md-10">
@@ -202,17 +200,17 @@ export const UserDashboardLayout = (props) => {
             element={<TransactionInvoices />}
           />
           <Route exact path="transfer" element={<TransferPage />} />
-          <Route exact path="/investment" element={<Investment/>} />
+          <Route exact path="/investment" element={<Investment />} />
 
           <Route path="invoices" element={<AllInvoicePage />}>
-          <Route index element={<Allinvoices/>} />
-          <Route path="all-invoices" element={<Allinvoices/>} />
-          <Route path="unpaid-invoices" element={<UnpaidInvoicePage/>} />
-          <Route path="paid-invoice" element={<PaidInvoice />} />
+            <Route index element={<Allinvoices />} />
+            <Route path="all-invoices" element={<Allinvoices />} />
+            <Route path="unpaid-invoices" element={<UnpaidInvoicePage />} />
+            <Route path="paid-invoice" element={<PaidInvoice />} />
           </Route>
-          
+
           <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
-          
+
           <Route path="/pending-subscription" element />
 
           <Route path="funding" element={<FundingPage />}>
@@ -248,10 +246,13 @@ export const UserDashboardLayout = (props) => {
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
-          <Route path="payment-page" element={<PaymentPage />} >
+          <Route path="payment-page" element={<PaymentPage />}>
             <Route index element={<CreditCard />} />
-              <Route path="credit-card" element={<CreditCard/>} />
-              <Route path="checkout-transfer" element={<CheckoutTransfer isInvest={true} />} />
+            <Route path="credit-card" element={<CreditCard />} />
+            <Route
+              path="checkout-transfer"
+              element={<CheckoutTransfer isInvest={true} />}
+            />
           </Route>
           <Route path="/my-subscriptions" element={<MySubscription />} />
           <Route
