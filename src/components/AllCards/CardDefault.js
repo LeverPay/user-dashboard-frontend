@@ -3,11 +3,11 @@ import "./card.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function CardDefault(props) {
-  const date = new Date();
-  const month = date.getMonth();
-  const year = date.getFullYear();
+  const userJson = localStorage.getItem('user')
+  const userData = JSON.parse(userJson)
+  console.log(userData)
 
-  const cardNumber = props.cardNumber;
+  const cardNumber = userData ? userData.card.card_number : '';
   const cardNumber_string = cardNumber.toString();
   const CardNumberFirstTwelve = `${cardNumber_string.slice(
     0,
@@ -77,7 +77,7 @@ function CardDefault(props) {
               setCardCVV(false);
             }}
           >
-            {cardCVV ? props.cvv : "xxx"}
+            {cardCVV ? userData ? userData.card.cvv: 123 : "xxx"}
           </strong>
         </small>
       </span>
@@ -115,7 +115,7 @@ function CardDefault(props) {
           <small className="expiry">Valid Thru </small>
           <br />
           <small>
-            {month < 10 ? `0${month}` : month}/ {year + 2}{" "}
+            {userData ? userData.card.expiry.slice(0, 10) : ''}
           </small>
         </span>
         <strong>{props.cardtype}</strong>
@@ -127,9 +127,10 @@ function CardDefault(props) {
           backgroundPosition: "right 0rem top 0rem",
         }}
       >
-        <h2>{props.name}</h2>
+        <h2>{userData ? userData.first_name + " " + userData.last_name: ''}</h2>
         <h1
           className="cardcateory"
+          id="card-cardname"
           style={{
             marginRight: "-1rem",
             fontFamily: "Consolas",

@@ -17,16 +17,22 @@ const SignInComponent = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [submitted, setSubmitted] = useState(false)
+  const [isvisible, setIsvisible] = useState(false)
   const [jwt, setJwt] = useLocalState("", "jwt");
+
+  function toggleVisible(){
+    setIsvisible(!isvisible)
+  }
 
   const login = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-
     const user = Object.fromEntries(formData);
 
     //api call
     signIn(user, jwt, setJwt);
+    setSubmitted(true)
   };
 
   const handleForgetPassword = () => {
@@ -55,10 +61,10 @@ const SignInComponent = () => {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formGroupPassword">
+        <Form.Group className="sign-in-pwd mb-3" controlId="formGroupPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type="password"
+            type={isvisible ? 'text' : "password"}
             ref={inputRef}
             value={password}
             name="password"
@@ -67,10 +73,11 @@ const SignInComponent = () => {
             className="signin-fields"
             required
           />
+          <img alt="" src={isvisible ? "/images/blind.png" : "/images/visible.png"} onClick={toggleVisible} className="visible-blind" />
         </Form.Group>
 
         <Button variant="primary" type="submit" className="signin-button">
-          Submit
+          {submitted ? 'Loading... please wait':'Submit'}
         </Button>
         <p className="forgot-password-link" onClick={handleForgetPassword}>
           Forgot Password

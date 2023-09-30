@@ -131,6 +131,7 @@ export const getUserProfile = async (jwt, setJwt, setUser) => {
     })
     .then((resData) => {
       setUser(resData.data);
+      localStorage.setItem('user', JSON.stringify(resData.data))
       console.log("user found successfully");
     })
     .catch((err) => {
@@ -225,6 +226,7 @@ export const logoutUser = async (jwt) => {
     })
     .then((logoutData) => {
       toast.success(logoutData.message);
+      localStorage.removeItem('user')
     })
     .catch((err) => {
       console.log(`${err.message}`);
