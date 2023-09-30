@@ -30,10 +30,16 @@
 .dashboard-transaction-table-container {
   margin-left: 1rem;
 }
+
 @media screen and (max-width: 620px) {
   .dashboard {
     margin-top: 2rem;
     /* border: 1px solid white; */
+  }
+  .dashboard-transaction-table-container {
+    margin-left: 0rem;
+    width: 100%;
+    padding: 0;
   }
   .spending {
     /* border: 1px solid white; */

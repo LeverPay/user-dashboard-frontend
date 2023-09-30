@@ -4,7 +4,6 @@ import { useLocalState } from "../../utils/useLocalStorage";
 import "./totalMoney.css";
 
 function TotalMoney(props) {
-  console.log(props);
   const { bg, transfer, totaltype, amt, exAmt, naira_code, dollar_code } =
     props;
   const [amtVisible, setAmtVisible] = useState(false);

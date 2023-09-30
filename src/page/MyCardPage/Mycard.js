@@ -4,19 +4,23 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Col from "react-bootstrap/esm/Col";
 import "./myCard.css";
-import CardUser from "../../components/AllCards/CardUserDefault";
 import CardDefault from "../../components/AllCards/CardDefault";
+import CardDiamond from "../../components/AllCards/CardDiamond";
+import CardEnterprise from "../../components/AllCards/CardEnterprise";
+import CardGold from "../../components/AllCards/CardGold";
+import CardpinkLady from "../../components/AllCards/CardPinkLady";
 import TotalMoney from "../../components/TotalMoney/TotalMoney";
 import UpgradeCard from "../../components/UpgradeCard/UpgradeCard";
 import { Link } from "react-router-dom";
-import CardInfo from "../../TestData/CardInfo";
-import CardcategoryPage from "../CardCategoryPage/CardcategoryPage";
-// import CardModal from "../../components/CardModal/CardModal";
 import { useState } from "react";
 
 function Mycard(props) {
   // console.log(props);
   const [modal, setModal] = useState(false);
+
+  const userJson = localStorage.getItem('user')
+  const userData = JSON.parse(userJson)
+  console.log(userData)
 
   function toggleModal() {
     setModal(!modal);
@@ -27,15 +31,51 @@ function Mycard(props) {
       <Row className="justify-content-center">
         <Col className="col-10 col-md-5">
           <Row>
-          <CardDefault
-      backgroundImage="./images/DefaultCardBackground.png"
-      name={'firstname' + " " + 'lastName'}
-      cardtype={<br />}
-      cardname=" "
-      lock=""
-      cardNumber={CardInfo[5].no}
-      cvv={CardInfo[5].cvv}
-    />
+            {
+              userData.card.type === 1 && <CardDefault
+                backgroundImage="./images/DefaultCardBackground.png"
+                cardtype={<br />}
+                cardname=" "
+                lock=""
+              />
+            }
+            {
+              userData.card.type === 2 && <CardGold
+                backgroundImage="./images/CardGold.png"
+                cardtype="USDT"
+                cardname="Gold"
+                lock=""
+                bg2="url('./images/Ellipse 7.png')"
+              />
+            }
+            {
+              userData.card.type === 3 && <CardDiamond
+                backgroundImage="./images/diamond.png"
+                cardtype="USDT"
+                cardname="Diamond"
+                lock=""
+                bg2="url('./images/Ellipse 7.png')"
+              />
+            }
+            {
+              userData.card.type === 4 && <CardpinkLady
+                backgroundImage="./images/CardpinkLady.png"
+                cardtype="USDT"
+                cardname="Pink Lady"
+                lock=""
+                bg2="url('./images/Ellipse 7.png')"
+              />
+            }
+            {
+              userData.card.type === 5 && <CardEnterprise
+                backgroundImage="./images/CardEnterprise.png"
+                cardtype="USDT"
+                cardname="Enterprise"
+                lock=""
+                bg3="url('./images/Ellipse 7.png')"
+              />
+            }
+
           </Row>
           <Row>
             <div className="mycards-limit-info">
@@ -52,13 +92,13 @@ function Mycard(props) {
       </Row>
       <Row className="spending  mt-5 justify-content-center">
         <Col className="bal col-md-4 col-12 pt-md-0 pt-5 pt-sm-0">
-          <TotalMoney bg="#0E093F" totaltype="Balance" amt="3000" />
+          <TotalMoney bg="#0E093F" totaltype="Balance" amt={userData ? userData.wallet.amount.ngn : ''}/>
         </Col>
         <Col className="bal col-md-4 col-12 pt-md-0 pt-5">
-          <TotalMoney bg="#F6A61F" totaltype="Spending" amt="2000" />
+          <TotalMoney bg="#F6A61F" totaltype="Spending" amt={userData ? userData.total_spending.ngn : ''} />
         </Col>
         <Col className="bal col-md-4 col-12 pt-md-0 pt-5">
-          <TotalMoney bg="#0E093F" totaltype="Saved" amt="546" />
+          <TotalMoney bg="#0E093F" totaltype="Saved" amt={userData ? userData.total_save.ngn : ''} />
         </Col>
       </Row>
       <Row className="Upgrade-con">
