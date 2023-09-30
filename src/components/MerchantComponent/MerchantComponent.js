@@ -13,7 +13,7 @@ import Amazon from "../../assets/images/amazon.png";
 import Amazon2 from "../../assets/images/amazon2.png";
 export const MerchantComponent = () => {
   return (
-    <>
+    <div className="mCOnn">
       <div className="col-md-12 merchant-header ">
         <div className="merchant_COn">
           <div className="col-md-12 merchant-header ">
@@ -24,8 +24,8 @@ export const MerchantComponent = () => {
             <Link className="details-link up">View All</Link>
           </div>
           <div className="merchant-container col-md-12">
-            <div style={{ display: "flex" }}>
-              <h5>Shop Now</h5>
+            <div className="shop-more">
+              <h4>Shop Now</h4>
               <Link className="details-link">More Details</Link>
             </div>
             <div className="merchants">
@@ -46,6 +46,6 @@ export const MerchantComponent = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
