@@ -61,6 +61,14 @@ p {
   color: #2962f2 !important;
   cursor: pointer;
 }
+.sign-in-pwd{
+  position: relative;
+}
+.visible-blind{
+  position: absolute;
+  bottom: 15%;
+  right: 5%;
+}
 
 @media screen and (max-width: 620px) {
   .signin-form h1 {

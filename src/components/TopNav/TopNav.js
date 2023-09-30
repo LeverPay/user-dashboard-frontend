@@ -26,6 +26,7 @@ const TopNav = ({ userName }) => {
           <UserSelectComponent
             userName={userName.firstName}
             passport={userName.passport}
+            card={userName.card}
           />
         </Link>
       </div>

@@ -44,6 +44,7 @@ import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
 import AllTransactions from "./AllTransactions/AllTransactions";
 import AllTransactionCon from "./AllTransactions/AllTransactionCon";
+import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
 
 
 
@@ -52,7 +53,9 @@ export const UserDashboardLayout = (props) => {
   const [silverCard, setSilverCard] = useState([]);
   const [user, setUser] = useState({});
   const [jwt, setJwt] = useLocalState("", "jwt");
-
+  const userJson = localStorage.getItem('user')
+  const userData = JSON.parse(userJson)
+  console.log(userData)
   console.log(user);
 
   useEffect(() => {
@@ -107,6 +110,7 @@ export const UserDashboardLayout = (props) => {
                       firstName: user.first_name,
                       lastName: user.last_name,
                       passport: user.passport,
+                      card: userData.card.type
                     }}
                   />
                   <PrivateRoute userName={user.first_name}>
@@ -130,21 +134,21 @@ export const UserDashboardLayout = (props) => {
                       <TotalMoney
                         bg="#0E093F"
                         totaltype="Total Balance"
-                        amt="3000"
+                        amt={userData ? userData.wallet.amount.ngn : ''}
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#F6A61F"
                         totaltype="Total Spending"
-                        amt="2000"
+                        amt={userData ? userData.total_spending.ngn : ''}
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#201E34"
                         totaltype=" Total Saved"
-                        amt="546"
+                        amt={userData ? userData.total_save.ngn : ''}
                       />
                     </div>
                   </div>
@@ -160,8 +164,6 @@ export const UserDashboardLayout = (props) => {
                   <div className="col-md-10 mx-auto default-card-holder">
                     <header className="card-header">My Card</header>
                     <CardUser
-                      firstName={user.first_name}
-                      lastName={user.last_name}
                     />
                   </div>
                   {/* <div
@@ -182,6 +184,7 @@ export const UserDashboardLayout = (props) => {
           />
 
           <Route path="transactions" element={<AllTransactionCon />} />
+          <Route path="funding-history" element={<AllFundingHistoryCon/>} />
           <Route exact path="transfer" element={<TransferPage />} />
           <Route exact path="/investment" element={<Investment/>} />
 

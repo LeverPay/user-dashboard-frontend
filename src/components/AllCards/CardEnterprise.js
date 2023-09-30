@@ -7,11 +7,11 @@ function CardEnterprise() {
       backgroundImage="./images/CardEnterprise.png"
       cardtype="USDT"
       cardname="Enterprise"
-      name={CardInfo[3].name}
       lock="./images/lock.png"
       bg3="url('./images/Ellipse 7.png')"
-      cardNumber={CardInfo[3].no}
-      cvv={CardInfo[3].cvv}
+      // name={CardInfo[3].name}
+      // cardNumber={CardInfo[3].no}
+      // cvv={CardInfo[3].cvv}
     />
   );
 }

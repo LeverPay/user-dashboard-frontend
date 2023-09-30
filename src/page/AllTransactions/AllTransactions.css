@@ -58,11 +58,15 @@
   width: calc(100% / 5);
   font-size: 12px !important;
   padding: 5px 10px;
+  overflow-x: scroll;
 }
 .allTransactions h3 {
   text-align: center;
   font-family: "Agrandir-bold";
   font-size: 18px;
+}
+#fundingHistory-head li, #fundingHistory-body li{
+    width: calc(100%/4);
 }
 @media (max-width:620px) {
     .allTransactionCon{

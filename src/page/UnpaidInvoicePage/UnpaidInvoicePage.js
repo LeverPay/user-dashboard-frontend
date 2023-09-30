@@ -13,7 +13,7 @@ function UnpaidInvoicePage() {
   const [jwt, setJwt] = useLocalState('', 'jwt')
 
   useEffect(()=>{
-    axios.get('', {
+    axios.get('https://leverpay-api.azurewebsites.net/api/v1/user/get-invoices?status=pending', {
       headers: {
         Authorization : `Bearer ${jwt}`
       }
@@ -29,7 +29,7 @@ function UnpaidInvoicePage() {
       console.log(err)
       setIsdata(false)
     })
-  })
+  }, [])
 
  
   return (
