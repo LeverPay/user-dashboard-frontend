@@ -54,16 +54,7 @@ export const UserDashboardLayout = (props) => {
   const [user, setUser] = useState({});
   const [jwt, setJwt] = useLocalState("", "jwt");
   const userJson = localStorage.getItem('user')
-  const [userData, setUserData] = useState()
-  useEffect(()=>{
-    if(userJson){
-      setUserData(JSON.parse(userJson))
-    }else{
-      const json =localStorage.getItem('user')
-      setUserData(JSON.parse(json))
-    }
-  }, [])
-  // const userData = JSON.parse(userJson)
+  const userData = JSON.parse(userJson)
   console.log(userData)
   console.log(user);
 
