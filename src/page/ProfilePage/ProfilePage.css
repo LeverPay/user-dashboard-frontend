@@ -1,24 +1,55 @@
 .labels {
   font-family: AgrandirBold !important;
   font-size: small;
-  border: 0px !important;
+  width: auto !important;
+  /* border: 1px solid #000 !important; */
   padding: 0px !important;
-  margin-left: 3% !important;
+  /* margin-left: 5rem !important; */
 }
 
-.city-label {
-  margin-left: 1rem !important;
+.handle-label {
+  /* border: 1px solid #000 !important; */
+  font-family: AgrandirBold !important;
+  font-size: small;
+  padding: 0px !important;
+}
+
+.country-label {
+  /* border: 1px solid #000 !important; */
+  width: 62% !important;
+  text-align: left !important;
+  font-family: AgrandirBold !important;
+  font-size: small;
+  padding: 0px !important;
 }
 
 .state-label {
+  /* border: 1px solid #000 !important; */
+  width: 62% !important;
   margin-left: -5rem !important;
+  font-family: AgrandirBold !important;
+  font-size: small;
+  padding: 0px !important;
+}
+
+.city-label {
+  /* border: 1px solid #000 !important; */
+  width: 62% !important;
+  margin-left: 1rem !important;
+  font-family: AgrandirBold !important;
+  font-size: small;
+  padding: 0px !important;
 }
 
 .email-label {
+  font-family: AgrandirBold !important;
+  font-size: small !important;
   margin-left: 8% !important;
 }
 
 .email-label-2 {
+  font-family: AgrandirBold !important;
+  font-size: small !important;
   margin-left: 20% !important;
 }
 
@@ -29,12 +60,14 @@
   justify-content: flex-start !important;
   align-items: center !important;
   width: 100% !important;
-  margin-left: 0.5rem !important;
+  margin-left: 3rem !important;
   /* border: 1px solid #000; */
 }
 
 .make-email-text {
-  margin-left: 2.5rem !important;
+  font-family: AgrandirBold !important;
+  font-size: small;
+  margin-left: 0rem !important;
   width: auto !important;
   /* border: 1px solid #000 !important; */
 }
@@ -86,7 +119,16 @@
     width: 100% !important;
     margin-left: auto !important;
     margin-left: auto !important;
+    margin-top: 2rem !important;
     /* margin-left: auto; */
+  }
+
+  .email-label {
+    margin-left: 0.5rem !important;
+  }
+
+  .email-label-2 {
+    margin-left: 0.5rem !important;
   }
 }
 
@@ -246,6 +288,10 @@
 
   .state-label {
     margin-left: 1rem !important;
+  }
+
+  .make-email-text {
+    margin-left: -2.5rem !important;
   }
 
   .react-tabs {

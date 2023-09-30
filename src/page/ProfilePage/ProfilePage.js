@@ -138,7 +138,9 @@ const ProfilePage = ({ userName }) => {
             <div className="fields-control">
               <div className="name-row">
                 <Form.Group className="mb-3" controlId="">
-                  <Form.Label className="labels">First Name</Form.Label>
+                  <div className="handle-label">
+                    <Form.Label>First Name</Form.Label>
+                  </div>
                   <Form.Control
                     type="text"
                     name="first_name"
@@ -151,7 +153,10 @@ const ProfilePage = ({ userName }) => {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="">
-                  <Form.Label className="labels">Last Name</Form.Label>
+                  <div className="handle-label">
+                    <Form.Label>Last Name</Form.Label>
+                  </div>
+
                   <Form.Control
                     type="text"
                     name="last_name"
@@ -164,21 +169,27 @@ const ProfilePage = ({ userName }) => {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="">
-                  <Form.Label className="labels">Other Name</Form.Label>
+                  <div className="handle-label">
+                    <Form.Label>Other Name</Form.Label>
+                  </div>
                   <Form.Control
                     type="text"
                     name="other_name"
                     value={otherName}
-                    placeholder="other name"
+                    placeholder={
+                      userName.other_name === ""
+                        ? "other_name"
+                        : userName.otherName
+                    }
                     ref={inputRef}
                     onChange={(e) => setOthername(e.target.value)}
                     className="text-area"
                   />
                 </Form.Group>
               </div>
-              <Form.Label htmlFor="gender" className="labels">
-                Gender
-              </Form.Label>
+              <div className="handle-label">
+                <Form.Label htmlFor="gender">Gender</Form.Label>
+              </div>
               <Form.Control
                 type="text"
                 name="gender"
@@ -190,12 +201,10 @@ const ProfilePage = ({ userName }) => {
               <br />
               <div className="email-container">
                 <Form.Group className="mb-3" controlId="">
-                  <Form.Label className="labels email-label">
-                    Email Address
-                  </Form.Label>
+                  <Form.Label className="email-label">Email Address</Form.Label>
                   <Form.Control
                     type="email"
-                    placeholder={userName.email}
+                    placeholder={userName.reg_email}
                     className="text-area email-address"
                     value={otherEmailAddress}
                     onChange={(e) => setOtherEmailAddress(e.target.value)}
@@ -204,7 +213,7 @@ const ProfilePage = ({ userName }) => {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="">
-                  <Form.Label className="labels email-label-2">
+                  <Form.Label className="email-label-2">
                     Other Email Address
                   </Form.Label>
                   <Form.Control
@@ -218,7 +227,7 @@ const ProfilePage = ({ userName }) => {
                   />
                   &nbsp;
                   <div className="primary-email">
-                    <Form.Label className="labels make-email-text">
+                    <Form.Label className="make-email-text">
                       Make this my primary email
                     </Form.Label>
                     &nbsp;
@@ -233,9 +242,9 @@ const ProfilePage = ({ userName }) => {
               {/* &nbsp; */}
               <div className="country-state-city">
                 <Form.Group>
-                  <Form.Label className="labels country-label">
-                    Country
-                  </Form.Label>
+                  <div className="country-label">
+                    <Form.Label>Country</Form.Label>
+                  </div>
                   <Form.Select
                     aria-label="Default select example"
                     onChange={(e) => setCountryID(e.target.value)}
@@ -264,9 +273,10 @@ const ProfilePage = ({ userName }) => {
                   />
                 </Form.Group> */}
                 <Form.Group className="">
-                  <Form.Label htmlFor="state" className="labels state-label">
-                    State
-                  </Form.Label>
+                  <div className="state-label">
+                    <Form.Label htmlFor="state">State</Form.Label>
+                  </div>
+
                   <Form.Select
                     aria-label="Default select example"
                     onChange={(e) => setStateID(e.target.value)}
@@ -279,9 +289,10 @@ const ProfilePage = ({ userName }) => {
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="">
-                  <Form.Label htmlFor="city" className="labels city-label">
-                    City
-                  </Form.Label>
+                  <div className="city-label">
+                    <Form.Label htmlFor="city">City</Form.Label>
+                  </div>
+
                   <Form.Select
                     aria-label="Default select example"
                     onChange={(e) => setCityID(e.target.value)}
@@ -294,7 +305,9 @@ const ProfilePage = ({ userName }) => {
                 </Form.Group>
               </div>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label className="labels">Address</Form.Label>
+                <div className="handle-label">
+                  <Form.Label>Address</Form.Label>
+                </div>
                 <Form.Control
                   type="text"
                   name="profile_address"
@@ -307,12 +320,14 @@ const ProfilePage = ({ userName }) => {
               </Form.Group>
               <div className="phone-number-container">
                 <Form.Group className="mb-3 other-number" controlId="">
-                  <Form.Label className="labels">Phone Number</Form.Label>
+                  <div className="handle-label">
+                    <Form.Label>Phone Number</Form.Label>
+                  </div>
                   <Form.Control
                     type="text"
                     ref={inputRef}
                     // onChange={(e) => setAddress(e.target.value)}
-                    placeholder={userName.phoneNumber}
+                    placeholder={userName.reg_phone}
                     className="text-area default-number"
                     readOnly
                   />
@@ -328,7 +343,9 @@ const ProfilePage = ({ userName }) => {
                   />
                 </Form.Group> */}
                 <Form.Group className="mb-3 phone-number">
-                  <Form.Label className="labels">Other Phone Number</Form.Label>
+                  <div className="handle-label">
+                    <Form.Label>Other Phone Number</Form.Label>
+                  </div>
                   <PhoneNumberComponent
                     name="phone_number"
                     phoneNumber={otherPhoneNumber}
@@ -347,7 +364,9 @@ const ProfilePage = ({ userName }) => {
                 </Form.Group>
               </div>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label className="labels">Profession</Form.Label>
+                <div className="handle-label">
+                  <Form.Label>Profession</Form.Label>
+                </div>
                 <Form.Control
                   type="text"
                   name="profile_profession"

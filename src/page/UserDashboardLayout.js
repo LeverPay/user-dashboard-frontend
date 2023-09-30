@@ -51,9 +51,9 @@ export const UserDashboardLayout = (props) => {
   const [silverCard, setSilverCard] = useState([]);
   const [user, setUser] = useState({});
   const [jwt, setJwt] = useLocalState("", "jwt");
-  const userJson = localStorage.getItem('user')
-  const userData = JSON.parse(userJson)
-  console.log(userData)
+  const userJson = localStorage.getItem("user");
+  const userData = JSON.parse(userJson);
+  console.log(userData);
   console.log(user);
 
   useEffect(() => {
@@ -107,7 +107,7 @@ export const UserDashboardLayout = (props) => {
                     userName={{
                       firstName: user.first_name,
                       lastName: user.last_name,
-                      passport: user.passport
+                      passport: user.passport,
                     }}
                   />
                   <PrivateRoute userName={user.first_name}>
@@ -131,21 +131,21 @@ export const UserDashboardLayout = (props) => {
                       <TotalMoney
                         bg="#0E093F"
                         totaltype="Total Balance"
-                        amt={userData ? userData.wallet.amount.ngn : ''}
+                        amt={userData ? userData.wallet.amount.ngn : ""}
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#F6A61F"
                         totaltype="Total Spending"
-                        amt={userData ? userData.total_spending.ngn : ''}
+                        amt={userData ? userData.total_spending.ngn : ""}
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#201E34"
                         totaltype=" Total Saved"
-                        amt={userData ? userData.total_save.ngn : ''}
+                        amt={userData ? userData.total_save.ngn : ""}
                       />
                     </div>
                   </div>
@@ -153,15 +153,13 @@ export const UserDashboardLayout = (props) => {
                     <StatementComponent />
                   </div>
                   <div className="dashboard-transaction-table-container col-md-11">
-                    <AllTransactions
-                    />
+                    <AllTransactions />
                   </div>
                 </div>
                 <div className="col-md-4  card-holder">
                   <div className="col-md-10 mx-auto default-card-holder">
                     <header className="card-header">My Card</header>
-                    <CardUser
-                    />
+                    <CardUser />
                   </div>
                   {/* <div
                     className="col-md-10 mx-auto"
@@ -181,7 +179,7 @@ export const UserDashboardLayout = (props) => {
           />
 
           <Route path="transactions" element={<AllTransactionCon />} />
-          <Route path="funding-history" element={<AllFundingHistoryCon/>} />
+          <Route path="funding-history" element={<AllFundingHistoryCon />} />
           <Route exact path="transfer" element={<TransferPage />} />
           <Route exact path="/investment" element={<Investment />} />
 
@@ -222,6 +220,10 @@ export const UserDashboardLayout = (props) => {
                 userName={{
                   firstName: user.first_name,
                   lastName: user.last_name,
+                  otherName: user.other_name,
+                  gender: user.gender,
+                  reg_email: user.email,
+                  reg_phone: user.phone,
                 }}
               />
             }

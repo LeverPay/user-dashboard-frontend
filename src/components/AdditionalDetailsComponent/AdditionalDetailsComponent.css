@@ -1,6 +1,21 @@
-.labels {
+.label {
   font-family: AgrandirBold !important;
   font-size: small;
+  margin-left: 1.5rem !important;
+}
+
+.bank-label-d {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  width: 93% !important;
+}
+
+.others-p {
+  color: blue !important;
+  font-family: Agrandir !important;
+  cursor: pointer !important;
+  /* font-size: medium !important; */
 }
 
 h4 {
@@ -27,6 +42,10 @@ h4 {
 }
 
 @media screen and (max-width: 700px) {
+  .label {
+    margin-left: 0.8rem !important;
+  }
+
   .add-account-btn-ctrl {
     margin-top: 10%;
     margin-left: auto !important;
