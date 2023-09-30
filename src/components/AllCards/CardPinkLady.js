@@ -8,11 +8,11 @@ function CardpinkLady() {
       backgroundImage="./images/CardpinkLady.png"
       cardtype="USDT"
       cardname="Pink Lady"
-      name={CardInfo[2].name}
       lock="./images/lock.png"
       bg2="url('./images/Ellipse 7.png')"
-      cardNumber={CardInfo[2].no}
-      cvv={CardInfo[2].cvv}
+      // name={CardInfo[2].name}
+      // cardNumber={CardInfo[2].no}
+      // cvv={CardInfo[2].cvv}
     />
   );
 }

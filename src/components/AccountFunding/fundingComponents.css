@@ -2,8 +2,10 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  padding-top: 20px;
   width: 96%;
   margin: auto;
+  position: relative;
 }
 .FundingNav h3 {
   font-size: 20px;
@@ -14,7 +16,14 @@
   width: 30px;
   height: 20px;
 }
-
+.FundingNav a{
+  position: absolute;
+  top: -10%;
+  right: 0;
+  color: black;
+  font-size: 14px;
+  font-weight: 700;
+}
 /* funding price equivalent */
 .FundingPrices {
   display: flex;

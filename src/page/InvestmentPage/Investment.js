@@ -14,6 +14,7 @@ const Investment = () => {
     const [info, setInfo] = useState('')
     const [isChecked, setIsChecked] = useState(false)
     const [step, setStep] = useState(1)
+  const [isvisible, setIsvisible] = useState(false)
     const [otherData, setOtherData] = useState({})
     const [DOB, setDOB] = useState(new Date());
     const [formData, setFormData] = useState({
@@ -33,7 +34,10 @@ const Investment = () => {
         txfee: '69.9'
     })
 
-
+    function toggleVisible(){
+        setIsvisible(!isvisible)
+      }
+    
     function NextStep(){
         setStep(step + 1)
     }
@@ -79,7 +83,7 @@ const Investment = () => {
 
     return (
         <div className='investmentPage'>
-            <img alt='logo' src='/images/logo.png' className='logo' />
+            <img alt='logo' src='/images/logo.png' className='i-logo' />
             {
                 step === 1 && <div className='investment'>
                 <form onSubmit={handleForm}>
@@ -178,22 +182,24 @@ const Investment = () => {
                     <label>
                         Password:
                        <input
-                        type='password'
+                        type={isvisible ? 'text': 'password'}
                         required={true}
                         name='password'
                         onChange={handleChange}
                         value={formData.password}
                        />
+                       <img alt="" src={isvisible ? "/images/blind.png" : "/images/visible.png"} onClick={toggleVisible} className="i-visible-blind" />
                     </label>
                     <label>
                         Confirm Password:
                        <input
-                        type='password'
+                        type={isvisible ? 'text': 'password'}
                         required={true}
                         name='Cpassword'
                         onChange={handleChange}
                         value={formData.Cpassword}
                        />
+                       <img alt="" src={isvisible ? "/images/blind.png" : "/images/visible.png"} onClick={toggleVisible} className="i-visible-blind" />
                     </label>
                      <small>{info}</small>
                     <br />
