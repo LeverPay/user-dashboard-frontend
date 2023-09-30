@@ -54,7 +54,16 @@ export const UserDashboardLayout = (props) => {
   const [user, setUser] = useState({});
   const [jwt, setJwt] = useLocalState("", "jwt");
   const userJson = localStorage.getItem('user')
-  const userData = JSON.parse(userJson)
+  const [userData, setUserData] = useState()
+  useEffect(()=>{
+    if(userJson){
+      setUserData(JSON.parse(userJson))
+    }else{
+      const json =localStorage.getItem('user')
+      setUserData(JSON.parse(json))
+    }
+  }, [])
+  // const userData = JSON.parse(userJson)
   console.log(userData)
   console.log(user);
 
@@ -110,7 +119,7 @@ export const UserDashboardLayout = (props) => {
                       firstName: user.first_name,
                       lastName: user.last_name,
                       passport: user.passport,
-                      card: userData.card.type
+                      card: userData ? userData.card.type : ''
                     }}
                   />
                   <PrivateRoute userName={user.first_name}>
