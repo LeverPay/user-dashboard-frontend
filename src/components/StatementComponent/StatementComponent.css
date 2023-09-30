@@ -1,12 +1,12 @@
 .dashboardCardContainer {
   min-height: 80px;
   display: flex;
-  margin-top: 40px;
+  margin-top: 0;
   gap: 1em;
   justify-content: center;
   align-items: flex-start;
   flex-flow: row nowrap;
-  margin-left: 45px;
+  margin-left: 0px;
 }
 .grah-con{
   width: 100%;

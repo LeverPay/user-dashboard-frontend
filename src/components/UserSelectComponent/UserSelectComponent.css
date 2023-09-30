@@ -40,3 +40,17 @@
     height: 20px;
   }
 }
+@media (max-width:620px){
+  .User_Info{
+    margin-top: 0;
+  }
+  .User_Info img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+  }
+  .User_Info h3{
+    font-size: 12px;
+    margin-top: 7px;
+  }
+}

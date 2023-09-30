@@ -18,7 +18,9 @@ const TopNav = ({ userName }) => {
           style={{ display: "flex", alignItems: "center" }}
           className="top-nav-items"
         >
-          <SearchBar />
+          <span className='search-con'>
+          <SearchBar  />
+          </span>
           <MdNotifications size={30} className="notificationIcon" />
         </div>
         <Link

@@ -1,18 +1,40 @@
+.mCOnn{
+  width: 100% !important;
+}
 .merchant-container {
   height: fit-content;
   background: #10133f;
   border-radius: 20px;
-  padding: 30px 15px 70px 15px;
+  padding: 24px !important;
+  width: 100% !important;
+}
+.merchant-container .shop-more{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 !important;
+}
+.merchant-container .shop-more h4{
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 16px;
 }
 .merchant_COn{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 33px;
+  margin-left: 1rem;
+  width: 100%;
 }
 @media screen and (max-width: 620px) {
-  .nerchant-header h3 {
-    margin-left: -1px !important;
+  .merchant-header h3 {
+    text-align: left;
+  }
+  .merchant_COn{
+    margin-left: -1rem;
+  }
+  .merchant-header span, .merchant-header a{
+    display: none;
   }
 
   .merchant-container {
@@ -21,23 +43,13 @@
 }
 .merchant-header {
   display: flex;
-  align-items: center;
-  margin-top: 40px;
+  padding-left: 1rem;
+  width: 100%;
 }
 .merchant-header h3 {
   font-family: AgrandirBold;
   font-size: large !important;
-  flex-grow: 1;
   color: #fff;
-  margin: auto !important;
-  margin-left: 40px !important;
-}
-
-@media screen and (max-width: 620px) {
-  .merchant-header h3 {
-    margin-left: 0px !important;
-  }
-  font-size: 20px;
 }
 .merchant_search{
   margin-top: -10px;
@@ -46,7 +58,7 @@
 .merchants {
   margin-top: 20px;
 }
-.merchant-container h5 {
+.merchant-container h4 {
   color: #fff;
   font-family: AgrandirBold;
   flex-grow: 1;

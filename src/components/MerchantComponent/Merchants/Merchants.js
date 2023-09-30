@@ -19,11 +19,6 @@ function Merchants(props) {
       </div>
 
       <div className="verified">
-        <img
-          className="col-md-12 "
-          src={Verified}
-          alt="verified"
-        />
         <h4>Verified</h4>
       </div>
     </div>
