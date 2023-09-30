@@ -11,9 +11,9 @@
 @media screen and (max-width: 620px) {
   .graphComponentDiv {
     margin-left: 0 !important;
-    margin-top: 0;
+    margin-top: 0rem !important;
     margin-bottom: 0;
-    height: 200px;
+    height: 270px;
   }
   .portfolioText{
     font-size: 10px;
