@@ -10,11 +10,11 @@ function CardDiamond() {
       backgroundImage="./images/diamond.png"
       cardtype="USDT"
       cardname="Diamond"
-      name={CardInfo[1].name}
       lock="./images/lock.png"
       bg2="url('./images/Ellipse 7.png')"
-      cardNumber={CardInfo[1].no}
-      cvv={CardInfo[1].cvv}
+      // name={CardInfo[1].name}
+      // cardNumber={CardInfo[1].no}
+      // cvv={CardInfo[1].cvv}
     />
     // </Container>
   );

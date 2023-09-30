@@ -82,7 +82,7 @@ const MySubscriptionComponent = () => {
             >
               <option>{subscriptionText}</option>
               {subscription.map((sub) => {
-                return <option value={sub.subType}>{sub.subType}</option>;
+                return <option value={sub.subType} key={sub.subType} >{sub.subType}</option>;
               })}
             </Form.Select>
             &nbsp;
