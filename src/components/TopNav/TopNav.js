@@ -14,7 +14,10 @@ const TopNav = ({ userName }) => {
         <div className="pageTitle">
           <h2> Overview </h2>
         </div>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div
+          style={{ display: "flex", alignItems: "center" }}
+          className="top-nav-items"
+        >
           <SearchBar />
           <MdNotifications size={30} className="notificationIcon" />
         </div>
