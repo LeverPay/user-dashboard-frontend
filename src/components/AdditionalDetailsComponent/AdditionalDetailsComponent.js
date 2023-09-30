@@ -8,6 +8,12 @@ import "../AdditionalDetailsComponent/AdditionalDetailsComponent.css";
 const AddAccountComponent = () => {
   const [bank, setBank] = useState([]);
   const [accountNumber, setAccountNumber] = useState("");
+  const [otherBank, setOtherBank] = useState("");
+  const [visible, setVisible] = useState(false);
+
+  const handleOtherBank = () => {
+    setVisible(true);
+  };
   const handleAdditionalDetails = (e) => {
     e.preventDefault();
     Swal.fire({
@@ -44,7 +50,12 @@ const AddAccountComponent = () => {
         <Form className="form-outer">
           <h4>Add Bank Details</h4>
           <Form.Group className="mb-3" controlId="">
-            <Form.Label className="labels">Bank Name</Form.Label>
+            <div className="bank-label-d">
+              <Form.Label className="label">Bank Name</Form.Label>
+              <p className="others-p" onClick={handleOtherBank}>
+                other banks
+              </p>
+            </div>
             <Form.Select
               aria-label="Default select example"
               className="text-area select-bank"
@@ -55,8 +66,23 @@ const AddAccountComponent = () => {
               <option value="1"></option>
             </Form.Select>
           </Form.Group>
+          <Form.Group
+            className="mb-3 display-other"
+            controlId=""
+            style={{ display: visible ? "block" : "none" }}
+          >
+            <Form.Label className="label">Other banks</Form.Label>
+            <Form.Control
+              type="text"
+              value={otherBank}
+              placeholder=""
+              className="text-area"
+              onChange={(e) => setOtherBank(e.target.value)}
+              required
+            />
+          </Form.Group>
           <Form.Group className="mb-3" controlId="">
-            <Form.Label className="labels">Account Number</Form.Label>
+            <Form.Label className="label">Account Number</Form.Label>
             <Form.Control
               type="text"
               value={accountNumber}
@@ -69,7 +95,7 @@ const AddAccountComponent = () => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="">
-            <Form.Label className="labels">Account Name</Form.Label>
+            <Form.Label className="label">Account Name</Form.Label>
             <Form.Control
               type="text"
               placeholder=""

@@ -21,11 +21,12 @@
   align-items: center;
   margin-top: 5%;
   margin-left: 1.5rem;
-  width: 65% !important;
+  width: 85% !important;
+  border: 1px solid #000 !important;
 }
 
 .change-img {
-  margin-left: -20rem !important;
+  margin-left: -25rem !important;
   width: 30% !important;
   font-family: AgrandirBold !important;
 }
