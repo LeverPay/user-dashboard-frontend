@@ -2,16 +2,20 @@ import React from "react";
 import CardDefault from "../../components/AllCards/CardDefault";
 import CardInfo from "../../TestData/CardInfo";
 
-function CardUser({ firstName, lastName }) {
+function CardUser() {
+  const userJson = localStorage.getItem('user')
+  const userData = JSON.parse(userJson)
+  console.log(userData)
   return (
     <CardDefault
       backgroundImage="./images/DefaultCardBackground.png"
-      name={firstName + " " + lastName}
+      // name={userData ? userData.first_name + " " + userData.last_name: ''}
       cardtype={<br />}
       cardname=" "
       lock=""
-      cardNumber={CardInfo[5].no}
-      cvv={CardInfo[5].cvv}
+      // cardNumber={userData? userData.card.card_number : ''}
+      // cvv={userData ? userData.card.cvv: 123}
+      // exp = {userData ? userData.card.expiry : ''}
     />
   );
 }

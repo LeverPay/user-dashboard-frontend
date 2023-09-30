@@ -2,25 +2,14 @@ import React from "react";
 import NavComponent from "../components/NavComponent/NavComponent";
 import TopNav from "../components/TopNav/TopNav";
 import StatementComponent from "../components/StatementComponent/StatementComponent";
-import TransactionTable from "./Transactions/TransactionTable/TransactionTable";
-import { recentTransactions } from "../TestData/TransactionsData.js";
 import { useEffect, useState } from "react";
 import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
-import { Transactions } from "./Transactions/Transactions";
-import TransactionInvoices from "./Transactions/TransactionTable/TransactionInvoices";
-import InvoicePage from "./InvoicePage/InvoicePage";
-// import Mycard from "./MyCardPage.js/Mycard";
-// import Mycard from "./MyCardPage/Mycard";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
-// import MyCardDiamond from "../page/DiamondCardPage/MyCardDiamond";
 import MyCardsSilver from "./SilverCardPage/MyCardsSilver";
-// import MyCardGold from "../page/GoldCardPage/MyCardGold";
-// import { ReturnMessage } from "./KYCForms/KYCFormsUpgradeMessages/ReturnMessage";
 import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount";
 import TotalMoney from "../components/TotalMoney/TotalMoney";
 import CardUser from "../components/AllCards/CardUserDefault";
-import CardSilver from "../components/AllCards/CardSilver";
 import { MerchantComponent } from "../components/MerchantComponent/MerchantComponent";
 import "./UserDashboardLayout.css";
 import Settings from "./SettingsPage/Settings";
@@ -29,7 +18,6 @@ import HelpForm from "./HelpForm/HelpForm";
 import Faq from "./FaqPage/Faq";
 import Feedback from "./Feedback/Feedback";
 import PaymentPage from "./PaymentPage/PaymentPage";
-import UnpaidInvoice from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import ResetPassword from "../components/ResetPasswordComponent/ResetPassword";
 import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
@@ -37,15 +25,12 @@ import { useLocalState } from "../utils/useLocalStorage";
 import { getUserProfile } from "../services/apiService";
 import { ToastContainer, toast } from "react-toastify";
 import TransferPage from "./TransferPage/TransferPage";
-import axios from "axios";
 import SignupPage from "./SignupPage/SignupPage";
 import FundingPage from "./FundingPage/FundingPage";
 import FundingPayment from "../components/AccountFunding/FundingPayment";
-import FundingInitiating from "../components/AccountFunding/FundingInitiating";
 import FundingNaira from "../components/AccountFunding/FundingNaira";
 import FundingPaystack from "../components/AccountFunding/FundingPaystack";
 import FundingMore from "../components/AccountFunding/FundingMore";
-import FundingpaymentForm from "../components/AccountFunding/FundingpaymentForm";
 import UnpaidReceipt from "../components/UnpaidInvoice/UnpaidReceipt";
 import SignupOTP from "../components/SignupComponent/SignupOTP/SignupOTP";
 import Investment from "./InvestmentPage/Investment";
@@ -57,13 +42,18 @@ import AllInvoicePage from "./AllInvoicePage/AllInvoicePage";
 import Allinvoices from "./AllInvoices/Allinvoices";
 import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
+import AllTransactions from "./AllTransactions/AllTransactions";
+import AllTransactionCon from "./AllTransactions/AllTransactionCon";
+import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState([]);
   const [user, setUser] = useState({});
   const [jwt, setJwt] = useLocalState("", "jwt");
-
+  const userJson = localStorage.getItem('user')
+  const userData = JSON.parse(userJson)
+  console.log(userData)
   console.log(user);
 
   useEffect(() => {
@@ -117,7 +107,7 @@ export const UserDashboardLayout = (props) => {
                     userName={{
                       firstName: user.first_name,
                       lastName: user.last_name,
-                      passport: user.passport,
+                      passport: user.passport
                     }}
                   />
                   <PrivateRoute userName={user.first_name}>
@@ -141,21 +131,21 @@ export const UserDashboardLayout = (props) => {
                       <TotalMoney
                         bg="#0E093F"
                         totaltype="Total Balance"
-                        amt="3000"
+                        amt={userData ? userData.wallet.amount.ngn : ''}
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#F6A61F"
                         totaltype="Total Spending"
-                        amt="2000"
+                        amt={userData ? userData.total_spending.ngn : ''}
                       />
                     </div>
                     <div className="col-md-4">
                       <TotalMoney
                         bg="#201E34"
                         totaltype=" Total Saved"
-                        amt="546"
+                        amt={userData ? userData.total_save.ngn : ''}
                       />
                     </div>
                   </div>
@@ -163,9 +153,7 @@ export const UserDashboardLayout = (props) => {
                     <StatementComponent />
                   </div>
                   <div className="dashboard-transaction-table-container col-md-11">
-                    <TransactionTable
-                      data={recentTransactions}
-                      tableTitle="Recent Transaction"
+                    <AllTransactions
                     />
                   </div>
                 </div>
@@ -173,8 +161,6 @@ export const UserDashboardLayout = (props) => {
                   <div className="col-md-10 mx-auto default-card-holder">
                     <header className="card-header">My Card</header>
                     <CardUser
-                      firstName={user.first_name}
-                      lastName={user.last_name}
                     />
                   </div>
                   {/* <div
@@ -194,11 +180,8 @@ export const UserDashboardLayout = (props) => {
             }
           />
 
-          <Route path="transactions" element={<Transactions />} />
-          <Route
-            path="transactions-invoices"
-            element={<TransactionInvoices />}
-          />
+          <Route path="transactions" element={<AllTransactionCon />} />
+          <Route path="funding-history" element={<AllFundingHistoryCon/>} />
           <Route exact path="transfer" element={<TransferPage />} />
           <Route exact path="/investment" element={<Investment />} />
 
