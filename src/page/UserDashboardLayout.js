@@ -95,6 +95,7 @@ export const UserDashboardLayout = (props) => {
   return (
     <>
       <Routes>
+        <Route path="/investment" element={<Investment/>} />
         <Route
           element={
             <>
