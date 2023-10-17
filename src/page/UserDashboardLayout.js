@@ -95,6 +95,7 @@ export const UserDashboardLayout = (props) => {
   return (
     <>
       <Routes>
+        <Route path="/investment" element={<Investment/>} />
         <Route
           element={
             <>
@@ -122,7 +123,7 @@ export const UserDashboardLayout = (props) => {
             path="/"
             element={
               <div className="dashboard col-md-12 flexy">
-                <div className="col-md-8">
+                <div className="dashboard-right col-md-8">
                   <div
                     className="spending col-md-12 flexy"
                     style={{ marginTop: "-1rem" }}
@@ -156,8 +157,8 @@ export const UserDashboardLayout = (props) => {
                     <AllTransactions />
                   </div>
                 </div>
-                <div className="col-md-4  card-holder">
-                  <div className="col-md-10 mx-auto default-card-holder">
+                <div className="dashboard-left col-md-4  card-holder">
+                  <div className="col-md-12 default-card-holder">
                     <header className="card-header">My Card</header>
                     <CardUser />
                   </div>
@@ -171,7 +172,9 @@ export const UserDashboardLayout = (props) => {
                     />
                   </div> */}
                   <div className="mchnt-con col-md-12">
+                    <div className="mchnt-con-div">
                     <MerchantComponent />
+                    </div>
                   </div>
                 </div>
               </div>

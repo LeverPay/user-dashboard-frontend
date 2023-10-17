@@ -2,45 +2,45 @@ import React from 'react'
 import './CheckoutTransfer.css'
 import { useState, useEffect } from 'react'
 import Helpimageupload from '../HelpImageUpload/helpimageupload'
-import Investment from '../../page/InvestmentPage/Investment'
+// import Investment from '../../page/InvestmentPage/Investment'
 import axios from 'axios'
-import { useLocalState } from '../../utils/useLocalStorage'
+// import { useLocalState } from '../../utils/useLocalStorage'
 
 
-const CheckoutTransfer = ({ amount, checkoutData, vat, txfee, prevStep, nextStep, isInvest }) => {
+const CheckoutTransfer = ({ amount, checkoutData, vat, txfee, prevStep, nextStep, isInvest, account_name, account_no }) => {
     const totalAmt = (amount * 1) + (vat * 1) + (txfee * 1)
     const [fileImg, setFileimg] = useState()
-    const [jwt, setJwt] = useLocalState('', 'jwt')
+    // const [jwt, setJwt] = useLocalState('', 'jwt')
     const [copyAlert, setCopyAlert] = useState('')
     const [ncopyAlert, setNCopyAlert] = useState('')
-    const [isAcct, setIsAcct] = useState(false)
-    const [account_Info, setAccount_Info] = useState([])
-    const [account_no, setAccount_no] = useState()
-    const [account_name, setAccount_name] = useState()
+    // const [isAcct, setIsAcct] = useState(false)
+    // const [account_Info, setAccount_Info] = useState([])
+    // const [account_no, setAccount_no] = useState()
+    // const [account_name, setAccount_name] = useState()
     const [imgfile, setImgfile] = useState()
     function GetImg(value) {
         setFileimg(value)
     }
 
 
-    useEffect(() => {
-        axios.get('https://leverpay-api.azurewebsites.net/api/v1/user/get-account-numbers', {
-            headers: {
-                Authorization: `Bearer ${jwt}`
-            }
-        })
-            .then(res => {
-                console.log(res.data)
-                setAccount_Info(res.data.data)
-                if (res.data.data.length > 0) {
-                    setIsAcct(true)
-                } else setIsAcct(false)
-            })
-            .catch(err => {
-                console.log(err)
-                setIsAcct(false)
-            })
-    }, [])
+    // useEffect(() => {
+    //     axios.get('https://leverpay-api.azurewebsites.net/api/v1/user/get-account-numbers', {
+    //         headers: {
+    //             Authorization: `Bearer ${jwt}`
+    //         }
+    //     })
+    //         .then(res => {
+    //             console.log(res.data)
+    //             setAccount_Info(res.data.data)
+    //             if (res.data.data.length > 0) {
+    //                 setIsAcct(true)
+    //             } else setIsAcct(false)
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //             setIsAcct(false)
+    //         })
+    // }, [])
 
     // const account_Info = [
     //     { name: 'GT Bank', number: '0054789923' },
@@ -55,7 +55,7 @@ const CheckoutTransfer = ({ amount, checkoutData, vat, txfee, prevStep, nextStep
         email: '',
         txid: '',
         narration: '',
-        Bank_name: isAcct ? account_Info[0].name : '',
+        Bank_name: 'Providus Bank',
         fileImg: fileImg,
         imginfo: imgfile,
 
@@ -68,23 +68,23 @@ const CheckoutTransfer = ({ amount, checkoutData, vat, txfee, prevStep, nextStep
         })
     }
 
-    useEffect(() => {
-        if (isAcct) {
-            if (formData.Bank_name === account_Info[0].bank) {
-                setAccount_name(account_Info[0].account_name)
-                setAccount_no(account_Info[0].account_number)
-            } else if (formData.Bank_name === account_Info[1].bank) {
-                setAccount_name(account_Info[1].account_name)
-                setAccount_no(account_Info[1].account_number)
-            } else if (formData.Bank_name === account_Info[2].bank) {
-                setAccount_name(account_Info[2].account_name)
-                setAccount_no(account_Info[2].account_number)
-            } else if (formData.Bank_name === account_Info[3].bank) {
-                setAccount_name(account_Info[3].account_name)
-                setAccount_no(account_Info[3].account_number)
-            }
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (isAcct) {
+    //         if (formData.Bank_name === account_Info[0].bank) {
+    //             setAccount_name(account_Info[0].account_name)
+    //             setAccount_no(account_Info[0].account_number)
+    //         } else if (formData.Bank_name === account_Info[1].bank) {
+    //             setAccount_name(account_Info[1].account_name)
+    //             setAccount_no(account_Info[1].account_number)
+    //         } else if (formData.Bank_name === account_Info[2].bank) {
+    //             setAccount_name(account_Info[2].account_name)
+    //             setAccount_no(account_Info[2].account_number)
+    //         } else if (formData.Bank_name === account_Info[3].bank) {
+    //             setAccount_name(account_Info[3].account_name)
+    //             setAccount_no(account_Info[3].account_number)
+    //         }
+    //     }
+    // }, [])
 
     const investData = {
         narration: formData.narration,
@@ -169,7 +169,7 @@ const CheckoutTransfer = ({ amount, checkoutData, vat, txfee, prevStep, nextStep
                             type='text'
                             name='narration'
                             value={formData.narration}
-                            onChange={handleChange}
+                            onChange={handleChange} 
                         // placeholder='Levinv0378'
                         />
                     </div>
@@ -179,9 +179,12 @@ const CheckoutTransfer = ({ amount, checkoutData, vat, txfee, prevStep, nextStep
                 <main>
                     <div className='FundingNairaBank'>
                         <main>
-                            <div><h3>Account Name: </h3>  <h4>{isAcct ? account_name : ''}</h4></div>
+                            <div><h3>Account Name: </h3>  <h4>{account_name ? account_name : ''}</h4></div>
                             <div><h3>Bank Name </h3>
-                                <select
+                            <h4>
+                                Providus Bank 
+                            </h4>
+                                {/* <select
                                     value={formData.Bank_name}
                                     onChange={handleChange}
                                     name="Bank_name"
@@ -201,9 +204,9 @@ const CheckoutTransfer = ({ amount, checkoutData, vat, txfee, prevStep, nextStep
                                         })
                                     }
 
-                                </select>
+                                </select> */}
                             </div>
-                            <div><h3>Account Number: </h3>  <h4>{isAcct ? account_no : ''}</h4><img alt='copy' onClick={copyAcct} src='/images/acct_cpy.png' />{copyAlert}</div>
+                            <div><h3>Account Number: </h3>  <h4>{account_no ? account_no : ''}</h4><img alt='copy' onClick={copyAcct} src='/images/acct_cpy.png' />{copyAlert}</div>
                             <div><h3>Amount: </h3>  <h4>NGN {amount ? totalAmt : ''}</h4></div>
                             <div className="screenshot">
                                 <Helpimageupload GetfileImg={GetImg} optional={false} />

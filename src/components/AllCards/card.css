@@ -1,7 +1,7 @@
 .defaultCard {
   background-repeat: no-repeat;
   background-size: cover;
-  max-width: 100%;
+  width: 95% !important;
   padding: 10px;
   border-radius: 20px;
 }
@@ -129,5 +129,10 @@ letter-spacing: 0.02em;
   .defaultCard footer h1 img{
     width: 12px;
     padding-right: 3px;
+  }
+}
+@media (max-width:620px){
+  .defaultCard{
+    width: 100% !important;
   }
 }

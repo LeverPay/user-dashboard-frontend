@@ -14,8 +14,13 @@ const TransferPageComponent = ({ amt, naira_code, dollar_code }) => {
   const [transferAmount, setTransferAmount] = useState("");
   const [userFound, setUserFound] = useState(false);
   const [amountError, setAmountError] = useState("");
+<<<<<<< HEAD
   const userJson = localStorage.getItem("user");
   const userData = JSON.parse(userJson);
+=======
+  const userJson = localStorage.getItem('user')
+  const userData = JSON.parse(userJson)
+>>>>>>> 517f5876061584dcb93464c040f3fdac0260b076
 
   const [show, setShow] = useState(false);
 
@@ -47,14 +52,22 @@ const TransferPageComponent = ({ amt, naira_code, dollar_code }) => {
           <TotalMoney
             bg="#F6A61F"
             transfer="Current Balance"
+<<<<<<< HEAD
             amt={userData ? userData.wallet.amount.ngn : 0}
+=======
+            amt={userData ? userData.wallet.amount.ngn: 0}
+>>>>>>> 517f5876061584dcb93464c040f3fdac0260b076
           />
         </Col>
         <Col className="col-md-4 col-10 pt-3 savings-card">
           <TotalMoney
             bg="#0E093F"
             transfer="Amount Sent"
+<<<<<<< HEAD
             amt={userData ? userData.total_spending.ngn : 0}
+=======
+            amt={userData ? userData.total_spending.ngn: 0}
+>>>>>>> 517f5876061584dcb93464c040f3fdac0260b076
           />
         </Col>
       </Row>
