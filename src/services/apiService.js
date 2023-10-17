@@ -19,7 +19,7 @@ export const signIn = async (userData, jwt, setJwt) => {
           toast.success(`${res.message}`);
           // console.log(userData);
           setJwt(`${res.data.token}`);
-          console.log(res.data.token)
+          console.log(res.data.token);
           //transition to homepage
           setTimeout(() => {
             window.location.href = "/";
@@ -131,7 +131,7 @@ export const getUserProfile = async (jwt, setJwt, setUser) => {
     })
     .then((resData) => {
       setUser(resData.data);
-      localStorage.setItem('user', JSON.stringify(resData.data))
+      localStorage.setItem("user", JSON.stringify(resData.data));
       console.log("user found successfully");
     })
     .catch((err) => {
@@ -226,7 +226,7 @@ export const logoutUser = async (jwt) => {
     })
     .then((logoutData) => {
       toast.success(logoutData.message);
-      localStorage.removeItem('user')
+      localStorage.removeItem("user");
     })
     .catch((err) => {
       console.log(`${err.message}`);
