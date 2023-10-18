@@ -46,7 +46,7 @@ function SignupOTP({ email }) {
             name="first_name"
             ref={inputRef}
             placeholder=""
-            pattern="[A-Za-z]{1}"
+            maxLength={1}
             title="Please enter only one digit"
             onChange={
               (e) => setInputOne(e.target.value.replace(/\D/g, ""))
@@ -61,7 +61,7 @@ function SignupOTP({ email }) {
             name="first_name"
             ref={inputRef}
             placeholder=""
-            pattern="[A-Za-z]{1}"
+            maxLength={1}
             title="Please enter only one digit"
             onChange={
               (e) => setInputTwo(e.target.value.replace(/\D/g, ""))
@@ -76,7 +76,7 @@ function SignupOTP({ email }) {
             name="first_name"
             ref={inputRef}
             placeholder=""
-            pattern="[A-Za-z]{1}"
+            maxLength={1}
             title="Please enter only one digit"
             onChange={
               (e) => setInputThree(e.target.value.replace(/\D/g, ""))
@@ -91,7 +91,7 @@ function SignupOTP({ email }) {
             name="first_name"
             ref={inputRef}
             placeholder=""
-            pattern="[A-Za-z]{1}"
+            maxLength={1}
             title="Please enter only one digit"
             onChange={
               (e) => setInputFour(e.target.value.replace(/\D/g, ""))

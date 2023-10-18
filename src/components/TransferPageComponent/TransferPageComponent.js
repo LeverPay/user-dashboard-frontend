@@ -14,8 +14,12 @@ const TransferPageComponent = ({ amt, naira_code, dollar_code }) => {
   const [transferAmount, setTransferAmount] = useState("");
   const [userFound, setUserFound] = useState(false);
   const [amountError, setAmountError] = useState("");
-  const userJson = localStorage.getItem('user')
-  const userData = JSON.parse(userJson)
+  // <<<<<<< HEAD
+  //   const userJson = localStorage.getItem("user");
+  //   const userData = JSON.parse(userJson);
+  // =======
+  const userJson = localStorage.getItem("user");
+  const userData = JSON.parse(userJson);
 
   const [show, setShow] = useState(false);
 
@@ -47,14 +51,14 @@ const TransferPageComponent = ({ amt, naira_code, dollar_code }) => {
           <TotalMoney
             bg="#F6A61F"
             transfer="Current Balance"
-            amt={userData ? userData.wallet.amount.ngn: 0}
+            amt={userData ? userData.wallet.amount.ngn : 0}
           />
         </Col>
         <Col className="col-md-4 col-10 pt-3 savings-card">
           <TotalMoney
             bg="#0E093F"
             transfer="Amount Sent"
-            amt={userData ? userData.total_spending.ngn: 0}
+            amt={userData ? userData.total_spending.ngn : 0}
           />
         </Col>
       </Row>

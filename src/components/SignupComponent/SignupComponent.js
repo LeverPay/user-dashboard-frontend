@@ -99,6 +99,8 @@ function SignupComponent() {
       city_id: cityID,
     };
 
+    console.log(signupData);
+
     signUp({ signupData });
   };
 

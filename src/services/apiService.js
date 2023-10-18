@@ -19,7 +19,7 @@ export const signIn = async (userData, jwt, setJwt) => {
           toast.success(`${res.message}`);
           // console.log(userData);
           setJwt(`${res.data.token}`);
-          console.log(res.data.token)
+          console.log(res.data.token);
           //transition to homepage
           setTimeout(() => {
             window.location.href = "/";
@@ -38,37 +38,41 @@ export const signIn = async (userData, jwt, setJwt) => {
 };
 
 export const signUp = async ({ signupData }) => {
-  const SignUp = await fetch(
+  const response = await fetch(
     "https://leverpay-api.azurewebsites.net/api/v1/user/signup",
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        // "Access-Control-Allow-Origin": "*",
         Accept: "application/json",
       },
       body: JSON.stringify(signupData),
     }
   )
     .then((response) => {
-      console.log(response);
       return response.json();
     })
-    .then((messages) => {
-      if (messages.status === 200) {
-        toast.success(`${messages.message}`);
+    .then((registered) => {
+      if (registered.success) {
         localStorage.setItem("userEmail", signupData.email);
         setTimeout(() => {
           window.location.href = "/leverpay-signup/signup-OTP";
         }, 2000);
       } else {
-        toast.error(`${messages.message}`);
+        if (registered.errors.email) {
+          toast.error(registered.errors.email[0]);
+        } else if (registered.errors.phone) {
+          toast.error(registered.errors.phone[0]);
+        } else {
+          toast.error("Could not register user");
+        }
       }
     })
     .catch((error) => {
-      console.log("Error", error, "Sign Up");
-      return;
+      console.log("Error", error);
     });
-  return await SignUp;
+  return await response;
 };
 
 export const verifyEmail = async (verifyData) => {
@@ -87,19 +91,24 @@ export const verifyEmail = async (verifyData) => {
       console.log(response);
       return response.json();
     })
-    .then((messages) => {
-      if (messages.status === 200) {
-        toast.success(`${messages.message}`);
+    .then((verified) => {
+      if (verified.success === true) {
+        toast.success(verified.message);
+        //clear userEmail in localStorage
+        localStorage.removeItem("userEmail");
         //transition to signin page
         setTimeout(() => {
           window.location.href = "/signin";
         }, 2000);
       } else {
-        toast.error(`${messages.message}`);
+        // toast.error(`${verified.message}`);
+        console.log(verified.message);
+        localStorage.removeItem("userEmail");
       }
     })
     .catch((error) => {
-      return;
+      console.log(error);
+      localStorage.removeItem("userEmail");
     });
 
   return await SignUp;
@@ -131,7 +140,7 @@ export const getUserProfile = async (jwt, setJwt, setUser) => {
     })
     .then((resData) => {
       setUser(resData.data);
-      localStorage.setItem('user', JSON.stringify(resData.data))
+      localStorage.setItem("user", JSON.stringify(resData.data));
       console.log("user found successfully");
     })
     .catch((err) => {
@@ -226,7 +235,7 @@ export const logoutUser = async (jwt) => {
     })
     .then((logoutData) => {
       toast.success(logoutData.message);
-      localStorage.removeItem('user')
+      localStorage.removeItem("user");
     })
     .catch((err) => {
       console.log(`${err.message}`);
