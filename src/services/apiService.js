@@ -2,6 +2,12 @@ import { toast } from "react-toastify";
 import axios from "axios";
 // import ResetPassword from "../components/ResetPasswordComponent/ResetPassword";
 
+const httpClient = axios.create({
+    baseURL: process.env.REACT_APP_LEVERPAY_API_URL,
+    timeout: 1000,
+    headers: {'Authorization': 'Bearer ' + localStorage.getItem("_jwt")}
+});
+
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
     const signInURL = "https://leverpay-api.azurewebsites.net/api/v1/login";
@@ -19,7 +25,7 @@ export const signIn = async (userData, jwt, setJwt) => {
           toast.success(`${res.message}`);
           // console.log(userData);
           setJwt(`${res.data.token}`);
-          console.log(res.data.token)
+          localStorage.setItem("_jwt", res.data.token)
           //transition to homepage
           setTimeout(() => {
             window.location.href = "/";
@@ -236,8 +242,8 @@ export const logoutUser = async (jwt) => {
 };
 
 export const getCountry = ({ setCountry }) => {
-  axios
-    .get("https://leverpay-api.azurewebsites.net/api/v1/get-countries")
+  httpClient
+    .get("/v1/get-countries")
     .then((response) => {
       setCountry(response.data.data.map((countries) => countries));
     })
