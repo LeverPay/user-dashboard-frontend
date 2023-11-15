@@ -2,242 +2,137 @@ import { toast } from "react-toastify";
 import axios from "axios";
 // import ResetPassword from "../components/ResetPasswordComponent/ResetPassword";
 
+const httpClient = axios.create({
+    baseURL: process.env.REACT_APP_LEVERPAY_API_URL,
+    timeout: 1000,
+    headers: {'Authorization': 'Bearer ' + localStorage.getItem("_jwt")}
+});
+
+
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
     const signInURL = "https://leverpay-api.azurewebsites.net/api/v1/login";
-    const response = await fetch(signInURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(userData),
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        if (res.success) {
-          toast.success(`${res.message}`);
-          // console.log(userData);
-          setJwt(`${res.data.token}`);
-          console.log(res.data.token)
-          //transition to homepage
-          setTimeout(() => {
-            window.location.href = "/";
+    httpClient.post("/login", userData)
+    .then(response => {
+      if (response.data.success) {
+        toast.success(`${response.message}`);
+        // console.log(userData);
+        setJwt(`${response.data.token}`);
+        localStorage.setItem("_jwt", response.data.token)
+        //transition to homepage
+        setTimeout(() => {
+          window.location.href = "/";
           }, 2000);
-        } else {
-          toast.error(`${res.message}`);
-          // console.log(res);
-        }
-      })
-      .catch((err) => {
-        toast.error(err);
-      });
-
-    return await response;
+      } else {
+        toast.error(`${response.message}`);
+      }
+    })
+    .catch(err => {
+      toast.error(err);
+    })
   }
 };
 
 export const signUp = async ({ signupData }) => {
-  const SignUp = await fetch(
-    "https://leverpay-api.azurewebsites.net/api/v1/user/signup",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(signupData),
-    }
-  )
-    .then((response) => {
-      console.log(response);
-      return response.json();
-    })
-    .then((messages) => {
-      if (messages.status === 200) {
-        toast.success(`${messages.message}`);
-        localStorage.setItem("userEmail", signupData.email);
-        setTimeout(() => {
-          window.location.href = "/leverpay-signup/signup-OTP";
+  httpClient.post("/v1/user/signup", signupData)
+  .then(response => {
+    if (response.data.status === 200) {
+      toast.success(`${response.data.message}`);
+      localStorage.setItem("userEmail", signupData.email);
+      setTimeout(() => {
+        window.location.href = "/leverpay-signup/signup-OTP";
         }, 2000);
-      } else {
-        toast.error(`${messages.message}`);
-      }
-    })
-    .catch((error) => {
-      console.log("Error", error, "Sign Up");
-      return;
-    });
-  return await SignUp;
+    } else {
+      toast.error(`${response.data.message}`);
+    }
+  })
+  .catch(error => {
+    console.log("Error", error, "Sign Up");
+  })
 };
 
 export const verifyEmail = async (verifyData) => {
-  const SignUp = await fetch(
-    "https://leverpay-api.azurewebsites.net/api/v1/verify-email",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(verifyData),
-    }
-  )
-    .then((response) => {
-      console.log(response);
-      return response.json();
-    })
-    .then((messages) => {
-      if (messages.status === 200) {
-        toast.success(`${messages.message}`);
-        //transition to signin page
-        setTimeout(() => {
-          window.location.href = "/signin";
+  httpClient.post("/v1/verify-email")
+  .then(response => {
+    if (messages.status === 200) {
+      toast.success(`${messages.message}`);
+      //transition to signin page
+      setTimeout(() => {
+        window.location.href = "/signin";
         }, 2000);
-      } else {
-        toast.error(`${messages.message}`);
-      }
-    })
-    .catch((error) => {
-      return;
-    });
-
-  return await SignUp;
+    } else {
+      toast.error(`${messages.message}`);
+    }
+  })
+  .catch((error) => {
+    //TODO Handle exception
+    return;
+  });
 };
 
 //----------------------------------------- getUserProfile --------------------------------------------------//
 
 export const getUserProfile = async (jwt, setJwt, setUser) => {
-  const getData =
-    "https://leverpay-api.azurewebsites.net/api/v1/user/get-user-profile";
-  const userProfile = await fetch(getData, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      Authorization: `Bearer ${jwt}`,
-    },
+  httpClient.get("/v1/user/get-user-profile")
+  .then((response) => {
+    setUser(response.data.data);
+    localStorage.setItem('user', JSON.stringify(response.data.data))
+    console.log("user found successfully");
   })
-    .then((res) => {
-      if (res.status === 200) {
-        console.log(res);
-        return res.json();
-      } else {
-        if (jwt) {
-          setJwt("");
-        }
-        console.log(res);
-      }
-    })
-    .then((resData) => {
-      setUser(resData.data);
-      localStorage.setItem('user', JSON.stringify(resData.data))
-      console.log("user found successfully");
-    })
-    .catch((err) => {
-      console.log(`${err}`);
-    });
-
-  return await userProfile;
+  .catch((err) => {
+    console.log(`${err}`);
+  });
 };
 
 export const updateUserProfile = async (jwt, userDataUpdate) => {
-  const updateRes = await fetch(
-    "https://leverpay-api.azurewebsites.net/api/v1/user/update-user-profile",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        Authorization: `Bearer ${jwt}`,
-      },
-      body: JSON.stringify(userDataUpdate),
-    }
-  )
-    .then((res) => {
-      if (res.status === 200) {
-        console.log(userDataUpdate.passport);
-        return res.json();
-      } else {
-        toast.error("Something went wrong");
-      }
-    })
-    .then((resUser) => {
-      toast.success(resUser.message);
-      //transition to homepage
-      setTimeout(() => {
-        window.location.href = "/";
+  httpClient.post("/v1/user/update-user-profile", userDataUpdate)
+  .then(response => {
+    toast.success(response.data.message);
+    //transition to homepage
+    setTimeout(() => {
+      window.location.href = "/";
       }, 2000);
-    })
-    .catch((err) => {
-      console.log(`${err.message}`);
-    });
-  return await updateRes;
+  })
+  .catch((err) => {
+    console.log(`${err.message}`);
+  });
 };
 
 export const userResetPassword = async (passwordReset, setJwt) => {
-  const resetPass = await fetch(
-    "https://leverpay-api.azurewebsites.net/api/v1/reset-password",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(passwordReset),
-    }
-  )
-    .then((response) => response.json())
-    .then((res) => {
-      if (res.success !== false) {
-        toast.success(res);
-        setTimeout(() => {
-          window.location.href = "/signin";
-          setJwt("");
+  httpClient.post("/v1/reset-password", passwordReset)
+  .then(response => {
+    if (response.data.success !== false) {
+      toast.success(response.data);
+      setTimeout(() => {
+        window.location.href = "/signin";
+        setJwt("");
         }, 5000);
-      }
-      if (res.message === "Error") {
-        toast.error(`${res.data.new_password}`);
-      } else {
-        toast.error(res.message);
-      }
-    })
-    .catch((err) => {
-      toast.error(`${err}`);
-    });
-
-  return resetPass;
+    }
+    if (response.data.message === "Error") {
+      toast.error(`${response.data.data.new_password}`);
+    } else {
+      toast.error(response.data.message);
+    }
+  })
+  .catch((err) => {
+    toast.error(`${err}`);
+  });
 };
 
 export const logoutUser = async (jwt) => {
-  const logOut = await fetch(
-    "https://leverpay-api.azurewebsites.net/api/v1/user/logout",
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        Authorization: `Bearer ${jwt}`,
-      },
-    }
-  )
-    .then((logoutResponse) => {
-      if (logoutResponse.status === 200) return logoutResponse.json();
-    })
-    .then((logoutData) => {
-      toast.success(logoutData.message);
-      localStorage.removeItem('user')
-    })
-    .catch((err) => {
-      console.log(`${err.message}`);
-    });
-
-  return await logOut;
+  httpClient.get("/v1/user/logout")
+  .then((response) => {
+    toast.success(response.data.message);
+    localStorage.removeItem('user')
+  })
+  .catch((err) => {
+    console.log(`${err.message}`);
+  });
 };
 
 export const getCountry = ({ setCountry }) => {
-  axios
-    .get("https://leverpay-api.azurewebsites.net/api/v1/get-countries")
+  httpClient
+    .get("/v1/get-countries")
     .then((response) => {
       setCountry(response.data.data.map((countries) => countries));
     })
@@ -247,7 +142,7 @@ export const getCountry = ({ setCountry }) => {
 };
 
 export const getState = ({ countryID, setState }) => {
-  axios
+  httpClient
     .post("https://leverpay-api.azurewebsites.net/api/v1/get-states", {
       country_id: countryID,
     })
@@ -260,7 +155,7 @@ export const getState = ({ countryID, setState }) => {
 };
 
 export const getCities = ({ stateID, setCity }) => {
-  axios
+  httpClient
     .post("https://leverpay-api.azurewebsites.net/api/v1/get-cities", {
       state_id: stateID,
     })
