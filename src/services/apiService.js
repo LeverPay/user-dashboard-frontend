@@ -1,6 +1,5 @@
 import { toast } from "react-toastify";
 import axios from "axios";
-// import ResetPassword from "../components/ResetPasswordComponent/ResetPassword";
 
 const httpClient = axios.create({
     baseURL: process.env.REACT_APP_LEVERPAY_API_URL,
@@ -8,18 +7,15 @@ const httpClient = axios.create({
     headers: {'Authorization': 'Bearer ' + localStorage.getItem("_jwt")}
 });
 
-
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
     const signInURL = "https://leverpay-api.azurewebsites.net/api/v1/login";
-    httpClient.post("/login", userData)
+    httpClient.post(signInURL, userData)
     .then(response => {
       if (response.data.success) {
         toast.success(`${response.message}`);
-        // console.log(userData);
         setJwt(`${response.data.token}`);
         localStorage.setItem("_jwt", response.data.token)
-        //transition to homepage
         setTimeout(() => {
           window.location.href = "/";
           }, 2000);
@@ -54,14 +50,13 @@ export const signUp = async ({ signupData }) => {
 export const verifyEmail = async (verifyData) => {
   httpClient.post("/v1/verify-email")
   .then(response => {
-    if (messages.status === 200) {
-      toast.success(`${messages.message}`);
-      //transition to signin page
+    if (response.data.status === 200) { // Use response instead of messages
+      toast.success(`${response.data.message}`);
       setTimeout(() => {
         window.location.href = "/signin";
         }, 2000);
     } else {
-      toast.error(`${messages.message}`);
+      toast.error(`${response.data.message}`);
     }
   })
   .catch((error) => {
@@ -69,8 +64,6 @@ export const verifyEmail = async (verifyData) => {
     return;
   });
 };
-
-//----------------------------------------- getUserProfile --------------------------------------------------//
 
 export const getUserProfile = async (jwt, setJwt, setUser) => {
   httpClient.get("/v1/user/get-user-profile")
@@ -88,7 +81,6 @@ export const updateUserProfile = async (jwt, userDataUpdate) => {
   httpClient.post("/v1/user/update-user-profile", userDataUpdate)
   .then(response => {
     toast.success(response.data.message);
-    //transition to homepage
     setTimeout(() => {
       window.location.href = "/";
       }, 2000);
