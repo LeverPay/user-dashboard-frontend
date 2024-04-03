@@ -88,7 +88,7 @@ function CardSilver(props) {
         <span>
           <img
             alt=""
-            src="./images/🦆 icon _eye_silver.png"
+            src="./images/icon _eye_silver.png"
             onClick={seeCard}
           />
           <br />
