@@ -32,6 +32,8 @@ function SignupComponent() {
   const [stateID, setStateID] = useState("");
   const [city, setCity] = useState([]);
   const [cityID, setCityID] = useState("");
+  const [bvn, setBVN] = useState(""); // New BVN state
+  const [referralCode, setReferralCode] = useState(""); // New Referral Code state
   const [condition, setCondition] = useState(false);
 
   const handleCondition = (data) => {
@@ -85,6 +87,13 @@ function SignupComponent() {
       setSignupMessage("");
     }
 
+    if (!/^\d{11}$/.test(bvn)) {
+      setSignupMessage("BVN must be exactly 11 digits long");
+      return;
+    } else {
+      setSignupMessage("");
+    }
+
     const signupData = {
       first_name: firstName,
       last_name: lastName,
@@ -97,6 +106,8 @@ function SignupComponent() {
       country_id: countryID,
       state_id: stateID,
       city_id: cityID,
+      bvn: bvn, // New BVN field
+      referral_code: referralCode, // New Referral Code field
     };
 
     signUp({ signupData });
@@ -139,10 +150,7 @@ function SignupComponent() {
               name="first_name"
               ref={inputRef}
               placeholder=""
-              onChange={
-                (e) => setFirstName(e.target.value)
-                // setFirstName(e.target.value.replace(/\D/g, ""))
-              }
+              onChange={(e) => setFirstName(e.target.value)}
               required
             />
           </Row>
@@ -157,10 +165,7 @@ function SignupComponent() {
               name="last_name"
               ref={inputRef}
               placeholder=""
-              onChange={
-                (e) => setLastName(e.target.value)
-                // setFirstName(e.target.value.replace(/\D/g, ""))
-              }
+              onChange={(e) => setLastName(e.target.value)}
               required
             />
           </Row>
@@ -175,11 +180,23 @@ function SignupComponent() {
               name="other_name"
               ref={inputRef}
               placeholder=""
-              onChange={
-                (e) => setOthername(e.target.value)
-                // setFirstName(e.target.value.replace(/\D/g, ""))
-              }
+              onChange={(e) => setOthername(e.target.value)}
               required
+            />
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="bvn" className="labels">
+              BVN
+            </Form.Label>
+            <Form.Control
+              type="number"
+              className="input"
+              value={bvn}
+              name="bvn"
+              ref={inputRef}
+              placeholder=""
+              onChange={(e) => setBVN(e.target.value)}
+              required // Make BVN a required field
             />
           </Row>
           <Row className="form-input">
@@ -276,6 +293,20 @@ function SignupComponent() {
                 return <option value={c.id}>{c.city_name}</option>;
               })}
             </Form.Select>
+          </Row>
+          <Row className="form-input">
+            <Form.Label htmlFor="referralCode" className="labels">
+              Referral Code
+            </Form.Label>
+            <Form.Control
+              type="text"
+              className="input"
+              value={referralCode}
+              name="referral_code"
+              ref={inputRef}
+              placeholder=""
+              onChange={(e) => setReferralCode(e.target.value)}
+            />
           </Row>
           <Row className="form-input">
             <Form.Label htmlFor="password" className="labels">
