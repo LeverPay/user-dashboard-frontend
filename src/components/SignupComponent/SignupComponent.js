@@ -32,7 +32,7 @@ function SignupComponent() {
   const [stateID, setStateID] = useState("");
   const [city, setCity] = useState([]);
   const [cityID, setCityID] = useState("");
-  const [bvn, setBVN] = useState(""); // New BVN state
+  const [bvn, setBVN] = useState(""); 
   const [referralCode, setReferralCode] = useState(""); // New Referral Code state
   const [condition, setCondition] = useState(false);
 
