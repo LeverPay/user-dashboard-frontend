@@ -3,15 +3,26 @@ import axios from "axios";
 
 const httpClient = axios.create({
     baseURL: process.env.REACT_APP_LEVERPAY_API_URL,
-    timeout: 1000,
+    // ---DEBUGGING ---
+    //The sign in is not working after click of the signIn button
+    //so here, i am trying to check where the error is from
+    //change the time out from 1seconds to 5 seconds
+    timeout: 5000,
     headers: {'Authorization': 'Bearer ' + localStorage.getItem("_jwt")}
 });
 
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
     const signInURL = "https://leverpay-api.azurewebsites.net/api/v1/login";
+    //----DEBUGGING----
+    //check if the request is sent successfully
+    console.log("Making API request to:", signInURL);
+    console.log("User data:", userData);
+    
     httpClient.post(signInURL, userData)
     .then(response => {
+      // ---DEBUGGING---
+      console.log("Response received:", response);
       if (response.data.success) {
         toast.success(`${response.message}`);
         setJwt(`${response.data.token}`);
@@ -25,6 +36,8 @@ export const signIn = async (userData, jwt, setJwt) => {
     })
     .catch(err => {
       toast.error(err);
+      // ---DEBUGGING---
+      console.error("API call error:", err);
     })
   }
 };
