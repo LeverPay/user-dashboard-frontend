@@ -1,38 +1,32 @@
 import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-// import { ToastContainer, toast } from "react-toastify";
-import { ToastContainer } from "react-toastr";
+import { ToastContainer } from "react-toastify";
 import Button from "react-bootstrap/Button";
-// import LeverpayLogo_Blue from "../../assets/LeverpayLogo_Blue.png";
 import LeverpayLogo from "../../assets/images/logo.png";
 import "./SignInComponent.css";
 import { signIn } from "../../services/apiService";
 import { useLocalState } from "../../utils/useLocalStorage";
 import { forgotPassword } from "../../services/forgotPassword";
-import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 
 const SignInComponent = () => {
   const inputRef = React.createRef();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [submitted, setSubmitted] = useState(false)
-  const [isvisible, setIsvisible] = useState(false)
+  const [submitted, setSubmitted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [jwt, setJwt] = useLocalState("", "jwt");
 
-  function toggleVisible(){
-    setIsvisible(!isvisible)
+  function toggleVisible() {
+    setIsVisible(!isVisible);
   }
 
   const login = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const user = Object.fromEntries(formData);
-
-    //api call
-    signIn(user, jwt, setJwt);
-    setSubmitted(true)
+    let user = Object.fromEntries(formData);
+    setSubmitted(true); 
+    signIn(user, jwt, setJwt, setSubmitted);  
   };
 
   const handleForgetPassword = () => {
@@ -40,7 +34,7 @@ const SignInComponent = () => {
   };
 
   useEffect(() => {
-    //console.log(`JWT is: ${jwt}`);
+    // console.log(`JWT is: ${jwt}`);
   }, [jwt]);
 
   return (
@@ -64,7 +58,7 @@ const SignInComponent = () => {
         <Form.Group className="sign-in-pwd mb-3" controlId="formGroupPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type={isvisible ? 'text' : "password"}
+            type={isVisible ? 'text' : "password"}
             ref={inputRef}
             value={password}
             name="password"
@@ -73,11 +67,16 @@ const SignInComponent = () => {
             className="signin-fields"
             required
           />
-          <img alt="" src={isvisible ? "/images/blind.png" : "/images/visible.png"} onClick={toggleVisible} className="visible-blind" />
+          <img
+            alt=""
+            src={isVisible ? "/images/blind.png" : "/images/visible.png"}
+            onClick={toggleVisible}
+            className="visible-blind"
+          />
         </Form.Group>
 
         <Button variant="primary" type="submit" className="signin-button">
-          {submitted ? 'Loading... please wait':'Submit'}
+          {submitted ? 'Loading... please wait' : 'Submit'}
         </Button>
         <p className="forgot-password-link" onClick={handleForgetPassword}>
           Forgot Password
