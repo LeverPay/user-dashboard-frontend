@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { ToastContainer } from "react-toastify";
 import Button from "react-bootstrap/Button";
+
 import LeverpayLogo from "../../assets/images/logo.png";
+
 import "./SignInComponent.css";
 import { signIn } from "../../services/apiService";
 import { useLocalState } from "../../utils/useLocalStorage";
@@ -39,6 +41,7 @@ const SignInComponent = () => {
 
   return (
     <div className="signin-container">
+
       <img src={LeverpayLogo} alt="" className="signin-logo" />
       <Form className="signin-form" onSubmit={login}>
         <h1>Sign in</h1>
@@ -80,18 +83,55 @@ const SignInComponent = () => {
         </Button>
         <p className="forgot-password-link" onClick={handleForgetPassword}>
           Forgot Password
+
         </p>
-      </Form>
-      <p>
-        Don't have an account?{" "}
-        <span
-          className="signup-link"
-          onClick={() => (window.location.href = "/leverpay-signup")}
-        >
-          Sign Up
-        </span>
-      </p>
+        <Form className="signin-form" onSubmit={login}>
+          <h1 className="welcome-text">Welcome Back</h1>
+          <Form.Group className="mb-3 sign-in-email" controlId="formGroupEmail">
+            <Form.Control
+              type="email"
+              ref={inputRef}
+              value={email}
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder=""
+              className="signin-fields"
+              required
+            />
+            <img src={EmailIcon} alt="" className="input-icon" />
+          </Form.Group>
+          <Form.Group className="sign-in-pwd mb-3" controlId="formGroupPassword">
+            <Form.Control
+              type={isvisible ? 'text' : "password"}
+              ref={inputRef}
+              value={password}
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder=""
+              className="signin-fields"
+              required
+            />
+            <img src={PasswordIcon} alt="" className="input-icon" />
+            <img alt="" src={isvisible ? "/images/blind-light.png" : "/images/visible-light.png"} onClick={toggleVisible} className="visible-blind" />
+          </Form.Group>
+
+          <Button variant="primary" type="submit" className="signin-button">
+            {submitted ? 'Loading... please wait':'Login'}
+          </Button>
+          <p className="forgot-password-link" onClick={handleForgetPassword}>
+            Forgot Password?
+          </p>
+        </Form>
+
+        <div className="terms">
+          <li>Privacy & Terms</li>
+          <li>Contact Us</li>
+        </div>
+
+        <img src={Blopp} alt="" className="blop"/>
+      
       <ToastContainer />
+      </div>
     </div>
   );
 };
