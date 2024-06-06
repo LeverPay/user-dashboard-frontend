@@ -34,7 +34,9 @@ const SignInComponent = () => {
   };
 
   useEffect(() => {
-    // console.log(`JWT is: ${jwt}`);
+    if (jwt) {
+      // Handle actions after JWT is set
+    }
   }, [jwt]);
 
   return (
@@ -50,9 +52,10 @@ const SignInComponent = () => {
             value={email}
             name="email"
             onChange={(e) => setEmail(e.target.value)}
-            placeholder=""
+            placeholder="Enter your email"
             className="signin-fields"
             required
+            autoComplete="username"
           />
         </Form.Group>
         <Form.Group className="sign-in-pwd mb-3" controlId="formGroupPassword">
@@ -63,9 +66,10 @@ const SignInComponent = () => {
             value={password}
             name="password"
             onChange={(e) => setPassword(e.target.value)}
-            placeholder=""
+            placeholder="Enter your password"
             className="signin-fields"
             required
+            autoComplete="current-password"
           />
           <img
             alt=""

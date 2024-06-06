@@ -1,12 +1,13 @@
 import { toast } from "react-toastify";
 import axios from "axios";
 
+// Set up axios instance with base URL and headers
 const httpClient = axios.create({
-  baseURL: process.env.REACT_APP_LEVERPAY_API_URL,
-  timeout: 10000,
+  baseURL: process.env.REACT_APP_LEVERPAY_API_URL || 'http://localhost:3000',
   headers: { Authorization: "Bearer " + localStorage.getItem("_jwt") },
 });
 
+// SignIn function
 export const signIn = async (userData, jwt, setJwt, setSubmitted) => {
   if (!jwt) {
     const signInURL = "https://leverpay-api.azurewebsites.net/api/v1/login";
@@ -18,24 +19,25 @@ export const signIn = async (userData, jwt, setJwt, setSubmitted) => {
         localStorage.setItem("_jwt", response.data.token);
         setTimeout(() => {
           window.location.href = "/";
-        }, 2000);
+        });
       } else {
         toast.error(response.data.message);
-        setSubmitted(false);  
+        setSubmitted(false);
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
       if (err.response && err.response.data && err.response.data.message) {
         toast.error(err.response.data.message);
       } else {
         toast.error("An error occurred. Please try again.");
       }
-      setSubmitted(false);  
+      setSubmitted(false);
     }
   }
 };
 
-export const signUp = async ({ signupData }) => {
+// SignUp function
+export const signUp = async (signupData) => {
   try {
     const response = await httpClient.post("/v1/user/signup", signupData);
     if (response.data.status === 200) {
@@ -48,10 +50,11 @@ export const signUp = async ({ signupData }) => {
       toast.error(response.data.message);
     }
   } catch (error) {
-    console.log("Error", error, "Sign Up");
+    console.error("Error", error, "Sign Up");
   }
 };
 
+// VerifyEmail function
 export const verifyEmail = async (verifyData) => {
   try {
     const response = await httpClient.post("/v1/verify-email", verifyData);
@@ -64,10 +67,11 @@ export const verifyEmail = async (verifyData) => {
       toast.error(response.data.message);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
+// GetUserProfile function
 export const getUserProfile = async (setUser) => {
   try {
     const response = await httpClient.get("/v1/user/get-user-profile");
@@ -75,10 +79,11 @@ export const getUserProfile = async (setUser) => {
     localStorage.setItem("user", JSON.stringify(response.data.data));
     console.log("User found successfully");
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
+// UpdateUserProfile function
 export const updateUserProfile = async (userDataUpdate) => {
   try {
     const response = await httpClient.post("/v1/user/update-user-profile", userDataUpdate);
@@ -87,10 +92,11 @@ export const updateUserProfile = async (userDataUpdate) => {
       window.location.href = "/";
     }, 2000);
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
   }
 };
 
+// UserResetPassword function
 export const userResetPassword = async (passwordReset, setJwt) => {
   try {
     const response = await httpClient.post("/v1/reset-password", passwordReset);
@@ -108,16 +114,18 @@ export const userResetPassword = async (passwordReset, setJwt) => {
   }
 };
 
+// LogoutUser function
 export const logoutUser = async () => {
   try {
     const response = await httpClient.get("/v1/user/logout");
     toast.success(response.data.message);
     localStorage.removeItem("user");
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
   }
 };
 
+// GetCountry function
 export const getCountry = async (setCountry) => {
   try {
     const response = await httpClient.get("/v1/get-countries");
@@ -127,6 +135,7 @@ export const getCountry = async (setCountry) => {
   }
 };
 
+// GetState function
 export const getState = async (countryID, setState) => {
   try {
     const response = await httpClient.post("/v1/get-states", { country_id: countryID });
@@ -136,6 +145,7 @@ export const getState = async (countryID, setState) => {
   }
 };
 
+// GetCities function
 export const getCities = async (stateID, setCity) => {
   try {
     const response = await httpClient.post("/v1/get-cities", { state_id: stateID });
@@ -144,4 +154,3 @@ export const getCities = async (stateID, setCity) => {
     toast.error(err.message);
   }
 };
-
