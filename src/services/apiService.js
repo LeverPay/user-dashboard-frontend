@@ -2,16 +2,20 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const httpClient = axios.create({
+
   baseURL: process.env.REACT_APP_LEVERPAY_API_URL,
   timeout: 10000,
   headers: { Authorization: "Bearer " + localStorage.getItem("_jwt") },
+
 });
 
 export const signIn = async (userData, jwt, setJwt, setSubmitted) => {
   if (!jwt) {
     const signInURL = "https://leverpay-api.azurewebsites.net/api/v1/login";
+
     try {
       const response = await httpClient.post(signInURL, userData);
+
       if (response.data.success) {
         toast.success(response.data.message);
         setJwt(response.data.token);
@@ -30,8 +34,10 @@ export const signIn = async (userData, jwt, setJwt, setSubmitted) => {
       } else {
         toast.error("An error occurred. Please try again.");
       }
+
       setSubmitted(false);  
     }
+
   }
 };
 
