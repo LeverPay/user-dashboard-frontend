@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 // import LeverpayLogo_Blue from "../../assets/LeverpayLogo_Blue.png";
 import LeverpayLogo from "../../assets/images/black-logo.png";
 import SignInImage from "../../assets/sign-in-image.png";
+import ChatIcon from "../../assets/chat.png";
 import { CiMail } from "react-icons/ci";
 import { BiSolidLock } from "react-icons/bi";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
@@ -56,6 +57,12 @@ const SignInComponent = () => {
                     <img src={LeverpayLogo} alt="" className="signin-logo" />
                     <div className="image-bg">
                         <img src={SignInImage} alt="" className="img" />
+                    </div>
+                    <div className="bg-text">
+                        <p>Secure Login <span>for all your <br/>Transactions!</span></p>
+                        <div className="chat-contain">
+                            <img src={ChatIcon} alt="" className="chat-icon"/>
+                        </div>
                     </div>
 
                 </div>
