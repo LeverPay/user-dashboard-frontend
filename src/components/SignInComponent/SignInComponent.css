@@ -1,23 +1,28 @@
 *{
   color: #fff;
 }
+
 p {
   margin: 0;
 }
+
 .forgot-password-link {
   margin-top: 5px;
   text-align: center !important;
   font-style: italic;
   cursor: pointer;
 }
+
 .signin-container {
    display: flex;
   position: relative;
   height: 100vh;
 }
+
 .signin-container > * {
   animation: fadeinPg 3s ease 1s 1 normal none;
 }
+
 .image-container{
   background-color: #fff;
   width: 50%;
@@ -25,6 +30,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 } 
 
 .signin-logo {
@@ -41,14 +47,68 @@ p {
 .image-bg{
   object-position: center;
   height: 85%;
-
 }
+
 .img{
   object-fit:contain;
   height: 100%;
   max-width: 100%;
   width: 100%;
 } 
+
+.bg-text{
+  position: absolute;
+  left: 20px;
+  margin-right: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 216px;
+  transform: translateY(70%);
+  border-radius: 10px;
+}
+
+.bg-text::before{
+  content: "";
+  background-color:#0B0230; 
+  background: linear-gradient(90deg, rgba(23,13,94,0.3) 50%, rgba(23,13,94,0) 100%);
+  position: absolute;
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  width: 100%;
+  height: 90%;
+  z-index: 0;
+}
+
+.bg-text p{
+  z-index: 100;
+  text-align: center;
+  font-family: "Montserrat" !important;
+  color: #0B0230;
+  font-size: 18px !important;
+  font-weight: 600 !important;  
+}
+
+.bg-text p span{
+  color: #0B0230;
+  font-size: 16px;
+  font-weight: 400 !important;
+  
+}
+
+.chat-contain{
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+  object-fit: contain;
+  object-position: center;
+}
+.chat-icon{
+  width: 70px;
+  max-width: 100%;
+}
 
 .form-container{
   background-color: #0B0230;
@@ -79,12 +139,12 @@ p {
   justify-content: center;
   width: 100%;
   height: 100%;
-  
 }
 
 .welcome-text{
   padding-bottom: 50px;
 }
+
 .signin-fields {
   padding: 10px 10px 5px 40px !important;
   width: 100% !important;
@@ -105,11 +165,12 @@ p {
   border: none;
   text-transform: uppercase;
   transition: 1s;
-  
 }
+
 .signin-button:hover {
   background-color: #de8c07eb;
 }
+
 .signin-button:active {
   background-color: #f3ac3beb !important;
 }
@@ -150,8 +211,8 @@ p {
   width: 100px;
   top: 30%;
   right: 20%;
-  
 }
+
 .blop1{
   position: absolute;
   width: 100px;
@@ -171,12 +232,10 @@ p {
 @media screen and (max-width: 620px) {
   *{
     color: #0B0230;
-
   }
   .signin-container {
     display:block;
   }
-
   .image-container{
     display:none;
   }
@@ -249,6 +308,10 @@ p {
   .signin-logo {
     width: 180px;
     height: 30px;
+  }
+
+  .bg-text p{
+    padding-bottom: 40px;
   }
   .welcome-text {
     text-align: center;
