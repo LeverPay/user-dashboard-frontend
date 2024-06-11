@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-// import { ToastContainer, toast } from "react-toastify";
-import { ToastContainer } from "react-toastr";
+import { ToastContainer, toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
-// import LeverpayLogo_Blue from "../../assets/LeverpayLogo_Blue.png";
 import LeverpayLogo from "../../assets/images/black-logo.png";
 import SignInImage from "../../assets/sign-in-image.png";
 import ChatIcon from "../../assets/chat.png";
@@ -16,7 +14,7 @@ import "./SignInComponent.css";
 import { signIn } from "../../services/apiService";
 import { useLocalState } from "../../utils/useLocalStorage";
 import { forgotPassword } from "../../services/forgotPassword";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const SignInComponent = () => {
     const inputRef = React.createRef();
@@ -33,14 +31,14 @@ const SignInComponent = () => {
         setIsvisible(!isvisible);
     }
 
-    const login = (e) => {
+    const login = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData);
 
-        //api call
-        signIn(user, jwt, setJwt);
         setSubmitted(true);
+        await signIn(user, jwt, setJwt);
+        setSubmitted(false);
     };
 
     const handleForgetPassword = () => {
