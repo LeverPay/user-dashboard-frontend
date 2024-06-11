@@ -1,6 +1,7 @@
 import React from "react";
 import NavComponent from "../components/NavComponent/NavComponent";
 import TopNav from "../components/TopNav/TopNav";
+import axios from "axios";
 import StatementComponent from "../components/StatementComponent/StatementComponent";
 import { useEffect, useState } from "react";
 import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
@@ -74,9 +75,9 @@ export const UserDashboardLayout = (props) => {
     });
   }, []);
 
-  useEffect(() => {
-    getUserProfile(jwt, setJwt, setUser);
-  }, [jwt, setJwt]);
+  // useEffect(() => {
+  //   getUserProfile(jwt, setJwt, setUser);
+  // }, [jwt, setJwt]);
 
   // useEffect(() => {
   //   axios
@@ -92,6 +93,26 @@ export const UserDashboardLayout = (props) => {
   //       // do something with JSON response data
   //     });
   // });
+
+  useEffect(() => {
+    axios
+      .get("https://leverpay-api.azurewebsites.net/api/v1/user/get-card", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwt}`, // Include JWT token here
+        },
+        // configuration
+      })
+      .then((response) => {
+        console.log(response);
+        // do something with JSON response data
+      })
+      .catch((error) => {
+        console.error("Error fetching card data:", error);
+      });
+  }, [jwt]);
+
+
   return (
     <>
       <Routes>
