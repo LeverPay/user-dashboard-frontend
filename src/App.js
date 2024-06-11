@@ -9,6 +9,7 @@ import React from "react";
 import UserDashboardLayout from "./page/UserDashboardLayout";
 // import Helpimageupload from "./components/HelpImageUpload/helpimageupload";
 import "react-toastify/dist/ReactToastify.css";
+import "./custom-toastify.css";
 //import "./App.css";
 //import "./App.css";
 
