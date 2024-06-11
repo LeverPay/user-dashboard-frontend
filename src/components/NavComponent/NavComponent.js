@@ -234,7 +234,7 @@ const NavComponent = () => {
                     </Link>
                   </li> */}
                   <li onClick={closeMobileMenu}>
-                    <Link onClick={handleLogout} to="#" className="bottom-link">
+                    <Link onClick={handleLogout} to="/logout" className="bottom-link">
                       <small>
                       <img alt="" src="/images/Logout.png"/>
                       </small>

@@ -16,7 +16,7 @@ export const signIn = async (userData, jwt, setJwt) => {
     const signInURL = "https://leverpay-api.azurewebsites.net/api/v1/login";
     //----DEBUGGING----
     //check if the request is sent successfully
-    console.log("Making API request to:", signInURL);
+    console.log("Making API request to:", signInURL); 
     console.log("User data:", userData);
     
     httpClient.post(signInURL, userData)
