@@ -146,7 +146,7 @@ export const UserDashboardLayout = (props) => {
                       <TotalMoney
                         bg="#201E34"
                         totaltype=" Total Saved"
-                        amt={userData ? userData.total_save.ngn : ""}
+                        // amt={userData ? userData.total_save.ngn : ""}
                       />
                     </div>
                   </div>

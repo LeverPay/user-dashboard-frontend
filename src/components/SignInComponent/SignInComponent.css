@@ -230,10 +230,11 @@ p {
 }
 
 @media screen and (max-width: 620px) {
-  *{
+  /* *{
     color: #0B0230;
-  }
-  .signin-container {
+  } */
+  .signin-container > * {
+    color:#0B0230;
     display:block;
   }
   .image-container{
