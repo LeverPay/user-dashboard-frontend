@@ -94,7 +94,7 @@ const NavComponent = () => {
             <div defaultactivekey="/" className="flex-column my-tweak">
               <center>
                 <div className="navbar-logo col-md-9 col-9">
-                  <img src={LeverpayLogo} alt="" className="logo" />
+                  <img src={LeverpayLogo} alt="" className="nav-logo" />
                 </div>
               </center>
               <div className="nav-options">
