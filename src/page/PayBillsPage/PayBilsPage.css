@@ -1,0 +1,37 @@
+/* FundingPage.css */
+.Fundingpage {
+    border: 1px solid white;
+    width: 50%;
+    margin: auto;
+    margin-top: 8rem;
+    margin-bottom: 5rem;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+  }
+  
+  .Fundingpage section {
+    width: 100%;
+    margin: auto;
+    margin-top: 1rem;
+  }
+  
+  .Fundingpage form div {
+    margin-bottom: 1rem;
+  }
+  
+  .Fundingpage button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .Fundingpage button:hover {
+    background-color: #0056b3;
+  }
+  
