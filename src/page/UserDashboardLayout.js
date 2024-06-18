@@ -206,6 +206,7 @@ export const UserDashboardLayout = (props) => {
             <Route path="signin" element={<SignInPage />} />
             <Route path="leverpay-signup" element={<SignupPage />} />
             <Route path="leverpay-signup/signup-OTP" element={<SignupOTP />} />
+            <Route path="/paybills" element={<PayBillDropDown />} />
             <Route path="/sourcePage" element={<SourceComponent />} />
             <Route path="/PayBill/source2" element={<SourceComponent />} />
             <Route path="/PayBill/create-pin" element={<SourceComponent />} />

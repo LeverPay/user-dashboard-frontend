@@ -9,7 +9,7 @@
   margin-left: 0px;
   border-radius: 10px;
 }
-.allTransactionCon{
+.allTransactionCon {
   margin-top: 12rem;
   padding: 10px 4rem;
 }
@@ -44,6 +44,8 @@
 .allTransactions main ul {
   list-style: none;
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0;
 }
 .allTransactions main .allTransactions-head li {
@@ -68,17 +70,18 @@
 #fundingHistory-head li, #fundingHistory-body li{
     width: calc(100%/4);
 }
-@media (max-width:620px) {
+@media screen and (max-width:620px) {
     .allTransactionCon{
         margin-top: 2rem;
         padding: 0;
     }
     .allTransactions{
-        margin-left: 0;
-        width: 100%;
-        padding: 16px;
-        border-radius: 10px;
-        gap: 1rem;
+      margin-left: 0;
+      width: 100%;
+      padding: 16px;
+      border-radius: 10px;
+      gap: 1rem;
+      color: #fff !important;
     }
     .allTransactions header div small{
         display: none;
