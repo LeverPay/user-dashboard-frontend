@@ -22,37 +22,30 @@
     color: rgb(0, 0, 0);
 }
 
-.dropdown-item.create-pin {
+.dropdown-item.create-pin,
+.dropdown-item.source1,
+.dropdown-item.source2 {
     border-radius: 50px;
-    background: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
     font-family: Montserrat, sans-serif;
     font-size: 16px;
     font-weight: 300;
     text-align: center;
     padding: 10px 20px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    display: block; /* Ensures that each item takes full width */
+}
+
+.dropdown-item.create-pin {
+    background: rgb(0, 0, 0);
 }
 
 .dropdown-item.source1 {
-    border-radius: 50px;
     background: rgb(255, 169, 1);
-    color: rgb(255, 255, 255);
-    font-family: Montserrat, sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    text-align: center;
-    padding: 10px 20px;
 }
 
 .dropdown-item.source2 {
-    border-radius: 50px;
     background: rgb(253, 2, 2);
-    color: rgb(255, 255, 255);
-    font-family: Montserrat, sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    text-align: center;
-    padding: 10px 20px;
 }
 
 /* Mobile and Tablet Responsiveness */
