@@ -5,9 +5,7 @@ import "./SignupComponent.css";
 import PhoneNumberComponent from "../PhoneNumberComponent/PhoneNumberComponent";
 import { AiOutlineEye } from "react-icons/ai";
 import {
-  getCities,
-  getCountry,
-  getState,
+  
   signUp,
 } from "../../services/apiService";
 import DatePicker from "react-datepicker";
@@ -26,12 +24,6 @@ function SignupComponent() {
   const [signupMessage, setSignupMessage] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [gender, setGender] = useState("Male");
-  const [country, setCountry] = useState([]);
-  const [countryID, setCountryID] = useState("");
-  const [state, setState] = useState([]);
-  const [stateID, setStateID] = useState("");
-  const [city, setCity] = useState([]);
-  const [cityID, setCityID] = useState("");
   const [referralCode, setReferralCode] = useState(""); // New Referral Code state
   const [condition, setCondition] = useState(false);
 
@@ -95,9 +87,6 @@ function SignupComponent() {
       email: email,
       phone: phoneNumber.phone,
       password: password,
-      country_id: countryID,
-      state_id: stateID,
-      city_id: cityID,
       referral_code: referralCode, // New Referral Code field
     };
 
@@ -106,20 +95,7 @@ function SignupComponent() {
 
   const handleGender = (e) => {
     setGender(e.target.value);
-  };
-
-  useEffect(() => {
-    getCountry({ setCountry });
-  }, []);
-
-  useEffect(() => {
-    getState({ countryID, setState });
-  }, [countryID]);
-
-  useEffect(() => {
-    getCities({ stateID, setCity });
-  }, [stateID]);
-
+  }
   return (
     <>
       <Container className="logo-container">
@@ -225,51 +201,6 @@ function SignupComponent() {
               setPhoneNumber={setPhoneNumber}
               className="input"
             />
-          </Row>
-          <Row className="form-input">
-            <Form.Label htmlFor="email" className="labels">
-              Country
-            </Form.Label>
-            <Form.Select
-              aria-label="Default select example"
-              onChange={(e) => setCountryID(e.target.value)}
-              className="country-select"
-            >
-              <option>Select your country</option>
-              {country.map((c) => {
-                return <option value={c.id}>{c.country_name}</option>;
-              })}
-            </Form.Select>
-          </Row>
-          <Row className="form-input">
-            <Form.Label htmlFor="email" className="labels">
-              State
-            </Form.Label>
-            <Form.Select
-              aria-label="Default select example"
-              onChange={(e) => setStateID(e.target.value)}
-              className="state-select"
-            >
-              <option>Select your state</option>
-              {state.map((s) => {
-                return <option value={s.id}>{s.state_name}</option>;
-              })}
-            </Form.Select>
-          </Row>
-          <Row className="form-input">
-            <Form.Label htmlFor="email" className="labels">
-              City
-            </Form.Label>
-            <Form.Select
-              aria-label="Default select example"
-              onChange={(e) => setCityID(e.target.value)}
-              className="city-select"
-            >
-              <option>Select your city</option>
-              {city.map((c) => {
-                return <option value={c.id}>{c.city_name}</option>;
-              })}
-            </Form.Select>
           </Row>
           <Row className="form-input">
             <Form.Label htmlFor="referralCode" className="labels">
