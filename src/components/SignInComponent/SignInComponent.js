@@ -4,6 +4,9 @@ import { ToastContainer } from "react-toastify";
 import Button from "react-bootstrap/Button";
 
 import LeverpayLogo from "../../assets/images/logo.png";
+import EmailIcon from "../../assets/images/wallet.png"; // Ensure correct path
+import PasswordIcon from "../../assets/images/password.png"; // Ensure correct path
+import Blopp from "../../assets/images/black-logo.png"; // Ensure correct path
 
 import "./SignInComponent.css";
 import { signIn } from "../../services/apiService";
@@ -27,8 +30,8 @@ const SignInComponent = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     let user = Object.fromEntries(formData);
-    setSubmitted(true); 
-    signIn(user, jwt, setJwt, setSubmitted);  
+    setSubmitted(true);
+    signIn(user, jwt, setJwt, setSubmitted);
   };
 
   const handleForgetPassword = () => {
@@ -40,99 +43,61 @@ const SignInComponent = () => {
   }, [jwt]);
 
   return (
-    <div className="signin-container">
-
-      <img src={LeverpayLogo} alt="" className="signin-logo" />
-      <Form className="signin-form" onSubmit={login}>
-        <h1>Sign in</h1>
-        <Form.Group className="mb-3" controlId="formGroupEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            ref={inputRef}
-            value={email}
-            name="email"
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder=""
-            className="signin-fields"
-            required
-          />
-        </Form.Group>
-        <Form.Group className="sign-in-pwd mb-3" controlId="formGroupPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type={isVisible ? 'text' : "password"}
-            ref={inputRef}
-            value={password}
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder=""
-            className="signin-fields"
-            required
-          />
-          <img
-            alt=""
-            src={isVisible ? "/images/blind.png" : "/images/visible.png"}
-            onClick={toggleVisible}
-            className="visible-blind"
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit" className="signin-button">
-          {submitted ? 'Loading... please wait' : 'Submit'}
-        </Button>
-        <p className="forgot-password-link" onClick={handleForgetPassword}>
-          Forgot Password
-
-        </p>
+      <div className="signin-container">
+        <img src={LeverpayLogo} alt="" className="signin-logo" />
         <Form className="signin-form" onSubmit={login}>
-          <h1 className="welcome-text">Welcome Back</h1>
-          <Form.Group className="mb-3 sign-in-email" controlId="formGroupEmail">
+          <h1>Sign in</h1>
+          <Form.Group className="mb-3" controlId="formGroupEmail">
+            <Form.Label>Email address</Form.Label>
             <Form.Control
-              type="email"
-              ref={inputRef}
-              value={email}
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder=""
-              className="signin-fields"
-              required
+                type="email"
+                ref={inputRef}
+                value={email}
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder=""
+                className="signin-fields"
+                required
             />
             <img src={EmailIcon} alt="" className="input-icon" />
           </Form.Group>
           <Form.Group className="sign-in-pwd mb-3" controlId="formGroupPassword">
+            <Form.Label>Password</Form.Label>
             <Form.Control
-              type={isvisible ? 'text' : "password"}
-              ref={inputRef}
-              value={password}
-              name="password"
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder=""
-              className="signin-fields"
-              required
+                type={isVisible ? 'text' : "password"}
+                ref={inputRef}
+                value={password}
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder=""
+                className="signin-fields"
+                required
             />
             <img src={PasswordIcon} alt="" className="input-icon" />
-            <img alt="" src={isvisible ? "/images/blind-light.png" : "/images/visible-light.png"} onClick={toggleVisible} className="visible-blind" />
+            <img
+                alt=""
+                src={isVisible ? "/images/blind-light.png" : "/images/visible-light.png"}
+                onClick={toggleVisible}
+                className="visible-blind"
+            />
           </Form.Group>
 
           <Button variant="primary" type="submit" className="signin-button">
-            {submitted ? 'Loading... please wait':'Login'}
+            {submitted ? 'Loading... please wait' : 'Submit'}
           </Button>
           <p className="forgot-password-link" onClick={handleForgetPassword}>
             Forgot Password?
           </p>
+
+          <div className="terms">
+            <li>Privacy & Terms</li>
+            <li>Contact Us</li>
+          </div>
+
+          <img src={Blopp} alt="" className="blop" />
         </Form>
-
-        <div className="terms">
-          <li>Privacy & Terms</li>
-          <li>Contact Us</li>
-        </div>
-
-        <img src={Blopp} alt="" className="blop"/>
-      
-      <ToastContainer />
+        <ToastContainer />
       </div>
-    </div>
   );
 };
 

@@ -10,10 +10,17 @@ const PayBillDropDown = ({ showDropdown, closeMobileMenu }) => {
                     <div className="dropdown-header">
                         <p>Choose a Source</p>
                     </div>
-                    <NavLink to="/sourcePage" className="dropdown-item source1" onClick={closeMobileMenu}>
+                    <NavLink
+                        to="/sourcePage"
+                        className="dropdown-item source1"
+                        onClick={closeMobileMenu}>
+
                         Source 1
                     </NavLink>
-                    <NavLink to="/PayBill/source2" className="dropdown-item source2" onClick={closeMobileMenu}>
+                    <NavLink
+                        to="/PayBill/source2"
+                        className="dropdown-item source2"
+                        onClick={closeMobileMenu}>
                         Source 2
                     </NavLink>
                     <NavLink to="/PayBill/create-pin" className="dropdown-item create-pin" onClick={closeMobileMenu}>
