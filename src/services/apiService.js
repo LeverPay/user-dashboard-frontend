@@ -28,7 +28,7 @@ export const signIn = async (userData, jwt, setJwt) => {
                 if (token) {
                     toast.success(response.data.message);
                     setJwt(token);
-                    localStorage.setItem("_jwt", token);
+                    localStorage.setItem("jwt", token);
                     setAuthHeader(token);                    
                     setTimeout(() => {
                         window.location.href = "/";
@@ -131,7 +131,8 @@ export const logoutUser = async () => {
         const response = await httpClient.get("/v1/user/logout");
         toast.success(response.data.message);
         localStorage.removeItem("user");
-        localStorage.removeItem("_jwt");
+        localStorage.removeItem("jwt");
+        window.location.href = "/signin"
     } catch (err) {
         console.error("Logout Error:", err.message);
         toast.error(err.message);
