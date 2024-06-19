@@ -1,11 +1,12 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect} from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Investment.css'
 import CheckoutTransfer from '../../components/CheckoutTransfer/CheckoutTransfer'
 import SuccessCheckmark from '../PaymentPage/TransactionMessages/SuccessCheckmark'
-import { Country, State}  from 'country-state-city';
+// import { Country, State}  from 'country-state-city';
 import DatePicker from "react-datepicker";
+import axios from 'axios'
 import "react-datepicker/dist/react-datepicker.css";
 
 
@@ -16,7 +17,26 @@ const Investment = () => {
     const [step, setStep] = useState(1)
   const [isvisible, setIsvisible] = useState(false)
     const [otherData, setOtherData] = useState({})
+    const [resData, setResData] = useState({})
+    const [allcountries, setAllcountries] = useState({})
+    const [countryFound, setCountryFound] = useState(false)
+    const [states, setStates] = useState()
     const [DOB, setDOB] = useState(new Date());
+
+
+    useEffect(()=>{
+        axios.get('https://leverpay-api.azurewebsites.net/api/v1/get-countries')
+        .then(res=>{
+            console.log(res.data)
+            setAllcountries(res.data.data)
+            setCountryFound(true)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }, [])
+
+
     const [formData, setFormData] = useState({
         firstname: '',
         middlename: '',
@@ -25,8 +45,8 @@ const Investment = () => {
         DOB: DOB,
         email: '',
         phone: '',
-        country: 'AF, Afghanistan',
-        state: '',
+        country: '1',
+        state: '1',
         password: '',
         Cpassword: '',
         amount: '',
@@ -56,18 +76,67 @@ const Investment = () => {
         })
     }
 
-    const countryOpts = Country.getAllCountries()
-    const stateOfCountry = State.getStatesOfCountry(formData.country.slice(0,2))
+    // const country_filter =countryFound ?  allcountries.filter(items => items.country_name === formData.country): ''
+    // const coun_id = country_filter ? country_filter[0].id:''
+    // console.log(country_filter[0].id)
+    useEffect(()=>{
+        axios.post('https://leverpay-api.azurewebsites.net/api/v1/get-states', {country_id : formData.country})
+        .then(res=>{
+            console.log(res.data)
+            setStates(res.data.data)
+            // setCountryFound(true)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    }, [formData.country])
+
+    console.log(formData.country)
+
+    // const countryOpts = Country.getAllCountries()
+    // const stateOfCountry = State.getStatesOfCountry(formData.country.slice(0,2))
+
+    const body = {
+        first_name: formData.firstname,
+        other_name: formData.middlename,
+        last_name: formData.lastname,
+        gender: formData.gender,
+        dob: formData.DOB,
+        email: formData.email,
+        phone: formData.phone,
+        country_id: formData.country,
+        state_id: formData.state,
+        password: formData.password,
+        password_confirmation: formData.password,
+        amount: formData.amount,
+    }
+
+    const password_checker = /^(?=.*[0-9])(?=.*[!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[a-zA-Z0-9!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~*]{8,}$/
+    console.log(password_checker.test(formData.password))
 
     function handleForm(e){
         e.preventDefault()
-        if(formData.password === formData.Cpassword){
-            setInfo('')
-            NextStep()
+        if(password_checker.test(formData.password)){
+            if(formData.password === formData.Cpassword){
+                axios.post('https://leverpay-api.azurewebsites.net/api/v1/investment', body )
+                .then(res=>{
+                        console.log(res.data)
+                        setResData(res.data.data)
+                        NextStep()
+                        setInfo('')
+                    
+                })
+                .catch(err=>{
+                    console.log(err, 'Failed to submit data')
+                })
+            }
+            else{
+                setInfo('Password does not match')
+            }
+        }else{
+            setInfo('Password must be at least 8 characters and contain one symbol')
         }
-        else{
-            setInfo('Password does not match')
-        }
+       
     }
     function handleCheck(){
         setIsChecked(!isChecked)
@@ -163,22 +232,24 @@ const Investment = () => {
                         Country
                         <select value={formData.country} name='country'onChange={handleChange} required={true} >
                             {
-                                countryOpts && countryOpts.map(item =>{
-                                    return <option value={`${item.isoCode}, ${item.name}`} key={item.isoCode} className='invest-country' >{item.name}</option>
+                                countryFound && allcountries.map(item =>{
+                                    return <option value={`${item.id}`} key={item.id} className='invest-country' >{item.country_name}</option>
                                 })
                             }
                        </select>
                     </label>
-                    <label>
+                    {
+                        states && states.length > 1 &&   <label>
                         State
                         <select value={formData.state} name='state'onChange={handleChange} required={true} >
-                            {
-                                stateOfCountry && stateOfCountry.map(item =>{
-                                    return <option value={`${item.name}`} key={item.isoCode} >{item.name}</option>
+                        {
+                                states && states.map(item =>{
+                                    return <option value={`${item.id}`} key={item.id} className='invest-country' >{item.state_name}</option>
                                 })
                             }
                        </select>
-                    </label>
+                    </label> 
+                    }
                     <label>
                         Password:
                        <input
@@ -187,6 +258,7 @@ const Investment = () => {
                         name='password'
                         onChange={handleChange}
                         value={formData.password}
+                        
                        />
                        <img alt="" src={isvisible ? "/images/blind.png" : "/images/visible.png"} onClick={toggleVisible} className="i-visible-blind" />
                     </label>
@@ -241,13 +313,15 @@ const Investment = () => {
             }
             {
                 step === 2 && <CheckoutTransfer 
-                    amount= {formData.amount}
+                    amount= {resData ? resData.investment.amount: ''}
+                    account_no = {resData ? resData.investment.accountNumber: ''}
+                    account_name = {resData ? resData.investment.accountName: ''}
                     vat = {formData.vat}
                     txfee ={(formData.amount * 0.013).toFixed(2)}
                     checkoutData = {getCheckoutData}
                     prevStep = {PrevStep}
                     nextStep = {NextStep}
-                    isInvest = {false}
+                    isInvest = {false} 
                 /> 
 
             }

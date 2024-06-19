@@ -1,0 +1,3 @@
+[submodule "leverpay"]
+    path = leverpay
+    url = https://github.com/LeverPay/user-dashboard-frontend.git
