@@ -32,7 +32,6 @@ function SignupComponent() {
   const [stateID, setStateID] = useState("");
   const [city, setCity] = useState([]);
   const [cityID, setCityID] = useState("");
-  const [bvn, setBVN] = useState(""); 
   const [referralCode, setReferralCode] = useState(""); // New Referral Code state
   const [condition, setCondition] = useState(false);
 
@@ -87,13 +86,6 @@ function SignupComponent() {
       setSignupMessage("");
     }
 
-    if (!/^\d{11}$/.test(bvn)) {
-      setSignupMessage("BVN must be exactly 11 digits long");
-      return;
-    } else {
-      setSignupMessage("");
-    }
-
     const signupData = {
       first_name: firstName,
       last_name: lastName,
@@ -106,7 +98,6 @@ function SignupComponent() {
       country_id: countryID,
       state_id: stateID,
       city_id: cityID,
-      bvn: bvn, // New BVN field
       referral_code: referralCode, // New Referral Code field
     };
 
@@ -184,21 +175,7 @@ function SignupComponent() {
               required
             />
           </Row>
-          <Row className="form-input">
-            <Form.Label htmlFor="bvn" className="labels">
-              BVN
-            </Form.Label>
-            <Form.Control
-              type="number"
-              className="input"
-              value={bvn}
-              name="bvn"
-              ref={inputRef}
-              placeholder=""
-              onChange={(e) => setBVN(e.target.value)}
-              required // Make BVN a required field
-            />
-          </Row>
+          
           <Row className="form-input">
             <Form.Label htmlFor="email" className="labels">
               Gender
