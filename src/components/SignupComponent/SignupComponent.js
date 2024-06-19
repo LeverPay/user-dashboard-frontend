@@ -40,7 +40,8 @@ function SignupComponent() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [signupMessage, setSignupMessage] = useState("");
   const [startDate, setStartDate] = useState(new Date());
-  const [gender, setGender] = useState("Male");
+  const [birthDate, setBirthDate] = useState("")
+  const [gender, setGender] = useState("");
   const [country, setCountry] = useState([]);
   const [countryID, setCountryID] = useState("");
   const [state, setState] = useState([]);
@@ -64,6 +65,16 @@ function SignupComponent() {
 
   const inputRef = React.createRef();
 
+  const handlePhoneChange = (value) => {
+    
+    // Check if the input value is a number
+    if (/^\d*$/.test(value)) {
+      setPhoneNumber(value);
+    } else {
+      return
+    }
+  }
+
   const handlePasswordIcon = () => {
     setPasswordType(passwordType === "password" ? "text" : "password");
   };
@@ -84,31 +95,39 @@ function SignupComponent() {
     setPassword(e.target.value);
   };
 
-  const signupSubmit = (e) => {
+  const signupSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      typeof phoneNumber === "undefined" ||
+      phoneNumber.length < 10
+    ) {
+      toast.error("invalid phone number, must be at least 10 digits");
+      return;
+    }
+
+    if (password.length < 8) {
+      toast.error("Password must be at least 8 characters long");
+      return;
+    }
+
+    const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    if (!symbolRegex.test(password)) {
+        toast.error("Password must contain at least one symbol");
+        return;
+    }
+
+    if(password != confirmPassword){
+      toast.dismiss()
+      toast.error("Password fields do not match")
+
+      return
+    }
+
     if (condition === false) {
+      toast.dismiss()
       toast.error("Please, check condition to proceed");
       return;
-    }
-
-    if (
-      typeof phoneNumber.phone === "undefined" ||
-      phoneNumber.phone.length < 10
-    ) {
-      setSignupMessage("invalid phone number, must be at least 10 digits");
-      console.log(phoneNumber);
-
-      return;
-    } else {
-      setSignupMessage("");
-    }
-
-    if (!/^\d{11}$/.test(bvn)) {
-      setSignupMessage("BVN must be exactly 11 digits long");
-      return;
-    } else {
-      setSignupMessage("");
     }
 
     const signupData = {
@@ -116,18 +135,46 @@ function SignupComponent() {
       last_name: lastName,
       other_name: othername,
       gender: gender,
-      dob: Intl.DateTimeFormat("en").format(startDate),
+      // dob: Intl.DateTimeFormat("en").format(birthDate),
+      dob: birthDate,
       email: email,
-      phone: phoneNumber.phone,
+      phone: phoneNumber,
       password: password,
-      country_id: countryID,
-      state_id: stateID,
-      city_id: cityID,
-      bvn: bvn, // New BVN field
       referral_code: referralCode, // New Referral Code field
     };
 
-    signUp({ signupData });
+    toast.loading("Signing Up")
+
+    const response = await signUp({ signupData });
+    console.log(response)
+
+    if (response.success) {
+      toast.dismiss()
+      toast.success(response.message);
+      localStorage.setItem("userEmail", signupData.email);
+      setTimeout(() => {
+          window.location.href = "/leverpay-signup/signup-OTP";
+      }, 2000);
+    } else {
+        // Handle validation errors returned from the backend
+        if (response.data) {
+            if (response.data.email) {
+              toast.dismiss()
+                response.data.email.forEach(msg => toast.error(`${msg}`));
+            }
+            if (response.data.password) {
+              toast.dismiss()
+                response.data.password.forEach(msg => toast.error(`${msg}`));
+            }
+            if (response.data.phone) {
+              toast.dismiss()
+                response.data.phone.forEach(msg => toast.error(`${msg}`));
+            }
+        } else {
+          toast.dismiss()
+            toast.error(response.message || "Sign up failed");
+        }
+    }
   };
 
   const handleGender = (e) => {
@@ -151,7 +198,27 @@ function SignupComponent() {
   const [animationClass, setAnimationClass] = useState("signup-form");
   const [currentStep, setCurrentStep] = useState(1);
 
-  const handleButtonClick = () => {
+  const handleSignupProceed = () => {
+    // Check to make sure the name fields contain at least three characters
+    if (firstName.length < 3 || lastName.length < 3) {
+      toast.error("Name field should contain at least three characters");
+      return;
+    }
+
+    // Check the othername field only if it is filled
+    if (othername.length > 0 && othername.length < 3) {
+      toast.dismiss()
+      toast.error("Name field should contain at least three characters");
+      return;
+    }
+
+    // Check to make sure the gender field is selected
+    if (!gender || !birthDate) {
+      toast.dismiss()
+      toast.error("Fill required fields");
+      return;
+    }
+
     // Remove the animation class
     setAnimationClass("");
 
@@ -220,6 +287,7 @@ function SignupComponent() {
                         ref={inputRef}
                         placeholder="First Name"
                         onChange={(e) => setFirstName(e.target.value)}
+                        minLength={3}
                         required
                       />
                     </div>
@@ -234,6 +302,7 @@ function SignupComponent() {
                         ref={inputRef}
                         placeholder="Last Name"
                         onChange={(e) => setLastName(e.target.value)}
+                        minLength={3}
                         required
                       />
                     </div>
@@ -248,7 +317,6 @@ function SignupComponent() {
                         ref={inputRef}
                         placeholder="Other Name"
                         onChange={(e) => setOthername(e.target.value)}
-                        required
                       />
                     </div>
 
@@ -258,6 +326,7 @@ function SignupComponent() {
                         aria-label="Default select example"
                         className="gender-select"
                         onChange={handleGender}
+                        required
                       >
                         <option value="">Gender</option>
                         <option value="Male">Male</option>
@@ -270,10 +339,10 @@ function SignupComponent() {
                       <input
                         type="date"
                         className="input"
-                        value={startDate}
+                        value={birthDate}
                         name="date"
                         ref={inputRef}
-                        onChange={(e) => setStartDate(e.target.value)}
+                        onChange={(e) => setBirthDate(e.target.value)}
                         required
                       />
                     </div>
@@ -281,15 +350,13 @@ function SignupComponent() {
                     <input
                       type="button"
                       className="signup-proceed-btn"
-                      onClick={handleButtonClick}
+                      onClick={handleSignupProceed}
                       value="Save an Proceed"
                     />
 
-                    <input
-                      type="button"
+                    <Link to="/signin"
                       className="signup-cancel-btn"
-                      value="Cancel Registration"
-                    />
+                    >Cancel Registration</Link>
                   </div>
                 )}
 
@@ -315,7 +382,7 @@ function SignupComponent() {
                         ref={inputRef}
                         placeholder="Phone"
                         name="phone_number"
-                        onchange={(e) => setPhoneNumber(e.target.value)}
+                        onChange={(e) => handlePhoneChange(e.target.value)}
                         required
                       />
                     </div>
@@ -369,7 +436,7 @@ function SignupComponent() {
                         <img src={passwordLockIcon} alt="password icon" />
                       </div>
                       <input
-                        type={passwordType}
+                        type={confirmPasswordType}
                         className="input"
                         value={confirmPassword}
                         name="confirmPassword"
@@ -467,7 +534,7 @@ function SignupComponent() {
           </button>
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer  style={{ color: "black" }}  />
     </section>
   );
 }

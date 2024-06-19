@@ -25,11 +25,13 @@ function SignupOTP({ email }) {
       token: `${inputOne}${inputTwo}${inputThree}${inputFour}`,
     };
 
-    verifyEmail(verifyData);
+    console.log("data", verifyData)
+
+    // verifyEmail(verifyData);
   };
 
   return (
-    <>
+    <section id="verify_email">
       <div className="logo-container">
         <img src={LeverpayLogo} alt="" className="signup-otp-logo" />
       </div>
@@ -43,13 +45,13 @@ function SignupOTP({ email }) {
             type="text"
             className="otp-input-value"
             value={inputOne}
-            name="first_name"
             ref={inputRef}
             placeholder=""
             pattern="[A-Za-z]{1}"
             title="Please enter only one digit"
+            maxLength={1}
             onChange={
-              (e) => setInputOne(e.target.value.replace(/\D/g, ""))
+              (e) => setInputOne(e.target.value)
               // setFirstName(e.target.value.replace(/\D/g, ""))
             }
             required
@@ -58,13 +60,13 @@ function SignupOTP({ email }) {
             type="text"
             className="otp-input-value"
             value={inputTwo}
-            name="first_name"
             ref={inputRef}
             placeholder=""
             pattern="[A-Za-z]{1}"
             title="Please enter only one digit"
+            maxLength={1}
             onChange={
-              (e) => setInputTwo(e.target.value.replace(/\D/g, ""))
+              (e) => setInputTwo(e.target.value)
               // setFirstName(e.target.value.replace(/\D/g, ""))
             }
             required
@@ -73,13 +75,13 @@ function SignupOTP({ email }) {
             type="text"
             className="otp-input-value"
             value={inputThree}
-            name="first_name"
             ref={inputRef}
             placeholder=""
             pattern="[A-Za-z]{1}"
             title="Please enter only one digit"
+            maxLength={1}
             onChange={
-              (e) => setInputThree(e.target.value.replace(/\D/g, ""))
+              (e) => setInputThree(e.target.value)
               // setFirstName(e.target.value.replace(/\D/g, ""))
             }
             required
@@ -88,13 +90,13 @@ function SignupOTP({ email }) {
             type="text"
             className="otp-input-value"
             value={inputFour}
-            name="first_name"
             ref={inputRef}
             placeholder=""
             pattern="[A-Za-z]{1}"
             title="Please enter only one digit"
+            maxLength={1}
             onChange={
-              (e) => setInputFour(e.target.value.replace(/\D/g, ""))
+              (e) => setInputFour(e.target.value)
               // setFirstName(e.target.value.replace(/\D/g, ""))
             }
             required
@@ -102,22 +104,20 @@ function SignupOTP({ email }) {
         </div>
         <br />
         <p className="code-notify">
-          Didn't get the code? <em>Click to resend</em>
+          Didn't get the code? <button>Click to resend</button>
         </p>
 
         <Button
           variant="primary"
           type="submit"
-          className="signup-btn"
-          disabled={
-            inputOne && inputTwo && inputThree && inputFour ? false : true
-          }
+          className="verify-btn"
+          disabled={!inputOne || !inputTwo || !inputThree || !inputFour}
           onClick={AccountVerify}
         >
           Verify Account
         </Button>
       </div>
-    </>
+    </section>
   );
 }
 
