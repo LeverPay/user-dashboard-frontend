@@ -45,8 +45,10 @@ import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
 import AllTransactions from "./AllTransactions/AllTransactions";
 import AllTransactionCon from "./AllTransactions/AllTransactionCon";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
-import PayBillDropDown from "../components/PayBillDropDownComponent/PayBillDropDownMenu";
+import PayBillDropDown from "../page/PayBillsPage/PayBillsPage";
 import SourceComponent from "./PayBillsPage/Source1Page";
+import Source2Page  from "./PayBillsPage/Source2page";
+import CreatePinPage from "./PayBillsPage/CreatePinPage";
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -208,8 +210,8 @@ export const UserDashboardLayout = (props) => {
             <Route path="leverpay-signup/signup-OTP" element={<SignupOTP />} />
             <Route path="/paybills" element={<PayBillDropDown />} />
             <Route path="/sourcePage" element={<SourceComponent />} />
-            <Route path="/PayBill/source2" element={<SourceComponent />} />
-            <Route path="/PayBill/create-pin" element={<SourceComponent />} />
+            <Route path="/PayBill/source2" element={<Source2Page />} />
+            <Route path="/PayBill/create-pin" element={<CreatePinPage />} />
           </Route>
         </Routes>
         <ToastContainer />
