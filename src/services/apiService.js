@@ -45,22 +45,35 @@ export const signIn = async (userData, jwt, setJwt) => {
 };
 
 export const signUp = async ({ signupData }) => {
-    httpClient
-        .post("/v1/user/signup", signupData)
-        .then((response) => {
-            if (response.data.status === 200) {
-                toast.success(`${response.data.message}`);
-                localStorage.setItem("userEmail", signupData.email);
-                setTimeout(() => {
-                    window.location.href = "/leverpay-signup/signup-OTP";
-                }, 2000);
-            } else {
-                toast.error(`${response.data.message}`);
-            }
-        })
-        .catch((error) => {
-            console.log("Error", error, "Sign Up");
-        });
+    // httpClient
+    //     .post("/v1/user/signup", signupData)
+    //     .then((response) => {
+    //         if (response.data.status === 200) {
+    //             toast.success(`${response.data.message}`);
+    //             localStorage.setItem("userEmail", signupData.email);
+    //             setTimeout(() => {
+    //                 window.location.href = "/leverpay-signup/signup-OTP";
+    //             }, 2000);
+    //         } else {
+    //             // toast.error(`${response.data.message}`);
+    //             return response
+    //         }
+    //     })
+    //     .catch((error) => {
+    //         console.log("Error", error, "Sign Up");
+    //         return error;
+    //     });
+
+    try {
+        const response = await httpClient.post("/v1/user/signup", signupData);
+        return response.data; // Return the response data
+    } catch (error) {
+        if (error.response && error.response.data) {
+            return error.response.data; // Return the error response data
+        } else {
+            return { success: false, message: "An unknown error occurred." }; // Return a generic error message
+        }
+    }
 };
 
 export const verifyEmail = async (verifyData) => {
