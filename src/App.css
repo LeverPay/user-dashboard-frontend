@@ -5,6 +5,7 @@
 @media screen and (max-width: 620px) {
   body {
     padding: 0 1rem;
+    background-color: #003033
   }
 }
 @font-face {
