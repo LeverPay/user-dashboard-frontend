@@ -3,11 +3,10 @@ import LeverpayLogo from "../../../assets/images/LeverpayLogo.png";
 import "./SignupOTP.css";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { verifyEmail } from "../../../services/apiService";
+import { verifyEmail, resendVerifyToken } from "../../../services/apiService";
+import { ToastContainer, toast } from "react-toastify";
 
 function SignupOTP({ email }) {
-  console.log(email);
-
   const [inputOne, setInputOne] = useState("");
   const [inputTwo, setInputTwo] = useState("");
   const [inputThree, setInputThree] = useState("");
@@ -17,17 +16,41 @@ function SignupOTP({ email }) {
 
   const emailFromLocalStorage = localStorage.getItem("userEmail");
 
-  const AccountVerify = () => {
+  const AccountVerify = async () => {
     console.log("API Request");
+
+    toast.loading("Verifying");
 
     const verifyData = {
       email: emailFromLocalStorage,
       token: `${inputOne}${inputTwo}${inputThree}${inputFour}`,
     };
 
-    console.log("data", verifyData)
+    const response = await verifyEmail(verifyData);
 
-    // verifyEmail(verifyData);
+    toast.dismiss();
+
+    console.log("response", response);
+
+    if (response.success) {
+      toast.success("Email Verified");
+      setTimeout(() => {
+        window.location.href = "/signin";
+      }, 2000);
+    } else {
+      toast.error(response.message);
+    }
+  };
+
+  const resendToken = async () => {
+    // const email = localStorage.getItem("userEmail");
+    toast.loading("Sending OTP");
+
+    const response = await resendVerifyToken({ email: emailFromLocalStorage });
+
+    toast.dismiss();
+
+    toast.success("OTP Sent");
   };
 
   return (
@@ -104,7 +127,8 @@ function SignupOTP({ email }) {
         </div>
         <br />
         <p className="code-notify">
-          Didn't get the code? <button>Click to resend</button>
+          Didn't get the code?{" "}
+          <button onClick={resendToken}>Click to resend</button>
         </p>
 
         <Button
@@ -117,6 +141,7 @@ function SignupOTP({ email }) {
           Verify Account
         </Button>
       </div>
+      <ToastContainer />
     </section>
   );
 }
