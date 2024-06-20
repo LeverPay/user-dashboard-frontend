@@ -113,17 +113,28 @@ const NavComponent = () => {
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/my-subscriptions" className="text-link" onClick={closeMobileMenu} activeclassname="active">
+                      <NavLink to="/my-subscriptions"
+                               className="text-link"
+                               onClick={closeMobileMenu}
+                               activeclassname="active">
                         <img alt="" src="/images/subscription.png" />
                         Subscriptions
                       </NavLink>
                     </li>
-                    <li onClick={() => setShowDropdown(!showDropdown)}>
-                      <div className="text-link" activeclassname="active">
+                    <li>
+                      <NavLink to="/paybills"
+                               className="text-link"
+                               onClick={closeMobileMenu}
+                               activeclassname="active">
                         <img alt="" src="/images/My Wallets.png" />
-                        Pay Bill
-                      </div>
-                      <PayBillDropDown showDropdown={showDropdown} closeMobileMenu={closeMobileMenu} />
+                          Pay Bill
+                      </NavLink>
+                      {/*<div className="text-link"*/}
+                      {/*     classname="active">*/}
+                      {/*  <img alt="" src="/images/My Wallets.png" />*/}
+                      {/*  Pay Bill*/}
+                      {/*</div>*/}
+                      {/*<PayBillDropDown showDropdown={showDropdown} closeMobileMenu={closeMobileMenu} />*/}
                     </li>
                     <li>
                       <NavLink to="/funding/naira-deposit" className="text-link" onClick={closeMobileMenu} activeclassname="active">
@@ -144,7 +155,10 @@ const NavComponent = () => {
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/payment-page" className="text-link" onClick={closeMobileMenu} activeclassname="active">
+                      <NavLink
+                          to="/payment-page" className="text-link"
+                          onClick={closeMobileMenu}
+                          activeclassname="active">
                         <img alt="" src="/images/checkout.png" />
                         Checkout
                       </NavLink>
