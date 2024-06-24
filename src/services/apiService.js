@@ -13,11 +13,11 @@ export const signIn = async (userData, jwt, setJwt, setSubmitted) => {
 
     try {
       const response = await httpClient.post(signInURL, userData);
-
+      console.log("response", response);
       if (response.data.success) {
         toast.success(response.data.message);
-        setJwt(response.data.token);
-        localStorage.setItem("_jwt", response.data.token);
+        setJwt(response.data.data.token);
+        localStorage.setItem("_jwt", response.data.data.token);
         setTimeout(() => {
           window.location.href = "/";
         }, 2000);
