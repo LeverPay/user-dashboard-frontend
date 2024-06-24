@@ -50,7 +50,7 @@ const AllTransactions = () => {
         </header>
         <main>
             <ul className='allTransactions-head'>
-                <li>NAME</li>
+                <li>NAME/BUSINESS</li>
                 <li>TYPE</li>
                 <li>AMOUNT</li>
                 <li>STATUS</li>
