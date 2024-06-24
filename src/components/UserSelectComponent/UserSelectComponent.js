@@ -18,7 +18,7 @@ function UserSelectComponent({ userName, passport}) {
         src={passport ? passport : avatar}
         // {profile_pic}
       />
-      <h3>{userName}</h3>
+      <h3>Hi, {userName}</h3>
       <span style={{backgroundColor: card === 1 ? '#70ba01': card === 2 ? '#351c04': card === 3 ? '#00353e': card === 4 ? '#bc6c90': card === 4 ? '#ca1015': 'gray'}}></span>
     </div>
   );
