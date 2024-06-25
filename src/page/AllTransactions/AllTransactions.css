@@ -78,6 +78,10 @@
   font-weight: 500;
   font-family: "Agrandir-regular";
 }
+.allTransactions main .allTransactionBody li:last-child {
+  width: 90px;
+  cursor: pointer
+}
 .allTransactions main ul li {
   width: calc(100% / 5);
   font-size: 12px !important;
@@ -103,6 +107,7 @@
   /* background-color: aqua; */
   background-color: rgb(11, 2, 48, 0.9);
   z-index: 100;
+  overflow: auto;
 }
 .transaction-modal{
   color: #082E88;
@@ -111,7 +116,7 @@
   border-radius: 8px;
   width: 500px;
   max-width: 90%;
-  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -134,10 +139,25 @@
   padding-top: 10px;
   font-weight: 600;
 }
-.transaction-modal p {
+.transaction-modal li {
   color: #082E88;
   width: 100%;
   text-align: center;
+  display: block;
+}
+.receipt-amount{
+  font-size: 26px !important;
+  font-weight: 700;
+}
+.receipt-status{
+  font-size: 26px !important;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.receipt-date{
+  color: #78778B !important;
+  font-weight: 600;
+  padding-bottom: 15px;
 }
 
 .transaction-details {

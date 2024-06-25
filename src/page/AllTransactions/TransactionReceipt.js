@@ -11,9 +11,9 @@ const TransactionReceipt = ({isOpen, onClose, transaction}) => {
                 <span className="close-button" onClick={onClose}>X</span>
                 <img src={Logo} alt=""/>
                 <h3>Transaction Receipt</h3> 
-                <p><strong>Amount:</strong> N {Number(transaction.amount).toFixed(2)}</p>
-                <p><strong>Status:</strong> {transaction.status === 0 ? 'Pending' : transaction.status === 1 ? 'Successful' : 'Failed'}</p>
-                <p><strong>Date:</strong> {new Date(transaction.created_at).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                <li className="receipt-amount">N{Number(transaction.amount).toFixed(2)}</li>
+                <li className="receipt-status">{transaction.status === 0 ? 'Pending' : transaction.status === 1 ? 'Successful' : 'Failed'}</li>
+                <li className="receipt-date">{new Date(transaction.created_at).toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }).replace(' at', ',')}</li>
                 <hr style={{width: "100%", color: "#082E88"}}/>
                 <table className="transaction-details">
                     <tr>
