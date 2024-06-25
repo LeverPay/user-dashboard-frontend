@@ -42,9 +42,10 @@ import AllInvoicePage from "./AllInvoicePage/AllInvoicePage";
 import Allinvoices from "./AllInvoices/Allinvoices";
 import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
-import AllTransactions from "./AllTransactions/AllTransactions";
+// import AllTransactions from "./AllTransactions/AllTransactions";
 import AllTransactionCon from "./AllTransactions/AllTransactionCon";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
+import RecentTransactions from "./AllTransactions/RecentTransaction";
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -154,8 +155,10 @@ export const UserDashboardLayout = (props) => {
                     <StatementComponent />
                   </div>
                   <div className="dashboard-transaction-table-container col-md-11">
-                    <AllTransactions />
+                    {/* <AllTransactions /> */}
+                    <RecentTransactions/>
                   </div>
+
                 </div>
                 <div className="dashboard-left col-md-4  card-holder">
                   <div className="col-md-12 default-card-holder">
