@@ -16,26 +16,38 @@ export const signIn = async (userData, jwt, setJwt, setSubmitted) => {
     try {
       const response = await httpClient.post(signInURL, userData);
 
-      if (response.data.success) {
-        toast.success(response.data.message);
-        setJwt(response.data.token);
-        localStorage.setItem("_jwt", response.data.token);
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 2000);
-      } else {
-        toast.error(response.data.message);
-        setSubmitted(false);  
-      }
-    } catch (err) {
-      console.log(err);
-      if (err.response && err.response.data && err.response.data.message) {
-        toast.error(err.response.data.message);
-      } else {
-        toast.error("An error occurred. Please try again.");
-      }
+export const signIn = async (userData, jwt, setJwt) => {
+    if (!jwt) {
+        const signInURL = `${baseURL}/v1/login`;
+        console.log("Making API request to:", signInURL);
+        console.log("User data:", userData);
 
-      setSubmitted(false);  
+        try {
+            const response = await httpClient.post(signInURL, userData);
+            if (response.data.success) {
+                const token = response.data.data.token;
+
+                // console.log("Token received:", token);
+
+                if (token) {
+                    toast.success(response.data.message);
+                    setJwt(token);
+                    localStorage.setItem("jwt", token);
+                    setAuthHeader(token);                    
+                    setTimeout(() => {
+                        window.location.href = "/";
+                    }, 2000);
+                } else {
+                    toast.error("Token is missing in the response.");
+                }
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (err) {
+            toast.error(err.message);
+            console.error("API call error:", err);
+        }
+
     }
 
   }
@@ -115,13 +127,18 @@ export const userResetPassword = async (passwordReset, setJwt) => {
 };
 
 export const logoutUser = async () => {
-  try {
-    const response = await httpClient.get("/v1/user/logout");
-    toast.success(response.data.message);
-    localStorage.removeItem("user");
-  } catch (err) {
-    console.log(err.message);
-  }
+
+    try {
+        const response = await httpClient.get("/v1/user/logout");
+        toast.success(response.data.message);
+        localStorage.removeItem("user");
+        localStorage.removeItem("jwt");
+        window.location.href = "/signin"
+    } catch (err) {
+        console.error("Logout Error:", err.message);
+        toast.error(err.message);
+    }
+
 };
 
 export const getCountry = async (setCountry) => {
