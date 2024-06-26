@@ -228,4 +228,7 @@ td{
     .allTransactions header h1{
         font-size: 16px;
     }
+    .transaction-tabs{
+      padding-left: 0 !important;
+    }
 }
