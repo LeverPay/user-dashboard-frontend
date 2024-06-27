@@ -178,9 +178,13 @@ export const UserDashboardLayout = (props) => {
             <Route index element={<Allinvoices />} />
             <Route path="all-invoices" element={<Allinvoices />} />
             <Route path="unpaid-invoices" element={<UnpaidInvoicePage />} />
+            <Route
+              path="unpaid-invoice/:id" // Dynamic route for a single unpaid invoice using uuid
+              element={<UnpaidReceipt />}
+            />
             <Route path="paid-invoice" element={<PaidInvoice />} />
           </Route>
-          <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
+          {/* <Route path="/unpaid-invoice" element={<UnpaidReceipt />} /> */}
           <Route path="funding" element={<FundingPage />}>
             <Route index element={<FundingPayment />} />
             <Route path="stablecoins-deposit" element={<FundingPayment />} />

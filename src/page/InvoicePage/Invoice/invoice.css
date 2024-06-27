@@ -1,10 +1,21 @@
+.receipt_close_btn {
+  width: unset !important;
+  border: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.receipt_close_btn > img {
+  width: 20px;
+}
+
 #invoice {
   box-shadow: 4px 4px 4px 0px #2e576d;
   background-color: #1c1a2e;
   border-radius: 10px;
   color: white;
-  margin-bottom: 4rem;
-  margin-top: 8rem;
+  padding: 20px 35px;
 }
 .className {
   width: 100%;
@@ -23,11 +34,12 @@
 }
 .price_checkout span {
   border: 1px solid #d9d9d9;
-  padding: 15px 10px;
-  font-family: Agrandir;
+  padding: 10px 10px;
+  font-family: AgrandirRegular;
   font-size: 20px;
   font-weight: 700;
   line-height: 26px;
+  width: 100%;
 }
 .price_checkout :nth-child(1) {
   border-left: none;
@@ -35,18 +47,28 @@
 .price_checkout :nth-child(3) {
   border-right: none;
 }
-.Invoice_details {
-  text-align: start;
-  margin: 2rem;
-  margin-top: 3rem;
+.Invoice_details,
+.Buyer_details,
+.total_container {
+  padding: 20px 15px 15px 15px;
 }
 .Invoice_details h3 {
-  font-family: Agrandir;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 26px;
-  margin-bottom: 20px;
+  font-family: AgrandirRegular;
+  font-size: 16px;
+  margin-left: 0 !important;
 }
+
+.invoice-detail-point {
+  display: flex;
+  justify-content: space-between;
+  font-family: AgrandirRegular;
+}
+
+.naira_detail {
+  text-transform: uppercase !important;
+  font-size: 18px;
+}
+
 .h5 {
   font-family: Agrandir;
   font-size: 16px;
@@ -54,12 +76,12 @@
   line-height: 21px;
 }
 .row_details {
-  font-family: Agrandir;
   font-size: 16px;
   font-weight: 700;
   line-height: 21px;
   opacity: 0.4;
   margin-top: 3px;
+  padding: 0 !important;
 }
 .row_details_information {
   font-family: Agrandir;
@@ -68,37 +90,36 @@
   line-height: 21px;
   margin-top: 3px;
 }
-.Buyer_details {
-  text-align: start;
-  margin: 0.5rem 2rem;
 
-  font-family: Agrandir;
-  font-size: 16px;
-  font-weight: 700;
-}
 .Buyer_details h3 {
-  font-family: Agrandir;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 26px;
+  font-family: AgrandirRegular;
+  font-size: 16px;
+  margin-left: 0 !important;
+  text-transform: uppercase;
 }
 .Buyer_details h5 {
   color: #f40909;
+  text-align: left !important;
 }
 .Buyer_details p {
   opacity: 0.4;
+  padding: 0 !important;
 }
 hr {
-  width: 90%;
   margin: auto;
 }
+
+.total_container p {
+  padding: 0 !important;
+}
+
 .Payment_received {
   text-align: start;
   margin: 1rem 2rem;
 }
 .Payment_received p {
   margin-bottom: 0rem;
-  font-family: Agrandir;
+  font-family: AgrandirRegular;
   font-size: 16px;
   font-weight: 700;
   line-height: 21px;
@@ -118,32 +139,31 @@ hr {
 /* .qrcodeCon{
   background-color: transparent;
 } */
-.accept_decline{
+.accept_decline {
   display: flex;
   gap: 2rem;
-  width: 90%;
-  margin: auto;
-  margin-top: 1rem;
-  margin-bottom: -2rem;
+  padding: 20px 0;
 }
-.accept_decline button{
+.accept_decline button {
+  width: 100%;
   border: none;
-  font-family: Agrandir;
+  font-family: AgrandirRegular;
 }
-.accept_decline button:nth-child(1){
-  background-color: red;
+.accept_decline button:nth-child(1) {
+  background-color: #f49b09;
+  color: black !important;
 }
-.accept_decline button:nth-child(2){
+.accept_decline button:nth-child(2) {
   background-color: green;
+  color: white !important;
 }
-.pd-invoice-nt{
+.pd-invoice-nt {
   margin-top: 8rem;
   text-align: center;
-  font-family: 'Agrandir-bold';
+  font-family: "Agrandir-bold";
   color: white;
 }
 @media print {
-
   #invoice {
     background-color: #1c1a2e;
     width: 80%;
@@ -151,8 +171,8 @@ hr {
     margin-top: 2rem;
   }
 }
-@media (max-width: 620px){
-  #invoice{
+@media (max-width: 620px) {
+  #invoice {
     margin-top: 2rem;
   }
 }
