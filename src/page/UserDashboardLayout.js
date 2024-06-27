@@ -45,6 +45,9 @@ import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
 import AllTransactions from "./AllTransactions/AllTransactions";
 import AllTransactionCon from "./AllTransactions/AllTransactionCon";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
+
+import RecentTransactions from "./AllTransactions/RecentTransaction";
+
 import PayBillDropDown from "../page/PayBillsPage/PayBillsPage";
 import SourceComponent from "./PayBillsPage/Source1Page";
 import Source2Page from "./PayBillsPage/Source2page";

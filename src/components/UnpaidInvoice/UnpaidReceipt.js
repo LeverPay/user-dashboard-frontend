@@ -7,6 +7,7 @@ import ReceiptCard from "./ReceiptCard";
 
 const UnpaidReceipt = ({ id, setPopUp }) => {
   const [invoiceData, setInvoiceData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // const [invoiceData, setInvoiceDtata] = useState(null);
 
@@ -28,20 +29,28 @@ const UnpaidReceipt = ({ id, setPopUp }) => {
   };
 
   useEffect(() => {
+    setLoading(true);
     // Fetch the invoice data by ID
     fetchInvoiceById(id)
       .then((response) => {
         console.log("res", response);
         setInvoiceData(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching invoice:", error);
+        setLoading(false);
       });
   }, [id]);
 
   return (
     <div className="receipt-card-container">
-      <ReceiptCard id={id} data={invoiceData} setPopUp={setPopUp} />
+      <ReceiptCard
+        id={id}
+        data={invoiceData}
+        setPopUp={setPopUp}
+        loading={loading}
+      />
     </div>
   );
 };
