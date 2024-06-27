@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import ReactToPrint from "react-to-print";
 import TransferOTP from "../TransferPageComponent/TransferOTP";
 import closeIcon from "../../assets/images/close-icon.png";
+import loadingGif from "../../assets/loading-gif.gif";
 
 const ReceiptCard = ({
   className,
@@ -29,6 +30,7 @@ const ReceiptCard = ({
   id,
   data,
   setPopUp,
+  loading,
 }) => {
   let componentRef = useRef();
   const Navigate = useNavigate();
@@ -109,108 +111,116 @@ const ReceiptCard = ({
         </button>
       </div>
       <div ref={componentRef} id="invoice" className="">
-        <h4 className="text-center invoice-id">{id}</h4>
-        <div className="price_checkout">
-          <span className="px-md-3">
-            <h5>&#8358; {parseInt(parseFloat(data.price))}</h5>
-            <h5>Amount</h5>
-          </span>
-          <span className="px-md-3">
-            <h5>&#8358; {data.fee}</h5>
-            <h5>Tax fee</h5>
-          </span>
-          <span className="px-md-3">
-            <h5 style={{ color: "#0EB500" }}>
-              {" "}
-              &#8358;{" "}
-              {data.vat
-                ? formatToTwoDecimalPlaces(parseFloat(data.vat))
-                : "$0.00"}
-            </h5>
-            <h5 style={{ color: "#F49B09" }}>Vat</h5>
-          </span>
-        </div>
-        <div className="Invoice_details">
-          <h3>INVOICE DETAILS</h3>
-          <div>
-            <div className="invoice-detail-point">
-              <p className="row_details">Status</p>
-              <p
-                // className="row_details_information"
-                style={{
-                  color: `${data.status === 0 ? "#f40909" : "#0EB500"}`,
-                }}
-              >
-                {data.status === 0 ? "Unpaid" : "Paid"}
-              </p>
-            </div>
-            <div className="invoice-detail-point">
-              <p className="row_details">Currency</p>
-              <p
-                className="row_details_information naira_detail"
-                style={{ color: "#F49B09" }}
-              >
-                {data.currency && data.currency}
-              </p>
-            </div>
-            <div className="invoice-detail-point">
-              <p className="row_details">Created at</p>
-              <p
-                className="row_details_information"
-                // style={{ fontSize: "12px" }}
-              >
-                {data.created_at && formatDateTime(data.created_at)}
-              </p>
-            </div>
-            <div className="invoice-detail-point">
-              <p className="row_details">Items</p>
-              <p className="row_details_information">
-                {data.product_name && data.product_name}
-              </p>
-            </div>
+        {loading ? (
+          <div className="loading_container">
+            <img src={loadingGif} alt="loading gif" />
           </div>
-        </div>
-        <hr />
-        <div className="Buyer_details">
-          <h3>Buyer Information</h3>
-          <h5>Email</h5>
-          <p>{data.email && data.email}</p>
-        </div>
-        <hr />
+        ) : (
+          <div>
+            <h4 className="text-center invoice-id">{id}</h4>
+            <div className="price_checkout">
+              <span className="px-md-3">
+                <h5>&#8358; {parseInt(parseFloat(data.price))}</h5>
+                <h5>Amount</h5>
+              </span>
+              <span className="px-md-3">
+                <h5>&#8358; {data.fee}</h5>
+                <h5>Tax fee</h5>
+              </span>
+              <span className="px-md-3">
+                <h5 style={{ color: "#0EB500" }}>
+                  {" "}
+                  &#8358;{" "}
+                  {data.vat
+                    ? formatToTwoDecimalPlaces(parseFloat(data.vat))
+                    : "$0.00"}
+                </h5>
+                <h5 style={{ color: "#F49B09" }}>Vat</h5>
+              </span>
+            </div>
+            <div className="Invoice_details">
+              <h3>INVOICE DETAILS</h3>
+              <div>
+                <div className="invoice-detail-point">
+                  <p className="row_details">Status</p>
+                  <p
+                    // className="row_details_information"
+                    style={{
+                      color: `${data.status === 0 ? "#f40909" : "#0EB500"}`,
+                    }}
+                  >
+                    {data.status === 0 ? "Unpaid" : "Paid"}
+                  </p>
+                </div>
+                <div className="invoice-detail-point">
+                  <p className="row_details">Currency</p>
+                  <p
+                    className="row_details_information naira_detail"
+                    style={{ color: "#F49B09" }}
+                  >
+                    {data.currency && data.currency}
+                  </p>
+                </div>
+                <div className="invoice-detail-point">
+                  <p className="row_details">Created at</p>
+                  <p
+                    className="row_details_information"
+                    // style={{ fontSize: "12px" }}
+                  >
+                    {data.created_at && formatDateTime(data.created_at)}
+                  </p>
+                </div>
+                <div className="invoice-detail-point">
+                  <p className="row_details">Items</p>
+                  <p className="row_details_information">
+                    {data.product_name && data.product_name}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div className="Buyer_details">
+              <h3>Buyer Information</h3>
+              <h5>Email</h5>
+              <p>{data.email && data.email}</p>
+            </div>
+            <hr />
 
-        <div className="total_container">
-          <p>
-            Total amount{" "}
-            <span style={{ color: "#F49B09" }}>
-              &#8358; {totalAmount.toFixed(2)}
-            </span>
-          </p>
-          <p>{data.created_at && formatDateTime(data.created_at)}</p>
-        </div>
-        <hr />
+            <div className="total_container">
+              <p>
+                Total amount{" "}
+                <span style={{ color: "#F49B09" }}>
+                  &#8358; {totalAmount.toFixed(2)}
+                </span>
+              </p>
+              <p>{data.created_at && formatDateTime(data.created_at)}</p>
+            </div>
+            <hr />
 
-        {/* {unpaid && ( */}
-        <div className="accept_decline">
-          <button
-            onClick={() => {
-              Navigate(-1);
-            }}
-            className="cancel_btn"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={() => {
-              setShow(true);
-            }}
-            className="approve_btn"
-          >
-            Approve
-          </button>
-        </div>
-        {/* )} */}
-        {/* <hr /> */}
-        <TransferOTP show={show} setShow={toggleShow} />
+            {/* {unpaid && ( */}
+            <div className="accept_decline">
+              <button
+                onClick={() => {
+                  Navigate(-1);
+                }}
+                className="cancel_btn"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  setShow(true);
+                }}
+                className="approve_btn"
+              >
+                Approve
+              </button>
+            </div>
+            {/* )} */}
+            {/* <hr /> */}
+            <TransferOTP show={show} setShow={toggleShow} />
+          </div>
+        )}
       </div>
       {/* <footer
         style={{

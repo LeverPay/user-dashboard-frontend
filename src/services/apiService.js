@@ -156,8 +156,11 @@ export const logoutUser = async () => {
     const response = await httpClient.get("/v1/user/logout");
     toast.success(response.data.message);
     localStorage.removeItem("user");
+    localStorage.removeItem("jwt");
+    window.location.href = "/signin";
   } catch (err) {
-    console.log(err.message);
+    console.error("Logout Error:", err.message);
+    toast.error(err.message);
   }
 };
 
