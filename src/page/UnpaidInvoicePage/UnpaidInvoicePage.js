@@ -2,14 +2,15 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocalState } from "../../utils/useLocalStorage";
-import { Link } from "react-router-dom";
-// import table from "react-bootstrap/Table";
 import "./UnpaidInvoicePage.css";
+import UnpaidReceipt from "../../components/UnpaidInvoice/UnpaidReceipt";
 
 function UnpaidInvoicePage() {
   const [data, setData] = useState({});
   const [isdata, setIsdata] = useState(false);
   const [jwt, setJwt] = useLocalState("", "jwt");
+  const [popUp, setPopUp] = useState(false);
+  const [idData, setIdData] = useState(null);
 
   useEffect(() => {
     axios
@@ -39,6 +40,12 @@ function UnpaidInvoicePage() {
     return date.toISOString().split("T")[0];
   };
 
+  const handlePopUp = (id) => {
+    console.log(id);
+    setIdData(id);
+    setPopUp(true);
+  };
+
   return (
     <div className="Unpaid_con">
       <div className="Unpaid">
@@ -65,14 +72,12 @@ function UnpaidInvoicePage() {
                     <td>&#8358; {parseInt(parseFloat(item.price))}</td>
                     <td>{item.status ? "Paid" : "Unpaid"}</td>
                     <td>
-                      <Link
-                        to="invoices/unpaid-invoice"
-                        state={item.uuid}
-                        style={{ color: "green" }}
+                      <button
+                        className="view-unpaid-receipt"
+                        onClick={() => handlePopUp(item.uuid)}
                       >
-                        {" "}
                         View
-                      </Link>
+                      </button>
                     </td>
                   </tr>
                 );
@@ -85,6 +90,12 @@ function UnpaidInvoicePage() {
           </tbody>
         </table>
       </div>
+
+      {popUp && (
+        <div className="unpaid-receipt-popup">
+          <UnpaidReceipt id={idData} setPopUp={setPopUp} />
+        </div>
+      )}
     </div>
   );
 }
