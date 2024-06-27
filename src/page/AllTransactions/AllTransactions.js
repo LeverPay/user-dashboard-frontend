@@ -30,7 +30,6 @@ const AllTransactions = ({ data, isData, onViewClick }) => {
           <li>TYPE</li>
           <li>AMOUNT</li>
           <li>STATUS</li>
-          {/* <li style={{ }}>AC</li> */}
           <li style={{visibility: "hidden", backgroundColor: "green", textAlign:"right" , width: " 90px"}}>ACTION</li>
         </ul>
         {isData ? (
@@ -39,7 +38,7 @@ const AllTransactions = ({ data, isData, onViewClick }) => {
               <li>{formatDate(item.created_at)}</li>
               <li>{item.merchant}</li>
               <li>{item.type}</li>
-              <li>{Number(item.amount).toFixed(2)}</li>
+              <li className={item.type === "debit" ? "debit-type" : "credit-type"}>{Number(item.amount).toFixed(2)}</li>
               <li style={{ color: item.status === 0 ? '#F79E1B' : item.status === 1 ? '#329521' : 'red' }}>
                 {item.status === 0 ? 'Pending' : item.status === 1 ? 'Successful' : 'Failed'}
               </li>

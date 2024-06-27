@@ -41,6 +41,7 @@
     "react-images-uploading": "^3.1.7",
     "react-jwt": "^1.2.1",
     "react-loader-spinner": "^6.1.6",
+    "react-paginate": "^8.2.0",
     "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
