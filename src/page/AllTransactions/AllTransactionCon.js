@@ -15,7 +15,7 @@ const AllTransactionCon = () => {
   const [selectedTransaction, setSelectedTransaction] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   const baseurl = 'https://leverpay-api.azurewebsites.net/api/v1/user/get-user-transactions';
 
