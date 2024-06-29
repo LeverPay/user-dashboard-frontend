@@ -1,0 +1,183 @@
+/* .mainDiv{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #1c1a2e;
+  padding-top: 150px;
+
+  padding-left: 50px;
+
+}
+.networksRow{
+
+
+display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 50px;
+  gap: 20px;
+
+}
+.networkLogo {
+  width: 300px;
+  cursor: pointer;
+  opacity: 0.6;
+} */
+.mainDiv {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 30px;
+  color: #333;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.networksRow {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.networkLogo {
+  width: 50px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.networkLogo.selected {
+  opacity: 1;
+  border: 2px solid #4CAF50;
+  border-radius: 5px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  display: flex;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: AgrandirBold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.formLabelCheckbox {
+  display: inline-block;
+  font-size: 30px;  /* Increased font size for checkbox label */
+  font-weight: bold;
+  font-family: AgrandirBold;
+  margin-left: 10px;
+  margin-bottom: 50px;
+  color: #333;
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.input {
+  color: #333;
+}
+
+.errorMessage {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+}
+
+.buttonSubmit,
+.buttonCancel {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.buttonSubmit {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.buttonCancel {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .formLabel, .formLabelCheckbox {
+    font-size: 24px;
+  }
+
+  .buttonSubmit,
+  .buttonCancel {
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    width: 100%;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    transform: none;
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 0;
+  }
+
+  .networksRow {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .networkLogo {
+    width: 40px;
+    margin-bottom: 10px;
+  }
+
+  .formLabel, .formLabelCheckbox {
+    font-size: 20px;
+  }
+
+  .buttonSubmit,
+  .buttonCancel {
+    padding: 6px 12px;
+  }
+}

@@ -1,10 +1,10 @@
 import React from 'react'
-import SourceComponents from '../../components/SourceCompontent/Source'
+import PayBillsComponents from "../../components/PayBillsCompontent/PayBill"
 
 export default function PayBillsPage() {
     return (
         <div>
-            <SourceComponents />
+            <PayBillsComponents />
         </div>
 
     )

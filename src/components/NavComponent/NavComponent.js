@@ -6,7 +6,7 @@ import "../NavComponent/NavComponent.css";
 import { useState, useEffect } from "react";
 import { logoutUser } from "../../services/apiService";
 import { useLocalState } from "../../utils/useLocalStorage";
-import PayBillDropDown from "../PayBillDropDownComponent/PayBillDropDownMenu";
+
 
 const NavComponent = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -129,12 +129,7 @@ const NavComponent = () => {
                         <img alt="" src="/images/My Wallets.png" />
                           Pay Bill
                       </NavLink>
-                      {/*<div className="text-link"*/}
-                      {/*     classname="active">*/}
-                      {/*  <img alt="" src="/images/My Wallets.png" />*/}
-                      {/*  Pay Bill*/}
-                      {/*</div>*/}
-                      {/*<PayBillDropDown showDropdown={showDropdown} closeMobileMenu={closeMobileMenu} />*/}
+                 
                     </li>
                     <li>
                       <NavLink to="/funding/naira-deposit" className="text-link" onClick={closeMobileMenu} activeclassname="active">

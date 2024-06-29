@@ -13,6 +13,17 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
 }
 
+.mainDiv h2{
+
+    display: flex;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: AgrandirBold;
+    margin-bottom: 50px;
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+}
 .btnDiv {
     display: flex;
     flex-direction: column;
@@ -25,6 +36,13 @@
     font-weight: bold;
     text-align: center;
     margin-bottom: 2rem; /* Space between the title and buttons */
+}
+
+/* Ensure the h2 tag is styled properly */
+.title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 50px;
 }
 
 .buttons-container {
@@ -42,7 +60,8 @@
 }
 
 .left-buttons {
-    margin-right: 1.5rem; /* Add margin to separate left and right groups */
+    margin-right: 1.5rem; 
+   
 }
 
 .button {
@@ -65,16 +84,19 @@
 .buy-airtime {
     border-radius: 15px;
     background-color: #007bff;
+    margin-bottom: 10px;
 }
 
 .buy-data {
     border-radius: 15px;
     background-color: #28a745;
+    margin-bottom: 10px;
 }
 
 .cable-tv {
     border-radius: 15px;
     background-color: #dc3545;
+    margin-bottom: 10px;
 }
 
 .buy-electricity {
@@ -162,7 +184,6 @@
     transform: scale(1.05);
 }
 
-
 @media (max-width: 1200px) {
     .mainDiv {
         width: 50%;
@@ -210,5 +231,4 @@
         padding: 0.8rem; /* Adjust button padding for smaller screens */
         font-size: 0.9rem; /* Adjust button font size for smaller screens */
     }
-
 }
