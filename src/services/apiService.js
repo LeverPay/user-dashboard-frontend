@@ -14,30 +14,30 @@ const setAuthHeader = (token) => {
     httpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
-      if (response.data.success) {
-        const token = response.data.data.token;
-
-                if (token) {
-                    toast.success(response.data.message);
-                    setJwt(token);
-                    localStorage.setItem("jwt", token);
-                    setAuthHeader(token);                    
-                    setTimeout(() => {
-                        window.location.href = "/";
-                    }, 2000);
-                } else {
-                    toast.error("Token is missing in the response.");
-                }
+export const signIn = async (credentials, setJwt) => {
+    try {
+        const response = await httpClient.post("/v1/user/signin", credentials);
+        if (response.data.success) {
+            const token = response.data.data.token;
+            if (token) {
+                toast.success(response.data.message);
+                setJwt(token);
+                localStorage.setItem("jwt", token);
+                setAuthHeader(token);
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 2000);
             } else {
-                toast.error(response.data.message);
+                toast.error("Token is missing in the response.");
             }
-        } catch (err) {
-            toast.error(err.message);
-            console.error("API call error:", err);
+        } else {
+            toast.error(response.data.message);
         }
+    } catch (err) {
+        toast.error(err.message);
+        console.error("API call error:", err);
     }
 };
-
 
 export const signUp = async (signupData) => {
     try {
