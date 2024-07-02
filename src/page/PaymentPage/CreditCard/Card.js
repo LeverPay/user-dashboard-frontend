@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Cards from "react-credit-cards-custom";
+// import Cards from "react-credit-cards-custom";
 import Logo from "../../../assets/images/logo9ja.png";
 import Logo2 from "../../../assets/images/logo.png";
 import DefaultBg from "../../../assets/images/silverCardBackground.png";
@@ -409,13 +409,14 @@ const nationalCardsStyles = {
 export default function CardDisplay(props) {
   return (
     <Container>
-      <Cards
-        {...props}
-        customCardsSupport={true}
-        checkCustomType={handleCheckNationalType}
-        checkCustomMaxLength={handleCheckNationalMaxLength}
-        customCardsStyles={nationalCardsStyles}
-      />
+      { /* TODO Replace card component */}
+      {/*<Cards*/}
+      {/*  {...props}*/}
+      {/*  customCardsSupport={true}*/}
+      {/*  checkCustomType={handleCheckNationalType}*/}
+      {/*  checkCustomMaxLength={handleCheckNationalMaxLength}*/}
+      {/*  customCardsStyles={nationalCardsStyles}*/}
+      {/*/>*/}
     </Container>
   );
 }
