@@ -10,7 +10,7 @@ import {
   getState,
   signUp,
 } from "../../services/apiService";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
@@ -216,12 +216,13 @@ function SignupComponent() {
             <Form.Label htmlFor="email" className="labels">
               Date of Birth
             </Form.Label>
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              className="dob"
-              // dateFormat="Pp"
-            />
+            {/* TODO Replace datepicker */}
+            {/*<DatePicker*/}
+            {/*  selected={startDate}*/}
+            {/*  onChange={(date) => setStartDate(date)}*/}
+            {/*  className="dob"*/}
+            {/*  // dateFormat="Pp"*/}
+            {/*/>*/}
           </Row>
           <Row className="form-input">
             <Form.Label htmlFor="email" className="labels">
