@@ -46,16 +46,12 @@ import AllTransactionCon from "./AllTransactions/AllTransactionCon";
 import AirtimePage from "./PayBillsPage/AirtimePage/AirtimePage";
 import DataPage from "./PayBillsPage/DataPage/DataPage";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
-<<<<<<< HEAD
-import RecentTransactions from "./AllTransactions/AllFundingHistory";
-import PayBillDropDown from "./PayBillsPage/PayBillsPage"; // Ensure this is the correct import for PayBillDropDown
-
-const UserDashboardLayout = (props) => {
-=======
 import RecentTransactions from "./AllTransactions/RecentTransaction";
+import PayBillDropDown from "./PayBillsPage/PayBillsPage"; 
+
+
 
 export const UserDashboardLayout = (props) => {
->>>>>>> 7b6873d0f96b7b8168048715181156a87f58747c
   const [naijaCard, setNaijaCard] = useState({});
   const [silverCard, setSilverCard] = useState([]);
   const [user, setUser] = useState({});
