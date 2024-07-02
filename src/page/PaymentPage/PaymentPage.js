@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import CreditCard from "./CreditCard/CreditCard";
 import "./payment-page.css";
-import "react-credit-cards-custom/es/styles-compiled.css";
+// import "react-credit-cards-custom/es/styles-compiled.css";
 import { CreditCard } from "./CreditCard/CreditCard";
 import LeverpayLogo from "../../assets/images/logo.png";
 import EmailMessage from "./TransactionMessages/EmailMessage";
