@@ -102,7 +102,7 @@ const AirtimeComponent = () => {
         ))}
       </div>
       <div className={style.formGroup}>
-        <h1 className={style.formLabel}>Phone Number</h1>
+        <h1 className={style.formLabel}>Receiver Phone Number</h1>
         <input
           type="text"
           id="phoneNumber"
@@ -113,7 +113,7 @@ const AirtimeComponent = () => {
         />
       </div>
       <div className={style.formGroup}>
-        <h1 className={style.formLabel}>Amount (Naira)</h1>
+        <h1 className={style.formLabel}>Airtime Amount (Naira)</h1>
         <input
           type="text"
           id="amount"
@@ -135,7 +135,7 @@ const AirtimeComponent = () => {
       {errorMessage && <p className={style.errorMessage}>{errorMessage}</p>}
       <div className={style.buttonGroup}>
         <button type="button" className={style.buttonSubmit} onClick={handleSubmit}>
-          Pay
+        Proceed
         </button>
         <button type="button" className={style.buttonCancel} onClick={handleCancel}>
           Cancel

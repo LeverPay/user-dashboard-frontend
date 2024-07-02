@@ -91,7 +91,7 @@ export default function DataComponent() {
         ))}
       </div>
       <div className={style.formGroup}>
-        <h1 className={style.formLabel}>Phone Number</h1>
+        <h1 className={style.formLabel}>Receiver Phone Number</h1>
         <input
           type="text"
           id="phoneNumber"
