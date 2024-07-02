@@ -104,7 +104,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: aqua; */
   background-color: rgb(11, 2, 48, 0.9);
   z-index: 100;
   overflow: auto;
@@ -203,7 +202,47 @@ td{
   padding: 15px;
 }
 
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 10px 0 0;
+  justify-content: flex-end;
+}
 
+.pagination li {
+  margin: 0 5px;
+  cursor: pointer;
+}
+.pagination-controls > label{
+  color:#fff;
+}
+
+.pagination-controls > select, option {
+  color:#082E88
+}
+.pagination-controls > select option:hover {
+  background-color:#082E88;
+}
+
+.pagination li a {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  color: #F79E1B;
+  text-decoration: none;
+}
+.pagination li a:not([href]):not([class]) {
+  color: #ccc;
+}
+.pagination li.active a {
+  background-color: #082E88;
+  color: white !important;
+  border: 1px solid #082E88;
+}
+
+.pagination li.disabled a {
+  color: #ccc;
+  cursor: not-allowed;
+}
 
 
 #fundingHistory-head li, #fundingHistory-body li{
@@ -228,7 +267,30 @@ td{
     .allTransactions header h1{
         font-size: 16px;
     }
+
+    .allTransactions main ul {
+      justify-content: space-between;
+    }
+    .debit-type {
+      color: #ff0000;
+    }
+    .credit-type {
+      color: #329521;
+    }
+
+    .allTransactions-head li:nth-child(3),
+    .allTransactions-head li:nth-child(5) {
+      display: none;
+    }
+
+    .allTransactionBody li:nth-child(3),
+    .allTransactionBody li:nth-child(5) {
+      display: none;
+    }
+    
+    
     .transaction-tabs{
       padding-left: 0 !important;
     }
+
 }

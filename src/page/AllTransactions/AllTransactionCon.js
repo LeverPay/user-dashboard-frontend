@@ -5,6 +5,7 @@ import TransactionTabs from './TransactionTabs';
 import { useLocalState } from '../../utils/useLocalStorage';
 import axios from 'axios';
 import TransactionReceipt from './TransactionReceipt';
+import ReactPaginate from 'react-paginate';
 
 const AllTransactionCon = () => {
   const [jwt, setJwt] = useLocalState('', 'jwt');
@@ -12,7 +13,9 @@ const AllTransactionCon = () => {
   const [isData, setIsData] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
   const [selectedTransaction, setSelectedTransaction] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   const baseurl = 'https://leverpay-api.azurewebsites.net/api/v1/user/get-user-transactions';
 
@@ -43,6 +46,15 @@ const AllTransactionCon = () => {
     setSelectedTransaction(null);
   };
 
+  const handlePageClick = (event) => {
+    setCurrentPage(event.selected);
+  };
+
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(0);
+  };
+
   const filteredTransactions = data.filter(transaction => {
     if (activeTab === 'all') return true;
     if (activeTab === 'successful') return transaction.status === 1;
@@ -51,13 +63,36 @@ const AllTransactionCon = () => {
     return true;
   });
 
-
+  const offset = currentPage * itemsPerPage;
+  const currentItems = filteredTransactions.slice(offset, offset + itemsPerPage);
+  const pageCount = Math.ceil(filteredTransactions.length / itemsPerPage);
 
   return (
     <div className='allTransactionCon'>
       <TransactionTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-      <AllTransactions data={filteredTransactions} isData={isData} onViewClick={handleViewClick}/>
-      <TransactionReceipt isOpen={isModalOpen} onClose={handleCloseModal} transaction={selectedTransaction}/>
+      <div className="pagination-controls">
+        <label htmlFor="itemsPerPage">Items per page:</label>
+        <select id="itemsPerPage" value={itemsPerPage} onChange={handleItemsPerPageChange}>
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+          <option value={50}>50</option>
+        </select>
+      </div>
+      <AllTransactions data={currentItems} isData={currentItems.length > 0} onViewClick={handleViewClick} />
+      <ReactPaginate
+        previousLabel={'Previous'}
+        nextLabel={'Next'}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName={'pagination'}
+        activeClassName={'active'}
+      />
+      {isModalOpen && <TransactionReceipt isOpen={isModalOpen} onClose={handleCloseModal} transaction={selectedTransaction} />}
     </div>
   );
 };
