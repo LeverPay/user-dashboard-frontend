@@ -24,7 +24,7 @@ import {
   getState,
   signUp,
 } from "../../services/apiService";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
@@ -40,7 +40,7 @@ function SignupComponent() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [signupMessage, setSignupMessage] = useState("");
   const [startDate, setStartDate] = useState(new Date());
-  const [birthDate, setBirthDate] = useState("")
+  const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
   const [country, setCountry] = useState([]);
   const [countryID, setCountryID] = useState("");
@@ -66,14 +66,13 @@ function SignupComponent() {
   const inputRef = React.createRef();
 
   const handlePhoneChange = (value) => {
-    
     // Check if the input value is a number
     if (/^\d*$/.test(value)) {
       setPhoneNumber(value);
     } else {
-      return
+      return;
     }
-  }
+  };
 
   const handlePasswordIcon = () => {
     setPasswordType(passwordType === "password" ? "text" : "password");
@@ -98,10 +97,7 @@ function SignupComponent() {
   const signupSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      typeof phoneNumber === "undefined" ||
-      phoneNumber.length < 10
-    ) {
+    if (typeof phoneNumber === "undefined" || phoneNumber.length < 10) {
       toast.error("invalid phone number, must be at least 10 digits");
       return;
     }
@@ -113,19 +109,19 @@ function SignupComponent() {
 
     const symbolRegex = /[!@#$%^&*(),.?":{}|<>]/;
     if (!symbolRegex.test(password)) {
-        toast.error("Password must contain at least one symbol");
-        return;
+      toast.error("Password must contain at least one symbol");
+      return;
     }
 
-    if(password != confirmPassword){
-      toast.dismiss()
-      toast.error("Password fields do not match")
+    if (password != confirmPassword) {
+      toast.dismiss();
+      toast.error("Password fields do not match");
 
-      return
+      return;
     }
 
     if (condition === false) {
-      toast.dismiss()
+      toast.dismiss();
       toast.error("Please, check condition to proceed");
       return;
     }
@@ -143,37 +139,37 @@ function SignupComponent() {
       referral_code: referralCode, // New Referral Code field
     };
 
-    toast.loading("Signing Up")
+    toast.loading("Signing Up");
 
     const response = await signUp({ signupData });
-    console.log(response)
+    console.log(response);
 
     if (response.success) {
-      toast.dismiss()
+      toast.dismiss();
       toast.success(response.message);
       localStorage.setItem("userEmail", signupData.email);
       setTimeout(() => {
-          window.location.href = "/leverpay-signup/signup-OTP";
+        window.location.href = "/leverpay-signup/signup-OTP";
       }, 2000);
     } else {
-        // Handle validation errors returned from the backend
-        if (response.data) {
-            if (response.data.email) {
-              toast.dismiss()
-                response.data.email.forEach(msg => toast.error(`${msg}`));
-            }
-            if (response.data.password) {
-              toast.dismiss()
-                response.data.password.forEach(msg => toast.error(`${msg}`));
-            }
-            if (response.data.phone) {
-              toast.dismiss()
-                response.data.phone.forEach(msg => toast.error(`${msg}`));
-            }
-        } else {
-          toast.dismiss()
-            toast.error(response.message || "Sign up failed");
+      // Handle validation errors returned from the backend
+      if (response.data) {
+        if (response.data.email) {
+          toast.dismiss();
+          response.data.email.forEach((msg) => toast.error(`${msg}`));
         }
+        if (response.data.password) {
+          toast.dismiss();
+          response.data.password.forEach((msg) => toast.error(`${msg}`));
+        }
+        if (response.data.phone) {
+          toast.dismiss();
+          response.data.phone.forEach((msg) => toast.error(`${msg}`));
+        }
+      } else {
+        toast.dismiss();
+        toast.error(response.message || "Sign up failed");
+      }
     }
   };
 
@@ -207,14 +203,14 @@ function SignupComponent() {
 
     // Check the othername field only if it is filled
     if (othername.length > 0 && othername.length < 3) {
-      toast.dismiss()
+      toast.dismiss();
       toast.error("Name field should contain at least three characters");
       return;
     }
 
     // Check to make sure the gender field is selected
     if (!gender || !birthDate) {
-      toast.dismiss()
+      toast.dismiss();
       toast.error("Fill required fields");
       return;
     }
@@ -354,9 +350,9 @@ function SignupComponent() {
                       value="Save an Proceed"
                     />
 
-                    <Link to="/signin"
-                      className="signup-cancel-btn"
-                    >Cancel Registration</Link>
+                    <Link to="/signin" className="signup-cancel-btn">
+                      Cancel Registration
+                    </Link>
                   </div>
                 )}
 
@@ -534,7 +530,7 @@ function SignupComponent() {
           </button>
         </div>
       </div>
-      <ToastContainer  style={{ color: "black" }}  />
+      <ToastContainer style={{ color: "black" }} />
     </section>
   );
 }

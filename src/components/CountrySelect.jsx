@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import Select from "react-select";
+// import Select from "react-select";
 // import countryList from "react-select-country-list";
 
 export const CountrySelect = ({ countyList, selector, callback }) => {
@@ -27,5 +27,6 @@ export const CountrySelect = ({ countyList, selector, callback }) => {
       if (callback !== undefined) callback(selected_id);
     }
   }, [selected_id]);
-  return <Select onChange={changeHandler} options={options} />;
+  return <p>Reimplement country selection</p>
+  // return <Select onChange={changeHandler} options={options} />;
 };
