@@ -28,6 +28,16 @@
   align-items: center;
 }
 
+.receipt-loading-cont {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.receipt-loading-cont > img {
+  width: 50px;
+}
+
 .loading_container > img {
   width: 50px;
 }

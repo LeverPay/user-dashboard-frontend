@@ -1,40 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/esm/Container";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
-import { nanoid } from "nanoid";
 import QRCode from "qrcode";
-// import Feedback from "../../Feedback/Feedback";
-// import { Link } from "react-router-dom";
-// import { Button, Modal } from "react-bootstrap";
+
 import { useNavigate } from "react-router-dom";
-// import TransferOTP from "../../../components/TransferPageComponent/TransferOTP";
-import ReactToPrint from "react-to-print";
 import TransferOTP from "../TransferPageComponent/TransferOTP";
 import closeIcon from "../../assets/images/close-icon.png";
 import loadingGif from "../../assets/loading-gif.gif";
 
-const ReceiptCard = ({
-  className,
-  invoice,
-  ref,
-  unpaid,
-  date,
-  amt,
-  status,
-  name,
-  productType,
-  email,
-  currency,
-  id,
-  data,
-  setPopUp,
-  loading,
-}) => {
+const ReceiptCard = ({ id, data, setPopUp, loading }) => {
   let componentRef = useRef();
   const Navigate = useNavigate();
-  //   const [id] = useState(nanoid);
+
   const [show, setShow] = useState(false);
 
   function toggleShow(arg) {
@@ -124,7 +100,7 @@ const ReceiptCard = ({
                 <h5>Amount</h5>
               </span>
               <span className="px-md-3">
-                <h5>&#8358; {data.fee}</h5>
+                <h5>&#8358; {parseFloat(data.fee).toFixed(2)}</h5>
                 <h5>Tax fee</h5>
               </span>
               <span className="px-md-3">
@@ -218,7 +194,12 @@ const ReceiptCard = ({
             </div>
             {/* )} */}
             {/* <hr /> */}
-            <TransferOTP show={show} setShow={toggleShow} />
+            <TransferOTP
+              show={show}
+              setShow={toggleShow}
+              email={data.email}
+              amount={totalAmount}
+            />
           </div>
         )}
       </div>
@@ -248,37 +229,3 @@ const ReceiptCard = ({
 };
 
 export default ReceiptCard;
-
-{
-  /* <div className="Payment_received"> */
-}
-//   <p>
-// Payment Recieved for <span>{amt}</span>{" "}
-//   </p>
-//   <p>
-// TXID: <span>( {id.slice(0, 8)} )</span>
-//   </p>
-//   <p>{invoice ? invoice.date : ""}</p>
-{
-  /* <p>{time}</p> */
-}
-{
-  /* <main>
-            <div>
-              <p>Company</p>
-              <h6>Apple inc</h6>
-              <h6
-                style={{ color: "red", marginTop: "3rem", cursor: "pointer" }}
-                onClick={() => {
-                  Navigate("/customer-support", { state: { txid: id } });
-                }}
-              >
-                Report transaction
-              </h6>
-            </div>
-            <div>
-              {qrcode && <img alt="" className="qrcodeCon" src={qrcode} />}
-            </div>
-          </main> */
-}
-// </div>;
