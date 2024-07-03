@@ -4,6 +4,7 @@ import axios from "axios";
 import { useLocalState } from "../../utils/useLocalStorage";
 import "./UnpaidInvoicePage.css";
 import UnpaidReceipt from "../../components/UnpaidInvoice/UnpaidReceipt";
+import loadingGif from "../../assets/loading-gif.gif";
 
 function UnpaidInvoicePage() {
   const [data, setData] = useState({});
@@ -11,8 +12,10 @@ function UnpaidInvoicePage() {
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [popUp, setPopUp] = useState(false);
   const [idData, setIdData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(
         "https://leverpay-api.azurewebsites.net/api/v1/user/get-invoices?status=0",
@@ -25,6 +28,7 @@ function UnpaidInvoicePage() {
       .then((res) => {
         console.log(res.data);
         setData(res.data.data);
+        setLoading(false);
         if (res.data.data.length > 0) {
           setIsdata(true);
         } else setIsdata(false);
@@ -32,6 +36,7 @@ function UnpaidInvoicePage() {
       .catch((err) => {
         console.log(err);
         setIsdata(false);
+        setLoading(false);
       });
   }, []);
 
@@ -63,6 +68,11 @@ function UnpaidInvoicePage() {
         </table>
         <table className="Unpaiddata">
           <tbody>
+            {!isdata && loading && (
+              <div className="receipt-loading-cont">
+                <img src={loadingGif} alt="loading gif" />
+              </div>
+            )}
             {isdata &&
               data.map((item) => {
                 return (
@@ -82,7 +92,7 @@ function UnpaidInvoicePage() {
                   </tr>
                 );
               })}
-            {!isdata && (
+            {!isdata && !loading && (
               <tr style={{ textAlign: "center" }}>
                 <td>You do not have any Pending Invoice.</td>
               </tr>

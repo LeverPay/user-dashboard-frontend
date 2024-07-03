@@ -9,11 +9,19 @@ import Padlock from "../../assets/images/padlock.png";
 import Swal from "sweetalert2";
 import "./TransferOTP.css";
 
-const TransferOTP = ({ show, setShow }) => {
+const TransferOTP = ({ show, setShow, email, amount }) => {
   const inputRef = React.createRef();
   const [transferOTP, setTransferOTP] = useState("");
 
   const handleClose = () => setShow(false);
+
+  const handleInputChange = (e) => {
+    if (transferOTP.length > 4) {
+      return;
+    } else {
+      setTransferOTP(e.target.value.replace(/\D/g, ""));
+    }
+  };
 
   const handleOTP = () => {
     Swal.fire({
@@ -31,16 +39,16 @@ const TransferOTP = ({ show, setShow }) => {
         <Modal.Header>
           <img src={Logo} alt="hello" className="otp-logo" />
           <p>
-            johndoe2023@gmail.com <br />
-            <span style={{ float: "right" }}>Send $100.00</span>
+            {email} <br />
+            <span className="modal_pay">
+              Pay <span className="modal_header_amount">${amount}</span>
+            </span>
           </p>
         </Modal.Header>
         <Modal.Body>
           <img src={OTPLogo} alt="" className="phone-otp" />
 
-          <p className="otp-message">
-            Kindly Enter the OTP sent to ********023 and johndoe2023@gmail.com
-          </p>
+          <p className="otp-message">Kindly Enter the OTP sent to {email}</p>
           <div className="otp-field">
             <Form.Control
               type="text"
@@ -49,9 +57,8 @@ const TransferOTP = ({ show, setShow }) => {
               name="transfer_otp"
               ref={inputRef}
               placeholder="Enter OTP"
-              onChange={(e) =>
-                setTransferOTP(e.target.value.replace(/\D/g, ""))
-              }
+              maxLength={4}
+              onChange={handleInputChange}
               required
             />
 
@@ -59,7 +66,7 @@ const TransferOTP = ({ show, setShow }) => {
               type="submit"
               className="auth-btn"
               onClick={handleOTP}
-              disabled={transferOTP ? false : true}
+              disabled={transferOTP.length === 4 ? false : true}
             >
               AUTHORIZE
             </Button>
@@ -84,7 +91,7 @@ const TransferOTP = ({ show, setShow }) => {
           </Button>
         </Modal.Body>
         <Modal.Footer>
-          {/* <img src={Padlock} alt="" style={{ height: "18px" }} /> */}
+          <img src={Padlock} alt="" style={{ height: "18px" }} />
           <small className="footer-style">
             Secured by <big className="color-link font-style">LeverPay</big>
           </small>
