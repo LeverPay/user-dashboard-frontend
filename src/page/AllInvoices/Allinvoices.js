@@ -5,13 +5,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import loadingGif from "../../assets/loading-gif.gif";
+import { useLocalState } from "../../utils/useLocalStorage";
 
 const Allinvoices = (props) => {
   const [allInvoices, setAllInvoices] = useState({});
   const [isInvoice, setIsInvoice] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const jwt = localStorage.getItem("_jwt");
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
   useEffect(() => {
     setLoading(true);

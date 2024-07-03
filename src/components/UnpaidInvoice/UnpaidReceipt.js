@@ -4,14 +4,14 @@ import Invoice from "../../page/InvoicePage/Invoice/Invoice";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import ReceiptCard from "./ReceiptCard";
+import { useLocalState } from "../../utils/useLocalStorage";
 
 const UnpaidReceipt = ({ id, setPopUp }) => {
   const [invoiceData, setInvoiceData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
   // const [invoiceData, setInvoiceDtata] = useState(null);
-
-  const jwt = localStorage.getItem("_jwt");
 
   //Function to fetch an unpaid invoice based on the id of the invoice
   const fetchInvoiceById = async (id) => {
