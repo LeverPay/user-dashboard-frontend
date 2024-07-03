@@ -5,9 +5,9 @@ import './Investment.css'
 import CheckoutTransfer from '../../components/CheckoutTransfer/CheckoutTransfer'
 import SuccessCheckmark from '../PaymentPage/TransactionMessages/SuccessCheckmark'
 // import { Country, State}  from 'country-state-city';
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import axios from 'axios'
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 
 
 const Investment = () => {
@@ -203,7 +203,9 @@ const Investment = () => {
                     <div id='dob'>
                         <p>Date of Birth</p>
                         <span>
-                        <DatePicker selected={DOB} onChange={(date) => setDOB(date)}  wrapperClassName="datePicker" />
+                            {/* TODO Replace Date Picker */}
+                            <p>Replace Date Picker</p>
+                        {/*<DatePicker selected={DOB} onChange={(date) => setDOB(date)}  wrapperClassName="datePicker" />*/}
                         </span>
                     </div>
                     

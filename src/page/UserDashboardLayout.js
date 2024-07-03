@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
-import axios from "axios";
+import React from "react";
 import NavComponent from "../components/NavComponent/NavComponent";
 import TopNav from "../components/TopNav/TopNav";
 import StatementComponent from "../components/StatementComponent/StatementComponent";
+import { useEffect, useState } from "react";
 import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
+import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
 import MyCardsSilver from "./SilverCardPage/MyCardsSilver";
 import MyUpgradedAccount from "../components/MyUpgradedAccount/MyUpgradedAccount";
@@ -42,7 +42,7 @@ import AllInvoicePage from "./AllInvoicePage/AllInvoicePage";
 import Allinvoices from "./AllInvoices/Allinvoices";
 import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
-import AllTransactions from "./AllTransactions/AllTransactions";
+// import AllTransactions from "./AllTransactions/AllTransactions";
 import AllTransactionCon from "./AllTransactions/AllTransactionCon";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
 
@@ -82,47 +82,48 @@ export const UserDashboardLayout = (props) => {
   }, []);
 
   useEffect(() => {
-    axios
-      .get("https://leverpay-api.azurewebsites.net/api/v1/user/get-card", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.error("Error fetching card data:", error);
-      });
-  }, [jwt]);
+    getUserProfile(jwt, setJwt, setUser);
+  }, [jwt, setJwt]);
 
+  // useEffect(() => {
+  //   axios
+  //     .get("https://leverpay-api.azurewebsites.net/api/v1/user/get-card", {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${jwt}`,
+  //       },
+  //       // configuration
+  //     })
+  //     .then((response) => {
+  //       console.log(response);
+  //       // do something with JSON response data
+  //     });
+  // });
   return (
     <>
       <Routes>
         <Route path="/investment" element={<Investment />} />
-        <Route path="signin" element={<SignInPage />} />
-        <Route path="leverpay-signup" element={<SignupPage />} />
-        <Route path="leverpay-signup/signup-OTP" element={<SignupOTP />} />
         <Route
           element={
-            <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
-              <div className="nav-con">
-                <NavComponent />
+            <>
+              <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
+                <div className="nav-con">
+                  <NavComponent />
+                </div>
+                <div className="col-md-10">
+                  <TopNav
+                    userName={{
+                      firstName: user.first_name,
+                      lastName: user.last_name,
+                      passport: user.passport,
+                    }}
+                  />
+                  <PrivateRoute userName={user.first_name}>
+                    <Outlet />
+                  </PrivateRoute>
+                </div>
               </div>
-              <div className="col-md-10">
-                <TopNav
-                  userName={{
-                    firstName: user.first_name,
-                    lastName: user.last_name,
-                    passport: user.passport,
-                  }}
-                />
-                <PrivateRoute userName={user.first_name}>
-                  <Outlet />
-                </PrivateRoute>
-              </div>
-            </div>
+            </>
           }
         >
           <Route
@@ -149,21 +150,35 @@ export const UserDashboardLayout = (props) => {
                       />
                     </div>
                     <div className="col-md-4">
-                      <TotalMoney bg="#201E34" totaltype=" Total Saved" />
+                      <TotalMoney
+                        bg="#201E34"
+                        totaltype=" Total Saved"
+                        // amt={userData ? userData.total_save.ngn : ""}
+                      />
                     </div>
                   </div>
                   <div className="statement col-md-11">
                     <StatementComponent />
                   </div>
                   <div className="dashboard-transaction-table-container col-md-11">
-                    <AllTransactions />
+                    {/* <AllTransactions /> */}
+                    <RecentTransactions />
                   </div>
                 </div>
-                <div className="dashboard-left col-md-4 card-holder">
+                <div className="dashboard-left col-md-4  card-holder">
                   <div className="col-md-12 default-card-holder">
                     <header className="card-header">My Card</header>
                     <CardUser />
                   </div>
+                  {/* <div
+                    className="col-md-10 mx-auto"
+                    style={{ transform: "translateY(-3.5rem)" }}
+                  >
+                    <CardSilver
+                      firstName={user.first_name}
+                      lastName={user.last_name}
+                    />
+                  </div> */}
                   <div className="mchnt-con col-md-12">
                     <div className="mchnt-con-div">
                       <MerchantComponent />
@@ -173,21 +188,23 @@ export const UserDashboardLayout = (props) => {
               </div>
             }
           />
+
           <Route path="transactions" element={<AllTransactionCon />} />
           <Route path="funding-history" element={<AllFundingHistoryCon />} />
           <Route exact path="transfer" element={<TransferPage />} />
           <Route exact path="/investment" element={<Investment />} />
+
           <Route path="invoices" element={<AllInvoicePage />}>
             <Route index element={<Allinvoices />} />
             <Route path="all-invoices" element={<Allinvoices />} />
             <Route path="unpaid-invoices" element={<UnpaidInvoicePage />} />
-            <Route
-              path="unpaid-invoice/:id" // Dynamic route for a single unpaid invoice using uuid
-              element={<UnpaidReceipt />}
-            />
             <Route path="paid-invoice" element={<PaidInvoice />} />
           </Route>
-          {/* <Route path="/unpaid-invoice" element={<UnpaidReceipt />} /> */}
+
+          <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
+
+          <Route path="/pending-subscription" element />
+
           <Route path="funding" element={<FundingPage />}>
             <Route index element={<FundingPayment />} />
             <Route path="stablecoins-deposit" element={<FundingPayment />} />
@@ -238,16 +255,14 @@ export const UserDashboardLayout = (props) => {
             path="my-subscriptions/subscription-transactions"
             element={<SubscriptionTransactions />}
           />
-          <Route path="*" element={<Navigate to="/" />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/paybills" element={<PayBillDropDown />} />
-          <Route path="/sourcePage" element={<SourceComponent />} />
-          <Route path="/PayBill/source2" element={<Source2Page />} />
-          <Route path="/PayBill/create-pin" element={<CreatePinPage />} />
+          <Route exact path="*" element={<Navigate to="/" />} />
         </Route>
+        <Route exact path="reset-password" element={<ResetPassword />} />
+        <Route path="signin" element={<SignInPage />} />
+        <Route path="leverpay-signup" element={<SignupPage />} />
+        <Route path="leverpay-signup/signup-OTP" element={<SignupOTP />} />
       </Routes>
       <ToastContainer />
-      <PayBillDropDown />
     </>
   );
 };

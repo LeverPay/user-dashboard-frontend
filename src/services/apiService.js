@@ -1,39 +1,47 @@
 import { toast } from "react-toastify";
 import axios from "axios";
 
+const baseURL = "https://leverpay-api.azurewebsites.net/api";
+
 const httpClient = axios.create({
-  baseURL: process.env.REACT_APP_LEVERPAY_API_URL,
-  timeout: 10000,
-  headers: { Authorization: "Bearer " + localStorage.getItem("_jwt") },
+  baseURL,
+  timeout: 5000,
 });
 
-export const signIn = async (userData, jwt, setJwt, setSubmitted) => {
+const setAuthHeader = (token) => {
+  httpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
+
+export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
-    const signInURL = "https://leverpay-api.azurewebsites.net/api/v1/login";
+    const signInURL = `${baseURL}/v1/login`;
+    console.log("Making API request to:", signInURL);
+    console.log("User data:", userData);
 
     try {
       const response = await httpClient.post(signInURL, userData);
-      console.log("response", response);
       if (response.data.success) {
-        toast.success(response.data.message);
-        setJwt(response.data.data.token);
-        localStorage.setItem("_jwt", response.data.data.token);
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 2000);
+        const token = response.data.data.token;
+
+        // console.log("Token received:", token);
+
+        if (token) {
+          toast.success(response.data.message);
+          setJwt(token);
+          localStorage.setItem("jwt", token);
+          setAuthHeader(token);
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 2000);
+        } else {
+          toast.error("Token is missing in the response.");
+        }
       } else {
         toast.error(response.data.message);
-        setSubmitted(false);
       }
     } catch (err) {
-      console.log(err);
-      if (err.response && err.response.data && err.response.data.message) {
-        toast.error(err.response.data.message);
-      } else {
-        toast.error("An error occurred. Please try again.");
-      }
-
-      setSubmitted(false);
+      toast.error(err.message);
+      console.error("API call error:", err);
     }
   }
 };
@@ -108,18 +116,20 @@ export const resendVerifyToken = async (email) => {
     });
 };
 
-export const getUserProfile = async (setUser) => {
+export const getUserProfile = async (jwt, setJwt, setUser) => {
+  setAuthHeader(jwt);
   try {
     const response = await httpClient.get("/v1/user/get-user-profile");
     setUser(response.data.data);
     localStorage.setItem("user", JSON.stringify(response.data.data));
-    console.log("User found successfully");
+    console.log("User profile retrieved successfully");
   } catch (err) {
-    console.log(err);
+    console.error("Get User Profile Error:", err);
   }
 };
 
-export const updateUserProfile = async (userDataUpdate) => {
+export const updateUserProfile = async (jwt, userDataUpdate) => {
+  setAuthHeader(jwt);
   try {
     const response = await httpClient.post(
       "/v1/user/update-user-profile",
@@ -130,7 +140,8 @@ export const updateUserProfile = async (userDataUpdate) => {
       window.location.href = "/";
     }, 2000);
   } catch (err) {
-    console.log(err.message);
+    console.error("Update User Profile Error:", err.message);
+    toast.error(err.message);
   }
 };
 
@@ -147,6 +158,7 @@ export const userResetPassword = async (passwordReset, setJwt) => {
       toast.error(response.data.message);
     }
   } catch (err) {
+    console.error("Reset Password Error:", err);
     toast.error(err.message);
   }
 };
@@ -169,6 +181,7 @@ export const getCountry = async (setCountry) => {
     const response = await httpClient.get("/v1/get-countries");
     setCountry(response.data.data);
   } catch (err) {
+    console.error("Get Country Error:", err.message);
     toast.error(err.message);
   }
 };
@@ -180,6 +193,7 @@ export const getState = async (countryID, setState) => {
     });
     setState(response.data.data);
   } catch (err) {
+    console.error("Get State Error:", err.message);
     toast.error(err.message);
   }
 };
@@ -191,6 +205,7 @@ export const getCities = async (stateID, setCity) => {
     });
     setCity(response.data.data);
   } catch (err) {
+    console.error("Get Cities Error:", err.message);
     toast.error(err.message);
   }
 };
