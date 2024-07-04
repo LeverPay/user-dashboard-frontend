@@ -1,15 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import QRCode from "qrcode";
-
-import { useNavigate } from "react-router-dom";
 import TransferOTP from "../TransferPageComponent/TransferOTP";
-import closeIcon from "../../assets/images/close-icon.png";
 import loadingGif from "../../assets/loading-gif.gif";
 
 const ReceiptCard = ({ id, data, setPopUp, loading }) => {
   let componentRef = useRef();
-  const Navigate = useNavigate();
 
   const [show, setShow] = useState(false);
 
@@ -81,11 +77,6 @@ const ReceiptCard = ({ id, data, setPopUp, loading }) => {
 
   return (
     <div className="receipt-container">
-      <div className="receipt-close-btn-container">
-        <button className="receipt_close_btn" onClick={closeReceipt}>
-          <img src={closeIcon} alt="close icon" />
-        </button>
-      </div>
       <div ref={componentRef} id="invoice" className="">
         {loading ? (
           <div className="loading_container">
@@ -174,24 +165,22 @@ const ReceiptCard = ({ id, data, setPopUp, loading }) => {
             <hr />
 
             {/* {unpaid && ( */}
-            <div className="accept_decline">
-              <button
-                onClick={() => {
-                  Navigate(-1);
-                }}
-                className="cancel_btn"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => {
-                  setShow(true);
-                }}
-                className="approve_btn"
-              >
-                Approve
-              </button>
-            </div>
+            {data.status === 0 && (
+              <div className="accept_decline">
+                <button onClick={closeReceipt} className="cancel_btn">
+                  Cancel
+                </button>
+                <button
+                  onClick={() => {
+                    setShow(true);
+                  }}
+                  className="approve_btn"
+                >
+                  Approve
+                </button>
+              </div>
+            )}
+
             {/* )} */}
             {/* <hr /> */}
             <TransferOTP

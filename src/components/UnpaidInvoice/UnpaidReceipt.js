@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./UnpaidInvoice.css";
-import Invoice from "../../page/InvoicePage/Invoice/Invoice";
-import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import ReceiptCard from "./ReceiptCard";
 import { useLocalState } from "../../utils/useLocalStorage";
@@ -33,7 +31,6 @@ const UnpaidReceipt = ({ id, setPopUp }) => {
     // Fetch the invoice data by ID
     fetchInvoiceById(id)
       .then((response) => {
-        console.log("res", response);
         setInvoiceData(response.data);
         setLoading(false);
       })
