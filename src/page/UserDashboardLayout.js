@@ -45,7 +45,13 @@ import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
 // import AllTransactions from "./AllTransactions/AllTransactions";
 import AllTransactionCon from "./AllTransactions/AllTransactionCon";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
+
 import RecentTransactions from "./AllTransactions/RecentTransaction";
+
+import PayBillDropDown from "../page/PayBillsPage/PayBillsPage";
+import SourceComponent from "./PayBillsPage/Source1Page";
+import Source2Page from "./PayBillsPage/Source2page";
+import CreatePinPage from "./PayBillsPage/CreatePinPage";
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -96,7 +102,7 @@ export const UserDashboardLayout = (props) => {
   return (
     <>
       <Routes>
-        <Route path="/investment" element={<Investment/>} />
+        <Route path="/investment" element={<Investment />} />
         <Route
           element={
             <>
@@ -156,9 +162,8 @@ export const UserDashboardLayout = (props) => {
                   </div>
                   <div className="dashboard-transaction-table-container col-md-11">
                     {/* <AllTransactions /> */}
-                    <RecentTransactions/>
+                    <RecentTransactions />
                   </div>
-
                 </div>
                 <div className="dashboard-left col-md-4  card-holder">
                   <div className="col-md-12 default-card-holder">
@@ -176,7 +181,7 @@ export const UserDashboardLayout = (props) => {
                   </div> */}
                   <div className="mchnt-con col-md-12">
                     <div className="mchnt-con-div">
-                    <MerchantComponent />
+                      <MerchantComponent />
                     </div>
                   </div>
                 </div>
