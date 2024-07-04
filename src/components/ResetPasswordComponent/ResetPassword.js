@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import LeverpayLogo from "../../assets/images/logo.png";
 import Button from "react-bootstrap/Button";
-// import { ToastContainer } from "react-toastr";
 import { userResetPassword } from "../../services/apiService";
 import { useLocalState } from "../../utils/useLocalStorage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./ResetPassword.css";
 
 const ResetPassword = () => {
@@ -39,7 +40,7 @@ const ResetPassword = () => {
             value={resetToken}
             name="token"
             onChange={(e) => setResetToken(e.target.value)}
-            placeholder="enter token"
+            placeholder="Enter token"
             className="reset-password-fields"
             required
           />
@@ -51,7 +52,7 @@ const ResetPassword = () => {
             value={resetPassword}
             name="new_password"
             onChange={(e) => setResetPassword(e.target.value)}
-            placeholder="enter new password"
+            placeholder="Enter new password"
             className="reset-password-fields"
             required
           />
@@ -64,7 +65,7 @@ const ResetPassword = () => {
           Change Password
         </Button>
       </Form>
-      {/*<ToastContainer />*/}
+      <ToastContainer />
     </div>
   );
 };

@@ -48,6 +48,9 @@ import DataPage from "./PayBillsPage/DataPage/DataPage";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
 import RecentTransactions from "./AllTransactions/RecentTransaction";
 import PayBillDropDown from "./PayBillsPage/PayBillsPage"; 
+// import AirtimePage from "./PayBillsPage/AirtimePage/AirtimePage";
+// import DataPage from "./PayBillsPage/DataPage/DataPage";
+import CableTvPage from "./PayBillsPage/CableTvPage/CableTvPage";
 
 
 
@@ -211,6 +214,7 @@ export const UserDashboardLayout = (props) => {
           <Route path="/paybills" element={<PayBillDropDown />} />
           <Route path="/airtime" element={<AirtimePage />} />
           <Route path="/data" element={<DataPage />} />
+          <Route path="/cable-tv" element={<CableTvPage />} />
         </Route>
       </Routes>
       <ToastContainer />

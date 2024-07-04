@@ -129,7 +129,7 @@ export default function DataComponent() {
       {errorMessage && <p className={style.errorMessage}>{errorMessage}</p>}
       <div className={style.buttonGroup}>
         <button type="button" className={style.buttonSubmit} onClick={handleSubmit}>
-          Pay
+          Proceed
         </button>
         <button type="button" className={style.buttonCancel} onClick={handleCancel}>
           Cancel
