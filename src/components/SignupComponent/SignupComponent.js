@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import LeverpayLogo from "../../assets/images/LeverpayLogo.png";
 import signupMan from "../../assets/images/signup-man.png";
@@ -15,12 +15,7 @@ import phoneIcon from "../../assets/images/phone-icon.svg";
 import referralIcon from "../../assets/images/referral-code-icon.svg";
 import "./SignupComponent.css";
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import {
-  // getCities,
-  // getCountry,
-  // getState,
-  signUp,
-} from "../../services/apiService";
+import { signUp } from "../../services/apiService";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
@@ -37,11 +32,6 @@ function SignupComponent() {
   const [signupMessage, setSignupMessage] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
-  // const [country, setCountry] = useState([]);
-  // const [countryID, setCountryID] = useState("");
-  // const [state, setState] = useState([]);
-  // const [stateID, setStateID] = useState("");
-  // const [city, setCity] = useState([]);
   const [referralCode, setReferralCode] = useState(""); // New Referral Code state
   const [condition, setCondition] = useState(false);
 
@@ -53,8 +43,6 @@ function SignupComponent() {
     }
     setCondition(!condition);
   };
-
-  const validatePassword = () => password === confirmPassword;
 
   const inputRef = React.createRef();
 
@@ -106,7 +94,7 @@ function SignupComponent() {
       return;
     }
 
-    if (password != confirmPassword) {
+    if (password !== confirmPassword) {
       toast.dismiss();
       toast.error("Password fields do not match");
 
@@ -124,7 +112,6 @@ function SignupComponent() {
       last_name: lastName,
       other_name: othername,
       gender: gender,
-      // dob: Intl.DateTimeFormat("en").format(birthDate),
       dob: birthDate,
       email: email,
       phone: phoneNumber,
