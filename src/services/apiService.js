@@ -14,30 +14,6 @@ const setAuthHeader = (token) => {
   httpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
-<<<<<<< HEAD
-export const signIn = async (credentials, setJwt) => {
-    try {
-        const response = await httpClient.post("/v1/user/signin", credentials);
-        if (response.data.success) {
-            const token = response.data.data.token;
-            if (token) {
-                toast.success(response.data.message);
-                setJwt(token);
-                localStorage.setItem("jwt", token);
-                setAuthHeader(token);
-                setTimeout(() => {
-                    window.location.href = "/";
-                }, 2000);
-            } else {
-                toast.error("Token is missing in the response.");
-            }
-        } else {
-            toast.error(response.data.message);
-        }
-    } catch (err) {
-        toast.error(err.message);
-        console.error("API call error:", err);
-=======
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
     const signInURL = `${baseURL}/v1/login`;
@@ -68,28 +44,10 @@ export const signIn = async (userData, jwt, setJwt) => {
     } catch (err) {
       toast.error(err.message);
       console.error("API call error:", err);
->>>>>>> eaa0404ddf21515fe2c5a104a92e039c8cfae1a6
     }
   }
 };
 
-<<<<<<< HEAD
-export const signUp = async (signupData) => {
-    try {
-        const response = await httpClient.post("/v1/user/signup", signupData);
-        if (response.data.status === 200) {
-            toast.success(response.data.message);
-            localStorage.setItem("userEmail", signupData.email);
-            setTimeout(() => {
-                window.location.href = "/leverpay-signup/signup-OTP";
-            }, 2000);
-        } else {
-            toast.error(response.data.message);
-        }
-    } catch (error) {
-        console.error("Sign Up Error:", error);
-        toast.error(error.message);
-=======
 export const signUp = async ({ signupData }) => {
   // httpClient
   //     .post("/v1/user/signup", signupData)
@@ -118,7 +76,6 @@ export const signUp = async ({ signupData }) => {
       return error.response.data; // Return the error response data
     } else {
       return { success: false, message: "An unknown error occurred." }; // Return a generic error message
->>>>>>> eaa0404ddf21515fe2c5a104a92e039c8cfae1a6
     }
   }
 };
