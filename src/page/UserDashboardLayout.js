@@ -46,6 +46,7 @@ import AllTransactionCon from "./AllTransactions/AllTransactionCon";
 import AirtimePage from "./PayBillsPage/AirtimePage/AirtimePage";
 import DataPage from "./PayBillsPage/DataPage/DataPage";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
+
 import RecentTransactions from "./AllTransactions/RecentTransaction";
 import PayBillDropDown from "./PayBillsPage/PayBillsPage"; 
 // import AirtimePage from "./PayBillsPage/AirtimePage/AirtimePage";
@@ -53,6 +54,11 @@ import PayBillDropDown from "./PayBillsPage/PayBillsPage";
 import CableTvPage from "./PayBillsPage/CableTvPage/CableTvPage";
 
 
+
+import PayBillDropDown from "../page/PayBillsPage/PayBillsPage";
+import SourceComponent from "./PayBillsPage/Source1Page";
+import Source2Page from "./PayBillsPage/Source2page";
+import CreatePinPage from "./PayBillsPage/CreatePinPage";
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -156,6 +162,10 @@ export const UserDashboardLayout = (props) => {
                     <StatementComponent />
                   </div>
                   <div className="dashboard-transaction-table-container col-md-11">
+<<<<<<< HEAD
+=======
+                    {/* <AllTransactions /> */}
+>>>>>>> eaa0404ddf21515fe2c5a104a92e039c8cfae1a6
                     <RecentTransactions />
                   </div>
                 </div>
