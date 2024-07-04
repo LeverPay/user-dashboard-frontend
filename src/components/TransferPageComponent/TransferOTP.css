@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 .modal-content {
   display: block !important;
   background-color: #fff !important;
+  font-family: "Montserrat", sans-serif !important;
   width: 30% !important;
   height: 100% !important;
   margin: auto !important;
@@ -10,6 +13,40 @@
   margin-right: auto !important; */
   /* margin-bottom: auto !important; */
   padding: 0rem !important;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between !important;
+  align-items: center;
+  padding: var(--bs-modal-header-padding);
+  border-bottom: var(--bs-modal-header-border-width) solid
+    var(--bs-modal-header-border-color);
+  border-top-left-radius: var(--bs-modal-inner-border-radius);
+  border-top-right-radius: var(--bs-modal-inner-border-radius);
+}
+
+.modal-header p {
+  padding: 0 !important;
+  font-family: "Montserrat", sans-serif !important;
+  color: black;
+  font-size: 13px !important;
+  font-weight: 800;
+  text-align: center !important;
+}
+
+span.modal_pay {
+  font-size: 16px;
+  font-weight: 800;
+  color: #172c63;
+  font-family: "Montserrat", sans-serif !important;
+}
+
+span.modal_header_amount {
+  font-size: 20px;
+  font-weight: 800;
+  color: #5fce2f;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 /* .tOtp {
@@ -31,25 +68,26 @@
 }
 
 .otp-message {
-  padding-top: 0.9rem;
-  width: 55%;
+  padding: 0 !important;
+  width: 260px;
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
   color: #172c63;
   font-size: 14px !important;
   font-weight: 800 !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 .otp-resend-msg {
-  padding-top: 0.9rem;
+  padding: 0 !important;
   width: 60%;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  /* color: #172c63; */
-  font-size: 14px !important;
-  font-weight: 800 !important;
+  color: black;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 .color-link {
@@ -98,10 +136,7 @@
 .cancel-payment {
   display: block;
   width: 50% !important;
-  /* padding: 2%; */
-  margin-left: auto !important;
-  margin-right: auto !important;
-  margin-bottom: 2%;
+  margin: 20px auto !important;
   text-align: center !important;
 }
 
@@ -110,8 +145,15 @@
   margin: auto;
 }
 
+.modal-footer {
+  justify-content: center;
+  align-items: center !important;
+}
+
 .footer-style {
   font-size: 0.9em !important;
+  color: black;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 620px) {
