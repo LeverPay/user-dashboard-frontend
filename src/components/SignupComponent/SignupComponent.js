@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Form, Button } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import LeverpayLogo from "../../assets/images/LeverpayLogo.png";
 import signupMan from "../../assets/images/signup-man.png";
 import chatIcon from "../../assets/images/chat.svg";
@@ -10,21 +10,17 @@ import lockIcon from "../../assets/images/ph_lock-simple-fill.svg";
 import ellipseBottom from "../../assets/images/ellipse-bottom.svg";
 import ellipseRight from "../../assets/images/ellipse-right.svg";
 import emailIcon from "../../assets/images/email-icon.svg";
-import eyeVisibleIcon from "../../assets/images/eye-icon.svg";
 import passwordLockIcon from "../../assets/images/password-lock-icon.svg";
 import phoneIcon from "../../assets/images/phone-icon.svg";
 import referralIcon from "../../assets/images/referral-code-icon.svg";
 import "./SignupComponent.css";
-import PhoneNumberComponent from "../PhoneNumberComponent/PhoneNumberComponent";
-import { AiOutlineEye } from "react-icons/ai";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import {
-  getCities,
-  getCountry,
-  getState,
+  // getCities,
+  // getCountry,
+  // getState,
   signUp,
 } from "../../services/apiService";
-// import DatePicker from "react-datepicker";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
@@ -39,16 +35,13 @@ function SignupComponent() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [signupMessage, setSignupMessage] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
   const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState("");
-  const [country, setCountry] = useState([]);
-  const [countryID, setCountryID] = useState("");
-  const [state, setState] = useState([]);
-  const [stateID, setStateID] = useState("");
-  const [city, setCity] = useState([]);
-  const [cityID, setCityID] = useState("");
-  const [bvn, setBVN] = useState("");
+  // const [country, setCountry] = useState([]);
+  // const [countryID, setCountryID] = useState("");
+  // const [state, setState] = useState([]);
+  // const [stateID, setStateID] = useState("");
+  // const [city, setCity] = useState([]);
   const [referralCode, setReferralCode] = useState(""); // New Referral Code state
   const [condition, setCondition] = useState(false);
 
@@ -176,18 +169,6 @@ function SignupComponent() {
   const handleGender = (e) => {
     setGender(e.target.value);
   };
-
-  useEffect(() => {
-    getCountry({ setCountry });
-  }, []);
-
-  useEffect(() => {
-    getState({ countryID, setState });
-  }, [countryID]);
-
-  useEffect(() => {
-    getCities({ stateID, setCity });
-  }, [stateID]);
 
   // For animation sake
 
