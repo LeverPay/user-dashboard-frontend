@@ -2,16 +2,23 @@ import React from "react";
 import "./allInvoice.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 import loadingGif from "../../assets/loading-gif.gif";
 import { useLocalState } from "../../utils/useLocalStorage";
+import UnpaidReceipt from "../../components/UnpaidInvoice/UnpaidReceipt";
 
 const Allinvoices = (props) => {
   const [allInvoices, setAllInvoices] = useState({});
   const [isInvoice, setIsInvoice] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [popUp, setPopUp] = useState(false);
+  const [idData, setIdData] = useState(null);
   const [jwt, setJwt] = useLocalState("", "jwt");
+
+  const handlePopUp = (id) => {
+    setIdData(id);
+    setPopUp(true);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -22,7 +29,6 @@ const Allinvoices = (props) => {
         },
       })
       .then((res) => {
-        console.log(res.data.data);
         setAllInvoices(res.data.data);
 
         if (res.data.data.length > 0) {
@@ -76,14 +82,12 @@ const Allinvoices = (props) => {
                       <td>&#8358; {parseInt(parseFloat(item.price))}</td>
                       <td>{item.status ? "Paid" : "Unpaid"}</td>
                       <td>
-                        <Link
-                          to="invoices/paid-invoice"
-                          state={item.uuid}
-                          style={{ color: "green" }}
+                        <button
+                          className="view-unpaid-receipt"
+                          onClick={() => handlePopUp(item.uuid)}
                         >
-                          {" "}
                           View
-                        </Link>
+                        </button>
                       </td>
                     </tr>
                   );
@@ -97,6 +101,12 @@ const Allinvoices = (props) => {
             </tbody>
           </table>
         </div>
+
+        {popUp && (
+          <div className="unpaid-receipt-popup">
+            <UnpaidReceipt id={idData} setPopUp={setPopUp} />
+          </div>
+        )}
       </div>
     </div>
   );

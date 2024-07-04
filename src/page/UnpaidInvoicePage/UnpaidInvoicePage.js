@@ -26,7 +26,6 @@ function UnpaidInvoicePage() {
         }
       )
       .then((res) => {
-        console.log(res.data);
         setData(res.data.data);
         setLoading(false);
         if (res.data.data.length > 0) {
@@ -46,7 +45,6 @@ function UnpaidInvoicePage() {
   };
 
   const handlePopUp = (id) => {
-    console.log(id);
     setIdData(id);
     setPopUp(true);
   };
