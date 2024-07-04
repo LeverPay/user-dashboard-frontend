@@ -42,16 +42,22 @@ import AllInvoicePage from "./AllInvoicePage/AllInvoicePage";
 import Allinvoices from "./AllInvoices/Allinvoices";
 import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
-// import AllTransactions from "./AllTransactions/AllTransactions";
 import AllTransactionCon from "./AllTransactions/AllTransactionCon";
+import AirtimePage from "./PayBillsPage/AirtimePage/AirtimePage";
+import DataPage from "./PayBillsPage/DataPage/DataPage";
+import PayBill from "./PayBillsPage/PayBillsPage";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
 
 import RecentTransactions from "./AllTransactions/RecentTransaction";
+ 
+
+
+import CableTvPage from "./PayBillsPage/CableTvPage/CableTvPage";
+
+
 
 import PayBillDropDown from "../page/PayBillsPage/PayBillsPage";
-import SourceComponent from "./PayBillsPage/Source1Page";
-import Source2Page from "./PayBillsPage/Source2page";
-import CreatePinPage from "./PayBillsPage/CreatePinPage";
+
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -105,25 +111,23 @@ export const UserDashboardLayout = (props) => {
         <Route path="/investment" element={<Investment />} />
         <Route
           element={
-            <>
-              <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
-                <div className="nav-con">
-                  <NavComponent />
-                </div>
-                <div className="col-md-10">
-                  <TopNav
-                    userName={{
-                      firstName: user.first_name,
-                      lastName: user.last_name,
-                      passport: user.passport,
-                    }}
-                  />
-                  <PrivateRoute userName={user.first_name}>
-                    <Outlet />
-                  </PrivateRoute>
-                </div>
+            <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
+              <div className="nav-con">
+                <NavComponent />
               </div>
-            </>
+              <div className="col-md-10">
+                <TopNav
+                  userName={{
+                    firstName: user.first_name,
+                    lastName: user.last_name,
+                    passport: user.passport,
+                  }}
+                />
+                <PrivateRoute userName={user.first_name}>
+                  <Outlet />
+                </PrivateRoute>
+              </div>
+            </div>
           }
         >
           <Route
@@ -150,11 +154,7 @@ export const UserDashboardLayout = (props) => {
                       />
                     </div>
                     <div className="col-md-4">
-                      <TotalMoney
-                        bg="#201E34"
-                        totaltype=" Total Saved"
-                        // amt={userData ? userData.total_save.ngn : ""}
-                      />
+                      <TotalMoney bg="#201E34" totaltype=" Total Saved" />
                     </div>
                   </div>
                   <div className="statement col-md-11">
@@ -165,20 +165,11 @@ export const UserDashboardLayout = (props) => {
                     <RecentTransactions />
                   </div>
                 </div>
-                <div className="dashboard-left col-md-4  card-holder">
+                <div className="dashboard-left col-md-4 card-holder">
                   <div className="col-md-12 default-card-holder">
                     <header className="card-header">My Card</header>
                     <CardUser />
                   </div>
-                  {/* <div
-                    className="col-md-10 mx-auto"
-                    style={{ transform: "translateY(-3.5rem)" }}
-                  >
-                    <CardSilver
-                      firstName={user.first_name}
-                      lastName={user.last_name}
-                    />
-                  </div> */}
                   <div className="mchnt-con col-md-12">
                     <div className="mchnt-con-div">
                       <MerchantComponent />
@@ -188,23 +179,17 @@ export const UserDashboardLayout = (props) => {
               </div>
             }
           />
-
           <Route path="transactions" element={<AllTransactionCon />} />
           <Route path="funding-history" element={<AllFundingHistoryCon />} />
           <Route exact path="transfer" element={<TransferPage />} />
           <Route exact path="/investment" element={<Investment />} />
-
           <Route path="invoices" element={<AllInvoicePage />}>
             <Route index element={<Allinvoices />} />
             <Route path="all-invoices" element={<Allinvoices />} />
             <Route path="unpaid-invoices" element={<UnpaidInvoicePage />} />
             <Route path="paid-invoice" element={<PaidInvoice />} />
           </Route>
-
           <Route path="/unpaid-invoice" element={<UnpaidReceipt />} />
-
-          <Route path="/pending-subscription" element />
-
           <Route path="funding" element={<FundingPage />}>
             <Route index element={<FundingPayment />} />
             <Route path="stablecoins-deposit" element={<FundingPayment />} />
@@ -214,53 +199,29 @@ export const UserDashboardLayout = (props) => {
           </Route>
           <Route path="cardCategories" element={<CardcategoryPage />} />
           <Route path="account" element={<MyUpgradedAccount />} />
-          <Route
-            path="my cards"
-            element={
-              <MyCardsSilver
-                firstName={user.first_name}
-                lastName={user.last_name}
-              />
-            }
-          />
+          <Route path="my cards" element={<MyCardsSilver firstName={user.first_name} lastName={user.last_name} />} />
           <Route path="settings" element={<Settings />} />
-          <Route
-            path="profile"
-            element={
-              <ProfilePage
-                userName={{
-                  firstName: user.first_name,
-                  lastName: user.last_name,
-                  otherName: user.other_name,
-                  gender: user.gender,
-                  reg_email: user.email,
-                  reg_phone: user.phone,
-                }}
-              />
-            }
-          />
+          <Route path="profile" element={<ProfilePage userName={{ firstName: user.first_name, lastName: user.last_name, otherName: user.other_name, gender: user.gender, reg_email: user.email, reg_phone: user.phone }} />} />
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
           <Route path="payment-page" element={<PaymentPage />}>
             <Route index element={<CreditCard />} />
             <Route path="credit-card" element={<CreditCard />} />
-            <Route
-              path="checkout-transfer"
-              element={<CheckoutTransfer isInvest={true} />}
-            />
+            <Route path="checkout-transfer" element={<CheckoutTransfer isInvest={true} />} />
           </Route>
           <Route path="/my-subscriptions" element={<MySubscription />} />
-          <Route
-            path="my-subscriptions/subscription-transactions"
-            element={<SubscriptionTransactions />}
-          />
-          <Route exact path="*" element={<Navigate to="/" />} />
+          <Route path="my-subscriptions/subscription-transactions" element={<SubscriptionTransactions />} />
+          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="signin" element={<SignInPage />} />
+          <Route path="leverpay-signup" element={<SignupPage />} />
+          <Route path="leverpay-signup/signup-OTP" element={<SignupOTP />} />
+          <Route path="/paybills" element={<PayBill />} />
+          <Route path="/airtime" element={<AirtimePage />} />
+          <Route path="/data" element={<DataPage />} />
+          <Route path="/cable-tv" element={<CableTvPage />} />
         </Route>
-        <Route exact path="reset-password" element={<ResetPassword />} />
-        <Route path="signin" element={<SignInPage />} />
-        <Route path="leverpay-signup" element={<SignupPage />} />
-        <Route path="leverpay-signup/signup-OTP" element={<SignupOTP />} />
       </Routes>
       <ToastContainer />
     </>

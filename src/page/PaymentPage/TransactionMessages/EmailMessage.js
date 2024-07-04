@@ -8,7 +8,7 @@ import Discord from "../../../assets/images/discord.png";
 import Instagram from "../../../assets/images/instagram.png";
 import LinkedIn from "../../../assets/images/linkedIn.png";
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Padlock from "../../../assets/images/padlock.png";
 
 function EmailMessage() {
