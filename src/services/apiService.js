@@ -40,7 +40,11 @@ export const signIn = async (userData, jwt, setJwt) => {
                 toast.error(response.data.message);
             }
         } catch (err) {
-            toast.error(err.message);
+            if (err.response && err.response.data && err.response.data.message) {
+                toast.error(err.response.data.message);
+            } else {
+                toast.error("An error occurred. Please try again later.");
+            }
             console.error("API call error:", err);
         }
     }

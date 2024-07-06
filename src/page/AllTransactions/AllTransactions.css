@@ -34,6 +34,7 @@
 .allTransactionCon {
   margin-top: 8rem;
   padding: 10px 4rem;
+  overflow: auto;
 }
 .allTransactions header {
   display: flex;
@@ -67,7 +68,7 @@
   list-style: none;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   padding: 0;
 }
 .allTransactions main .allTransactions-head li {
@@ -86,7 +87,7 @@
   width: calc(100% / 5);
   font-size: 12px !important;
   padding: 5px 10px;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .allTransactions h3 {
   text-align: center;

@@ -42,7 +42,7 @@ const AllTransactions = ({ data, isData, onViewClick }) => {
               <li style={{ color: item.status === 0 ? '#F79E1B' : item.status === 1 ? '#329521' : 'red' }}>
                 {item.status === 0 ? 'Pending' : item.status === 1 ? 'Successful' : 'Failed'}
               </li>
-              <li onClick={() => onViewClick(item)}>View</li>
+              <li style ={{color: "blue"}} onClick={() => onViewClick(item)}>View</li>
             </ul>
           ))
         ) : (

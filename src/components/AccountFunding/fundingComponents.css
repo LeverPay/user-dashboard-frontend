@@ -70,12 +70,12 @@
 }
 
 /* fund navigation */
-.FundNavigation {
+.FundTabs {
   display: flex;
   width: 100%;
   margin-top: 3rem;
 }
-.FundNavigation ul {
+.FundTabs ul {
   display: flex;
   list-style: none;
   align-items: flex-start;
@@ -84,7 +84,7 @@
   margin: 0;
   border-bottom: 2px solid rgb(220, 210, 210);
 }
-.FundNavigation li {
+.FundTabs li {
   font-family: Agrandir-bold;
   font-size: 14px;
   font-weight: 700;
@@ -93,15 +93,15 @@
   margin-left: -1.5rem;
 }
 
-.FundNavigation a {
+.FundTabs a {
   text-decoration: none;
   color: inherit;
   padding-bottom: 9px;
   margin-bottom: -7px;
 }
-.FundNavigation .active {
-  border-bottom: 4px solid #129346;
-  color: #129346;
+.FundTabs .active {
+  border-bottom: 4px solid #129346 !important;
+  color: #129346 !important;
 }
 
 /* stable coins  */
@@ -376,7 +376,7 @@
 .FundingNaira .transferC{
   margin-top: 2rem;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: 1rem;
 }
 .FundingNaira .transferC div{
@@ -391,10 +391,10 @@
   padding-block: 10px;
 }
 .FundingNaira .transferC :nth-child(1){
-  background-color: #329521;
+  background-color: #f49b09;
 }
 .FundingNaira .transferC :nth-child(2){
-  background-color: #f49b09;
+  background-color: #329521;
 }
 .FundingBankTransfer{
   text-align: center;
@@ -451,16 +451,18 @@
 }
 .FundingNairaBank main h3{
   font-size: 16px;
-  font-weight: 700;
+  color: #172C63;
+  font-weight: 500;
+  font-family: Montserrat;
 }
 .FundingNairaBank main h4{
   font-size: 16px;
   margin-top: 0;
 }
 .FundingNairaBank main select{
-  padding: 5px;
+  padding: 10px;
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 5px;
   outline: 0px;
 }
 .FundingNairaBank main select option{
@@ -481,6 +483,16 @@
   margin-top: 1rem;
   width: 100%;
 }
+.button-container{
+  display: flex;
+  gap: 1rem;
+}
+
+.button-container > button + button{
+  background-color: red ;
+  border: 1px solid red;
+}
+
 .Funding_confirm_cancel{
   display: flex;
   gap: 0px;
