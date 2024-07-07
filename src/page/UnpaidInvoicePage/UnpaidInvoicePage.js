@@ -5,14 +5,18 @@ import { useLocalState } from "../../utils/useLocalStorage";
 import "./UnpaidInvoicePage.css";
 import UnpaidReceipt from "../../components/UnpaidInvoice/UnpaidReceipt";
 import loadingGif from "../../assets/loading-gif.gif";
+import ReactPaginate from "react-paginate";
 
 function UnpaidInvoicePage() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [isdata, setIsdata] = useState(false);
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [popUp, setPopUp] = useState(false);
   const [idData, setIdData] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   useEffect(() => {
     setLoading(true);
@@ -26,7 +30,10 @@ function UnpaidInvoicePage() {
         }
       )
       .then((res) => {
-        setData(res.data.data);
+        const unpaidInvoices = res.data.data.filter(
+          (invoice) => invoice.status === 0
+        );
+        setData(unpaidInvoices);
         setLoading(false);
         if (res.data.data.length > 0) {
           setIsdata(true);
@@ -47,6 +54,24 @@ function UnpaidInvoicePage() {
   const handlePopUp = (id) => {
     setIdData(id);
     setPopUp(true);
+  };
+
+  // Pagination
+  const handlePageClick = (event) => {
+    setCurrentPage(event.selected);
+  };
+
+  const handleItemsPerPageChange = (event) => {
+    setItemsPerPage(Number(event.target.value));
+    setCurrentPage(0);
+  };
+
+  const offset = currentPage * itemsPerPage;
+  const currentItems = data.slice(offset, offset + itemsPerPage);
+  const pageCount = Math.ceil(data.length / itemsPerPage);
+
+  const truncateName = (name) => {
+    return name.length > 15 ? name.substring(0, 15) + "..." : name;
   };
 
   return (
@@ -72,13 +97,24 @@ function UnpaidInvoicePage() {
               </div>
             )}
             {isdata &&
-              data.map((item) => {
+              currentItems.map((item) => {
                 return (
                   <tr key={item.uuid} className="table-data">
                     <td>{formatDate(item.created_at)}</td>
-                    <td>{item.product_name}</td>
+                    <td>{truncateName(item.product_name)}</td>
                     <td>&#8358; {parseInt(parseFloat(item.price))}</td>
-                    <td>{item.status ? "Paid" : "Unpaid"}</td>
+                    <td
+                      style={{
+                        color:
+                          item.status === 0
+                            ? "#F79E1B"
+                            : item.status === 1
+                            ? "#329521"
+                            : "red",
+                      }}
+                    >
+                      {item.status ? "Paid" : "Unpaid"}
+                    </td>
                     <td>
                       <button
                         className="view-unpaid-receipt"
@@ -97,6 +133,35 @@ function UnpaidInvoicePage() {
             )}
           </tbody>
         </table>
+      </div>
+
+      <div id="table_custom_pagination_container">
+        <div className="pagination-controls">
+          <label htmlFor="itemsPerPage">Items per page:</label>
+          <select
+            id="itemsPerPage"
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
+
+        <ReactPaginate
+          previousLabel={"Previous"}
+          nextLabel={"Next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+        />
       </div>
 
       {popUp && (
