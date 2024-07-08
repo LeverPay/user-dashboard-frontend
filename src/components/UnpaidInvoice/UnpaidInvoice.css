@@ -1,31 +1,38 @@
-.Unpaiddata tr td{
-    color: white;
-    /* width: 20%; */
-    padding-block: 15px;
-    font-family: KB-sans-Bold;
+.Unpaiddata tr td {
+  color: white;
+  /* width: 20%; */
+  padding-block: 15px;
+  font-family: KB-sans-Bold;
 }
-.Unpaiddata a{
-    text-decoration: none;
+.Unpaiddata a {
+  text-decoration: none;
 }
-.Unpaiddata{
-    width: 100%;
+.Unpaiddata {
+  width: 100%;
 }
-.Unpaiddata tr{
-    border-bottom: none;
-    border-top: none;
+.Unpaiddata tr {
+  border-bottom: none;
+  border-top: none;
 }
-.Unpaiddata .table-data{
-    display: flex;
-    width: 100%;
-    padding-left: .5rem;
-    border-radius: 10px;
+.Unpaiddata .table-data {
+  display: flex;
+  width: 100%;
+  padding-left: 0.5rem;
+  border-radius: 10px;
 }
-.Unpaiddata .table-data:hover{
-    background-color: rgb(170, 169, 169);
+.Unpaiddata .table-data:hover {
+  background-color: rgb(170, 169, 169);
 }
-.Unpaiddata .table-data td{
-    width: calc(100%/5);
+.Unpaiddata .table-data td {
+  width: calc(100% / 5);
 }
-.unInv{
-    /* position: absolute; */
+.unInv {
+  /* position: absolute; */
+}
+
+@media screen and (max-width: 500px) {
+  .Unpaiddata .table-data td {
+    font-size: 12px;
+    padding: 2px;
+  }
 }

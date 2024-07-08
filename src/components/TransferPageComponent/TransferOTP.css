@@ -4,7 +4,7 @@
   display: block !important;
   background-color: #fff !important;
   font-family: "Montserrat", sans-serif !important;
-  width: 30% !important;
+  width: 100% !important;
   height: 100% !important;
   margin: auto !important;
   border: 1px solid black !important;
@@ -80,7 +80,7 @@ span.modal_header_amount {
 
 .otp-resend-msg {
   padding: 0 !important;
-  width: 60%;
+  width: 239px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -105,7 +105,6 @@ span.modal_header_amount {
 .otp-field {
   display: flex;
   flex-direction: row;
-  margin-top: 2%;
   margin-left: auto;
   margin-right: auto;
   justify-content: space-between;
