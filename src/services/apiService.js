@@ -80,6 +80,44 @@ export const signUp = async ({ signupData }) => {
   }
 };
 
+export const payInvoice = async ({ id }) => {
+  const idData = {
+    uuid: id,
+  };
+  try {
+    const response = await httpClient.post("/v1/user/pay-invoice", idData);
+    return response.data; // Return the response data
+  } catch (error) {
+    if (error.response && error.response.data) {
+      return error.response.data; // Return the error response data
+    } else {
+      return { success: false, message: "An unknown error occurred." }; // Return a generic error message
+    }
+  }
+};
+
+export const verifyPayInvoice = async ({ id, otp }) => {
+  const idData = {
+    uuid: id,
+    otp: otp,
+  };
+
+  try {
+    const response = await httpClient.post(
+      "/v1/user/verify-invoices-otp",
+      idData
+    );
+    return response.data; // Return the response data
+  } catch (error) {
+    console.log("err", error);
+    if (error.response && error.response.data) {
+      return error.response.data; // Return the error response data
+    } else {
+      return { success: false, message: "An unknown error occurred." }; // Return a generic error message
+    }
+  }
+};
+
 export const verifyEmail = async (verifyData) => {
   //   httpClient
   //     .post("/v1/verify-email", verifyData)

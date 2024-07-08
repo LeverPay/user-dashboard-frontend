@@ -3,9 +3,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import QRCode from "qrcode";
 import TransferOTP from "../TransferPageComponent/TransferOTP";
 import loadingGif from "../../assets/loading-gif.gif";
+import { payInvoice } from "../../services/apiService";
+import { toast } from "react-toastify";
 
 const ReceiptCard = ({ id, data, setPopUp, loading }) => {
   let componentRef = useRef();
+
+  const userJson = JSON.parse(localStorage.getItem("user"));
+  const wallet = userJson.wallet;
 
   const [show, setShow] = useState(false);
 
@@ -74,6 +79,33 @@ const ReceiptCard = ({ id, data, setPopUp, loading }) => {
 
   const totalAmount =
     parseFloat(data.price) + parseFloat(data.fee) + parseFloat(data.vat);
+
+  const payInvoiceFn = async () => {
+    //Check that the balance is more than the funds to be paid first
+    if (parseFloat(wallet.amount.ngn) < totalAmount) {
+      toast.error("Not enough funds");
+      return;
+    }
+
+    //If the balance is enough continue with paying the invoice
+    toast.loading("Authorizing");
+
+    const response = await payInvoice({ id });
+
+    toast.dismiss();
+
+    if (response.success) {
+      toast.success(response.message);
+      setShow(true);
+      // setTimeout(() => {
+      //   toast.dismiss()
+      // }, 5000);
+    } else {
+      // Handle validation errors returned from the backend
+      toast.dismiss();
+      toast.error(response.message || "OTP failed");
+    }
+  };
 
   return (
     <div className="receipt-container">
@@ -170,12 +202,7 @@ const ReceiptCard = ({ id, data, setPopUp, loading }) => {
                 <button onClick={closeReceipt} className="cancel_btn">
                   Cancel
                 </button>
-                <button
-                  onClick={() => {
-                    setShow(true);
-                  }}
-                  className="approve_btn"
-                >
+                <button onClick={payInvoiceFn} className="approve_btn">
                   Approve
                 </button>
               </div>
@@ -188,6 +215,8 @@ const ReceiptCard = ({ id, data, setPopUp, loading }) => {
               setShow={toggleShow}
               email={data.email}
               amount={totalAmount}
+              resendFn={payInvoiceFn}
+              id={id}
             />
           </div>
         )}

@@ -49,15 +49,10 @@ import PayBill from "./PayBillsPage/PayBillsPage";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
 
 import RecentTransactions from "./AllTransactions/RecentTransaction";
- 
-
 
 import CableTvPage from "./PayBillsPage/CableTvPage/CableTvPage";
 
-
-
 import PayBillDropDown from "../page/PayBillsPage/PayBillsPage";
-
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -109,6 +104,9 @@ export const UserDashboardLayout = (props) => {
     <>
       <Routes>
         <Route path="/investment" element={<Investment />} />
+        <Route path="signin" element={<SignInPage />} />
+        <Route path="leverpay-signup" element={<SignupPage />} />
+        <Route path="leverpay-signup/signup-OTP" element={<SignupOTP />} />
         <Route
           element={
             <div className="col-md-12 flexy" style={{ overflowX: "hidden" }}>
@@ -199,24 +197,49 @@ export const UserDashboardLayout = (props) => {
           </Route>
           <Route path="cardCategories" element={<CardcategoryPage />} />
           <Route path="account" element={<MyUpgradedAccount />} />
-          <Route path="my cards" element={<MyCardsSilver firstName={user.first_name} lastName={user.last_name} />} />
+          <Route
+            path="my cards"
+            element={
+              <MyCardsSilver
+                firstName={user.first_name}
+                lastName={user.last_name}
+              />
+            }
+          />
           <Route path="settings" element={<Settings />} />
-          <Route path="profile" element={<ProfilePage userName={{ firstName: user.first_name, lastName: user.last_name, otherName: user.other_name, gender: user.gender, reg_email: user.email, reg_phone: user.phone }} />} />
+          <Route
+            path="profile"
+            element={
+              <ProfilePage
+                userName={{
+                  firstName: user.first_name,
+                  lastName: user.last_name,
+                  otherName: user.other_name,
+                  gender: user.gender,
+                  reg_email: user.email,
+                  reg_phone: user.phone,
+                }}
+              />
+            }
+          />
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
           <Route path="payment-page" element={<PaymentPage />}>
             <Route index element={<CreditCard />} />
             <Route path="credit-card" element={<CreditCard />} />
-            <Route path="checkout-transfer" element={<CheckoutTransfer isInvest={true} />} />
+            <Route
+              path="checkout-transfer"
+              element={<CheckoutTransfer isInvest={true} />}
+            />
           </Route>
           <Route path="/my-subscriptions" element={<MySubscription />} />
-          <Route path="my-subscriptions/subscription-transactions" element={<SubscriptionTransactions />} />
+          <Route
+            path="my-subscriptions/subscription-transactions"
+            element={<SubscriptionTransactions />}
+          />
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="signin" element={<SignInPage />} />
-          <Route path="leverpay-signup" element={<SignupPage />} />
-          <Route path="leverpay-signup/signup-OTP" element={<SignupOTP />} />
           <Route path="/paybills" element={<PayBill />} />
           <Route path="/airtime" element={<AirtimePage />} />
           <Route path="/data" element={<DataPage />} />

@@ -14,10 +14,13 @@
   color: white;
   font-family: AgrandirRegular;
 }
+
 .Unpaid h1 {
   font-family: AgrandirBold;
   margin-bottom: 2rem;
+  font-size: 18px;
 }
+
 .Unpaid thead td {
   width: calc(100% / 5);
   font-weight: 900;
@@ -58,6 +61,7 @@
   color: green;
   border-radius: none !important;
   width: 90%;
+  text-align: left;
 }
 
 .invoice-id {
