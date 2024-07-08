@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import style from './AirtimeComponent.module.css';
 import mtnLogo from '../../../assets/mtn.png';
 import airtelLogo from "../../../assets/airtel.jpeg";
-import gloLogo from '../../../assets/glo.png';
+import gloLogo from "../../../assets/glo.jpeg";
 import nineMobileLogo from '../../../assets/9mobile.webp';
 import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
 
@@ -21,7 +21,8 @@ const AirtimeComponent = () => {
   const [amount, setAmount] = useState('');
   const [saveNumber, setSaveNumber] = useState(!!phoneNumber);
   const [balance, setBalance] = useState(1000);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
+  const [amountErrorMessage, setAmountErrorMessage] = useState('');
 
   useEffect(() => {
     if (phoneNumber) {
@@ -39,8 +40,9 @@ const AirtimeComponent = () => {
     console.log('Amount:', amount);
     console.log('Save Number:', saveNumber);
     console.log('Balance:', balance);
-    console.log('Error Message:', errorMessage);
-  }, [network, phoneNumber, amount, saveNumber, balance, errorMessage]);
+    console.log('Phone Error Message:', phoneErrorMessage);
+    console.log('Amount Error Message:', amountErrorMessage);
+  }, [network, phoneNumber, amount, saveNumber, balance, phoneErrorMessage, amountErrorMessage]);
 
   const handlePhoneNumberChange = (e) => {
     const newPhoneNumber = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
@@ -49,43 +51,55 @@ const AirtimeComponent = () => {
     if (detectedNetwork) {
       setNetwork(detectedNetwork);
     }
+    setPhoneErrorMessage(''); // Clear phone error message when user starts typing
   };
 
   const handleAmountChange = (e) => {
     const newAmount = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
     setAmount(newAmount);
+    setAmountErrorMessage(''); // Clear amount error message when user starts typing
   };
 
   const handleSaveNumberChange = (e) => setSaveNumber(e.target.checked);
 
   const handleSubmit = () => {
     const amountNum = parseFloat(amount);
-    console.log('Submitting:', { network, phoneNumber, amountNum, balance });
+    let hasError = false;
 
     if (isNaN(amountNum)) {
-      setErrorMessage('Please enter a valid number.');
-      return;
+      setAmountErrorMessage('Please enter a valid amount.');
+      hasError = true;
     } else if (amountNum > balance) {
-      setErrorMessage('Amount entered is greater than balance.');
-      return;
+      setAmountErrorMessage('Amount entered is greater than balance.');
+      hasError = true;
     } else if (amountNum < 50) {
-      setErrorMessage('Amount entered can be less than 50 Naira.');
-      return;
+      setAmountErrorMessage('Amount entered cannot be less than 50 Naira.');
+      hasError = true;
     } else {
-      setErrorMessage('');
+      setAmountErrorMessage('');
+    }
+
+    if (phoneNumber.length !== 11) {
+      setPhoneErrorMessage('Please enter a valid phone number.');
+      hasError = true;
+    } else {
+      setPhoneErrorMessage('');
+    }
+
+    if (!hasError) {
       if (saveNumber) {
         localStorage.setItem('savedPhoneNumber', phoneNumber);
       } else {
         localStorage.removeItem('savedPhoneNumber');
       }
       setBalance(balance - amountNum); 
-      navigate('/nextPage'); // Navigate to the next page
+      navigate('/nextPage');
     }
   };
 
   const handleCancel = () => {
-    navigate(-1); // Navigate back to the previous screen
-  };
+    navigate(-1); 
+  }
 
   return (
     <div className={style.mainDiv}>
@@ -111,6 +125,7 @@ const AirtimeComponent = () => {
           className={style.input}
           placeholder="Enter phone number"
         />
+        {phoneErrorMessage && <p className={style.errorMessage}>{phoneErrorMessage}</p>}
       </div>
       <div className={style.formGroup}>
         <h1 className={style.formLabel}>Airtime Amount (Naira)</h1>
@@ -122,6 +137,7 @@ const AirtimeComponent = () => {
           className={style.input}
           placeholder="Enter amount"
         />
+        {amountErrorMessage && <p className={style.errorMessage}>{amountErrorMessage}</p>}
       </div>
       <div className={style.formGroupCheckbox}>
         <input
@@ -132,7 +148,6 @@ const AirtimeComponent = () => {
         />
         <p className={style.formLabelCheckbox}>Save this number for future transactions</p>
       </div>
-      {errorMessage && <p className={style.errorMessage}>{errorMessage}</p>}
       <div className={style.buttonGroup}>
         <button type="button" className={style.buttonSubmit} onClick={handleSubmit}>
         Proceed
