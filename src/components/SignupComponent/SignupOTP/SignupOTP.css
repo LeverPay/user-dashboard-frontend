@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+section#verify_email{
+ padding: 30px 80px;
+}
+
 .logo-container {
   display: flex;
   flex-direction: column;
@@ -10,10 +16,6 @@
   width: 15%;
 }
 
-.verify-message {
-  color: #082e88;
-}
-
 .signup-otp-container {
   display: flex;
   flex-direction: column;
@@ -22,9 +24,9 @@
   margin-left: auto;
   margin-right: auto;
   background-color: #fff;
-  width: 30%;
+  width: 510px;
   margin-top: 5%;
-  padding: 2rem !important;
+  padding: 60px 80px !important;
   border: 1px solid #000;
   border-radius: 10px !important;
 }
@@ -39,10 +41,27 @@
   /* border: 1px solid #000; */
 }
 
+.verify-message {
+  color: #082e88;
+  padding: 0 !important;
+  font-size: 20px !important;
+  font-weight: 700;
+}
+
+.signup-otp-row span{
+  padding: 0 !important;
+  font-family: Agrandir-Regular !important;
+  text-align: center;
+  color: black !important;
+  font-size: 16px !important;
+  width: 400px !important;
+}
+
 .otp-input-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between !important;
+  gap: 10px;
   width: 60%;
   margin-top: 0.5em;
   /* border: 1px solid #000; */
@@ -54,21 +73,44 @@
   border-top: none;
   border-bottom: 2px solid black;
   border-radius: 0%;
-  width: 18% !important;
-  font-family: AgrandirBold !important;
+  /* width: 18% !important; */
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 700;
   text-align: center;
+  font-size: 36px !important;
+  padding: 0 10px !important;
+  line-height: 0.5 !important;
+  outline: none;
 }
 
 .code-notify {
-  font-family: AgrandirBold !important;
-  font-size: 14px !important;
+  color: black !important;
+  padding: 0 !important;
+  font-family: Agrandir-Regular !important;
+  font-size: 16px !important;
 }
 
-em {
-  color: #082e88;
-  font-family: AgrandirBold !important;
-  font-size: 12px;
-  cursor: pointer;
+.code-notify button {
+  color: #082e88 !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  width: unset !important;
+}
+
+button.verify-btn {
+  color: white !important;
+  background-color: #2962f2 !important;
+  border: none !important;
+  padding: 15px 0 !important;
+  border-radius: 10px !important;
+  width: 100% !important;
+}
+
+button.verify-btn:disabled {
+  background-color: #a0c4ff; /* Faded blue color when disabled */
+  cursor: not-allowed;
 }
 
 @media (max-width: 620px) {

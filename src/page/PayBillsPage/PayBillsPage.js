@@ -1,10 +1,10 @@
 import React from 'react'
-import PayBillComponent from "../../components/PayBillDropDownComponent/PayBillDropDownMenu"
+import PayBillsComponents from "../../components/PayBillsCompontent/PayBill"
 
 export default function PayBillsPage() {
     return (
         <div>
-            <PayBillComponent />
+            <PayBillsComponents />
         </div>
 
     )

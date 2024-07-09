@@ -9,7 +9,7 @@ const FundingNaira = ({ amt, handleAmount }) => {
   const [step, setStep] = useState(1);
   const [copyAlert, setCopyAlert] = useState('');
   const [rate, setRate] = useState('');
-  const [leverpayAccounts, setLeverpayAccounts] = useState([]);
+  // const [leverpayAccounts, setLeverpayAccounts] = useState([]);
   const [addInfoTxid, setAddInfoTxid] = useState(false);
   const [addInfo, setAddInfo] = useState('');
   const [fileImg, setFileImg] = useState(null);
@@ -159,6 +159,7 @@ const FundingNaira = ({ amt, handleAmount }) => {
                   type="number"
                   placeholder="100000"
                   name="amount"
+                  id="amt"
                   className="amts"
                   value={formData.amount}
                   onChange={handleFormChange}
@@ -168,7 +169,7 @@ const FundingNaira = ({ amt, handleAmount }) => {
                 <label htmlFor="charges" style={{ color: '#CD4729' }}>
                   Extra charges
                 </label>
-                <input type="text" name="charges" value={formData.charges} readOnly />
+                <input type="text" name="charges" id="charges" value={formData.charges} readOnly />
               </div>
             </main>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
@@ -216,7 +217,7 @@ const FundingNaira = ({ amt, handleAmount }) => {
                 <h4>NGN {(amt * rate.rate).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h4>
               </div>
             </main>
-            <section className="FundingAmt">
+            {/* <section className="FundingAmt">
               <span className="add_info" style={{ display: addInfoTxid ? 'block' : 'none' }}>
                 <small>Make sure to provide your Transaction ID (TXID) before proceeding. You can find this in your transaction receipt</small>
               </span>
@@ -243,7 +244,7 @@ const FundingNaira = ({ amt, handleAmount }) => {
             </section>
             <div className="screenshot">
               <Helpimageupload GetFileImg={setFileImg} />
-            </div>
+            </div> */}
             <button onClick={handleNextStep}>Payment Completed</button>
             <span onClick={handlePrevStep} className="FundingCancel">
               <img alt="" src="/images/cancel.png" />

@@ -14,13 +14,59 @@
   color: white;
   font-family: AgrandirRegular;
 }
+
 .Unpaid h1 {
   font-family: AgrandirBold;
   margin-bottom: 2rem;
+  font-size: 18px;
 }
+
 .Unpaid thead td {
   width: calc(100% / 5);
   font-weight: 900;
+}
+
+.unpaid-receipt-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.receipt-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  width: 100%;
+  height: 100svh;
+  padding-right: 0 !important;
+}
+
+.receipt-container {
+  margin: auto;
+}
+
+.view-unpaid-receipt {
+  border: none;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: green;
+  border-radius: none !important;
+  width: 90%;
+  text-align: left;
+}
+
+.invoice-id {
+  margin: 0 !important;
+  font-size: 16px;
 }
 
 @media screen and (max-width: 620px) {
@@ -35,17 +81,22 @@
   }
   .Unpaid .table {
     overflow-x: scroll;
-    width: 100%
+    width: 100%;
   }
   .Unpaid_con {
     width: 100vw;
     overflow-x: scroll;
   }
-  .Unpaid h1{
+  .Unpaid h1 {
     font-size: 16px;
     display: none;
   }
-  .Unpaid thead td{
+  .Unpaid thead td {
     font-size: 10px;
+  }
+
+  .invoice-id {
+    margin: 0 !important;
+    font-size: 14px;
   }
 }

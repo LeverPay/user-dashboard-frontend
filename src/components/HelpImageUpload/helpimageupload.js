@@ -24,7 +24,7 @@ function Helpimageupload(props) {
     return (
       <>
         <label htmlFor="select-image" style={{border: 'none' }} >
-        <img alt='' src='./images/imgIcon.png' style={{ width: '20px', border: 'none' }} /> Attach an image or screenshot {props.optional ? '(Optional)' : ''}
+        <img alt='' src='./images/imgIcon.png' style={{ width: '20px', border: 'none' }} /> Click here to upload payment screenshot (Optional) {props.optional ? '(Optional)' : ''}
         <input
           accept="image/*"
           type="file"

@@ -3,11 +3,10 @@ import LeverpayLogo from "../../../assets/images/LeverpayLogo.png";
 import "./SignupOTP.css";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { verifyEmail } from "../../../services/apiService";
+import { verifyEmail, resendVerifyToken } from "../../../services/apiService";
+import { ToastContainer, toast } from "react-toastify";
 
 function SignupOTP({ email }) {
-  console.log(email);
-
   const [inputOne, setInputOne] = useState("");
   const [inputTwo, setInputTwo] = useState("");
   const [inputThree, setInputThree] = useState("");
@@ -17,19 +16,45 @@ function SignupOTP({ email }) {
 
   const emailFromLocalStorage = localStorage.getItem("userEmail");
 
-  const AccountVerify = () => {
+  const AccountVerify = async () => {
     console.log("API Request");
+
+    toast.loading("Verifying");
 
     const verifyData = {
       email: emailFromLocalStorage,
       token: `${inputOne}${inputTwo}${inputThree}${inputFour}`,
     };
 
-    verifyEmail(verifyData);
+    const response = await verifyEmail(verifyData);
+
+    toast.dismiss();
+
+    console.log("response", response);
+
+    if (response.success) {
+      toast.success("Email Verified");
+      setTimeout(() => {
+        window.location.href = "/signin";
+      }, 2000);
+    } else {
+      toast.error(response.message);
+    }
+  };
+
+  const resendToken = async () => {
+    // const email = localStorage.getItem("userEmail");
+    toast.loading("Sending OTP");
+
+    const response = await resendVerifyToken({ email: emailFromLocalStorage });
+
+    toast.dismiss();
+
+    toast.success("OTP Sent");
   };
 
   return (
-    <>
+    <section id="verify_email">
       <div className="logo-container">
         <img src={LeverpayLogo} alt="" className="signup-otp-logo" />
       </div>
@@ -43,13 +68,13 @@ function SignupOTP({ email }) {
             type="text"
             className="otp-input-value"
             value={inputOne}
-            name="first_name"
             ref={inputRef}
             placeholder=""
             pattern="[A-Za-z]{1}"
             title="Please enter only one digit"
+            maxLength={1}
             onChange={
-              (e) => setInputOne(e.target.value.replace(/\D/g, ""))
+              (e) => setInputOne(e.target.value)
               // setFirstName(e.target.value.replace(/\D/g, ""))
             }
             required
@@ -58,13 +83,13 @@ function SignupOTP({ email }) {
             type="text"
             className="otp-input-value"
             value={inputTwo}
-            name="first_name"
             ref={inputRef}
             placeholder=""
             pattern="[A-Za-z]{1}"
             title="Please enter only one digit"
+            maxLength={1}
             onChange={
-              (e) => setInputTwo(e.target.value.replace(/\D/g, ""))
+              (e) => setInputTwo(e.target.value)
               // setFirstName(e.target.value.replace(/\D/g, ""))
             }
             required
@@ -73,13 +98,13 @@ function SignupOTP({ email }) {
             type="text"
             className="otp-input-value"
             value={inputThree}
-            name="first_name"
             ref={inputRef}
             placeholder=""
             pattern="[A-Za-z]{1}"
             title="Please enter only one digit"
+            maxLength={1}
             onChange={
-              (e) => setInputThree(e.target.value.replace(/\D/g, ""))
+              (e) => setInputThree(e.target.value)
               // setFirstName(e.target.value.replace(/\D/g, ""))
             }
             required
@@ -88,13 +113,13 @@ function SignupOTP({ email }) {
             type="text"
             className="otp-input-value"
             value={inputFour}
-            name="first_name"
             ref={inputRef}
             placeholder=""
             pattern="[A-Za-z]{1}"
             title="Please enter only one digit"
+            maxLength={1}
             onChange={
-              (e) => setInputFour(e.target.value.replace(/\D/g, ""))
+              (e) => setInputFour(e.target.value)
               // setFirstName(e.target.value.replace(/\D/g, ""))
             }
             required
@@ -102,22 +127,22 @@ function SignupOTP({ email }) {
         </div>
         <br />
         <p className="code-notify">
-          Didn't get the code? <em>Click to resend</em>
+          Didn't get the code?{" "}
+          <button onClick={resendToken}>Click to resend</button>
         </p>
 
         <Button
           variant="primary"
           type="submit"
-          className="signup-btn"
-          disabled={
-            inputOne && inputTwo && inputThree && inputFour ? false : true
-          }
+          className="verify-btn"
+          disabled={!inputOne || !inputTwo || !inputThree || !inputFour}
           onClick={AccountVerify}
         >
           Verify Account
         </Button>
       </div>
-    </>
+      <ToastContainer />
+    </section>
   );
 }
 

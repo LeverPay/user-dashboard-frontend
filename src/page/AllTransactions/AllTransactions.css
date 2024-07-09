@@ -1,19 +1,19 @@
-.transaction-tabs{
+.transaction-tabs {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid grey;
 }
-.transaction-tabs li{
-  padding: 14px ;
+.transaction-tabs li {
+  padding: 14px;
   display: flex;
-  color: #78778B;
+  color: #78778b;
   cursor: pointer;
 }
-.transaction-tabs li:active{
+.transaction-tabs li:active {
   color: white;
 }
-.active{
+.active {
   font-weight: 600;
   color: white !important;
   border-bottom: 2px solid #329521 !important;
@@ -52,10 +52,10 @@
   color: #329521;
   font-weight: 600;
 }
-.allTransactions header button a{
-    text-decoration: none;
-    color: inherit;
-    margin-right: 20px;
+.allTransactions header button a {
+  text-decoration: none;
+  color: inherit;
+  margin-right: 20px;
 }
 .allTransactions main {
   display: flex;
@@ -81,7 +81,7 @@
 }
 .allTransactions main .allTransactionBody li:last-child {
   width: 90px;
-  cursor: pointer
+  cursor: pointer;
 }
 .allTransactions main ul li {
   width: calc(100% / 5);
@@ -96,7 +96,7 @@
 }
 
 /*----TRANSACTION RECEIPT MODAL*/
-.transaction-modal-overlay{
+.transaction-modal-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -109,8 +109,8 @@
   z-index: 100;
   overflow: auto;
 }
-.transaction-modal{
-  color: #082E88;
+.transaction-modal {
+  color: #082e88;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -122,7 +122,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 .transaction-modal .close-button {
   /* color: #0b0230; */
@@ -140,61 +139,58 @@
   font-weight: 600;
 }
 .transaction-modal li {
-  color: #082E88;
+  color: #082e88;
   width: 100%;
   text-align: center;
   display: block;
 }
-.receipt-amount{
+.receipt-amount {
   font-size: 26px !important;
   font-weight: 700;
 }
-.receipt-status{
+.receipt-status {
   font-size: 26px !important;
   text-transform: uppercase;
   font-weight: 500;
 }
-.receipt-date{
-  color: #78778B !important;
+.receipt-date {
+  color: #78778b !important;
   font-weight: 600;
   padding-bottom: 15px;
 }
 
 .transaction-details {
-  border-collapse: collapse;  
+  border-collapse: collapse;
   font-size: 14px;
   width: 100%;
 }
-.transaction-details tr td:first-child{
+.transaction-details tr td:first-child {
   color: gray;
-
 }
-td{
-  color: #082E88;
+td {
+  color: #082e88;
   font-weight: 600;
   padding: 10px;
   font-weight: 600;
-
 }
-.transaction-support{
+.transaction-support {
   padding-bottom: 10px;
 }
-.transaction-support h3{
-  color: #082E88;
-  font-weight:bolder;
+.transaction-support h3 {
+  color: #082e88;
+  font-weight: bolder;
   font-size: 20px;
   text-align: center;
 }
-.transaction-support span{
-  color: #082E88;
+.transaction-support span {
+  color: #082e88;
   font-weight: 600;
 }
-.transaction-support span + span{
+.transaction-support span + span {
   padding-left: 30px;
-  
 }
 .transaction-footer {
-  background-color: #082E88;
+  background-color: #082e88;
   color: white;
   text-transform: uppercase;
   text-align: center;
@@ -214,30 +210,31 @@ td{
   margin: 0 5px;
   cursor: pointer;
 }
-.pagination-controls > label{
-  color:#fff;
+.pagination-controls > label {
+  color: #fff;
 }
 
-.pagination-controls > select, option {
-  color:#082E88
+.pagination-controls > select,
+option {
+  color: #082e88;
 }
 .pagination-controls > select option:hover {
-  background-color:#082E88;
+  background-color: #082e88;
 }
 
 .pagination li a {
   padding: 5px 10px;
   border: 1px solid #ddd;
-  color: #F79E1B;
+  color: #f79e1b;
   text-decoration: none;
 }
 .pagination li a:not([href]):not([class]) {
   color: #ccc;
 }
 .pagination li.active a {
-  background-color: #082E88;
+  background-color: #082e88;
   color: white !important;
-  border: 1px solid #082E88;
+  border: 1px solid #082e88;
 }
 
 .pagination li.disabled a {
@@ -245,53 +242,51 @@ td{
   cursor: not-allowed;
 }
 
-
-#fundingHistory-head li, #fundingHistory-body li{
-    width: calc(100%/4);
+#fundingHistory-head li,
+#fundingHistory-body li {
+  width: calc(100% / 4);
 }
-@media screen and (max-width:620px) {
-    .allTransactionCon{
-        margin-top: 2rem;
-        padding: 0;
-    }
-    .allTransactions{
-      margin-left: 0;
-      width: 100%;
-      padding: 16px;
-      border-radius: 10px;
-      gap: 1rem;
-      color: #fff !important;
-    }
-    .allTransactions header div small{
-        display: none;
-    }
-    .allTransactions header h1{
-        font-size: 16px;
-    }
+@media screen and (max-width: 620px) {
+  .allTransactionCon {
+    margin-top: 2rem;
+    padding: 0;
+  }
+  .allTransactions {
+    margin-left: 0;
+    width: 100%;
+    padding: 16px;
+    border-radius: 10px;
+    gap: 1rem;
+    color: #fff !important;
+  }
+  .allTransactions header div small {
+    display: none;
+  }
+  .allTransactions header h1 {
+    font-size: 16px;
+  }
 
-    .allTransactions main ul {
-      justify-content: space-between;
-    }
-    .debit-type {
-      color: #ff0000;
-    }
-    .credit-type {
-      color: #329521;
-    }
+  .allTransactions main ul {
+    justify-content: space-between;
+  }
+  .debit-type {
+    color: #ff0000;
+  }
+  .credit-type {
+    color: #329521;
+  }
 
-    .allTransactions-head li:nth-child(3),
-    .allTransactions-head li:nth-child(5) {
-      display: none;
-    }
+  .allTransactions-head li:nth-child(3),
+  .allTransactions-head li:nth-child(5) {
+    display: none;
+  }
 
-    .allTransactionBody li:nth-child(3),
-    .allTransactionBody li:nth-child(5) {
-      display: none;
-    }
-    
-    
-    .transaction-tabs{
-      padding-left: 0 !important;
-    }
+  .allTransactionBody li:nth-child(3),
+  .allTransactionBody li:nth-child(5) {
+    display: none;
+  }
 
+  .transaction-tabs {
+    padding-left: 0 !important;
+  }
 }

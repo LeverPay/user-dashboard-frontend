@@ -1,0 +1,150 @@
+.modal {
+  position: fixed;
+ 
+  top: 55%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 30px;
+  color: #333;
+}
+
+.networksRow {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.networkLogo {
+  width: 50px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.networkLogo.selected {
+  opacity: 1;
+  border: 2px solid #4CAF50;
+  border-radius: 5px;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  display: flex;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: AgrandirBold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  color: #333;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 25px;
+  font-weight: 600;
+  font-family: 'Agrandir-Bold';
+  cursor: pointer;
+  padding: 10px;
+  transition: opacity 0.3s ease; 
+}
+
+.selectedTab {
+  border-bottom: 5px solid #4CAF50;
+  transition: opacity 0.3s ease; 
+}
+.deselectedTab {
+  opacity: 0.5;
+}
+.dataPlansRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dataPlanButton {
+  background: none;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 10px 5px;
+  cursor: pointer;
+  color: #333; /* Added text color */
+}
+
+.selectedDataPlan {
+  border-color: #4CAF50;
+  color: #333; /* Added text color */
+}
+
+.errorMessage {
+  color: red;
+  font-size: 14px;
+}
+
+.formGroupCheckbox {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.formLabelCheckbox {
+  margin-top: 10px;
+  margin-left: 8px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.buttonSubmit, .buttonCancel {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.buttonCancel {
+  background-color: #f44336;
+}
+
+@media (max-width: 620px) {
+  .tabs {
+    gap: 1rem;
+  }
+  .tab {
+    font-size: 14px;
+  }
+  .selectedTab {
+    padding: 5px;
+    border-bottom: 2px solid #4CAF50;
+  }
+}
