@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import QuicktellerCategories from "./QuicktellerCategories"; // Import the new component
 import './Paybill.css';
 
 function Source() {
   return (
     <div className="mainDiv">
       <div className="btnDiv">
-      <h2 className="modalTitle">Pay Bills</h2>
+        <h2 className="modalTitle">Pay Bills</h2>
         <div className="buttons-container">
           <div className="left-buttons">
             <nav>
@@ -33,6 +34,7 @@ function Source() {
           </div>
         </div>
       </div>
+      <QuicktellerCategories /> {/* Add the new component here */}
     </div>
   );
 }

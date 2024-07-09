@@ -117,7 +117,7 @@ const NavComponent = () => {
               <li>
                 <NavLink to="/paybills" className="text-link" onClick={closeMobileMenu} activeClassName="active">
                   <img alt="Pay Bill" src="/images/My Wallets.png" />
-                  Pay Bill
+                  Pay Bills
                 </NavLink>
               </li>
               <li>
