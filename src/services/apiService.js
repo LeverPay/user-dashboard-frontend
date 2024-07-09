@@ -1,5 +1,3 @@
-// src/services/apiService.js
-
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -7,9 +5,10 @@ const baseURL = "https://leverpay-api.azurewebsites.net/api";
 
 const httpClient = axios.create({
   baseURL,
-  timeout: 5000,
+  timeout: 500000,
 });
 
+// Function to set the authorization header
 const setAuthHeader = (token) => {
   httpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
@@ -17,13 +16,13 @@ const setAuthHeader = (token) => {
 export const signIn = async (userData, jwt, setJwt) => {
   if (!jwt) {
     const signInURL = `${baseURL}/v1/login`;
-    console.log("Making API request to:", signInURL);
-    console.log("User data:", userData);
-
+  
     try {
       const response = await httpClient.post(signInURL, userData);
       if (response.data.success) {
         const token = response.data.data.token;
+
+     
 
         if (token) {
           toast.success(response.data.message);
@@ -86,7 +85,7 @@ export const verifyPayInvoice = async ({ id, otp }) => {
       "/v1/user/verify-invoices-otp",
       idData
     );
-    return response.data; // Return the response data
+    return response.data; 
   } catch (error) {
     console.log("err", error);
     if (error.response && error.response.data) {
@@ -113,11 +112,15 @@ export const verifyEmail = async (verifyData) => {
 
 export const resendVerifyToken = async (email) => {
   try {
-    const response = await httpClient.post("/v1/resend-verification-email", email);
+    const response = await httpClient.post("/v1/resend-verification-email", { email });
     return response.data;
   } catch (error) {
     console.log("error", error);
-    return { success: false, message: "An unknown error occurred." }; // Return a generic error message
+    if (error.response && error.response.data) {
+      return error.response.data; // Return the error response data
+    } else {
+      return { success: false, message: "An unknown error occurred." }; // Return a generic error message
+    }
   }
 };
 
@@ -136,7 +139,10 @@ export const getUserProfile = async (jwt, setJwt, setUser) => {
 export const updateUserProfile = async (jwt, userDataUpdate) => {
   setAuthHeader(jwt);
   try {
-    const response = await httpClient.post("/v1/user/update-user-profile", userDataUpdate);
+    const response = await httpClient.post(
+      "/v1/user/update-user-profile",
+      userDataUpdate
+    );
     toast.success(response.data.message);
     setTimeout(() => {
       window.location.href = "/";
@@ -211,19 +217,24 @@ export const getCities = async (stateID, setCity) => {
     toast.error(err.message);
   }
 };
-// src/services/apiService.js
 
-export const getBillersCategories = async () => {
-  const token = localStorage.getItem('jwt');
-  setAuthHeader(token);
-  
+export const getBillersCategories = async (jwt) => {
+  setAuthHeader(jwt);
   try {
-    console.log("Fetching biller categories with token:", token);
     const response = await httpClient.get("/v1/user/quickteller/get-billers-categories");
-    console.log("Response:", response);
-    return response.data; // Adjust based on actual API response structure
+    return response.data;
   } catch (error) {
     console.error("Error fetching biller categories:", error);
     throw error;
   }
+}
+
+export const getBillersByCategoryId = async (jwt, categoryId) => {
+  const response = await httpClient.get(`/v1/user/quickteller/get-billers-by-category-id?categoryId=${categoryId}`, {
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  });
+  console.log('Billers for category:', response.data);
+  return response.data;
 };
