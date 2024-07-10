@@ -39,7 +39,7 @@ const PayBillsComponent = () => {
   }, [jwt]);
 
   const specificCategories = [
-    { id: 68, name: 'Airtime', path: '/airtime' },
+    { id: 3, name: 'Airtime', path: '/airtime' },
     { id: 63, name: 'Data', path: '/data' },
     { id: 5, name: 'Internet Subscription', path: '/internet' },
     { id: 1, name: 'Electricity', path: '/electricity' },

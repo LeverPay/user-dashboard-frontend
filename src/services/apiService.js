@@ -235,6 +235,28 @@ export const getBillersByCategoryId = async (jwt, categoryId) => {
       Authorization: `Bearer ${jwt}`,
     },
   });
-  console.log('Billers for category:', response.data);
+  // console.log('Billers for category:', response.data);
+  // console.log(response.data);
   return response.data;
+};
+
+export const getBillerPaymentItems = async (jwt, billerId) => {
+  const response = await httpClient.get(`v1/user/quickteller/get-biller-payment-items?billerId=${billerId}`, {
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  });
+  console.log(response.data);
+  return response.data;
+};
+export const getBillerPaymentItemsByAmount = async (jwt,billerId,amount) => {
+  const response = await httpClient.get(`v1/user/quickteller/get-biller-payment-items?billerId=${billerId}&amount=${amount}`, {
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  });
+  console.log(response.data);
+  return response.data;
+  
+
 };
