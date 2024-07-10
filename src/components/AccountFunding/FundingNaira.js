@@ -90,6 +90,7 @@ const FundingNaira = ({ amt, handleAmount }) => {
       setErrorMessage('Please enter an amount to proceed.');
       return;
     }
+    //Reset error message to none
     setErrorMessage('');
 
     if (step === 3 && !formData.txid) {
