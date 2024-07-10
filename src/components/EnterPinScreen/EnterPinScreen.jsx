@@ -18,7 +18,7 @@ export default function EnterPinScreen
               className={style.input}
               placeholder="Enter Pin"
             />
-            {/* {pinErrorMessage && <p className={style.errorMessage}>{pinErrorMessage}</p>} */}
+            {pinErrorMessage && <p className={style.errorMessage}>{pinErrorMessage}</p>}
     
         </div>
         <div>
