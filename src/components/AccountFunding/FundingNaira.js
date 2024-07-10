@@ -17,7 +17,7 @@ const FundingNaira = ({ amt, handleAmount }) => {
   const [accountInfo, setAccountInfo] = useState([]);
   const [accountNo, setAccountNo] = useState('');
   const [accountName, setAccountName] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');  // Added error message state
+  const [errorMessage, setErrorMessage] = useState('');
 
   const uniqueAcct = {
     bank: 'Providus Bank',
@@ -90,7 +90,6 @@ const FundingNaira = ({ amt, handleAmount }) => {
       setErrorMessage('Please enter an amount to proceed.');
       return;
     }
-    // Reset the error message if validation passes
     setErrorMessage('');
 
     if (step === 3 && !formData.txid) {
@@ -217,34 +216,7 @@ const FundingNaira = ({ amt, handleAmount }) => {
                 <h4>NGN {(amt * rate.rate).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h4>
               </div>
             </main>
-            {/* <section className="FundingAmt">
-              <span className="add_info" style={{ display: addInfoTxid ? 'block' : 'none' }}>
-                <small>Make sure to provide your Transaction ID (TXID) before proceeding. You can find this in your transaction receipt</small>
-              </span>
-              <label htmlFor="txid">
-                Transaction Reference
-                <img
-                  alt="info"
-                  id = "info"
-                  src="/images/info.png"
-                  onMouseOver={() => setAddInfoTxid(true)}
-                  onMouseLeave={() => setAddInfoTxid(false)}
-                />
-              </label>
-              <input
-                type="text"
-                name="txid"
-                value={formData.txid}
-                onChange={handleFormChange}
-                required
-                className="txReference"
-                placeholder="Please enter your reference ID"
-                style={{ color: 'black', fontWeight: '700' }}
-              />
-            </section>
-            <div className="screenshot">
-              <Helpimageupload GetFileImg={setFileImg} />
-            </div> */}
+            
             <button onClick={handleNextStep}>Payment Completed</button>
             <span onClick={handlePrevStep} className="FundingCancel">
               <img alt="" src="/images/cancel.png" />
