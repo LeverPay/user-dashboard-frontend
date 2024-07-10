@@ -155,6 +155,13 @@ p {
   color: #fff !important;
 }
 
+.signin-fields::placeholder{
+  color: grey !important;
+  /* font-weight: 400 !important; */
+  font-size: 14px;
+  font-family: "Montserrat" !important;
+}
+
 .signin-button {
   padding: 2%;
   width: 100%;

@@ -25,25 +25,29 @@ export const signIn = async (userData, jwt, setJwt) => {
       if (response.data.success) {
         const token = response.data.data.token;
 
-        if (token) {
-          toast.success(response.data.message);
-          setJwt(token);
-          localStorage.setItem("jwt", token);
-          setAuthHeader(token);
-          setTimeout(() => {
-            window.location.href = "/";
-          }, 2000);
-        } else {
-          toast.error("Token is missing in the response.");
+                if (token) {
+                    toast.success(response.data.message);
+                    setJwt(token);
+                    localStorage.setItem("jwt", token);
+                    setAuthHeader(token);                    
+                    setTimeout(() => {
+                        window.location.href = "/";
+                    }, 2000);
+                } else {
+                    toast.error("Token is missing in the response.");
+                }
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (err) {
+            if (err.response && err.response.data && err.response.data.message) {
+                toast.error(err.response.data.message);
+            } else {
+                toast.error("An error occurred. Please try again later.");
+            }
+            console.error("API call error:", err);
         }
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (err) {
-      toast.error(err.message);
-      console.error("API call error:", err);
     }
-  }
 };
 
 export const signUp = async ({ signupData }) => {
