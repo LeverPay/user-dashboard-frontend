@@ -69,7 +69,7 @@ const AllTransactions = ({ data, isData, onViewClick }) => {
                   ? "Successful"
                   : "Failed"}
               </li>
-              <li onClick={() => onViewClick(item)}>View</li>
+              <li style ={{color: "blue"}} onClick={() => onViewClick(item)}>View</li>
             </ul>
           ))
         ) : (

@@ -91,7 +91,7 @@ const SignInComponent = () => {
                                 value={email}
                                 name="email"
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder=""
+                                placeholder="Email ID"
                                 className="signin-fields"
                                 required
                             />
@@ -107,7 +107,7 @@ const SignInComponent = () => {
                                 value={password}
                                 name="password"
                                 onChange={(e) => setPassword(e.target.value)}
-                                placeholder=""
+                                placeholder="Password"
                                 className="signin-fields"
                                 required
                             />

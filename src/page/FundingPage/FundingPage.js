@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./FundingPage.css";
 import FundingNav from "../../components/AccountFunding/FundingNav";
 import { FundingPrices } from "../../components/AccountFunding/FundingPrices";
-import FundingNav2 from "../../components/AccountFunding/FundingNav2";
+import FundingTabs from "../../components/AccountFunding/FundingTabs";
 import FundingPayment from "../../components/AccountFunding/FundingPayment";
 import {Route, Routes } from "react-router-dom";
 import FundingNaira from "../../components/AccountFunding/FundingNaira";
@@ -24,14 +24,14 @@ const FundingPage = () => {
             <FundingPrices amt = {amt} />
         </section>
         <section>
-            <FundingNav2/>
+            <FundingTabs/>
         </section>
         <section>
-            <Routes>
+          <Routes>
             <Route index element={<FundingPayment handleAmount = {handleAmount} amt = {amt}  />} />
-          <Route path="stablecoins-deposit" element={<FundingPayment handleAmount = {handleAmount} amt = {amt} />} />
-          <Route path="naira-deposit" element={<FundingNaira handleAmount = {handleAmount} amt = {amt}  />} />
-          <Route path="more" element={<FundingMore />} />
+            <Route path="stablecoins-deposit" element={<FundingPayment handleAmount = {handleAmount} amt = {amt} />} />
+            <Route path="naira-deposit" element={<FundingNaira handleAmount = {handleAmount} amt = {amt}  />} />
+            <Route path="more" element={<FundingMore />} />
         </Routes>
       </section>
     </div>
