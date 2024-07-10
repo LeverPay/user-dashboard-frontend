@@ -61,8 +61,8 @@ export const UserDashboardLayout = (props) => {
   const [jwt, setJwt] = useLocalState("", "jwt");
   const userJson = localStorage.getItem("user");
   const userData = JSON.parse(userJson);
-  console.log(userData);
-  console.log(user);
+  // console.log(userData);
+  // console.log(user);
 
   useEffect(() => {
     setNaijaCard({
@@ -241,6 +241,8 @@ export const UserDashboardLayout = (props) => {
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/paybills" element={<PayBill />} />
+        
+
           <Route path="/airtime" element={<AirtimePage />} />
           <Route path="/data" element={<DataPage />} />
           <Route path="/cable-tv" element={<CableTvPage />} />

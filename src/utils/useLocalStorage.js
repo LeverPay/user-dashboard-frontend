@@ -40,4 +40,5 @@ function detectNetwork(phoneNumber) {
   }
 }
 
+
 export { useLocalState, detectNetwork };
