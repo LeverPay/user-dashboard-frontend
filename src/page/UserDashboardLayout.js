@@ -1,9 +1,9 @@
-import React from "react";
+// src/page/UserDashboardLayout.js
+
+import React, { useEffect, useState } from "react";
 import NavComponent from "../components/NavComponent/NavComponent";
 import TopNav from "../components/TopNav/TopNav";
 import StatementComponent from "../components/StatementComponent/StatementComponent";
-import { useEffect, useState } from "react";
-import { naijaCardDetails, silverCardDetails } from "../TestData/CardData";
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import CardcategoryPage from "./CardCategoryPage/CardcategoryPage";
 import MyCardsSilver from "./SilverCardPage/MyCardsSilver";
@@ -23,7 +23,7 @@ import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { useLocalState } from "../utils/useLocalStorage";
 import { getUserProfile } from "../services/apiService";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";  // Removed 'toast'
 import TransferPage from "./TransferPage/TransferPage";
 import SignupPage from "./SignupPage/SignupPage";
 import FundingPage from "./FundingPage/FundingPage";
@@ -43,63 +43,24 @@ import Allinvoices from "./AllInvoices/Allinvoices";
 import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
 import AllTransactionCon from "./AllTransactions/AllTransactionCon";
-import AirtimePage from "./PayBillsPage/AirtimePage/AirtimePage";
+import AirtimePage from './PayBillsPage/AirtimePage/AirtimePage';
 import DataPage from "./PayBillsPage/DataPage/DataPage";
 import PayBill from "./PayBillsPage/PayBillsPage";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
-
 import RecentTransactions from "./AllTransactions/RecentTransaction";
-
 import CableTvPage from "./PayBillsPage/CableTvPage/CableTvPage";
-
-import PayBillDropDown from "../page/PayBillsPage/PayBillsPage";
+import PinPage from "./EnterPinPage/PinPage";
 
 export const UserDashboardLayout = (props) => {
-  const [naijaCard, setNaijaCard] = useState({});
-  const [silverCard, setSilverCard] = useState([]);
   const [user, setUser] = useState({});
   const [jwt, setJwt] = useLocalState("", "jwt");
   const userJson = localStorage.getItem("user");
   const userData = JSON.parse(userJson);
-  // console.log(userData);
-  // console.log(user);
-
-  useEffect(() => {
-    setNaijaCard({
-      id: naijaCardDetails.map((data) => data.id),
-      cardHolder: naijaCardDetails.map((data) => data.cardHolder),
-      cardNo: naijaCardDetails.map((data) => data.cardNo),
-      expiryDate: naijaCardDetails.map((data) => data.expiryDate),
-    });
-  }, []);
-
-  useEffect(() => {
-    setSilverCard({
-      id: silverCardDetails.map((data) => data.id),
-      cardHolder: silverCardDetails.map((data) => data.cardHolder),
-      cardNo: silverCardDetails.map((data) => data.cardNo),
-      expiryDate: silverCardDetails.map((data) => data.expiryDate),
-    });
-  }, []);
 
   useEffect(() => {
     getUserProfile(jwt, setJwt, setUser);
   }, [jwt, setJwt]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://leverpay-api.azurewebsites.net/api/v1/user/get-card", {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${jwt}`,
-  //       },
-  //       // configuration
-  //     })
-  //     .then((response) => {
-  //       console.log(response);
-  //       // do something with JSON response data
-  //     });
-  // });
   return (
     <>
       <Routes>
@@ -159,7 +120,6 @@ export const UserDashboardLayout = (props) => {
                     <StatementComponent />
                   </div>
                   <div className="dashboard-transaction-table-container col-md-11">
-                    {/* <AllTransactions /> */}
                     <RecentTransactions />
                   </div>
                 </div>
@@ -241,11 +201,10 @@ export const UserDashboardLayout = (props) => {
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/paybills" element={<PayBill />} />
-        
-
-          <Route path="/airtime" element={<AirtimePage />} />
+          <Route path="/airtime" element={<AirtimePage />} /> 
           <Route path="/data" element={<DataPage />} />
           <Route path="/cable-tv" element={<CableTvPage />} />
+          <Route path="/pin" element={<PinPage />} />
         </Route>
       </Routes>
       <ToastContainer />
