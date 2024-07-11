@@ -4,13 +4,11 @@ import axios from "axios";
 const baseURL = "https://leverpay-api.azurewebsites.net/api";
 
 const httpClient = axios.create({
-  baseURL,
-  timeout: 500000,
+  baseURL
 });
 
-// Function to set the authorization header
-const setAuthHeader = (token) => {
-  httpClient.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+const setAuthHeader = (jwt) => {
+  httpClient.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
 };
 
 export const signIn = async (userData, jwt, setJwt) => {
@@ -221,7 +219,6 @@ export const getCities = async (stateID, setCity) => {
     toast.error(err.message);
   }
 };
-
 export const getBillersCategories = async (jwt) => {
   setAuthHeader(jwt);
   try {
@@ -232,35 +229,31 @@ export const getBillersCategories = async (jwt) => {
     throw error;
   }
 }
-
 export const getBillersByCategoryId = async (jwt, categoryId) => {
   const response = await httpClient.get(`/v1/user/quickteller/get-billers-by-category-id?categoryId=${categoryId}`, {
     headers: {
       Authorization: `Bearer ${jwt}`,
     },
   });
-  // console.log('Billers for category:', response.data);
-  // console.log(response.data);
-  return response.data;
-};
-
-export const getBillerPaymentItems = async (jwt, billerId) => {
-  const response = await httpClient.get(`v1/user/quickteller/get-biller-payment-items?billerId=${billerId}`, {
-    headers: {
-      Authorization: `Bearer ${jwt}`,
-    },
-  });
+  console.log('Billers for category:', response.data);
   console.log(response.data);
   return response.data;
 };
-export const getBillerPaymentItemsByAmount = async (jwt,billerId,amount) => {
-  const response = await httpClient.get(`v1/user/quickteller/get-biller-payment-items?billerId=${billerId}&amount=${amount}`, {
-    headers: {
-      Authorization: `Bearer ${jwt}`,
-    },
-  });
-  console.log(response.data);
-  return response.data;
-  
-
+export const getBillerPaymentItemsByAmount = async (jwt, billerId, amount) => {
+  try {
+    const response = await axios.get(
+      `https://leverpay-api.azurewebsites.net/api/v1/user/quickteller/get-biller-payment-items-by-amount?billerId=${billerId}&amount=${amount}`,
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching biller payment items:', error);
+    throw error;
+  }
 };
+
+

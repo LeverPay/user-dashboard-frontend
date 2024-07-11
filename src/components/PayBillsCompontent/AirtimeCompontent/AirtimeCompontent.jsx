@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from './AirtimeComponent.module.css';
 import mtnLogo from '../../../assets/mtn.png';
-import airtelLogo from "../../../assets/airtel.jpeg";
-import gloLogo from "../../../assets/glo.jpeg";
+import airtelLogo from '../../../assets/airtel.jpeg';
+import gloLogo from '../../../assets/glo.jpeg';
 import nineMobileLogo from '../../../assets/9mobile.webp';
-import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
-import { getBillerPaymentItemsByAmount } from '../../../services/apiService'; // Adjust the import path as necessary
-import LoadingScreen from "../../LoadingPage/LoadingScreen";
+import { detectNetwork, useLocalState } from '../../../utils/useLocalStorage';
+import { getBillerPaymentItemsByAmount } from "../../../services/apiService"; // Correct import
+import LoadingScreen from '../../LoadingPage/LoadingScreen';
 
-const networkLogos = {
-  MTN: mtnLogo,
-  Airtel: airtelLogo,
-  Glo: gloLogo,
-  '9mobile': nineMobileLogo,
+const networkDetails = {
+  MTN: { logo: mtnLogo, billerId: 903 },
+  Airtel: { logo: airtelLogo, billerId: 901 },
+  Glo: { logo: gloLogo, billerId: 913 },
+  '9mobile': { logo: nineMobileLogo, billerId: 653 },
 };
 
 const AirtimeComponent = () => {
@@ -22,7 +22,7 @@ const AirtimeComponent = () => {
   const [phoneNumber, setPhoneNumber] = useLocalState('savedPhoneNumber', '');
   const [amount, setAmount] = useState('');
   const [saveNumber, setSaveNumber] = useState(!!phoneNumber);
-  const [balance, setBalance] = useState(1000);
+  const [balance, setBalance] = useState(1000); // Simulated user balance
   const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
   const [amountErrorMessage, setAmountErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -37,19 +37,19 @@ const AirtimeComponent = () => {
   }, [phoneNumber]);
 
   const handlePhoneNumberChange = (e) => {
-    const newPhoneNumber = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    const newPhoneNumber = e.target.value.replace(/\D/g, '');
     setPhoneNumber(newPhoneNumber);
     const detectedNetwork = detectNetwork(newPhoneNumber);
     if (detectedNetwork) {
       setNetwork(detectedNetwork);
     }
-    setPhoneErrorMessage(''); // Clear phone error message when user starts typing
+    setPhoneErrorMessage('');
   };
 
   const handleAmountChange = (e) => {
-    const newAmount = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+    const newAmount = e.target.value.replace(/\D/g, '');
     setAmount(newAmount);
-    setAmountErrorMessage(''); // Clear amount error message when user starts typing
+    setAmountErrorMessage('');
   };
 
   const handleSaveNumberChange = (e) => setSaveNumber(e.target.checked);
@@ -87,16 +87,24 @@ const AirtimeComponent = () => {
           localStorage.removeItem('savedPhoneNumber');
         }
 
-        const billerId = 109; // Replace this with the correct biller ID for the selected network
-        const jwt = localStorage.getItem('jwtToken'); // Retrieve the JWT token from local storage
+        const billerId = networkDetails[network]?.billerId;
+        if (!billerId) {
+          throw new Error('Invalid network selected.');
+        }
+
+        const jwt = localStorage.getItem('jwt');
+        if (!jwt) {
+          throw new Error('JWT token not found.');
+        }
 
         const data = await getBillerPaymentItemsByAmount(jwt, billerId, amountNum);
         console.log(data);
 
         setBalance(balance - amountNum);
-        navigate('/nextPage');
+        navigate('/pin');
       } catch (error) {
         console.error('Error fetching biller payment items:', error);
+        setAmountErrorMessage('Failed to process request. Please try again.');
       } finally {
         setLoading(false);
       }
@@ -115,10 +123,10 @@ const AirtimeComponent = () => {
         <>
           <h2 className={style.modalTitle}>Airtime Purchase</h2>
           <div className={style.networksRow}>
-            {Object.keys(networkLogos).map((key) => (
+            {Object.keys(networkDetails).map((key) => (
               <img
                 key={key}
-                src={networkLogos[key]}
+                src={networkDetails[key].logo}
                 alt={`${key} logo`}
                 className={`${style.networkLogo} ${network === key ? style.selected : ''}`}
                 onClick={() => setNetwork(key)}

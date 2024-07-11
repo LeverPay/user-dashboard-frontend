@@ -13,7 +13,7 @@ const PayBillsComponent = () => {
 
   const navigate = useNavigate();
 
-  const [forwardNavigation, setForwardNavigation] = useState(false); // Track forward navigation
+  const [forwardNavigation, setForwardNavigation] = useState(false); 
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -29,7 +29,7 @@ const PayBillsComponent = () => {
         console.error('Error fetching biller categories:', error);
         setError(error.message);
       } finally {
-        setLoading(false); // Always set loading to false after fetch completes
+        setLoading(false); 
       }
     };
 
@@ -47,17 +47,17 @@ const PayBillsComponent = () => {
   ];
 
   const handleCategoryClick = async (categoryId, path) => {
-    setForwardNavigation(true); // Set forward navigation to true when clicking a category button
-    setLoading(true); // Start loading when category button is clicked
+    setForwardNavigation(true);
+    setLoading(true); 
     try {
       const billers = await getBillersByCategoryId(jwt, categoryId);
-      // console.log(`Billers for category ${categoryId}:`, billers);
-      navigate(path); // Navigate after successful API call
+ 
+      navigate(path); 
     } catch (error) {
-      // console.error(`Error fetching billers for category ${categoryId}:`, error);
+      
       setError(error.message);
     } finally {
-      setLoading(false); // Ensure loading state is cleared after API call completes
+      setLoading(false);
     }
   };
 
