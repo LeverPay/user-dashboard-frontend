@@ -1,31 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import style from './AirtimeComponent.module.css';
-import mtnLogo from '../../../assets/mtn.png';
-import airtelLogo from '../../../assets/airtel.jpeg';
-import gloLogo from '../../../assets/glo.jpeg';
-import nineMobileLogo from '../../../assets/9mobile.webp';
-import { detectNetwork, useLocalState } from '../../../utils/useLocalStorage';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import style from "./AirtimeComponent.module.css";
+import mtnLogo from "../../../assets/mtn.png";
+import airtelLogo from "../../../assets/airtel.jpeg";
+import gloLogo from "../../../assets/glo.jpeg";
+import nineMobileLogo from "../../../assets/9mobile.webp";
+import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
 import { getBillerPaymentItemsByAmount } from "../../../services/apiService"; // Correct import
-import LoadingScreen from '../../LoadingPage/LoadingScreen';
+import LoadingScreen from "../../LoadingPage/LoadingScreen";
 
 const networkDetails = {
   MTN: { logo: mtnLogo, billerId: 903 },
   Airtel: { logo: airtelLogo, billerId: 901 },
   Glo: { logo: gloLogo, billerId: 913 },
-  '9mobile': { logo: nineMobileLogo, billerId: 653 },
+  "9mobile": { logo: nineMobileLogo, billerId: 653 },
 };
 
 const AirtimeComponent = () => {
   const navigate = useNavigate();
-  const [network, setNetwork] = useState('');
-  const [phoneNumber, setPhoneNumber] = useLocalState('savedPhoneNumber', '');
-  const [amount, setAmount] = useState('');
+  const [network, setNetwork] = useState("");
+  const [phoneNumber, setPhoneNumber] = useLocalState("savedPhoneNumber", "");
+  const [amount, setAmount] = useState("");
   const [saveNumber, setSaveNumber] = useState(!!phoneNumber);
   const [balance, setBalance] = useState(1000); // Simulated user balance
-  const [phoneErrorMessage, setPhoneErrorMessage] = useState('');
-  const [amountErrorMessage, setAmountErrorMessage] = useState('');
+  const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
+  const [amountErrorMessage, setAmountErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  //Fetching the jwt from the local storage
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
   useEffect(() => {
     if (phoneNumber) {
@@ -37,19 +40,19 @@ const AirtimeComponent = () => {
   }, [phoneNumber]);
 
   const handlePhoneNumberChange = (e) => {
-    const newPhoneNumber = e.target.value.replace(/\D/g, '');
+    const newPhoneNumber = e.target.value.replace(/\D/g, "");
     setPhoneNumber(newPhoneNumber);
     const detectedNetwork = detectNetwork(newPhoneNumber);
     if (detectedNetwork) {
       setNetwork(detectedNetwork);
     }
-    setPhoneErrorMessage('');
+    setPhoneErrorMessage("");
   };
 
   const handleAmountChange = (e) => {
-    const newAmount = e.target.value.replace(/\D/g, '');
+    const newAmount = e.target.value.replace(/\D/g, "");
     setAmount(newAmount);
-    setAmountErrorMessage('');
+    setAmountErrorMessage("");
   };
 
   const handleSaveNumberChange = (e) => setSaveNumber(e.target.checked);
@@ -59,52 +62,57 @@ const AirtimeComponent = () => {
     let hasError = false;
 
     if (isNaN(amountNum)) {
-      setAmountErrorMessage('Please enter a valid amount.');
+      setAmountErrorMessage("Please enter a valid amount.");
       hasError = true;
     } else if (amountNum > balance) {
-      setAmountErrorMessage('Amount entered is greater than balance.');
+      setAmountErrorMessage("Amount entered is greater than balance.");
       hasError = true;
     } else if (amountNum < 50) {
-      setAmountErrorMessage('Amount entered cannot be less than 50 Naira.');
+      setAmountErrorMessage("Amount entered cannot be less than 50 Naira.");
       hasError = true;
     } else {
-      setAmountErrorMessage('');
+      setAmountErrorMessage("");
     }
 
     if (phoneNumber.length !== 11) {
-      setPhoneErrorMessage('Please enter a valid phone number.');
+      setPhoneErrorMessage("Please enter a valid phone number.");
       hasError = true;
     } else {
-      setPhoneErrorMessage('');
+      setPhoneErrorMessage("");
     }
 
     if (!hasError) {
       setLoading(true);
       try {
         if (saveNumber) {
-          localStorage.setItem('savedPhoneNumber', phoneNumber);
+          localStorage.setItem("savedPhoneNumber", phoneNumber);
         } else {
-          localStorage.removeItem('savedPhoneNumber');
+          localStorage.removeItem("savedPhoneNumber");
         }
 
         const billerId = networkDetails[network]?.billerId;
         if (!billerId) {
-          throw new Error('Invalid network selected.');
+          throw new Error("Invalid network selected.");
         }
 
-        const jwt = localStorage.getItem('jwt');
+        // const jwt = localStorage.getItem("jwt");
+
         if (!jwt) {
-          throw new Error('JWT token not found.');
+          throw new Error("JWT token not found.");
         }
 
-        const data = await getBillerPaymentItemsByAmount(jwt, billerId, amountNum);
+        const data = await getBillerPaymentItemsByAmount(
+          jwt,
+          billerId,
+          amountNum
+        );
         console.log(data);
 
         setBalance(balance - amountNum);
-        navigate('/pin');
+        navigate("/pin");
       } catch (error) {
-        console.error('Error fetching biller payment items:', error);
-        setAmountErrorMessage('Failed to process request. Please try again.');
+        console.error("Error fetching biller payment items:", error);
+        setAmountErrorMessage("Failed to process request. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -128,7 +136,9 @@ const AirtimeComponent = () => {
                 key={key}
                 src={networkDetails[key].logo}
                 alt={`${key} logo`}
-                className={`${style.networkLogo} ${network === key ? style.selected : ''}`}
+                className={`${style.networkLogo} ${
+                  network === key ? style.selected : ""
+                }`}
                 onClick={() => setNetwork(key)}
               />
             ))}
@@ -143,7 +153,9 @@ const AirtimeComponent = () => {
               className={style.input}
               placeholder="Enter phone number"
             />
-            {phoneErrorMessage && <p className={style.errorMessage}>{phoneErrorMessage}</p>}
+            {phoneErrorMessage && (
+              <p className={style.errorMessage}>{phoneErrorMessage}</p>
+            )}
           </div>
           <div className={style.formGroup}>
             <h1 className={style.formLabel}>Airtime Amount (Naira)</h1>
@@ -155,7 +167,9 @@ const AirtimeComponent = () => {
               className={style.input}
               placeholder="Enter amount"
             />
-            {amountErrorMessage && <p className={style.errorMessage}>{amountErrorMessage}</p>}
+            {amountErrorMessage && (
+              <p className={style.errorMessage}>{amountErrorMessage}</p>
+            )}
           </div>
           <div className={style.formGroupCheckbox}>
             <input
@@ -164,13 +178,23 @@ const AirtimeComponent = () => {
               checked={saveNumber}
               onChange={handleSaveNumberChange}
             />
-            <p className={style.formLabelCheckbox}>Save this number for future transactions</p>
+            <p className={style.formLabelCheckbox}>
+              Save this number for future transactions
+            </p>
           </div>
           <div className={style.buttonGroup}>
-            <button type="button" className={style.buttonSubmit} onClick={handleSubmit}>
+            <button
+              type="button"
+              className={style.buttonSubmit}
+              onClick={handleSubmit}
+            >
               Proceed
             </button>
-            <button type="button" className={style.buttonCancel} onClick={handleCancel}>
+            <button
+              type="button"
+              className={style.buttonCancel}
+              onClick={handleCancel}
+            >
               Cancel
             </button>
           </div>
