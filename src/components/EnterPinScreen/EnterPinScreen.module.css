@@ -1,0 +1,120 @@
+.mainDiv {
+ 
+
+  
+  margin: auto;
+
+  margin-top: 250px;
+  
+  max-width: 700px;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 50px;
+  color: #333;
+
+  
+}
+.h2tag{
+
+width: 239px;
+height: 40px;
+left: 71px;
+right: 83px;
+top: 264px;
+bottom: 548px;
+}
+.enterPinDiv{
+
+
+width: 334px;
+height: 94px;
+left: 30px;
+right: -30px;
+top: 363px;
+bottom: -285px;
+}
+
+.pinInput {
+
+width: 334px;
+height: 51px;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding: 0px 10px 0px 10px;
+border-radius: 10px;
+ border: 1px solid #ccc;
+
+
+}
+.eyeIcon2{
+  margin-left: 300px;
+  margin-top: -40px;
+
+}
+
+.errorMessage {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.buttonSubmit,
+.buttonCancel {
+  display: inline-block;
+  
+  padding: 10px 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.buttonSubmit {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.buttonCancel {
+  background-color: #f44336;
+  color: white;
+}
+.ptag{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  color: rgb(10, 3, 45);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -5%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.ptag p {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.ptag p span {
+  color:  #4CAF50;
+  cursor: pointer;
+}
+h2{
+
+  font-size: 25px;
+  margin-top: 20px
+
+
+}

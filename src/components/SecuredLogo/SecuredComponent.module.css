@@ -1,0 +1,32 @@
+.mainDiv {
+  
+  padding-top: 50px;
+}
+
+.securedContainer img {
+  margin-right: -30px; /* Adjust the margin to reduce space */
+}
+.securedContainer {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin: 0;
+
+}
+.securedContainer p {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0; 
+
+  
+ 
+}
+
+.securedContainer p span {
+  font-family: Montserrat;
+  font-size: 20px;
+  font-weight: 700;
+  
+  color: rgb(8, 46, 136);
+}

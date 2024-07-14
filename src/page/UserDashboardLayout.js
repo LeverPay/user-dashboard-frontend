@@ -50,6 +50,7 @@ import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
 import RecentTransactions from "./AllTransactions/RecentTransaction";
 import CableTvPage from "./PayBillsPage/CableTvPage/CableTvPage";
 import PinPage from "./EnterPinPage/PinPage";
+import CreatePinPage from "./CreatePinPage/CreatePinPage";
 
 export const UserDashboardLayout = (props) => {
   const [user, setUser] = useState({});
@@ -205,6 +206,7 @@ export const UserDashboardLayout = (props) => {
           <Route path="/data" element={<DataPage />} />
           <Route path="/cable-tv" element={<CableTvPage />} />
           <Route path="/pin" element={<PinPage />} />
+          <Route path="/create-pin" element={<CreatePinPage />} />
         </Route>
       </Routes>
       <ToastContainer />

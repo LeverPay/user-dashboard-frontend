@@ -241,17 +241,27 @@ export const getBillersByCategoryId = async (jwt, categoryId) => {
 };
 export const getBillerPaymentItemsByAmount = async (jwt, billerId, amount) => {
   try {
-    const response = await axios.get(
-      `https://leverpay-api.azurewebsites.net/api/v1/user/quickteller/get-biller-payment-items-by-amount?billerId=${billerId}&amount=${amount}`,
-      {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      }
-    );
+    const response = await httpClient.get(`/v1/user/quickteller/get-biller-payment-items-by-amount`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+      params: {
+        billerId,
+        amount,
+      },
+    });
     return response.data;
   } catch (error) {
-    console.error('Error fetching biller payment items:', error);
+    if (error.response) {
+    
+      console.error('Error response from server:', error.response.data);
+    } else if (error.request) {
+    
+      console.error('No response received:', error.request);
+    } else {
+     
+      console.error('Error setting up request:', error.message);
+    }
     throw error;
   }
 };
