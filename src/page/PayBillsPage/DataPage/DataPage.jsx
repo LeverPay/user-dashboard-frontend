@@ -1,5 +1,5 @@
-import React from 'react';
-import DataComponent from '../../../components/PayBillsCompontent/DataCompontent/DataComponent';
+import React from "react";
+import DataComponent from "../../../components/PayBillsCompontent/DataCompontent/DataComponent";
 
 const DataPage = () => {
   return (
@@ -7,6 +7,6 @@ const DataPage = () => {
       <DataComponent />
     </div>
   );
-}
+};
 
 export default DataPage;

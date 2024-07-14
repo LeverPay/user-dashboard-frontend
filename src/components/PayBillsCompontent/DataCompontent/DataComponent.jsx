@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import style from "./DataComponent.module.css";
 import mtnLogo from "../../../assets/mtn.png";
@@ -47,28 +48,52 @@ export default function DataComponent() {
   const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
   const [dataPlanErrorMessage, setDataPlanErrorMessage] = useState("");
   const [selectedTab, setSelectedTab] = useState("daily"); // Ensure default is 'daily'
+  const [billerItems, setBillerItems] = useState([]);
+
+  //Fetching the jwt from the local storage
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
   useEffect(() => {
     if (phoneNumber) {
       const detectedNetwork = detectNetwork(phoneNumber);
       if (detectedNetwork) {
-        setNetwork(detectedNetwork);
+        setNetwork(detectedNetwork.name);
+        fetchBillerItems(detectedNetwork.biller_id);
       }
     }
   }, [phoneNumber]);
 
-  //Fetch the data options when a particular network has been selected
-  useEffect(() => {
-    console.log("network", network);
-  }, [network]);
+  //function to request for the dataplans for a network
+  const fetchBillerItems = async (billerId) => {
+    console.log("running");
+
+    if (!billerId) return;
+
+    try {
+      const response = await axios.get(
+        `https://leverpay-api.azurewebsites.net/api/v1/user/quickteller/get-biller-payment-items?billerId=${billerId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      );
+      setBillerItems(response.data); // Assuming the response has an 'items' field
+      console.log("fetch res", response);
+    } catch (error) {
+      console.error("Error fetching biller items:", error);
+    }
+  };
 
   const handleNetworkChange = (e) => setNetwork(e.target.value);
+
   const handlePhoneNumberChange = (e) => {
     const newPhoneNumber = e.target.value.replace(/\D/g, "");
     setPhoneNumber(newPhoneNumber);
     const detectedNetwork = detectNetwork(newPhoneNumber);
     if (detectedNetwork) {
-      setNetwork(detectedNetwork);
+      setNetwork(detectedNetwork.name);
+      fetchBillerItems(detectedNetwork.biller_id);
     }
     setPhoneErrorMessage(""); // Clear phone error message when user starts typing
   };
@@ -119,6 +144,27 @@ export default function DataComponent() {
     navigate(-1);
   };
 
+  const filterPlansByTab = () => {
+    const tabKeywords = {
+      daily: ["1 day", "2 days", "2-days", "3days", "night"],
+      weekly: ["1 week", "7 days", "weekly"],
+      monthly: [
+        "30 days",
+        "60 days",
+        "90 days",
+        "monthly",
+        "1 month",
+        "365 days",
+      ],
+    };
+
+    return billerItems.filter((item) =>
+      tabKeywords[selectedTab].some((keyword) =>
+        item.Name.toLowerCase().includes(keyword)
+      )
+    );
+  };
+
   return (
     <div className={style.modal}>
       <h2 className={style.modalTitle}>Data Purchase</h2>
@@ -131,7 +177,10 @@ export default function DataComponent() {
             className={`${style.networkLogo} ${
               network === key ? style.selected : ""
             }`}
-            onClick={() => setNetwork(key)}
+            onClick={() => {
+              setNetwork(key);
+              fetchBillerItems(detectNetwork(phoneNumber)?.biller_id);
+            }}
           />
         ))}
       </div>
@@ -163,7 +212,7 @@ export default function DataComponent() {
         ))}
       </div>
       <div className={style.dataPlansRow}>
-        {dataPlans[network]?.[selectedTab]?.map((plan, index) => (
+        {/* {dataPlans[network]?.[selectedTab]?.map((plan, index) => (
           <button
             key={index}
             className={`${style.dataPlanButton} ${
@@ -172,6 +221,18 @@ export default function DataComponent() {
             onClick={() => handleDataPlanChange(plan)}
           >
             {plan}
+          </button>
+        ))} */}
+
+        {filterPlansByTab().map((plan, index) => (
+          <button
+            key={index}
+            className={`${style.dataPlanButton} ${
+              dataPlan === plan.Name ? style.selectedDataPlan : ""
+            }`}
+            onClick={() => handleDataPlanChange(plan.Name)}
+          >
+            {plan.Name}
           </button>
         ))}
       </div>
