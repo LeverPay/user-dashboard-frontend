@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom"; // Import Link for navigation
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"; // Import icons
+import { useNavigate, Link } from "react-router-dom";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import style from "./EnterPinScreen.module.css";
 import SecuredComponent from "../SecuredLogo/SecuredComponent";
+import { submitBillPayment } from "../../services/apiService"; // Import your API service
 
 const EnterPinScreen = () => {
   const [pin, setPin] = useState("");
   const [pinErrorMessage, setPinErrorMessage] = useState("");
-  const [showPin, setShowPin] = useState(false); // State to toggle PIN visibility
-  const navigate = useNavigate(); // Initialize useNavigate for navigation
+  const [showPin, setShowPin] = useState(false);
+  const navigate = useNavigate();
 
   const handlePinChange = (e) => {
-    const value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-    // Ensure pin input does not exceed 4 characters
+    const value = e.target.value.replace(/\D/g, "");
     if (value.length <= 4) {
       setPin(value);
     }
@@ -22,20 +22,33 @@ const EnterPinScreen = () => {
     setShowPin(!showPin);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Check if pin is exactly 4 characters
     if (pin.length === 4) {
-      // Handle pin submit logic
-      console.log("PIN submitted:", pin);
+      try {
+        const billerData = JSON.parse(localStorage.getItem("billerData"));
+        if (!billerData) {
+          throw new Error("Biller data not found.");
+        }
+
+        const response = await submitBillPayment({
+          ...billerData,
+          pin,
+        });
+        console.log("Payment successful:", response);
+
+        navigate("/success"); // Navigate to success page or show success message
+      } catch (error) {
+        console.error("Error submitting payment:", error);
+        setPinErrorMessage("Failed to process payment. Please try again.");
+      }
     } else {
       setPinErrorMessage("PIN must be exactly 4 digits.");
     }
   };
 
   const handleCancel = () => {
-    // Handle cancel logic, navigate back to previous page
-    navigate(-1); // Navigate back one step in the history stack
+    navigate(-1);
   };
 
   return (
@@ -57,7 +70,7 @@ const EnterPinScreen = () => {
               onChange={handlePinChange}
               placeholder="Enter PIN"
               className={style.pinInput}
-              maxLength={4} // Limit input to 4 characters
+              maxLength={4}
             />
             <span className={style.eyeIcon} onClick={toggleShowPin}>
               <div className={style.eyeIcon2}>

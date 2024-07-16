@@ -11,40 +11,40 @@ const setAuthHeader = (jwt) => {
   httpClient.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
 };
 
-export const signIn = async (userData, jwt, setJwt) => {
-  if (!jwt) {
-    const signInURL = `${baseURL}/v1/login`;
-  
-    try {
-      const response = await httpClient.post(signInURL, userData);
-      if (response.data.success) {
-        const token = response.data.data.token;
+export const signIn = async (userData, setJwt) => {
+  const signInURL = `${baseURL}/v1/login`;
+  try {
+    const response = await axios.post(signInURL, userData);
+    if (response.data.success) {
+      const token = response.data.data.token;
+      if (token) {
+        toast.success(response.data.message);
+        setJwt(token);
+        localStorage.setItem("jwt", token);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-     
+        // Save user profile information
+        const { email, phone } = response.data.data.user;
+        localStorage.setItem("userEmail", email);
+        localStorage.setItem("userPhoneNumber", phone);
 
-                if (token) {
-                    toast.success(response.data.message);
-                    setJwt(token);
-                    localStorage.setItem("jwt", token);
-                    setAuthHeader(token);                    
-                    setTimeout(() => {
-                        window.location.href = "/";
-                    }, 2000);
-                } else {
-                    toast.error("Token is missing in the response.");
-                }
-            } else {
-                toast.error(response.data.message);
-            }
-        } catch (err) {
-            if (err.response && err.response.data && err.response.data.message) {
-                toast.error(err.response.data.message);
-            } else {
-                toast.error("An error occurred. Please try again later.");
-            }
-            console.error("API call error:", err);
-        }
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 2000);
+      } else {
+        toast.error("Token is missing in the response.");
+      }
+    } else {
+      toast.error(response.data.message);
     }
+  } catch (err) {
+    if (err.response && err.response.data && err.response.data.message) {
+      toast.error(err.response.data.message);
+    } else {
+      toast.error("An error occurred. Please try again later.");
+    }
+    console.error("API call error:", err);
+  }
 };
 
 export const signUp = async ({ signupData }) => {
@@ -219,6 +219,7 @@ export const getCities = async (stateID, setCity) => {
     toast.error(err.message);
   }
 };
+
 export const getBillersCategories = async (jwt) => {
   setAuthHeader(jwt);
   try {
@@ -265,5 +266,67 @@ export const getBillerPaymentItemsByAmount = async (jwt, billerId, amount) => {
     throw error;
   }
 };
+export const submitBillPayment = async (paymentData) => {
+  const { jwt } = JSON.parse(localStorage.getItem("jwt")); // Ensure the JWT is included
+  const response = await axios.post(
+    "/api/v1/user/quickteller/submit-bill-payment",
+    paymentData,
+    {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    }
+  );
+  return response.data;
+};
+
+export const savePin = async (pin, confirmPin, jwt) => {
+  setAuthHeader(jwt);
+  const formData = new FormData();
+  formData.append("pin", pin);
+  formData.append("confirm_pin", confirmPin);
+
+  try {
+    const response = await httpClient.post("/v1/user/vfd/create-new-pin", formData);
+    return response.data;
+  } catch (error) {
+    if (error.response.status === 401) {
+      toast.error("Unauthorized. Please log in again.");
+      throw error; // Ensure the caller can handle the 401 error
+    } else {
+      console.error("Save Pin Error:", error);
+      if (error.response && error.response.data) {
+        return error.response.data;
+      } else {
+        throw new Error("Failed to save pin");
+      }
+    }
+  }
+};
+
+export const resetPin = async (pin, confirmPin, jwt) => {
+  setAuthHeader(jwt);
+  const formData = new FormData();
+  formData.append("pin", pin);
+  formData.append("confirm_new_pin", confirmPin);
+
+  try {
+    const response = await httpClient.post("/v1/user/vfd/reset-billpayment-pin", formData);
+    return response.data;
+  } catch (error) {
+    if (error.response.status === 401) {
+      toast.error("Unauthorized. Please log in again.");
+      throw error; // Ensure the caller can handle the 401 error
+    } else {
+      console.error("Reset Pin Error:", error);
+      if (error.response && error.response.data) {
+        return error.response.data;
+      } else {
+        throw new Error("Failed to reset pin");
+      }
+    }
+  }
+};
+
 
 
