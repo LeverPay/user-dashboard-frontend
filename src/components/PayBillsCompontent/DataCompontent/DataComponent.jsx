@@ -140,9 +140,25 @@ export default function DataComponent() {
       } else {
         localStorage.removeItem("savedPhoneNumber");
       }
-      console.log("data", {
-        plan: dataPlan,
-      });
+
+      // Store necessary data in local storage
+      localStorage.setItem(
+        "billerData",
+        JSON.stringify({
+          customerId: user.uuid,
+          amount: dataPlan.Amount,
+          paymentCode: dataPlan.PaymentCode,
+          itemName: dataPlan.Name,
+          billerName: dataPlan.BillerName,
+          billerCategoryId: dataPlan.BillerCategoryId,
+          customerEmail: user.email,
+          customerMobile: user.phone,
+          referenceNo: dataPlan.ReferenceNo,
+        })
+      );
+
+      // setBalance(balance - amountNum);
+      navigate("/pin");
     }
   };
 
