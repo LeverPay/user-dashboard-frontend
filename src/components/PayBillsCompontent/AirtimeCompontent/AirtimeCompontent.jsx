@@ -6,14 +6,14 @@ import airtelLogo from "../../../assets/airtel.jpeg";
 import gloLogo from "../../../assets/glo.jpeg";
 import nineMobileLogo from "../../../assets/9mobile.webp";
 import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
-import { getBillerPaymentItemsByAmount } from "../../../services/apiService"; // Correct import
+import { getBillerPaymentItemsByAmount } from "../../../services/apiService";
 import LoadingScreen from "../../LoadingPage/LoadingScreen";
 
 const networkDetails = {
-  MTN: { logo: mtnLogo, billerId: 903 },
+  MTN: { logo: mtnLogo, billerId: 109 },
   Airtel: { logo: airtelLogo, billerId: 901 },
   Glo: { logo: gloLogo, billerId: 913 },
-  "9mobile": { logo: nineMobileLogo, billerId: 653 },
+  "9mobile": { logo: nineMobileLogo, billerId: 908 },
 };
 
 const AirtimeComponent = () => {
@@ -22,12 +22,12 @@ const AirtimeComponent = () => {
   const [phoneNumber, setPhoneNumber] = useLocalState("savedPhoneNumber", "");
   const [amount, setAmount] = useState("");
   const [saveNumber, setSaveNumber] = useState(!!phoneNumber);
-  const [balance, setBalance] = useState(1000); // Simulated user balance
+  const [balance, setBalance] = useState("", "user"); // Simulated user balance
   const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
   const [amountErrorMessage, setAmountErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  //Fetching the jwt from the local storage
+  // Fetching the jwt from local storage
   const [jwt, setJwt] = useLocalState("", "jwt");
 
   useEffect(() => {
@@ -95,18 +95,29 @@ const AirtimeComponent = () => {
           throw new Error("Invalid network selected.");
         }
 
-        // const jwt = localStorage.getItem("jwt");
-
         if (!jwt) {
           throw new Error("JWT token not found.");
         }
 
-        const data = await getBillerPaymentItemsByAmount(
-          jwt,
-          billerId,
-          amountNum
-        );
+        const data = await getBillerPaymentItemsByAmount(jwt, billerId, amountNum);
         console.log(data);
+
+        // Fetch user email and phone number from local storage
+        const customerEmail = localStorage.getItem("userEmail");
+        const customerMobile = localStorage.getItem("userPhoneNumber");
+
+        // Store necessary data in local storage
+        localStorage.setItem("billerData", JSON.stringify({
+          customerId: phoneNumber,
+          amount: amountNum,
+          paymentCode: data.paymentCode,
+          itemName: data.itemName,
+          billerName: data.billerName,
+          billerCategoryId: data.billerCategoryId,
+          customerEmail,
+          customerMobile,
+          referenceNo: data.referenceNo,
+        }));
 
         setBalance(balance - amountNum);
         navigate("/pin");

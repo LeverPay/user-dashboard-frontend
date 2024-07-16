@@ -6,6 +6,7 @@ function useLocalState(defaultValue, key) {
 
     if (localStorageValue !== null) {
       try {
+      
         return JSON.parse(localStorageValue);
       } catch (e) {
         console.error(`Error parsing JSON for key "${key}":`, e);
