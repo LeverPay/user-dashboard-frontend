@@ -49,9 +49,11 @@ export default function DataComponent() {
   const [dataPlanErrorMessage, setDataPlanErrorMessage] = useState("");
   const [selectedTab, setSelectedTab] = useState("daily"); // Ensure default is 'daily'
   const [billerItems, setBillerItems] = useState([]);
+  const [dataPrice, setDataPrice] = useState();
 
   //Fetching the jwt from the local storage
   const [jwt, setJwt] = useLocalState("", "jwt");
+  const [user, setUser] = useLocalState("", "user");
 
   useEffect(() => {
     if (phoneNumber) {
@@ -106,13 +108,16 @@ export default function DataComponent() {
   const handleSaveNumberChange = (e) => setSaveNumber(e.target.checked);
 
   const handleSubmit = () => {
-    const planCost = parseFloat(dataPlan.split("- N")[1]);
+    // const planCost = parseFloat(dataPlan.split("- N")[1]);
     let hasError = false;
 
     if (!dataPlan) {
       setDataPlanErrorMessage("Please select a data plan.");
       hasError = true;
-    } else if (isNaN(planCost) || planCost > balance) {
+    } else if (
+      dataPlan.Amount &&
+      dataPlan.Amount > user.wallet.withdrawable_amount.ngn
+    ) {
       setDataPlanErrorMessage(
         "Insufficient balance for the selected data plan."
       );
@@ -135,8 +140,11 @@ export default function DataComponent() {
       } else {
         localStorage.removeItem("savedPhoneNumber");
       }
-      setBalance(balance - planCost);
-      navigate("/next-page");
+      // setBalance(balance - planCost);
+      // navigate("/next-page");
+      console.log("data", {
+        plan: dataPlan,
+      });
     }
   };
 
@@ -146,15 +154,20 @@ export default function DataComponent() {
 
   const filterPlansByTab = () => {
     const tabKeywords = {
-      daily: ["1 day", "2 days", "2-days", "3days", "night"],
-      weekly: ["1 week", "7 days", "weekly"],
+      daily: ["1 day", "1 Day", "2 days", "2-days", "3days", "3 days", "night"],
+      weekly: ["1 week", "7 days", "7day", "14 days", "weekly"],
       monthly: [
         "30 days",
+        "30days",
         "60 days",
         "90 days",
+        "90days",
+        "120days",
+        "180 days",
         "monthly",
         "1 month",
         "365 days",
+        "365days",
       ],
     };
 
@@ -212,25 +225,15 @@ export default function DataComponent() {
         ))}
       </div>
       <div className={style.dataPlansRow}>
-        {/* {dataPlans[network]?.[selectedTab]?.map((plan, index) => (
-          <button
-            key={index}
-            className={`${style.dataPlanButton} ${
-              dataPlan === plan ? style.selectedDataPlan : ""
-            }`}
-            onClick={() => handleDataPlanChange(plan)}
-          >
-            {plan}
-          </button>
-        ))} */}
-
         {filterPlansByTab().map((plan, index) => (
           <button
             key={index}
             className={`${style.dataPlanButton} ${
-              dataPlan === plan.Name ? style.selectedDataPlan : ""
+              dataPlan.Name === plan.Name ? style.selectedDataPlan : ""
             }`}
-            onClick={() => handleDataPlanChange(plan.Name)}
+            onClick={() => {
+              handleDataPlanChange(plan);
+            }}
           >
             {plan.Name}
           </button>
