@@ -1,0 +1,51 @@
+
+
+.centerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: to add a background overlay */
+}
+
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 319.01px;
+    border-radius: 40px;
+    background: rgb(255, 255, 255);
+    padding: 20px;
+}
+
+.imageContainer {
+    animation: zoom 1s ease-in-out infinite;
+}
+
+.mainDiv.stopAnimation .imageContainer {
+    animation: none;
+}
+
+.mainDiv.stopAnimation .imageContainer img {
+    transform: scale(1);
+}
+
+.imageContainer img {
+    width: 100%;
+    height: auto;
+}
+
+.mainDiv p {
+    color: rgb(10, 3, 45);
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 3000;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
