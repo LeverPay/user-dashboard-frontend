@@ -140,8 +140,6 @@ export default function DataComponent() {
       } else {
         localStorage.removeItem("savedPhoneNumber");
       }
-      // setBalance(balance - planCost);
-      // navigate("/next-page");
       console.log("data", {
         plan: dataPlan,
       });
