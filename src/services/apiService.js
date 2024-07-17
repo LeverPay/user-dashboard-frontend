@@ -4,11 +4,11 @@ import axios from "axios";
 const baseURL = "https://leverpay-api.azurewebsites.net/api";
 
 const httpClient = axios.create({
-  baseURL
+  baseURL,
 });
 
 const setAuthHeader = (jwt) => {
-  httpClient.defaults.headers.common['Authorization'] = `Bearer ${jwt}`;
+  httpClient.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
 };
 
 export const signIn = async (userData, setJwt) => {
@@ -19,9 +19,9 @@ export const signIn = async (userData, setJwt) => {
       const token = response.data.data.token;
       if (token) {
         toast.success(response.data.message);
-        setJwt(token);
-        localStorage.setItem("jwt", token);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        // setJwt(token);
+        localStorage.setItem("jwt", JSON.stringify(token));
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
         // Save user profile information
         const { email, phone } = response.data.data.user;
@@ -87,7 +87,7 @@ export const verifyPayInvoice = async ({ id, otp }) => {
       "/v1/user/verify-invoices-otp",
       idData
     );
-    return response.data; 
+    return response.data;
   } catch (error) {
     console.log("err", error);
     if (error.response && error.response.data) {
@@ -114,7 +114,9 @@ export const verifyEmail = async (verifyData) => {
 
 export const resendVerifyToken = async (email) => {
   try {
-    const response = await httpClient.post("/v1/resend-verification-email", { email });
+    const response = await httpClient.post("/v1/resend-verification-email", {
+      email,
+    });
     return response.data;
   } catch (error) {
     console.log("error", error);
@@ -223,45 +225,50 @@ export const getCities = async (stateID, setCity) => {
 export const getBillersCategories = async (jwt) => {
   setAuthHeader(jwt);
   try {
-    const response = await httpClient.get("/v1/user/quickteller/get-billers-categories");
+    const response = await httpClient.get(
+      "/v1/user/quickteller/get-billers-categories"
+    );
     return response.data;
   } catch (error) {
     console.error("Error fetching biller categories:", error);
     throw error;
   }
-}
+};
 export const getBillersByCategoryId = async (jwt, categoryId) => {
-  const response = await httpClient.get(`/v1/user/quickteller/get-billers-by-category-id?categoryId=${categoryId}`, {
-    headers: {
-      Authorization: `Bearer ${jwt}`,
-    },
-  });
-  console.log('Billers for category:', response.data);
+  const response = await httpClient.get(
+    `/v1/user/quickteller/get-billers-by-category-id?categoryId=${categoryId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    }
+  );
+  console.log("Billers for category:", response.data);
   console.log(response.data);
   return response.data;
 };
 export const getBillerPaymentItemsByAmount = async (jwt, billerId, amount) => {
   try {
-    const response = await httpClient.get(`/v1/user/quickteller/get-biller-payment-items-by-amount`, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-      params: {
-        billerId,
-        amount,
-      },
-    });
+    const response = await httpClient.get(
+      `/v1/user/quickteller/get-biller-payment-items-by-amount`,
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+        params: {
+          billerId,
+          amount,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     if (error.response) {
-    
-      console.error('Error response from server:', error.response.data);
+      console.error("Error response from server:", error.response.data);
     } else if (error.request) {
-    
-      console.error('No response received:', error.request);
+      console.error("No response received:", error.request);
     } else {
-     
-      console.error('Error setting up request:', error.message);
+      console.error("Error setting up request:", error.message);
     }
     throw error;
   }
@@ -287,7 +294,10 @@ export const savePin = async (pin, confirmPin, jwt) => {
   formData.append("confirm_pin", confirmPin);
 
   try {
-    const response = await httpClient.post("/v1/user/vfd/create-new-pin", formData);
+    const response = await httpClient.post(
+      "/v1/user/vfd/create-new-pin",
+      formData
+    );
     return response.data;
   } catch (error) {
     if (error.response.status === 401) {
@@ -311,7 +321,10 @@ export const resetPin = async (pin, confirmPin, jwt) => {
   formData.append("confirm_new_pin", confirmPin);
 
   try {
-    const response = await httpClient.post("/v1/user/vfd/reset-billpayment-pin", formData);
+    const response = await httpClient.post(
+      "/v1/user/vfd/reset-billpayment-pin",
+      formData
+    );
     return response.data;
   } catch (error) {
     if (error.response.status === 401) {
@@ -327,6 +340,3 @@ export const resetPin = async (pin, confirmPin, jwt) => {
     }
   }
 };
-
-
-
