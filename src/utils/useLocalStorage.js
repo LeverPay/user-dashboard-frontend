@@ -28,18 +28,46 @@ function useLocalState(defaultValue, key) {
 }
 
 function detectNetwork(phoneNumber) {
-  if (phoneNumber.startsWith('0803') || phoneNumber.startsWith('0806') || phoneNumber.startsWith('0813') || phoneNumber.startsWith('0816') || phoneNumber.startsWith('0903') || phoneNumber.startsWith('0906') || phoneNumber.startsWith('0703') || phoneNumber.startsWith('0706')) {
-    return 'MTN';
-  } else if (phoneNumber.startsWith('0802') || phoneNumber.startsWith('0808') || phoneNumber.startsWith('0812') || phoneNumber.startsWith('0902') || phoneNumber.startsWith('0701') || phoneNumber.startsWith('0708')) {
-    return 'Airtel';
-  } else if (phoneNumber.startsWith('0805') || phoneNumber.startsWith('0807') || phoneNumber.startsWith('0815') || phoneNumber.startsWith('0905') || phoneNumber.startsWith('0705')) {
-    return 'Glo';
-  } else if (phoneNumber.startsWith('0809') || phoneNumber.startsWith('0817') || phoneNumber.startsWith('0818') || phoneNumber.startsWith('0909') || phoneNumber.startsWith('0908')) {
-    return '9mobile';
+  if (
+    phoneNumber.startsWith("0803") ||
+    phoneNumber.startsWith("0806") ||
+    phoneNumber.startsWith("0813") ||
+    phoneNumber.startsWith("0814") ||
+    phoneNumber.startsWith("0816") ||
+    phoneNumber.startsWith("0903") ||
+    phoneNumber.startsWith("0906") ||
+    phoneNumber.startsWith("0703") ||
+    phoneNumber.startsWith("0706")
+  ) {
+    return { name: "MTN", biller_id: 348 };
+  } else if (
+    phoneNumber.startsWith("0802") ||
+    phoneNumber.startsWith("0808") ||
+    phoneNumber.startsWith("0812") ||
+    phoneNumber.startsWith("0902") ||
+    phoneNumber.startsWith("0701") ||
+    phoneNumber.startsWith("0708")
+  ) {
+    return { name: "Airtel", biller_id: 2774 };
+  } else if (
+    phoneNumber.startsWith("0805") ||
+    phoneNumber.startsWith("0807") ||
+    phoneNumber.startsWith("0815") ||
+    phoneNumber.startsWith("0905") ||
+    phoneNumber.startsWith("0705")
+  ) {
+    return { name: "Glo", biller_id: 3070 };
+  } else if (
+    phoneNumber.startsWith("0809") ||
+    phoneNumber.startsWith("0817") ||
+    phoneNumber.startsWith("0818") ||
+    phoneNumber.startsWith("0909") ||
+    phoneNumber.startsWith("0908")
+  ) {
+    return { name: "9mobile", biller_id: 205 };
   } else {
     return null;
   }
 }
-
 
 export { useLocalState, detectNetwork };

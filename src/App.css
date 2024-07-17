@@ -73,7 +73,7 @@
   src: url(./assets/fonts/montserrat/Montserrat-Regular.ttf);
 }
 
-::-webkit-scrollbar {
+.rm_scroll::-webkit-scrollbar {
   visibility: hidden;
 }
 
