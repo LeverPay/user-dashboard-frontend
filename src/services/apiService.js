@@ -18,15 +18,17 @@ export const signIn = async (userData, setJwt) => {
     if (response.data.success) {
       const token = response.data.data.token;
       if (token) {
-        toast.success(response.data.message);
+        console.log("Token:", response.data.message);
+        toast.success(response.data.message); 
         setJwt(token);
         localStorage.setItem("jwt", token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-        // Save user profile information
+      
         const { email, phone } = response.data.data.user;
         localStorage.setItem("userEmail", email);
         localStorage.setItem("userPhoneNumber", phone);
+        // localStorage.setItem("userWalletAmount", wallet.amount.ngn);
 
         setTimeout(() => {
           window.location.href = "/";
@@ -91,9 +93,9 @@ export const verifyPayInvoice = async ({ id, otp }) => {
   } catch (error) {
     console.log("err", error);
     if (error.response && error.response.data) {
-      return error.response.data; // Return the error response data
+      return error.response.data; 
     } else {
-      return { success: false, message: "An unknown error occurred." }; // Return a generic error message
+      return { success: false, message: "An unknown error occurred." }; 
     }
   }
 };
