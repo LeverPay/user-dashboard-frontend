@@ -10,7 +10,7 @@ function useLocalState(defaultValue, key) {
         return JSON.parse(localStorageValue);
       } catch (e) {
         console.error(`Error parsing JSON for key "${key}":`, e);
-        localStorage.removeItem(key); // Remove corrupted data
+        localStorage.removeItem(key); 
       }
     }
     return defaultValue;
@@ -69,5 +69,6 @@ function detectNetwork(phoneNumber) {
     return null;
   }
 }
+
 
 export { useLocalState, detectNetwork };

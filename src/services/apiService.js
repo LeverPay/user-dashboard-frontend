@@ -23,10 +23,11 @@ export const signIn = async (userData, setJwt) => {
         localStorage.setItem("jwt", JSON.stringify(token));
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-        // Save user profile information
+      
         const { email, phone } = response.data.data.user;
         localStorage.setItem("userEmail", email);
         localStorage.setItem("userPhoneNumber", phone);
+        // localStorage.setItem("userWalletAmount", wallet.amount.ngn);
 
         setTimeout(() => {
           window.location.href = "/";
@@ -91,9 +92,9 @@ export const verifyPayInvoice = async ({ id, otp }) => {
   } catch (error) {
     console.log("err", error);
     if (error.response && error.response.data) {
-      return error.response.data; // Return the error response data
+      return error.response.data; 
     } else {
-      return { success: false, message: "An unknown error occurred." }; // Return a generic error message
+      return { success: false, message: "An unknown error occurred." }; 
     }
   }
 };
@@ -273,10 +274,13 @@ export const getBillerPaymentItemsByAmount = async (jwt, billerId, amount) => {
     throw error;
   }
 };
-export const submitBillPayment = async (paymentData) => {
-  const { jwt } = JSON.parse(localStorage.getItem("jwt")); // Ensure the JWT is included
-  const response = await axios.post(
-    "/api/v1/user/quickteller/submit-bill-payment",
+export const submitBillPayment = async (paymentData, jwt) => {
+  if (!jwt) {
+    throw new Error("JWT token not found.");
+  }
+console.log(jwt)
+  const response = await httpClient.post(
+    "/v1/user/quickteller/submit-bill-payment",
     paymentData,
     {
       headers: {
@@ -286,7 +290,6 @@ export const submitBillPayment = async (paymentData) => {
   );
   return response.data;
 };
-
 export const savePin = async (pin, confirmPin, jwt) => {
   setAuthHeader(jwt);
   const formData = new FormData();

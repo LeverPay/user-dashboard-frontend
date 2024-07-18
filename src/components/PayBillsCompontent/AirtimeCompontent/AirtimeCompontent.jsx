@@ -10,25 +10,24 @@ import { getBillerPaymentItemsByAmount } from "../../../services/apiService";
 import LoadingScreen from "../../LoadingPage/LoadingScreen";
 
 const networkDetails = {
-  MTN: { logo: mtnLogo, billerId: 109 },
-  Airtel: { logo: airtelLogo, billerId: 901 },
-  Glo: { logo: gloLogo, billerId: 913 },
-  "9mobile": { logo: nineMobileLogo, billerId: 908 },
+  MTN: { logo: mtnLogo, billerId: 348 },
+  Airtel: { logo: airtelLogo, billerId: 2774 },
+  Glo: { logo: gloLogo, billerId: 3070 },
+  "9mobile": { logo: nineMobileLogo, billerId: 205 },
 };
 
 const AirtimeComponent = () => {
   const navigate = useNavigate();
-  const [network, setNetwork] = useState("");
+  const [network, setNetwork] = useState(null);
   const [phoneNumber, setPhoneNumber] = useLocalState("savedPhoneNumber", "");
   const [amount, setAmount] = useState("");
   const [saveNumber, setSaveNumber] = useState(!!phoneNumber);
-  const [balance, setBalance] = useState("", "user"); // Simulated user balance
+  const [balance, setBalance] = useState(1000);
   const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
   const [amountErrorMessage, setAmountErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
-  // Fetching the jwt from local storage
   const [jwt, setJwt] = useLocalState("", "jwt");
+  const [user, setUser] = useLocalState("", "user");
 
   useEffect(() => {
     if (phoneNumber) {
@@ -64,7 +63,7 @@ const AirtimeComponent = () => {
     if (isNaN(amountNum)) {
       setAmountErrorMessage("Please enter a valid amount.");
       hasError = true;
-    } else if (amountNum > balance) {
+    } else if (amountNum > user.wallet.withdrawable_amount.ngn) {
       setAmountErrorMessage("Amount entered is greater than balance.");
       hasError = true;
     } else if (amountNum < 50) {
@@ -90,7 +89,11 @@ const AirtimeComponent = () => {
           localStorage.removeItem("savedPhoneNumber");
         }
 
-        const billerId = networkDetails[network]?.billerId;
+        if (!network) {
+          throw new Error("Invalid network selected.");
+        }
+
+        const { biller_id: billerId } = network;
         if (!billerId) {
           throw new Error("Invalid network selected.");
         }
@@ -102,11 +105,9 @@ const AirtimeComponent = () => {
         const data = await getBillerPaymentItemsByAmount(jwt, billerId, amountNum);
         console.log(data);
 
-        // Fetch user email and phone number from local storage
         const customerEmail = localStorage.getItem("userEmail");
         const customerMobile = localStorage.getItem("userPhoneNumber");
 
-        // Store necessary data in local storage
         localStorage.setItem("billerData", JSON.stringify({
           customerId: phoneNumber,
           amount: amountNum,
@@ -148,9 +149,9 @@ const AirtimeComponent = () => {
                 src={networkDetails[key].logo}
                 alt={`${key} logo`}
                 className={`${style.networkLogo} ${
-                  network === key ? style.selected : ""
+                  network && network.name === key ? style.selected : ""
                 }`}
-                onClick={() => setNetwork(key)}
+                onClick={() => setNetwork({ name: key, biller_id: networkDetails[key].billerId })}
               />
             ))}
           </div>

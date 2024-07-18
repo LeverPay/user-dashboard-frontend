@@ -25,7 +25,7 @@ const SignInComponent = () => {
     const [isvisible, setIsvisible] = useState(false);
     const [jwt, setJwt] = useLocalState("", "jwt");
 
-    console.log(process.env.REACT_APP_LEVERPAY_API_URL);
+    // console.log(process.env.REACT_APP_LEVERPAY_API_URL);
 
     function toggleVisible() {
         setIsvisible(!isvisible);
@@ -37,7 +37,7 @@ const SignInComponent = () => {
         const user = Object.fromEntries(formData);
 
         setSubmitted(true);
-        await signIn(user, jwt, setJwt);
+        await signIn(user, setJwt); // Pass setJwt correctly
         setSubmitted(false);
     };
 
