@@ -274,10 +274,13 @@ export const getBillerPaymentItemsByAmount = async (jwt, billerId, amount) => {
     throw error;
   }
 };
-export const submitBillPayment = async (paymentData) => {
-  const { jwt } = JSON.parse(localStorage.getItem("jwt")); // Ensure the JWT is included
-  const response = await axios.post(
-    "/api/v1/user/quickteller/submit-bill-payment",
+export const submitBillPayment = async (paymentData, jwt) => {
+  if (!jwt) {
+    throw new Error("JWT token not found.");
+  }
+console.log(jwt)
+  const response = await httpClient.post(
+    "/v1/user/quickteller/submit-bill-payment",
     paymentData,
     {
       headers: {
@@ -287,7 +290,6 @@ export const submitBillPayment = async (paymentData) => {
   );
   return response.data;
 };
-
 export const savePin = async (pin, confirmPin, jwt) => {
   setAuthHeader(jwt);
   const formData = new FormData();

@@ -3,13 +3,16 @@ import { useNavigate, Link } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import style from "./EnterPinScreen.module.css";
 import SecuredComponent from "../SecuredLogo/SecuredComponent";
-import { submitBillPayment } from "../../services/apiService"; // Import your API service
+import { submitBillPayment } from "../../services/apiService"; 
+
+import { useLocalState } from "../../utils/useLocalStorage";
 
 const EnterPinScreen = () => {
   const [pin, setPin] = useState("");
   const [pinErrorMessage, setPinErrorMessage] = useState("");
   const [showPin, setShowPin] = useState(false);
   const navigate = useNavigate();
+  const [jwt, setJwt] = useLocalState("", "jwt");
 
   const handlePinChange = (e) => {
     const value = e.target.value.replace(/\D/g, "");
@@ -34,7 +37,7 @@ const EnterPinScreen = () => {
         const response = await submitBillPayment({
           ...billerData,
           pin,
-        });
+        }, jwt);
         console.log("Payment successful:", response);
 
         navigate("/success"); // Navigate to success page or show success message
