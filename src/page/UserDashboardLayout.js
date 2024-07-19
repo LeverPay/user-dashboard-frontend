@@ -53,6 +53,7 @@ import RecentTransactions from "./AllTransactions/RecentTransaction";
 import CableTvPage from "./PayBillsPage/CableTvPage/CableTvPage";
 
 import PayBillDropDown from "../page/PayBillsPage/PayBillsPage";
+import ReferralPage from "./ReferralPage/ReferralContainer";
 
 export const UserDashboardLayout = (props) => {
   const [naijaCard, setNaijaCard] = useState({});
@@ -222,6 +223,7 @@ export const UserDashboardLayout = (props) => {
               />
             }
           />
+          <Route path="referral" element={<ReferralPage/>} />
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
