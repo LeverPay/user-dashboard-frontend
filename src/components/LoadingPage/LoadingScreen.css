@@ -1,0 +1,45 @@
+/* .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+   
+  }
+  
+
+  @keyframes zoomInOut {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+   */
+   .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background-color:  #020024;
+    z-index: 1000; /* Ensure it's on top of other content */
+  }
+  
+  .loading-logo {
+   
+    animation: zoomInOut 1s infinite; /* Animation duration and repeat */
+  }
+  
+  @keyframes zoomInOut {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+  
