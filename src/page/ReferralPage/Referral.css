@@ -1,0 +1,106 @@
+.referral-container{
+    /* border: 1px solid white; */
+    /* min-height: 60vh; */
+    width: 50%;
+    margin: auto;
+    margin-top: 8rem;
+    margin-bottom: 2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+
+
+
+    /* overflow: auto; */
+}
+
+.referral{
+    /* width: 50%; */
+    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 4rem;
+    padding-top: 3rem;
+    color: #fff;
+}
+
+.referral > * {
+    width: 100%;
+    text-align: center;
+}
+
+.referral-intro{
+    padding: 15px 0;
+    background-color: #100247;
+    border-radius: 10px;
+}
+.referral-intro > h3{
+    font-size: 18px;
+    font-family: 'Montserrat';
+    font-weight: 400;
+}
+.referral-intro > .points{
+    padding-top: 2px;
+    font-size: 16px;
+    font-family: 'Montserrat' !important;
+    font-weight: 500;
+}
+
+.points > span{
+    text-decoration: line-through;
+}
+.referral-code{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #100247;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    /* font-weight: 400; */
+
+}
+
+.claim > input{
+    width: 30% !important;
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding-left: 10px;
+
+}
+.claim > button{
+    width: 30% !important;
+    background-color: orange;
+}
+
+.referral-info{
+    font-size: 15px;
+    font-family: "Montserrat";
+}
+
+@media (max-width: 620px) {  
+    .referral-container{
+        width: 95%;
+        margin-top: 2rem;
+    }
+
+    .referral{
+        padding: 2rem;
+        padding-top: 3rem;
+    }
+}
+@media (max-width: 1024px) and (min-width: 770px) {  
+    .referral-container{
+        width: 70%;
+    }
+}
+@media (max-width: 771px) and (min-width: 621px) {  
+    .referral-container{
+        width: 80%;
+    }
+}
