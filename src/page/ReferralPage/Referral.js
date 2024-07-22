@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./Referral.css";
 import SpinnerGif from "../../assets/spinner-gif.gif";
+import { FaCircleCheck } from "react-icons/fa6";
+import { FaTimes } from "react-icons/fa";
 import { useLocalState } from "../../utils/useLocalStorage";
 
 const Referral = () => {
@@ -10,10 +12,10 @@ const Referral = () => {
     const [codeDetails, setCodeDetails] = useState({ total_point: 0, referral_bonus: 0 });
     const [referrals, setReferrals] = useState([]);
     const [copy, setCopy] = useState('');
+    const [messageType, setMessageType] = useState('');
     const [message, setMessage] = useState('');
-    const [error, setError] = useState('');
-    const [submitted, setSubmitted] = useState(false);
-    const [claimPoints, setClaimPoints] = useState('');
+    const [showMessage, setShowMessage] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchReferralCode = async () => {
@@ -28,7 +30,6 @@ const Referral = () => {
                 setCodeDetails(res.data);
             } catch (error) {
                 console.log("Error fetching referral code:", error);
-                setError('Failed to fetch referral code');
             }
         };
 
@@ -47,29 +48,35 @@ const Referral = () => {
             setReferrals(response.data.data || []);
         } catch (error) {
             console.log("Error fetching referrals:", error);
-            setError('Failed to fetch referrals');
         }
     };
 
     const handleClaimBonus = async () => {
-        const inputData = { points: claimPoints };
+        const inputData = { amount: codeDetails.total_point };
+        setLoading(true);
         try {
             const response = await axios.post('https://leverpay-api.azurewebsites.net/api/v1/user/claim-referral-bonus', inputData, {
                 headers: {
                     Authorization: `Bearer ${jwt}`
                 }
             });
-            setSubmitted(true);
+            console.log(response.data)
             setMessage(response.data.message);
+            setMessageType(response.data.success ? 'success' : 'error');
+            setShowMessage(true)
+
             fetchReferrals();
-            setSubmitted(false);
-            // Clear claimPoints if successful
+            setLoading(false);
             if (response.data.success) {
-                setClaimPoints('');
+                console.log("Credited Successfully")
+                setCodeDetails(codeDetails.referral_bonus)
             }
         } catch (error) {
             console.log("Error claiming bonus:", error);
             setMessage('You do not have access to claim this point yet');
+            setMessageType('error')
+            setShowMessage(true)
+            setLoading(false);
         }
     };
 
@@ -77,6 +84,11 @@ const Referral = () => {
         navigator.clipboard.writeText(text);
         setCopy('Copied!');
     };
+
+    const handleCloseMessage = () => {
+        setShowMessage(false);
+    };
+
 
     return (
         <div className='referral'>
@@ -96,17 +108,22 @@ const Referral = () => {
 
             {referrals.length > 0 ? (
                 <div className='referral-code claim'>
-                    <input
-                        type="number"
-                        name="referralPoints"
-                        value={claimPoints}
-                        onChange={(e) => setClaimPoints(e.target.value)}
-                    />
+                    <div className='input-field'>
+                        <input
+                            type="number"
+                            name="referralPoints"
+                            value={codeDetails.total_point}
+                            readOnly
+                        />
+                        <label>
+                            Point
+                        </label>
+                    </div>
 
-                    {submitted ? <span><img src={SpinnerGif} alt="spinner-gif" /></span> : ""}
+                    {loading ? <img src={SpinnerGif} alt="spinner-gif" /> : ""}
                     <button
                         onClick={handleClaimBonus}
-                        disabled={claimPoints <= 0 || claimPoints > codeDetails.total_point}
+                        disabled={codeDetails.total_point <= 0 || loading || message}
                     >
                         Claim now
                     </button>
@@ -114,8 +131,29 @@ const Referral = () => {
             ) : (
                 <div>No referrals yet.</div>
             )}
-            
-            {message && <div>{message}</div>}
+
+            {showMessage && (
+                messageType === 'success' ? (
+                    <div className="message success">
+                        <span className="close-button" onClick={handleCloseMessage}>
+                            <FaTimes size={10} />
+                        </span>
+                        <FaCircleCheck size={50} />
+                        {message}
+                        <div className='referral-info'>
+                            Keep referring in order to keep earning more points which you can use to shop online.
+                        </div>
+                    </div>
+                ) : (
+                    <div className="message error">
+                        <span className="close-button" onClick={handleCloseMessage}>
+                            <FaTimes size={20} />
+                        </span>
+                        {message}
+                    </div>
+                )
+            )}
+
 
             <div className='referral-info'>
                 Keep referring in order to keep earning more points which you can use to shop online.
