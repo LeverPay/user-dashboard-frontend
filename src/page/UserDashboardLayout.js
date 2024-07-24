@@ -51,6 +51,7 @@ import RecentTransactions from "./AllTransactions/RecentTransaction";
 import CableTvPage from "./PayBillsPage/CableTvPage/CableTvPage";
 import PinPage from "./EnterPinPage/PinPage";
 import CreatePinPage from "./CreatePinPage/CreatePinPage";
+import ReferralPage from "./ReferralPage/ReferralContainer";
 
 export const UserDashboardLayout = (props) => {
   const [user, setUser] = useState({});
@@ -183,6 +184,7 @@ export const UserDashboardLayout = (props) => {
               />
             }
           />
+          <Route path="referral" element={<ReferralPage/>} />
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />

@@ -13,6 +13,7 @@ import internet from "../../assets/internet.png";
 import hotel from "../../assets/hotel.png";
 import ticket from "../../assets/ph_ticket-light.png";
 import cableTv from "../../assets/cable-tv.png";
+import SecuredComponent from "../SecuredLogo/SecuredComponent";
 
 const PayBillsComponent = () => {
   const [categories, setCategories] = useState([]);
@@ -104,6 +105,9 @@ const PayBillsComponent = () => {
             ))}
           </div>
         ))}
+      </div>
+      <div>
+        <SecuredComponent />
       </div>
     </div>
   );

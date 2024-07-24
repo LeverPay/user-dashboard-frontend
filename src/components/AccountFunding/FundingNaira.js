@@ -80,7 +80,7 @@ const FundingNaira = ({ amt, handleAmount }) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      charges: 200.0,
+      charges: 0,
       [name]: value,
     }));
   };
@@ -277,9 +277,9 @@ const FundingNaira = ({ amt, handleAmount }) => {
                   style={{ color: 'black', fontWeight: '700' }}
                 />
               </section>
-              <div className="screenshot">
-                <Helpimageupload GetFileImg={setFileImg}/>
-              </div>
+              <section className="screenshot">
+                <Helpimageupload GetfileImg={setFileImg}/>
+              </section>
             </main>
             <div className='button-container'>
             <button onClick={handleSubmit}>Confirm Payment</button>

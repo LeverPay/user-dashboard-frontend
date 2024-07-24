@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 
 function Helpimageupload(props) {
 
-    
-
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [image, setImage] = useState(null);
@@ -15,6 +13,7 @@ function Helpimageupload(props) {
       setImage(selectedImage)
     }
   }, [selectedImage]);
+  
   function handleImg(e){
     setSelectedImage(e.target.files[0])
     props.GetfileImg(e.target.files[0])
@@ -23,7 +22,7 @@ function Helpimageupload(props) {
   
     return (
       <>
-        <label htmlFor="select-image" style={{border: 'none' }} >
+        <label  className='image-label' htmlFor="select-image" style={{border: 'none' }} >
         <img alt='' src='./images/imgIcon.png' style={{ width: '20px', border: 'none' }} /> Click here to upload payment screenshot (Optional) {props.optional ? '(Optional)' : ''}
         <input
           accept="image/*"
@@ -36,7 +35,7 @@ function Helpimageupload(props) {
         />
         </label>
         {imageUrl && selectedImage && (
-          <div>
+          <div className='imageUpload'>
             <div>Image Preview:</div>
             <img src={imageUrl} alt={selectedImage.name} height="100px" width='100px' />
           </div>
