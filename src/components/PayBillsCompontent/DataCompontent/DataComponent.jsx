@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import style from "./DataComponent.module.css";
 import mtnLogo from "../../../assets/mtn.png";
 import airtelLogo from "../../../assets/airtel.jpeg";
-import gloLogo from "../../../assets/glo.jpeg";
-import nineMobileLogo from "../../../assets/9mobile.webp";
+import gloLogo from "../../../assets/glo.png";
+import nineMobileLogo from "../../../assets/9Mobile.png";
 import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
 
 const networkLogos = {
@@ -15,28 +15,7 @@ const networkLogos = {
   "9mobile": nineMobileLogo,
 };
 
-const dataPlans = {
-  MTN: {
-    daily: ["500MB - N100", "1GB - N200"],
-    weekly: ["2GB - N500", "5GB - N1000"],
-    monthly: ["10GB - N2000", "20GB - N3500"],
-  },
-  Airtel: {
-    daily: ["500MB - N150", "1GB - N300"],
-    weekly: ["2GB - N600", "5GB - N1200"],
-    monthly: ["10GB - N2500", "20GB - N4000"],
-  },
-  Glo: {
-    daily: ["500MB - N100", "1GB - N200"],
-    weekly: ["2GB - N500", "5GB - N1000"],
-    monthly: ["10GB - N2000", "20GB - N3500"],
-  },
-  "9mobile": {
-    daily: ["500MB - N150", "1GB - N300"],
-    weekly: ["2GB - N600", "5GB - N1200"],
-    monthly: ["10GB - N2500", "20GB - N4000"],
-  },
-};
+
 
 export default function DataComponent() {
   const navigate = useNavigate();

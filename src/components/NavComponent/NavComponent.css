@@ -119,7 +119,7 @@
 }
 .bottom-options .bottom-link {
   width: 100% !important;
-  color: #fff;
+  /* color: #fff; */
   /* padding: 5% !important; */
   font-family: AgrandirBold;
   text-decoration: none;

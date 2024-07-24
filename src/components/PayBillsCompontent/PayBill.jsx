@@ -4,6 +4,15 @@ import { getBillersCategories, getBillersByCategoryId } from '../../services/api
 import LoadingScreen from "../LoadingPage/LoadingScreen";
 import './Paybill.css';
 import { useLocalState } from '../../utils/useLocalStorage';
+import { BsTelephoneFill } from "react-icons/bs";
+import { FaWifi } from "react-icons/fa6";
+import electricity from "../../assets/electricity.png";
+import flightImage from "../../assets/flight.png";
+import transport from "../../assets/transport.png";
+import internet from "../../assets/internet.png";
+import hotel from "../../assets/hotel.png";
+import ticket from "../../assets/ph_ticket-light.png";
+import cableTv from "../../assets/cable-tv.png";
 
 const PayBillsComponent = () => {
   const [categories, setCategories] = useState([]);
@@ -39,11 +48,15 @@ const PayBillsComponent = () => {
   }, [jwt]);
 
   const specificCategories = [
-    { id: 3, name: 'Airtime', path: '/airtime' },
-    { id: 63, name: 'Data', path: '/data' },
-    { id: 5, name: 'Internet Subscription', path: '/internet' },
-    { id: 1, name: 'Electricity', path: '/electricity' },
-    { id: 2, name: 'Cable TV', path: '/cable-tv' },
+    { id: 3, name: 'Airtime', path: '/airtime', icon: <BsTelephoneFill style={{ color: 'black' }} /> },
+    { id: 63, name: 'Data', path: '/data', icon: <FaWifi style={{ color: 'green' }} /> },
+    { id: 1, name: 'Electricity', path: '/electricity', icon: <img src={electricity} alt="Electricity" /> },
+    { id: 2, name: 'Cable TV', path: '/cable-tv', icon: <img src={cableTv} alt="Cable TV" /> },
+    { id: 5, name: 'Internet', path: '/internet', icon: <img src={internet} alt="Internet" /> },
+    { id: 13, name: 'Flight', path: '/flight', icon: <img src={flightImage} alt="Flight" /> },
+    { id: 30, name: 'Tickets', path: '/tickets', icon: <img src={ticket} alt="Tickets" /> },
+    { id: 11, name: 'Hotel', path: '/hotel', icon: <img src={hotel} alt="Hotel" /> },
+    { id: 12, name: 'Transport', path: '/transport', icon: <img src={transport} alt="Transport" /> },
   ];
 
   const handleCategoryClick = async (categoryId, path) => {
@@ -61,42 +74,36 @@ const PayBillsComponent = () => {
     }
   };
 
+  const chunkArray = (array, chunkSize) => {
+    const chunks = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      chunks.push(array.slice(i, i + chunkSize));
+    }
+    return chunks;
+  };
+
+  const chunks = chunkArray(specificCategories, 3);
+
   return (
     <div className="mainDiv">
-      {loading && forwardNavigation && <LoadingScreen />} {/* Show loading screen only during forward navigation */}
+      {loading && forwardNavigation && <LoadingScreen />} 
       <div className="btnDiv">
         <h2 className="modalTitle">Pay Bills</h2>
-        {error && <p className="error">{error}</p>}
-        <div className="buttons-container">
-          <div className="left-buttons">
-            <nav>
-              {specificCategories.slice(0, Math.ceil(specificCategories.length / 2)).map((category) => (
-                <button 
-                  key={category.id}
-                  type="button"
-                  className={`button ${category.name.replace(" ", "-").toLowerCase()}`}
-                  onClick={() => handleCategoryClick(category.id, category.path)}
-                >
-                  {category.name}
-                </button>
-              ))}
-            </nav>
+        {chunks.map((chunk, index) => (
+          <div key={index} className="buttons-row">
+            {chunk.map((category) => (
+              <button 
+                key={category.id}
+                type="button"
+                className={`button ${category.name.replace(" ", "-").toLowerCase()}`}
+                onClick={() => handleCategoryClick(category.id, category.path)}
+              >
+                <div className="icon">{category.icon}</div>
+                <div className="text">{category.name}</div>
+              </button>
+            ))}
           </div>
-          <div className="right-buttons">
-            <nav>
-              {specificCategories.slice(Math.ceil(specificCategories.length / 2)).map((category) => (
-                <button 
-                  key={category.id}
-                  type="button"
-                  className={`button ${category.name.replace(" ", "-").toLowerCase()}`}
-                  onClick={() => handleCategoryClick(category.id, category.path)}
-                >
-                  {category.name}
-                </button>
-              ))}
-            </nav>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
