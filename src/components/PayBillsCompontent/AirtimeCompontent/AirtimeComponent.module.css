@@ -2,22 +2,19 @@
   margin: auto;
   width: 90%;
   margin-top: 120px;
-  
   max-width: 500px;
   background-color: white;
   padding: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   border-radius: 50px;
   color: #333;
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+.modalTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .networksRow {
@@ -45,34 +42,45 @@
 
 .formLabel {
   display: flex;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: AgrandirBold;
+  font-size: 25px;
+  font-family: Poppins;
   margin-bottom: 10px;
-  color: #333;
+  color: #0F3FB2;
 }
 
 .formLabelCheckbox {
-  display: inline-block;
-  font-size: 30px;  /* Increased font size for checkbox label */
-  font-weight: bold;
-  font-family: AgrandirBold;
-  margin-left: 10px;
-  margin-bottom: 50px;
+  font-size: 14px;
+  font-family: Poppins;
+   margin-bottom: 30px;
   color: #333;
 }
 
+.activeText {
+  color: #0F3FB2;
+}
+
 .formGroup input {
-  width: 100%;
+  width: 70%;
   padding: 8px;
   margin-bottom: 20px;
   box-sizing: border-box;
   border-radius: 20px;
 }
 
+
+
+
 .input {
-  color: #333;
+  border: 1px solid #ccc;
+   
 }
+
+.inputActive {
+  border-color: #0F3FB2; 
+}
+
+
+
 
 .errorMessage {
   color: red;
@@ -96,60 +104,78 @@
 }
 
 .buttonSubmit {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #0F3FB2;
 }
 
 .buttonCancel {
   background-color: #f44336;
-  color: white;
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
-  .modal {
-    width: 95%;
-    padding: 15px;
-  }
-
-  .formLabel, .formLabelCheckbox {
-    font-size: 24px;
-  }
-
-  .buttonSubmit,
-  .buttonCancel {
-    padding: 8px 16px;
-  }
+.formGroupCheckbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-@media (max-width: 480px) {
-  .modal {
-    width: 100%;
-    padding: 10px;
-    top: 0;
-    left: 0;
-    transform: none;
-    height: 100%;
-    overflow-y: auto;
-    border-radius: 0;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px; /* Increased width */
+  height: 34px; /* Increased height */
+  margin-right: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+
+  box-shadow: none;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px; /* Increased height */
+  width: 26px; /* Increased width */
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #0F3FB2;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px); /* Adjusted translateX value */
+}
+@media only screen and (max-width: 1024px) and (min-width: 769px) {
+  .mainDiv {
+  
+    margin-top: 200px;
+ 
   }
 
-  .networksRow {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .networkLogo {
-    width: 40px;
-    margin-bottom: 10px;
-  }
-
-  .formLabel, .formLabelCheckbox {
-    font-size: 20px;
-  }
-
-  .buttonSubmit,
-  .buttonCancel {
-    padding: 6px 12px;
+}
+@media only screen and (min-width: 1025px) {
+  .mainDiv {
+  
+    margin-top: 200px;
+ 
   }
 }
