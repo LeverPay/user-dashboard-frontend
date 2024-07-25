@@ -1,12 +1,13 @@
 .mainDiv {
   margin: auto;
   width: 90%;
-  margin-top: 120px;
-  max-width: 500px;
+  margin-top: 50px;
+  max-width: 600px;
   background-color: white;
-  padding: 20px;
+  padding: 2rem;
   border-radius: 50px;
   color: #333;
+ 
 }
 
 .modalTitle {
@@ -79,18 +80,25 @@
   border-color: #0F3FB2; 
 }
 
+.eyeIcon2{
+  margin-left: 330px;
+  margin-top: -55px;
 
+
+}
 
 
 .errorMessage {
   color: red;
   margin-top: 30px;
   margin-bottom: 10px;
+ 
 }
 
 .buttonGroup {
   display: flex;
   justify-content: center;
+  padding-top: 40px;
 }
 
 .buttonSubmit,
@@ -120,15 +128,12 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px; /* Increased width */
-  height: 34px; /* Increased height */
+  width: 60px; 
+  height: 34px; 
   margin-right: 10px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+  /* Ensure no border or shadow is applied */
+  border: none;
+  box-shadow: none;
 }
 
 .slider {
@@ -138,10 +143,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #ccc; /* Background color of the slider */
   transition: 0.4s;
   border-radius: 34px;
-
+  /* Ensure no border or shadow is applied */
+  border: none;
   box-shadow: none;
 }
 
@@ -155,19 +161,24 @@
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
+  /* Ensure no border is applied */
+  border: none;
 }
 
+/* Adjust slider background when checked */
 input:checked + .slider {
-  background-color: #0F3FB2;
+  background-color: #0F3FB2; /* Active background color */
 }
 
+/* Adjust position of the knob when checked */
 input:checked + .slider:before {
   transform: translateX(26px); /* Adjusted translateX value */
 }
+
 @media only screen and (max-width: 1024px) and (min-width: 769px) {
   .mainDiv {
   
-    margin-top: 200px;
+    margin-top: 180px;
  
   }
 

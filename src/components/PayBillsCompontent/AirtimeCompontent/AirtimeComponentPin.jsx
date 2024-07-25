@@ -1,62 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import style from "./AirtimeComponentPin.module.css";
-import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
-import { getBillerPaymentItemsByAmount, submitBillPayment } from "../../../services/apiService";
-import LoadingScreen from "../../LoadingPage/LoadingScreen";
-import SecuredComponent from "../SecuredLogo/SecuredComponent";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
+import { useLocalState } from '../../../utils/useLocalStorage';
+import { submitBillPayment } from '../../../services/apiService';
+import LoadingScreen from '../../LoadingPage/LoadingScreen';
+import style from './AirtimeComponent.module.css';
 
-
-
-const AirtimeComponentPin = () => {
-  const navigate = useNavigate();
-  const [network, setNetwork] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useLocalState("savedPhoneNumber", "");
-  const [amount, setAmount] = useState("");
-  const [saveNumber, setSaveNumber] = useState(!!phoneNumber);
-  const [balance, setBalance] = useState(1000);
-  const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
-  const [amountErrorMessage, setAmountErrorMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [pin, setPin] = useState("");
-  const [pinErrorMessage, setPinErrorMessage] = useState("");
+const AirTimeComponentPin = () => {
+  const [pin, setPin] = useState('');
+  const [pinErrorMessage, setPinErrorMessage] = useState('');
   const [showPin, setShowPin] = useState(false);
-  const [jwt] = useLocalState("", "jwt");
-  const [user] = useLocalState("", "user");
-
-  const [phoneNumberFocused, setPhoneNumberFocused] = useState(false);
-  const [amountFocused, setAmountFocused] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [amount, setAmount] = useState('');
+  const [saveNumber, setSaveNumber] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const [jwt] = useLocalState('', 'jwt');
 
   useEffect(() => {
-    if (phoneNumber) {
-      const detectedNetwork = detectNetwork(phoneNumber);
-      if (detectedNetwork) {
-        setNetwork(detectedNetwork);
-      }
+    // Fetch data from localStorage
+    const billerData = JSON.parse(localStorage.getItem('billerData'));
+    if (billerData) {
+      setPhoneNumber(billerData.customerId);
+      setAmount(billerData.amount);
+      setSaveNumber(billerData.saveNumber);
     }
-  }, [phoneNumber]);
-
-  const handlePhoneNumberChange = (e) => {
-    const newPhoneNumber = e.target.value.replace(/\D/g, "");
-    setPhoneNumber(newPhoneNumber);
-    const detectedNetwork = detectNetwork(newPhoneNumber);
-    if (detectedNetwork) {
-      setNetwork(detectedNetwork);
-    }
-    setPhoneErrorMessage("");
-  };
-
-  const handleAmountChange = (e) => {
-    const newAmount = e.target.value.replace(/\D/g, "");
-    setAmount(newAmount);
-    setAmountErrorMessage("");
-  };
-
-  const handleSaveNumberChange = () => setSaveNumber(!saveNumber);
+  }, []);
 
   const handlePinChange = (e) => {
-    const value = e.target.value.replace(/\D/g, "");
+    const value = e.target.value.replace(/\D/g, '');
     if (value.length <= 4) {
       setPin(value);
     }
@@ -66,102 +38,38 @@ const AirtimeComponentPin = () => {
     setShowPin(!showPin);
   };
 
-  const handleSubmit = async () => {
-    const amountNum = parseFloat(amount);
-    let hasError = false;
-
-    if (isNaN(amountNum)) {
-      setAmountErrorMessage("Please enter a valid amount.");
-      hasError = true;
-    } else if (amountNum > user.wallet.withdrawable_amount.ngn) {
-      setAmountErrorMessage("Amount entered is greater than balance.");
-      hasError = true;
-    } else if (amountNum < 50) {
-      setAmountErrorMessage("Amount entered cannot be less than 50 Naira.");
-      hasError = true;
-    } else {
-      setAmountErrorMessage("");
-    }
-
-    if (phoneNumber.length !== 11) {
-      setPhoneErrorMessage("Please enter a valid phone number.");
-      hasError = true;
-    } else {
-      setPhoneErrorMessage("");
-    }
-
-    if (!hasError) {
-      setLoading(true);
-      try {
-        if (saveNumber) {
-          localStorage.setItem("savedPhoneNumber", phoneNumber);
-        } else {
-          localStorage.removeItem("savedPhoneNumber");
-        }
-
-        if (!network) {
-          throw new Error("Invalid network selected.");
-        }
-
-        const { biller_id: billerId } = network;
-        if (!billerId) {
-          throw new Error("Invalid network selected.");
-        }
-
-        if (!jwt) {
-          throw new Error("JWT token not found.");
-        }
-
-        const data = await getBillerPaymentItemsByAmount(jwt, billerId, amountNum);
-        console.log(data);
-
-        const customerEmail = localStorage.getItem("userEmail");
-        const customerMobile = localStorage.getItem("userPhoneNumber");
-
-        localStorage.setItem("billerData", JSON.stringify({
-          customerId: phoneNumber,
-          amount: amountNum,
-          paymentCode: data.paymentCode,
-          itemName: data.itemName,
-          billerName: data.billerName,
-          billerCategoryId: data.billerCategoryId,
-          customerEmail,
-          customerMobile,
-          referenceNo: data.referenceNo,
-        }));
-
-        setBalance(balance - amountNum);
-      } catch (error) {
-        console.error("Error fetching biller payment items:", error);
-        setAmountErrorMessage("Failed to process request. Please try again.");
-      } finally {
-        setLoading(false);
-      }
-    }
-  };
-
-  const handlePinSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (pin.length === 4) {
-      try {
-        const billerData = JSON.parse(localStorage.getItem("billerData"));
-        if (!billerData) {
-          throw new Error("Biller data not found.");
-        }
+    if (pin === '') {
+      setPinErrorMessage('PIN cannot be empty.');
+      return;
+    }
+    if (pin.length !== 4) {
+      setPinErrorMessage('PIN must be exactly 4 digits.');
+      return;
+    }
+    try {
+      const billerData = JSON.parse(localStorage.getItem('billerData'));
+      if (!billerData) {
+        throw new Error('Biller data not found.');
+      }
 
-        const response = await submitBillPayment({
+      setLoading(true);
+      const response = await submitBillPayment(
+        {
           ...billerData,
           pin,
-        }, jwt);
-        console.log("Payment successful:", response);
+        },
+        jwt
+      );
+      console.log('Payment successful:', response);
 
-        navigate("/success"); 
-      } catch (error) {
-        console.error("Error submitting payment:", error);
-        setPinErrorMessage("Failed to process payment. Please try again.");
-      }
-    } else {
-      setPinErrorMessage("PIN must be exactly 4 digits.");
+      navigate('/success');
+    } catch (error) {
+      console.error('Error submitting payment:', error);
+      setPinErrorMessage('Failed to process payment. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -175,110 +83,65 @@ const AirtimeComponentPin = () => {
         <LoadingScreen />
       ) : (
         <>
-          { !pin ? (
-            <>
-              <h2 className={style.modalTitle}>Airtime</h2>
-              <div className={style.networksRow}>
-                {Object.keys(networkDetails).map((key) => (
-                  <img
-                    key={key}
-                    src={networkDetails[key].logo}
-                    alt={`${key} logo`}
-                    className={`${style.networkLogo} ${
-                      network && network.name === key ? style.selected : ""
-                    }`}
-                    onClick={() => setNetwork({ name: key, biller_id: networkDetails[key].billerId })}
-                  />
-                ))}
-              </div>
-              <div className={style.formGroup}>
-                <h1 className={style.formLabel}>Phone Number</h1>
-                <input
-                  type="text"
-                  id="phoneNumber"
-                  value={phoneNumber}
-                  onChange={handlePhoneNumberChange}
-                  onFocus={() => setPhoneNumberFocused(true)}
-                  onBlur={() => setPhoneNumberFocused(phoneNumber !== "")}
-                  className={`${style.input} ${phoneNumberFocused || phoneNumber ? style.inputActive : ""}`}
-                  placeholder="Enter phone number"
-                />
-                {phoneErrorMessage && (
-                  <p className={style.errorMessage}>{phoneErrorMessage}</p>
-                )}
-              </div>
-              <div className={style.formGroup}>
-                <h1 className={style.formLabel}>Amount</h1>
-                <input
-                  type="text"
-                  id="amount"
-                  value={amount}
-                  onChange={handleAmountChange}
-                  onFocus={() => setAmountFocused(true)}
-                  onBlur={() => setAmountFocused(amount !== "")}
-                  className={`${style.input} ${amountFocused || amount ? style.inputActive : ""}`}
-                  placeholder="Enter amount"
-                />
-                {amountErrorMessage && (
-                  <p className={style.errorMessage}>{amountErrorMessage}</p>
-                )}
-              </div>
-              <div className={style.buttonGroup}>
-                <button
-                  type="button"
-                  className={style.buttonSubmit}
-                  onClick={handleSubmit}
-                >
-                  Proceed
-                </button>
-                <button
-                  type="button"
-                  className={style.buttonCancel}
-                  onClick={handleCancel}
-                >
-                  Cancel
-                </button>
-              </div>
-            </>
-          ) : (
-            <div className={style.enterPinDiv}>
-              <h2>Enter Pin</h2>
-              <form onSubmit={handlePinSubmit}>
-                <div className={style.pinInputContainer}>
-                  <input
-                    type={showPin ? "text" : "password"}
-                    value={pin}
-                    onChange={handlePinChange}
-                    placeholder="Enter PIN"
-                    className={style.pinInput}
-                    maxLength={4}
-                  />
-                  <span className={style.eyeIcon} onClick={toggleShowPin}>
-                    <div className={style.eyeIcon2}>
-                      {showPin ? <FaRegEye /> : <FaRegEyeSlash />}
-                    </div>
-                  </span>
+          <h2 className={style.modalTitle}>Airtime</h2>
+          <div className={style.formGroup}>
+            <h1 className={style.formLabel}>Phone Number</h1>
+            <input
+              type="text"
+              id="phoneNumber"
+              value={phoneNumber}
+              readOnly
+              className={style.input}
+            />
+          </div>
+          <div className={style.formGroup}>
+            <h1 className={style.formLabel}>Amount</h1>
+            <input
+              type="text"
+              id="amount"
+              value={`NGN ${amount}`}
+              readOnly
+              className={style.input}
+              aria-label="Amount"
+            />
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className={style.formGroup}>
+              <h1 className={style.formLabel}>Transaction Pin</h1>
+              <input
+                type={showPin ? 'text' : 'password'}
+                value={pin}
+                onChange={handlePinChange}
+                placeholder="Enter Pin"
+                className={style.input}
+                maxLength={4}
+                aria-label="Transaction Pin"
+              />
+              <span className={style.eyeIcon} onClick={toggleShowPin}>
+                <div className={style.eyeIcon2}>
+                  {showPin ? <FaRegEye /> : <FaRegEyeSlash />}
                 </div>
-                {pinErrorMessage && (
-                  <p className={style.errorMessage}>{pinErrorMessage}</p>
-                )}
-                <div className={style.buttonGroup}>
-                  <button type="submit" className={style.buttonSubmit}>
-                    Submit
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleCancel}
-                    className={style.buttonCancel}
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
+              </span>
             </div>
-          )}
-          <div>
-            <SecuredComponent />
+            {pinErrorMessage && (
+              <p className={style.errorMessage}>{pinErrorMessage}</p>
+            )}
+          </form>
+          <div className={style.buttonGroup}>
+            <button
+              type="button"
+              className={style.buttonSubmit}
+              onClick={handleSubmit}
+            >
+              Confirm
+            </button>
+            <button
+              type="button"
+              className={style.buttonCancel}
+              onClick={handleCancel}
+            >
+              Cancel
+            </button>
           </div>
         </>
       )}
@@ -286,4 +149,4 @@ const AirtimeComponentPin = () => {
   );
 };
 
-export default AirtimeComponentPin;
+export default AirTimeComponentPin;
