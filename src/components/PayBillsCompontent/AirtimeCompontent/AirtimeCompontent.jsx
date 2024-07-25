@@ -8,6 +8,7 @@ import nineMobileLogo from "../../../assets/9Mobile.png";
 import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
 import { getBillerPaymentItemsByAmount } from "../../../services/apiService";
 import LoadingScreen from "../../LoadingPage/LoadingScreen";
+import AirTimeComponentPin from "./AirtimeComponentPin";
 
 const networkDetails = {
   MTN: { logo: mtnLogo, billerId: 348 },
@@ -124,7 +125,7 @@ const AirtimeComponent = () => {
         }));
 
         setBalance(balance - amountNum);
-        navigate("/pin");
+        navigate("/airtime-payment");
       } catch (error) {
         console.error("Error fetching biller payment items:", error);
         setAmountErrorMessage("Failed to process request. Please try again.");
