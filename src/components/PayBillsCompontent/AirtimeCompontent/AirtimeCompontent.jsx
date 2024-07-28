@@ -8,12 +8,11 @@ import nineMobileLogo from "../../../assets/9Mobile.png";
 import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
 import { getBillerPaymentItemsByAmount } from "../../../services/apiService";
 import LoadingScreen from "../../LoadingPage/LoadingScreen";
-import AirTimeComponentPin from "./AirtimeComponentPin";
 
 const networkDetails = {
-  MTN: { logo: mtnLogo, billerId: 348 },
-  Glo: { logo: gloLogo, billerId: 3070 },
-  Airtel: { logo: airtelLogo, billerId: 2774 },
+  MTN: { logo: mtnLogo, billerId: 109 },
+  Glo: { logo: gloLogo, billerId: 913 },
+  Airtel: { logo: airtelLogo, billerId: 901 },
   "9mobile": { logo: nineMobileLogo, billerId: 205 },
 };
 
@@ -97,7 +96,7 @@ const AirtimeComponent = () => {
           throw new Error("Invalid network selected.");
         }
 
-        const { biller_id: billerId } = network;
+        const { billerId } = networkDetails[network.name];
         if (!billerId) {
           throw new Error("Invalid network selected.");
         }
@@ -115,13 +114,15 @@ const AirtimeComponent = () => {
         localStorage.setItem("billerData", JSON.stringify({
           customerId: phoneNumber,
           amount: amountNum,
-          paymentCode: data.paymentCode,
-          itemName: data.itemName,
-          billerName: data.billerName,
-          billerCategoryId: data.billerCategoryId,
+          paymentCode: data.PaymentCode,
+          itemName: data.Name,
+          billerName: data.BillerName,
+          billerCategoryId: data.BillerCategoryId,
           customerEmail,
           customerMobile,
-          referenceNo: data.referenceNo,
+          referenceNo: data.ReferenceNo,
+          // Including the missing field from the API response
+          consumerIdField: data.ConsumerIdField,
         }));
 
         setBalance(balance - amountNum);
@@ -155,7 +156,7 @@ const AirtimeComponent = () => {
                 className={`${style.networkLogo} ${
                   network && network.name === key ? style.selected : ""
                 }`}
-                onClick={() => setNetwork({ name: key, biller_id: networkDetails[key].billerId })}
+                onClick={() => setNetwork({ name: key })}
               />
             ))}
           </div>
