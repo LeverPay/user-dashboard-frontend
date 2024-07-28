@@ -1,5 +1,3 @@
-// src/page/UserDashboardLayout.js
-
 import React, { useEffect, useState } from "react";
 import NavComponent from "../components/NavComponent/NavComponent";
 import TopNav from "../components/TopNav/TopNav";
@@ -53,6 +51,7 @@ import PinPage from "./EnterPinPage/PinPage";
 import CreatePinPage from "./CreatePinPage/CreatePinPage";
 import ReferralPage from "./ReferralPage/ReferralContainer";
 import AirtimePaymentPage from "./PayBillsPage/AirtimePage/AirtimePaymentPage";
+import DataPaymentScreen from "./PayBillsPage/DataPage/DataPaymentScreen";
 
 export const UserDashboardLayout = (props) => {
   const [user, setUser] = useState({});
@@ -208,9 +207,11 @@ export const UserDashboardLayout = (props) => {
           <Route path="/airtime" element={<AirtimePage />} />
           <Route path="/airtime-payment" element={<AirtimePaymentPage />} />
           <Route path="/data" element={<DataPage />} />
+          <Route path="/data-payment" element={<DataPaymentScreen />} />
           <Route path="/cable-tv" element={<CableTvPage />} />
           <Route path="/pin" element={<PinPage />} />
           <Route path="/create-pin" element={<CreatePinPage />} />
+
         </Route>
       </Routes>
       <ToastContainer />

@@ -15,8 +15,6 @@ const networkLogos = {
   "9mobile": nineMobileLogo,
 };
 
-
-
 export default function DataComponent() {
   const navigate = useNavigate();
   const [network, setNetwork] = useState("");
@@ -26,9 +24,10 @@ export default function DataComponent() {
   const [balance, setBalance] = useState(1000); // Example balance
   const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
   const [dataPlanErrorMessage, setDataPlanErrorMessage] = useState("");
-  const [selectedTab, setSelectedTab] = useState("daily"); // Ensure default is 'daily'
+  const [selectedTab, setSelectedTab] = useState("daily");
   const [billerItems, setBillerItems] = useState([]);
   const [dataPrice, setDataPrice] = useState();
+  const [inputBorderColor, setInputBorderColor] = useState("#ccc"); // Default border color
 
   //Fetching the jwt from the local storage
   const [jwt, setJwt] = useLocalState("", "jwt");
@@ -36,15 +35,18 @@ export default function DataComponent() {
 
   useEffect(() => {
     if (phoneNumber) {
+      setInputBorderColor("#0F3FB2"); // Change border color when phone number is provided
       const detectedNetwork = detectNetwork(phoneNumber);
       if (detectedNetwork) {
         setNetwork(detectedNetwork.name);
         fetchBillerItems(detectedNetwork.biller_id);
       }
+    } else {
+      setInputBorderColor("#ccc"); // Reset border color if no phone number
     }
   }, [phoneNumber]);
 
-  //function to request for the dataplans for a network
+  // Function to request data plans for a network
   const fetchBillerItems = async (billerId) => {
     console.log("running");
 
@@ -87,7 +89,6 @@ export default function DataComponent() {
   const handleSaveNumberChange = (e) => setSaveNumber(e.target.checked);
 
   const handleSubmit = () => {
-    // const planCost = parseFloat(dataPlan.split("- N")[1]);
     let hasError = false;
 
     if (!dataPlan) {
@@ -120,7 +121,6 @@ export default function DataComponent() {
         localStorage.removeItem("savedPhoneNumber");
       }
 
-      // Store necessary data in local storage
       localStorage.setItem(
         "billerData",
         JSON.stringify({
@@ -136,8 +136,7 @@ export default function DataComponent() {
         })
       );
 
-      // setBalance(balance - amountNum);
-      navigate("/pin");
+      navigate("/data-payment");
     }
   };
 
@@ -197,7 +196,7 @@ export default function DataComponent() {
           id="phoneNumber"
           value={phoneNumber}
           onChange={handlePhoneNumberChange}
-          className={style.input}
+          className={`${style.input} ${phoneNumber ? style.inputActive : ""}`}
           placeholder="Enter phone number"
         />
         {phoneErrorMessage && (
@@ -205,47 +204,48 @@ export default function DataComponent() {
         )}
       </div>
       <div className={style.tabs}>
-        {["daily", "weekly", "monthly"].map((tab) => (
-          <button
-            key={tab}
-            className={`${style.tab} ${
-              selectedTab === tab ? style.selectedTab : style.deselectedTab
-            }`}
-            onClick={() => setSelectedTab(tab)}
-          >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
-          </button>
-        ))}
+        <div className={style.tabsInner}>
+          {["daily", "weekly", "monthly"].map((tab) => (
+            <button
+              key={tab}
+              className={`${style.tab} ${
+                selectedTab === tab ? style.selectedTab : style.deselectedTab
+              }`}
+              onClick={() => setSelectedTab(tab)}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            </button>
+          ))}
+        </div>
       </div>
       <div className={style.dataPlansRow}>
-        {filterPlansByTab().map((plan, index) => (
-          <button
-            key={index}
-            className={`${style.dataPlanButton} ${
-              dataPlan.Name === plan.Name ? style.selectedDataPlan : ""
-            }`}
-            onClick={() => {
-              handleDataPlanChange(plan);
-            }}
-          >
-            {plan.Name}
-          </button>
-        ))}
+        {phoneNumber ? (
+          filterPlansByTab().length > 0 ? (
+            filterPlansByTab().map((plan, index) => (
+              <button
+                key={index}
+                className={`${style.dataPlanButton} ${
+                  dataPlan.Name === plan.Name ? style.selectedDataPlan : ""
+                }`}
+                onClick={() => handleDataPlanChange(plan)}
+              >
+                {plan.Name}
+              </button>
+            ))
+          ) : (
+            <p className={style.message}>
+              No data plans available for the selected network.
+            </p>
+          )
+        ) : (
+          <p className={style.message}>
+            Enter your phone number for data bundle to load!
+          </p>
+        )}
       </div>
       {dataPlanErrorMessage && (
         <p className={style.errorMessage}>{dataPlanErrorMessage}</p>
       )}
-      <div className={style.formGroupCheckbox}>
-        <input
-          type="checkbox"
-          id="saveNumber"
-          checked={saveNumber}
-          onChange={handleSaveNumberChange}
-        />
-        <p className={style.formLabelCheckbox}>
-          Save this number for future transactions
-        </p>
-      </div>
       <div className={style.buttonGroup}>
         <button
           type="button"
