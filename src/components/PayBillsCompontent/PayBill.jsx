@@ -51,7 +51,7 @@ const PayBillsComponent = () => {
 
   const specificCategories = [
     { id: 3, name: 'Airtime', path: '/airtime', icon: <img src={telephone} alt="telephone" /> },
-    { id: 63, name: 'Data', path: '/data', icon: <img src={network} alt="network" /> },
+    { id: 4, name: 'Data', path: '/data', icon: <img src={network} alt="network" /> },
     { id: 1, name: 'Electricity', path: '/electricity', icon: <img src={electricity} alt="Electricity" /> },
     { id: 2, name: 'Cable TV', path: '/cable-tv', icon: <img src={cableTv} alt="Cable TV" /> },
     { id: 5, name: 'Internet', path: '/internet', icon: <img src={internet} alt="Internet" /> },
@@ -65,6 +65,7 @@ const PayBillsComponent = () => {
     navigate(path); // Optimistic navigation
     setLoading(true);
     try {
+      console.log(categoryId);
       if (!cache[categoryId]) {
         const data = await getBillersByCategoryId(jwt, categoryId);
         setCache((prevCache) => ({ ...prevCache, [categoryId]: data }));
