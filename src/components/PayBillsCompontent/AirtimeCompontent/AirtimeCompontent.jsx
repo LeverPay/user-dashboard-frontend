@@ -22,13 +22,12 @@ const AirtimeComponent = () => {
   const [phoneNumber, setPhoneNumber] = useLocalState("savedPhoneNumber", "");
   const [amount, setAmount] = useState("");
   const [saveNumber, setSaveNumber] = useState(!!phoneNumber);
-  const [balance, setBalance] = useState(1000);
+  const [balance, setBalance] = useState(1000); // Replace with actual balance retrieval
   const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
   const [amountErrorMessage, setAmountErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [jwt, setJwt] = useLocalState("", "jwt");
-  const [user, setUser] = useLocalState("", "user");
-
+  const [jwt] = useLocalState("", "jwt");
+  const [user] = useLocalState("", "user");
   const [phoneNumberFocused, setPhoneNumberFocused] = useState(false);
   const [amountFocused, setAmountFocused] = useState(false);
 
@@ -106,27 +105,41 @@ const AirtimeComponent = () => {
         }
 
         const data = await getBillerPaymentItemsByAmount(jwt, billerId, amountNum);
-        console.log(data);
 
-        const customerEmail = localStorage.getItem("userEmail");
-        const customerMobile = localStorage.getItem("userPhoneNumber");
+        // Ensure data exists and is properly structured
+        if (!data || !Array.isArray(data) || data.length === 0) {
+          throw new Error("Invalid response from the API.");
+        }
 
+        const paymentItem = data[0]; // Assuming the first item in the array is what you need
+
+        // Extracting necessary fields
+        const {
+          PaymentCode,
+          Name: itemName,
+          BillerName,
+          BillerCategoryId,
+          ReferenceNo,
+          ConsumerIdField,
+        } = paymentItem;
+
+        // Saving to localStorage
         localStorage.setItem("billerData", JSON.stringify({
           customerId: phoneNumber,
           amount: amountNum,
-          paymentCode: data.PaymentCode,
-          itemName: data.Name,
-          billerName: data.BillerName,
-          billerCategoryId: data.BillerCategoryId,
-          customerEmail,
-          customerMobile,
-          referenceNo: data.ReferenceNo,
-          // Including the missing field from the API response
-          consumerIdField: data.ConsumerIdField,
+          paymentCode: PaymentCode,
+          itemName :itemName,
+          billerName: BillerName,
+          billerCategoryId: BillerCategoryId,
+          customerEmail: localStorage.getItem("userEmail"),
+          customerMobile: localStorage.getItem("userPhoneNumber"),
+          referenceNo: ReferenceNo,
+          consumerIdField: ConsumerIdField,
+          saveNumber, // Include saveNumber
         }));
 
         setBalance(balance - amountNum);
-        navigate("/airtime-payment");
+        navigate("/airtime-payment"); // Updated path to navigate to PIN entry
       } catch (error) {
         console.error("Error fetching biller payment items:", error);
         setAmountErrorMessage("Failed to process request. Please try again.");
