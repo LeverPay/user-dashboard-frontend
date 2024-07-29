@@ -105,25 +105,33 @@ const AirtimeComponent = () => {
           throw new Error("JWT token not found.");
         }
 
-        const data = await getBillerPaymentItemsByAmount(jwt, billerId, amountNum);
-        console.log(data);
+        const data = await getBillerPaymentItemsByAmount(
+          jwt,
+          billerId,
+          amountNum
+        );
 
         const customerEmail = localStorage.getItem("userEmail");
         const customerMobile = localStorage.getItem("userPhoneNumber");
 
-        localStorage.setItem("billerData", JSON.stringify({
+        console.log(data);
+
+        const billerData = {
           customerId: phoneNumber,
-          amount: amountNum,
-          paymentCode: data.PaymentCode,
-          itemName: data.Name,
-          billerName: data.BillerName,
-          billerCategoryId: data.BillerCategoryId,
+          amount: `${amountNum}`,
+          paymentCode: data[0].PaymentCode,
+          itemName: data[0].Name,
+          billerName: data[0].BillerName,
+          billerCategoryId: data[0].BillerCategoryId,
           customerEmail,
-          customerMobile,
-          referenceNo: data.ReferenceNo,
-          // Including the missing field from the API response
-          consumerIdField: data.ConsumerIdField,
-        }));
+          customerMobile: phoneNumber,
+          refrenceNo: data[0].ReferenceNo,
+          consumerIdField: data[0].ConsumerIdField,
+        };
+
+        console.log("Biller Data to be Stored:", billerData);
+
+        localStorage.setItem("billerData", JSON.stringify(billerData));
 
         setBalance(balance - amountNum);
         navigate("/airtime-payment");
@@ -156,7 +164,12 @@ const AirtimeComponent = () => {
                 className={`${style.networkLogo} ${
                   network && network.name === key ? style.selected : ""
                 }`}
-                onClick={() => setNetwork({ name: key })}
+                onClick={() =>
+                  setNetwork({
+                    name: key,
+                    biller_id: networkDetails[key].billerId,
+                  })
+                }
               />
             ))}
           </div>
@@ -169,7 +182,9 @@ const AirtimeComponent = () => {
               onChange={handlePhoneNumberChange}
               onFocus={() => setPhoneNumberFocused(true)}
               onBlur={() => setPhoneNumberFocused(phoneNumber !== "")}
-              className={`${style.input} ${phoneNumberFocused || phoneNumber ? style.inputActive : ""}`}
+              className={`${style.input} ${
+                phoneNumberFocused || phoneNumber ? style.inputActive : ""
+              }`}
               placeholder="Enter phone number"
             />
             {phoneErrorMessage && (
@@ -185,7 +200,9 @@ const AirtimeComponent = () => {
               onChange={handleAmountChange}
               onFocus={() => setAmountFocused(true)}
               onBlur={() => setAmountFocused(amount !== "")}
-              className={`${style.input} ${amountFocused || amount ? style.inputActive : ""}`}
+              className={`${style.input} ${
+                amountFocused || amount ? style.inputActive : ""
+              }`}
               placeholder="Enter amount"
             />
             {amountErrorMessage && (
@@ -199,10 +216,18 @@ const AirtimeComponent = () => {
                 checked={saveNumber}
                 onChange={handleSaveNumberChange}
               />
-              <span className={`${style.slider} ${saveNumber ? style.activeSlider : ""}`}></span>
+              <span
+                className={`${style.slider} ${
+                  saveNumber ? style.activeSlider : ""
+                }`}
+              ></span>
             </label>
           </div>
-          <p className={`${style.formLabelCheckbox} ${saveNumber ? style.activeText : ""}`}>
+          <p
+            className={`${style.formLabelCheckbox} ${
+              saveNumber ? style.activeText : ""
+            }`}
+          >
             Save as Beneficiary
           </p>
           <div className={style.buttonGroup}>

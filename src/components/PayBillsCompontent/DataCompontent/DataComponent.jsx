@@ -21,7 +21,6 @@ export default function DataComponent() {
   const [phoneNumber, setPhoneNumber] = useLocalState("savedPhoneNumber", "");
   const [dataPlan, setDataPlan] = useState("");
   const [saveNumber, setSaveNumber] = useState(!!phoneNumber);
-  const [balance, setBalance] = useState(1000); // Example balance
   const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
   const [dataPlanErrorMessage, setDataPlanErrorMessage] = useState("");
   const [selectedTab, setSelectedTab] = useState("daily");
@@ -68,7 +67,7 @@ export default function DataComponent() {
     }
   };
 
-  const handleNetworkChange = (e) => setNetwork(e.target.value);
+  // const handleNetworkChange = (e) => setNetwork(e.target.value);
 
   const handlePhoneNumberChange = (e) => {
     const newPhoneNumber = e.target.value.replace(/\D/g, "");
@@ -125,14 +124,14 @@ export default function DataComponent() {
         "billerData",
         JSON.stringify({
           customerId: user.uuid,
-          amount: dataPlan.Amount,
+          amount: `${dataPlan.Amount}`,
           paymentCode: dataPlan.PaymentCode,
           itemName: dataPlan.Name,
           billerName: dataPlan.BillerName,
           billerCategoryId: dataPlan.BillerCategoryId,
           customerEmail: user.email,
           customerMobile: user.phone,
-          referenceNo: dataPlan.ReferenceNo,
+          refrenceNo: dataPlan.ReferenceNo,
         })
       );
 

@@ -52,6 +52,7 @@ import CreatePinPage from "./CreatePinPage/CreatePinPage";
 import ReferralPage from "./ReferralPage/ReferralContainer";
 import AirtimePaymentPage from "./PayBillsPage/AirtimePage/AirtimePaymentPage";
 import DataPaymentScreen from "./PayBillsPage/DataPage/DataPaymentScreen";
+import ElectricityPage from "./PayBillsPage/ElectricityPage/ElectricityPage";
 
 export const UserDashboardLayout = (props) => {
   const [user, setUser] = useState({});
@@ -209,9 +210,9 @@ export const UserDashboardLayout = (props) => {
           <Route path="/data" element={<DataPage />} />
           <Route path="/data-payment" element={<DataPaymentScreen />} />
           <Route path="/cable-tv" element={<CableTvPage />} />
+          <Route path="/electricity" element={<ElectricityPage />} />
           <Route path="/pin" element={<PinPage />} />
           <Route path="/create-pin" element={<CreatePinPage />} />
-
         </Route>
       </Routes>
       <ToastContainer />
