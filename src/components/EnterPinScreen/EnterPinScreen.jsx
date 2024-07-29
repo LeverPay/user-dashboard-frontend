@@ -40,7 +40,7 @@ const EnterPinScreen = () => {
         }, jwt);
         console.log("Payment successful:", response);
 
-        navigate("/success"); // Navigate to success page or show success message
+        navigate("/success"); 
       } catch (error) {
         console.error("Error submitting payment:", error);
         setPinErrorMessage("Failed to process payment. Please try again.");

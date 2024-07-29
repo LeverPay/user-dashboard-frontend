@@ -144,6 +144,12 @@ const NavComponent = () => {
                   Checkout
                 </NavLink>
               </li>
+              <li>
+                <NavLink to="/referral" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                  <img alt="referral" src="/images/Referral1.png" />
+                  Referral
+                </NavLink>
+              </li>
             </ul>
           </div>
           <div className="bottom-options">

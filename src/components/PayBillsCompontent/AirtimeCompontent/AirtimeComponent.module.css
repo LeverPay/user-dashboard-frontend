@@ -1,23 +1,26 @@
 .mainDiv {
   margin: auto;
   width: 90%;
-  margin-top: 120px;
-  
-  max-width: 500px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  max-width: 600px;
   background-color: white;
-  padding: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
   border-radius: 50px;
   color: #333;
+
+ 
+
+
+
 }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+.modalTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .networksRow {
@@ -45,44 +48,63 @@
 
 .formLabel {
   display: flex;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: AgrandirBold;
+  font-size: 25px;
+  font-family: Poppins;
   margin-bottom: 10px;
-  color: #333;
+  color: #0F3FB2;
 }
 
 .formLabelCheckbox {
-  display: inline-block;
-  font-size: 30px;  /* Increased font size for checkbox label */
-  font-weight: bold;
-  font-family: AgrandirBold;
-  margin-left: 10px;
-  margin-bottom: 50px;
-  color: #333;
+  font-size: 14px;
+  font-family: Poppins;
+
+   margin-bottom: 20px;
+  color:  rgb(130, 130, 130);
+}
+
+.activeText {
+  color: #0F3FB2;
 }
 
 .formGroup input {
-  width: 100%;
+  width: 70%;
   padding: 8px;
   margin-bottom: 20px;
   box-sizing: border-box;
   border-radius: 20px;
 }
 
+
+
+
 .input {
-  color: #333;
+  border: 1px solid #ccc;
+   
 }
+
+.inputActive {
+  border-color: #0F3FB2; 
+}
+
+.eyeIcon2{
+  margin-left: 330px;
+  margin-top: -55px;
+
+
+}
+
 
 .errorMessage {
   color: red;
   margin-top: 30px;
   margin-bottom: 10px;
+ 
 }
 
 .buttonGroup {
   display: flex;
   justify-content: center;
+  padding-top: 40px;
 }
 
 .buttonSubmit,
@@ -96,60 +118,129 @@
 }
 
 .buttonSubmit {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #0F3FB2;
 }
 
 .buttonCancel {
   background-color: #f44336;
-  color: white;
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
-  .modal {
-    width: 95%;
-    padding: 15px;
-  }
-
-  .formLabel, .formLabelCheckbox {
-    font-size: 24px;
-  }
-
-  .buttonSubmit,
-  .buttonCancel {
-    padding: 8px 16px;
-  }
+.formGroupCheckbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-@media (max-width: 480px) {
-  .modal {
-    width: 100%;
-    padding: 10px;
-    top: 0;
-    left: 0;
-    transform: none;
-    height: 100%;
-    overflow-y: auto;
-    border-radius: 0;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px; 
+  height: 34px; 
+  margin-right: 10px;
+  /* Ensure no border or shadow is applied */
+  border: none;
+  box-shadow: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc; /* Background color of the slider */
+  transition: 0.4s;
+  border-radius: 34px;
+  /* Ensure no border or shadow is applied */
+  border: none;
+  box-shadow: none;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px; /* Increased height */
+  width: 26px; /* Increased width */
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+  /* Ensure no border is applied */
+  border: none;
+}
+
+/* Adjust slider background when checked */
+input:checked + .slider {
+  background-color: #0F3FB2; /* Active background color */
+}
+
+/* Adjust position of the knob when checked */
+input:checked + .slider:before {
+  transform: translateX(26px); /* Adjusted translateX value */
+}
+.bundle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+}
+.bundle h1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Poppins;
+  font-size: 22px;
+  font-weight: 500;
+  color: #0F3FB2;
+  ;
+  
+
+}
+.bundleDetails{
+
+    width: 370px;
+    height: 107px;
+  border-radius: 20px;
+  background: rgb(15, 63, 178);
+  margin-bottom: 50px;
+}
+.detailHead{
+  font-family: Poppins;
+font-size: 20px;
+font-weight: 300;
+padding-left: 20px;
+color:  #FFFFFF;
+
+}
+.detail{
+  font-family: Poppins;
+font-size: 14px;
+font-weight: 500;
+line-height: 20px;
+text-align: left;
+color:  #FFFFFF;
+;
+
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 769px) {
+  .mainDiv {
+  
+    margin-top: 180px;
+ 
   }
 
-  .networksRow {
-    flex-direction: column;
-    align-items: center;
+
+}
+@media only screen and (min-width: 1025px) {
+  .mainDiv {
+  
+    margin-top: 200px;
+ 
   }
 
-  .networkLogo {
-    width: 40px;
-    margin-bottom: 10px;
-  }
-
-  .formLabel, .formLabelCheckbox {
-    font-size: 20px;
-  }
-
-  .buttonSubmit,
-  .buttonCancel {
-    padding: 6px 12px;
-  }
 }

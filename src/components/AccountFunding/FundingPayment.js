@@ -3,209 +3,176 @@ import FundingInitiating from "./FundingInitiating";
 import FundingSuccess from "./FundingSuccess";
 import Helpimageupload from "../HelpImageUpload/helpimageupload";
 
-const FundingPayment = (props) => {
-
-
+const FundingPayment = ({ handleAmount }) => {
     const [exchange, setExchange] = useState("Binance");
     const [step, setStep] = useState(1);
     const [copAlert, setCopyAlert] = useState("");
     const [copAlert2, setCopyAlert2] = useState("");
     const [loading, setLoading] = useState(false);
-    const [check_txid, setCheck_txid] = useState(true);
-    const [show_modal, setShow_modal] = useState(false);
-    const [txid_exist, setTxid_exist] = useState(true);
-    const [txid_credentials_valid, setTxid_credentials_valid] = useState(false);
-    const [txid_valid, setTxid_valid] = useState(false);
+    const [checkTxid, setCheckTxid] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [txidCredentialsValid, setTxidCredentialsValid] = useState(false);
+    const [txidValid, setTxidValid] = useState(false);
     const [proceed, setProceed] = useState(false);
-    const [add_Info_net, setAdd_info_net] = useState(false)
-    const [add_Info_txid, setAdd_info_txid] = useState(false)
-    // image upload 
-    const [fileImg, setFileimg] = useState()
-    const [imgfile, setImgfile] = useState()
-    function GetImg(value, imgInfo) {
-        setFileimg(value)
-        setImgfile(imgInfo)
-    }
+    const [addInfoNet, setAddInfoNet] = useState(false);
+    const [addInfoTxid, setAddInfoTxid] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
+    // Image upload
+    const [fileImg, setFileimg] = useState();
+    const [imgfile, setImgfile] = useState();
 
-    const network = [
+    const GetImg = (value, imgInfo) => {
+        setFileimg(value);
+        setImgfile(imgInfo);
+    };
+
+    const networkOptions = [
         { value: 'BSC', label: 'BSC' },
         { value: 'ETH(ERC20)', label: 'ETH' },
         { value: 'POLYGON', label: 'POLYGON' }
-    ]
+    ];
 
-    const wallets = [
+    const walletAddresses = [
         { network: 'BSC', value: 've12evw784vwfg4b74vsjb' },
         { network: 'ETH', value: 'ghrs2evw784vwfg4b74vsjb' },
         { network: 'POLYGON', value: '22ERYevw784vwfg4b74vsjb' }
-    ]
-    const [selectedAddress, setSelectedAddress] = useState(wallets[0].value)
-
+    ];
+    
+    const [selectedAddress, setSelectedAddress] = useState(walletAddresses[0].value);
 
     const [formData, setFormData] = useState({
         amount: "",
         userID: "16yge73ghuyw",
-        network: network[0].value,
+        network: networkOptions[0].value,
         txid: '',
         fileImg: fileImg,
         imginfo: imgfile
     });
 
-
-    function handleForm(e) {
+    const handleFormChange = (e) => {
         setFormData({
             ...formData,
-            network: e.target.value,
             [e.target.name]: e.target.value
-        })
-        setCheck_txid(true)
-    }
+        });
+        setCheckTxid(true);
+    };
+
     useEffect(() => {
-        if (formData.network === network[0].value) {
-            setSelectedAddress(wallets[0].value)
-        } else if (formData.network === network[1].value) {
-            setSelectedAddress(wallets[1].value)
-        } else if (formData.network === network[2].value) {
-            setSelectedAddress(wallets[2].value)
+        const address = walletAddresses.find(wallet => wallet.network === formData.network)?.value;
+        setSelectedAddress(address);
+    }, [formData.network]);
+
+    const usdt = Number(formData.amount) + Number(formData.amount * 0.015);
+    const vat = Number(formData.amount) * 0.015;
+
+    useEffect(() => {
+        handleAmount(usdt.toFixed(2));
+    }, [formData.amount, handleAmount]);
+
+
+    // const handleStep = () => {
+    //     if ((step === 2 || step === 5) && formData.amount <= 0) {
+    //       setErrorMessage('Please enter an amount to proceed.');
+    //       return;
+    //     }
+    //     //Reset error message to none
+    //     setErrorMessage('');
+    
+    //     if (step === 3 && !formData.txid) {
+    //       setAddInfo('Provide your transaction id');
+    //     } else if (step === 3) {
+    //       submitTopupRequest();
+    //     } else {
+    //       setStep((prevStep) => prevStep + 1);
+    //     }
+    // };
+    
+
+    const handleNextStep = () => {
+        if((step === 2) && formData.handleAmount <= 0){
+            setErrorMessage('Please enter an amount to proceed.');
+            return;
         }
-    }, [formData.network])
+        setErrorMessage("");
+        setStep(step + 1);
 
-    const usdt = Number(formData.amount) + Number(formData.amount * 0.015)
-    useEffect(() => {
-        props.handleAmount(usdt.toFixed(2))
-    }, [handleForm])
+    };
+    const handlePrevStep = () => setStep(step - 1);
 
-    const Vat = Number(formData.amount) * 0.015
-
-    function NextStep() {
-        return setStep(step + 1);
-    }
-    function PrevStep() {
-        setStep(step - 1);
-    }
-    // function copyAcct(xx) {
-    //     navigator.clipboard.writeText(xx);
-    //     setCopyAlert("copied");
-    // }
-
-    const onOptionChange = e => {
-        setExchange(e.target.value)
-    }
+    const handleExchangeChange = (e) => setExchange(e.target.value);
 
     useEffect(() => {
-        if (formData.txid.length > 10 && check_txid === true) {
-            setLoading(true)
-        } else if (formData.txid.length > 10 && check_txid === false) {
-            setLoading(false)
+        if (formData.txid.length > 10) {
+            setLoading(checkTxid);
         }
-
-    }, [formData.txid.length, check_txid])
+    }, [formData.txid.length, checkTxid]);
 
     useEffect(() => {
-        if (loading && txid_valid) {
+        if (loading) {
             setTimeout(() => {
-                setShow_modal(false)
-                setTxid_credentials_valid(true)
-                setLoading(false)
-            }, 3000)
-        }else if(loading && !txid_valid){
-            setTimeout(() => {
-                setShow_modal(true)
-                setLoading(false)
-                setTxid_credentials_valid(true)
-            }, 3000)
+                setShowModal(!txidValid);
+                setTxidCredentialsValid(true);
+                setLoading(false);
+            }, 3000);
         }
-    }, [loading])
+    }, [loading, txidValid]);
 
-    function handleformSubmit(e) {
-        e.preventDefault()
-        setStep(step + 1)
-    }
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        handleNextStep();
+    };
 
+    const handleCopy = (text, alertSetter) => {
+        navigator.clipboard.writeText(text);
+        alertSetter("copied");
+    };
+
+    const handleModalConfirmation = () => {
+        setCheckTxid(false);
+        setShowModal(false);
+        setProceed(true);
+    };
 
     return (
         <form className="StableCoinFunding">
-            {
-                step === 1 && <div className='FundingPayment'>
-                    <h2>
-                        Select your Crypto Exchange to proceed!
-                    </h2>
+            {step === 1 && (
+                <div className='FundingPayment'>
+                    <h2>Select your Crypto Exchange to proceed!</h2>
                     <main>
                         <ul>
-                            <li>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="exchnage"
-                                        value="Binance"
-                                        id="Binance"
-                                        checked={exchange === "Binance"}
-                                        onChange={onOptionChange}
-                                        onClick={NextStep}
-                                    />
-                                    Binance
-                                </label>
-                            </li>
-                            <li>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="exchnage"
-                                        value="CoinBase"
-                                        id="CoinBase"
-                                        checked={exchange === "CoinBase"}
-                                        onChange={onOptionChange}
-                                        onClick={NextStep}
-                                    />
-                                    CoinBase
-                                </label>
-                            </li>
-                            <li>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="exchnage"
-                                        value="Huobi"
-                                        id="Huobi"
-                                        checked={exchange === "Huobi"}
-                                        onChange={onOptionChange}
-                                        onClick={NextStep}
-                                    />
-                                    Huobi
-                                </label>
-                            </li>
-                            <li>
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="exchnage"
-                                        value="Luno"
-                                        id="Luno"
-                                        checked={exchange === "Luno"}
-                                        onChange={onOptionChange}
-                                        onClick={NextStep}
-                                    />
-                                    Luno
-                                </label>
-                            </li>
+                            {["Binance", "CoinBase", "Huobi", "Luno"].map(exchangeName => (
+                                <li key={exchangeName}>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="exchange"
+                                            value={exchangeName}
+                                            checked={exchange === exchangeName}
+                                            onChange={handleExchangeChange}
+                                            onClick={handleNextStep}
+                                        />
+                                        {exchangeName}
+                                    </label>
+                                </li>
+                            ))}
                         </ul>
                     </main>
-
                 </div>
-            }
-            {
-                step === 2 && <div className='FundingAmount'>
+            )}
+            {step === 2 && (
+                <div className='FundingAmount'>
                     <FundingInitiating exchange={exchange} />
                     <main>
                         <div className='FundingAmt'>
-                            <label htmlFor='amt' style={{ color: '#31353A' }}>Enter Amount</label>
+                            <label htmlFor='amount' style={{ color: '#31353A' }}>Enter Amount</label>
                             <input
                                 type='number'
                                 placeholder='250.00'
                                 name='amount'
                                 className="amts"
                                 value={formData.amount}
-                                onChange={handleForm}
+                                onChange={handleFormChange}
                             />
                         </div>
                         <div className='FundingAmt'>
@@ -214,63 +181,66 @@ const FundingPayment = (props) => {
                                 type='text'
                                 placeholder='10.00'
                                 name='Vat'
-                                value={Vat.toFixed(2)}
-                                onChange={handleForm}
+                                value={vat.toFixed(2)}
+                                onChange={handleFormChange}
                             />
                         </div>
                     </main>
-                    <button onClick={NextStep}>Proceed</button>
-                    <span onClick={PrevStep} className='FundingCancel'>
+                    {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+                    <button onClick={handleNextStep}>Proceed</button>
+                    <span onClick={handlePrevStep} className='FundingCancel'>
                         <img alt='' src='/images/cancel.png' />
                     </span>
                 </div>
-            }
-            {
-                step === 3 && <div className='FundingAmount' style={{ opacity: loading ? '.5' : '1' }}>
+            )}
+            {step === 3 && (
+                <div className='FundingAmount' style={{ opacity: loading ? '.5' : '1' }}>
                     <FundingInitiating exchange={exchange} />
                     <main>
                         <div className='FundingAmt'>
-                            <label htmlFor='userID' style={{ color: '#31353A' }}>LeverPay UserID <span>Please include this as your narration</span> </label>
+                            <label htmlFor='userID' style={{ color: '#31353A' }}>
+                                LeverPay UserID <span>Please include this as your narration</span>
+                            </label>
                             <input
                                 type='text'
                                 name='userID'
                                 value={formData.userID}
-                                onChange={handleForm}
-                                disabled={true}
+                                onChange={handleFormChange}
+                                disabled
                                 style={{ color: 'black', fontSize: '18px', fontWeight: '700' }}
                             />
-                            <img alt='copy' src='/images/copy2.png' id='fundTxidCopy1' onClick={() => {
-                                navigator.clipboard.writeText(formData.userID);
-                                setCopyAlert("copied")
-                            }} />
-                            <span id='txidcopy1'>{copAlert}</span>
+                            <img
+                                alt='copy'
+                                src='/images/copy2.png'
+                                id='fundTxidCopy'
+                                onClick={() => handleCopy(formData.userID, setCopyAlert)}
+                            />
+                            <span>{copAlert}</span>
                         </div>
                         <div className='FundingAmt'>
-                            <span className="add_info" style={{display : add_Info_net ? 'block' : 'none'}}>
-                                <small>Each network has its own unique address. Make sure to confirm the network on your exchange before funding </small>
+                            <span className="add_info" style={{ display: addInfoNet ? 'block' : 'none' }}>
+                                <small>Each network has its own unique address. Make sure to confirm the network on your exchange before funding.</small>
                             </span>
-                            <label htmlFor='network' style={{ color: '#31353A' }}>Select network <img alt="info" src="/images/info.png" id="info"  onMouseOver={()=>{
-                                setAdd_info_net(!add_Info_net)
-                            }} 
-                            onMouseLeave={()=>{
-                                setAdd_info_net(!add_Info_net)
-                            }} /></label>
+                            <label htmlFor='network' style={{ color: '#31353A' }}>
+                                Select network
+                                <img
+                                    alt="info"
+                                    src="/images/info.png"
+                                    onMouseOver={() => setAddInfoNet(!addInfoNet)}
+                                    onMouseLeave={() => setAddInfoNet(!addInfoNet)}
+                                />
+                            </label>
                             <select
                                 value={formData.network}
-                                onChange={handleForm}
+                                onChange={handleFormChange}
                                 name="network"
                                 id="network"
                             >
-                                {
-                                    network.map(option => {
-                                        return (
-                                            <option key={option.value} value={option.value} name='network' >
-                                                {option.value}
-                                            </option>
-                                        )
-                                    })
-                                }
-
+                                {networkOptions.map(option => (
+                                    <option key={option.value} value={option.value}>
+                                        {option.value}
+                                    </option>
+                                ))}
                             </select>
                         </div>
                         <div className='FundingAmt'>
@@ -279,78 +249,67 @@ const FundingPayment = (props) => {
                                 type='text'
                                 name='address'
                                 value={selectedAddress}
-                                onChange={handleForm}
+                                onChange={handleFormChange}
                                 style={{ color: 'black', fontSize: '18px', fontWeight: '700' }}
                             />
-                            <img alt='copy' src='/images/copy2.png' id='fundTxidCopy' onClick={() => {
-                                navigator.clipboard.writeText(selectedAddress);
-                                setCopyAlert2("copied")
-                            }} />
-                            <span id='txidcopy'>{copAlert2}</span>
+                            <img
+                                alt='copy'
+                                src='/images/copy2.png'
+                                id='fundTxidCopy'
+                                onClick={() => handleCopy(selectedAddress, setCopyAlert2)}
+                            />
+                            <span>{copAlert2}</span>
                         </div>
                         <div className='FundingAmt'>
-                        <span className="add_info" style={{display : add_Info_txid ? 'block' : 'none'}}>
-                                <small>Make sure to provide your Transaction ID(TXID) before proceeding. You can find this in your transaction receipt </small>
+                            <span className="add_info" style={{ display: addInfoTxid ? 'block' : 'none' }}>
+                                <small>Make sure to provide your Transaction ID(TXID) before proceeding. You can find this in your transaction receipt.</small>
                             </span>
-                            <label htmlFor='txid'>Transaction Reference <img alt="info" src="/images/info.png" id="info" onMouseOver={()=>{
-                               setAdd_info_txid(!add_Info_txid)
-                            }}
-                            onMouseLeave={()=>{
-                                setAdd_info_txid(!add_Info_txid)
-                             }} /></label>
+                            <label htmlFor='txid'>
+                                Transaction Reference
+                                <img
+                                    alt="info"
+                                    src="/images/info.png"
+                                    id='info'
+                                    onMouseOver={() => setAddInfoTxid(!addInfoTxid)}
+                                    onMouseLeave={() => setAddInfoTxid(!addInfoTxid)}
+                                />
+                            </label>
                             <input
                                 type='text'
                                 name='txid'
                                 value={formData.txid}
-                                onChange={handleForm}
+                                onChange={handleFormChange}
                                 className="txReference"
                                 placeholder="Please enter your reference ID"
-                                // readOnly={txid_valid ? true : false}
                                 style={{ color: 'black', fontWeight: '700', opacity: loading ? '0.5' : '1' }}
                             />
-                            {
-                                loading && <img alt="loading" src="/images/loading.png" className="loading" />
-                            }
-                            {
-                                txid_credentials_valid && <img alt="loaded" src="/images/checkmate.png" className="loading" style={{animation: 'none'}}/>
-                            }
+                            {loading && <img alt="loading" src="/images/loading.png" className="loading" />}
+                            {txidCredentialsValid && <img alt="loaded" src="/images/checkmate.png" className="loading" style={{ animation: 'none' }} />}
                         </div>
                         <div className="screenshot">
-                            <Helpimageupload GetfileImg={GetImg} optional = {false} />
+                            <Helpimageupload GetfileImg={GetImg} optional={false} />
                         </div>
                     </main>
-                    <button onClick={handleformSubmit} disabled={proceed ? false : true} >Proceed</button>
-                    <span onClick={PrevStep} className='FundingCancel'>
+                    <button onClick={handleFormSubmit} disabled={!proceed}>Proceed</button>
+                    <span onClick={handlePrevStep} className='FundingCancel'>
                         <img alt='' src='/images/cancel.png' />
                     </span>
                 </div>
-            }
-            {
-                step === 4 && <FundingSuccess />
-            }
-            {
-                show_modal && <div className="tx_confirm_msg">
-                    {
-                        txid_exist && <p>
-                            The information on the transaction reference shows {usdt} as the total amount paid while the conversion fee (1.5%) is <strong> {Vat.toFixed(2)}</strong>. Therefore your total funding amount is <strong>{formData.amount}</strong>. Click Okay to Continue
-                        </p>
-                    }
-                    {
-                        !txid_exist && <p>
-                            Transaction reference does not exist or is not valid
-                        </p>
-                    }
-
-                    <button onClick={(e) => {
-                        setCheck_txid(false)
-                        setLoading(false)
-                        setShow_modal(false)
-                        setProceed(true)
-                    }}>Okay</button>
+            )}
+            {step === 4 && <FundingSuccess />}
+            {showModal && (
+                <div className="tx_confirm_msg">
+                    <p>
+                        {txidValid
+                            ? `The information on the transaction reference shows ${usdt} as the total amount paid while the conversion fee (1.5%) is ${vat.toFixed(2)}. Therefore your total funding amount is ${formData.amount}. Click Okay to Continue`
+                            : "Transaction reference does not exist or is not valid"
+                        }
+                    </p>
+                    <button onClick={handleModalConfirmation}>Okay</button>
                 </div>
-            }
-
+            )}
         </form>
-    )
-}
+    );
+};
+
 export default FundingPayment;

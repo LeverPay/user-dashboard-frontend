@@ -1,5 +1,3 @@
-// src/page/UserDashboardLayout.js
-
 import React, { useEffect, useState } from "react";
 import NavComponent from "../components/NavComponent/NavComponent";
 import TopNav from "../components/TopNav/TopNav";
@@ -51,6 +49,9 @@ import RecentTransactions from "./AllTransactions/RecentTransaction";
 import CableTvPage from "./PayBillsPage/CableTvPage/CableTvPage";
 import PinPage from "./EnterPinPage/PinPage";
 import CreatePinPage from "./CreatePinPage/CreatePinPage";
+import ReferralPage from "./ReferralPage/ReferralContainer";
+import AirtimePaymentPage from "./PayBillsPage/AirtimePage/AirtimePaymentPage";
+import DataPaymentScreen from "./PayBillsPage/DataPage/DataPaymentScreen";
 import ElectricityPage from "./PayBillsPage/ElectricityPage/ElectricityPage";
 
 export const UserDashboardLayout = (props) => {
@@ -184,6 +185,7 @@ export const UserDashboardLayout = (props) => {
               />
             }
           />
+          <Route path="referral" element={<ReferralPage />} />
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
@@ -204,7 +206,9 @@ export const UserDashboardLayout = (props) => {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/paybills" element={<PayBill />} />
           <Route path="/airtime" element={<AirtimePage />} />
+          <Route path="/airtime-payment" element={<AirtimePaymentPage />} />
           <Route path="/data" element={<DataPage />} />
+          <Route path="/data-payment" element={<DataPaymentScreen />} />
           <Route path="/cable-tv" element={<CableTvPage />} />
           <Route path="/electricity" element={<ElectricityPage />} />
           <Route path="/pin" element={<PinPage />} />

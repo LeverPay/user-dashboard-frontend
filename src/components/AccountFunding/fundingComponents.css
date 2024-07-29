@@ -478,6 +478,10 @@
 .FundingNairaBank .bnkInfo h4{
   margin-left: -.7rem;
 }
+.screenshot{
+  display:flex;
+  margin-left: 0 !important;
+}
 .FundingNairaBank button{
   background-color: #129346;
   margin-top: 1rem;
@@ -506,7 +510,7 @@
 
 @media (max-width: 620px) {
   .Fundingpage{
-    width: 100%;
+    width: 95%;
     margin-top: 2rem;
   }
   .FundingPayment h2{
@@ -545,5 +549,18 @@
   }
   .fundingSuccess button{
     width: 100%;
+  }
+  .screenshot{
+    display: block;
+  }
+}
+@media (max-width: 1024px) and (min-width: 770px) {  
+  .Fundingpage {
+    width: 70%;
+  }
+}
+@media (max-width: 771px) and (min-width: 621px) {  
+  .Fundingpage {
+    width: 90%;
   }
 }
