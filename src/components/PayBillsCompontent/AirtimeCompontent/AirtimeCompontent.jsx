@@ -102,23 +102,30 @@ const AirtimeComponent = () => {
           throw new Error("JWT token not found.");
         }
 
-        const data = await getBillerPaymentItemsByAmount(jwt, billerId, amountNum);
+        const data = await getBillerPaymentItemsByAmount(
+          jwt,
+          billerId,
+          amountNum
+        );
         console.log(data);
 
         const customerEmail = localStorage.getItem("userEmail");
         const customerMobile = localStorage.getItem("userPhoneNumber");
 
-        localStorage.setItem("billerData", JSON.stringify({
-          customerId: phoneNumber,
-          amount: amountNum,
-          paymentCode: data.paymentCode,
-          itemName: data.itemName,
-          billerName: data.billerName,
-          billerCategoryId: data.billerCategoryId,
-          customerEmail,
-          customerMobile,
-          referenceNo: data.referenceNo,
-        }));
+        localStorage.setItem(
+          "billerData",
+          JSON.stringify({
+            customerId: phoneNumber,
+            amount: `${amountNum}`,
+            paymentCode: data.paymentCode,
+            itemName: data.itemName,
+            billerName: data.billerName,
+            billerCategoryId: data.billerCategoryId,
+            customerEmail,
+            customerMobile,
+            refrenceNo: data.referenceNo,
+          })
+        );
 
         setBalance(balance - amountNum);
         navigate("/pin");
@@ -151,7 +158,12 @@ const AirtimeComponent = () => {
                 className={`${style.networkLogo} ${
                   network && network.name === key ? style.selected : ""
                 }`}
-                onClick={() => setNetwork({ name: key, biller_id: networkDetails[key].billerId })}
+                onClick={() =>
+                  setNetwork({
+                    name: key,
+                    biller_id: networkDetails[key].billerId,
+                  })
+                }
               />
             ))}
           </div>

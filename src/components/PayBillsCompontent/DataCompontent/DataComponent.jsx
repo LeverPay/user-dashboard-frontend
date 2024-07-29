@@ -15,28 +15,28 @@ const networkLogos = {
   "9mobile": nineMobileLogo,
 };
 
-const dataPlans = {
-  MTN: {
-    daily: ["500MB - N100", "1GB - N200"],
-    weekly: ["2GB - N500", "5GB - N1000"],
-    monthly: ["10GB - N2000", "20GB - N3500"],
-  },
-  Airtel: {
-    daily: ["500MB - N150", "1GB - N300"],
-    weekly: ["2GB - N600", "5GB - N1200"],
-    monthly: ["10GB - N2500", "20GB - N4000"],
-  },
-  Glo: {
-    daily: ["500MB - N100", "1GB - N200"],
-    weekly: ["2GB - N500", "5GB - N1000"],
-    monthly: ["10GB - N2000", "20GB - N3500"],
-  },
-  "9mobile": {
-    daily: ["500MB - N150", "1GB - N300"],
-    weekly: ["2GB - N600", "5GB - N1200"],
-    monthly: ["10GB - N2500", "20GB - N4000"],
-  },
-};
+// const dataPlans = {
+//   MTN: {
+//     daily: ["500MB - N100", "1GB - N200"],
+//     weekly: ["2GB - N500", "5GB - N1000"],
+//     monthly: ["10GB - N2000", "20GB - N3500"],
+//   },
+//   Airtel: {
+//     daily: ["500MB - N150", "1GB - N300"],
+//     weekly: ["2GB - N600", "5GB - N1200"],
+//     monthly: ["10GB - N2500", "20GB - N4000"],
+//   },
+//   Glo: {
+//     daily: ["500MB - N100", "1GB - N200"],
+//     weekly: ["2GB - N500", "5GB - N1000"],
+//     monthly: ["10GB - N2000", "20GB - N3500"],
+//   },
+//   "9mobile": {
+//     daily: ["500MB - N150", "1GB - N300"],
+//     weekly: ["2GB - N600", "5GB - N1200"],
+//     monthly: ["10GB - N2500", "20GB - N4000"],
+//   },
+// };
 
 export default function DataComponent() {
   const navigate = useNavigate();
@@ -44,12 +44,10 @@ export default function DataComponent() {
   const [phoneNumber, setPhoneNumber] = useLocalState("savedPhoneNumber", "");
   const [dataPlan, setDataPlan] = useState("");
   const [saveNumber, setSaveNumber] = useState(!!phoneNumber);
-  const [balance, setBalance] = useState(1000); // Example balance
   const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
   const [dataPlanErrorMessage, setDataPlanErrorMessage] = useState("");
   const [selectedTab, setSelectedTab] = useState("daily"); // Ensure default is 'daily'
   const [billerItems, setBillerItems] = useState([]);
-  const [dataPrice, setDataPrice] = useState();
 
   //Fetching the jwt from the local storage
   const [jwt, setJwt] = useLocalState("", "jwt");
@@ -87,7 +85,7 @@ export default function DataComponent() {
     }
   };
 
-  const handleNetworkChange = (e) => setNetwork(e.target.value);
+  // const handleNetworkChange = (e) => setNetwork(e.target.value);
 
   const handlePhoneNumberChange = (e) => {
     const newPhoneNumber = e.target.value.replace(/\D/g, "");
@@ -146,14 +144,14 @@ export default function DataComponent() {
         "billerData",
         JSON.stringify({
           customerId: user.uuid,
-          amount: dataPlan.Amount,
+          amount: `${dataPlan.Amount}`,
           paymentCode: dataPlan.PaymentCode,
           itemName: dataPlan.Name,
           billerName: dataPlan.BillerName,
           billerCategoryId: dataPlan.BillerCategoryId,
           customerEmail: user.email,
           customerMobile: user.phone,
-          referenceNo: dataPlan.ReferenceNo,
+          refrenceNo: dataPlan.ReferenceNo,
         })
       );
 
