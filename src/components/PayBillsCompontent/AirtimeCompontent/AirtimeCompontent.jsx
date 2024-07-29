@@ -110,27 +110,28 @@ const AirtimeComponent = () => {
           billerId,
           amountNum
         );
-        console.log(data);
 
         const customerEmail = localStorage.getItem("userEmail");
         const customerMobile = localStorage.getItem("userPhoneNumber");
 
-        localStorage.setItem(
-          "billerData",
-          JSON.stringify({
-            customerId: phoneNumber,
-            amount: amountNum,
-            paymentCode: data.PaymentCode,
-            itemName: data.Name,
-            billerName: data.BillerName,
-            billerCategoryId: data.BillerCategoryId,
-            customerEmail,
-            customerMobile,
-            referenceNo: data.ReferenceNo,
-            // Including the missing field from the API response
-            consumerIdField: data.ConsumerIdField,
-          })
-        );
+        console.log(data);
+
+        const billerData = {
+          customerId: phoneNumber,
+          amount: `${amountNum}`,
+          paymentCode: data[0].PaymentCode,
+          itemName: data[0].Name,
+          billerName: data[0].BillerName,
+          billerCategoryId: data[0].BillerCategoryId,
+          customerEmail,
+          customerMobile: phoneNumber,
+          refrenceNo: data[0].ReferenceNo,
+          consumerIdField: data[0].ConsumerIdField,
+        };
+
+        console.log("Biller Data to be Stored:", billerData);
+
+        localStorage.setItem("billerData", JSON.stringify(billerData));
 
         setBalance(balance - amountNum);
         navigate("/airtime-payment");
