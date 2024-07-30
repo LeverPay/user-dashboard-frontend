@@ -51,33 +51,40 @@ const Referral = () => {
         }
     };
 
-    const handleClaimBonus = async () => {
-        const inputData = { amount: codeDetails.total_point };
+    const handleClaimBonus = () => {
+        const inputData = { 
+            amount: codeDetails.total_point 
+        };
         setLoading(true);
-        try {
-            const response = await axios.post('https://leverpay-api.azurewebsites.net/api/v1/user/claim-referral-bonus', inputData, {
+        
+        axios.post('https://leverpay-api.azurewebsites.net/api/v1/user/claim-referral-bonus', inputData, {
                 headers: {
+                    'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${jwt}`
                 }
-            });
-            console.log(response.data)
-            setMessage(response.data.message);
-            setMessageType(response.data.success ? 'success' : 'error');
-            setShowMessage(true)
+            })
+            .then((response)=>{
+                console.log('Response received', response.data)
+                setMessage(response.data.message);
+                setMessageType(response.data.success ? 'success' : 'error');
+                setShowMessage(true)
 
-            fetchReferrals();
-            setLoading(false);
-            if (response.data.success) {
-                console.log("Credited Successfully")
-                setCodeDetails(codeDetails.referral_bonus)
-            }
-        } catch (error) {
-            console.log("Error claiming bonus:", error);
-            setMessage('You do not have access to claim this point yet');
-            setMessageType('error')
-            setShowMessage(true)
-            setLoading(false);
-        }
+                fetchReferrals();
+                setLoading(false);
+                if (response.data.success) {
+                    console.log("Credited Successfully")
+                    setCodeDetails(codeDetails.referral_bonus)
+                }
+
+            })
+            .catch((error) => {
+                console.log("Error claiming bonus:", error);
+                setMessage('You do not have access to claim this point yet');
+                setMessageType('error')
+                setShowMessage(true)
+                setLoading(false);
+
+            });        
     };
 
     const copyToClipboard = (text) => {
@@ -95,7 +102,7 @@ const Referral = () => {
             <div className="referral-intro">
                 <h3>Your Referral <strong>Token</strong></h3>
                 <h4 className='points'>
-                    <span>N</span> {codeDetails.referral_bonus.toLocaleString()} Point Earned
+                    <span>N</span> {codeDetails.referral_bonus} Point Earned
                 </h4>
             </div>
             <div className='referral-code'>
@@ -123,7 +130,7 @@ const Referral = () => {
                     {loading ? <img src={SpinnerGif} alt="spinner-gif" /> : ""}
                     <button
                         onClick={handleClaimBonus}
-                        disabled={codeDetails.total_point <= 0 || loading || message}
+                        disabled={codeDetails.total_point <= 0 || loading}
                     >
                         Claim now
                     </button>
@@ -136,10 +143,12 @@ const Referral = () => {
                 messageType === 'success' ? (
                     <div className="message success">
                         <span className="close-button" onClick={handleCloseMessage}>
-                            <FaTimes size={10} />
+                            <FaTimes size={20} />
                         </span>
-                        <FaCircleCheck size={50} />
-                        {message}
+                        <div className='block py-2'>
+                            <FaCircleCheck size={50}/>
+                        </div>
+                        <div className='py-4'>{message}</div>
                         <div className='referral-info'>
                             Keep referring in order to keep earning more points which you can use to shop online.
                         </div>
@@ -149,6 +158,7 @@ const Referral = () => {
                         <span className="close-button" onClick={handleCloseMessage}>
                             <FaTimes size={20} />
                         </span>
+                        <img src='/images/cancel.png' alt=""/>
                         {message}
                     </div>
                 )
