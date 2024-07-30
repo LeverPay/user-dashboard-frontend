@@ -7,7 +7,7 @@ export default function SecuredComponent() {
     <div className={style.mainDiv}>
       <div className={style.securedContainer}>
         <img src={padlock} alt="padlock icon" />
-        <p>Secured by <span>LeverPay</span></p>
+        <p>Secured by <span>LeverPay Technology</span></p>
       </div>
     </div>
   );

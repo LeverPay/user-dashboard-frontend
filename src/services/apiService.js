@@ -262,6 +262,7 @@ export const getBillerPaymentItemsByAmount = async (jwt, billerId, amount) => {
         },
       }
     );
+    console.log("Biller payment items:", response.data);
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -278,7 +279,7 @@ export const submitBillPayment = async (paymentData, jwt) => {
   if (!jwt) {
     throw new Error("JWT token not found.");
   }
-console.log(jwt)
+
   const response = await httpClient.post(
     "/v1/user/quickteller/submit-bill-payment",
     paymentData,

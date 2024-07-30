@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 import style from "./AirtimeComponent.module.css";
 import mtnLogo from "../../../assets/mtn.png";
 import airtelLogo from "../../../assets/airtel.jpeg";
-import gloLogo from "../../../assets/glo.jpeg";
-import nineMobileLogo from "../../../assets/9mobile.webp";
+import gloLogo from "../../../assets/glo.png";
+import nineMobileLogo from "../../../assets/9Mobile.png";
 import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
 import { getBillerPaymentItemsByAmount } from "../../../services/apiService";
 import LoadingScreen from "../../LoadingPage/LoadingScreen";
 
 const networkDetails = {
-  MTN: { logo: mtnLogo, billerId: 348 },
-  Airtel: { logo: airtelLogo, billerId: 2774 },
-  Glo: { logo: gloLogo, billerId: 3070 },
+  MTN: { logo: mtnLogo, billerId: 109 },
+  Glo: { logo: gloLogo, billerId: 913 },
+  Airtel: { logo: airtelLogo, billerId: 901 },
   "9mobile": { logo: nineMobileLogo, billerId: 205 },
 };
 
@@ -28,6 +28,9 @@ const AirtimeComponent = () => {
   const [loading, setLoading] = useState(false);
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [user, setUser] = useLocalState("", "user");
+
+  const [phoneNumberFocused, setPhoneNumberFocused] = useState(false);
+  const [amountFocused, setAmountFocused] = useState(false);
 
   useEffect(() => {
     if (phoneNumber) {
@@ -54,7 +57,7 @@ const AirtimeComponent = () => {
     setAmountErrorMessage("");
   };
 
-  const handleSaveNumberChange = (e) => setSaveNumber(e.target.checked);
+  const handleSaveNumberChange = () => setSaveNumber(!saveNumber);
 
   const handleSubmit = async () => {
     const amountNum = parseFloat(amount);
@@ -93,7 +96,7 @@ const AirtimeComponent = () => {
           throw new Error("Invalid network selected.");
         }
 
-        const { biller_id: billerId } = network;
+        const { billerId } = networkDetails[network.name];
         if (!billerId) {
           throw new Error("Invalid network selected.");
         }
@@ -102,26 +105,36 @@ const AirtimeComponent = () => {
           throw new Error("JWT token not found.");
         }
 
-        const data = await getBillerPaymentItemsByAmount(jwt, billerId, amountNum);
-        console.log(data);
+        const data = await getBillerPaymentItemsByAmount(
+          jwt,
+          billerId,
+          amountNum
+        );
 
         const customerEmail = localStorage.getItem("userEmail");
         const customerMobile = localStorage.getItem("userPhoneNumber");
 
-        localStorage.setItem("billerData", JSON.stringify({
+        console.log(data);
+
+        const billerData = {
           customerId: phoneNumber,
-          amount: amountNum,
-          paymentCode: data.paymentCode,
-          itemName: data.itemName,
-          billerName: data.billerName,
-          billerCategoryId: data.billerCategoryId,
+          amount: `${amountNum}`,
+          paymentCode: data[0].PaymentCode,
+          itemName: data[0].Name,
+          billerName: data[0].BillerName,
+          billerCategoryId: data[0].BillerCategoryId,
           customerEmail,
-          customerMobile,
-          referenceNo: data.referenceNo,
-        }));
+          customerMobile: phoneNumber,
+          refrenceNo: data[0].ReferenceNo,
+          consumerIdField: data[0].ConsumerIdField,
+        };
+
+        console.log("Biller Data to be Stored:", billerData);
+
+        localStorage.setItem("billerData", JSON.stringify(billerData));
 
         setBalance(balance - amountNum);
-        navigate("/pin");
+        navigate("/airtime-payment");
       } catch (error) {
         console.error("Error fetching biller payment items:", error);
         setAmountErrorMessage("Failed to process request. Please try again.");
@@ -141,7 +154,7 @@ const AirtimeComponent = () => {
         <LoadingScreen />
       ) : (
         <>
-          <h2 className={style.modalTitle}>Airtime Purchase</h2>
+          <h2 className={style.modalTitle}>Airtime</h2>
           <div className={style.networksRow}>
             {Object.keys(networkDetails).map((key) => (
               <img
@@ -151,18 +164,27 @@ const AirtimeComponent = () => {
                 className={`${style.networkLogo} ${
                   network && network.name === key ? style.selected : ""
                 }`}
-                onClick={() => setNetwork({ name: key, biller_id: networkDetails[key].billerId })}
+                onClick={() =>
+                  setNetwork({
+                    name: key,
+                    biller_id: networkDetails[key].billerId,
+                  })
+                }
               />
             ))}
           </div>
           <div className={style.formGroup}>
-            <h1 className={style.formLabel}>Receiver Phone Number</h1>
+            <h1 className={style.formLabel}>Phone Number</h1>
             <input
               type="text"
               id="phoneNumber"
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
-              className={style.input}
+              onFocus={() => setPhoneNumberFocused(true)}
+              onBlur={() => setPhoneNumberFocused(phoneNumber !== "")}
+              className={`${style.input} ${
+                phoneNumberFocused || phoneNumber ? style.inputActive : ""
+              }`}
               placeholder="Enter phone number"
             />
             {phoneErrorMessage && (
@@ -170,13 +192,17 @@ const AirtimeComponent = () => {
             )}
           </div>
           <div className={style.formGroup}>
-            <h1 className={style.formLabel}>Airtime Amount (Naira)</h1>
+            <h1 className={style.formLabel}>Amount</h1>
             <input
               type="text"
               id="amount"
               value={amount}
               onChange={handleAmountChange}
-              className={style.input}
+              onFocus={() => setAmountFocused(true)}
+              onBlur={() => setAmountFocused(amount !== "")}
+              className={`${style.input} ${
+                amountFocused || amount ? style.inputActive : ""
+              }`}
               placeholder="Enter amount"
             />
             {amountErrorMessage && (
@@ -184,16 +210,26 @@ const AirtimeComponent = () => {
             )}
           </div>
           <div className={style.formGroupCheckbox}>
-            <input
-              type="checkbox"
-              id="saveNumber"
-              checked={saveNumber}
-              onChange={handleSaveNumberChange}
-            />
-            <p className={style.formLabelCheckbox}>
-              Save this number for future transactions
-            </p>
+            <label className={style.switch}>
+              <input
+                type="checkbox"
+                checked={saveNumber}
+                onChange={handleSaveNumberChange}
+              />
+              <span
+                className={`${style.slider} ${
+                  saveNumber ? style.activeSlider : ""
+                }`}
+              ></span>
+            </label>
           </div>
+          <p
+            className={`${style.formLabelCheckbox} ${
+              saveNumber ? style.activeText : ""
+            }`}
+          >
+            Save as Beneficiary
+          </p>
           <div className={style.buttonGroup}>
             <button
               type="button"

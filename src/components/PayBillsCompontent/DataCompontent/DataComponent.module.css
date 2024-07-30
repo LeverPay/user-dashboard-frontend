@@ -1,9 +1,7 @@
 .modal {
   position: fixed;
-
   top: 55%;
   left: 50%;
-
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 500px;
@@ -12,6 +10,7 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   border-radius: 30px;
   color: #333;
+  font-family: Poppins; /* Ensuring font-family for all text */
 }
 
 .networksRow {
@@ -39,47 +38,64 @@
 
 .formLabel {
   display: flex;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: AgrandirBold;
+  font-size: 20px;
+  font-weight: 600;
   margin-bottom: 10px;
-  color: #333;
+  color: #0F3FB2;
 }
 
 .input {
-  width: 100%;
+  width: 60%;
   padding: 8px;
   margin-bottom: 20px;
   box-sizing: border-box;
   border-radius: 20px;
+  border: 2px solid #ccc; /* Default border color */
   color: #333;
+  font-family: Poppins; /* Ensuring font-family for all text */
 }
 
+.inputActive {
+  border-color: #0F3FB2; /* Border color when input is active */
+}
+/* DataComponent.module.css */
+
 .tabs {
+ 
+  border-bottom: 2px solid  #ccc;
+  margin-bottom: 30px;
+ 
+}
+.tabsInner{
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
 }
 
 .tab {
-  background: none;
+  border-top: 2px solid  #ccc;
+  padding: 10px ;
+  
   border: none;
-  color: #333;
-  font-size: 25px;
-  font-weight: 600;
-  font-family: "Agrandir-Bold";
+  background: none;
+  font-size: 16px;
   cursor: pointer;
-  padding: 10px;
-  transition: opacity 0.3s ease;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
 }
 
 .selectedTab {
-  border-bottom: 5px solid #4caf50;
-  transition: opacity 0.3s ease;
+  color: #0F3FB2; /* Color for the selected tab */
+  background-color: #0F3FB2;
+  color: white;
+  border-bottom: 2px solid #0F3FB2; 
+  border-radius: 50px;
 }
+
 .deselectedTab {
-  opacity: 0.5;
+  color: #666; /* Color for non-selected tabs */
 }
+
 .dataPlansRow {
   display: flex;
   flex-direction: column;
@@ -101,16 +117,29 @@
   color: #333; /* Added text color */
   width: 100%;
   height: 60px;
+  font-family: Poppins; /* Ensuring font-family for all text */
 }
 
 .selectedDataPlan {
-  border-color: #4caf50;
+  border-color: #0F3FB2; /* Border color for selected data plan */
   color: #333; /* Added text color */
+}
+
+.message {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#ccc; /* Same color as deselected tab text */
+  font-size: 14px;
+  font-family: Poppins; /* Ensuring font-family for all text */
 }
 
 .errorMessage {
   color: red;
   font-size: 14px;
+  font-family: Poppins; /* Ensuring font-family for all text */
 }
 
 .formGroupCheckbox {
@@ -122,6 +151,7 @@
 .formLabelCheckbox {
   margin-top: 10px;
   margin-left: 8px;
+  font-family: Poppins; /* Ensuring font-family for all text */
 }
 
 .buttonGroup {
@@ -132,13 +162,14 @@
 
 .buttonSubmit,
 .buttonCancel {
-  background-color: #4caf50;
+  background-color: #0F3FB2;
   color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 20px;
   font-size: 16px;
+  font-family: Poppins; /* Ensuring font-family for all text */
 }
 
 .buttonCancel {
@@ -146,6 +177,7 @@
 }
 
 @media (max-width: 620px) {
+ 
   .tabs {
     gap: 1rem;
   }
@@ -154,6 +186,6 @@
   }
   .selectedTab {
     padding: 5px;
-    border-bottom: 2px solid #4caf50;
+    border-bottom: 2px solid #0F3FB2;
   }
 }

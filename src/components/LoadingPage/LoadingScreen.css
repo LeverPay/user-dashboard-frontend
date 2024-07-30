@@ -1,21 +1,4 @@
-/* .loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-   
-  }
-  
 
-  @keyframes zoomInOut {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-  }
-   */
    .loading-container {
     display: flex;
     justify-content: center;
@@ -25,7 +8,8 @@
     left: 0;
     width: 100vw; /* Full viewport width */
     height: 100vh; /* Full viewport height */
-    background-color:  #020024;
+    
+    background-color: rgb(11, 2, 48);
     z-index: 1000; /* Ensure it's on top of other content */
   }
   

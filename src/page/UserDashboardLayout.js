@@ -1,5 +1,3 @@
-// src/page/UserDashboardLayout.js
-
 import React, { useEffect, useState } from "react";
 import NavComponent from "../components/NavComponent/NavComponent";
 import TopNav from "../components/TopNav/TopNav";
@@ -23,7 +21,7 @@ import SignInPage from "./SignInPage/SignInPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import { useLocalState } from "../utils/useLocalStorage";
 import { getUserProfile } from "../services/apiService";
-import { ToastContainer } from "react-toastify";  // Removed 'toast'
+import { ToastContainer } from "react-toastify"; // Removed 'toast'
 import TransferPage from "./TransferPage/TransferPage";
 import SignupPage from "./SignupPage/SignupPage";
 import FundingPage from "./FundingPage/FundingPage";
@@ -43,7 +41,7 @@ import Allinvoices from "./AllInvoices/Allinvoices";
 import UnpaidInvoicePage from "./UnpaidInvoicePage/UnpaidInvoicePage";
 import PaidInvoice from "./InvoicePage/Invoice/PaidInvoice";
 import AllTransactionCon from "./AllTransactions/AllTransactionCon";
-import AirtimePage from './PayBillsPage/AirtimePage/AirtimePage';
+import AirtimePage from "./PayBillsPage/AirtimePage/AirtimePage";
 import DataPage from "./PayBillsPage/DataPage/DataPage";
 import PayBill from "./PayBillsPage/PayBillsPage";
 import AllFundingHistoryCon from "./AllTransactions/AllFundingHistoryCon";
@@ -52,6 +50,9 @@ import CableTvPage from "./PayBillsPage/CableTvPage/CableTvPage";
 import PinPage from "./EnterPinPage/PinPage";
 import CreatePinPage from "./CreatePinPage/CreatePinPage";
 import ReferralPage from "./ReferralPage/ReferralContainer";
+import AirtimePaymentPage from "./PayBillsPage/AirtimePage/AirtimePaymentPage";
+import DataPaymentScreen from "./PayBillsPage/DataPage/DataPaymentScreen";
+import ElectricityPage from "./PayBillsPage/ElectricityPage/ElectricityPage";
 
 export const UserDashboardLayout = (props) => {
   const [user, setUser] = useState({});
@@ -184,7 +185,7 @@ export const UserDashboardLayout = (props) => {
               />
             }
           />
-          <Route path="referral" element={<ReferralPage/>} />
+          <Route path="referral" element={<ReferralPage />} />
           <Route path="help" element={<HelpForm />} />
           <Route path="faq" element={<Faq />} />
           <Route path="customer-support" element={<Feedback />} />
@@ -204,9 +205,12 @@ export const UserDashboardLayout = (props) => {
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/paybills" element={<PayBill />} />
-          <Route path="/airtime" element={<AirtimePage />} /> 
+          <Route path="/airtime" element={<AirtimePage />} />
+          <Route path="/airtime-payment" element={<AirtimePaymentPage />} />
           <Route path="/data" element={<DataPage />} />
+          <Route path="/data-payment" element={<DataPaymentScreen />} />
           <Route path="/cable-tv" element={<CableTvPage />} />
+          <Route path="/electricity" element={<ElectricityPage />} />
           <Route path="/pin" element={<PinPage />} />
           <Route path="/create-pin" element={<CreatePinPage />} />
         </Route>
