@@ -53,6 +53,7 @@ import ReferralPage from "./ReferralPage/ReferralContainer";
 import AirtimePaymentPage from "./PayBillsPage/AirtimePage/AirtimePaymentPage";
 import DataPaymentScreen from "./PayBillsPage/DataPage/DataPaymentScreen";
 import ElectricityPage from "./PayBillsPage/ElectricityPage/ElectricityPage";
+import SuccessfullScreen from "../components/LoadingPage/SuccessfullScreen";
 
 export const UserDashboardLayout = (props) => {
   const [user, setUser] = useState({});
@@ -207,6 +208,7 @@ export const UserDashboardLayout = (props) => {
           <Route path="/paybills" element={<PayBill />} />
           <Route path="/airtime" element={<AirtimePage />} />
           <Route path="/airtime-payment" element={<AirtimePaymentPage />} />
+          <Route path="/success" element={<SuccessfullScreen />} />
           <Route path="/data" element={<DataPage />} />
           <Route path="/data-payment" element={<DataPaymentScreen />} />
           <Route path="/cable-tv" element={<CableTvPage />} />

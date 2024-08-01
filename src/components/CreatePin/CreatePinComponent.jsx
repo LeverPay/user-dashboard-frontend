@@ -8,7 +8,7 @@ import checkMark from "../../assets/Group.png";
 import { savePin, resetPin } from "../../services/apiService";
 import { useLocalState } from "../../utils/useLocalStorage";
 import ScreenSuccessLoader from "../LoadingPage/ScreenSuccessLoader"; // Import the loader
-import SuccessScreen from "../LoadingPage/SuccessScreen"; // Import the SuccessScreen
+import SuccessScreen from "../LoadingPage/ScreenSuccessLoader"; // Import the SuccessScreen
 
 const CreatePinComponent = () => {
   const [newPin, setNewPin] = useState("");
