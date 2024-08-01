@@ -22,12 +22,13 @@ const AirtimeComponent = () => {
   const [phoneNumber, setPhoneNumber] = useLocalState("savedPhoneNumber", "");
   const [amount, setAmount] = useState("");
   const [saveNumber, setSaveNumber] = useState(!!phoneNumber);
-  const [balance, setBalance] = useState(1000); // Replace with actual balance retrieval
+  const [balance, setBalance] = useState(1000);
   const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
   const [amountErrorMessage, setAmountErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [jwt] = useLocalState("", "jwt");
-  const [user] = useLocalState("", "user");
+  const [jwt, setJwt] = useLocalState("", "jwt");
+  const [user, setUser] = useLocalState("", "user");
+
   const [phoneNumberFocused, setPhoneNumberFocused] = useState(false);
   const [amountFocused, setAmountFocused] = useState(false);
 
@@ -66,7 +67,7 @@ const AirtimeComponent = () => {
       setAmountErrorMessage("Please enter a valid amount.");
       hasError = true;
     } else if (amountNum > user.wallet.withdrawable_amount.ngn) {
-      setAmountErrorMessage("Amount entered is greater than balance.");
+      setAmountErrorMessage("Insufficient balance, kindly fund your account.");
       hasError = true;
     } else if (amountNum < 50) {
       setAmountErrorMessage("Amount entered cannot be less than 50 Naira.");
@@ -104,42 +105,36 @@ const AirtimeComponent = () => {
           throw new Error("JWT token not found.");
         }
 
-        const data = await getBillerPaymentItemsByAmount(jwt, billerId, amountNum);
+        const data = await getBillerPaymentItemsByAmount(
+          jwt,
+          billerId,
+          amountNum
+        );
 
-        // Ensure data exists and is properly structured
-        if (!data || !Array.isArray(data) || data.length === 0) {
-          throw new Error("Invalid response from the API.");
-        }
+        const customerEmail = localStorage.getItem("userEmail");
+        const customerMobile = localStorage.getItem("userPhoneNumber");
 
-        const paymentItem = data[0]; // Assuming the first item in the array is what you need
+        console.log(data);
 
-        // Extracting necessary fields
-        const {
-          PaymentCode,
-          Name: itemName,
-          BillerName,
-          BillerCategoryId,
-          ReferenceNo,
-          ConsumerIdField,
-        } = paymentItem;
-
-        // Saving to localStorage
-        localStorage.setItem("billerData", JSON.stringify({
+        const billerData = {
           customerId: phoneNumber,
-          amount: amountNum,
-          paymentCode: PaymentCode,
-          itemName :itemName,
-          billerName: BillerName,
-          billerCategoryId: BillerCategoryId,
-          customerEmail: localStorage.getItem("userEmail"),
-          customerMobile: localStorage.getItem("userPhoneNumber"),
-          referenceNo: ReferenceNo,
-          consumerIdField: ConsumerIdField,
-          saveNumber, // Include saveNumber
-        }));
+          amount: `${amountNum}`,
+          paymentCode: data[0].PaymentCode,
+          itemName: data[0].Name,
+          billerName: data[0].BillerName,
+          billerCategoryId: data[0].BillerCategoryId,
+          customerEmail,
+          customerMobile: phoneNumber,
+          refrenceNo: data[0].ReferenceNo,
+          consumerIdField: data[0].ConsumerIdField,
+        };
+
+        console.log("Biller Data to be Stored:", billerData);
+
+        localStorage.setItem("billerData", JSON.stringify(billerData));
 
         setBalance(balance - amountNum);
-        navigate("/airtime-payment"); // Updated path to navigate to PIN entry
+        navigate("/airtime-payment");
       } catch (error) {
         console.error("Error fetching biller payment items:", error);
         setAmountErrorMessage("Failed to process request. Please try again.");
@@ -169,7 +164,12 @@ const AirtimeComponent = () => {
                 className={`${style.networkLogo} ${
                   network && network.name === key ? style.selected : ""
                 }`}
-                onClick={() => setNetwork({ name: key })}
+                onClick={() =>
+                  setNetwork({
+                    name: key,
+                    biller_id: networkDetails[key].billerId,
+                  })
+                }
               />
             ))}
           </div>
@@ -182,7 +182,9 @@ const AirtimeComponent = () => {
               onChange={handlePhoneNumberChange}
               onFocus={() => setPhoneNumberFocused(true)}
               onBlur={() => setPhoneNumberFocused(phoneNumber !== "")}
-              className={`${style.input} ${phoneNumberFocused || phoneNumber ? style.inputActive : ""}`}
+              className={`${style.input} ${
+                phoneNumberFocused || phoneNumber ? style.inputActive : ""
+              }`}
               placeholder="Enter phone number"
             />
             {phoneErrorMessage && (
@@ -198,7 +200,9 @@ const AirtimeComponent = () => {
               onChange={handleAmountChange}
               onFocus={() => setAmountFocused(true)}
               onBlur={() => setAmountFocused(amount !== "")}
-              className={`${style.input} ${amountFocused || amount ? style.inputActive : ""}`}
+              className={`${style.input} ${
+                amountFocused || amount ? style.inputActive : ""
+              }`}
               placeholder="Enter amount"
             />
             {amountErrorMessage && (
@@ -212,10 +216,18 @@ const AirtimeComponent = () => {
                 checked={saveNumber}
                 onChange={handleSaveNumberChange}
               />
-              <span className={`${style.slider} ${saveNumber ? style.activeSlider : ""}`}></span>
+              <span
+                className={`${style.slider} ${
+                  saveNumber ? style.activeSlider : ""
+                }`}
+              ></span>
             </label>
           </div>
-          <p className={`${style.formLabelCheckbox} ${saveNumber ? style.activeText : ""}`}>
+          <p
+            className={`${style.formLabelCheckbox} ${
+              saveNumber ? style.activeText : ""
+            }`}
+          >
             Save as Beneficiary
           </p>
           <div className={style.buttonGroup}>

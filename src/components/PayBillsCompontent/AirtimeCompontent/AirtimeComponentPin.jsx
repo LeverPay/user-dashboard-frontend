@@ -1,24 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
-import { useLocalState } from '../../../utils/useLocalStorage';
-import { submitBillPayment } from '../../../services/apiService';
-import LoadingScreen from '../../LoadingPage/LoadingScreen';
-import style from './AirtimeComponent.module.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useLocalState } from "../../../utils/useLocalStorage";
+import { submitBillPayment } from "../../../services/apiService";
+import LoadingScreen from "../../LoadingPage/LoadingScreen";
+import SuccessfulScreen from "../../LoadingPage/SuccessScreen"; 
+import style from "./AirtimeComponent.module.css";
 
 const AirTimeComponentPin = () => {
-  const [pin, setPin] = useState('');
-  const [pinErrorMessage, setPinErrorMessage] = useState('');
+  const [pin, setPin] = useState("");
+  const [pinErrorMessage, setPinErrorMessage] = useState("");
   const [showPin, setShowPin] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [amount, setAmount] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [amount, setAmount] = useState("");
   const [saveNumber, setSaveNumber] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false); // State to handle success screen visibility
   const navigate = useNavigate();
-  const [jwt] = useLocalState('', 'jwt');
+  const [jwt] = useLocalState("", "jwt");
 
   useEffect(() => {
-    const billerData = JSON.parse(localStorage.getItem('billerData'));
+    const billerData = JSON.parse(localStorage.getItem("billerData"));
     if (billerData) {
       setPhoneNumber(billerData.customerId);
       setAmount(billerData.amount);
@@ -29,10 +31,10 @@ const AirTimeComponentPin = () => {
   }, [navigate]);
 
   const handlePinChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '');
+    const value = e.target.value.replace(/\D/g, "");
     if (value.length <= 4) {
       setPin(value);
-      setPinErrorMessage('');
+      setPinErrorMessage("");
     }
   };
 
@@ -42,34 +44,39 @@ const AirTimeComponentPin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (pin === '') {
-      setPinErrorMessage('PIN cannot be empty.');
+    if (pin === "") {
+      setPinErrorMessage("PIN cannot be empty.");
       return;
     }
     if (pin.length !== 4) {
-      setPinErrorMessage('PIN must be exactly 4 digits.');
+      setPinErrorMessage("PIN must be exactly 4 digits.");
       return;
     }
     setLoading(true);
     try {
-      const billerData = JSON.parse(localStorage.getItem('billerData'));
+      const billerData = JSON.parse(localStorage.getItem("billerData"));
       if (!billerData) {
-        throw new Error('Biller data not found.');
+        throw new Error("Biller data not found.");
       }
 
-      const response = await submitBillPayment({
-        ...billerData,
-        pin,
-      }, jwt);
+      const response = await submitBillPayment(
+        {
+          ...billerData,
+          pin,
+        },
+        jwt
+      );
+      console.log("Payment successful:", response);
 
-      if (response.success) {
-        navigate('/success');
-      } else {
-        setPinErrorMessage('Payment failed. Please try again.');
-      }
+      localStorage.removeItem("billerData");
+      setSuccess(true); // Show success screen
     } catch (error) {
-      console.error('Error submitting payment:', error);
-      setPinErrorMessage('Failed to process payment. Please try again.');
+      console.error("Error submitting payment:", error);
+      if (error.response && error.response.data) {
+        setPinErrorMessage(error.response.data); // Capture error message from response
+      } else {
+        setPinErrorMessage("Failed to process payment. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -83,6 +90,8 @@ const AirTimeComponentPin = () => {
     <div className={style.mainDiv}>
       {loading ? (
         <LoadingScreen />
+      ) : success ? (
+        <SuccessfulScreen />
       ) : (
         <>
           <h2 className={style.modalTitle}>Airtime</h2>
@@ -111,7 +120,7 @@ const AirTimeComponentPin = () => {
             <div className={style.formGroup}>
               <h1 className={style.formLabel}>Transaction PIN</h1>
               <input
-                type={showPin ? 'text' : 'password'}
+                type={showPin ? "text" : "password"}
                 value={pin}
                 onChange={handlePinChange}
                 placeholder="Enter PIN"
@@ -134,7 +143,7 @@ const AirTimeComponentPin = () => {
                 className={style.buttonSubmit}
                 disabled={loading}
               >
-                {loading ? 'Processing...' : 'Confirm'}
+                {loading ? "Processing..." : "Confirm"}
               </button>
               <button
                 type="button"
