@@ -67,7 +67,7 @@ const AirtimeComponent = () => {
       setAmountErrorMessage("Please enter a valid amount.");
       hasError = true;
     } else if (amountNum > user.wallet.withdrawable_amount.ngn) {
-      setAmountErrorMessage("Amount entered is greater than balance.");
+      setAmountErrorMessage("Insufficient balance, kindly fund your account.");
       hasError = true;
     } else if (amountNum < 50) {
       setAmountErrorMessage("Amount entered cannot be less than 50 Naira.");

@@ -275,22 +275,53 @@ export const getBillerPaymentItemsByAmount = async (jwt, billerId, amount) => {
     throw error;
   }
 };
-export const submitBillPayment = async (paymentData, jwt) => {
+export const submitBillPayment = async (billerData, jwt) => {
   if (!jwt) {
     throw new Error("JWT token not found.");
   }
 
-  const response = await httpClient.post(
-    "/v1/user/quickteller/submit-bill-payment",
-    paymentData,
-    {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
+  try {
+    const response = await httpClient.post(
+      "/v1/user/quickteller/submit-bill-payment",
+      billerData,
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      console.error("Error response from server:", error.response.data);
+      console.error("Error status:", error.response.status);
+      console.error("Error headers:", error.response.headers);
+    } else if (error.request) {
+      console.error("No response received:", error.request);
+    } else {
+      console.error("Error setting up request:", error.message);
     }
-  );
-  return response.data;
+    throw error;
+  }
 };
+
+// export const submitBillPayment = async (paymentData, jwt) => {
+//   if (!jwt) {
+//     throw new Error("JWT token not found.");
+//   }
+//   console.log("Payment data:", paymentData);
+
+//   const response = await httpClient.post(
+//     "/v1/user/quickteller/submit-bill-payment",
+//     paymentData,
+//     {
+//       headers: {
+//         Authorization: `Bearer ${jwt}`,
+//       },
+//     }
+//   );
+//   return response.data;
+// };
 export const savePin = async (pin, confirmPin, jwt) => {
   setAuthHeader(jwt);
   const formData = new FormData();

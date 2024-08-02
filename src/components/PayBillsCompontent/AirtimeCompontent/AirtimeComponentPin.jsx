@@ -4,6 +4,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useLocalState } from "../../../utils/useLocalStorage";
 import { submitBillPayment } from "../../../services/apiService";
 import LoadingScreen from "../../LoadingPage/LoadingScreen";
+import SuccessfulScreen from "../../LoadingPage/SuccessScreen"; 
 import style from "./AirtimeComponent.module.css";
 
 const AirTimeComponentPin = () => {
@@ -14,23 +15,26 @@ const AirTimeComponentPin = () => {
   const [amount, setAmount] = useState("");
   const [saveNumber, setSaveNumber] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false); // State to handle success screen visibility
   const navigate = useNavigate();
   const [jwt] = useLocalState("", "jwt");
 
   useEffect(() => {
-    // Fetch data from localStorage
     const billerData = JSON.parse(localStorage.getItem("billerData"));
     if (billerData) {
       setPhoneNumber(billerData.customerId);
       setAmount(billerData.amount);
       setSaveNumber(billerData.saveNumber);
+    } else {
+      navigate(-1); // Navigate back if billerData is not found
     }
-  }, []);
+  }, [navigate]);
 
   const handlePinChange = (e) => {
     const value = e.target.value.replace(/\D/g, "");
     if (value.length <= 4) {
       setPin(value);
+      setPinErrorMessage("");
     }
   };
 
@@ -48,13 +52,13 @@ const AirTimeComponentPin = () => {
       setPinErrorMessage("PIN must be exactly 4 digits.");
       return;
     }
+    setLoading(true);
     try {
       const billerData = JSON.parse(localStorage.getItem("billerData"));
       if (!billerData) {
         throw new Error("Biller data not found.");
       }
 
-      setLoading(true);
       const response = await submitBillPayment(
         {
           ...billerData,
@@ -64,13 +68,15 @@ const AirTimeComponentPin = () => {
       );
       console.log("Payment successful:", response);
 
-      // Remove billerData from localStorage upon successful payment
       localStorage.removeItem("billerData");
-
-      navigate("/success");
+      setSuccess(true); // Show success screen
     } catch (error) {
       console.error("Error submitting payment:", error);
-      setPinErrorMessage("Failed to process payment. Please try again.");
+      if (error.response && error.response.data) {
+        setPinErrorMessage(error.response.data); // Capture error message from response
+      } else {
+        setPinErrorMessage("Failed to process payment. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -84,6 +90,8 @@ const AirTimeComponentPin = () => {
     <div className={style.mainDiv}>
       {loading ? (
         <LoadingScreen />
+      ) : success ? (
+        <SuccessfulScreen />
       ) : (
         <>
           <h2 className={style.modalTitle}>Airtime</h2>
@@ -110,15 +118,15 @@ const AirTimeComponentPin = () => {
           </div>
           <form onSubmit={handleSubmit}>
             <div className={style.formGroup}>
-              <h1 className={style.formLabel}>Transaction Pin</h1>
+              <h1 className={style.formLabel}>Transaction PIN</h1>
               <input
                 type={showPin ? "text" : "password"}
                 value={pin}
                 onChange={handlePinChange}
-                placeholder="Enter Pin"
+                placeholder="Enter PIN"
                 className={style.input}
                 maxLength={4}
-                aria-label="Transaction Pin"
+                aria-label="Transaction PIN"
               />
               <span className={style.eyeIcon} onClick={toggleShowPin}>
                 <div className={style.eyeIcon2}>
@@ -129,23 +137,23 @@ const AirTimeComponentPin = () => {
             {pinErrorMessage && (
               <p className={style.errorMessage}>{pinErrorMessage}</p>
             )}
+            <div className={style.buttonGroup}>
+              <button
+                type="submit"
+                className={style.buttonSubmit}
+                disabled={loading}
+              >
+                {loading ? "Processing..." : "Confirm"}
+              </button>
+              <button
+                type="button"
+                className={style.buttonCancel}
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+            </div>
           </form>
-          <div className={style.buttonGroup}>
-            <button
-              type="button"
-              className={style.buttonSubmit}
-              onClick={handleSubmit}
-            >
-              Confirm
-            </button>
-            <button
-              type="button"
-              className={style.buttonCancel}
-              onClick={handleCancel}
-            >
-              Cancel
-            </button>
-          </div>
         </>
       )}
     </div>

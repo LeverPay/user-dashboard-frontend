@@ -1,18 +1,35 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaChevronLeft } from "react-icons/fa";
 import style from "./DataComponent.module.css";
 import mtnLogo from "../../../assets/mtn.png";
 import airtelLogo from "../../../assets/airtel.jpeg";
 import gloLogo from "../../../assets/glo.png";
 import nineMobileLogo from "../../../assets/9Mobile.png";
 import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
+import eclipe from "../../../assets/Ellipse 1612.png";
+import line from "../../../assets/Line 7.png";
+import { TbCurrencyNaira } from "react-icons/tb";
+import validityIcon from "../../../assets/Group 1000005189.png";
+import durationIcon from "../../../assets/Group 1000005190.png";
+import LoadingScreen from "../../LoadingPage/LoadingScreen";
 
 const networkLogos = {
   MTN: mtnLogo,
   Airtel: airtelLogo,
   Glo: gloLogo,
   "9mobile": nineMobileLogo,
+};
+
+const extractDaysFromName = (name) => {
+  const match = name.match(/(\d+)\s*(day|days)/i);
+  if (match) {
+    const [_, number, dayType] = match;
+    const formattedDayType = parseInt(number, 10) > 1 ? "days" : "day";
+    return `${number} ${formattedDayType}`;
+  }
+  return "1 day";
 };
 
 export default function DataComponent() {
@@ -25,30 +42,25 @@ export default function DataComponent() {
   const [dataPlanErrorMessage, setDataPlanErrorMessage] = useState("");
   const [selectedTab, setSelectedTab] = useState("daily");
   const [billerItems, setBillerItems] = useState([]);
-  const [dataPrice, setDataPrice] = useState();
-  const [inputBorderColor, setInputBorderColor] = useState("#ccc"); // Default border color
-
-  //Fetching the jwt from the local storage
+  const [inputBorderColor, setInputBorderColor] = useState("#ccc");
+  const [loading, setLoading] = useState(false);
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [user, setUser] = useLocalState("", "user");
 
   useEffect(() => {
     if (phoneNumber) {
-      setInputBorderColor("#0F3FB2"); // Change border color when phone number is provided
+      setInputBorderColor("#0F3FB2");
       const detectedNetwork = detectNetwork(phoneNumber);
       if (detectedNetwork) {
         setNetwork(detectedNetwork.name);
         fetchBillerItems(detectedNetwork.biller_id);
       }
     } else {
-      setInputBorderColor("#ccc"); // Reset border color if no phone number
+      setInputBorderColor("#ccc");
     }
   }, [phoneNumber]);
 
-  // Function to request data plans for a network
   const fetchBillerItems = async (billerId) => {
-    console.log("running");
-
     if (!billerId) return;
 
     try {
@@ -60,14 +72,12 @@ export default function DataComponent() {
           },
         }
       );
-      setBillerItems(response.data); // Assuming the response has an 'items' field
-      console.log("fetch res", response);
+      console.log("Biller items:", response.data);
+      setBillerItems(response.data);
     } catch (error) {
       console.error("Error fetching biller items:", error);
     }
   };
-
-  // const handleNetworkChange = (e) => setNetwork(e.target.value);
 
   const handlePhoneNumberChange = (e) => {
     const newPhoneNumber = e.target.value.replace(/\D/g, "");
@@ -77,43 +87,26 @@ export default function DataComponent() {
       setNetwork(detectedNetwork.name);
       fetchBillerItems(detectedNetwork.biller_id);
     }
-    setPhoneErrorMessage(""); // Clear phone error message when user starts typing
+    setPhoneErrorMessage("");
   };
 
   const handleDataPlanChange = (plan) => {
     setDataPlan(plan);
-    setDataPlanErrorMessage(""); // Clear data plan error message when user starts typing
+    setDataPlanErrorMessage("");
   };
 
-  const handleSaveNumberChange = (e) => setSaveNumber(e.target.checked);
+  const handleBuyNow = async (plan) => {
+    handleDataPlanChange(plan);
 
-  const handleSubmit = () => {
-    let hasError = false;
-
-    if (!dataPlan) {
-      setDataPlanErrorMessage("Please select a data plan.");
-      hasError = true;
-    } else if (
-      dataPlan.Amount &&
-      dataPlan.Amount > user.wallet.withdrawable_amount.ngn
-    ) {
-      setDataPlanErrorMessage(
-        "Insufficient balance for the selected data plan."
-      );
-      hasError = true;
-    } else {
-      setDataPlanErrorMessage("");
+    const amountNum = parseFloat(plan.Amount);
+    if (amountNum > user.wallet.withdrawable_amount.ngn) {
+      setDataPlanErrorMessage("Insufficient balance for the selected data plan.");
+      return;
     }
 
-    if (phoneNumber.length !== 11) {
-      setPhoneErrorMessage("Please enter a valid phone number.");
-      hasError = true;
-    } else {
-      setPhoneErrorMessage("");
-    }
+    setLoading(true);
 
-    if (!hasError) {
-      console.log({ network, phoneNumber, dataPlan, saveNumber });
+    try {
       if (saveNumber) {
         localStorage.setItem("savedPhoneNumber", phoneNumber);
       } else {
@@ -124,23 +117,24 @@ export default function DataComponent() {
         "billerData",
         JSON.stringify({
           customerId: user.uuid,
-          amount: `${dataPlan.Amount}`,
-          paymentCode: dataPlan.PaymentCode,
-          itemName: dataPlan.Name,
-          billerName: dataPlan.BillerName,
-          billerCategoryId: dataPlan.BillerCategoryId,
+          amount: `${plan.Amount}`,
+          paymentCode: plan.PaymentCode,
+          itemName: plan.Name,
+          billerName: plan.BillerName,
+          billerCategoryId: plan.BillerCategoryId,
           customerEmail: user.email,
           customerMobile: user.phone,
-          refrenceNo: dataPlan.ReferenceNo,
+          referenceNo: plan.ReferenceNo,
         })
       );
 
       navigate("/data-payment");
+    } catch (error) {
+      console.error("Error processing request:", error);
+      setDataPlanErrorMessage("Failed to process request. Please try again.");
+    } finally {
+      setLoading(false);
     }
-  };
-
-  const handleCancel = () => {
-    navigate(-1);
   };
 
   const filterPlansByTab = () => {
@@ -171,96 +165,129 @@ export default function DataComponent() {
 
   return (
     <div className={style.modal}>
-      <h2 className={style.modalTitle}>Data Purchase</h2>
-      <div className={style.networksRow}>
-        {Object.keys(networkLogos).map((key) => (
-          <img
-            key={key}
-            src={networkLogos[key]}
-            alt={`${key} logo`}
-            className={`${style.networkLogo} ${
-              network === key ? style.selected : ""
-            }`}
-            onClick={() => {
-              setNetwork(key);
-              fetchBillerItems(detectNetwork(phoneNumber)?.biller_id);
-            }}
-          />
-        ))}
-      </div>
-      <div className={style.formGroup}>
-        <h1 className={style.formLabel}>Receiver Phone Number</h1>
-        <input
-          type="text"
-          id="phoneNumber"
-          value={phoneNumber}
-          onChange={handlePhoneNumberChange}
-          className={`${style.input} ${phoneNumber ? style.inputActive : ""}`}
-          placeholder="Enter phone number"
-        />
-        {phoneErrorMessage && (
-          <p className={style.errorMessage}>{phoneErrorMessage}</p>
-        )}
-      </div>
-      <div className={style.tabs}>
-        <div className={style.tabsInner}>
-          {["daily", "weekly", "monthly"].map((tab) => (
-            <button
-              key={tab}
-              className={`${style.tab} ${
-                selectedTab === tab ? style.selectedTab : style.deselectedTab
-              }`}
-              onClick={() => setSelectedTab(tab)}
-            >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className={style.dataPlansRow}>
-        {phoneNumber ? (
-          filterPlansByTab().length > 0 ? (
-            filterPlansByTab().map((plan, index) => (
-              <button
-                key={index}
-                className={`${style.dataPlanButton} ${
-                  dataPlan.Name === plan.Name ? style.selectedDataPlan : ""
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <div className={style.header}>
+            <FaChevronLeft className={style.cancelIcon} onClick={() => navigate(-1)} />
+            <h2 className={style.modalTitle}>Data Purchase</h2>
+          </div>
+          <div className={style.networksRow}>
+            {Object.keys(networkLogos).map((key) => (
+              <img
+                key={key}
+                src={networkLogos[key]}
+                alt={`${key} logo`}
+                className={`${style.networkLogo} ${
+                  network === key ? style.selected : ""
                 }`}
-                onClick={() => handleDataPlanChange(plan)}
-              >
-                {plan.Name}
-              </button>
-            ))
-          ) : (
-            <p className={style.message}>
-              No data plans available for the selected network.
-            </p>
-          )
-        ) : (
-          <p className={style.message}>
-            Enter your phone number for data bundle to load!
-          </p>
-        )}
-      </div>
-      {dataPlanErrorMessage && (
-        <p className={style.errorMessage}>{dataPlanErrorMessage}</p>
+                onClick={() => {
+                  setNetwork(key);
+                  fetchBillerItems(detectNetwork(phoneNumber)?.biller_id);
+                }}
+              />
+            ))}
+          </div>
+          <div className={style.formGroup}>
+            <h1 className={style.formLabel}>Receiver Phone Number</h1>
+            <input
+              type="text"
+              id="phoneNumber"
+              value={phoneNumber}
+              onChange={handlePhoneNumberChange}
+              className={`${style.input} ${phoneNumber ? style.inputActive : ""}`}
+              placeholder="Enter phone number"
+            />
+            {phoneErrorMessage && (
+              <p className={style.errorMessage}>{phoneErrorMessage}</p>
+            )}
+          </div>
+          <div className={style.tabs}>
+            <div className={style.tabsInner}>
+              {["daily", "weekly", "monthly"].map((tab) => (
+                <button
+                  key={tab}
+                  className={`${style.tab} ${
+                    selectedTab === tab ? style.selectedTab : style.deselectedTab
+                  }`}
+                  onClick={() => setSelectedTab(tab)}
+                >
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className={style.dataPlansRow}>
+            {phoneNumber ? (
+              filterPlansByTab().length > 0 ? (
+                filterPlansByTab().map((plan, index) => (
+                  <div
+                    key={index}
+                    className={`${style.dataPlan} ${
+                      dataPlan.Name === plan.Name ? style.selectedDataPlan : ""
+                    }`}
+                    onClick={() => handleDataPlanChange(plan)}
+                  >
+                    <div className={style.dataPlanWrapper}>
+                      <div className={style.topCase}>
+                        <p>Get {plan.Name}</p>
+                      </div>
+                      <img src={eclipe} alt="Eclipe" className={style.eclipe} />
+                      <div className={style.lowerCase}>
+                        <div className={style.iconWrapper}>
+                          <div className={style.iconDesign}>
+                            <img src={validityIcon} alt="Validity Icon" />
+                            <p>Validity</p>
+                          </div>
+                          <div className={style.display}>
+                            <span className={style.price}>
+                              {extractDaysFromName(plan.Name)}
+                            </span>
+                          </div>
+                        </div>
+                        <div className={style.line}>
+                          <img className={style.lineImage} src={line} alt="line" />
+                        </div>
+                        <div className={style.iconWrapper}>
+                          <div className={style.iconDesign}>
+                            <img src={durationIcon} alt="Duration Icon" />
+                            <p>Price</p>
+                          </div>
+                          <div className={style.display}>
+                            <TbCurrencyNaira className={style.priceIcon} />
+                            <span className={style.price}>{plan.Amount}</span>
+                          </div>
+                        </div>
+                        <div className={style.buyNowDiv}>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleBuyNow(plan);
+                        }}
+                        className={style.buyNowButton}
+                      >
+                        Buy Now
+                      </button>
+                    </div>
+                      </div>
+                      
+                    </div>
+                   
+                  </div>
+                ))
+              ) : (
+                <p className={style.message}>No data plans available for the selected network and duration.</p>
+              )
+            ) : (
+              <p className={style.message}>Please enter your phone number to see data plans.</p>
+            )}
+          </div>
+          {dataPlanErrorMessage && (
+            <div className={style.errorMessage}>{dataPlanErrorMessage}</div>
+          )}
+        </>
       )}
-      <div className={style.buttonGroup}>
-        <button
-          type="button"
-          className={style.buttonSubmit}
-          onClick={handleSubmit}
-        >
-          Proceed
-        </button>
-        <button
-          type="button"
-          className={style.buttonCancel}
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
-      </div>
     </div>
   );
 }
