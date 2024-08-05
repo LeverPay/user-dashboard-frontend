@@ -11,8 +11,8 @@
   z-index: 20000;
   overflow-y: scroll;
 }
-.side-nav-container .nav-logo{
-  width: 120px; 
+.side-nav-container .nav-logo {
+  width: 120px;
   height: 20px;
   margin: auto;
   max-width: 100%;
@@ -37,8 +37,8 @@
   width: fit-content !important;
   /* overflow-x: scroll !important; */
 }
-.nav-options ul li img{
-  margin:10px
+.nav-options ul li img {
+  margin: 10px;
 }
 .nav-options ul li {
   word-wrap: nowrap !important;
@@ -71,7 +71,6 @@
     margin-left: 0%;
   }
 }
-
 
 @media screen and (max-width: 700px) {
   .my-tweak {
@@ -119,13 +118,11 @@
 }
 .bottom-options .bottom-link {
   width: 100% !important;
-  /* color: #fff; */
-  /* padding: 5% !important; */
   font-family: AgrandirBold;
   text-decoration: none;
   margin-left: auto !important;
   margin-right: auto !important;
-  border: 1px solid #000 !important;
+  border: none !important;
 }
 .navbar-logo {
   margin-top: 40px;
@@ -171,7 +168,7 @@
     /* margin-left: -2rem; */
   }
 }
-.bottom-options ul{
+.bottom-options ul {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -185,7 +182,7 @@
 
 @media screen and (max-width: 620px) {
   .side-nav-container {
-    /* display: none; */ 
+    /* display: none; */
     width: 55% !important;
     transition: 1s ease;
     margin-top: 0;
@@ -196,12 +193,12 @@
     height: 100vh;
     border-radius: 0;
   }
-  .TopNav-logo-sm{
+  .TopNav-logo-sm {
     max-width: 150%;
     width: 150px;
     margin-left: 10px;
   }
-  .side-nav-container #close-menu{
+  .side-nav-container #close-menu {
     /* border: 1px solid; */
     width: 50px;
     height: 20px;
@@ -210,7 +207,7 @@
     top: -1%;
     right: 0;
   }
-  .side-nav-container .logo{
+  .side-nav-container .logo {
     display: none !important;
   }
 

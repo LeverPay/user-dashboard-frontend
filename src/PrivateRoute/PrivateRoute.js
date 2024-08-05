@@ -1,4 +1,4 @@
-import React, { useState, useTimeout } from "react";
+import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useLocalState } from "../utils/useLocalStorage";
 import { toast } from "react-toastify";
@@ -7,25 +7,19 @@ import { useJwt } from "react-jwt";
 const PrivateRoute = ({ children }) => {
   let [userToken, setUserToken] = useLocalState("", "jwt");
 
-  // const { decodedToken, isExpired } = useJwt(userToken);
+  const { isExpired } = useJwt(userToken);
 
-  // if (userToken) {
-  //   console.log(
-  //     "token",
-  //     new Date(decodedToken.exp * 1000),
-  //     "is expired?",
-  //     isExpired
-  //   );
-  //   // if (decodedToken || isExpired === false) {
-  //   //   //session expires after 10 minutes
-  //   //   setTimeout(() => {
-  //   //     setUserToken("");
-  //   //     toast.error("Login timeout, Please log in again");
-  //   //   }, 600000);
-  //   // }
-  // }
+  useEffect(() => {
+    if (!userToken || isExpired) {
+      toast.error("Login timeout, Please log in again");
+    }
+  }, [userToken, isExpired]);
 
-  return userToken ? children : <Navigate to="/signin" />;
+  if (!userToken || isExpired) {
+    return <Navigate to="/signin" />;
+  }
+
+  return children;
 };
 
 export default PrivateRoute;

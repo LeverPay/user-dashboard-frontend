@@ -16,7 +16,7 @@ const NavComponent = () => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const handleLogout = () => {
-    logoutUser(jwt);
+    logoutUser();
   };
 
   const handleActive = (item) => {
@@ -67,85 +67,155 @@ const NavComponent = () => {
         <div className="open-close-icons flexy" style={{ display: "flex" }}>
           <div className="col-10">&nbsp;</div>
           <span onClick={closeSidebar} id="close-menu">
-            <img src={Close} alt="Close menu" style={{ width: "40%" }} className="open-close-icons" />
+            <img
+              src={Close}
+              alt="Close menu"
+              style={{ width: "40%" }}
+              className="open-close-icons"
+            />
           </span>
         </div>
         <div className="container">
           <center>
             <div className="navbar-logo col-md-9 col-9">
-              <img src={LeverpayLogo} alt="Leverpay Logo" className="nav-logo" />
+              <img
+                src={LeverpayLogo}
+                alt="Leverpay Logo"
+                className="nav-logo"
+              />
             </div>
           </center>
           <div className="nav-options">
             <ul className="list-unstyled">
               <li>
-                <NavLink to="/" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="Dashboard" src="/images/Dashboard.png" />
                   Dashboard
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/transactions" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/transactions"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="Transactions" src="/images/Transactions.png" />
                   Transactions
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/transfer" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/transfer"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="Transfer" src="/images/transfer.png" />
                   Transfer
                 </NavLink>
               </li>
               <li onClick={() => handleActive("invoices")}>
-                <NavLink to="/invoices" className="text-link" onClick={closeMobileMenu} activeClassName="active" id="unpaid">
+                <NavLink
+                  to="/invoices"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                  id="unpaid"
+                >
                   <img alt="Invoices" src="/images/Invoices.png" />
                   Invoices
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/my-cards" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/my-cards"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="My Cards" src="/images/My Wallets.png" />
                   My Cards
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/my-subscriptions" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/my-subscriptions"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="Subscriptions" src="/images/subscription.png" />
                   Subscriptions
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/paybills" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/paybills"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="Pay Bill" src="/images/My Wallets.png" />
                   Pay Bills
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/funding/naira-deposit" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/funding/naira-deposit"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="Funding" src="/images/fund.png" />
                   Funding
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/investment" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/investment"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="Investment" src="/images/invest.png" />
                   Investment
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/settings" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/settings"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="Settings" src="/images/Settings.png" />
                   Settings
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/payment-page" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/payment-page"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="Checkout" src="/images/checkout.png" />
                   Checkout
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/referral" className="text-link" onClick={closeMobileMenu} activeClassName="active">
+                <NavLink
+                  to="/referral"
+                  className="text-link"
+                  onClick={closeMobileMenu}
+                  activeClassName="active"
+                >
                   <img alt="referral" src="/images/Referral1.png" />
                   Referral
                 </NavLink>
@@ -155,7 +225,11 @@ const NavComponent = () => {
           <div className="bottom-options">
             <ul className="list-unstyled">
               <li onClick={closeMobileMenu}>
-                <NavLink to="/help" className="bottom-link" activeClassName="active">
+                <NavLink
+                  to="/help"
+                  className="bottom-link"
+                  activeClassName="active"
+                >
                   <small>
                     <img alt="Help" src="/images/Help.png" />
                   </small>
@@ -163,21 +237,39 @@ const NavComponent = () => {
                 </NavLink>
               </li>
               <li onClick={closeMobileMenu}>
-                <Link onClick={handleLogout} to="/logout" className="bottom-link">
+                <button
+                  onClick={handleLogout}
+                  to="/logout"
+                  className="bottom-link"
+                >
                   <small>
                     <img alt="Logout" src="/images/Logout.png" />
                   </small>
                   Logout
-                </Link>
+                </button>
               </li>
             </ul>
           </div>
         </div>
       </div>
       <div className="open-close-icons flexy menu" style={{ display: "flex" }}>
-        <span onClick={openSidebar} style={{ color: "#fff", fontSize: "20px" }} className="nav-sm">
-          <img src={Open} alt="Open menu" id="menu" style={{ width: "20%" }} className="open" />
-          <img src={LeverpayLogo} alt="Leverpay Logo" className="TopNav-logo-sm" />
+        <span
+          onClick={openSidebar}
+          style={{ color: "#fff", fontSize: "20px" }}
+          className="nav-sm"
+        >
+          <img
+            src={Open}
+            alt="Open menu"
+            id="menu"
+            style={{ width: "20%" }}
+            className="open"
+          />
+          <img
+            src={LeverpayLogo}
+            alt="Leverpay Logo"
+            className="TopNav-logo-sm"
+          />
         </span>
       </div>
     </>
