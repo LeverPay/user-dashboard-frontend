@@ -1,3 +1,4 @@
+/* Base Styles */
 .modal {
   position: fixed;
   top: 55%;
@@ -21,12 +22,12 @@
   color: white;
   padding: 20px;
   border-radius: 30px 20px 0 0;
-  width: calc(100% + 40px); /* Extend background color to cover edges */
-  margin: -20px; /* Negative margin to extend background beyond modal padding */
+  width: calc(100% + 40px);
+  margin: -20px;
 }
 
 .modalTitle {
-  flex: 1; /* Make title take up available space */
+  flex: 1;
   text-align: center;
   font-size: 20px;
   margin: 0;
@@ -34,7 +35,7 @@
 
 .cancelIcon {
   cursor: pointer;
-  margin-right: auto; /* Move the icon to the far left */
+  margin-right: auto;
 }
 
 .dataPlanWrapper {
@@ -60,7 +61,6 @@
   z-index: 2;
   text-align: center;
   line-height: 24px;
-
 }
 
 .topCase p {
@@ -68,16 +68,11 @@
   font-size: 20px;
   font-weight: 600;
   color: white;
-  ;
 }
-
 
 .iconWrapper {
   display: flex;
   flex-direction: column;
-  /* width: 100%; */
-
-
 }
 
 .iconDesign {
@@ -86,7 +81,6 @@
   align-items: center;
   padding-top: 10px;
   gap: 10px;
-  /* Adjust gap as needed */
   margin: 0;
 }
 
@@ -205,7 +199,6 @@
   justify-content: center;
   padding-left: 10px;
   padding-top: 40px;
-
 }
 
 .buyNowButton {
@@ -221,9 +214,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  ;
 }
-
 
 .dataPlansRow {
   display: flex;
@@ -256,7 +247,6 @@
 .selectedDataPlan {
   border-color: #0F3FB2;
   color: #333;
-  /* Added text color */
 }
 
 .message {
@@ -266,10 +256,8 @@
   justify-content: center;
   align-items: center;
   color: #ccc;
-  /* Same color as deselected tab text */
   font-size: 14px;
   font-family: Poppins;
-  /* Ensuring font-family for all text */
 }
 
 .errorMessage {
@@ -332,10 +320,12 @@
   display: flex;
   flex-direction: column;
 }
-.priceIcon{
+
+.priceIcon {
   color: white;
   font-size: 23px;
 }
+
 .validity,
 .price {
   font-family: Poppins;
@@ -345,37 +335,131 @@
   color: #FFFFFF;
 }
 
-
 .display {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-top: 15px;
   padding-left: 18px;
-
 }
 
 .theWrapper {
   display: flex;
   flex-direction: row;
 }
+
 .errorMessage {
   color: red;
   font-size: 14px;
-  font-family: Poppins; /* Ensuring font-family for all text */
+  font-family: Poppins;
 }
 
-@media (max-width: 620px) {
-  .tabs {
-    gap: 1rem;
+/* Media Queries for Responsiveness */
+
+/* Small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .modal {
+    width: 90%;
+    padding: 10px;
+  }
+  /* .eclipe {
+    z-index: 3;
+  } */
+  .header {
+    padding: 15px;
+    width: calc(100% + 30px);
+    margin: -15px;
+  }
+
+  .formLabel {
+    font-size: 16px;
+  }
+  .topCase {
+   
+   
+    width: 120%;
+    
+  }
+  .lowerCase{
+    width: 120%;
+  }
+  .input {
+    width: 80%;
+    padding: 6px;
   }
 
   .tab {
     font-size: 14px;
+    padding: 8px;
   }
 
   .selectedTab {
-    padding: 5px;
-    border-bottom: 2px solid #0F3FB2;
+    border-radius: 30px;
+  }
+
+  .dataPlanButton {
+    padding: 8px 4px;
+    height: 50px;
+  }
+
+  .iconDesign p {
+    font-size: 12px;
+  }
+
+  .validity,
+  .price {
+    font-size: 16px;
   }
 }
+@media only screen and (max-width: 1024px) and (min-width: 769px) {
+ .modal{
+    top: 38%;
+  }
+}
+/* 
+@media only screen and (min-width: 1025px) {
+  .modal {
+    width: 60%;
+    padding: 25px;
+  }
+
+  .header {
+    padding: 25px;
+    width: calc(100% + 50px);
+    margin: -25px;
+  }
+
+  .formLabel {
+    font-size: 22px;
+  }
+
+  .input {
+    width: 50%;
+    padding: 10px;
+  }
+
+  .tab {
+    font-size: 18px;
+    padding: 12px;
+  }
+
+  .selectedTab {
+    border-radius: 60px;
+  }
+
+  .dataPlanButton {
+    padding: 12px 6px;
+    height: 65px;
+  }
+
+  .iconDesign p {
+    font-size: 16px;
+  }
+
+  .validity,
+  .price {
+    font-size: 20px;
+  }
+}
+
+ */

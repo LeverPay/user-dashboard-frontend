@@ -53,7 +53,7 @@ import ReferralPage from "./ReferralPage/ReferralContainer";
 import AirtimePaymentPage from "./PayBillsPage/AirtimePage/AirtimePaymentPage";
 import DataPaymentScreen from "./PayBillsPage/DataPage/DataPaymentScreen";
 import ElectricityPage from "./PayBillsPage/ElectricityPage/ElectricityPage";
-import SuccessfullScreen from "../components/LoadingPage/SuccessfullScreen";
+import SuccessfullScreen from "../components/reuseableComponents/LoadingPage/SuccessfullScreen";
 
 export const UserDashboardLayout = (props) => {
   const [user, setUser] = useState({});

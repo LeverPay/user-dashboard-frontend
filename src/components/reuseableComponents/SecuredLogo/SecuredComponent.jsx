@@ -1,6 +1,6 @@
 import React from 'react';
 import style from "./SecuredComponent.module.css"; // Ensure .module.css suffix
-import padlock from "../../assets/ph_lock-simple-fill.png";
+import padlock from "../../../assets/ph_lock-simple-fill.png";
 
 export default function SecuredComponent() {
   return (

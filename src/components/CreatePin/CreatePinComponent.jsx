@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md"; // Import the icon
 import style from "./CreatePinComponent.module.css";
-import SecuredComponent from "../SecuredLogo/SecuredComponent";
+import SecuredComponent from "../reuseableComponents/SecuredLogo/SecuredComponent";
 import checkMark from "../../assets/Group.png";
 import { savePin, resetPin } from "../../services/apiService";
 import { useLocalState } from "../../utils/useLocalStorage";
-import ScreenSuccessLoader from "../LoadingPage/ScreenSuccessLoader"; // Import the loader
-import SuccessScreen from "../LoadingPage/ScreenSuccessLoader"; // Import the SuccessScreen
+import ScreenSuccessLoader from "../reuseableComponents/LoadingPage/ScreenSuccessLoader";
+
+import SuccessScreen from "../reuseableComponents/LoadingPage/ScreenSuccessLoader"; 
 
 const CreatePinComponent = () => {
   const [newPin, setNewPin] = useState("");

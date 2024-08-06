@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash, FaChevronLeft } from "react-icons/fa";
 import { useLocalState } from "../../../utils/useLocalStorage";
 import { submitBillPayment } from "../../../services/apiService";
-import LoadingScreen from "../../LoadingPage/LoadingScreen";
-import SuccessfulScreen from "../../LoadingPage/SuccessScreen"; 
+import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
+import SuccessfulScreen from "../../reuseableComponents/LoadingPage/SuccessScreen"; 
+import ResetPAYMENTScreen from "../../reuseableComponents/resetPasswordComponent/ResetPaymentScreen";
 import style from "./AirtimeComponent.module.css";
 
-const AirTimeComponentPin = () => {
+const AirTimeComponentPin= () => {
   const [pin, setPin] = useState("");
   const [pinErrorMessage, setPinErrorMessage] = useState("");
   const [showPin, setShowPin] = useState(false);
@@ -94,7 +95,13 @@ const AirTimeComponentPin = () => {
         <SuccessfulScreen />
       ) : (
         <>
-          <h2 className={style.modalTitle}>Airtime</h2>
+          <div className={style.header}>
+            <FaChevronLeft
+              className={style.cancelIcon}
+              onClick={() => navigate(-1)}
+            />
+            <h2 className={style.modalTitle}>Airtime</h2>
+          </div>
           <div className={style.formGroup}>
             <h1 className={style.formLabel}>Phone Number</h1>
             <input
@@ -137,6 +144,8 @@ const AirTimeComponentPin = () => {
             {pinErrorMessage && (
               <p className={style.errorMessage}>{pinErrorMessage}</p>
             )}
+
+            <ResetPAYMENTScreen />
             <div className={style.buttonGroup}>
               <button
                 type="submit"

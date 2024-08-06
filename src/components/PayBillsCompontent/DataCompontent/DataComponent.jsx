@@ -13,7 +13,7 @@ import line from "../../../assets/Line 7.png";
 import { TbCurrencyNaira } from "react-icons/tb";
 import validityIcon from "../../../assets/Group 1000005189.png";
 import durationIcon from "../../../assets/Group 1000005190.png";
-import LoadingScreen from "../../LoadingPage/LoadingScreen";
+import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
 
 const networkLogos = {
   MTN: mtnLogo,
@@ -72,7 +72,7 @@ export default function DataComponent() {
           },
         }
       );
-      console.log("Biller items:", response.data);
+
       setBillerItems(response.data);
     } catch (error) {
       console.error("Error fetching biller items:", error);
@@ -112,22 +112,24 @@ export default function DataComponent() {
       } else {
         localStorage.removeItem("savedPhoneNumber");
       }
+      
 
-      localStorage.setItem(
-        "billerData",
-        JSON.stringify({
-          customerId: user.uuid,
-          amount: `${plan.Amount}`,
-          paymentCode: plan.PaymentCode,
-          itemName: plan.Name,
-          billerName: plan.BillerName,
-          billerCategoryId: plan.BillerCategoryId,
-          customerEmail: user.email,
-          customerMobile: user.phone,
-          referenceNo: plan.ReferenceNo,
-        })
-      );
-
+      const billerData = {
+        customerId: phoneNumber, // Use phoneNumber here
+        amount: `${plan.Amount}`,
+        paymentCode: plan.PaymentCode,
+        itemName: plan.Name,
+        billerName: plan.BillerName,
+        billerCategoryId: plan.BillerCategoryId,
+        customerEmail: user.email,
+        customerMobile: user.phone,
+        referenceNo: plan.ReferenceNo,
+        saveNumber: saveNumber, // Add this to store saveNumber
+      };
+  
+      localStorage.setItem("billerData", JSON.stringify(billerData));
+      localStorage.setItem("selectedDataPlan", JSON.stringify(plan)); 
+  
       navigate("/data-payment");
     } catch (error) {
       console.error("Error processing request:", error);

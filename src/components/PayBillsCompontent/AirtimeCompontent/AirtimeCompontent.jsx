@@ -7,7 +7,7 @@ import gloLogo from "../../../assets/glo.png";
 import nineMobileLogo from "../../../assets/9Mobile.png";
 import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
 import { getBillerPaymentItemsByAmount } from "../../../services/apiService";
-import LoadingScreen from "../../LoadingPage/LoadingScreen";
+import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
 
 const networkDetails = {
   MTN: { logo: mtnLogo, billerId: 109 },

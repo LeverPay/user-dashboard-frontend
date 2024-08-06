@@ -1,0 +1,15 @@
+.mainDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0A032D;
+    
+}
+.mainDiv p{
+    font-family: Poppins;
+    font-size: 22px;
+    font-weight: 500;
+}
+.mainDiv span{
+    color: #0F3FB2;
+}

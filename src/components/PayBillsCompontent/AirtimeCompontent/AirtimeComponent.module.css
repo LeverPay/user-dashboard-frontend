@@ -1,26 +1,30 @@
 .mainDiv {
   margin: auto;
   width: 90%;
-  margin-top: 20px;
-  margin-bottom: 50px;
   max-width: 600px;
   background-color: white;
   padding: 2rem;
+  padding-top: 70px; /* Adjust to the height of the header */
   border-radius: 50px;
   color: #333;
+  position: relative;
+  z-index: 2; /* Ensure it appears on top of the header */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
- 
-
-
-
+.background {
+  padding: 20px;
+  position: relative;
+  z-index: 2;
+  border-radius: 50px 50px 0 0;
+  background: white;
 }
 
 .modalTitle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 24px;
   margin-bottom: 20px;
+  text-align: center;
+  width: 100%; /* Ensure it spans the full width of the header */
 }
 
 .networksRow {
@@ -43,7 +47,8 @@
 }
 
 .formGroup {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 .formLabel {
@@ -57,9 +62,8 @@
 .formLabelCheckbox {
   font-size: 14px;
   font-family: Poppins;
-
-   margin-bottom: 20px;
-  color:  rgb(130, 130, 130);
+  margin-bottom: 20px;
+  color: rgb(130, 130, 130);
 }
 
 .activeText {
@@ -74,31 +78,23 @@
   border-radius: 20px;
 }
 
-
-
-
 .input {
   border: 1px solid #ccc;
-   
 }
 
 .inputActive {
-  border-color: #0F3FB2; 
+  border-color: #0F3FB2;
 }
 
-.eyeIcon2{
+.eyeIcon2 {
   margin-left: 330px;
   margin-top: -55px;
-
-
 }
-
 
 .errorMessage {
   color: red;
   margin-top: 30px;
   margin-bottom: 10px;
- 
 }
 
 .buttonGroup {
@@ -122,7 +118,9 @@
 }
 
 .buttonCancel {
-  background-color: #f44336;
+  background-color: #DEDADA;
+  color :  #000000;
+
 }
 
 .formGroupCheckbox {
@@ -134,10 +132,9 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px; 
-  height: 34px; 
+  width: 60px;
+  height: 34px;
   margin-right: 10px;
-  /* Ensure no border or shadow is applied */
   border: none;
   box-shadow: none;
 }
@@ -149,10 +146,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc; /* Background color of the slider */
+  background-color: #ccc;
   transition: 0.4s;
   border-radius: 34px;
-  /* Ensure no border or shadow is applied */
   border: none;
   box-shadow: none;
 }
@@ -160,27 +156,25 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px; /* Increased height */
-  width: 26px; /* Increased width */
+  height: 26px;
+  width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: white;
   transition: 0.4s;
   border-radius: 50%;
-  /* Ensure no border is applied */
   border: none;
 }
 
-/* Adjust slider background when checked */
 input:checked + .slider {
-  background-color: #0F3FB2; /* Active background color */
+  background-color: #0F3FB2;
 }
 
-/* Adjust position of the knob when checked */
 input:checked + .slider:before {
-  transform: translateX(26px); /* Adjusted translateX value */
+  transform: translateX(26px);
 }
-.bundle{
+
+.bundle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,7 +182,8 @@ input:checked + .slider:before {
   gap: 0;
   margin: 0;
 }
-.bundle h1{
+
+.bundle h1 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -196,51 +191,69 @@ input:checked + .slider:before {
   font-size: 22px;
   font-weight: 500;
   color: #0F3FB2;
-  ;
-  
-
 }
-.bundleDetails{
 
-    width: 370px;
-    height: 107px;
+.bundleDetails {
+  width: 370px;
+  height: 107px;
   border-radius: 20px;
   background: rgb(15, 63, 178);
   margin-bottom: 50px;
 }
-.detailHead{
-  font-family: Poppins;
-font-size: 20px;
-font-weight: 300;
-padding-left: 20px;
-color:  #FFFFFF;
 
+.detailHead {
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 300;
+  padding-left: 20px;
+  color: #FFFFFF;
 }
-.detail{
-  font-family: Poppins;
-font-size: 14px;
-font-weight: 500;
-line-height: 20px;
-text-align: left;
-color:  #FFFFFF;
-;
 
+.detail {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Poppins;
+  font-size: 130px;
+  font-weight: 800;
+  line-height: 20px;
+  text-align: left;
+  color: #FFFFFF;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: rgb(15, 63, 178);
+  border-radius: 30px 20px 0 0;
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-bottom: 50px;
+  z-index: 0; /* Ensure it is behind the mainDiv */
+}
+
+.cancelIcon {
+  position: absolute;
+  left: 20px; /* Adjust based on your design */
+  top: 50%; /* Vertically center */
+  transform: translateY(-50%); /* Vertically center */
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 769px) {
   .mainDiv {
-  
     margin-top: 180px;
- 
   }
-
-
 }
+
 @media only screen and (min-width: 1025px) {
   .mainDiv {
-  
     margin-top: 200px;
- 
   }
-
 }

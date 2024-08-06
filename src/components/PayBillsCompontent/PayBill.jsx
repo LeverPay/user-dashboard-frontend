@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getBillersCategories, getBillersByCategoryId } from '../../services/apiService';
-import LoadingScreen from "../LoadingPage/LoadingScreen";
+import LoadingScreen from "../reuseableComponents/LoadingPage/LoadingScreen";
 import './Paybill.css';
 import { useLocalState } from '../../utils/useLocalStorage';
 import electricity from "../../assets/electricity.png";
@@ -11,7 +11,7 @@ import internet from "../../assets/internet.png";
 import hotel from "../../assets/hotel.png";
 import ticket from "../../assets/ph_ticket-light.png";
 import cableTv from "../../assets/cable-tv.png";
-import SecuredComponent from "../SecuredLogo/SecuredComponent";
+import SecuredComponent from "../reuseableComponents/SecuredLogo/SecuredComponent";
 import telephone from "../../assets/telephone.png";
 import network from "../../assets/network.png";
 
