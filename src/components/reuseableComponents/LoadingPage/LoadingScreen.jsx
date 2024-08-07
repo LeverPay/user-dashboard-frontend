@@ -1,5 +1,5 @@
 import React from 'react';
-import companyLogo from "../../assets/LeverpayLogo.png"; // Adjust the path to your logo image
+import companyLogo from "../../../assets/LeverpayLogo.png"; // Adjust the path to your logo image
 import './LoadingScreen.css';
 
 const LoadingScreen = () => {

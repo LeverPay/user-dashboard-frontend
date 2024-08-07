@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import style from "./EnterPinScreen.module.css";
-import SecuredComponent from "../SecuredLogo/SecuredComponent";
+import SecuredComponent from "../reuseableComponents/SecuredLogo/SecuredComponent"
+// SecuredLogo/SecuredComponent";
 import { submitBillPayment } from "../../services/apiService"; 
 
 import { useLocalState } from "../../utils/useLocalStorage";

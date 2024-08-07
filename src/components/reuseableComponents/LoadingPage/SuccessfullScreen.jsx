@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from './SuccessScreen.module.css';
-import mark from '../../assets/Group.png';
-import line from '../../assets/Line 7.png';
+import mark from '../../../assets/Group.png';
+import line from '../../../assets/Line 7.png';
 
 export default function SuccessfulScreen({ onClose }) {
   const navigate = useNavigate();
