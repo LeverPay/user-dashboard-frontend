@@ -359,7 +359,7 @@ export const resetPin = async (pin, confirmPin, jwt) => {
 };
 
 export const getBillerPaymentItem = async (billerId, jwt) => {
-  setAuthHeader(jwt); // Ensure this sets the Authorization header properly
+  setAuthHeader(jwt); 
   try {
     const response = await httpClient.get(
       `/v1/user/quickteller/get-biller-payment-items?billerId=${billerId}`
@@ -369,11 +369,11 @@ console.log("Biller payment items response:", response.data);
   } catch (error) {
     if (error.response && error.response.status === 401) {
       toast.error("Unauthorized. Please log in again.");
-      throw error; // Ensure the caller can handle the 401 error
+      throw error; 
     } else {
       console.error("Failed to fetch biller payment items:", error);
       if (error.response && error.response.data) {
-        return error.response.data; // Return specific error data if available
+        return error.response.data; 
       } else {
         throw new Error("Failed to fetch biller payment items");
       }
