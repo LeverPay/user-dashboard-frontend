@@ -1,88 +1,150 @@
-
 .mainDiv {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #1c1a2e;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  color: #ffffff;
-  width: 90%;
-  max-width: 600px;
   margin: auto;
+  width: 90%;
+  max-width: 500px;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 50px;
+  color: #333;
+  position: relative;
+  z-index: 3; /* Ensure it appears on top of the header */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.networksRow {
+.header {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 20px 0;
-}
-
-.networkButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  margin: 10px;
-  color: #ffffff;
-}
-
-.networkLogo {
-  width: 100px;
-  height: 100px;
-  opacity: 0.8;
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-.networkLogo:hover {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
-.networkLogo.selected {
-  opacity: 1;
-  border: 2px solid #4CAF50;
-  border-radius: 50%;
-}
-
-.dropdownContainer {
+  justify-content: center; /* Center the content horizontally */
+  color: white;
+  background-color: rgb(15, 63, 178);
+  border-radius: 30px 20px 0 0;
+  height: 70px;
   width: 100%;
-  margin-top: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-bottom: 80px;
+  z-index: 0;
+}
+
+.cancelIcon {
+  position: absolute;
+  left: 20px; /* Position the icon at the left corner */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.modalTitle {
+  font-size: 25px;
+  font-family: Poppins;
+  color: #fff;
+  margin: 0; /* Remove default margin */
+}
+
+.formGroup {
+  margin-bottom: 20px;
+  margin-top: 55px;
 }
 
 .formLabel {
-  display: block;
+  display: flex;
+  font-size: 25px;
+  font-family: Poppins;
   margin-bottom: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #ffffff;
+  color: #0f3fb2;
+}
+
+.activeText {
+  color: #0f3fb2;
+}
+
+.formGroup input {
+  width: 70%;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
 }
 
 .input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  border-radius: 10px;
   border: 1px solid #ccc;
-  font-size: 16px;
 }
 
-@media (max-width: 768px) {
-  .networkLogo {
-    width: 80px;
-    height: 80px;
+.inputActive {
+  border-color: #0f3fb2;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.select {
+  width: 70%;
+  padding: 8px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+.dropdownIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.errorMessage {
+  color: red;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.buttonSubmit,
+.buttonCancel {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.buttonSubmit {
+  background-color: #0f3fb2;
+  color: white;
+}
+
+.buttonCancel {
+  background-color: #dedada;
+  color: #000;
+}
+.amountDiv {
+  display: flex;
+  justify-content: flex-end; /* Align content to the right */
+  margin-top: 0px; /* Adjust the margin if needed */
+}
+
+.amountText {
+  font-size: 20px; /* Adjust the font size if needed */
+  color: #333; /* Set the color as needed */
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 769px) {
+  .mainDiv {
+    margin-top: 180px;
   }
 }
 
-@media (max-width: 480px) {
-  .networkLogo {
-    width: 60px;
-    height: 60px;
+@media only screen and (min-width: 1025px) {
+  .mainDiv {
+    margin-top: 200px;
   }
 }

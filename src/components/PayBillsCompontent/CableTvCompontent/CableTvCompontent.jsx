@@ -1,74 +1,149 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import dstv from "../../../assets/dstv.jpeg";
-import gotv from "../../../assets/gotv.jpeg";
-import startTime from "../../../assets/startimes.png";
-import startTime2 from "../../../assets/startimOnimages.png";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaChevronLeft } from "react-icons/fa";
+import style from "./CableTvComponent.module.css";
+import { useLocalState } from "../../../utils/useLocalStorage";
+import { getBillerPaymentItem } from "../../../services/apiService";
+import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
 
-const cableTvData = [
-  { name: 'DSTV', logo: dstv },
-  { name: 'GoTV', logo: gotv },
-  { name: 'StartTime', logo: startTime },
-  { name: 'StartTimeOn', logo: startTime2 },
-];
+const providerDetails = {
+  DSTV: { id: 104 },
+  GOTV: { id: 459 },
+  StarTimes: { id: 204 },
+};
 
-export default function CableTvComponent() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCableTv, setSelectedCableTv] = useState(null);
-  const history = useNavigate();
+const CableTvPaymentScreenComponent = () => {
+  const [providers, setProviders] = useState([]);
+  const [provider, setProvider] = useState(null);
+  const [billerItems, setBillerItems] = useState([]);
+  const [smartCardNumber, setSmartCardNumber] = useState("");
+  const [smartCardNumberFocused, setSmartCardNumberFocused] = useState(false);
+  const [packageOption, setPackageOption] = useState("");
+  const [amount, setAmount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [jwt] = useLocalState("", "jwt");
 
-  const filteredCableTv = cableTvData.filter(tv =>
-    tv.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const navigate = useNavigate();
 
-  const handleClick = (cableTv) => {
-    setSelectedCableTv(cableTv);
-    history.push(`/account-details/${cableTv.name}`);
-  };
+  useEffect(() => {
+    const formattedProviders = Object.keys(providerDetails).map((key) => ({
+      Name: key,
+      Id: providerDetails[key].id,
+    }));
+    setProviders(formattedProviders);
+  }, []);
 
-  const handleDropdownChange = (e) => {
-    const selectedTv = cableTvData.find(tv => tv.name === e.target.value);
-    setSelectedCableTv(selectedTv);
-    if (selectedTv) {
-      history.push(`/account-details/${selectedTv.name}`);
+  const fetchBillerPaymentItems = async (providerId) => {
+    if (!jwt) {
+      setError("JWT token is missing. Please log in again.");
+      return;
+    }
+    try {
+      setLoading(true);
+      const data = await getBillerPaymentItem(providerId, jwt);
+      setBillerItems(data);
+      setLoading(false);
+    } catch (error) {
+      setError("Failed to fetch biller payment items. Please try again.");
+      setLoading(false);
     }
   };
 
+  const handleProviderChange = (e) => {
+    const selectedProviderId = e.target.value;
+    setProvider(providers.find((p) => p.Id === parseInt(selectedProviderId)));
+    fetchBillerPaymentItems(selectedProviderId);
+  };
+
+  const handleSmartCardNumberChange = (e) => {
+    setSmartCardNumber(e.target.value);
+  };
+
+  const handlePackageOptionChange = (e) => {
+    const selectedPackageId = parseInt(e.target.value);
+    const selectedPackage = billerItems.find(item => item.Id === selectedPackageId);
+    setPackageOption(selectedPackageId);
+    setAmount(selectedPackage?.Amount || 0);
+  };
+
+  const handleSubmit = () => {
+    // Add form submission logic here
+  };
+
   return (
-    <div className="mainDiv">
-      <input
-        type="text"
-        placeholder="Search cable TV..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="input"
-      />
-      <div className="networksRow">
-        {filteredCableTv.map(tv => (
-          <button key={tv.name} className="networkButton" onClick={() => handleClick(tv)}>
-            <img
-              src={tv.logo}
-              alt={`${tv.name} Logo`}
-              className={`networkLogo ${selectedCableTv === tv ? 'selected' : ''}`}
+    <div className={style.mainDiv}>
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <div className={style.header}>
+            <FaChevronLeft className={style.cancelIcon} onClick={() => navigate(-1)} />
+            <h2 className={style.modalTitle}>Cable TV</h2>
+          </div>
+
+          <div className={style.formGroup}>
+            <h1 className={style.formLabel}>Provider</h1>
+            <div className={style.dropdown}>
+              <select value={provider?.Id || ""} onChange={handleProviderChange} className={style.select}>
+                <option value="" disabled>Select provider</option>
+                {providers.map((provider) => (
+                  <option key={provider.Id} value={provider.Id}>
+                    {provider.Name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className={style.formGroup}>
+            <h1 className={style.formLabel}>
+              {billerItems?.length > 0 ? billerItems[0].ConsumerIdField : "Smart Card Number"}
+            </h1>
+            <input
+              type="text"
+              inputMode="numeric"
+              id="smartCardNumber"
+              value={smartCardNumber}
+              onChange={handleSmartCardNumberChange}
+              onFocus={() => setSmartCardNumberFocused(true)}
+              onBlur={() => setSmartCardNumberFocused(smartCardNumber !== "")}
+              className={`${style.input} ${smartCardNumberFocused || smartCardNumber ? style.inputActive : ""}`}
+              placeholder="Enter smart card number"
             />
-            <span>{tv.name}</span>
-          </button>
-        ))}
-      </div>
-      <div className="dropdownContainer">
-        <label htmlFor="cableTvDropdown" className="formLabel">Select Cable TV:</label>
-        <select
-          id="cableTvDropdown"
-          value={selectedCableTv ? selectedCableTv.name : ''}
-          onChange={handleDropdownChange}
-          className="input"
-        >
-          <option value="" disabled>Select a provider</option>
-          {cableTvData.map(tv => (
-            <option key={tv.name} value={tv.name}>{tv.name}</option>
-          ))}
-        </select>
-      </div>
+            {error && <p className={style.errorMessage}>{error}</p>}
+          </div>
+
+          <div className={style.formGroup}>
+            <h1 className={style.formLabel}>Package</h1>
+            <div className={style.dropdown}>
+              <select value={packageOption} onChange={handlePackageOptionChange} className={style.select}>
+                <option value="" disabled>Select package</option>
+                {billerItems?.map((item) => (
+                  <option key={item.Id} value={item.Id}>
+                    {item.Name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* Conditionally render amount */}
+          {packageOption && (
+            <div className={style.amountDiv}>
+              <p className={style.amountText}>Amount: NGN {amount}</p>
+            </div>
+          )}
+
+          <div className={style.buttonGroup}>
+            <button type="button" className={style.buttonSubmit} onClick={handleSubmit}>
+              Proceed
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
-}
+};
+
+export default CableTvPaymentScreenComponent;
