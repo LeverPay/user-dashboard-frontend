@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import style from "./AirtimeComponent.module.css";
 import mtnLogo from "../../../assets/mtn.png";
 import airtelLogo from "../../../assets/airtel.jpeg";
+import { FaChevronLeft } from "react-icons/fa";
 import gloLogo from "../../../assets/glo.png";
 import nineMobileLogo from "../../../assets/9Mobile.png";
 import { detectNetwork, useLocalState } from "../../../utils/useLocalStorage";
@@ -154,7 +155,11 @@ const AirtimeComponent = () => {
         <LoadingScreen />
       ) : (
         <>
-          <h2 className={style.modalTitle}>Airtime</h2>
+        <div className={style.header}>
+            <FaChevronLeft className={style.cancelIcon} onClick={() => navigate(-1)} />
+            <h2 className={style.modalTitle}>Airtime</h2>
+          </div>
+          {/* <h2 className={style.modalTitle}>Airtime</h2> */}
           <div className={style.networksRow}>
             {Object.keys(networkDetails).map((key) => (
               <img
@@ -238,13 +243,13 @@ const AirtimeComponent = () => {
             >
               Proceed
             </button>
-            <button
+            {/* <button
               type="button"
               className={style.buttonCancel}
               onClick={handleCancel}
             >
               Cancel
-            </button>
+            </button> */}
           </div>
         </>
       )}

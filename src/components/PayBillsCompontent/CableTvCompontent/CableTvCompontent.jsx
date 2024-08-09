@@ -19,7 +19,7 @@ const CableTvPaymentScreenComponent = () => {
   const [smartCardNumber, setSmartCardNumber] = useState("");
   const [smartCardNumberFocused, setSmartCardNumberFocused] = useState(false);
   const [packageOption, setPackageOption] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(0); // Store the selected package amount here
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [jwt] = useLocalState("", "jwt");
@@ -62,9 +62,9 @@ const CableTvPaymentScreenComponent = () => {
 
   const handlePackageOptionChange = (e) => {
     const selectedPackageId = parseInt(e.target.value);
-    const selectedPackage = billerItems.find(item => item.Id === selectedPackageId);
+    const selectedPackage = billerItems.find((item) => item.Id === selectedPackageId);
     setPackageOption(selectedPackageId);
-    setAmount(selectedPackage?.Amount || 0);
+    setAmount(selectedPackage.Amount || 0); // Update the amount state with the selected package amount
   };
 
   const handleSubmit = () => {
