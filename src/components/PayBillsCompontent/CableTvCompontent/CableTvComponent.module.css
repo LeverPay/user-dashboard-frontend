@@ -1,5 +1,6 @@
 .mainDiv {
   margin: auto;
+  margin-top: -200;
   width: 90%;
   max-width: 500px;
   background-color: white;
@@ -7,14 +8,14 @@
   border-radius: 50px;
   color: #333;
   position: relative;
-  z-index: 3; /* Ensure it appears on top of the header */
+
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the content horizontally */
+  justify-content: center; 
   color: white;
   background-color: rgb(15, 63, 178);
   border-radius: 30px 20px 0 0;
@@ -134,7 +135,10 @@
 
 .amountText {
   font-size: 20px; /* Adjust the font size if needed */
-  color: #333; /* Set the color as needed */
+  color:#0f3fb2; /* Set the color as needed */
+}
+.successMessage {
+  color: #0f3fb2; /* Set the color to your desired hex code */
 }
 
 @media only screen and (max-width: 1024px) and (min-width: 769px) {
