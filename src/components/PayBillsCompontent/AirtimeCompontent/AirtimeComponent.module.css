@@ -2,21 +2,21 @@
   margin: auto;
   width: 90%;
   max-width: 600px;
-  background-color: white;
   padding: 2rem;
-  padding-top: 70px; /* Adjust to the height of the header */
+ 
   border-radius: 50px;
   color: #333;
   position: relative;
-  z-index: 2; /* Ensure it appears on top of the header */
+  /* z-index: 2; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .background {
   padding: 20px;
+  
+margin-top: 100px;
   position: relative;
-  z-index: 2;
-  border-radius: 50px 50px 0 0;
+  border-radius: 50px 50px 50px 50px;
   background: white;
 }
 
@@ -24,7 +24,7 @@
   font-size: 24px;
   margin-bottom: 20px;
   text-align: center;
-  width: 100%; /* Ensure it spans the full width of the header */
+/* Ensure it spans the full width of the header */
 }
 
 .networksRow {
@@ -223,19 +223,20 @@ input:checked + .slider:before {
 }
 
 .header {
+
+
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   background-color: rgb(15, 63, 178);
-  border-radius: 30px 20px 0 0;
-  height: 100px;
-  width: 100%;
+  border-radius: 30px 30px 0 0;
+  height: 150px;
+  width: 89%;
   position: absolute;
-  top: 0;
-  left: 0;
-  margin-bottom: 50px;
-  z-index: 0; /* Ensure it is behind the mainDiv */
+
+
+  
 }
 
 .cancelIcon {
