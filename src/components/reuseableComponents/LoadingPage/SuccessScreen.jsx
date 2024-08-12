@@ -12,6 +12,10 @@ function SuccessScreen({ image, text, height }) {
         </div>
          <p>{text}</p>
       </div>
+      <div>
+      <button>Done</button>
+      </div>
+      
     </div>
   );
 }

@@ -7,6 +7,7 @@ import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
 import SuccessfulScreen from "../../reuseableComponents/LoadingPage/SuccessScreen"; 
 import ResetPAYMENTScreen from "../../reuseableComponents/resetPasswordComponent/ResetPaymentScreen";
 import style from "./AirtimeComponent.module.css";
+import group from "../../../assets/Group.png"
 
 const AirTimeComponentPin= () => {
   const [pin, setPin] = useState("");
@@ -92,7 +93,11 @@ const AirTimeComponentPin= () => {
       {loading ? (
         <LoadingScreen />
       ) : success ? (
-        <SuccessfulScreen />
+        <SuccessfulScreen
+        image={group} 
+        text={"Successful"}
+        
+        />
       ) : (
         <>
           <div className={style.header}>
@@ -102,6 +107,9 @@ const AirTimeComponentPin= () => {
             />
             <h2 className={style.modalTitle}>Airtime</h2>
           </div>
+          <div className={style.background}>
+
+        
           <div className={style.formGroup}>
             <h1 className={style.formLabel}>Phone Number</h1>
             <input
@@ -154,17 +162,20 @@ const AirTimeComponentPin= () => {
               >
                 {loading ? "Processing..." : "Confirm"}
               </button>
-              <button
+              {/* <button
                 type="button"
                 className={style.buttonCancel}
                 onClick={handleCancel}
               >
                 Cancel
-              </button>
+              </button> */}
             </div>
           </form>
+          </div>
         </>
+       
       )}
+     
     </div>
   );
 };

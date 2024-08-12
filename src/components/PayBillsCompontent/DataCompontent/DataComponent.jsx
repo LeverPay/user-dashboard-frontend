@@ -175,6 +175,7 @@ export default function DataComponent() {
             <FaChevronLeft className={style.cancelIcon} onClick={() => navigate(-1)} />
             <h2 className={style.modalTitle}>Data Purchase</h2>
           </div>
+          <div className={style.background}>
           <div className={style.networksRow}>
             {Object.keys(networkLogos).map((key) => (
               <img
@@ -288,7 +289,9 @@ export default function DataComponent() {
           {dataPlanErrorMessage && (
             <div className={style.errorMessage}>{dataPlanErrorMessage}</div>
           )}
+           </div>
         </>
+       
       )}
     </div>
   );

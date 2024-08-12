@@ -382,12 +382,12 @@ console.log("Biller payment items response:", response.data);
 };
 
 
-export const validateCustomer = async (customId, paymentCode, jwt) => {
+export const validateCustomer = async (customerId, paymentCode, jwt) => {
   try {
     const response = await httpClient.post(
       '/v1/user/quickteller/validate-customer',
       {
-        customId,
+        customerId,
         paymentCode,
       },
       {
@@ -396,18 +396,9 @@ export const validateCustomer = async (customId, paymentCode, jwt) => {
         },
       }
     );
-
-    console.log("Validation response:", response.data);
-    return response.data; // Return the data to the calling function
-
+    console.log(response.data);
+    return response.data;
   } catch (error) {
-    if (error.response) {
-      console.error("Error response from server:", error.response.data);
-    } else if (error.request) {
-      console.error("No response received:", error.request);
-    } else {
-      console.error("Error setting up request:", error.message);
-    }
     throw error;
   }
 };
