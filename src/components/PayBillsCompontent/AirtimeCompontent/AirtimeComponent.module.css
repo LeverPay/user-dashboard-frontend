@@ -1,25 +1,24 @@
 .mainDiv {
+
   margin: auto;
-  width: 90%;
+  width: 70%;
   max-width: 600px;
   padding: 2rem;
- 
+  background: white;
   border-radius: 50px;
   color: #333;
   position: relative;
-  /* z-index: 2; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+.input::placeholder {
+  font-size: 15px; /* Adjust this value as needed */
+  color:rgb(130, 130, 130);; /* Optional: Change the color of the placeholder text */
 }
 
-.background {
-  padding: 20px;
-  
-margin-top: 100px;
-  position: relative;
-  border-radius: 50px 50px 50px 50px;
-  background: white;
+.background{
+  margin-top: 90px;
 }
-
 .modalTitle {
   font-size: 24px;
   margin-bottom: 20px;
@@ -30,8 +29,8 @@ margin-top: 100px;
 .networksRow {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-top: 100px;
 }
 
 .networkLogo {
@@ -48,7 +47,7 @@ margin-top: 100px;
 
 .formGroup {
   margin-bottom: 40px;
-  margin-top: 70px;
+  margin-top: 30px;
 }
 
 .formLabel {
@@ -71,9 +70,8 @@ margin-top: 100px;
 }
 
 .formGroup input {
-  width: 70%;
+  width: 50%;
   padding: 8px;
-  margin-bottom: 20px;
   box-sizing: border-box;
   border-radius: 20px;
 }
@@ -87,8 +85,8 @@ margin-top: 100px;
 }
 
 .eyeIcon2 {
-  margin-left: 330px;
-  margin-top: -55px;
+  margin-left: 220px;
+  margin-top: -35px;
 }
 
 .errorMessage {
@@ -228,11 +226,8 @@ input:checked + .slider:before {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  background-color: rgb(15, 63, 178);
-  border-radius: 30px 30px 0 0;
-  height: 150px;
-  width: 89%;
+  color: black;
+  width: 90%;
   position: absolute;
 
 
@@ -241,9 +236,9 @@ input:checked + .slider:before {
 
 .cancelIcon {
   position: absolute;
-  left: 20px; /* Adjust based on your design */
-  top: 50%; /* Vertically center */
-  transform: translateY(-50%); /* Vertically center */
+  left: 20px; 
+  top: 50%; 
+  transform: translateY(-50%); 
   cursor: pointer;
 }
 

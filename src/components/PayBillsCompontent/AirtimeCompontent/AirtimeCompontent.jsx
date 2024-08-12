@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import style from "./AirtimeComponent.module.css";
 import mtnLogo from "../../../assets/mtn.png";
 import airtelLogo from "../../../assets/airtel.jpeg";
@@ -18,11 +18,10 @@ const networkDetails = {
 
 const AirtimeComponent = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [network, setNetwork] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState(
-    localStorage.getItem("phoneNumber") || ""
-  );
-  const [amount, setAmount] = useState(localStorage.getItem("amount") || "");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [amount, setAmount] = useState("");
   const [saveNumber, setSaveNumber] = useState(false);
   const [balance, setBalance] = useState(1000);
   const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
@@ -34,6 +33,22 @@ const AirtimeComponent = () => {
   const [amountFocused, setAmountFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingText, setLoadingText] = useState("Proceed");
+
+  useEffect(() => {
+    // Load saved phone number and amount if navigating back to this route
+    if (location.pathname === "/airtime-payment") {
+      const savedPhoneNumber = localStorage.getItem("phoneNumber") || "";
+      const savedAmount = localStorage.getItem("amount") || "";
+
+      setPhoneNumber(savedPhoneNumber);
+      setAmount(savedAmount);
+
+      const detectedNetwork = detectNetwork(savedPhoneNumber);
+      if (detectedNetwork) {
+        setNetwork(detectedNetwork);
+      }
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     if (phoneNumber) {
@@ -58,6 +73,19 @@ const AirtimeComponent = () => {
 
     return () => clearInterval(timer);
   }, [isLoading]);
+
+  useEffect(() => {
+    return () => {
+      // Clear fields when navigating away from the route
+      if (location.pathname !== "/airtime-payment") {
+        localStorage.removeItem("phoneNumber");
+        localStorage.removeItem("amount");
+        setPhoneNumber("");
+        setAmount("");
+        setNetwork(null);
+      }
+    };
+  }, [location.pathname]);
 
   const handlePhoneNumberChange = (e) => {
     const newPhoneNumber = e.target.value.replace(/\D/g, "");
@@ -165,6 +193,8 @@ const AirtimeComponent = () => {
   };
 
   const handleCancel = () => {
+    localStorage.removeItem("phoneNumber");
+    localStorage.removeItem("amount");
     navigate(-1);
   };
 
@@ -173,96 +203,86 @@ const AirtimeComponent = () => {
       <div className={style.header}>
         <FaChevronLeft
           className={style.cancelIcon}
-          onClick={() => navigate(-1)}
+          onClick={handleCancel}
         />
         <h2 className={style.modalTitle}>Airtime</h2>
       </div>
-      <div className={style.background}>
-        <div className={style.networksRow}>
-          {Object.keys(networkDetails).map((key) => (
-            <img
-              key={key}
-              src={networkDetails[key].logo}
-              alt={`${key} logo`}
-              className={`${style.networkLogo} ${
-                network && network.name === key ? style.selected : ""
-              }`}
-              onClick={() =>
-                setNetwork({
-                  name: key,
-                  biller_id: networkDetails[key].billerId,
-                })
-              }
-            />
-          ))}
-        </div>
-        <div className={style.formGroup}>
-          <h1 className={style.formLabel}>Phone Number</h1>
-          <input
-            type="text"
-            id="phoneNumber"
-            value={phoneNumber}
-            onChange={handlePhoneNumberChange}
-            onFocus={() => setPhoneNumberFocused(true)}
-            onBlur={() => setPhoneNumberFocused(phoneNumber !== "")}
-            className={`${style.input} ${
-              phoneNumberFocused || phoneNumber ? style.inputActive : ""
+     
+      <div className={style.networksRow}>
+        {Object.keys(networkDetails).map((key) => (
+          <img
+            key={key}
+            src={networkDetails[key].logo}
+            alt={`${key} logo`}
+            className={`${style.networkLogo} ${
+              network && network.name === key ? style.selected : ""
             }`}
-            placeholder="Enter phone number"
+            onClick={() =>
+              setNetwork({
+                name: key,
+                biller_id: networkDetails[key].billerId,
+              })
+            }
           />
-          {phoneErrorMessage && (
-            <p className={style.errorMessage}>{phoneErrorMessage}</p>
-          )}
-        </div>
-        <div className={style.formGroup}>
-          <h1 className={style.formLabel}>Amount</h1>
-          <input
-            type="text"
-            id="amount"
-            value={amount}
-            onChange={handleAmountChange}
-            onFocus={() => setAmountFocused(true)}
-            onBlur={() => setAmountFocused(amount !== "")}
-            className={`${style.input} ${
-              amountFocused || amount ? style.inputActive : ""
-            }`}
-            placeholder="Enter amount"
-          />
-          {amountErrorMessage && (
-            <p className={style.errorMessage}>{amountErrorMessage}</p>
-          )}
-        </div>
-        <div className={style.formGroupCheckbox}>
-          <label className={style.switch}>
-            <input
-              type="checkbox"
-              checked={saveNumber}
-              onChange={handleSaveNumberChange}
-            />
-            <span
-              className={`${style.slider} ${
-                saveNumber ? style.activeSlider : ""
-              }`}
-            ></span>
-          </label>
-        </div>
-        <p
-          className={`${style.formLabelCheckbox} ${
-            saveNumber ? style.activeText : ""
+        ))}
+      </div>
+      <div className={style.formGroup}>
+        <h1 className={style.formLabel}>Phone Number</h1>
+        <input
+          type="text"
+          id="phoneNumber"
+          value={phoneNumber}
+          onChange={handlePhoneNumberChange}
+          onFocus={() => setPhoneNumberFocused(true)}
+          onBlur={() => setPhoneNumberFocused(phoneNumber !== "")}
+          className={`${style.input} ${
+            phoneNumberFocused || phoneNumber ? style.inputActive : ""
           }`}
+          placeholder="Enter phone number"
+        />
+        {phoneErrorMessage && (
+          <p className={style.errorMessage}>{phoneErrorMessage}</p>
+        )}
+      </div>
+      <div className={style.formGroup}>
+        <h1 className={style.formLabel}>Amount</h1>
+        <input
+          type="text"
+          id="amount"
+          value={amount}
+          onChange={handleAmountChange}
+          onFocus={() => setAmountFocused(true)}
+          onBlur={() => setAmountFocused(amount !== "")}
+          className={`${style.input} ${
+            amountFocused || amount ? style.inputActive : ""
+          }`}
+          placeholder="Enter amount"
+        />
+        {amountErrorMessage && (
+          <p className={style.errorMessage}>{amountErrorMessage}</p>
+        )}
+      </div>
+      <div className={style.formGroupCheckbox}>
+        <label className={style.switch}>
+          <input
+            type="checkbox"
+            checked={saveNumber}
+            onChange={handleSaveNumberChange}
+          />
+          <span className={`${style.slider} ${style.round}`}></span>
+        </label>
+        <p> Save as Beneficiary</p>
+      </div>
+
+      <div className={style.buttonGroup}>
+        <button
+          type="button"
+          className={style.buttonSubmit}
+          onClick={handleSubmit}
+          disabled={isLoading}
         >
-          Save as Beneficiary
-        </p>
-        <div className={style.buttonGroup}>
-          <button
-            type="button"
-            className={style.buttonSubmit}
-            onClick={handleSubmit}
-            disabled={isLoading}
-          >
-            {loadingText}
-          </button>
-        </div>
+          {loadingText}
+        </button>
       </div>
     </div>
   );

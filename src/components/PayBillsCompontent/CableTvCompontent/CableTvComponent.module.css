@@ -11,7 +11,10 @@
 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+.input::placeholder {
+  font-size: 12px; /* Adjust this value as needed */
+  color:rgb(130, 130, 130);; /* Optional: Change the color of the placeholder text */
+}
 .header {
   display: flex;
   align-items: center;
