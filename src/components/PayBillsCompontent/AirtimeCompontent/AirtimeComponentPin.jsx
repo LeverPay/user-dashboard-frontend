@@ -3,13 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash, FaChevronLeft } from "react-icons/fa";
 import { useLocalState } from "../../../utils/useLocalStorage";
 import { submitBillPayment } from "../../../services/apiService";
-import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
-import SuccessfulScreen from "../../reuseableComponents/LoadingPage/SuccessScreen"; 
-import ResetPAYMENTScreen from "../../reuseableComponents/resetPasswordComponent/ResetPaymentScreen";
+import SuccessScreen from "../../reuseableComponents/LoadingPage/SuccessfullScreen";
 import style from "./AirtimeComponent.module.css";
-import group from "../../../assets/Group.png"
+import group from "../../../assets/Group.png";
 
-const AirTimeComponentPin= () => {
+const AirTimeComponentPin = () => {
+  const [loadingText, setLoadingText] = useState("Proceed");
   const [pin, setPin] = useState("");
   const [pinErrorMessage, setPinErrorMessage] = useState("");
   const [showPin, setShowPin] = useState(false);
@@ -17,9 +16,24 @@ const AirTimeComponentPin= () => {
   const [amount, setAmount] = useState("");
   const [saveNumber, setSaveNumber] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false); // State to handle success screen visibility
+  const [paymentSuccess, setPaymentSuccess] = useState(false); 
   const navigate = useNavigate();
   const [jwt] = useLocalState("", "jwt");
+
+  useEffect(() => {
+    let timer;
+    if (loading) {
+      timer = setInterval(() => {
+        setLoadingText((prev) =>
+          prev.endsWith(".....") ? "Proceed" : `${prev}.`
+        );
+      }, 200);
+    } else {
+      setLoadingText("Proceed");
+    }
+
+    return () => clearInterval(timer);
+  }, [loading]);
 
   useEffect(() => {
     const billerData = JSON.parse(localStorage.getItem("billerData"));
@@ -44,6 +58,7 @@ const AirTimeComponentPin= () => {
     setShowPin(!showPin);
   };
 
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (pin === "") {
@@ -60,7 +75,9 @@ const AirTimeComponentPin= () => {
       if (!billerData) {
         throw new Error("Biller data not found.");
       }
-
+  
+      console.log("Submitting with data:", { ...billerData, pin });
+  
       const response = await submitBillPayment(
         {
           ...billerData,
@@ -69,12 +86,13 @@ const AirTimeComponentPin= () => {
         jwt
       );
       console.log("Payment successful:", response);
-
+  
       localStorage.removeItem("billerData");
-      setSuccess(true); // Show success screen
+      setPaymentSuccess(true); // Show the SuccessScreen component
     } catch (error) {
       console.error("Error submitting payment:", error);
       if (error.response && error.response.data) {
+        console.error("Error response from server:", error.response.data);
         setPinErrorMessage(error.response.data); // Capture error message from response
       } else {
         setPinErrorMessage("Failed to process payment. Please try again.");
@@ -83,99 +101,72 @@ const AirTimeComponentPin= () => {
       setLoading(false);
     }
   };
-
-  const handleCancel = () => {
-    navigate(-1);
-  };
+  
 
   return (
     <div className={style.mainDiv}>
-      {loading ? (
-        <LoadingScreen />
-      ) : success ? (
-        <SuccessfulScreen
-        image={group} 
-        text={"Successful"}
-        
+      {paymentSuccess && <SuccessScreen />} {/* Conditionally render SuccessScreen */}
+      <div className={style.header}>
+        <FaChevronLeft
+          className={style.cancelIcon}
+          onClick={() => navigate(-1)}
         />
-      ) : (
-        <>
-          <div className={style.header}>
-            <FaChevronLeft
-              className={style.cancelIcon}
-              onClick={() => navigate(-1)}
-            />
-            <h2 className={style.modalTitle}>Airtime</h2>
-          </div>
-          <div className={style.background}>
-
-        
+        <h2 className={style.modalTitle}>Airtime</h2>
+      </div>
+      <div className={style.background}>
+        <div className={style.formGroup}>
+          <h1 className={style.formLabel}>Phone Number</h1>
+          <input
+            type="text"
+            id="phoneNumber"
+            value={phoneNumber}
+            readOnly
+            className={style.input}
+          />
+        </div>
+        <div className={style.formGroup}>
+          <h1 className={style.formLabel}>Amount</h1>
+          <input
+            type="text"
+            id="amount"
+            value={`NGN ${amount}`}
+            readOnly
+            className={style.input}
+            aria-label="Amount"
+          />
+        </div>
+        <form onSubmit={handleSubmit}>
           <div className={style.formGroup}>
-            <h1 className={style.formLabel}>Phone Number</h1>
+            <h1 className={style.formLabel}>Transaction PIN</h1>
             <input
-              type="text"
-              id="phoneNumber"
-              value={phoneNumber}
-              readOnly
+              type={showPin ? "text" : "password"}
+              value={pin}
+              onChange={handlePinChange}
+              placeholder="Enter PIN"
               className={style.input}
+              maxLength={4}
+              aria-label="Transaction PIN"
             />
+            <span className={style.eyeIcon} onClick={toggleShowPin}>
+              <div className={style.eyeIcon2}>
+                {showPin ? <FaRegEye /> : <FaRegEyeSlash />}
+              </div>
+            </span>
           </div>
-          <div className={style.formGroup}>
-            <h1 className={style.formLabel}>Amount</h1>
-            <input
-              type="text"
-              id="amount"
-              value={`NGN ${amount}`}
-              readOnly
-              className={style.input}
-              aria-label="Amount"
-            />
+          {pinErrorMessage && (
+            <p className={style.errorMessage}>{pinErrorMessage}</p>
+          )}
+          <div className={style.buttonGroup}>
+            <button
+              type="submit"
+              className={style.buttonSubmit}
+              disabled={loading}
+            >
+              {loading ? loadingText : "Confirm"}
+            </button>
           </div>
-          <form onSubmit={handleSubmit}>
-            <div className={style.formGroup}>
-              <h1 className={style.formLabel}>Transaction PIN</h1>
-              <input
-                type={showPin ? "text" : "password"}
-                value={pin}
-                onChange={handlePinChange}
-                placeholder="Enter PIN"
-                className={style.input}
-                maxLength={4}
-                aria-label="Transaction PIN"
-              />
-              <span className={style.eyeIcon} onClick={toggleShowPin}>
-                <div className={style.eyeIcon2}>
-                  {showPin ? <FaRegEye /> : <FaRegEyeSlash />}
-                </div>
-              </span>
-            </div>
-            {pinErrorMessage && (
-              <p className={style.errorMessage}>{pinErrorMessage}</p>
-            )}
-
-            <ResetPAYMENTScreen />
-            <div className={style.buttonGroup}>
-              <button
-                type="submit"
-                className={style.buttonSubmit}
-                disabled={loading}
-              >
-                {loading ? "Processing..." : "Confirm"}
-              </button>
-              {/* <button
-                type="button"
-                className={style.buttonCancel}
-                onClick={handleCancel}
-              >
-                Cancel
-              </button> */}
-            </div>
-          </form>
-          </div>
-        </>
-       
-      )}
-     
+        </form>
+      </div>
     </div>
   );
 };

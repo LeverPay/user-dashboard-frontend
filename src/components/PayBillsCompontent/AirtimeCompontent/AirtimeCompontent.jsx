@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "./AirtimeComponent.module.css";
 import mtnLogo from "../../../assets/mtn.png";
 import airtelLogo from "../../../assets/airtel.jpeg";
@@ -18,10 +19,11 @@ const networkDetails = {
 
 const AirtimeComponent = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [network, setNetwork] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [amount, setAmount] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(
+    localStorage.getItem("phoneNumber") || ""
+  );
+  const [amount, setAmount] = useState(localStorage.getItem("amount") || "");
   const [saveNumber, setSaveNumber] = useState(false);
   const [balance, setBalance] = useState(1000);
   const [phoneErrorMessage, setPhoneErrorMessage] = useState("");
@@ -33,22 +35,6 @@ const AirtimeComponent = () => {
   const [amountFocused, setAmountFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingText, setLoadingText] = useState("Proceed");
-
-  useEffect(() => {
-    // Load saved phone number and amount if navigating back to this route
-    if (location.pathname === "/airtime-payment") {
-      const savedPhoneNumber = localStorage.getItem("phoneNumber") || "";
-      const savedAmount = localStorage.getItem("amount") || "";
-
-      setPhoneNumber(savedPhoneNumber);
-      setAmount(savedAmount);
-
-      const detectedNetwork = detectNetwork(savedPhoneNumber);
-      if (detectedNetwork) {
-        setNetwork(detectedNetwork);
-      }
-    }
-  }, [location.pathname]);
 
   useEffect(() => {
     if (phoneNumber) {
@@ -73,19 +59,6 @@ const AirtimeComponent = () => {
 
     return () => clearInterval(timer);
   }, [isLoading]);
-
-  useEffect(() => {
-    return () => {
-      // Clear fields when navigating away from the route
-      if (location.pathname !== "/airtime-payment") {
-        localStorage.removeItem("phoneNumber");
-        localStorage.removeItem("amount");
-        setPhoneNumber("");
-        setAmount("");
-        setNetwork(null);
-      }
-    };
-  }, [location.pathname]);
 
   const handlePhoneNumberChange = (e) => {
     const newPhoneNumber = e.target.value.replace(/\D/g, "");
@@ -175,7 +148,6 @@ const AirtimeComponent = () => {
           refrenceNo: data[0].ReferenceNo,
           consumerIdField: data[0].ConsumerIdField,
         };
-
         localStorage.setItem("billerData", JSON.stringify(billerData));
 
         localStorage.setItem("phoneNumber", phoneNumber);
@@ -193,11 +165,8 @@ const AirtimeComponent = () => {
   };
 
   const handleCancel = () => {
-    localStorage.removeItem("phoneNumber");
-    localStorage.removeItem("amount");
     navigate(-1);
   };
-
   return (
     <div className={style.mainDiv}>
       <div className={style.header}>
@@ -262,27 +231,26 @@ const AirtimeComponent = () => {
           <p className={style.errorMessage}>{amountErrorMessage}</p>
         )}
       </div>
-      <div className={style.formGroupCheckbox}>
+      <div className={style.formGroup}>
         <label className={style.switch}>
           <input
             type="checkbox"
             checked={saveNumber}
             onChange={handleSaveNumberChange}
           />
-          <span className={`${style.slider} ${style.round}`}></span>
+          <span className={style.slider}></span>
         </label>
-        <p> Save as Beneficiary</p>
+        <p className={style.switchLabel}>Save number</p>
       </div>
-
       <div className={style.buttonGroup}>
         <button
-          type="button"
           className={style.buttonSubmit}
           onClick={handleSubmit}
           disabled={isLoading}
         >
           {loadingText}
         </button>
+       
       </div>
     </div>
   );

@@ -46,8 +46,8 @@
 }
 
 .formGroup {
-  margin-bottom: 20px;
-  margin-top: 55px;
+  margin-bottom: 40px;
+  margin-top: 50px;
 }
 
 .formLabel {
@@ -77,6 +77,8 @@
 .inputActive {
   border-color: #0f3fb2;
 }
+
+
 
 .dropdown {
   position: relative;

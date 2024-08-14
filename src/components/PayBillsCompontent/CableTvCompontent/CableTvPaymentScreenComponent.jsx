@@ -5,7 +5,7 @@ import style from "./CableTvComponent.module.css";
 import { useLocalState } from "../../../utils/useLocalStorage";
 import { submitBillPayment } from "../../../services/apiService";
 import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
-import SuccessfulScreen from "../../reuseableComponents/LoadingPage/SuccessScreen";
+// import SuccessfulScreen from "../../reuseableComponents/LoadingPage/SuccessScreen";
 import ResetPAYMENTScreen from "../../reuseableComponents/resetPasswordComponent/ResetPaymentScreen";
 
 const CableTvPaymentScreenComponent = () => {

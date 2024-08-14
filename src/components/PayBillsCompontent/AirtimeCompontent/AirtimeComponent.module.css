@@ -1,5 +1,5 @@
-.mainDiv {
 
+.mainDiv {
   margin: auto;
   width: 70%;
   max-width: 600px;
@@ -10,10 +10,14 @@
   position: relative;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 50px;
+  /* z-index: 1;  */
 }
+
+
+
 .input::placeholder {
-  font-size: 15px; /* Adjust this value as needed */
-  color:rgb(130, 130, 130);; /* Optional: Change the color of the placeholder text */
+  font-size: 15px; 
+  color:rgb(130, 130, 130);; 
 }
 
 .background{

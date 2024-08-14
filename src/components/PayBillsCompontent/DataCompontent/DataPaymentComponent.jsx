@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash, FaChevronLeft } from "react-icons/fa";
 import { useLocalState } from "../../../utils/useLocalStorage";
 import { submitBillPayment } from "../../../services/apiService";
-import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
-import SuccessfulScreen from "../../reuseableComponents/LoadingPage/SuccessScreen";
+import SuccessScreen from "../../reuseableComponents/LoadingPage/SuccessfullScreen"; // Ensure this is imported correctly
 import style from "../AirtimeCompontent/AirtimeComponent.module.css";
 import ResetPaymentScreen from "../../reuseableComponents/resetPasswordComponent/ResetPaymentScreen";
 
@@ -18,6 +17,7 @@ const DataPaymentComponent = () => {
   const [saveNumber, setSaveNumber] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [loadingText, setLoadingText] = useState("Proceed");
   const navigate = useNavigate();
   const [jwt] = useLocalState("", "jwt");
 
@@ -35,6 +35,21 @@ const DataPaymentComponent = () => {
       navigate(-1);
     }
   }, [navigate]);
+
+  useEffect(() => {
+    let timer;
+    if (loading) {
+      timer = setInterval(() => {
+        setLoadingText((prev) =>
+          prev.endsWith(".....") ? "Proceed" : `${prev}.`
+        );
+      }, 200);
+    } else {
+      setLoadingText("Proceed");
+    }
+
+    return () => clearInterval(timer);
+  }, [loading]);
 
   const handlePinChange = (e) => {
     const value = e.target.value.replace(/\D/g, "");
@@ -96,10 +111,8 @@ const DataPaymentComponent = () => {
 
   return (
     <div className={style.mainDiv}>
-      {loading ? (
-        <LoadingScreen />
-      ) : success ? (
-        <SuccessfulScreen />
+      {success ? (
+        <SuccessScreen />
       ) : (
         <>
           <div className={style.header}>
@@ -177,7 +190,7 @@ const DataPaymentComponent = () => {
                   className={style.buttonSubmit}
                   disabled={loading}
                 >
-                  {loading ? "Processing..." : "Confirm"}
+                  {loading ? loadingText : "Confirm"}
                 </button>
               </div>
             </form>
