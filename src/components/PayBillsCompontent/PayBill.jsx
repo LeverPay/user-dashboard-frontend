@@ -62,7 +62,7 @@ const PayBillsComponent = () => {
   ];
 
   const handleCategoryClick = async (categoryId, path) => {
-    navigate(path); // Optimistic navigation
+    navigate(path);
     setLoading(true);
     try {
       console.log(categoryId);

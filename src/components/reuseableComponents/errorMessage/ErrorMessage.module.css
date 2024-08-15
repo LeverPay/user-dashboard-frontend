@@ -1,0 +1,181 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  border-radius: 30px;
+  background: rgba(169, 185, 180, 0.7);
+}
+
+.wrapper {
+  padding-top: 200px; /* Reduced padding */
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.main {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+  max-width: 90%; /* Ensures responsiveness */
+  width: 400px; /* Fixed width to control the size */
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center; /* Center align the text */
+}
+
+.text h2 {
+  color: red;
+  font-family: Poppins;
+  font-size: 24px; /* Reduced font size */
+  font-weight: 500;
+  text-align: center;
+}
+
+.text p {
+  color: black;
+  font-family: Poppins;
+  font-size: 20px; /* Reduced font size */
+  font-weight: 700;
+  max-width: 300px; /* Limits the length of the p tag */
+  overflow-wrap: break-word; /* Ensures text wraps appropriately */
+}
+
+.done {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  justify-items: flex-end;
+
+  padding-left: 170px ;
+  gap: 20px; 
+}
+
+.doneButton {
+  background: none;
+  color: rgb(15, 63, 178);
+  border: none;
+  cursor: pointer;
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 600;
+  white-space: nowrap; /* Ensures the text stays on one line */
+}
+
+
+.errorMessage {
+  color: red;
+  font-size: 20px; /* Reduced font size */
+  font-family: Poppins;
+  text-align: center;
+}
+
+.cancelIconHeader {
+  font-size: 60px; /* Reduced icon size */
+  color: red;
+}
+
+.cancelIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px; /* Reduced icon size */
+  color: rgb(19, 9, 9);
+}
+@media only screen and (max-width: 1024px) and (min-width: 769px) {
+  .wrapper {
+    padding-top: 150px;
+    padding-left: 0px;
+  
+    /* padding-right: 20px; */
+  }
+
+  .mainu {
+    background-color: white;
+    padding: 1rem;
+    max-width: 85%; /* Slightly smaller max-width */
+    width: 30px; /* Adjusted fixed width */
+  }
+
+  .text h2 {
+    font-size: 22px; /* Adjusted font size */
+  }
+
+  .text p {
+    font-size: 18px; /* Adjusted font size */
+    max-width: 280px; /* Adjusted max width */
+  }
+
+  .doneButton {
+    font-size: 16px; /* Adjusted font size */
+  }
+
+  .errorMessage {
+    font-size: 18px; /* Adjusted font size */
+  }
+
+  .cancelIconHeader {
+    font-size: 50px; /* Adjusted icon size */
+  }
+
+  .cancelIcon {
+    font-size: 18px; /* Adjusted icon size */
+  }
+}
+
+/* For screens larger than 1025px */
+@media only screen and (min-width: 1025px) {
+  .wrapper {
+    padding-top: 200px; /* Original padding */
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .main {
+    padding: 1.5rem;
+    max-width: 90%; /* Ensures responsiveness */
+    width: 400px; /* Fixed width to control the size */
+  }
+
+  .text h2 {
+    font-size: 24px; /* Original font size */
+  }
+
+  .text p {
+    font-size: 20px; /* Original font size */
+  }
+
+  .doneButton {
+    font-size: 18px; /* Original font size */
+  }
+
+  .errorMessage {
+    font-size: 20px; /* Original font size */
+  }
+
+  .cancelIconHeader {
+    font-size: 60px; /* Original icon size */
+  }
+
+  .cancelIcon {
+    font-size: 20px; /* Original icon size */
+  }
+}

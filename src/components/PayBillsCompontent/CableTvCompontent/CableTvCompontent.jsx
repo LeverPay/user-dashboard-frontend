@@ -53,47 +53,39 @@ const CableTvPaymentScreenComponent = () => {
     } finally {
       setIsLoading(false);
     }
-  }
-    const handleSmartCardNumberChange = async (e) => {
-      const smartCard = e.target.value;
-      setSmartCardNumber(smartCard);
-  
-      if (smartCard.length >= 10 && provider) {
-        setIsValidating(true);
-        setValidationError("");
-        try {
-          // Validate the Smart Card Number using provider Id
-          const validationData = await validateCustomer(smartCard,  providerDetails[provider.Name].PaydirectItemCode, jwt);
-          
-          console.log("Validation Data:", validationData); // Log the raw data
-  
-          setCustomerDetails(validationData.Customers[0]);
-          setValidationError("");
-        } catch (error) {
-          console.error("Error during validation:", error); // Log the error for debugging
-          setValidationError("Failed to validate customer. Please check the Smart Card Number.");
-        } finally {
-          setIsValidating(false);
-        }
-      }
   };
-  
+
+  const handleSmartCardNumberChange = async (e) => {
+    const smartCard = e.target.value;
+    setSmartCardNumber(smartCard);
+
+    if (smartCard.length >= 10 && provider) {
+      setIsValidating(true);
+      setValidationError("");
+      try {
+        const validationData = await validateCustomer(smartCard, providerDetails[provider.Name].PaydirectItemCode, jwt);
+
+        console.log("Validation Data:", validationData);
+
+        setCustomerDetails(validationData.Customers[0]);
+        setValidationError("");
+      } catch (error) {
+        console.error("Error during validation:", error);
+        setValidationError("Failed to validate customer. Please check the Smart Card Number.");
+      } finally {
+        setIsValidating(false);
+      }
+    }
+  };
+
   const handleProviderChange = (e) => {
     const selectedProviderId = e.target.value;
     const selectedProvider = providers.find((p) => p.Id === parseInt(selectedProviderId));
     setProvider(selectedProvider);
     fetchBillerPaymentItems(selectedProviderId);
-    // Clear any validation errors when provider changes
+
     setValidationError("");
   };
-
-  // const handleSmartCardNumberChange = (e) => {
-  //   const smartCard = e.target.value;
-  //   setSmartCardNumber(smartCard);
-  //   if (smartCard) {
-  //     validateSmartCardNumber(); // Call validation API as soon as the card number is entered
-  //   }
-  // };
 
   const handlePackageOptionChange = (e) => {
     const selectedPackageId = e.target.value;
@@ -103,7 +95,7 @@ const CableTvPaymentScreenComponent = () => {
     if (!selectedPackage) {
       setPackageError("Selected package is invalid.");
     } else {
-      setPackageError(""); // Clear any previous errors
+      setPackageError("");
     }
   };
 
@@ -143,7 +135,7 @@ const CableTvPaymentScreenComponent = () => {
       <div className={style.formGroup}>
         <h1 className={style.formLabel}>Provider</h1>
         <div className={style.dropdown}>
-          <select value={provider?.Id || ""} onChange={handleProviderChange} className={style.select}>
+          <select value={provider?.Id || ""} onChange={handleProviderChange} className={`${style.select} ${style.selectActive}`}>
             <option value="" disabled>Select provider</option>
             {providers.map((provider) => (
               <option key={provider.Id} value={provider.Id}>
@@ -151,7 +143,6 @@ const CableTvPaymentScreenComponent = () => {
               </option>
             ))}
           </select>
-          {providerError && <p className={style.errorMessage}>{providerError}</p>}
         </div>
       </div>
 
@@ -181,7 +172,7 @@ const CableTvPaymentScreenComponent = () => {
       <div className={style.formGroup}>
         <h1 className={style.formLabel}>Package</h1>
         <div className={style.dropdown}>
-          <select value={packageOption} onChange={handlePackageOptionChange} className={style.select}>
+          <select value={packageOption} onChange={handlePackageOptionChange} className={`${style.select} ${style.selectActive}`}>
             <option value="" disabled>Select package</option>
             {isLoading ? (
               <option>Loading packages...</option>

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./AirtimeComponent.module.css";
@@ -147,7 +148,6 @@ const AirtimeComponent = () => {
           refrenceNo: data[0].ReferenceNo,
           consumerIdField: data[0].ConsumerIdField,
         };
-
         localStorage.setItem("billerData", JSON.stringify(billerData));
 
         localStorage.setItem("phoneNumber", phoneNumber);
@@ -167,102 +167,90 @@ const AirtimeComponent = () => {
   const handleCancel = () => {
     navigate(-1);
   };
-
   return (
     <div className={style.mainDiv}>
       <div className={style.header}>
         <FaChevronLeft
           className={style.cancelIcon}
-          onClick={() => navigate(-1)}
+          onClick={handleCancel}
         />
         <h2 className={style.modalTitle}>Airtime</h2>
       </div>
-      <div className={style.background}>
-        <div className={style.networksRow}>
-          {Object.keys(networkDetails).map((key) => (
-            <img
-              key={key}
-              src={networkDetails[key].logo}
-              alt={`${key} logo`}
-              className={`${style.networkLogo} ${
-                network && network.name === key ? style.selected : ""
-              }`}
-              onClick={() =>
-                setNetwork({
-                  name: key,
-                  biller_id: networkDetails[key].billerId,
-                })
-              }
-            />
-          ))}
-        </div>
-        <div className={style.formGroup}>
-          <h1 className={style.formLabel}>Phone Number</h1>
-          <input
-            type="text"
-            id="phoneNumber"
-            value={phoneNumber}
-            onChange={handlePhoneNumberChange}
-            onFocus={() => setPhoneNumberFocused(true)}
-            onBlur={() => setPhoneNumberFocused(phoneNumber !== "")}
-            className={`${style.input} ${
-              phoneNumberFocused || phoneNumber ? style.inputActive : ""
+     
+      <div className={style.networksRow}>
+        {Object.keys(networkDetails).map((key) => (
+          <img
+            key={key}
+            src={networkDetails[key].logo}
+            alt={`${key} logo`}
+            className={`${style.networkLogo} ${
+              network && network.name === key ? style.selected : ""
             }`}
-            placeholder="Enter phone number"
+            onClick={() =>
+              setNetwork({
+                name: key,
+                biller_id: networkDetails[key].billerId,
+              })
+            }
           />
-          {phoneErrorMessage && (
-            <p className={style.errorMessage}>{phoneErrorMessage}</p>
-          )}
-        </div>
-        <div className={style.formGroup}>
-          <h1 className={style.formLabel}>Amount</h1>
-          <input
-            type="text"
-            id="amount"
-            value={amount}
-            onChange={handleAmountChange}
-            onFocus={() => setAmountFocused(true)}
-            onBlur={() => setAmountFocused(amount !== "")}
-            className={`${style.input} ${
-              amountFocused || amount ? style.inputActive : ""
-            }`}
-            placeholder="Enter amount"
-          />
-          {amountErrorMessage && (
-            <p className={style.errorMessage}>{amountErrorMessage}</p>
-          )}
-        </div>
-        <div className={style.formGroupCheckbox}>
-          <label className={style.switch}>
-            <input
-              type="checkbox"
-              checked={saveNumber}
-              onChange={handleSaveNumberChange}
-            />
-            <span
-              className={`${style.slider} ${
-                saveNumber ? style.activeSlider : ""
-              }`}
-            ></span>
-          </label>
-        </div>
-        <p
-          className={`${style.formLabelCheckbox} ${
-            saveNumber ? style.activeText : ""
+        ))}
+      </div>
+      <div className={style.formGroup}>
+        <h1 className={style.formLabel}>Phone Number</h1>
+        <input
+          type="text"
+          id="phoneNumber"
+          value={phoneNumber}
+          onChange={handlePhoneNumberChange}
+          onFocus={() => setPhoneNumberFocused(true)}
+          onBlur={() => setPhoneNumberFocused(phoneNumber !== "")}
+          className={`${style.input} ${
+            phoneNumberFocused || phoneNumber ? style.inputActive : ""
           }`}
+          placeholder="Enter phone number"
+        />
+        {phoneErrorMessage && (
+          <p className={style.errorMessage}>{phoneErrorMessage}</p>
+        )}
+      </div>
+      <div className={style.formGroup}>
+        <h1 className={style.formLabel}>Amount</h1>
+        <input
+          type="text"
+          id="amount"
+          value={amount}
+          onChange={handleAmountChange}
+          onFocus={() => setAmountFocused(true)}
+          onBlur={() => setAmountFocused(amount !== "")}
+          className={`${style.input} ${
+            amountFocused || amount ? style.inputActive : ""
+          }`}
+          placeholder="Enter amount"
+        />
+        {amountErrorMessage && (
+          <p className={style.errorMessage}>{amountErrorMessage}</p>
+        )}
+      </div>
+      <div className={style.formGroup}>
+        <label className={style.switch}>
+          <input
+            type="checkbox"
+            checked={saveNumber}
+            onChange={handleSaveNumberChange}
+          />
+          <span className={style.slider}></span>
+        </label>
+        <p className={style.switchLabel}>Save number</p>
+      </div>
+      <div className={style.buttonGroup}>
+        <button
+          className={style.buttonSubmit}
+          onClick={handleSubmit}
+          disabled={isLoading}
         >
-          Save as Beneficiary
-        </p>
-        <div className={style.buttonGroup}>
-          <button
-            type="button"
-            className={style.buttonSubmit}
-            onClick={handleSubmit}
-            disabled={isLoading}
-          >
-            {loadingText}
-          </button>
-        </div>
+          {loadingText}
+        </button>
+       
       </div>
     </div>
   );

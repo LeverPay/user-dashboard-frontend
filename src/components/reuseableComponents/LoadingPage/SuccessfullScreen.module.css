@@ -1,28 +1,47 @@
 .overlay {
-  position: fixed;
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(169, 185, 180, 0.7); 
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 100; 
+}
+.wrapper{
+
+padding-top: 500px;
+padding-left: 320px;
+
 }
 
+
 .main {
+
   background-color: white;
   padding: 2rem;
   border-radius: 50px;
   color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+padding-left: 10px;
+padding-right: 110px;
+padding-bottom: 10px;
+
+  position: relative;
 }
 
 .innerDiv {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 100px;
+  gap: 50px;
+  padding-left: 100px;
 }
 
 .text {
@@ -38,10 +57,15 @@
   font-size: 22px;
   font-weight: 700;
   letter-spacing: 5%;
+  text-align: right;
 }
 
 .done {
-  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 50px;
+  padding-left: 410px;
 }
 
 .doneButton {
@@ -56,7 +80,7 @@
   letter-spacing: 5%;
 }
 
-.doneButton:hover {
+/* .doneButton:hover {
   background-color: transparent;
   color: #45a049;
-}
+} */
