@@ -1,7 +1,7 @@
 /* Base Styles */
 .modal {
   position: fixed;
-  top: 55%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -16,7 +16,7 @@
 .background {
   padding: 20px;
 
-margin-top: 100px;
+margin-top: 150px;
   position: relative;
   border-radius: 50px;
   background: white;
@@ -133,7 +133,7 @@ margin-top: 100px;
   display: flex;
   justify-content: space-around;
   margin-bottom: 50px;
-  margin-top: 50px;
+  margin-top: 80px;
 }
 
 .networkLogo {
@@ -239,9 +239,6 @@ margin-top: 100px;
   gap: 1rem;
 }
 
-.errorDiv {
-  margin-top: 50px;
-}
 
 .dataPlansRow::-webkit-scrollbar {
   visibility: hidden;

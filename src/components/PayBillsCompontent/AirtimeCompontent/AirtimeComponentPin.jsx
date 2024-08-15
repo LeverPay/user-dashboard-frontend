@@ -42,7 +42,7 @@ const AirTimeComponentPin = () => {
       setAmount(billerData.amount);
       setSaveNumber(billerData.saveNumber);
     } else {
-      navigate(-1); // Navigate back if billerData is not found
+      navigate(-1); 
     }
   }, [navigate]);
 
@@ -88,12 +88,12 @@ const AirTimeComponentPin = () => {
       console.log("Payment successful:", response);
   
       localStorage.removeItem("billerData");
-      setPaymentSuccess(true); // Show the SuccessScreen component
+      setPaymentSuccess(true); 
     } catch (error) {
       console.error("Error submitting payment:", error);
       if (error.response && error.response.data) {
         console.error("Error response from server:", error.response.data);
-        setPinErrorMessage(error.response.data); // Capture error message from response
+        setPinErrorMessage(error.response.data); 
       } else {
         setPinErrorMessage("Failed to process payment. Please try again.");
       }

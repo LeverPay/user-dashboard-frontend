@@ -8,6 +8,7 @@ import style from "../AirtimeCompontent/AirtimeComponent.module.css";
 import ResetPaymentScreen from "../../reuseableComponents/resetPasswordComponent/ResetPaymentScreen";
 
 const DataPaymentComponent = () => {
+  const [loadingText, setLoadingText] = useState("Proceed");
   const [pin, setPin] = useState("");
   const [pinErrorMessage, setPinErrorMessage] = useState("");
   const [showPin, setShowPin] = useState(false);
@@ -16,25 +17,11 @@ const DataPaymentComponent = () => {
   const [itemName, setItemName] = useState(""); // New state for item name
   const [saveNumber, setSaveNumber] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [loadingText, setLoadingText] = useState("Proceed");
+  const [paymentSuccess, setPaymentSuccess] = useState(false); 
+
   const navigate = useNavigate();
   const [jwt] = useLocalState("", "jwt");
 
-  useEffect(() => {
-    const billerData = JSON.parse(localStorage.getItem("billerData"));
-    const selectedDataPlan = JSON.parse(
-      localStorage.getItem("selectedDataPlan")
-    ); // Retrieve selected data plan
-    if (billerData && selectedDataPlan) {
-      setPhoneNumber(billerData.customerId);
-      setAmount(billerData.amount);
-      setItemName(selectedDataPlan.Name); // Set item name
-      setSaveNumber(billerData.saveNumber);
-    } else {
-      navigate(-1);
-    }
-  }, [navigate]);
 
   useEffect(() => {
     let timer;
@@ -50,6 +37,21 @@ const DataPaymentComponent = () => {
 
     return () => clearInterval(timer);
   }, [loading]);
+
+  useEffect(() => {
+    const billerData = JSON.parse(localStorage.getItem("billerData"));
+    const selectedDataPlan = JSON.parse(
+      localStorage.getItem("selectedDataPlan")
+    ); // Retrieve selected data plan
+    if (billerData && selectedDataPlan) {
+      setPhoneNumber(billerData.customerId);
+      setAmount(billerData.amount);
+      setItemName(selectedDataPlan.Name); // Set item name
+      setSaveNumber(billerData.saveNumber);
+    } else {
+      navigate(-1);
+    }
+  }, [navigate]);
 
   const handlePinChange = (e) => {
     const value = e.target.value.replace(/\D/g, "");
@@ -81,7 +83,9 @@ const DataPaymentComponent = () => {
       if (!billerData) {
         throw new Error("Biller data not found.");
       }
-
+  
+      console.log("Submitting with data:", { ...billerData, pin });
+  
       const response = await submitBillPayment(
         {
           ...billerData,
@@ -89,13 +93,14 @@ const DataPaymentComponent = () => {
         },
         jwt
       );
-      console.log("Payment successful:", response);
-
+      console.log("Payment successful:", response.data);
+  
       localStorage.removeItem("billerData");
-      setSuccess(true);
+      setPaymentSuccess(true); // Show the SuccessScreen component
     } catch (error) {
       console.error("Error submitting payment:", error);
       if (error.response && error.response.data) {
+        console.error("Error response from server:", error.response.data);
         setPinErrorMessage(error.response.data);
       } else {
         setPinErrorMessage("Failed to process payment. Please try again.");
@@ -105,16 +110,9 @@ const DataPaymentComponent = () => {
     }
   };
 
-  const handleCancel = () => {
-    navigate(-1);
-  };
-
   return (
     <div className={style.mainDiv}>
-      {success ? (
-        <SuccessScreen />
-      ) : (
-        <>
+   {paymentSuccess && <SuccessScreen />}
           <div className={style.header}>
             <FaChevronLeft
               className={style.cancelIcon}
@@ -195,8 +193,8 @@ const DataPaymentComponent = () => {
               </div>
             </form>
           </div>
-        </>
-      )}
+     
+    
     </div>
   );
 };

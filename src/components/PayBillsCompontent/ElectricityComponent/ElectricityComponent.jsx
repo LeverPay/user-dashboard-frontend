@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Electricity.css";
+import "./ElectricityComponent.module.css";
 import axios from "axios";
 import { useLocalState } from "../../../utils/useLocalStorage";
 

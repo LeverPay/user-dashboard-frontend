@@ -15,6 +15,7 @@ import validityIcon from "../../../assets/Group 1000005189.png";
 import durationIcon from "../../../assets/Group 1000005190.png";
 import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
 import ErrorMessage from "../../reuseableComponents/errorMessage/ErrorMessage";
+
 const networkLogos = {
   MTN: mtnLogo,
   Airtel: airtelLogo,
@@ -47,17 +48,23 @@ export default function DataComponent() {
   const [jwt, setJwt] = useLocalState("", "jwt");
   const [user, setUser] = useLocalState("", "user");
 
-
   useEffect(() => {
-    if (phoneNumber) {
+    if (phoneNumber.length === 11) {
       setInputBorderColor("#0F3FB2");
       const detectedNetwork = detectNetwork(phoneNumber);
       if (detectedNetwork) {
         setNetwork(detectedNetwork.name);
-        fetchBillerItems(detectedNetwork.biller_id);
+        setLoading(true);
+        fetchBillerItems(detectedNetwork.biller_id).finally(() => {
+          setLoading(false);
+        });
       }
     } else {
       setInputBorderColor("#ccc");
+      setNetwork("");
+      setBillerItems([]);
+      setLoading(false);
+      setPhoneErrorMessage("Phone number must be 11 digits.");
     }
   }, [phoneNumber]);
 
@@ -73,7 +80,6 @@ export default function DataComponent() {
           },
         }
       );
-
       setBillerItems(response.data);
     } catch (error) {
       console.error("Error fetching biller items:", error);
@@ -83,12 +89,18 @@ export default function DataComponent() {
   const handlePhoneNumberChange = (e) => {
     const newPhoneNumber = e.target.value.replace(/\D/g, "");
     setPhoneNumber(newPhoneNumber);
-    const detectedNetwork = detectNetwork(newPhoneNumber);
-    if (detectedNetwork) {
-      setNetwork(detectedNetwork.name);
-      fetchBillerItems(detectedNetwork.biller_id);
+    if (newPhoneNumber.length === 11) {
+      const detectedNetwork = detectNetwork(newPhoneNumber);
+      if (detectedNetwork) {
+        setNetwork(detectedNetwork.name);
+        fetchBillerItems(detectedNetwork.biller_id);
+      }
+      setPhoneErrorMessage("");
+    } else {
+      setNetwork("");
+      setBillerItems([]);
+      setPhoneErrorMessage("Phone number must be 11 digits.");
     }
-    setPhoneErrorMessage("");
   };
 
   const handleDataPlanChange = (plan) => {
@@ -102,7 +114,7 @@ export default function DataComponent() {
     const amountNum = parseFloat(plan.Amount);
     if (amountNum > user.wallet.withdrawable_amount.ngn) {
       setDataPlanErrorMessage(
-        "Insufficient balance,  please fund your account or try  a  different plan."
+        "Insufficient balance, please fund your account or try a different plan."
       );
       return;
     }
@@ -117,7 +129,7 @@ export default function DataComponent() {
       }
 
       const billerData = {
-        customerId: phoneNumber, // Use phoneNumber here
+        customerId: phoneNumber,
         amount: `${plan.Amount}`,
         paymentCode: plan.PaymentCode,
         itemName: plan.Name,
@@ -125,10 +137,10 @@ export default function DataComponent() {
         billerCategoryId: plan.BillerCategoryId,
         customerEmail: user.email,
         customerMobile: user.phone,
-        referenceNo: plan.ReferenceNo,
-        saveNumber: saveNumber, // Add this to store saveNumber
+        refrenceNo: plan.ReferenceNo,
+        // saveNumber: saveNumber,
       };
-
+console.log(billerData)
       localStorage.setItem("billerData", JSON.stringify(billerData));
       localStorage.setItem("selectedDataPlan", JSON.stringify(plan));
 
@@ -167,12 +179,12 @@ export default function DataComponent() {
     );
   };
 
+
+
   return (
     <div className={style.modal}>
-      {loading ? (
-        <LoadingScreen />
-      ) : (
-        <>
+  
+      
           <div className={style.header}>
             <FaChevronLeft
               className={style.cancelIcon}
@@ -180,7 +192,6 @@ export default function DataComponent() {
             />
             <h2 className={style.modalTitle}>Data Purchase</h2>
           </div>
-
           <div className={style.networksRow}>
             {Object.keys(networkLogos).map((key) => (
               <img
@@ -301,14 +312,16 @@ export default function DataComponent() {
               </p>
             )}
           </div>
+          
           {dataPlanErrorMessage && (
             <div className={style.errorWrapper}>
-              <ErrorMessage errorMessage={dataPlanErrorMessage} />
-             
+              <ErrorMessage
+                errorMessage={dataPlanErrorMessage}
+                onClose={() => setDataPlanErrorMessage("")} 
+              />
             </div>
           )}
-        </>
-      )}
+   
     </div>
   );
 }
