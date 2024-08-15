@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash, FaChevronLeft } from "react-icons/fa";
 import { useLocalState } from "../../../utils/useLocalStorage";
 import { submitBillPayment } from "../../../services/apiService";
-import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
-import SuccessfulScreen from "../../reuseableComponents/LoadingPage/SuccessScreen";
+import SuccessScreen from "../../reuseableComponents/LoadingPage/SuccessfullScreen"; // Ensure this is imported correctly
 import style from "../AirtimeCompontent/AirtimeComponent.module.css";
 import ResetPaymentScreen from "../../reuseableComponents/resetPasswordComponent/ResetPaymentScreen";
 
 const DataPaymentComponent = () => {
+  const [loadingText, setLoadingText] = useState("Proceed");
   const [pin, setPin] = useState("");
   const [pinErrorMessage, setPinErrorMessage] = useState("");
   const [showPin, setShowPin] = useState(false);
@@ -17,9 +17,26 @@ const DataPaymentComponent = () => {
   const [itemName, setItemName] = useState(""); // New state for item name
   const [saveNumber, setSaveNumber] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [paymentSuccess, setPaymentSuccess] = useState(false); 
+
   const navigate = useNavigate();
   const [jwt] = useLocalState("", "jwt");
+
+
+  useEffect(() => {
+    let timer;
+    if (loading) {
+      timer = setInterval(() => {
+        setLoadingText((prev) =>
+          prev.endsWith(".....") ? "Proceed" : `${prev}.`
+        );
+      }, 200);
+    } else {
+      setLoadingText("Proceed");
+    }
+
+    return () => clearInterval(timer);
+  }, [loading]);
 
   useEffect(() => {
     const billerData = JSON.parse(localStorage.getItem("billerData"));
@@ -66,7 +83,9 @@ const DataPaymentComponent = () => {
       if (!billerData) {
         throw new Error("Biller data not found.");
       }
-
+  
+      console.log("Submitting with data:", { ...billerData, pin });
+  
       const response = await submitBillPayment(
         {
           ...billerData,
@@ -74,13 +93,14 @@ const DataPaymentComponent = () => {
         },
         jwt
       );
-      console.log("Payment successful:", response);
-
+      console.log("Payment successful:", response.data);
+  
       localStorage.removeItem("billerData");
-      setSuccess(true);
+      setPaymentSuccess(true); // Show the SuccessScreen component
     } catch (error) {
       console.error("Error submitting payment:", error);
       if (error.response && error.response.data) {
+        console.error("Error response from server:", error.response.data);
         setPinErrorMessage(error.response.data);
       } else {
         setPinErrorMessage("Failed to process payment. Please try again.");
@@ -90,18 +110,9 @@ const DataPaymentComponent = () => {
     }
   };
 
-  const handleCancel = () => {
-    navigate(-1);
-  };
-
   return (
     <div className={style.mainDiv}>
-      {loading ? (
-        <LoadingScreen />
-      ) : success ? (
-        <SuccessfulScreen />
-      ) : (
-        <>
+   {paymentSuccess && <SuccessScreen />}
           <div className={style.header}>
             <FaChevronLeft
               className={style.cancelIcon}
@@ -177,13 +188,13 @@ const DataPaymentComponent = () => {
                   className={style.buttonSubmit}
                   disabled={loading}
                 >
-                  {loading ? "Processing..." : "Confirm"}
+                  {loading ? loadingText : "Confirm"}
                 </button>
               </div>
             </form>
           </div>
-        </>
-      )}
+     
+    
     </div>
   );
 };

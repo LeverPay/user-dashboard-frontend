@@ -294,8 +294,6 @@ export const submitBillPayment = async (billerData, jwt) => {
   } catch (error) {
     if (error.response) {
       console.error("Error response from server:", error.response.data);
-      console.error("Error status:", error.response.status);
-      console.error("Error headers:", error.response.headers);
     } else if (error.request) {
       console.error("No response received:", error.request);
     } else {
@@ -305,23 +303,7 @@ export const submitBillPayment = async (billerData, jwt) => {
   }
 };
 
-// export const submitBillPayment = async (paymentData, jwt) => {
-//   if (!jwt) {
-//     throw new Error("JWT token not found.");
-//   }
-//   console.log("Payment data:", paymentData);
 
-//   const response = await httpClient.post(
-//     "/v1/user/quickteller/submit-bill-payment",
-//     paymentData,
-//     {
-//       headers: {
-//         Authorization: `Bearer ${jwt}`,
-//       },
-//     }
-//   );
-//   return response.data;
-// };
 export const savePin = async (pin, confirmPin, jwt) => {
   setAuthHeader(jwt);
   const formData = new FormData();
@@ -373,5 +355,50 @@ export const resetPin = async (pin, confirmPin, jwt) => {
         throw new Error("Failed to reset pin");
       }
     }
+  }
+};
+
+export const getBillerPaymentItem = async (billerId, jwt) => {
+  setAuthHeader(jwt); 
+  try {
+    const response = await httpClient.get(
+      `/v1/user/quickteller/get-biller-payment-items?billerId=${billerId}`
+    );
+console.log("Biller payment items response:", response.data);
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      toast.error("Unauthorized. Please log in again.");
+      throw error; 
+    } else {
+      console.error("Failed to fetch biller payment items:", error);
+      if (error.response && error.response.data) {
+        return error.response.data; 
+      } else {
+        throw new Error("Failed to fetch biller payment items");
+      }
+    }
+  }
+};
+
+
+export const validateCustomer = async (customerId, paymentCode, jwt) => {
+  try {
+    const response = await httpClient.post(
+      '/v1/user/quickteller/validate-customer',
+      {
+        customerId,
+        paymentCode,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    throw error;
   }
 };

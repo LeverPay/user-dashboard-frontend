@@ -14,6 +14,7 @@ import { TbCurrencyNaira } from "react-icons/tb";
 import validityIcon from "../../../assets/Group 1000005189.png";
 import durationIcon from "../../../assets/Group 1000005190.png";
 import LoadingScreen from "../../reuseableComponents/LoadingPage/LoadingScreen";
+import ErrorMessage from "../../reuseableComponents/errorMessage/ErrorMessage";
 
 const networkLogos = {
   MTN: mtnLogo,
@@ -48,15 +49,22 @@ export default function DataComponent() {
   const [user, setUser] = useLocalState("", "user");
 
   useEffect(() => {
-    if (phoneNumber) {
+    if (phoneNumber.length === 11) {
       setInputBorderColor("#0F3FB2");
       const detectedNetwork = detectNetwork(phoneNumber);
       if (detectedNetwork) {
         setNetwork(detectedNetwork.name);
-        fetchBillerItems(detectedNetwork.biller_id);
+        setLoading(true);
+        fetchBillerItems(detectedNetwork.biller_id).finally(() => {
+          setLoading(false);
+        });
       }
     } else {
       setInputBorderColor("#ccc");
+      setNetwork("");
+      setBillerItems([]);
+      setLoading(false);
+      setPhoneErrorMessage("Phone number must be 11 digits.");
     }
   }, [phoneNumber]);
 
@@ -72,7 +80,6 @@ export default function DataComponent() {
           },
         }
       );
-
       setBillerItems(response.data);
     } catch (error) {
       console.error("Error fetching biller items:", error);
@@ -82,12 +89,18 @@ export default function DataComponent() {
   const handlePhoneNumberChange = (e) => {
     const newPhoneNumber = e.target.value.replace(/\D/g, "");
     setPhoneNumber(newPhoneNumber);
-    const detectedNetwork = detectNetwork(newPhoneNumber);
-    if (detectedNetwork) {
-      setNetwork(detectedNetwork.name);
-      fetchBillerItems(detectedNetwork.biller_id);
+    if (newPhoneNumber.length === 11) {
+      const detectedNetwork = detectNetwork(newPhoneNumber);
+      if (detectedNetwork) {
+        setNetwork(detectedNetwork.name);
+        fetchBillerItems(detectedNetwork.biller_id);
+      }
+      setPhoneErrorMessage("");
+    } else {
+      setNetwork("");
+      setBillerItems([]);
+      setPhoneErrorMessage("Phone number must be 11 digits.");
     }
-    setPhoneErrorMessage("");
   };
 
   const handleDataPlanChange = (plan) => {
@@ -100,7 +113,9 @@ export default function DataComponent() {
 
     const amountNum = parseFloat(plan.Amount);
     if (amountNum > user.wallet.withdrawable_amount.ngn) {
-      setDataPlanErrorMessage("Insufficient balance for the selected data plan.");
+      setDataPlanErrorMessage(
+        "Insufficient balance, please fund your account or try a different plan."
+      );
       return;
     }
 
@@ -112,10 +127,9 @@ export default function DataComponent() {
       } else {
         localStorage.removeItem("savedPhoneNumber");
       }
-      
 
       const billerData = {
-        customerId: phoneNumber, // Use phoneNumber here
+        customerId: phoneNumber,
         amount: `${plan.Amount}`,
         paymentCode: plan.PaymentCode,
         itemName: plan.Name,
@@ -123,13 +137,13 @@ export default function DataComponent() {
         billerCategoryId: plan.BillerCategoryId,
         customerEmail: user.email,
         customerMobile: user.phone,
-        referenceNo: plan.ReferenceNo,
-        saveNumber: saveNumber, // Add this to store saveNumber
+        refrenceNo: plan.ReferenceNo,
+        // saveNumber: saveNumber,
       };
-  
+console.log(billerData)
       localStorage.setItem("billerData", JSON.stringify(billerData));
-      localStorage.setItem("selectedDataPlan", JSON.stringify(plan)); 
-  
+      localStorage.setItem("selectedDataPlan", JSON.stringify(plan));
+
       navigate("/data-payment");
     } catch (error) {
       console.error("Error processing request:", error);
@@ -165,14 +179,17 @@ export default function DataComponent() {
     );
   };
 
+
+
   return (
     <div className={style.modal}>
-      {loading ? (
-        <LoadingScreen />
-      ) : (
-        <>
+  
+      
           <div className={style.header}>
-            <FaChevronLeft className={style.cancelIcon} onClick={() => navigate(-1)} />
+            <FaChevronLeft
+              className={style.cancelIcon}
+              onClick={() => navigate(-1)}
+            />
             <h2 className={style.modalTitle}>Data Purchase</h2>
           </div>
           <div className={style.networksRow}>
@@ -198,7 +215,9 @@ export default function DataComponent() {
               id="phoneNumber"
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
-              className={`${style.input} ${phoneNumber ? style.inputActive : ""}`}
+              className={`${style.input} ${
+                phoneNumber ? style.inputActive : ""
+              }`}
               placeholder="Enter phone number"
             />
             {phoneErrorMessage && (
@@ -211,7 +230,9 @@ export default function DataComponent() {
                 <button
                   key={tab}
                   className={`${style.tab} ${
-                    selectedTab === tab ? style.selectedTab : style.deselectedTab
+                    selectedTab === tab
+                      ? style.selectedTab
+                      : style.deselectedTab
                   }`}
                   onClick={() => setSelectedTab(tab)}
                 >
@@ -249,7 +270,11 @@ export default function DataComponent() {
                           </div>
                         </div>
                         <div className={style.line}>
-                          <img className={style.lineImage} src={line} alt="line" />
+                          <img
+                            className={style.lineImage}
+                            src={line}
+                            alt="line"
+                          />
                         </div>
                         <div className={style.iconWrapper}>
                           <div className={style.iconDesign}>
@@ -262,34 +287,41 @@ export default function DataComponent() {
                           </div>
                         </div>
                         <div className={style.buyNowDiv}>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleBuyNow(plan);
-                        }}
-                        className={style.buyNowButton}
-                      >
-                        Buy Now
-                      </button>
-                    </div>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleBuyNow(plan);
+                            }}
+                            className={style.buyNowButton}
+                          >
+                            Buy Now
+                          </button>
+                        </div>
                       </div>
-                      
                     </div>
-                   
                   </div>
                 ))
               ) : (
-                <p className={style.message}>No data plans available for the selected network and duration.</p>
+                <p className={style.message}>
+                  No data plans available for the selected network and duration.
+                </p>
               )
             ) : (
-              <p className={style.message}>Please enter your phone number to see data plans.</p>
+              <p className={style.message}>
+                Please enter your phone number to see data plans.
+              </p>
             )}
           </div>
+          
           {dataPlanErrorMessage && (
-            <div className={style.errorMessage}>{dataPlanErrorMessage}</div>
+            <div className={style.errorWrapper}>
+              <ErrorMessage
+                errorMessage={dataPlanErrorMessage}
+                onClose={() => setDataPlanErrorMessage("")} 
+              />
+            </div>
           )}
-        </>
-      )}
+   
     </div>
   );
 }

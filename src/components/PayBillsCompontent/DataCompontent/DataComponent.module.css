@@ -1,7 +1,7 @@
 /* Base Styles */
 .modal {
   position: fixed;
-  top: 55%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -13,18 +13,33 @@
   color: #0F3FB2;
   font-family: Poppins;
 }
+.background {
+  padding: 20px;
 
+margin-top: 150px;
+  position: relative;
+  border-radius: 50px;
+  background: white;
+}
+.input::placeholder {
+  font-size: 12px; /* Adjust this value as needed */
+  color:rgb(130, 130, 130);; /* Optional: Change the color of the placeholder text */
+}
 .header {
+
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0F3FB2;
-  color: white;
-  padding: 20px;
-  border-radius: 30px 20px 0 0;
-  width: calc(100% + 40px);
-  margin: -20px;
+  color: black;
+  width: 90%;
+  position: absolute;
+
+
+  
 }
+
+
 
 .modalTitle {
   flex: 1;
@@ -118,7 +133,7 @@
   display: flex;
   justify-content: space-around;
   margin-bottom: 50px;
-  margin-top: 50px;
+  margin-top: 80px;
 }
 
 .networkLogo {
@@ -224,9 +239,6 @@
   gap: 1rem;
 }
 
-.errorDiv {
-  margin-top: 50px;
-}
 
 .dataPlansRow::-webkit-scrollbar {
   visibility: hidden;
