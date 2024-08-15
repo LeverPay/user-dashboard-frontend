@@ -23,6 +23,7 @@ import { useLocalState } from "../utils/useLocalStorage";
 import { getUserProfile } from "../services/apiService";
 import { ToastContainer } from "react-toastify"; // Removed 'toast'
 import TransferPage from "./TransferPage/TransferPage";
+import TransferInfo from "./TransferPage/TransferInfo/TransferInfo";
 import SignupPage from "./SignupPage/SignupPage";
 import FundingPage from "./FundingPage/FundingPage";
 import FundingPayment from "../components/AccountFunding/FundingPayment";
@@ -54,6 +55,8 @@ import AirtimePaymentPage from "./PayBillsPage/AirtimePage/AirtimePaymentPage";
 import DataPaymentScreen from "./PayBillsPage/DataPage/DataPaymentScreen";
 import ElectricityPage from "./PayBillsPage/ElectricityPage/ElectricityPage";
 import SuccessfullScreen from "../components/reuseableComponents/LoadingPage/SuccessfullScreen";
+import TransferPayment from "./TransferPage/TransferPayment/TransferPayment";
+import TransferPaymentConfirmation from "./TransferPage/TransferPaymentConfirmation/TransferPaymentConfirmation";
 
 export const UserDashboardLayout = (props) => {
   const [user, setUser] = useState({});
@@ -144,6 +147,9 @@ export const UserDashboardLayout = (props) => {
           <Route path="transactions" element={<AllTransactionCon />} />
           <Route path="funding-history" element={<AllFundingHistoryCon />} />
           <Route exact path="transfer" element={<TransferPage />} />
+          <Route path="/transfer-info" element={<TransferInfo />} />
+          <Route path="/transfer-payment" element={<TransferPayment />} />
+          <Route path="/transfer-payment-confirmation" element={<TransferPaymentConfirmation />} />
           <Route exact path="/investment" element={<Investment />} />
           <Route path="invoices" element={<AllInvoicePage />}>
             <Route index element={<Allinvoices />} />

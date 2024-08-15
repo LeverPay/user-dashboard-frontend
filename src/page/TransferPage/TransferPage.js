@@ -1,13 +1,10 @@
 import React from "react";
-import TransferPageComponent from "../../components/TransferPageComponent/TransferPageComponent";
+import TransferInterface from "../../components/TransferPageComponent/TransferInterface";
 
 const TransferPage = ({ naira_code, dollar_code }) => {
   return (
     <>
-      <TransferPageComponent
-        naira_code={naira_code}
-        dollar_code={dollar_code}
-      />
+      <TransferInterface />
     </>
   );
 };

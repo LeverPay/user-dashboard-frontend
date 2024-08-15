@@ -1,11 +1,10 @@
-import React from 'react'
-import PayBillsComponents from "../../components/PayBillsCompontent/PayBill"
+import React from "react";
+import PayBillsComponents from "../../components/PayBillsCompontent/PayBill";
 
 export default function PayBillsPage() {
-    return (
-        <div>
-            <PayBillsComponents />
-        </div>
-
-    )
+  return (
+    <div>
+      <PayBillsComponents />
+    </div>
+  );
 }
