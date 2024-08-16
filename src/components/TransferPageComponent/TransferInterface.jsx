@@ -13,20 +13,6 @@ import { IoSearchOutline } from "react-icons/io5";
 import logoBlue from "../../assets/images/logo-blue.svg";
 import bluePlane from "../../assets/images/blue-plane.svg";
 
-const benefeciaries = [
-  {
-    name: "Patrick Claudius",
-    info: "You sent NGN9,000.OO",
-  },
-  {
-    name: "Chioma Davido",
-    info: "You received NGN900,000.OO",
-  },
-  {
-    name: "Dorcas  Realtor",
-    info: "You sent NGN800,000.OO",
-  },
-];
 
 const TransferInterface = () => {
 
