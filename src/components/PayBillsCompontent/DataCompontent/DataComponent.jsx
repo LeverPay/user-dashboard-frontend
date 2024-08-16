@@ -140,13 +140,13 @@ export default function DataComponent() {
         refrenceNo: plan.ReferenceNo,
         // saveNumber: saveNumber,
       };
-console.log(billerData)
+
       localStorage.setItem("billerData", JSON.stringify(billerData));
       localStorage.setItem("selectedDataPlan", JSON.stringify(plan));
 
       navigate("/data-payment");
     } catch (error) {
-      console.error("Error processing request:", error);
+    
       setDataPlanErrorMessage("Failed to process request. Please try again.");
     } finally {
       setLoading(false);

@@ -1,40 +1,90 @@
 .mainDiv {
   margin: auto;
-  margin-top: -200;
-  width: 90%;
+  top: -40px;
+
+  width: 100%;
   max-width: 500px;
   background-color: white;
-  padding: 2rem;
+  /* padding: 1rem; */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
   border-radius: 50px;
   color: #333;
   position: relative;
 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+.backup{
+  padding-top: 50px;
+}
 .input::placeholder {
-  font-size: 12px; /* Adjust this value as needed */
-  color:rgb(130, 130, 130);; /* Optional: Change the color of the placeholder text */
+  font-size: 12px;
+  color:rgb(130, 130, 130);
 }
 .header {
+padding-top: 30px;
   display: flex;
   align-items: center;
-  justify-content: center; 
-  color: white;
-  background-color: rgb(15, 63, 178);
-  border-radius: 30px 20px 0 0;
-  height: 70px;
+  justify-content: center;
+  color: black;
   width: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
-  margin-bottom: 80px;
-  z-index: 0;
+
+}
+
+.header h2{
+  font-size: 25px;
+  font-family: Poppins;
+  color:black;
+  margin: 0; 
+}
+.infoTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.infoTable td {
+  padding: 10px;
+  /* border-bottom: 1px solid #ddd; */
+}
+
+.infoTable td:first-child {
+  font-weight: 500;
+  color: #0f3fb2;
+}
+
+.infoTable td:last-child {
+  color: #979797;
+}
+
+.infoTable tr:last-child td {
+  border-bottom: none;
+}
+.tableLine {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 50px;
+
+  height: 2px; /* Adjust height if needed */
+  background-color: #979797;
+  margin-top: 5px; /* Adjust spacing as needed */
+}
+
+.formlabel1{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+  color: #0F3FB2;
+
 }
 
 .cancelIcon {
   position: absolute;
   left: 20px; /* Position the icon at the left corner */
-  top: 50%;
+  top: 78%;
   transform: translateY(-50%);
 }
 
@@ -47,6 +97,7 @@
 
 .formGroup {
   margin-bottom: 40px;
+  margin-top: 50px; margin-bottom: 40px;
   margin-top: 50px;
 }
 
@@ -145,6 +196,11 @@
 .successMessage {
   color: #0f3fb2; /* Set the color to your desired hex code */
 }
+.eyeIcon2 {
+  margin-left: 260px;
+  margin-top: -61px;
+}
+
 
 @media only screen and (max-width: 1024px) and (min-width: 769px) {
   .mainDiv {
