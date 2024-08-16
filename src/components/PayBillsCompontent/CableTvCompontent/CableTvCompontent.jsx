@@ -98,7 +98,6 @@ const CableTvPaymentScreenComponent = () => {
       setPackageError("");
     }
   };
-
   const handleSubmit = () => {
     if (!provider || !smartCardNumber || !selectedPackage || !customerDetails) {
       setProviderError(!provider ? "Please select a provider." : "");
@@ -107,23 +106,31 @@ const CableTvPaymentScreenComponent = () => {
       setValidationError(!customerDetails ? "Please validate the Smart Card Number." : "");
       return;
     }
-
+  
+    const customerEmail = localStorage.getItem("userEmail");
+    const customerMobile = localStorage.getItem("userPhoneNumber");
+  
     const billerData = {
       providerId: provider.Id,
       paymentCode: selectedPackage?.PaymentCode,
-      CustomerId: smartCardNumber,
+      customerId: smartCardNumber,
       providerName: provider.Name,
-      customerName: customerDetails.CustomerName,
+      customerName:  customerDetails?.FullName || customerDetails?.CustomerName,  // Customer name from validation data
       smartCardNumber,
-      packageOption: selectedPackage?.Id,
-      amount: selectedPackage?.Amount,
+      packageName: selectedPackage?.Name,           // Package name
+      packageOption: selectedPackage?.Id,           // Package ID
+      amount: selectedPackage?.Amount,              // Package amount
+      refrenceNo: selectedPackage?.ReferenceNo,    // Reference number from the package
+      customerEmail,
+      customerMobile,
     };
-
+  
     console.log("Biller Data:", JSON.stringify(billerData));
-
+  
     localStorage.setItem("billerData", JSON.stringify(billerData));
     navigate("/cable-tv-payment");
   };
+  
 
   return (
     <div className={style.mainDiv}>
@@ -131,6 +138,8 @@ const CableTvPaymentScreenComponent = () => {
         <FaChevronLeft className={style.cancelIcon} onClick={() => navigate(-1)} />
         <h2 className={style.modalTitle}>Cable TV</h2>
       </div>
+<div className={style.backup}>
+
 
       <div className={style.formGroup}>
         <h1 className={style.formLabel}>Provider</h1>
@@ -198,6 +207,7 @@ const CableTvPaymentScreenComponent = () => {
         <button type="button" className={style.buttonSubmit} onClick={handleSubmit}>
           Proceed
         </button>
+      </div>
       </div>
     </div>
   );

@@ -10,16 +10,13 @@
   align-items: center;
   z-index: 100; 
 }
-.wrapper{
 
-padding-top: 500px;
-padding-left: 320px;
-
+.wrapper {
+  padding-top: 500px;
+  padding-left: 320px;
 }
 
-
 .main {
-
   background-color: white;
   padding: 2rem;
   border-radius: 50px;
@@ -27,11 +24,9 @@ padding-left: 320px;
   display: flex;
   flex-direction: column;
   gap: 50px;
-
-padding-left: 10px;
-padding-right: 110px;
-padding-bottom: 10px;
-
+  padding-left: 10px;
+  padding-right: 110px;
+  padding-bottom: 10px;
   position: relative;
 }
 
@@ -80,7 +75,111 @@ padding-bottom: 10px;
   letter-spacing: 5%;
 }
 
-/* .doneButton:hover {
-  background-color: transparent;
-  color: #45a049;
-} */
+/* Responsive Styles */
+
+/* Small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    padding-top: 150px;
+    padding-left: 10px;
+  }
+
+  .main {
+    padding: 1rem;
+    border-radius: 30px;
+    gap: 30px;
+    padding-right: 20px;
+  }
+
+  .innerDiv {
+    padding-left: 0;
+    gap: 30px;
+  }
+
+  .text p {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .done {
+    padding-left: 115px;
+    padding-right: 60px;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .doneButton {
+    font-size: 18px;
+  }
+}
+
+/* Medium devices (tablets, 769px - 1024px) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .wrapper {
+    padding-top: 300px;
+    padding-left: 100px;
+  }
+
+  .main {
+    padding: 1.5rem;
+    border-radius: 40px;
+    gap: 40px;
+    padding-right: 40px;
+  }
+
+  .innerDiv {
+    padding-left: 50px;
+    gap: 40px;
+  }
+
+  .text p {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .done {
+    padding-left: 0;
+    align-items: flex-end;
+    gap: 40px;
+  }
+
+  .doneButton {
+    font-size: 20px;
+  }
+}
+
+/* Large devices (desktops, 1025px and up) */
+@media only screen and (min-width: 1025px) {
+  .wrapper {
+    /* padding-top: 500px;
+    padding-left: 150px; */
+    padding-right: 100px ;
+  }
+
+  .main {
+    padding: 2rem;
+    border-radius: 50px;
+    gap: 50px;
+    padding-right: 110px;
+  }
+
+  .innerDiv {
+    padding-left: 70px;
+    gap: 50px;
+  }
+
+  .text p {
+    font-size: 22px;
+    text-align: right;
+  }
+
+  .done {
+   
+    align-items: flex-end;
+    gap: 50px;
+  }
+
+  .doneButton {
+    font-size: 22px;
+  }
+}
