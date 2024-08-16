@@ -1,0 +1,32 @@
+/* Container for the slider */
+.slider {
+  width: 40px;
+  height: 22px;
+  background-color: #e0e0e0; /* Light background */
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Background color when slider is on */
+.slider-on {
+  background-color: #4caf50; /* Change this color to whatever you want for the "on" state */
+}
+
+/* The circle inside the slider */
+.slider-circle {
+  width: 17px;
+  height: 17px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: left 0.3s ease;
+}
+
+/* Position of the circle when slider is on */
+.slider-circle-on {
+  left: 20px; /* Move the circle to the right side */
+}

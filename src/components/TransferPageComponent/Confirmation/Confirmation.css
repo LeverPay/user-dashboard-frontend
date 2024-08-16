@@ -1,0 +1,84 @@
+.confirm_content_wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.confirm_logo_wrapper {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm_logo_wrapper > img {
+  width: 60px;
+}
+
+.confirm_alert_wrapper {
+  background-color: white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 10px 50px 10px;
+}
+
+.customized_line {
+  width: 62px;
+  height: 4px;
+  background-color: #887c7c;
+}
+
+.confirm_main_message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirm_main_message > img {
+  width: 60px;
+}
+
+.confirm_transaction_status {
+  font-size: 18px !important;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 500;
+  padding: 4px 0 !important;
+  text-align: center;
+}
+
+.confirm_transaction_status_blue {
+  color: #0f3fb2 !important;
+}
+
+.confirm_transaction_status_red {
+  color: #fc0019 !important;
+}
+
+.confirm_transaction_extra_msg {
+  font-size: 10px !important;
+  color: #887c7c;
+  font-family: "Poppins", sans-serif !important;
+  padding: 0 !important;
+  text-align: center;
+  width: 177px;
+  margin: 0 auto;
+  font-weight: 600;
+}
+
+.confirm_redirect_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0 40px;
+}
+
+.confirm_redirect_btn {
+  text-decoration: none;
+  font-size: 18px !important;
+  font-family: "Poppins", sans-serif !important;
+  color: #0f3fb2 !important;
+}

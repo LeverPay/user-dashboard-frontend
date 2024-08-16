@@ -1,0 +1,48 @@
+.benefeciaries-wrapper-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.benefeciary-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.benefeciary-name {
+  font-size: 14px !important;
+  font-family: "Poppins", sans-serif !important;
+  padding: 0 !important;
+  color: #0f3fb2;
+}
+
+.benefeciary-info {
+  font-size: 10px !important;
+  font-family: "Poppins", sans-serif !important;
+  padding: 0 !important;
+  color: #887c7c;
+  font-weight: 600;
+}
+
+.benefeciary-btn {
+  width: auto;
+  height: auto;
+  padding: 2px !important;
+  border: none;
+  background-color: transparent;
+}
+
+.beneficiary-refresh {
+  color: #0f3fb2;
+}
+
+.benefeciary-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.benefeciary-content.open {
+  max-height: 200px; /* Adjust the max-height according to your content */
+}
