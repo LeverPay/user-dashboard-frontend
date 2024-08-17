@@ -16,14 +16,18 @@ const Benefeciary = ({ item }) => {
   // Determine whether it's a sent or received transaction
   const isSentTransaction = item.type === "credit";
 
-  // Set the beneficiary name and info based on the transaction type
+  // Safely access sender and recipient information
+  const sender = item.transaction_details?.sender;
+  const recipient = item.transaction_details?.recipient;
+
   const beneficiaryName = isSentTransaction
-    ? item.transaction_details.sender.first_name +
-      " " +
-      item.transaction_details.sender.last_name
-    : item.transaction_details.recipient.first_name +
-      " " +
-      item.transaction_details.recipient.last_name;
+    ? sender
+      ? `${sender.first_name} ${sender.last_name}`
+      : "Unknown Sender"
+    : recipient
+    ? `${recipient.first_name} ${recipient.last_name}`
+    : "Unknown Recipient";
+
   const beneficiaryInfo = isSentTransaction
     ? `You received ${item.amount}`
     : `You sent ${item.amount}`;
@@ -47,7 +51,7 @@ const Benefeciary = ({ item }) => {
 
       <div className={`benefeciary-content ${isOpen ? "open" : ""}`}>
         {/* Content to be shown when accordion is open */}
-        <p>Additional content goes here...</p>
+        <p className="benefeciary-info">Additional content goes here...</p>
       </div>
     </div>
   );
