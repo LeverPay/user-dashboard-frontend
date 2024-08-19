@@ -32,6 +32,21 @@ const Benefeciary = ({ item }) => {
     ? `You received ${item.amount}`
     : `You sent ${item.amount}`;
 
+  // Convert ISO date string to formatted date
+  const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    const day = date.getUTCDate().toString().padStart(2, '0');
+    const month = (date.getUTCMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+    const year = date.getUTCFullYear();
+    const hours = date.getUTCHours() % 12 || 12; // Convert to 12-hour format
+    const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+    const ampm = date.getUTCHours() >= 12 ? 'pm' : 'am';
+
+    return `${day}-${month}-${year} ${hours}:${minutes}${ampm}`;
+  };
+
+  const formattedDate = formatDate(item.created_at);
+
   return (
     <div>
       <div className="benefeciary-container">
@@ -42,16 +57,18 @@ const Benefeciary = ({ item }) => {
         <button className="benefeciary-btn" onClick={toggleAccordion}>
           {/* <GrRefresh className="beneficiary-refresh" /> */}
           {isOpen ? (
-            <IoIosArrowDropright className="beneficiary-refresh" />
-          ) : (
             <IoIosArrowDropdown className="beneficiary-refresh" />
+          ) : (
+            <IoIosArrowDropright className="beneficiary-refresh" />
           )}
         </button>
       </div>
 
       <div className={`benefeciary-content ${isOpen ? "open" : ""}`}>
         {/* Content to be shown when accordion is open */}
-        <p className="benefeciary-info">Additional content goes here...</p>
+        <p className="benefeciary-info">Currency: {item.currency}</p>
+        <p className="benefeciary-info">Date: {formattedDate}</p>
+        <p className="benefeciary-info">Reference No:  {item.tnx_reference_no}</p>
       </div>
     </div>
   );
