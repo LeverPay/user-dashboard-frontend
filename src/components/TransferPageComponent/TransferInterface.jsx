@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useLocalState } from "../../utils/useLocalStorage";
@@ -8,28 +8,22 @@ import Benefeciary from "./Benefeciary";
 
 import "./TransferInterface.css";
 import { IoIosArrowBack } from "react-icons/io";
-import { IoSearchOutline } from "react-icons/io5";
 
 import logoBlue from "../../assets/images/logo-blue.svg";
 import bluePlane from "../../assets/images/blue-plane.svg";
 
-
 const TransferInterface = () => {
-
-  const [transactions, setTransactions] = useState([])
+  const [transactions, setTransactions] = useState([]);
 
   const navigate = useNavigate();
 
   const [jwt] = useLocalState("", "jwt");
-
-  console.log("first transactions", transactions)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Ensure we await the response
         const response = await fetchTransactions(jwt);
-        console.log("Fetched transactions response:", response);
 
         // Filter transactions with merchant value of "transfer"
         const filteredTransactions = response.data.filter(
@@ -40,16 +34,13 @@ const TransferInterface = () => {
         setTransactions(filteredTransactions);
 
         // setTransactions(response.data);
-
       } catch (error) {
         console.error("Error fetching transactions:", error);
       }
     };
 
     fetchData();
-  }, [])
-
-  console.log("second transactions", transactions)
+  }, [jwt]);
 
   return (
     <section id="transfer-interface">
@@ -92,20 +83,21 @@ const TransferInterface = () => {
           <div className="benefeciaries-wrapper-head">
             <h2>Beneficiaries</h2>
 
-            <div>
-              <button>
-                <IoSearchOutline className="beneficiary-search" />
+            {/* <div>
+              <button className="all-beneficiary-btn" onClick={toggleShowAll}>
+                {showAll ? "Show less" : "View all"}
               </button>
-              <button className="all-beneficiary-btn">View all</button>
-            </div>
+            </div> */}
           </div>
 
-          <div className="benefeciaries-wrapper-body">
-            {transactions.length > 0 && transactions.map((item, index) => (
-              <Benefeciary key={index} item={item} />
-            ))}
+          <div
+            className="benefeciaries-wrapper-body">
+            {transactions.length > 0 &&
+              transactions.map((item, index) => (
+                <Benefeciary key={index} item={item} />
+              ))}
 
-            {transactions.length < 1 && (<p>No Transactions yet!</p>)}
+            {transactions.length < 1 && <p>No Transactions yet!</p>}
           </div>
         </div>
       </div>

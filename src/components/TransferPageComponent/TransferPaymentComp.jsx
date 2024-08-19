@@ -73,30 +73,6 @@ const TransferPaymentComp = () => {
     }
   };
 
-  // const handleOTP = async () => {
-  //   if (!uuid) {
-  //     toast.error("UUID not found. Cannot verify OTP.");
-  //     return;
-  //   }
-
-  //   toast.loading("Verifying...");
-
-  //   try {
-  //     const response = await verifyPayInvoice({ uuid, otp });
-
-  //     toast.dismiss();
-
-  //     if (response.success) {
-  //       navigate("/transfer-payment-confirmation");
-  //     } else {
-  //       toast.error(response.message || "OTP failed");
-  //     }
-  //   } catch (error) {
-  //     toast.dismiss();
-  //     toast.error("An error occurred while verifying OTP.");
-  //   }
-  // };
-
   const handleOTP = async () => {
     if (!uuid) {
       toast.error("UUID not found. Cannot verify OTP.");
